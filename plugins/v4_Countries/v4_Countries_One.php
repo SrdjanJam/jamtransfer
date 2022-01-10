@@ -3,8 +3,7 @@ header('Content-Type: text/javascript; charset=UTF-8');
 
  
 	# init libs
-	require_once ROOT . '/jamtransfer/cms/config.php';
-	require_once ROOT . '/db/db.class.php';
+	require_once '../../config.php';
 	require_once ROOT . '/db/v4_Countries.class.php';
 
 

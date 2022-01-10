@@ -42,8 +42,16 @@ if ( isset($_SESSION['CMSLang']) and $_SESSION['CMSLang'] != '') {
 	$_SESSION['CMSLang'] = 'en';
 	require_once 'lng/en_text.php';
 }
-//require_once 'lng/var-en.php';
+require_once 'lng/var-en.php';
 $smarty->assign('language',$_SESSION['CMSLang']);
+
+ $smarty->assign('NNEW','New');
+ $smarty->assign('ASCENDING','Ascending'); 
+ $smarty->assign('DESCENDING','Descending'); 
+ $smarty->assign('THERE_ARE_NO_DATA','There are no data'); 
+
+
+
 // END OF LANGUAGES	
 
 // pdv

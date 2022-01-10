@@ -1,18 +1,14 @@
 <? 
-    require_once ROOT.'/db/v4_Countries.class.php';
 	require_once 'scripts.js.php';	
-		
+    require_once ROOT.'/db/v4_Countries.class.php';
 	$_SESSION['AgentID']=$_REQUEST['AgentID'];
-	$_SESSION['PaxNo']=$_REQUEST['PaxNo'];
-	
+	$_SESSION['PaxNo']=$_REQUEST['PaxNo'];	
 ?>
     <form method="post" id="finalForm" name="finalForm" action="booking/step3"
     onsubmit="return $('#finalForm').valid();"
     style="background: #eee;
     margin-top:-20px !important"> 
     <br>
-
-
         <?
         // spremi sve u session
         foreach ($_REQUEST as $key => $value) {
@@ -256,9 +252,6 @@
 					<? } ?>
 				</div>
             </div>
-			 
-			
-
 
             <!-- return transfer row -->
             <? } ?>
@@ -469,8 +462,7 @@
             <input  type="hidden" id="PNC" name="PNC" value="0">
             <input  type="hidden" id="PLC" name="PLC" value="0">
     </form>
-
-
-
-
-
+<?
+	// display
+	$smarty->display("plugins/booking/templates/bookingStep1.tpl");	
+	

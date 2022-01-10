@@ -1,26 +1,27 @@
 <?php
-/* Smarty version 3.1.32, created on 2022-01-10 08:09:33
+/* Smarty version 3.1.32, created on 2022-01-10 13:33:41
   from 'C:\wamp\www\jamtransfer\templates\index.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.32',
-  'unifunc' => 'content_61dbe9bd33bdd2_64203552',
+  'unifunc' => 'content_61dc35b57807b6_47108325',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'a1818a92b5a2f041fd91a227dabc592dea38fac2' => 
     array (
       0 => 'C:\\wamp\\www\\jamtransfer\\templates\\index.tpl',
-      1 => 1641802169,
+      1 => 1641821617,
       2 => 'file',
     ),
   ),
   'includes' => 
   array (
+    'file:page.tpl' => 1,
   ),
 ),false)) {
-function content_61dbe9bd33bdd2_64203552 (Smarty_Internal_Template $_smarty_tpl) {
+function content_61dc35b57807b6_47108325 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html>
 	<head>
@@ -212,12 +213,14 @@ _init.js"><?php echo '</script'; ?>
 
 			<div class="container-fluid side-collapse-container"
 			style="padding:0px!important">
-					 
+					<?php if ($_smarty_tpl->tpl_vars['page']->value) {
+$_smarty_tpl->_subTemplateRender("file:page.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
+?> <?php }?>
 					<?php echo $_smarty_tpl->tpl_vars['page_render']->value;?>
 
 			</div>
 		</div>
-		<input type='text' id='local' value='<?php echo $_smarty_tpl->tpl_vars['local']->value;?>
+		<input type='hidden' id='local' value='<?php echo $_smarty_tpl->tpl_vars['local']->value;?>
 ' name='local'>
 	</body>
 </html>

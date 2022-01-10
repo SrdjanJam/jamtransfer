@@ -127,11 +127,11 @@
 
 			<div class="container-fluid side-collapse-container"
 			style="padding:0px!important">
-					{*include file="{$page}.tpl"*} 
+					{if $page}{include file="page.tpl"} {/if}
 					{$page_render}
 			</div>
 		</div>
-		<input type='text' id='local' value='{$local}' name='local'>
+		<input type='hidden' id='local' value='{$local}' name='local'>
 	</body>
 </html>
 	{literal}

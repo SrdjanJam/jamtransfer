@@ -77,14 +77,14 @@
             	Masters <span class="caret"></span>
             </a>
             <ul class="dropdown-menu" role="menu">
-            	<li id="countries"><a href="index.php?p=countries"><?= COUNTRIES ?></a></li>
-          		<li id="locations"><a href="index.php?p=locationTypes"><?= LOCATION_TYPES ?></a></li>				
-          		<li id="locations"><a href="index.php?p=locations"><?= LOCATIONS ?></a></li>
-          		<li id="routes"><a href="index.php?p=routes"><?= ROUTES ?></a></li>
-				<li id="vehicleTypes"><a href="index.php?p=vehicleTypes"><?= VEHICLE_TYPES ?></a></li>
-				<li id="extraServices"><a href="index.php?p=extraServices"><?= EXTRA_SERVICES ?></a></li>
-				<li id="actions"><a href="index.php?p=actions">Actions</a></li>
-				<li id="approvedFuelPrice"><a href="index.php?p=approvedFuelPrice">Approved Fuel Price</a></li>
+            	<li id="countries"><a href="countries"><?= COUNTRIES ?></a></li>
+          		<li id="locations"><a href="locationTypes"><?= LOCATION_TYPES ?></a></li>				
+          		<li id="locations"><a href="locations"><?= LOCATIONS ?></a></li>
+          		<li id="routes"><a href="routes"><?= ROUTES ?></a></li>
+				<li id="vehicleTypes"><a href="vehicleTypes"><?= VEHICLE_TYPES ?></a></li>
+				<li id="extraServices"><a href="extraServices"><?= EXTRA_SERVICES ?></a></li>
+				<li id="actions"><a href="actions">Actions</a></li>
+				<li id="approvedFuelPrice"><a href="approvedFuelPrice">Approved Fuel Price</a></li>
           	</ul>
           </li>
 

@@ -66,7 +66,9 @@ else if(isset($_REQUEST['p']) and $_REQUEST['p'] != '') $activePage = $_REQUEST[
 require_once $activeFolder . '/' . 'menu.php';
 //stranica
 require_once $activeFolder . '/' . 'controler.php';
-
+ $smarty->assign('page',$page);
+ $smarty->assign('function_all',$function_all);
+  
 // display
 $smarty->display("index.tpl");	
 
