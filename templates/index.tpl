@@ -40,11 +40,7 @@
 		<link rel="stylesheet" href="css/colors.css" media="all">
 		<link rel="stylesheet" href="css/simplegrid.css" media="all">
 		<link rel="stylesheet" type="text/css" href="css/JAMTimepicker.css">
-		<link rel="stylesheet" type="text/css" href="js/select/css/select2.css">
-		<link rel="stylesheet" type="text/css" href="css/all.css" media="screen">
-		<link rel="stylesheet" type="text/css" href="js/jQuery/jquery.ui.datepicker.css">
-		<link rel="stylesheet" type="text/css" href="js/jQuery/jquery-ui-timepicker.css">
-		
+		<link rel="stylesheet" type="text/css" href="js/select/css/select2.css">		
 
 		<style type="text/css" media="print">
 			body {
@@ -123,10 +119,6 @@
 		<script src="js/jquery.toaster.js"></script>
 		<script src="lng/{$language}_init.js"></script>	
 		<script src="js/cms.jquery.js"></script>
-		<script src="js/all.js"></script>
-		<script src="js/jQuery/jquery.ui.core.js"></script>
-		<script src="js/jQuery/jquery.ui.timepicker.js"></script>
-
 		
 	</head>
 	<body class="fixed-top" style="height:100%!important;font-size:16px">

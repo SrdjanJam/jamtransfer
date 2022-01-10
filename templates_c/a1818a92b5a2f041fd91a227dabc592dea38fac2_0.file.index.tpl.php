@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.32, created on 2022-01-05 09:09:12
+/* Smarty version 3.1.32, created on 2022-01-10 08:09:33
   from 'C:\wamp\www\jamtransfer\templates\index.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.32',
-  'unifunc' => 'content_61d56038f183e0_08588464',
+  'unifunc' => 'content_61dbe9bd33bdd2_64203552',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'a1818a92b5a2f041fd91a227dabc592dea38fac2' => 
     array (
       0 => 'C:\\wamp\\www\\jamtransfer\\templates\\index.tpl',
-      1 => 1641373711,
+      1 => 1641802169,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_61d56038f183e0_08588464 (Smarty_Internal_Template $_smarty_tpl) {
+function content_61dbe9bd33bdd2_64203552 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html>
 	<head>
@@ -65,11 +65,7 @@ function content_61d56038f183e0_08588464 (Smarty_Internal_Template $_smarty_tpl)
 		<link rel="stylesheet" href="css/colors.css" media="all">
 		<link rel="stylesheet" href="css/simplegrid.css" media="all">
 		<link rel="stylesheet" type="text/css" href="css/JAMTimepicker.css">
-		<link rel="stylesheet" type="text/css" href="js/select/css/select2.css">
-		<link rel="stylesheet" type="text/css" href="css/all.css" media="screen">
-		<link rel="stylesheet" type="text/css" href="js/jQuery/jquery.ui.datepicker.css">
-		<link rel="stylesheet" type="text/css" href="js/jQuery/jquery-ui-timepicker.css">
-		
+		<link rel="stylesheet" type="text/css" href="js/select/css/select2.css">		
 
 		<style type="text/css" media="print">
 			body {
@@ -207,16 +203,6 @@ _init.js"><?php echo '</script'; ?>
 		<?php echo '<script'; ?>
  src="js/cms.jquery.js"><?php echo '</script'; ?>
 >
-		<?php echo '<script'; ?>
- src="js/all.js"><?php echo '</script'; ?>
->
-		<?php echo '<script'; ?>
- src="js/jQuery/jquery.ui.core.js"><?php echo '</script'; ?>
->
-		<?php echo '<script'; ?>
- src="js/jQuery/jquery.ui.timepicker.js"><?php echo '</script'; ?>
->
-
 		
 	</head>
 	<body class="fixed-top" style="height:100%!important;font-size:16px">

@@ -1,3 +1,10 @@
+<link rel="stylesheet" type="text/css" href="css/all.css" media="screen">
+<link rel="stylesheet" type="text/css" href="js/jQuery/jquery.ui.datepicker.css">
+<link rel="stylesheet" type="text/css" href="js/jQuery/jquery-ui-timepicker.css">
+<script src="js/all.js"></script>
+<script src="js/jQuery/jquery.ui.core.js"></script>
+<script src="js/jQuery/jquery.ui.timepicker.js"></script>
+
 <script>
 	var loadingBar = '<br><br><div class="cssload-loader"><div></div><div></div><div></div><div></div><div></div></div>';
 	var base_url = 'plugins/booking/';
