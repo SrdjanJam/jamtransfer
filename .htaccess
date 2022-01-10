@@ -1,0 +1,7 @@
+﻿RewriteEngine on
+
+
+
+RewriteCond $1 !^(index\.php|i|css|js|fonts|a|api2|cms|plugins|lng|login\.php|logout\.php)
+
+RewriteRule ^(.*)$ index.php/$1 [L]
