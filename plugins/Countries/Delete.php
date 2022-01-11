@@ -1,10 +1,9 @@
 <?
 header('Content-Type: text/javascript; charset=UTF-8');
-error_reporting(E_PARSE);
- 
+	require_once '../../config.php';
+
 	# init libs
-	require_once '../../../../db/db.class.php';
-	require_once '../../../../db/v4_Countries.class.php';
+	require_once ROOT . '/db/v4_Countries.class.php';
 
 
 	# init vars

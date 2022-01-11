@@ -3,20 +3,19 @@
 	//
 	// USERS EDIT FORM FUNCTIONS *********************************************************************************
 	//
-
-	var data_v4_Countries = [];
-	function all_v4_Countries() {
+	window.root = 'plugins/Countries/';
+	var data_Items = [];
+	function allItems() {
 
 		// podaci iz input polja - filtriranje
 		var where  = $("#whereCondition").val(); // glavni filter koji uvijek radi
-	 	//var status = $("#UserLevel").val(); // prikazuje samo Usere sa levelom
 	 	var filter = $("#Search").val(); // filtrira prema zadanom tekstu
 	 	var length = $("#length").val(); // dropdown za broj prikazanih usera na stranici
 
 	 	// advanced search
 	 	var sortOrder  = $("#sortOrder").val();
 	 	
-		var callFunction = 'all_v4_CountriesFilter()'; // funkcija koju paginator poziva kod promjene stranice
+		var callFunction = 'allItems()'; // funkcija koju paginator poziva kod promjene stranice
 	
 		// ovo koristi i paginator funkcija!
 	 	var recordsTotal = 0;
@@ -26,41 +25,33 @@
 		if(page<=0) {page=1;}
 		//
 
-	 	var url = WEBSITEURL + '/cms/p/modules/v4_Countries/v4_Countries_All.php?where='+where+
+	 	var url = window.root+'All.php?where='+where+
 	 	'&Search='+filter+'&page='+page+'&length='+length+'&sortOrder='+sortOrder+'&callback=?';
-
 		$.ajax({
 		 type: 'GET',
 		  url: url,
 		  async: false,
 		  contentType: "application/json",
 		  dataType: 'jsonp',
-		  success: function(v4_CountriesData) {
+		  success: function(ItemsData) {
 
 			  // CUSTOM STUFF
-			  // uzmi samo podatke o transferima
-			  var data = v4_CountriesData.data;
-			  recordsTotal = v4_CountriesData.recordsTotal;
-		
+			  // uzmi samo podatke o itemima
+			  var data = ItemsData.data;
+			  recordsTotal = ItemsData.recordsTotal;
 			  paginator(page,recordsTotal,length, callFunction);
 			  
 			  $.each(data, function(i, item) {
 				data[i].color ='white';
-				//var ts = data[i].TransferStatus;
-				//data[i].TransferStatus = statusDescription.status[ts].desc;
 			  });
-
-				data_v4_Countries = data;
-			
+				data_Items = data;
 				// poziva se handlebars da pripremi prikaz
-				// template je u parts/transferList.Driver.php
-
-				var source   = $("#v4_CountriesListTemplate").html();
+				var source   = $("#ItemsListTemplate").html();
 				var template = Handlebars.compile(source);
 
-				var HTML = template({v4_Countries : data_v4_Countries});
+				var HTML = template({Items : data_Items});
 
-				$("#show_v4_Countries").html(HTML);
+				$("#show_Items").html(HTML);
 		  },
 		  error: function() { alert('Get error occured.');}
 
@@ -68,24 +59,20 @@
 
 	}
 
-
-	function one_v4_Countries(id,inList) { 
-
+	function oneItem(id,inList) { 
 		// default value. inList znaci je li prikaz sa liste ili nije
 		//if (typeof inList === "undefined" || inList === null) { inList = true; }
 		if (notDefined(inList)) {inList=true;}
 
 		// click na element - hide element ako je vec prikazan, nema potrebe za ajax
 		if(inList==true) {
-			if ( $("#v4_CountriesWrapper"+id).css('display') != 'none') {$("#v4_CountriesWrapper"+id).hide('slow'); return;}
+			if ( $("#ItemWrapper"+id).css('display') != 'none') {$("#ItemWrapper"+id).hide('slow'); return;}
 		}
 
 		// ako element nije prikazan, uzmi potrebne podatke i prikazi ga
-		var url = WEBSITEURL + '/cms/p/modules/v4_Countries/v4_Countries_One.php?CountryID='+id;
-
+		var url = window.root + 'One.php?CountryID='+id;
 		// sakrij sve ostale elemente prije nego se otvori novi
 		if(inList==true) { $(".editFrame").hide('slow'); $(".editFrame form").html('');}
-
 		// idemo po podatke
 		$.ajax({
 			type: 'GET',
@@ -102,7 +89,7 @@
 					});
 				}
 
-				var source   = $("#v4_CountriesEditTemplate").html();
+				var source   = $("#ItemEditTemplate").html();
 				var template = Handlebars.compile(source);
 
 				var HTML = template(data[0]);
@@ -110,67 +97,39 @@
 				// promjena boje pozadine zadnje gledane plocice
 				if(inList==true) { $("#t_"+id).removeClass('white').addClass('bg-light-blue'); }
 
-				$("#one_v4_Countries"+id).html(HTML);
+				$("#one_Item"+id).html(HTML);
 
-				$("#v4_CountriesWrapper"+id).show('slow');
+				$("#ItemWrapper"+id).show('slow');
 			},
 			error: function(xhr, status, error) {alert("Show error occured: " + xhr.status + " " + xhr.statusText); }
 		});
 	}
-
-
-	function new_v4_Countries() { 
-		var data = {
-
-	 			CountryID: '',
-	 			CountryName: '',
-	 			CountryNameEN: '',
-	 			CountryNameRU: '',
-	 			CountryNameFR: '',
-	 			CountryNameDE: '',
-	 			CountryNameIT: '',
-	 			CountryDesc: '',
-	 			CountryDescEN: '',
-	 			CountryDescRU: '',
-	 			CountryDescFR: '',
-	 			CountryDescDE: '',
-	 			CountryDescIT: '',
-	 			CountryISO: '',
-	 			CountryCode: '',
-	 			CountryCode3: '',
-	 			PhonePrefix: '',
-	 			Currency: ''
-			};
-				var source   = $("#v4_CountriesEditTemplate").html();
-				var template = Handlebars.compile(source);
-
-				var HTML = template(data);
-
-				$("#new_v4_Countries").html(HTML);
-
-				$("#v4_CountriesWrapperNew").show('slow');
-
+	function new_Item() { 
+		var source   = $("#ItemEditTemplate").html();
+		var template = Handlebars.compile(source);
+		var HTML = template();
+		$("#new_Item").html(HTML);
+		$("#ItemWrapperNew").show('slow');
 	}
 
 
-	function editClosev4_Countries(id, inList) {
+	function editCloseItem(id, inList) {
 		if (notDefined(inList)) {inList=true;}
 		if (inList==true) { $(".editFrame").hide('slow');$(".editFrame form").html(''); }
 		return false;
 	}
 
-	function editSavev4_Countries(id, inList) { 
+	function editSaveItem(id, inList) { 
 	
-		if($("#v4_CountriesEditForm"+id).valid() == false) {return false;}
+		if($("#ItemEditForm"+id).valid() == false) {return false;}
 		// default value. inList znaci je li prikaz sa liste ili nije
 		if (notDefined(inList)) {inList=true;}
 
-		var newData = $("#v4_CountriesEditForm"+id).serializeObject();
-		var formData = $("#v4_CountriesEditForm"+id).serialize();
+		var newData = $("#ItemEditForm"+id).serializeObject();
+		var formData = $("#ItemEditForm"+id).serialize();
 
 		// update data on server
-		var url = WEBSITEURL + '/cms/p/modules/v4_Countries/'+
-		'v4_Countries_Save.php?callback=?&keyName=CountryID&keyValue='+id+'&'+ formData;
+		var url = window.root + 'Save.php?callback=?&keyName=CountryID&keyValue='+id+'&'+ formData;
 	
 		$.ajax({
 			type: 'POST',
@@ -184,7 +143,7 @@
 
 				// osvjezi podatke na ekranu za zadani element
 				if (inList==true) {
-					refreshv4_CountriesData(id, newData);
+					refreshItemData(id, newData);
 					$(".editFrame").hide('slow');
 					$(".editFrame form").html('');
 				}
@@ -195,16 +154,12 @@
 		return false;
 	}
 
-	function deletev4_Countries(id, inList) { 
+	function deleteItem(id, inList) { 
 
 		if (notDefined(inList)) {inList=true;}
 
-		var newData = $("#v4_CountriesEditForm"+id).serializeObject();
-		var formData = $("#v4_CountriesEditForm"+id).serialize();
-
 		// update data on server
-		var url = WEBSITEURL + '/cms/p/modules/v4_Countries/'+
-		'v4_Countries_Delete.php?CountryID='+ id+'&'+formData+'&callback=?';
+		var url = window.root + 'Delete.php?CountryID='+ id+'&'+'&callback=?';
 	
 		$.ajax({
 			type: 'GET',
@@ -218,7 +173,7 @@
 
 				// osvjezi podatke na ekranu za zadani element
 				if (inList==true) {
-					all_v4_Countries();
+					allItems();
 					//refreshUserData(id, newData);
 				}
 				$(".editFrame").hide('slow');
@@ -231,7 +186,7 @@
 	}
 
 
-	function editPrintv4_Countries(id, inList) {
+	function editPrintItem(id, inList) {
 		// default value. inList znaci je li prikaz sa liste ili nije
 		if (notDefined(inList)) {inList=true;}
 
@@ -243,9 +198,9 @@
 
 
 	/* trazenje elementa object array-a i refresh liste transfera */
-	function refreshv4_CountriesData(id, newData) {
+	function refreshItemData(id, newData) {
 
-	  var result = $.grep(data_v4_Countries, function(e){ return e.CountryID == id; });
+	  var result = $.grep(data_Item, function(e){ return e.CountryID == id; });
 
 	  if (result.length == 0) {
 		// not found
@@ -269,16 +224,16 @@
 
 		    ress.color = 'orange-2';
 
-		    changeall_v4_Countries(id, ress);
+		    changeall_Item(id, ress);
 
-		    data = data_v4_Countries;
+		    data = data_Item;
 
-		    var source   = $("#v4_CountriesListTemplate").html();
+		    var source   = $("#ItemListTemplate").html();
 		    var template = Handlebars.compile(source);
 
-		    var HTML = template({v4_Countries : data});
+		    var HTML = template({Item : data});
 
-		    $("#show_v4_Countries").html(HTML);
+		    $("#show_Item").html(HTML);
 
 	  } else {
 		// multiple items found
@@ -287,10 +242,10 @@
 	}
 
 	/* promjena cijelog sloga datoteke odjednom */
-	function changeall_v4_Countries( id, sve ) {
-	   for (var i in data_v4_Countries) {
-		 if (data_v4_Countries[i].CountryID == id) {
-		    data_v4_Countries[i] = sve;
+	function changeall_Item( id, sve ) {
+	   for (var i in data_Item) {
+		 if (data_Item[i].CountryID == id) {
+		    data_Item[i] = sve;
 		    break; //Stop this loop, we found it!
 		 }
 	   }

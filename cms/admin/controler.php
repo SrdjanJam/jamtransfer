@@ -220,9 +220,7 @@ switch($activePage) {
 		require_once $modulesPath . '/quickEmail.php';
 		break;
 
-	case 'countries':
-		require_once $modulesPath . '/v4_Countries/v4_Countries.List.php';
-		break;
+
 
 	case 'new_v4_Countries':
 		require_once $modulesPath . '/v4_Countries/v4_Countries.Edit.New.Admin.php';

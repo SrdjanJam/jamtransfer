@@ -1,14 +1,15 @@
 <?
 header('Content-Type: text/javascript; charset=UTF-8');
-error_reporting(E_PARSE);
+
+require_once '../../config.php';
 
 @session_start();
 # init libs
-require_once '../../../../db/db.class.php';
-require_once '../../../../db/v4_PlaceTypes.class.php';
+require_once '../../db/db.class.php';
+require_once '../../db/v4_Countries.class.php';
 
 # init class
-$db = new v4_PlaceTypes();
+$db = new v4_Countries();
 
 #********************************************
 # ulazni parametri su where, status i search
@@ -45,8 +46,8 @@ $DB_Where .= $filter;
 # Search ce ih sam pretraziti
 #********************************
 $aColumns = array(
-	'PlaceTypeID', // dodaj ostala polja!
-	'PlaceTypeEN'
+	'CountryID', // dodaj ostala polja!
+	'CountryName'
 );
 
 
@@ -67,35 +68,22 @@ if ( $_REQUEST['Search'] != "" )
 	$DB_Where .= ')';
 }
 
-
-
-
-
-
-
-$dbTotalRecords = $db->getKeysBy('PlaceTypeID ASC', '',$DB_Where);
+$dbTotalRecords = $db->getKeysBy('CountryName ASC', '',$DB_Where);
 
 # test za LIMIT - trebalo bi ga iskoristiti za pagination! 'asc' . ' LIMIT 0,50'
-$dbk = $db->getKeysBy('PlaceTypeID ' . $sortOrder, '' . $limit , $DB_Where);
+$dbk = $db->getKeysBy('CountryName ' . $sortOrder, '' . $limit , $DB_Where);
 
 if (count($dbk) != 0) {
    
     foreach ($dbk as $nn => $key)
     {
-    	
     	$db->getRow($key);
-		
 		// ako treba neki lookup, onda to ovdje
-		
 		# get all fields and values
 		$detailFlds = $db->fieldValues();
-		
 		// ako postoji neko custom polje, onda to ovdje.
 		// npr. $detailFlds["AuthLevelName"] = $nekaDrugaDB->getAuthLevelName().' nesto';
-		
 		$out[] = $detailFlds;    	
-
-		
     }
 }
 

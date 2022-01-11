@@ -19,7 +19,6 @@ if(DEVELOPMENT) $indexStart = 0;
 else $indexStart = 1;
 $activePage=$pathVars->fetchByIndex($indexStart + 1);
 $_REQUEST['p']=$activePage;
-$smarty->assign('page',$activePage);
 
 /*
 // SESSION TIMEOUT - ovo su rekli da ne vole	
@@ -65,10 +64,18 @@ else if(isset($_REQUEST['p']) and $_REQUEST['p'] != '') $activePage = $_REQUEST[
 // meni
 require_once $activeFolder . '/' . 'menu.php';
 //stranica
-require_once $activeFolder . '/' . 'controler.php';
- $smarty->assign('page',$page);
- $smarty->assign('function_all',$function_all);
-  
+require_once 'db/v4_Modules.php';
+$md = new v4_Modules();
+$mdk = $md->getKeysBy('ModulID ' ,'asc', "where code='$activePage'");
+if (count($mdk)==1) {
+	$key=$mdk[0];
+	$md->getRow($key);
+	require_once $modulesPath . '/'.$md->getBase().'/'.$md->getScript().'.php';
+	$smarty->assign('page',$md->getName());
+}
+//staro resenje 
+else require_once $activeFolder . '/' . 'controler.php';
+ 
 // display
 $smarty->display("index.tpl");	
 

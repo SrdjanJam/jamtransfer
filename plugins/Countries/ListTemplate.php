@@ -1,8 +1,8 @@
 
-<script type="text/x-handlebars-template" id="v4_CountriesListTemplate">
+<script type="text/x-handlebars-template" id="ItemsListTemplate">
 
-	{{#each v4_Countries}}
-		<div  onclick="one_v4_Countries({{CountryID}});">
+	{{#each Items}}
+		<div  onclick="oneItem({{CountryID}});">
 		
 			<div class="row {{color}} pad1em listTile" 
 			style="border-top:1px solid #ddd" 
@@ -25,9 +25,9 @@
 					</div>
 			</div>
 		</div>
-		<div id="v4_CountriesWrapper{{CountryID}}" class="editFrame" style="display:none">
+		<div id="ItemWrapper{{CountryID}}" class="editFrame" style="display:none">
 			<div id="inlineContent{{CountryID}}" class="row">
-				<div id="one_v4_Countries{{CountryID}}" >
+				<div id="one_Item{{CountryID}}" >
 					<?= LOADING ?>
 				</div>
 			</div>

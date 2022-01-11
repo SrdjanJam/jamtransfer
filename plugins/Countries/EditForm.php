@@ -1,13 +1,7 @@
-<script type="text/x-handlebars-template" id="v4_CountriesEditTemplate">
-<form id="v4_CountriesEditForm{{CountryID}}" class="form box box-info" enctype="multipart/form-data" method="post" onsubmit="return false;">
+<script type="text/x-handlebars-template" id="ItemEditTemplate">
+<form id="ItemEditForm{{CountryID}}" class="form box box-info" enctype="multipart/form-data" method="post" onsubmit="return false;">
 	<div class="box-header">
-		<div class="box-title">
-			<? if ($isNew) { ?>
-				<h3><?= NNEW ?></h3>
-			<? } else { ?>
-				<h3><?= EDIT ?> - {{CountryName}}</h3>
-			<? } ?>
-		</div>
+
 		<div class="box-tools pull-right">
 			
 			<span id="statusMessage" class="text-info xl"></span>
@@ -15,23 +9,23 @@
 			<? if (!$isNew) { ?>
 				<? if ($inList=='true') { ?>
 					<button class="btn btn-warning" title="<?= CLOSE?>" 
-					onclick="return editClosev4_Countries('{{CountryID}}', '<?= $inList ?>');">
+					onclick="return editCloseItem('{{CountryID}}', '<?= $inList ?>');">
 					<i class="ic-close"></i>
 					</button>
 				<? } else { ?>
 					<button class="btn btn-danger" title="<?= CANCEL ?>" 
-					onclick="return deletev4_Countries('{{CountryID}}', '<?= $inList ?>');">
+					onclick="return deleteItem('{{CountryID}}', '<?= $inList ?>');">
 					<i class="fa fa-ban"></i>
 					</button>
 				<? } ?>
 			<? } ?>	
 			<button class="btn btn-info" title="<?= SAVE_CHANGES ?>" 
-			onclick="return editSavev4_Countries('{{CountryID}}', '<?= $inList ?>');">
+			onclick="return editSaveItem('{{CountryID}}', '<?= $inList ?>');">
 			<i class="ic-disk"></i>
 			</button>
 			<? if (!$isNew) { ?>
 				<button class="btn btn-danger" title="<?= PRINTIT ?>" 
-				onclick="return editPrintv4_Countries('{{CountryID}}', '<?= $inList ?>');">
+				onclick="return editPrintItem('{{CountryID}}', '<?= $inList ?>');">
 				<i class="ic-print"></i>
 				</button>
 			<? } ?>	
@@ -59,6 +53,15 @@
 					</div>
 				</div>
 
+				<div class="row">
+					<div class="col-md-3">
+						<label for="CountryNameEN"><?=COUNTRYNAMEEN;?></label>
+					</div>
+					<div class="col-md-9">
+						<input type="text" name="CountryNameEN" id="CountryNameEN" class="w100" value="{{CountryNameEN}}">
+					</div>
+				</div>
+				
 				<div class="row">
 					<div class="col-md-3">
 						<label for="CountryNameRU"><?=COUNTRYNAMERU;?></label>
@@ -130,7 +133,7 @@
 	<div class="box-footer">
 		<div>
 			<? if (false) { ?>
-				<button class="btn btn-default" onclick="return deletev4_Countries('{{CountryID}}', '<?= $inList ?>');">
+				<button class="btn btn-default" onclick="return deleteItem('{{CountryID}}', '<?= $inList ?>');">
 					<i class="ic-cancel-circle"></i> <?= DELETE ?>
 				</button>
 			<? } ?>

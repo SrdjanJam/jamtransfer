@@ -22,7 +22,6 @@ header('Content-Type: text/javascript; charset=UTF-8');
 	# Details  red
 	$db->getRow($CountryID);
 
-
 	# get fields and values
 	$detailFlds = $db->fieldValues();
 

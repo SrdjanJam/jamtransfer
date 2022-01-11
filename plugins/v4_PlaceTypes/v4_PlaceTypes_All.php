@@ -1,15 +1,13 @@
 <?
 header('Content-Type: text/javascript; charset=UTF-8');
-
-require_once '../../config.php';
+error_reporting(E_PARSE);
 
 @session_start();
 # init libs
-require_once '../../db/db.class.php';
-require_once '../../db/v4_Countries.class.php';
+require_once '../../db/v4_PlaceTypes.class.php';
 
 # init class
-$db = new v4_Countries();
+$db = new v4_PlaceTypes();
 
 #********************************************
 # ulazni parametri su where, status i search
@@ -46,8 +44,8 @@ $DB_Where .= $filter;
 # Search ce ih sam pretraziti
 #********************************
 $aColumns = array(
-	'CountryID', // dodaj ostala polja!
-	'CountryName'
+	'PlaceTypeID', // dodaj ostala polja!
+	'PlaceTypeEN'
 );
 
 
@@ -74,10 +72,10 @@ if ( $_REQUEST['Search'] != "" )
 
 
 
-$dbTotalRecords = $db->getKeysBy('CountryName ASC', '',$DB_Where);
+$dbTotalRecords = $db->getKeysBy('PlaceTypeID ASC', '',$DB_Where);
 
 # test za LIMIT - trebalo bi ga iskoristiti za pagination! 'asc' . ' LIMIT 0,50'
-$dbk = $db->getKeysBy('CountryName ' . $sortOrder, '' . $limit , $DB_Where);
+$dbk = $db->getKeysBy('PlaceTypeID ' . $sortOrder, '' . $limit , $DB_Where);
 
 if (count($dbk) != 0) {
    
