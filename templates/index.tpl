@@ -128,8 +128,7 @@
 			<div class="container-fluid side-collapse-container"
 			style="padding:0px!important">
 				<h1>{$page}</h1>
-					{if $isNew}{include file="page_new.tpl"} 			
-					{else if $page}{include file="page.tpl"} 
+					{if $page}{include file="page.tpl"} 
 					{else}{$page_render}
 					{/if}
 			</div>

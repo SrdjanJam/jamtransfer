@@ -1,9 +1,3 @@
-
-<script type="text/javascript">
-	//
-	// USERS EDIT FORM FUNCTIONS *********************************************************************************
-	//
-	window.root = 'plugins/Countries/';
 	var data_Items = [];
 	function allItems() {
 
@@ -23,7 +17,6 @@
 
 		if(typeof page==='undefined') {page=1;}
 		if(page<=0) {page=1;}
-		//
 
 	 	var url = window.root+'All.php?where='+where+
 	 	'&Search='+filter+'&page='+page+'&length='+length+'&sortOrder='+sortOrder+'&callback=?';
@@ -54,25 +47,18 @@
 				$("#show_Items").html(HTML);
 		  },
 		  error: function() { alert('Get error occured.');}
-
 		});
-
 	}
 
-	function oneItem(id,inList) { 
-		// default value. inList znaci je li prikaz sa liste ili nije
-		//if (typeof inList === "undefined" || inList === null) { inList = true; }
-		if (notDefined(inList)) {inList=true;}
+	function oneItem(id) { 
 
 		// click na element - hide element ako je vec prikazan, nema potrebe za ajax
-		if(inList==true) {
-			if ( $("#ItemWrapper"+id).css('display') != 'none') {$("#ItemWrapper"+id).hide('slow'); return;}
-		}
+		if ( $("#ItemWrapper"+id).css('display') != 'none') {$("#ItemWrapper"+id).hide('slow'); return;}
 
 		// ako element nije prikazan, uzmi potrebne podatke i prikazi ga
 		var url = window.root + 'One.php?CountryID='+id;
 		// sakrij sve ostale elemente prije nego se otvori novi
-		if(inList==true) { $(".editFrame").hide('slow'); $(".editFrame form").html('');}
+		$(".editFrame").hide('slow'); $(".editFrame form").html('');
 		// idemo po podatke
 		$.ajax({
 			type: 'GET',
@@ -83,11 +69,9 @@
 			success: function(data) {
 
 				// CUSTOM STUFF
-				if(inList==true) {
-					$.each(data, function(i, item) {
-						data[i].color ='white';
-					});
-				}
+				$.each(data, function(i, item) {
+					data[i].color ='white';
+				});
 
 				var source   = $("#ItemEditTemplate").html();
 				var template = Handlebars.compile(source);
@@ -95,7 +79,7 @@
 				var HTML = template(data[0]);
 
 				// promjena boje pozadine zadnje gledane plocice
-				if(inList==true) { $("#t_"+id).removeClass('white').addClass('bg-light-blue'); }
+				$("#t_"+id).removeClass('white').addClass('bg-light-blue');
 
 				$("#one_Item"+id).html(HTML);
 
@@ -113,24 +97,17 @@
 	}
 
 
-	function editCloseItem(id, inList) {
-		if (notDefined(inList)) {inList=true;}
-		if (inList==true) { $(".editFrame").hide('slow');$(".editFrame form").html(''); }
+	function editCloseItem(id) {
+		$(".editFrame").hide('slow');$(".editFrame form").html(''); 
 		return false;
 	}
 
-	function editSaveItem(id, inList) { 
-	
+	function editSaveItem(id) { 
 		if($("#ItemEditForm"+id).valid() == false) {return false;}
-		// default value. inList znaci je li prikaz sa liste ili nije
-		if (notDefined(inList)) {inList=true;}
-
 		var newData = $("#ItemEditForm"+id).serializeObject();
 		var formData = $("#ItemEditForm"+id).serialize();
-
 		// update data on server
 		var url = window.root + 'Save.php?callback=?&keyName=CountryID&keyValue='+id+'&'+ formData;
-	
 		$.ajax({
 			type: 'POST',
 			url: url,
@@ -138,29 +115,20 @@
 			//contentType: "application/json",
 			dataType: 'jsonp',
 			success: function(data, status) {
-
 				$("#statusMessage").html('<i class="ic-checkmark-circle s"></i> ');
-
 				// osvjezi podatke na ekranu za zadani element
-				if (inList==true) {
-					refreshItemData(id, newData);
-					$(".editFrame").hide('slow');
-					$(".editFrame form").html('');
-				}
+				refreshItemData(id, newData);
+				$(".editFrame").hide('slow');
+				$(".editFrame form").html('');
 			},
 			error: function(xhr, status, error) {alert("Save error occured: " + xhr.status + " " + xhr.statusText); }
 		});
-
 		return false;
 	}
 
-	function deleteItem(id, inList) { 
-
-		if (notDefined(inList)) {inList=true;}
-
+	function deleteItem(id) { 
 		// update data on server
 		var url = window.root + 'Delete.php?CountryID='+ id+'&'+'&callback=?';
-	
 		$.ajax({
 			type: 'GET',
 			url: url,
@@ -172,73 +140,42 @@
 				$("#statusMessage").html('<i class="ic-checkmark-circle s"></i> ');
 
 				// osvjezi podatke na ekranu za zadani element
-				if (inList==true) {
-					allItems();
-					//refreshUserData(id, newData);
-				}
+				allItems();
 				$(".editFrame").hide('slow');
 				$(".editFrame form").html('');
 			},
 			error: function(xhr, status, error) {alert("Delete error occured: " + xhr.status + " " + xhr.statusText+" "); }
 		});
-
 		return false;
 	}
 
 
-	function editPrintItem(id, inList) {
-		// default value. inList znaci je li prikaz sa liste ili nije
-		if (notDefined(inList)) {inList=true;}
-
-	  	if(inList==true) { $(".editFrame").hide('slow'); $(".editFrame form").html('');}
+	function editPrintItem(id) {
+	  	 $(".editFrame").hide('slow'); $(".editFrame form").html('');
 	  	alert('Printed');
-	  	
 	  return false;
 	}
 
-
 	/* trazenje elementa object array-a i refresh liste transfera */
 	function refreshItemData(id, newData) {
-
 	  var result = $.grep(data_Item, function(e){ return e.CountryID == id; });
-
 	  if (result.length == 0) {
 		// not found
 	  } else if (result.length == 1) {
-
-		    // ovo je u biti slog datoteke - result[0]
-		    //result[0].PaxName = $("#PassengerName").val();
-		    //result[0].PickupName = $("#PassengerName").val();
-
-
-		    // ovdje je trik za referncu kroz ime varijable
-
-		    // najprije napraviti novi objekt - jer ovaj vec ima [0] ...
-		    var ress = result[0];
-
-
-		    $.each(newData,function(name, value){
-		    	// ... onda se moze pristupiti pojedninacnoj vrijednosti preko varijable
-		    	ress[name] = value;
-		    });
-
-		    ress.color = 'orange-2';
-
-		    changeall_Item(id, ress);
-
-		    data = data_Item;
-
-		    var source   = $("#ItemListTemplate").html();
-		    var template = Handlebars.compile(source);
-
-		    var HTML = template({Item : data});
-
-		    $("#show_Item").html(HTML);
-
-	  } else {
-		// multiple items found
+		// najprije napraviti novi objekt - jer ovaj vec ima [0] ...
+		var ress = result[0];
+		$.each(newData,function(name, value){
+			// ... onda se moze pristupiti pojedninacnoj vrijednosti preko varijable
+			ress[name] = value;
+		});
+		ress.color = 'orange-2';
+		changeall_Item(id, ress);
+		data = data_Item;
+		var source   = $("#ItemListTemplate").html();
+		var template = Handlebars.compile(source);
+		var HTML = template({Item : data});
+		$("#show_Item").html(HTML);
 	  }
-
 	}
 
 	/* promjena cijelog sloga datoteke odjednom */
@@ -250,5 +187,3 @@
 		 }
 	   }
 	}
-</script>			
-		

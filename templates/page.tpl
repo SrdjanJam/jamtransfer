@@ -1,12 +1,33 @@
 {literal}
 <script type="text/javascript">
+window.root = 'plugins/{/literal}{$base}{literal}/';
+</script>
+{/literal}
+<script src="js/list.js"></script>
+
+{if $isNew}
+{literal}
+<script type="text/javascript">
+	$(document).ready(function(){
+		new_Item(); 
+	});	
+</script>
+{/literal}
+<div id="ItemWrapperNew" class="editFrame container-fluid" style="display:none">
+	<div id="inlineContentNew" class="row">
+		<div id="new_Item"></div>
+	</div>
+</div>	
+{else}
+{literal}
+<script type="text/javascript">
 	$(document).ready(function(){
 		allItems(); 
 	});	
 </script>
 {/literal}
 <div class=" container">
-	<a class="btn btn-primary btn-xs" href="new_v4_Countries">{$NNEW}</a>
+	<a class="btn btn-primary btn-xs" href="{$root_home}{$base}/new">{$NNEW}</a>
 	<br><br>
 	<input type="hidden"  id="whereCondition" name="whereCondition" 
 	value=" WHERE CountryID > 0">
@@ -43,3 +64,4 @@
 	<div id="pageSelect" class="col-sm-12"></div>
 	<br><br><br><br>
 </div>
+{/if}

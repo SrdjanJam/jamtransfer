@@ -1,28 +1,27 @@
 <?php
-/* Smarty version 3.1.32, created on 2022-01-11 12:45:46
+/* Smarty version 3.1.32, created on 2022-01-12 08:07:44
   from 'C:\wamp\www\jamtransfer\templates\index.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.32',
-  'unifunc' => 'content_61dd7bfaa23775_46837093',
+  'unifunc' => 'content_61de8c50004766_31186939',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'a1818a92b5a2f041fd91a227dabc592dea38fac2' => 
     array (
       0 => 'C:\\wamp\\www\\jamtransfer\\templates\\index.tpl',
-      1 => 1641905142,
+      1 => 1641974859,
       2 => 'file',
     ),
   ),
   'includes' => 
   array (
-    'file:page_new.tpl' => 1,
     'file:page.tpl' => 1,
   ),
 ),false)) {
-function content_61dd7bfaa23775_46837093 (Smarty_Internal_Template $_smarty_tpl) {
+function content_61de8c50004766_31186939 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html>
 	<head>
@@ -216,10 +215,7 @@ _init.js"><?php echo '</script'; ?>
 			style="padding:0px!important">
 				<h1><?php echo $_smarty_tpl->tpl_vars['page']->value;?>
 </h1>
-					<?php if ($_smarty_tpl->tpl_vars['isNew']->value) {
-$_smarty_tpl->_subTemplateRender("file:page_new.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
-?> 			
-					<?php } elseif ($_smarty_tpl->tpl_vars['page']->value) {
+					<?php if ($_smarty_tpl->tpl_vars['page']->value) {
 $_smarty_tpl->_subTemplateRender("file:page.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?> 
 					<?php } else {

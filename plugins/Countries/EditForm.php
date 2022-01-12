@@ -7,25 +7,23 @@
 			<span id="statusMessage" class="text-info xl"></span>
 			
 			<? if (!$isNew) { ?>
-				<? if ($inList=='true') { ?>
-					<button class="btn btn-warning" title="<?= CLOSE?>" 
-					onclick="return editCloseItem('{{CountryID}}', '<?= $inList ?>');">
-					<i class="ic-close"></i>
-					</button>
-				<? } else { ?>
-					<button class="btn btn-danger" title="<?= CANCEL ?>" 
-					onclick="return deleteItem('{{CountryID}}', '<?= $inList ?>');">
-					<i class="fa fa-ban"></i>
-					</button>
-				<? } ?>
+				<button class="btn btn-warning" title="<?= CLOSE?>" 
+				onclick="return editCloseItem('{{CountryID}}');">
+				<i class="ic-close"></i>
+				</button>
+
+				<button class="btn btn-danger" title="<?= CANCEL ?>" 
+				onclick="return deleteItem('{{CountryID}}');">
+				<i class="fa fa-ban"></i>
+				</button>
 			<? } ?>	
 			<button class="btn btn-info" title="<?= SAVE_CHANGES ?>" 
-			onclick="return editSaveItem('{{CountryID}}', '<?= $inList ?>');">
+			onclick="return editSaveItem('{{CountryID}}');">
 			<i class="ic-disk"></i>
 			</button>
 			<? if (!$isNew) { ?>
 				<button class="btn btn-danger" title="<?= PRINTIT ?>" 
-				onclick="return editPrintItem('{{CountryID}}', '<?= $inList ?>');">
+				onclick="return editPrintItem('{{CountryID}}');">
 				<i class="ic-print"></i>
 				</button>
 			<? } ?>	
@@ -125,24 +123,8 @@
 						<input type="text" name="Currency" id="Currency" class="w100" value="{{Currency}}">
 					</div>
 				</div>
-
 			</div>
 	    </div>
-
-	<!-- Statuses and messages -->
-	<div class="box-footer">
-		<div>
-			<? if (false) { ?>
-				<button class="btn btn-default" onclick="return deleteItem('{{CountryID}}', '<?= $inList ?>');">
-					<i class="ic-cancel-circle"></i> <?= DELETE ?>
-				</button>
-			<? } ?>
-
-			<button class="btn btn-default" onclick="deleteCache(1, {{CountryID}})">
-				<i class="fa fa-chain-broken"></i> <?= DELETE_CACHE ?>
-			</button>
-    	</div>
-	</div>
 </form>
 
 	<script>

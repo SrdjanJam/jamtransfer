@@ -7,7 +7,6 @@ Class v4_Modules {
 	public $Name; //varchar(20)
 	public $Code; //varchar(20)
 	public $Base; //varchar(20)
-	public $Script; //varchar(20)
 	public $ParentID; //int(11)
 	public $connection;
 
@@ -24,12 +23,11 @@ Class v4_Modules {
 			'Name' => $this->getName(),
 			'Code' => $this->getCode(),
 			'Base' => $this->getBase(),
-			'Script' => $this->getScript(),
 			'ParentID' => $this->getParentID()		);
 		return $fieldValues;
 	}
 	public function fieldNames(){
-		$fieldNames = array('ModulID','Name','Code','Base','Script','ParentID');
+		$fieldNames = array('ModulID','Name','Code','Base','ParentID');
 		return $fieldNames;
 	}
 	
@@ -41,7 +39,6 @@ Class v4_Modules {
 			$this->Name = $row["Name"];
 			$this->Code = $row["Code"];
 			$this->Base = $row["Base"];
-			$this->Script = $row["Script"];
 			$this->ParentID = $row["ParentID"];
 		}
 	}
@@ -68,9 +65,6 @@ Class v4_Modules {
 	public function getBase(){
 		return $this->Base;
 	}	
-	public function getScript(){
-		return $this->Script;
-	}
 	public function getParentID(){
 		return $this->ParentID;
 	}
