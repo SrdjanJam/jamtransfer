@@ -1,19 +1,22 @@
 <?
 header('Content-Type: text/javascript; charset=UTF-8');
-
 require_once '../../config.php';
 
-@session_start();
-# init libs
-require_once '../../db/db.class.php';
 require_once '../../db/v4_Countries.class.php';
-
-# init class
 $db = new v4_Countries();
+$ItemName='CountryName ';
+#********************************
+# kolone za koje je moguc Search 
+# treba ih samo nabrojati ovdje
+# Search ce ih sam pretraziti
+#********************************
+$aColumns = array(
+	'CountryID', // dodaj ostala polja!
+	'CountryName'
+);
 
-#********************************************
-# ulazni parametri su where, status i search
-#********************************************
+//exit (ROOT.'/'.$_REQUEST['root']);
+@session_start();
 
 # sastavi filter - posalji ga $_REQUEST-om
 
@@ -40,17 +43,6 @@ $flds = array();
 $DB_Where = " " . $_REQUEST['where'];
 $DB_Where .= $filter;
 
-#********************************
-# kolone za koje je moguc Search 
-# treba ih samo nabrojati ovdje
-# Search ce ih sam pretraziti
-#********************************
-$aColumns = array(
-	'CountryID', // dodaj ostala polja!
-	'CountryName'
-);
-
-
 # dodavanje search parametra u qry
 # DB_Where sad ima sve potrebno za qry
 if ( $_REQUEST['Search'] != "" )
@@ -67,14 +59,13 @@ if ( $_REQUEST['Search'] != "" )
 	$DB_Where = substr_replace( $DB_Where, "", -3 );
 	$DB_Where .= ')';
 }
-
-$dbTotalRecords = $db->getKeysBy('CountryName ASC', '',$DB_Where);
+ 
+$dbTotalRecords = $db->getKeysBy($ItemName . $sortOrder, '',$DB_Where);
 
 # test za LIMIT - trebalo bi ga iskoristiti za pagination! 'asc' . ' LIMIT 0,50'
-$dbk = $db->getKeysBy('CountryName ' . $sortOrder, '' . $limit , $DB_Where);
+$dbk = $db->getKeysBy($ItemName . $sortOrder, '' . $limit , $DB_Where);
 
 if (count($dbk) != 0) {
-   
     foreach ($dbk as $nn => $key)
     {
     	$db->getRow($key);
@@ -86,13 +77,10 @@ if (count($dbk) != 0) {
 		$out[] = $detailFlds;    	
     }
 }
-
-
 # send output back
 $output = array(
 'recordsTotal' => count($dbTotalRecords),
 'data' =>$out
 );
-
 echo $_GET['callback'] . '(' . json_encode($output) . ')';
 	

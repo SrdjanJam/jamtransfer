@@ -9,7 +9,7 @@
 			<? if (!$isNew) { ?>
 				<button class="btn btn-warning" title="<?= CLOSE?>" 
 				onclick="return editCloseItem('{{CountryID}}');">
-				<i class="ic-close"></i>
+				<i class="fa fa-close"></i>
 				</button>
 
 				<button class="btn btn-danger" title="<?= CANCEL ?>" 
@@ -19,12 +19,12 @@
 			<? } ?>	
 			<button class="btn btn-info" title="<?= SAVE_CHANGES ?>" 
 			onclick="return editSaveItem('{{CountryID}}');">
-			<i class="ic-disk"></i>
+			<i class="fa fa-save"></i>
 			</button>
 			<? if (!$isNew) { ?>
 				<button class="btn btn-danger" title="<?= PRINTIT ?>" 
 				onclick="return editPrintItem('{{CountryID}}');">
-				<i class="ic-print"></i>
+				<i class="fa fa-print"></i>
 				</button>
 			<? } ?>	
 		</div>

@@ -62,8 +62,9 @@ if ($pathVars->fetchByIndex($indexStart + $size - 1)=='help') {
 else if(isset($_REQUEST['p']) and $_REQUEST['p'] != '') $activePage = $_REQUEST['p'];
 
 // novi item
-if ($pathVars->fetchByIndex($indexStart + $size - 1)=='new') $smarty->assign('isNew',true);
-else $smarty->assign('isNew',false);
+if ($pathVars->fetchByIndex($indexStart + $size - 1)=='new') $isNew=true;
+else $isNew=false;
+$smarty->assign('isNew',$isNew);
 		
 // meni
 require_once $activeFolder . '/' . 'menu.php';
@@ -76,9 +77,10 @@ if (count($mdk)==1) {
 	$md->getRow($key);
 	if (!$isNew) require_once $modulesPath . '/'.$md->getBase().'/ListTemplate.php';
 	require_once $modulesPath . '/'.$md->getBase().'/EditForm.php';
-	
+	$smarty->assign('currenturl',ROOT_HOME.$activePage);
 	$smarty->assign('page',$md->getName());
 	$smarty->assign('base',$md->getBase());
+	$smarty->assign('code',$md->getCode());
 }
 //staro resenje 
 else require_once $activeFolder . '/' . 'controler.php';

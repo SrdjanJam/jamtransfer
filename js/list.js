@@ -18,8 +18,9 @@
 		if(typeof page==='undefined') {page=1;}
 		if(page<=0) {page=1;}
 
-	 	var url = window.root+'All.php?where='+where+
+	 	var url = window.root+'All.php?where='+where+'&root='+window.root+
 	 	'&Search='+filter+'&page='+page+'&length='+length+'&sortOrder='+sortOrder+'&callback=?';
+		console.log(url);
 		$.ajax({
 		 type: 'GET',
 		  url: url,
@@ -56,7 +57,7 @@
 		if ( $("#ItemWrapper"+id).css('display') != 'none') {$("#ItemWrapper"+id).hide('slow'); return;}
 
 		// ako element nije prikazan, uzmi potrebne podatke i prikazi ga
-		var url = window.root + 'One.php?CountryID='+id;
+		var url = window.root + 'One.php?ItemID='+id;
 		// sakrij sve ostale elemente prije nego se otvori novi
 		$(".editFrame").hide('slow'); $(".editFrame form").html('');
 		// idemo po podatke
@@ -107,7 +108,7 @@
 		var newData = $("#ItemEditForm"+id).serializeObject();
 		var formData = $("#ItemEditForm"+id).serialize();
 		// update data on server
-		var url = window.root + 'Save.php?callback=?&keyName=CountryID&keyValue='+id+'&'+ formData;
+		var url = window.root + 'Save.php?callback=?&id=' + id + '&' + formData;
 		$.ajax({
 			type: 'POST',
 			url: url,
@@ -117,7 +118,11 @@
 			success: function(data, status) {
 				$("#statusMessage").html('<i class="ic-checkmark-circle s"></i> ');
 				// osvjezi podatke na ekranu za zadani element
-				refreshItemData(id, newData);
+				if (id == '') {
+					alert ('New Item created');
+					window.location.href = window.currenturl;
+				}	
+				else allItems();
 				$(".editFrame").hide('slow');
 				$(".editFrame form").html('');
 			},
@@ -128,7 +133,7 @@
 
 	function deleteItem(id) { 
 		// update data on server
-		var url = window.root + 'Delete.php?CountryID='+ id+'&'+'&callback=?';
+		var url = window.root + 'Delete.php?ID='+ id+'&'+'&callback=?';
 		$.ajax({
 			type: 'GET',
 			url: url,
@@ -148,42 +153,9 @@
 		});
 		return false;
 	}
-
-
+	
 	function editPrintItem(id) {
 	  	 $(".editFrame").hide('slow'); $(".editFrame form").html('');
 	  	alert('Printed');
 	  return false;
-	}
-
-	/* trazenje elementa object array-a i refresh liste transfera */
-	function refreshItemData(id, newData) {
-	  var result = $.grep(data_Item, function(e){ return e.CountryID == id; });
-	  if (result.length == 0) {
-		// not found
-	  } else if (result.length == 1) {
-		// najprije napraviti novi objekt - jer ovaj vec ima [0] ...
-		var ress = result[0];
-		$.each(newData,function(name, value){
-			// ... onda se moze pristupiti pojedninacnoj vrijednosti preko varijable
-			ress[name] = value;
-		});
-		ress.color = 'orange-2';
-		changeall_Item(id, ress);
-		data = data_Item;
-		var source   = $("#ItemListTemplate").html();
-		var template = Handlebars.compile(source);
-		var HTML = template({Item : data});
-		$("#show_Item").html(HTML);
-	  }
-	}
-
-	/* promjena cijelog sloga datoteke odjednom */
-	function changeall_Item( id, sve ) {
-	   for (var i in data_Item) {
-		 if (data_Item[i].CountryID == id) {
-		    data_Item[i] = sve;
-		    break; //Stop this loop, we found it!
-		 }
-	   }
 	}

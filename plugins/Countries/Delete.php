@@ -1,23 +1,16 @@
 <?
 header('Content-Type: text/javascript; charset=UTF-8');
-	require_once '../../config.php';
+require_once '../../config.php';
 
-	# init libs
-	require_once ROOT . '/db/v4_Countries.class.php';
+require_once ROOT . '/db/v4_Countries.class.php';
+$db = new v4_Countries();
 
+$out = array();
 
-	# init vars
-	$out = array();
+# delete row by key value
+$db->deleteRow($_REQUEST['ID']);
+$out[] = 'Deleted';
 
-
-	# init class
-	$db = new v4_Countries();
-
-	# delete row by key value
-	$db->deleteRow($_REQUEST['CountryID']);
-	$out[] = 'Deleted';
-
-	# send output back
-	$output = json_encode($out);
-	echo $_GET['callback'] . '(' . $output . ')';
-	
+# send output back
+$output = json_encode($out);
+echo $_GET['callback'] . '(' . $output . ')';

@@ -1,6 +1,7 @@
 {literal}
 <script type="text/javascript">
 window.root = 'plugins/{/literal}{$base}{literal}/';
+window.currenturl = '{/literal}{$currenturl}{literal}';
 </script>
 {/literal}
 <script src="js/list.js"></script>
@@ -27,7 +28,7 @@ window.root = 'plugins/{/literal}{$base}{literal}/';
 </script>
 {/literal}
 <div class=" container">
-	<a class="btn btn-primary btn-xs" href="{$root_home}{$base}/new">{$NNEW}</a>
+	<a class="btn btn-primary btn-xs" href="{$root_home}{$code}/new">{$NNEW}</a>
 	<br><br>
 	<input type="hidden"  id="whereCondition" name="whereCondition" 
 	value=" WHERE CountryID > 0">
@@ -65,3 +66,4 @@ window.root = 'plugins/{/literal}{$base}{literal}/';
 	<br><br><br><br>
 </div>
 {/if}
+

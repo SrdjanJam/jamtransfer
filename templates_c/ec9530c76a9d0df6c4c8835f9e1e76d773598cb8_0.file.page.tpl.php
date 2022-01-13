@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.32, created on 2022-01-12 08:18:33
+/* Smarty version 3.1.32, created on 2022-01-13 09:38:14
   from 'C:\wamp\www\jamtransfer\templates\page.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.32',
-  'unifunc' => 'content_61de8ed9260012_65740334',
+  'unifunc' => 'content_61dff306421b64_06977051',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'ec9530c76a9d0df6c4c8835f9e1e76d773598cb8' => 
     array (
       0 => 'C:\\wamp\\www\\jamtransfer\\templates\\page.tpl',
-      1 => 1641975510,
+      1 => 1642066680,
       2 => 'file',
     ),
   ),
@@ -20,11 +20,13 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_61de8ed9260012_65740334 (Smarty_Internal_Template $_smarty_tpl) {
+function content_61dff306421b64_06977051 (Smarty_Internal_Template $_smarty_tpl) {
 echo '<script'; ?>
  type="text/javascript">
 window.root = 'plugins/<?php echo $_smarty_tpl->tpl_vars['base']->value;?>
 /';
+window.currenturl = '<?php echo $_smarty_tpl->tpl_vars['currenturl']->value;?>
+';
 <?php echo '</script'; ?>
 >
 
@@ -59,7 +61,7 @@ window.root = 'plugins/<?php echo $_smarty_tpl->tpl_vars['base']->value;?>
 
 <div class=" container">
 	<a class="btn btn-primary btn-xs" href="<?php echo $_smarty_tpl->tpl_vars['root_home']->value;
-echo $_smarty_tpl->tpl_vars['base']->value;?>
+echo $_smarty_tpl->tpl_vars['code']->value;?>
 /new"><?php echo $_smarty_tpl->tpl_vars['NNEW']->value;?>
 </a>
 	<br><br>
@@ -101,6 +103,7 @@ echo $_smarty_tpl->tpl_vars['base']->value;?>
 	<div id="pageSelect" class="col-sm-12"></div>
 	<br><br><br><br>
 </div>
+<?php }?>
+
 <?php }
-}
 }
