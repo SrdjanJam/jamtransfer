@@ -4,7 +4,7 @@
 		<base href="{$root_home}">	
 		
 		<meta charset="UTF-8">
-		<title>CMS {$page}</title>
+		<title>CMS {$title}</title>
 
 		<meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
 
@@ -127,10 +127,11 @@
 
 			<div class="container-fluid side-collapse-container"
 			style="padding:0px!important">
-				<h1>{$page}</h1>
-					{if $page}{include file="page.tpl"} 
-					{else}{$page_render}
-					{/if}
+				{if isset($page)}
+					<h1>{$page}</h1>
+					{include file="page.tpl"} 
+				{else}{$page_render}
+				{/if}
 			</div>
 		</div>
 		<input type='hidden' id='local' value='{$local}' name='local'>

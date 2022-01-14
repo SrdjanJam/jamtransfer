@@ -31,11 +31,22 @@ window.currenturl = '{/literal}{$currenturl}{literal}';
 	<a class="btn btn-primary btn-xs" href="{$root_home}{$code}/new">{$NNEW}</a>
 	<br><br>
 	<input type="hidden"  id="whereCondition" name="whereCondition" 
-	value=" WHERE CountryID > 0">
+	value=" WHERE {$ItemID} > 0">
 	
 	<div class="row pad1em">
 		<div class="col-md-3" id="infoShow"></div>
-		<div class="col-md-3">
+		{if isset($selecttype)}
+		<div class="col-sm-2">
+			<i class="fa fa-list-ul"></i>
+			<select id="Type" class="w75" onchange="allItems();">
+				<option value="0">{$ALL}</option>
+				{section name=pom loop=$options}
+					<option value="{$options[pom].id}">{$options[pom].name}</option>
+				{/section}
+			</select>
+		</div>	
+		{/if}	
+		<div class="col-md-2">
 			<i class="fa fa-eye"></i>
 			<select id="length" class="w75" onchange="allItems();">
 				<option value="5"> 5 </option>
@@ -51,7 +62,7 @@ window.currenturl = '{/literal}{$currenturl}{literal}';
 			<input type="text" id="Search" class=" w75" onchange="allItems();" placeholder="Text + Enter to Search">
 		</div>
 
-		<div class="col-md-3">
+		<div class="col-md-2">
 			<i class="fa fa-sort-amount-asc"></i> 
 			<select name="sortOrder" id="sortOrder" onchange="allItems();">
 				<option value="ASC" selected="selected"> {$ASCENDING} </option>

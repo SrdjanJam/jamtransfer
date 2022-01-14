@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.32, created on 2022-01-13 07:39:12
+/* Smarty version 3.1.32, created on 2022-01-14 09:56:56
   from 'C:\wamp\www\jamtransfer\templates\index.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.32',
-  'unifunc' => 'content_61dfd720002600_14601585',
+  'unifunc' => 'content_61e148e89f0935_73350313',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'a1818a92b5a2f041fd91a227dabc592dea38fac2' => 
     array (
       0 => 'C:\\wamp\\www\\jamtransfer\\templates\\index.tpl',
-      1 => 1641974859,
+      1 => 1642154214,
       2 => 'file',
     ),
   ),
@@ -21,7 +21,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:page.tpl' => 1,
   ),
 ),false)) {
-function content_61dfd720002600_14601585 (Smarty_Internal_Template $_smarty_tpl) {
+function content_61e148e89f0935_73350313 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html>
 	<head>
@@ -29,7 +29,7 @@ function content_61dfd720002600_14601585 (Smarty_Internal_Template $_smarty_tpl)
 ">	
 		
 		<meta charset="UTF-8">
-		<title>CMS <?php echo $_smarty_tpl->tpl_vars['page']->value;?>
+		<title>CMS <?php echo $_smarty_tpl->tpl_vars['title']->value;?>
 </title>
 
 		<meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
@@ -213,15 +213,15 @@ _init.js"><?php echo '</script'; ?>
 
 			<div class="container-fluid side-collapse-container"
 			style="padding:0px!important">
-				<h1><?php echo $_smarty_tpl->tpl_vars['page']->value;?>
+				<?php if (isset($_smarty_tpl->tpl_vars['page']->value)) {?>
+					<h1><?php echo $_smarty_tpl->tpl_vars['page']->value;?>
 </h1>
-					<?php if ($_smarty_tpl->tpl_vars['page']->value) {
-$_smarty_tpl->_subTemplateRender("file:page.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
+					<?php $_smarty_tpl->_subTemplateRender("file:page.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?> 
-					<?php } else {
+				<?php } else {
 echo $_smarty_tpl->tpl_vars['page_render']->value;?>
 
-					<?php }?>
+				<?php }?>
 			</div>
 		</div>
 		<input type='hidden' id='local' value='<?php echo $_smarty_tpl->tpl_vars['local']->value;?>

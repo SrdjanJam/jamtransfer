@@ -61,7 +61,7 @@ $_SESSION['vat'] = $vat;
 
 // COMPANY DATA FROM DATABASE
 if (!is('co_name')) {
-	require_once 'db/v4_CoInfo.class.php';
+	require_once ROOT . '/db/v4_CoInfo.class.php';
 	$co = new v4_CoInfo();
 	$co->getRow('1');
 	$companyData = $co->fieldValues();

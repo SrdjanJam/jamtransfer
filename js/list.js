@@ -3,6 +3,7 @@
 
 		// podaci iz input polja - filtriranje
 		var where  = $("#whereCondition").val(); // glavni filter koji uvijek radi
+	 	var status = $("#Type").val(); // prikazuje samo Usere sa levelom		
 	 	var filter = $("#Search").val(); // filtrira prema zadanom tekstu
 	 	var length = $("#length").val(); // dropdown za broj prikazanih usera na stranici
 
@@ -18,7 +19,7 @@
 		if(typeof page==='undefined') {page=1;}
 		if(page<=0) {page=1;}
 
-	 	var url = window.root+'All.php?where='+where+'&root='+window.root+
+	 	var url = window.root+'All.php?where='+where+'&Type='+status+
 	 	'&Search='+filter+'&page='+page+'&length='+length+'&sortOrder='+sortOrder+'&callback=?';
 		console.log(url);
 		$.ajax({
@@ -40,10 +41,10 @@
 			  });
 				data_Items = data;
 				// poziva se handlebars da pripremi prikaz
-				var source   = $("#ItemsListTemplate").html();
+				var source   = $("#ItemListTemplate").html();
 				var template = Handlebars.compile(source);
 
-				var HTML = template({Items : data_Items});
+				var HTML = template({Item : data_Items});
 
 				$("#show_Items").html(HTML);
 		  },
@@ -61,6 +62,7 @@
 		// sakrij sve ostale elemente prije nego se otvori novi
 		$(".editFrame").hide('slow'); $(".editFrame form").html('');
 		// idemo po podatke
+		console.log(url);
 		$.ajax({
 			type: 'GET',
 			url: url,
@@ -103,7 +105,7 @@
 		return false;
 	}
 
-	function editSaveItem(id) { 
+	function editSaveItem(id) {
 		if($("#ItemEditForm"+id).valid() == false) {return false;}
 		var newData = $("#ItemEditForm"+id).serializeObject();
 		var formData = $("#ItemEditForm"+id).serialize();
@@ -159,3 +161,23 @@
 	  	alert('Printed');
 	  return false;
 	}
+	
+	function editSaveTerminal(placeid, driverid) { 
+		// update data on server
+		var url = window.root + 'SaveTerminal.php?PlaceID='+placeid+'&DriverID='+ driverid;
+		console.log(url);
+		$.ajax({
+			type: 'POST',
+			url: url,
+			async: false,
+			contentType: "application/json",
+			dataType: 'jsonp',
+			success: function(data, status) {
+				if(data.update == 'Exist') {alert ("This place already connected to driver")}
+				else {alert ("This place connected to driver")}
+			},
+			error: function(xhr, status, error) {alert("Save error occured: " + xhr.status + " " + xhr.statusText); }
+		});
+
+		return false;
+	}	

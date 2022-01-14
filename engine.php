@@ -78,12 +78,18 @@ if (count($mdk)==1) {
 	if (!$isNew) require_once $modulesPath . '/'.$md->getBase().'/ListTemplate.php';
 	require_once $modulesPath . '/'.$md->getBase().'/EditForm.php';
 	$smarty->assign('currenturl',ROOT_HOME.$activePage);
-	$smarty->assign('page',$md->getName());
+	$smarty->assign('page',$md->getName());	
+	$smarty->assign('title',$md->getName());
 	$smarty->assign('base',$md->getBase());
 	$smarty->assign('code',$md->getCode());
+	$smarty->assign('ItemID',$md->getBase().'ID');
+	
 }
 //staro resenje 
-else require_once $activeFolder . '/' . 'controler.php';
+else {
+	require_once $activeFolder . '/' . 'controler.php';	
+	$smarty->assign('title',$activePage);
+}	
  
 // display
 $smarty->display("index.tpl");	

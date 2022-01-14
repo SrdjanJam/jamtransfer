@@ -1,8 +1,7 @@
 <?
 header('Content-Type: text/javascript; charset=UTF-8');
-
-# init libs
-require_once '../../db/v4_Places.class.php';
+require_once '../config.php';
+require_once '../db/v4_Places.class.php';
 
 # init vars
 $out = array();
@@ -25,7 +24,6 @@ foreach($dbKeys as $n => $ID) {
 $output = json_encode($out);
 
 unset($out);
-//print_r($output);
 echo $_REQUEST['callback'] . '(' . $output . ')';
 
 
