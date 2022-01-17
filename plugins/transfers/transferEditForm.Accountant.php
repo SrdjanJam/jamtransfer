@@ -486,7 +486,7 @@
 		var OrderID=$('#OrderID').val();	
 		
 		var param="OrderKey="+OrderKey+"&OrderID="+OrderID+"&VoutcherValue="+VoutcherValue;
-		var url = window.root + '/cms/a/'+"requestVoutcher.php";
+		var url = window.root + '/cms/api/'+"requestVoutcher.php";
 		console.log(url+'?'+param);		
 		//ajax za kreiranje sloga u tabeli
 		$.ajax({
@@ -527,7 +527,7 @@
 		}
 		if (pass==1) {
 			var param="DetailsID="+DetailsID+"&OrderID="+OrderID+"&DocumentType="+DocumentType+"&DocumentCode="+DocumentCode+"&DocumentDate="+DocumentDate+"&OneWay="+OneWay;
-			var url = window.root + '/cms/a/'+"createDocument.php";
+			var url = window.root + '/cms/api/'+"createDocument.php";
 			console.log(url+'?'+param);		
 			//ajax za kreiranje sloga u tabeli
 			$.ajax({

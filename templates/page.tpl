@@ -69,6 +69,18 @@ window.currenturl = '{/literal}{$currenturl}{literal}';
 				<option value="DESC"> {$DESCENDING} </option>
 			</select>			
 		</div>
+		
+		{if isset($selectactive)}		
+		<div class="col-sm-2">
+			<i class="fa fa-filter"></i> 
+			<select name="active" id="active" onchange="getAllUsersFilter();">
+				<option value="1" selected="selected"> Active </option>
+				<option value="0"> Not Active </option>
+				<option value="99"> All </option>
+			</select>
+			
+		</div>
+		{/if}
 	</div>
 
 	<div id="show_Items">{$THERE_ARE_NO_DATA}</div>

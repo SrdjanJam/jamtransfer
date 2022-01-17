@@ -6,7 +6,6 @@ if($_SESSION['BOOKING_STARTED']) {
 		setcookie("Key", $_SESSION['OrderKey'], time() + (7*24*60*60));
 	}
 }
-
 // Sprema adresu na koju korisnik zeli doci
 // ali ako nije logiran, ne moze
 // nakon Logina vraca korisnika na spremljenu stranicu

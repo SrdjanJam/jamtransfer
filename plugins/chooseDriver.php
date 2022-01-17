@@ -30,7 +30,7 @@
 			var id=$( "#OwnerID option:selected" ).val();
 			$.ajax({
 				type: 'POST',
-				url: '/cms/a/sessionDriver.php',
+				url: '/cms/api/sessionDriver.php',
 				data: {id: id },
 				success: function (response) { console.log("OK: " + response) },
 				error: function (response) { console.log("ERROR: " + response) }

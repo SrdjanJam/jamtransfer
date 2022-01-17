@@ -253,7 +253,7 @@ console.log(url);
 	}
 
 	// ako element nije prikazan, uzmi potrebne podatke i prikazi ga
-	var url = 'a/oneTransferN.php?where=WHERE DetailsID='+id;
+	var url = 'api/oneTransferN.php?where=WHERE DetailsID='+id;
 
 	// sakrij sve ostale elemente prije nego se otvori novi
 	if(inList==true) {
@@ -307,9 +307,9 @@ function editSave(id, inList) {
 	console.log(formData);
 
 	// update data on server
-	//var url = 'a/'+
+	//var url = 'api/'+
 	//'setDbData.php?table=v4_OrderDetails&keyName=DetailsID&keyValue='+id+'&'+ formData;
-	var url = 'a/'+
+	var url = 'api/'+
 	'saveTransfer.php?DetailsID='+id+'&'+ formData;
 console.log (url);
 	$.ajax({
@@ -372,7 +372,7 @@ function changeTransferStatus(id, newStatus, inList) {
 	var formData = $("#transferEditForm"+id).serialize();
 
 	// update data on server
-	var url = 'a/'+
+	var url = 'api/'+
 	'changeTransferStatus.php?DetailsID='+id+'&NewStatus='+ newStatus + '&'+ formData;
 	console.log(url);
 
@@ -412,7 +412,7 @@ function changeDriverConfStatus(id, newStatus,inList) {
 	var formData = $("#transferEditForm"+id).serialize();
 
 	// update data on server
-	var url = 'a/'+
+	var url = 'api/'+
 	'changeDriverConfStatus.php?DetailsID='+id+'&NewStatus='+ newStatus + '&'+ formData;
 
 	$.ajax({
@@ -581,7 +581,7 @@ function sendUpdateEmail(mailTo, mailFrom, fromName, subject, message, profile, 
 	var reason = $( "#ChangeTransferReason option:selected" ).text();
 	console.log(reason);
 	$responseButton = $(responseButton);
-	var url = 'a/sendUpdateEmailN.php' +
+	var url = 'api/sendUpdateEmailN.php' +
 		'?mailTo=' + mailTo +
 		'&mailFrom=' + mailFrom +
 		'&fromName=' + fromName +
@@ -620,7 +620,7 @@ function sendEmailToDriver(transferId, tNo) {
 	// u produkciji ovo staviti
 	var to = $("#sendEmailTo").val();
 
-	var url = 'a/'+
+	var url = 'api/'+
 		"sendEmail.php?to=" + to +
 		"&subject=Ref. Order ID: " + transferId + '-' + tNo + ': '+ subject +
 		"&message="+ message +

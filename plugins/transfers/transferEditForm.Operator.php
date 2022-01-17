@@ -767,7 +767,7 @@
 	var param = 'DetailsID='+detailsid+'&AgentID='+agentid+'&DriverID='+driverid;
 	$.ajax({
 		type: 'POST',
-		url: WEBSITE + '/cms/a/changeExtras.php',
+		url: WEBSITE + '/cms/api/changeExtras.php',
 		data: param,
 		success: function(data) {
 			$("#changeextras").html(data);
@@ -788,7 +788,7 @@
 		var param = 'email='+email + '&OrderID='+orderid;
 		$.ajax({
 			type: 'POST',
-			url: '/cms/a/otherTransfers.php',
+			url: '/cms/api/otherTransfers.php',
 			data: param,
 			success: function(data) {
 				if (data.trim() !== '') {
@@ -874,7 +874,7 @@
 		// blok ajax request-a za saveExtras.php response json
 		$.ajax({
 			type: 'POST',
-			url: WEBSITE + 'a/saveExtras.php',
+			url: WEBSITE + 'api/saveExtras.php',
 			data: param,
 			async: false,
 			success: function(data) {

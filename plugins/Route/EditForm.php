@@ -2,13 +2,6 @@
 <script type="text/x-handlebars-template" id="ItemEditTemplate">
 <form id="ItemEditForm{{RouteID}}" class="form box box-info" enctype="multipart/form-data" method="post" onsubmit="return false;">
 	<div class="box-header">
-		<div class="box-title">
-			<? if ($isNew) { ?>
-				<h3><?= NEWW ?></h3>
-			<? } else { ?>
-				<h3><?= EDIT ?> - {{RouteName}}</h3>
-			<? } ?>
-		</div>
 		<div class="box-tools pull-right">
 			
 			<span id="statusMessage" class="text-info xl"></span>

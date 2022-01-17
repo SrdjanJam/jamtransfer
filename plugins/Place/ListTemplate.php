@@ -2,7 +2,6 @@
 	require_once ROOT.'/db/v4_PlaceTypes.class.php';
 	$pt = new v4_PlaceTypes();
 	$placeTypes = $pt->getKeysBy('PlaceTypeEN', 'asc');
-	$pt = new v4_PlaceTypes();
 	foreach($placeTypes as $nn => $id) {
 		$pt->getRow($id);
 		$arr_row['id']=$pt->getPlaceTypeID();

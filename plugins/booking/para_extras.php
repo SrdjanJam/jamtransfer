@@ -1,6 +1,6 @@
 <?	
 	// priprema podataka
-	require_once ROOT. '/a/getExtras.php';
+	require_once ROOT. '/api/getExtras.php';
 
 if(!empty($extras)) { ?>
 

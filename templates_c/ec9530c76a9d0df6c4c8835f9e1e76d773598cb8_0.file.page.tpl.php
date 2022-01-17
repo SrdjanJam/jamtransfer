@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.32, created on 2022-01-14 11:07:38
+/* Smarty version 3.1.32, created on 2022-01-17 13:56:15
   from 'C:\wamp\www\jamtransfer\templates\page.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.32',
-  'unifunc' => 'content_61e1597ae68348_33896723',
+  'unifunc' => 'content_61e5757fc1c425_74436864',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'ec9530c76a9d0df6c4c8835f9e1e76d773598cb8' => 
     array (
       0 => 'C:\\wamp\\www\\jamtransfer\\templates\\page.tpl',
-      1 => 1642158453,
+      1 => 1642427767,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_61e1597ae68348_33896723 (Smarty_Internal_Template $_smarty_tpl) {
+function content_61e5757fc1c425_74436864 (Smarty_Internal_Template $_smarty_tpl) {
 echo '<script'; ?>
  type="text/javascript">
 window.root = 'plugins/<?php echo $_smarty_tpl->tpl_vars['base']->value;?>
@@ -119,6 +119,18 @@ for ($__section_pom_0_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_po
  </option>
 			</select>			
 		</div>
+		
+		<?php if (isset($_smarty_tpl->tpl_vars['selectactive']->value)) {?>		
+		<div class="col-sm-2">
+			<i class="fa fa-filter"></i> 
+			<select name="active" id="active" onchange="getAllUsersFilter();">
+				<option value="1" selected="selected"> Active </option>
+				<option value="0"> Not Active </option>
+				<option value="99"> All </option>
+			</select>
+			
+		</div>
+		<?php }?>
 	</div>
 
 	<div id="show_Items"><?php echo $_smarty_tpl->tpl_vars['THERE_ARE_NO_DATA']->value;?>

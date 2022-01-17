@@ -22,7 +22,7 @@
 
 $.ajax({
 	 type: 'GET',
-	  url: window.root + '/cms/a/lineChartDataTotal.php?range=month&callback=?',
+	  url: window.root + '/cms/api/lineChartDataTotal.php?range=month&callback=?',
 	  async: false,
 	  contentType: "application/json",
 	  dataType: 'jsonp',
@@ -45,7 +45,7 @@ $.ajax({
 var area={};
 $.ajax({
 	 type: 'GET',
-	  url: window.root + '/cms/a/lineChartDataTotal.php?range=year&callback=?',
+	  url: window.root + '/cms/api/lineChartDataTotal.php?range=year&callback=?',
 	  async: false,
 	  contentType: "application/json",
 	  dataType: 'jsonp',

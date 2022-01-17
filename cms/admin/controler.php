@@ -222,10 +222,6 @@ switch($activePage) {
 
 
 
-	case 'new_v4_Countries':
-		require_once $modulesPath . '/v4_Countries/v4_Countries.Edit.New.Admin.php';
-		break;
-
 	case 'siteArticles':
 		require_once $modulesPath . '/v4_Articles/v4_Articles.List.php';
 		break;
@@ -237,17 +233,6 @@ switch($activePage) {
 	case 'newPage':
 		require_once $modulesPath . '/v4_Pages/v4_Pages.Edit.New.Admin.php';
 		break;
-
-	case 'new_v4_Routes':
-		require_once $modulesPath . '/v4_Routes/v4_Routes.Edit.New.Admin.php';
-		break;			
-	case 'new_v4_Places':
-		require_once $modulesPath . '/v4_Places/v4_Places.Edit.New.Admin.php';
-		break;	
-	case 'new_v4_PlaceTypes':
-		require_once $modulesPath . '/v4_PlaceTypes/v4_PlaceTypes.Edit.New.Admin.php';
-		break;	
-		
 	case 'newArticle':
 		require_once $modulesPath . '/v4_Articles/v4_Articles.Edit.New.Admin.php';
 		break;
@@ -261,18 +246,6 @@ switch($activePage) {
 		break;
 	case 'new_v4_Survey':
 		require_once $modulesPath . '/v4_Survey/v4_Survey.Edit.New.Admin.php';
-		break;
-		
-	case 'locations':
-		require_once $modulesPath . '/v4_Places/v4_Places.List.php';
-		break;
-
-	case 'locationTypes':
-		require_once $modulesPath . '/v4_PlaceTypes/v4_PlaceTypes.List.php';
-		break;
-
-	case 'routes':
-		require_once $modulesPath . '/v4_Routes/v4_Routes.List.php';
 		break;
 
 	case 'extras':	
@@ -338,14 +311,6 @@ switch($activePage) {
 	case 'new_v4_Terminals':
 		require_once $modulesPath . '/v4_Terminals/v4_Terminals.Edit.New.php';
 		break;		
-
-	case 'vehicleTypes':
-		require_once $modulesPath . '/v4_VehicleTypes/v4_VehicleTypes.List.php';
-		break;
-
-	case 'new_v4_VehicleTypes':
-		require_once $modulesPath . '/v4_VehicleTypes/v4_VehicleTypes.Edit.New.Admin.php';
-		break;
 
 	case 'daySettings':
 		require_once $modulesPath . '/v4_DaySettings/v4_DaySettings.List.php';

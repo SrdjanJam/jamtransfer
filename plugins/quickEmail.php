@@ -44,7 +44,7 @@
                           
 <script type="text/javascript">
 	$("#sendEmail").click(function(){
-		var url = window.root +'/cms/a/'+
+		var url = window.root +'/cms/api/'+
 		"testEmailForNewApp.php?to=" + $("#emailto").val() +
 		"&subject=" + $("#subject").val() +
 		"&message=" + $("#message").val() +

@@ -202,7 +202,7 @@
  
  	function message(action,itemId){
  		var newMessage = $("#email_message").val();
-		var url = window.root + '/cms/a/'+
+		var url = window.root + '/cms/api/'+
 		"messages.php?action=" + action +
 		"&newMessage=" + newMessage +
 		"&ID=" + itemId +

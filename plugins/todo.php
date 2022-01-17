@@ -68,7 +68,7 @@
  	getTodoData();
 	
 	function getTodoData() {
-		var url = 'a/'+
+		var url = 'api/'+
 		"todoItems.php?action=get&callback=?";
 		$.ajax({
 			type: 'GET',

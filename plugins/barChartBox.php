@@ -162,7 +162,7 @@
 
 $.ajax({
 	 type: 'GET',
-	  url: window.root + '/cms/a/barChartData.php',
+	  url: window.root + '/cms/api/barChartData.php',
 	  async: false,
 	  contentType: "application/json",
 	  //dataType: 'jsonp',

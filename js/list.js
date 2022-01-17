@@ -111,6 +111,7 @@
 		var formData = $("#ItemEditForm"+id).serialize();
 		// update data on server
 		var url = window.root + 'Save.php?callback=?&id=' + id + '&' + formData;
+		console.log(url);
 		$.ajax({
 			type: 'POST',
 			url: url,

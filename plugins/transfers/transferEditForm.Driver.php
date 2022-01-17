@@ -555,7 +555,7 @@ foreach($fakeDrivers as $key => $fakeDriverID) {
 			var param = 'email='+email + '&OrderID='+orderid;
 			$.ajax({
 				type: 'POST',
-				url: '/cms/a/otherTransfers.php',
+				url: '/cms/api/otherTransfers.php',
 				data: param,
 				success: function(data) {
 					if (data.trim() !== '') {

@@ -805,7 +805,7 @@
 	var param = 'DetailsID='+detailsid+'&AgentID='+agentid+'&DriverID='+driverid;
 	$.ajax({
 		type: 'POST',
-		url: 'a/changeExtras.php',
+		url: 'api/changeExtras.php',
 		data: param,
 		success: function(data) {
 			$("#changeextras").html(data);
@@ -824,10 +824,10 @@
 		var userlevelid=$('#UserLevelID').val();
 		
 		var param = 'email='+email + '&OrderID='+orderid;
-		console.log('a/otherTransfers.php?'+param);
+		console.log('api/otherTransfers.php?'+param);
 		$.ajax({
 			type: 'POST',
-			url: 'a/otherTransfers.php',
+			url: 'api/otherTransfers.php',
 			data: param,
 			success: function(data) {
 				if (data.trim() !== '') {
@@ -917,7 +917,7 @@
 		// blok ajax request-a za saveExtras.php response json
 		$.ajax({
 			type: 'POST',
-			url: 'a/saveExtras.php',
+			url: 'api/saveExtras.php',
 			data: param,
 			async: false,
 			success: function(data) {

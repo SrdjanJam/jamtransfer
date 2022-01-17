@@ -26,7 +26,7 @@ $lastWeek= date("Y-m-d", $lastWeek);
 
 //if ($_SESSION['AuthLevelID'] == DRIVER_USER) $dashboardFilter = " AND DriverID = '".$_SESSION['AuthUserID']."' ";
 
-//https://www.jamtransfer.com/cms/a/allTransfers.php?where= WHERE v4_OrderDetails.TransferStatus!='9'  AND v4_OrderDetails.DriverConfStatus='1' AND v4_OrderDetails.TransferStatus<'3'&status=0&Search=&page=1&length=20&sortOrder=ASC
+//https://www.jamtransfer.com/cms/api/allTransfers.php?where= WHERE v4_OrderDetails.TransferStatus!='9'  AND v4_OrderDetails.DriverConfStatus='1' AND v4_OrderDetails.TransferStatus<'3'&status=0&Search=&page=1&length=20&sortOrder=ASC
 if ($_REQUEST['transfersFilter'] == 'noDriver') {
 	$dashboardFilter .= " AND DriverConfStatus ='0' AND TransferStatus < '3'";
 	$titleAddOn = ' - ' . NO_DRIVER;
