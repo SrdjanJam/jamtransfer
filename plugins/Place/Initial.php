@@ -1,4 +1,5 @@
 <?
+require_once '../../config.php';
 require_once ROOT . '/db/v4_Places.class.php';
 $db = new v4_Places();
 $keyName = 'PlaceID';

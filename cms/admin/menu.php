@@ -1,6 +1,19 @@
 <?
 	ob_start();
 ?>
+	<style>
+	
+			@media(max-width:1024px){
+			  .navbar-nav{
+				display: none;
+			  }
+			}
+			@media(min-width:1025px){
+			  .navbar-toggle {
+				display: none;
+			  }	
+			}
+	</style>		
   <!-- Static navbar -->
   <div class="navbar navbar-inverse navbar-fixed-top shadowMedium" role="navigation">
     <div class="container-fluid">
@@ -55,17 +68,17 @@
             </a>
             <ul class="dropdown-menu" role="menu">
             	<!--<li id="siteSettings"><a href="index.php?p=siteSettings"><?= SITE_SETTINGS ?></a></li>-->
-          		<li id="fileman"><a href="index.php?p=fileman"><?= IMAGE_MANAGER ?></a></li>
-          		<li id="siteArticles"><a href="index.php?p=siteArticles"><?= ARTICLES ?></a></li>
-          		<li id="sitePages"><a href="index.php?p=sitePages"><?= PAGES ?></a></li>
-          		<li id="coInfo"><a href="index.php?p=coInfo"><?= COMPANY_INFO ?></a></li>
-          		<!--<li id="coTexts"><a href="index.php?p=coTexts"><?= COMPANY_TEXTS ?></a></li>-->
-          		<li id="headerImages"><a href="index.php?p=headerImages"><?= HEADER_IMAGES ?></a></li> 
+          		<li id="fileman"><a href="fileman"><?= IMAGE_MANAGER ?></a></li>
+          		<li id="siteArticles"><a href="siteArticles"><?= ARTICLES ?></a></li>
+          		<li id="sitePages"><a href="sitePages"><?= PAGES ?></a></li>
+          		<li id="coInfo"><a href="coInfo"><?= COMPANY_INFO ?></a></li>
+          		<!--<li id="coTexts"><a href="coTexts"><?= COMPANY_TEXTS ?></a></li>-->
+          		<li id="headerImages"><a href="headerImages"><?= HEADER_IMAGES ?></a></li> 
           		<li><a href="/" target="_blank"><?= VIEW_SITE ?></a></li>
-				<li id="routeReviews"><a href="index.php?p=routeReviews"><?= ROUTE_REVIEWS ?></a></li>
+				<li id="routeReviews"><a href="routeReviews"><?= ROUTE_REVIEWS ?></a></li>
 
           		<li class="divider"></li>
-				<li><a href="index.php?p=refreshCache"
+				<li><a href="refreshCache"
 				onclick="return confirm('Refresh cache?\n(This could take a while)')">
 					<?= REFRESH_CACHE ?>
 				</a></li>
@@ -232,13 +245,13 @@
                             <i class="fa fa-user"></i>
                             <span><?= $_SESSION['UserName'] ?> <i class="caret"></i> &nbsp;</span>
 							&nbsp;
-                            <img src="a/showProfileImage.php?UserID=<?= $_SESSION['AuthUserID']?>" 
+                            <img src="api/showProfileImage.php?UserID=<?= $_SESSION['AuthUserID']?>" 
                                 class="img-circle" alt="User Image" style="height:2em;padding:-.5em;margin:-.5em"/>
                         </a>
                         <ul class="dropdown-menu">
                             <!-- User image -->
                             <li class="user-header bg-light-blue">
-                                <img src="a/showProfileImage.php?UserID=<?= $_SESSION['AuthUserID']?>" 
+                                <img src="api/showProfileImage.php?UserID=<?= $_SESSION['AuthUserID']?>" 
                                 class="img-circle" alt="User Image" />
                                 <p>
                                     <?= $_SESSION['UserName'] ?> - <?= $_SESSION['GroupProfile'] ?>

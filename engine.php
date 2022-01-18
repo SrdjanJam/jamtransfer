@@ -74,14 +74,12 @@ $mdk = $md->getKeysBy('ModulID ' ,'asc', "where code='$activePage'");
 if (count($mdk)==1) {
 	$key=$mdk[0];
 	$md->getRow($key);
-	if (!$isNew) require_once $modulesPath . '/'.$md->getBase().'/ListTemplate.php';
-	require_once $modulesPath . '/'.$md->getBase().'/EditForm.php';
+	require_once $modulesPath . '/'.$md->getBase().'/index.php';
 	$smarty->assign('currenturl',ROOT_HOME.$activePage);
 	$smarty->assign('page',$md->getName());	
 	$smarty->assign('title',$md->getName());
 	$smarty->assign('base',$md->getBase());
 	$smarty->assign('code',$md->getCode());
-	$smarty->assign('ItemID',$md->getBase().'ID');
 	
 }
 //staro resenje 

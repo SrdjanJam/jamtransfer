@@ -14,7 +14,7 @@ Class DataBaseMysql {
     }
 
     public function RunQuery($query_tag){
-        $result = $this->conn->query($query_tag) or die("Error SQL query-> $query_tag  ". mysql_error());
+        $result = $this->conn->query($query_tag) or die("Error SQL query-> $query_tag  ". mysqli_error());
         return $result;
     }
 

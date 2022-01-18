@@ -34,7 +34,7 @@ window.currenturl = '{/literal}{$currenturl}{literal}';
 	value=" WHERE {$ItemID} > 0">
 	
 	<div class="row pad1em">
-		<div class="col-md-3" id="infoShow"></div>
+		<div class="col-md-2" id="infoShow"></div>
 		{if isset($selecttype)}
 		<div class="col-sm-2">
 			<i class="fa fa-list-ul"></i>
@@ -57,7 +57,7 @@ window.currenturl = '{/literal}{$currenturl}{literal}';
 			</select>
 		</div>
 
-		<div class="col-md-3">
+		<div class="col-md-2">
 			<i class="fa fa-text-width"></i>
 			<input type="text" id="Search" class=" w75" onchange="allItems();" placeholder="Text + Enter to Search">
 		</div>
@@ -73,10 +73,10 @@ window.currenturl = '{/literal}{$currenturl}{literal}';
 		{if isset($selectactive)}		
 		<div class="col-sm-2">
 			<i class="fa fa-filter"></i> 
-			<select name="active" id="active" onchange="getAllUsersFilter();">
-				<option value="1" selected="selected"> Active </option>
+			<select name="Active" id="Active" onchange="allItems();">
+				<option value="99" selected="selected">{$ALL}</option>			
+				<option value="1"> Active </option>
 				<option value="0"> Not Active </option>
-				<option value="99"> All </option>
 			</select>
 			
 		</div>

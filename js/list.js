@@ -1,9 +1,11 @@
 	var data_Items = [];
+	window.base='http://localhost/jamtransfer/';
 	function allItems() {
 
 		// podaci iz input polja - filtriranje
 		var where  = $("#whereCondition").val(); // glavni filter koji uvijek radi
-	 	var status = $("#Type").val(); // prikazuje samo Usere sa levelom		
+	 	var status = $("#Type").val(); // prikazuje po tipu	
+	 	var active = $("#Active").val(); // prikazuje samo aktivne	
 	 	var filter = $("#Search").val(); // filtrira prema zadanom tekstu
 	 	var length = $("#length").val(); // dropdown za broj prikazanih usera na stranici
 
@@ -19,9 +21,9 @@
 		if(typeof page==='undefined') {page=1;}
 		if(page<=0) {page=1;}
 
-	 	var url = window.root+'All.php?where='+where+'&Type='+status+
+	 	var url = window.root+'All.php?where='+where+'&Type='+status+'&Active='+active+
 	 	'&Search='+filter+'&page='+page+'&length='+length+'&sortOrder='+sortOrder+'&callback=?';
-		console.log(url);
+		console.log(window.base+url);
 		$.ajax({
 		 type: 'GET',
 		  url: url,
@@ -62,7 +64,7 @@
 		// sakrij sve ostale elemente prije nego se otvori novi
 		$(".editFrame").hide('slow'); $(".editFrame form").html('');
 		// idemo po podatke
-		console.log(url);
+		console.log(window.base+url);		
 		$.ajax({
 			type: 'GET',
 			url: url,
@@ -111,7 +113,7 @@
 		var formData = $("#ItemEditForm"+id).serialize();
 		// update data on server
 		var url = window.root + 'Save.php?callback=?&id=' + id + '&' + formData;
-		console.log(url);
+		console.log(window.base+url);		
 		$.ajax({
 			type: 'POST',
 			url: url,
@@ -137,6 +139,7 @@
 	function deleteItem(id) { 
 		// update data on server
 		var url = window.root + 'Delete.php?ID='+ id+'&'+'&callback=?';
+		console.log(window.base+url);
 		$.ajax({
 			type: 'GET',
 			url: url,
@@ -166,7 +169,7 @@
 	function editSaveTerminal(placeid, driverid) { 
 		// update data on server
 		var url = window.root + 'SaveTerminal.php?PlaceID='+placeid+'&DriverID='+ driverid;
-		console.log(url);
+		console.log(window.base+url);		
 		$.ajax({
 			type: 'POST',
 			url: url,

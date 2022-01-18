@@ -1,4 +1,5 @@
 <?
+require_once '../../config.php';
 require_once ROOT . '/db/v4_VehicleTypes.class.php';
 $db = new v4_VehicleTypes();
 $keyName = 'VehicleTypeID';
@@ -9,5 +10,5 @@ $ItemName='VehicleTypeName ';
 # Search ce ih sam pretraziti
 #********************************
 $aColumns = array(
-	'VehicleTypeID' // dodaj ostala polja!
+	'VehicleTypeName' // dodaj ostala polja!
 );

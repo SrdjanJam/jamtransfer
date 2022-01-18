@@ -51,7 +51,7 @@
 								<div class="col-md-3 "><label><?= IMAGE ?></label></div>
 								<div class="col-md-9">
 									<div id="imageDiv">
-										<img src="a/showProfileImage.php?UserID={{AuthUserID}}"
+										<img src="api/showProfileImage.php?UserID={{AuthUserID}}"
 										style="max-height:160px; max-width:160px;overflow:hidden;" 
 										class="img-thumbnail">
 									</div>

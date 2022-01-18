@@ -209,10 +209,7 @@ foreach($fakeDrivers as $key => $fakeDriverID) {
 				<?} // END SPECIAL DRIVERS ?>
 				
 				<li id="reviews"><a href="index.php?p=userReviews"><?= REVIEWS ?></a></li>
-				<? if ($_SESSION['AuthUserNote1'] != "" ) { ?><li><a><span style="cursor:context-menu; background-color:white; color:red; font-size:140%;">&nbsp;<?= $_SESSION['AuthUserNote1'] ?> &nbsp;</span></a></li><? } ?>
-				
-				<li style="padding: 15px 0;margin-left: 150px;color:#dbdbdb" id="stats"></li>
-				
+				<? if ($_SESSION['AuthUserNote1'] != "" ) { ?><li><a><span style="cursor:context-menu; background-color:white; color:red; font-size:140%;">&nbsp;<?= $_SESSION['AuthUserNote1'] ?> &nbsp;</span></a></li><? } ?>				
         	</ul>
 
 			<? /* USER MENU */ ?>
@@ -263,6 +260,8 @@ foreach($fakeDrivers as $key => $fakeDriverID) {
 				</li>
 			</ul>
 		</div><!--/.nav-collapse -->
+		<li style="padding: 15px 0;margin-left: 150px;color:#dbdbdb" id="stats"></li>
+
 	</div><!--/.container-fluid -->
 </div>
 

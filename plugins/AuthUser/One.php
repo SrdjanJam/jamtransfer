@@ -1,7 +1,5 @@
 <?
 header('Content-Type: text/javascript; charset=UTF-8');
-require_once '../../config.php';
-
 require_once 'Initial.php';
 
 $out = array();
@@ -9,6 +7,8 @@ $out = array();
 $db->getRow($_REQUEST['ItemID']);
 # get fields and values
 $detailFlds = $db->fieldValues();
+$detailFlds[DBImage]='';
+
 # remove slashes 
 foreach ($detailFlds as $key=>$value) {
 	$detailFlds[$key] = stripslashes($value);

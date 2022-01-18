@@ -1,6 +1,5 @@
 <?
 header('Content-Type: text/javascript; charset=UTF-8');
-require_once '../../config.php';
 require_once 'Initial.php';
 
 @session_start();
@@ -8,10 +7,18 @@ require_once 'Initial.php';
 # sastavi filter - posalji ga $_REQUEST-om
 if (isset($type)) {
 	if (!isset($_REQUEST['Type']) or $_REQUEST['Type'] == 0) {
-		$filter = "  AND ".$type." != 0 ";
+		$filter .= "  AND ".$type." != 0 ";
 	}
 	else {
-		$filter = "  AND ".$type." = '" . $_REQUEST['Type'] . "'";
+		$filter .= "  AND ".$type." = " . $_REQUEST['Type'] ;
+	}
+}
+if (isset($selectactive)) {
+	if (!isset($_REQUEST['Active']) or $_REQUEST['Active'] == 99) {
+		$filter .= "  AND ".$selectactive." > -1 ";
+	}
+	else {
+		$filter .= "  AND ".$selectactive." = " . $_REQUEST['Active'] ;
 	}
 }
 $page 		= $_REQUEST['page'];
@@ -63,6 +70,7 @@ if (count($dbk) != 0) {
 		// ako treba neki lookup, onda to ovdje
 		# get all fields and values
 		$detailFlds = $db->fieldValues();
+		$detailFlds[DBImage]='';
 		// ako postoji neko custom polje, onda to ovdje.
 		// npr. $detailFlds["AuthLevelName"] = $nekaDrugaDB->getAuthLevelName().' nesto';
 		$out[] = $detailFlds;    	

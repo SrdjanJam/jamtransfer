@@ -1,8 +1,5 @@
 <?
 header('Content-Type: text/javascript; charset=UTF-8');
-$_REQUEST['where']= '  WHERE ID > 0 ';
-require_once '../../config.php';
-
 require_once 'Initial.php';
 
 @session_start();

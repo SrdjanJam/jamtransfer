@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.32, created on 2022-01-17 13:56:15
+/* Smarty version 3.1.32, created on 2022-01-18 12:22:08
   from 'C:\wamp\www\jamtransfer\templates\page.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.32',
-  'unifunc' => 'content_61e5757fc1c425_74436864',
+  'unifunc' => 'content_61e6b0f07e7f79_62649551',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'ec9530c76a9d0df6c4c8835f9e1e76d773598cb8' => 
     array (
       0 => 'C:\\wamp\\www\\jamtransfer\\templates\\page.tpl',
-      1 => 1642427767,
+      1 => 1642508526,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_61e5757fc1c425_74436864 (Smarty_Internal_Template $_smarty_tpl) {
+function content_61e6b0f07e7f79_62649551 (Smarty_Internal_Template $_smarty_tpl) {
 echo '<script'; ?>
  type="text/javascript">
 window.root = 'plugins/<?php echo $_smarty_tpl->tpl_vars['base']->value;?>
@@ -70,7 +70,7 @@ echo $_smarty_tpl->tpl_vars['code']->value;?>
  > 0">
 	
 	<div class="row pad1em">
-		<div class="col-md-3" id="infoShow"></div>
+		<div class="col-md-2" id="infoShow"></div>
 		<?php if (isset($_smarty_tpl->tpl_vars['selecttype']->value)) {?>
 		<div class="col-sm-2">
 			<i class="fa fa-list-ul"></i>
@@ -105,7 +105,7 @@ for ($__section_pom_0_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_po
 			</select>
 		</div>
 
-		<div class="col-md-3">
+		<div class="col-md-2">
 			<i class="fa fa-text-width"></i>
 			<input type="text" id="Search" class=" w75" onchange="allItems();" placeholder="Text + Enter to Search">
 		</div>
@@ -123,10 +123,11 @@ for ($__section_pom_0_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_po
 		<?php if (isset($_smarty_tpl->tpl_vars['selectactive']->value)) {?>		
 		<div class="col-sm-2">
 			<i class="fa fa-filter"></i> 
-			<select name="active" id="active" onchange="getAllUsersFilter();">
-				<option value="1" selected="selected"> Active </option>
+			<select name="Active" id="Active" onchange="allItems();">
+				<option value="99" selected="selected"><?php echo $_smarty_tpl->tpl_vars['ALL']->value;?>
+</option>			
+				<option value="1"> Active </option>
 				<option value="0"> Not Active </option>
-				<option value="99"> All </option>
 			</select>
 			
 		</div>

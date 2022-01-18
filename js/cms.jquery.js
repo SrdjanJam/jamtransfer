@@ -154,7 +154,7 @@ console.log("conf"+conf);
 		if (conf) {
 			$.ajax({
 				type: 'POST',
-				url: "a/disableSurvey.php",
+				url: "api/disableSurvey.php",
 				dataType: 'text',
 				data: {OrderID: OrderID, enable: true},
 				success: function (result) {
@@ -175,7 +175,7 @@ console.log("conf"+conf);
 		if (conf) {
 			$.ajax({
 				type: 'POST',
-				url: "a/disableSurvey.php",
+				url: "api/disableSurvey.php",
 				dataType: 'text',
 				data: {OrderID: OrderID, enable: false},
 				success: function (result) {
@@ -195,7 +195,7 @@ console.log("conf"+conf);
 }
 
 function getTodoData() {
-	var url = 'a/'+
+	var url = 'api/'+
 	"todoItems.php?action=get&callback=?";
 
 	$.ajax({
@@ -910,7 +910,7 @@ Prikaz Driver polja kao dropdown
 Handlebars.registerHelper("driverSelect", function(id,routeId) {
 	function driverSelectDropdown() {
 
-		var url = 'a/getDriversForRoute.php?RouteID='+routeId+'&callback=';
+		var url = 'api/getDriversForRoute.php?RouteID='+routeId+'&callback=';
 
 		var selector = "<select class=\"w100\" name=\"DriverSelect\" id=\"DriverSelect\" onchange=\"applyChangeDriver(this);\">";
 
@@ -967,7 +967,7 @@ Prikaz MyDriver polja kao dropdown
 Handlebars.registerHelper("myDriverSelect", function(id,routeId) {
 	function driverSelectDropdown() {
 
-		var url = 'a/getDriversForRoute.php?RouteID='+routeId+'&callback=';
+		var url = 'api/getDriversForRoute.php?RouteID='+routeId+'&callback=';
 
 		var selector = "<select class=\"w100\" name=\"DriverSelect\" id=\"DriverSelect\" onchange=\"applyChangeDriver(this);\">";
 
@@ -1094,7 +1094,7 @@ Prikaz Country polja kao dropdown
 Handlebars.registerHelper("countrySelect", function(id,fieldName, returnIdAs) {
 	function countrySelectDropdown() {
 
-		var url = 'a/getCountries.php?callback=?&returnIdAs='+returnIdAs;
+		var url = 'api/getCountries.php?callback=?&returnIdAs='+returnIdAs;
 		var selector = "<select class=\"w100\" name=\""+fieldName+"\" id=\""+fieldName+"\" >";
 		selector += '<option value=" "> --- </option>';
 
@@ -1137,7 +1137,7 @@ Prikaz Route polja kao dropdown
 
 Handlebars.registerHelper("routeSelect", function(id,fieldName,routes) {
 	function routeSelectDropdown() {
-		var url = 'a/getRoutes.php?callback=';
+		var url = 'api/getRoutes.php?callback=';
 
 		$.ajax({
 			type: 'POST',
@@ -1193,7 +1193,7 @@ Prikaz Extras polja kao dropdown
 
 Handlebars.registerHelper("extrasSelect", function(id,fieldName,extras) {
 	function extrasSelectDropdown() {
-		var url = 'a/getExtrasMaster.php?callback=';
+		var url = 'api/getExtrasMaster.php?callback=';
 
 		$.ajax({
 			type: 'POST',
@@ -1252,7 +1252,7 @@ Prikaz From i To polja kao dropdown
 Handlebars.registerHelper("placeSelect", function(id,fieldName) {
 	function placeSelectDropdown() {
 
-		var url = 'a/getPlaces.php?callback=';
+		var url = 'api/getPlaces.php?callback=';
 
 		$.ajax({
 			type: 'GET',
@@ -1314,7 +1314,7 @@ Prikaz PlaceType kao dropdown
 Handlebars.registerHelper("placeTypeSelect", function(id,fieldName) {
 	function placeTypeSelectDropdown() {
 
-		var url = 'a/getPlaceType.php?callback=';
+		var url = 'api/getPlaceType.php?callback=';
 		var selector = "<select class=\"w100\" name=\""+fieldName+"\" id=\""+fieldName+"\" >";
 		selector += '<option value="0"> --- </option>';
 
@@ -1358,7 +1358,7 @@ Prikaz VehicleType kao dropdown
 Handlebars.registerHelper("vehicleTypeSelect", function(id,fieldName) {
 	function vehicleTypeSelectDropdown() {
 
-		var url = 'a/getVehicleType.php?callback=';
+		var url = 'api/getVehicleType.php?callback=';
 		var selector = "<select class=\"w100\" name=\""+fieldName+"\" id=\""+fieldName+"\" >";
 		selector += '<option value="0"> --- </option>';
 
@@ -1538,7 +1538,7 @@ Dolje je trik kako iskoristiti ime polja kao kljuc arraya
 Handlebars.registerHelper("userName", function(id, returnField) {
 	function userNameFunc() {
 
-		var url =  'a/oneUser.php?callback=?&AuthUserID='+id;
+		var url =  'api/oneUser.php?callback=?&AuthUserID='+id;
 		var uName = 'User not found';
 
 		$.ajax({

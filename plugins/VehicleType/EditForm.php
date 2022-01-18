@@ -1,4 +1,3 @@
-
 <script type="text/x-handlebars-template" id="ItemEditTemplate">
 <form id="ItemEditForm{{VehicleTypeID}}" class="form box box-info" enctype="multipart/form-data" method="post" onsubmit="return false;">
 	<div class="box-header">
