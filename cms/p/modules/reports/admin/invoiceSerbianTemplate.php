@@ -21,17 +21,11 @@
 					<?= s('co_name') ?><br>
 					<?= s('co_address') ?><br>
 					<?= s('co_zip') ?> <?= s('co_city') ?><br>
-					<?= s('co_country') ?><br>
+					PIB: <?= s('co_taxno') ?><br>
+					Tekući račun: <?= s('co_accountno') ?> <?= s('co_bank') ?><br>
 					<!--Phone: <?= s('co_tel') ?><br>
 					Email: <?= s('co_email') ?>-->
 				</address>-->
-				<address>
-					JamTransfer d.o.o.<br>
-					Vladislava Bajčevića 17<br>
-					11000 Beograd, Srbija<br>
-					PIB: 108576323<br>
-					Tekući račun: 160-413379-84 Banca Intesa ad<br>
-				</address>
 				
 			</div>
 			

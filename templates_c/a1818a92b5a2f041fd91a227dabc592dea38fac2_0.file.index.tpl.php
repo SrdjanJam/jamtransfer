@@ -1,27 +1,27 @@
 <?php
-/* Smarty version 3.1.32, created on 2022-01-14 09:56:56
+/* Smarty version 3.1.32, created on 2022-01-19 08:42:45
   from 'C:\wamp\www\jamtransfer\templates\index.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.32',
-  'unifunc' => 'content_61e148e89f0935_73350313',
+  'unifunc' => 'content_61e7cf052aee65_97066496',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'a1818a92b5a2f041fd91a227dabc592dea38fac2' => 
     array (
       0 => 'C:\\wamp\\www\\jamtransfer\\templates\\index.tpl',
-      1 => 1642154214,
+      1 => 1642581759,
       2 => 'file',
     ),
   ),
   'includes' => 
   array (
-    'file:page.tpl' => 1,
+    'file:pageList.tpl' => 1,
   ),
 ),false)) {
-function content_61e148e89f0935_73350313 (Smarty_Internal_Template $_smarty_tpl) {
+function content_61e7cf052aee65_97066496 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html>
 	<head>
@@ -213,14 +213,24 @@ _init.js"><?php echo '</script'; ?>
 
 			<div class="container-fluid side-collapse-container"
 			style="padding:0px!important">
-				<?php if (isset($_smarty_tpl->tpl_vars['page']->value)) {?>
+				<?php if (isset($_smarty_tpl->tpl_vars['pageOLD']->value)) {?>
+					NOT MODEL VIEW CONTROL
+				<?php } elseif (isset($_smarty_tpl->tpl_vars['page']->value)) {?>
 					<h1><?php echo $_smarty_tpl->tpl_vars['page']->value;?>
 </h1>
-					<?php $_smarty_tpl->_subTemplateRender("file:page.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
+					<?php $_smarty_tpl->_subTemplateRender(((string)$_smarty_tpl->tpl_vars['root']->value)."/plugins/".((string)$_smarty_tpl->tpl_vars['base']->value)."/templates/page.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, true);
+?>
+					MODEL VIEW CONTROL SMARTY		
+				<?php } elseif (isset($_smarty_tpl->tpl_vars['pageList']->value)) {?>
+					<h1><?php echo $_smarty_tpl->tpl_vars['pageList']->value;?>
+</h1>
+					<?php $_smarty_tpl->_subTemplateRender("file:pageList.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?> 
-				<?php } else {
-echo $_smarty_tpl->tpl_vars['page_render']->value;?>
+					MODEL VIEW CONTROL HANDLEBARS
+				<?php } else { ?>
+					<?php echo $_smarty_tpl->tpl_vars['page_render']->value;?>
 
+					SEMI MODEL VIEW CONTROL via OB_GET_CONTENTS
 				<?php }?>
 			</div>
 		</div>

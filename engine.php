@@ -76,7 +76,7 @@ if (count($mdk)==1) {
 	$md->getRow($key);
 	require_once $modulesPath . '/'.$md->getBase().'/index.php';
 	$smarty->assign('currenturl',ROOT_HOME.$activePage);
-	$smarty->assign('page',$md->getName());	
+	$smarty->assign('pageList',$md->getName());	
 	$smarty->assign('title',$md->getName());
 	$smarty->assign('base',$md->getBase());
 	$smarty->assign('code',$md->getCode());

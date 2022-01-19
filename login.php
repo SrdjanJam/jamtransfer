@@ -73,6 +73,7 @@ if(!isset($_SESSION['UserAuthorized']) or $_SESSION['UserAuthorized'] !== true) 
 						$_SESSION['UserName'] = $row['AuthUserName'];
 						$_SESSION['UserRealName'] = $row['AuthUserRealName'];
 						$_SESSION['UserCompany'] = $row['AuthUserCompany'];
+						$_SESSION['UserIDD'] = $row['AuthUserCompanyMB'];
 						$_SESSION['AuthUserID'] = $row['AuthUserID'];
 
 						$_SESSION['OwnerID'] = $row['AuthUserID'];

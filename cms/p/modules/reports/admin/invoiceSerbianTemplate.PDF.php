@@ -50,11 +50,11 @@
 			<tr>
 				<td class="pad4px" style="vertical-align:top" width="33%">
 				<address>
-					JamTransfer d.o.o.<br>
-					Vladislava Bajčevića 17<br>
-					11000 Beograd, Srbija<br>
-					PIB: 108576323<br>
-					Tekući račun: 160-413379-84 Banca Intesa ad<br>
+					<?= s('co_name') ?><br>
+					<?= s('co_address') ?><br>
+					<?= s('co_zip') ?> <?= s('co_city') ?><br>
+					PIB: <?= s('co_taxno') ?><br>
+					Tekući račun: <?= s('co_accountno') ?> <?= s('co_bank') ?><br>
 				</address>
 				</td>
 			
@@ -420,7 +420,7 @@
 									</span>, Beograd<br>
 									
 										Dokument izdala (identifikaciona oznaka): <br>
-										<? echo $_SESSION['UserRealName'];  ?>, 006910249
+										<? echo $_SESSION['UserRealName'];  ?>, <? echo $_SESSION['UserIDD'];  ?>
 
 
 

@@ -56,7 +56,7 @@
 						<br>
 						<?= s('co_zip') ?> <?= s('co_city') ?><br>
 						<?= s('co_country') ?><br>
-						Tax ID: 108576323 
+						Tax ID: <?= s('co_taxno') ?> 
 						<!--Phone: <?= s('co_tel') ?><br>
 						Email: <?= s('co_email') ?>-->
 
@@ -462,16 +462,14 @@
 
 								<p>
 									<small><em>
-										Note: The total amount is calculated without VAT,<br> 
-										in accordance with the Law on Value Added Tax, Article 12, Paragraph 6 <br>
-										and Article 17, Paragraph 4.  
+										<?= s('co_paymentinfo') ?>  
 									</em></small>
 								</p>
 								If You have any question regarding this Document, please contact: <br>
 								<br><em>
 								Name: <? echo $_SESSION['UserRealName'];  ?><br>
-								E-mail: finance@jamtransfer.com<br>
-								Tel/Fax: 00 381 11 364 02 15<br>
+								E-mail: <?= s('co_email') ?><br>
+								Tel/Fax: <?= s('co_tel') ?><br>
 								</em>
 
 								<br>
@@ -487,14 +485,14 @@
 						  		<p class="lead">INSTRUCTIONS FOR EUR PAYMENT:</p>
 								
 								<p class="rs">
-									<strong>Company:</strong>  Jam Transfer d.o.o. 
+									<strong>Company:</strong>  <?= s('co_name') ?>
 									<br>
-									<strong>Address:</strong> 17 Vladislava Bajčevića st., 11000 Belgrade, 
-									Republic of Serbia<br>
+									<strong>Address:</strong> <?= s('co_address') ?>, <?= s('co_zip') ?> <?= s('co_city') ?>, 
+									<?= s('co_country') ?><br>
 									<br>
-									<strong>Bank:</strong> Banca Intesa ad<br>
-									<strong>IBAN: </strong>RS35160005390001506944<br>
-									<strong>SWIFT: </strong>DBDBRSBG
+									<strong>Bank:</strong> <?= s('co_bank') ?><br>
+									<strong>IBAN: </strong><?= s('co_iban') ?><br>
+									<strong>SWIFT: </strong><?= s('co_swift') ?>
 									<br><br>
 									You are required to fully cover the bank transaction fees.<br>
 									Please, use the option (payment instruction) OUR

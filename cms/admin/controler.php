@@ -38,10 +38,6 @@ switch($activePage) {
 		require_once 'logout.php'; 
 		break;
 
-	case 'approvedFuelPrice':
-		require_once ROOT . '/cms/admin/approvedFuelPrice.php';
-		break;
-
 	case 'exchangeRate':
 		require_once ROOT . '/cms/admin/exchangeRate.php';
 		break;	

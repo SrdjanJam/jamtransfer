@@ -27,6 +27,7 @@ $smarty->debugging =false;
 
 $modulesPath = ROOT . '/plugins'; // base folder for modules
 $smarty->assign('root_home',ROOT_HOME);
+$smarty->assign('root',ROOT);
 
 session_start();	
 

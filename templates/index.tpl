@@ -127,10 +127,19 @@
 
 			<div class="container-fluid side-collapse-container"
 			style="padding:0px!important">
-				{if isset($page)}
+				{if isset($pageOLD)}
+					NOT MODEL VIEW CONTROL
+				{elseif isset($page)}
 					<h1>{$page}</h1>
-					{include file="page.tpl"} 
-				{else}{$page_render}
+					{include file="{$root}/plugins/{$base}/templates/page.tpl"}
+					MODEL VIEW CONTROL SMARTY		
+				{elseif isset($pageList)}
+					<h1>{$pageList}</h1>
+					{include file="pageList.tpl"} 
+					MODEL VIEW CONTROL HANDLEBARS
+				{else}
+					{$page_render}
+					SEMI MODEL VIEW CONTROL via OB_GET_CONTENTS
 				{/if}
 			</div>
 		</div>

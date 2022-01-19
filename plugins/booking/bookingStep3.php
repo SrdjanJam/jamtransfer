@@ -73,7 +73,7 @@
 
 			$html = $potvrda .'<small style="font-family:Arial, sans-serif;">'. pdfFooter(2) . '</small>';
 
-			//$mpdf->WriteHTML(utf8_encode($html)); // ovo spizdi cirilicu
+			//$mpdf->WriteHTML(utf8_encode($html)); 
 			$mpdf->WriteHTML($html); // a ovo ne
 
 			$content = $mpdf->Output('', 'S');
