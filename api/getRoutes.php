@@ -1,8 +1,9 @@
 <?
 header('Content-Type: text/javascript; charset=UTF-8');
+require_once '../config.php';
 
 # init libs
-require_once '../../db/v4_Routes.class.php';
+require_once '../db/v4_Routes.class.php';
 
 # init vars
 $out = array();

@@ -1,7 +1,7 @@
-<script type="text/x-handlebars-template" id="v4_SurveyListTemplate">
+<script type="text/x-handlebars-template" id="ItemListTemplate">
 
-	{{#each v4_Survey}}
-		<div  onclick="one_v4_Survey({{ID}});">
+	{{#each Item}}
+		<div  onclick="oneItem({{ID}});">
 		
 			<div class="row {{color}} pad1em listTile" 
 			style="border-top:1px solid #ddd" 
@@ -12,7 +12,7 @@
 					</div>
 
 					<div class="col-md-3">
-						{{#compare RouteID "==" 0}}?
+						{{#compare RouteNameEN "==" ' '}}{{OrderID}}
 						{{else}}{{RouteNameEN}}
 						{{/compare}}
 					</div>
@@ -42,9 +42,9 @@
 					</div>
 			</div>
 		</div>
-		<div id="v4_SurveyWrapper{{ID}}" class="editFrame" style="display:none">
+		<div id="ItemWrapper{{ID}}" class="editFrame" style="display:none">
 			<div id="inlineContent{{ID}}" class="row">
-				<div id="one_v4_Survey{{ID}}" >
+				<div id="one_Item{{ID}}" >
 					<?= LOADING ?>
 				</div>
 			</div>
@@ -55,19 +55,6 @@
 // trik za klikanje botuna a da ne otvori tile
 $(".clickable").click(function(e) { e.stopPropagation() });
 
-function approveReview (id, val,button) {
-	$.ajax({
-		url: "p/modules/v4_Survey/ajax_updateApproved.php",
-		type: "POST",
-		data: {
-			ID: id,
-			value: val
-		},
-		success: function (result) {
-			document.getElementById("buttons_"+id).innerHTML = "saved";
-		}
-	});
-}
 </script>
 </script>
 

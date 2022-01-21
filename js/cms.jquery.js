@@ -1138,7 +1138,7 @@ Prikaz Route polja kao dropdown
 Handlebars.registerHelper("routeSelect", function(id,fieldName,routes) {
 	function routeSelectDropdown() {
 		var url = 'api/getRoutes.php?callback=';
-
+		
 		$.ajax({
 			type: 'POST',
 			url: url,

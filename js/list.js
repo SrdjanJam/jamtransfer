@@ -185,3 +185,20 @@
 
 		return false;
 	}	
+	function approveReview (id, val,button) {
+		var url= window.root + "ajax_updateApproved.php";
+		console.log(window.base+url);		
+		$.ajax({
+			url: url,
+			type: "POST",
+			data: {
+				ID: id,
+				value: val
+			},
+			success: function (result) {
+				if (result==1) var savefield='Approve';
+				else var savefield='Discard';
+				document.getElementById("buttons_"+id).innerHTML = savefield;
+			}
+		});
+	}	

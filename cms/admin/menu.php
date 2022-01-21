@@ -75,12 +75,6 @@
           		<!--<li id="coTexts"><a href="coTexts"><?= COMPANY_TEXTS ?></a></li>-->
           		<li id="headerImages"><a href="headerImages"><?= HEADER_IMAGES ?></a></li> 
 				<li id="routeReviews"><a href="routeReviews"><?= ROUTE_REVIEWS ?></a></li>
-
-          		<li class="divider"></li>
-				<li><a href="refreshCache"
-				onclick="return confirm('Refresh cache?\n(This could take a while)')">
-					<?= REFRESH_CACHE ?>
-				</a></li>
           	</ul>
           </li>
 

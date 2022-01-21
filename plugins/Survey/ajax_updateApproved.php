@@ -1,8 +1,8 @@
 <?
+require_once 'Initial.php';
+
 $ID = $_REQUEST["ID"];
 $value = $_REQUEST["value"];
-
-require_once "../../../../db/v4_Survey.class.php";
 
 $su = new v4_Survey;
 

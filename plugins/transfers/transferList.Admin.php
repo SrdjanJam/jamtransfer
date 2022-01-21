@@ -57,6 +57,9 @@
 						{{#if FinalNote}}<span class="note btn btn-danger">Note</span>{{/if}}	
 						<br>
 						<small>{{DriverConfDate}} {{DriverConfTime}}</small>					 
+						<br>
+						{{#compare PaymentMethod "==" "1"}} {{MCardNumber}}	{{/compare}}
+						{{#compare PaymentMethod "==" "3"}} {{MCardNumber}}	{{/compare}}							
 					</div>
 					{{#if FinalNote}}<small style="color:red">{{FinalNote}}</small>{{/if}}	
 	

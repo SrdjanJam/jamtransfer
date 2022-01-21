@@ -2,17 +2,6 @@
 	@session_start();
 	if (!$_SESSION['UserAuthorized']) die('Bye, bye');
 ?>
-
-<div class="row-fluid">
-<div class="container box box-info">
-    <div class="box-header">
-        <i class="fa fa-calendar"></i>
-        <div class="box-title">Calendar</div>
-    </div><!-- /.box-header -->
-	<div class="col-md-1" style="width:99% !important;">
-
-
-		<div class="dp_content">
 	        <?
 			# Init Values - this month, this year
 			//$cMonth = date("m"); $cYear=date("Y");
@@ -46,6 +35,16 @@
 
 
 			?>
+<div class="row-fluid">
+<div class="container box box-info">
+    <div class="box-header">
+        <i class="fa fa-calendar"></i>
+        <div class="box-title">Calendar</div>
+    </div><!-- /.box-header -->
+	<div class="col-md-1" style="width:99% !important;">
+
+
+		<div class="dp_content">
 			<div align="center">
 				<form action="<?=$_SERVER['PHP_SELF'];?>" method="POST">
 				<br>

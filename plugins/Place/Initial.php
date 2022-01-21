@@ -16,3 +16,4 @@ $aColumns = array(
 	'PlaceNameSEO',
 	'CountryNameEN'
 );
+
