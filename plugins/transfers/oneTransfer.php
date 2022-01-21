@@ -188,6 +188,21 @@ $detailFlds['ProvisionAmountEUR'] = number_format($od->getProvisionAmount(),2);
 $detailFlds['DiscountEUR'] = number_format($od->getDiscount(),2);
 $detailFlds['DriverPaymentAmtEUR'] = number_format($od->getDriverPaymentAmt(),2);
 
+$au->getRow($od->getDriverID());
+$contractFile=$au->getContractFile();
+if ($contractFile=='inter') {
+	$detailFlds['SubDriverName'] = $au->getContactPerson();
+	$detailFlds['SubDriverMob'] = $au->getAuthUserMob();	
+}
+else {	
+	$subdriverid=$od->getSubDriver();
+	if ($subdriverid>0) {
+		$au->getRow($subdriverid);
+		$detailFlds['SubDriverName'] = $au->getAuthUserRealName();
+		$detailFlds['SubDriverMob'] = $au->getAuthUserMob();
+	}
+}
+
 # Invoice data
 //$inn=$od->getInvoiceNumber(); 
 //if ($inn<>'') {

@@ -15,16 +15,16 @@ if (!isset($DateFrom)) $DateFrom = date("Y-m-d");
 if (!isset($DateTo)) $DateTo = date("Y-m-d");
 if (!isset($NoColumns)) $NoColumns = 3;
 
-require_once ROOT . '/db/v4_AuthUsers.class.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/db/v4_AuthUsers.class.php';
 $au = new v4_AuthUsers();
 
-require_once ROOT . '/db/db.class.php';
-require_once ROOT . '/db/v4_OrdersMaster.class.php';
-require_once ROOT . '/db/v4_OrderDetails.class.php';	
-require_once ROOT . '/db/v4_OrderExtras.class.php';
-require_once ROOT . '/db/v4_Places.class.php';
-require_once ROOT . '/db/v4_Routes.class.php';
-require_once ROOT . '/db/v4_OrderLog.class.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/db/db.class.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/db/v4_OrdersMaster.class.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/db/v4_OrderDetails.class.php';	
+require_once $_SERVER['DOCUMENT_ROOT'] . '/db/v4_OrderExtras.class.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/db/v4_Places.class.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/db/v4_Routes.class.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/db/v4_OrderLog.class.php';
 
 $db = new DataBaseMysql();
 $om = new v4_OrdersMaster();
@@ -188,9 +188,9 @@ hr {
 </style>
 
 <div class="container-fluid">
-	<h1>Timetable - Column View</h1><hr>
 	<div class="row" >
 		<div style="float:left; display:inline-block; width:30%">	
+			<h3>Timetable - Column View</h3>
 			<button class="btn" onclick="hideChecked()"><?= DISPLAY_NOT_CHECKED ?></button>
 			<button class="btn" onclick="displayAll()"><?= DISPLAY_ALL ?></button>
 		</div>		
@@ -404,7 +404,7 @@ hr {
 		<div class="row white shadow" style="cursor:default; padding:8px !important;background:<?= $bgColor ?>; margin:12px 0">
 			<div class="row"> <!-- TRANSFER -->
 				<span id="indicator_<?= $i ?>" style="<?= $style ?>"><?= YMD_to_DMY($od->getPickupDate()); ?></span>
-				<large style='float:right' class="bold"><input class='check' onchange="saveTransfer('<?= $i ?>');" id="checkdata_<?=$i?>" type="checkbox" name="checkeddata" value="<?= $od->getCustomerID();?>" 
+				<large style='float:right' class="bold"><input class='check' onchange="saveTransfer('<?= $i ?>',1);" id="checkdata_<?=$i?>" type="checkbox" name="checkeddata" value="<?= $od->getCustomerID();?>" 
 					<? 
 						if ($od->getCustomerID()==1) echo "checked"; 
 					?>
@@ -442,7 +442,7 @@ hr {
 						<?//= $changedIcon ?>
 						<input type="text" class="timepicker w100 <?= $color ?>" id="SubPickupTime_<?= $i ?>"
 							name="SubPickupTime_<?= $i ?>"
-							value="<?= $od->getSubPickupTime();?>" onchange="saveTransfer(<?=$i?>)"
+							value="<?= $od->getSubPickupTime();?>" onchange="saveTransfer(<?=$i?>,0)"
 						style="font-weight:bold;text-align:center"/>
 					</div>
 
@@ -485,7 +485,7 @@ hr {
 							<div>
 								<input type="text" name="TransferDuration_<?=$i?>" 
 								id="TransferDuration_<?=$i?>" value="<?= $od->getTransferDuration() ?>" 
-								title="Transfer duration" class="timepicker w75" onchange="saveTransfer(<?=$i?>)">
+								title="Transfer duration" class="timepicker w75" onchange="saveTransfer(<?=$i?>,0)">
 				
 								<? if($extras != '') echo '<i class="fa fa-cubes red-text"></i>'; ?>
 							</div>
@@ -497,7 +497,7 @@ hr {
 				<div class="row" style="line-height:140%">
 					<div class="col-md-5">
 						<select style="width:100%;height:2em"
-						id="SubDriver_<?=$i?>" name="SubDriver_<?=$i?>" onchange="saveTransfer(<?=$i?>)">
+						id="SubDriver_<?=$i?>" name="SubDriver_<?=$i?>" onchange="saveTransfer(<?=$i?>,0)">
 							<option value='0'> --- </option>
 							<? foreach ($sdArray as $Driver) {
 								echo '<option value="'.$Driver['DriverID'].'"';
@@ -511,7 +511,7 @@ hr {
 					</div>
 					<div class="col-md-5">
 						<select style="width:100%;height:2em"
-						id="Car_<?=$i?>" name="Car_<?=$i?>" onchange="saveTransfer(<?=$i?>)">
+						id="Car_<?=$i?>" name="Car_<?=$i?>" onchange="saveTransfer(<?=$i?>,0)">
 							<option value='0'> --- </option>
 							<? foreach ($svArray as $Vehicle) {
 								echo '<option value="'.$Vehicle['VehicleID'].'"';
@@ -534,7 +534,7 @@ hr {
 				<? if (($od->getPaxNo() < 8) && ($od->getSubDriver2() == 0) && ($od->getCar2() == 0)) echo ' style="display:none"'; ?> >
 					<div class="col-md-5">
 						<select style="width:100%;height:2em"
-						id="SubDriver2_<?=$i?>" name="SubDriver2_<?=$i?>" onchange="saveTransfer(<?=$i?>)">
+						id="SubDriver2_<?=$i?>" name="SubDriver2_<?=$i?>" onchange="saveTransfer(<?=$i?>,0)">
 							<option value='0'> --- </option>
 							<? foreach ($sdArray as $Driver) {
 								echo '<option value="'.$Driver['DriverID'].'"';
@@ -548,7 +548,7 @@ hr {
 					</div>
 					<div class="col-md-5">
 						<select style="width:100%;height:2em"
-						id="Car2_<?=$i?>" name="Car2_<?=$i?>" onchange="saveTransfer(<?=$i?>)">
+						id="Car2_<?=$i?>" name="Car2_<?=$i?>" onchange="saveTransfer(<?=$i?>,0)">
 							<option value='0'> --- </option>
 							<? foreach ($svArray as $Vehicle) {
 								echo '<option value="'.$Vehicle['VehicleID'].'"';
@@ -585,7 +585,7 @@ hr {
 					</div>
 					<div class="col-md-5">
 						<select style="width:100%;height:2em"
-						id="Car3_<?=$i?>" name="Car3_<?=$i?>" onchange="saveTransfer(<?=$i?>)">
+						id="Car3_<?=$i?>" name="Car3_<?=$i?>" onchange="saveTransfer(<?=$i?>,0)">
 							<option value='0'> --- </option>
 							<? foreach ($svArray as $Vehicle) {
 								echo '<option value="'.$Vehicle['VehicleID'].'"';
@@ -736,7 +736,7 @@ hr {
 					    <div style="display:inline-block;color:#900;" id="PDFUploaded_<?= $i ?>"></div>
 			    </div>
 			    <div class="col-md-6">
-				    <button class="btn btn-primary btn-block" onclick="saveTransfer(<?= $i?>)">
+				    <button class="btn btn-primary btn-block" onclick="saveTransfer(<?= $i?>,0)">
 					    <i class="fa fa-save"></i> Save
 				    </button>
 			    </div>
@@ -834,7 +834,7 @@ function toggleChevron (button) {
 		})
 	}
 
-	function saveTransfer (i) {
+	function saveTransfer (i,mail) {
 		
 		var id	= $("#ID_" + i).val();
 		var oid	= $("#OrderID_" + i).val();
@@ -842,10 +842,12 @@ function toggleChevron (button) {
 		if (checked) {
 			checked=1;
 			$('#checkdata'+i).prop('checked',true);
+			alert ('Sending mail to jam.arhiva@gmail.com');
 		}	
 		else {
 			checked=0;
 			$('#checkdata'+i).prop('checked',false);
+			mail=0;
 		}				
 		var fn	= $("#SubFlightNo_" + i).val();
 		var ft	= $("#SubFlightTime_" + i).val();
@@ -883,7 +885,8 @@ function toggleChevron (button) {
 				StaffNote: sn,
 				Notes: n,
 				CashIn: g,
-				TransferDuration: td
+				TransferDuration: td,
+				Mail: mail
 			},
 			success: function (result) {
 				msg.innerHTML = "Saved";

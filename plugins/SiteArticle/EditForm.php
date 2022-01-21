@@ -1,6 +1,6 @@
 
-<script type="text/x-handlebars-template" id="v4_ArticlesEditTemplate">
-<form id="v4_ArticlesEditForm{{ID}}" class="form box box-info" enctype="multipart/form-data" method="post" onsubmit="return false;">
+<script type="text/x-handlebars-template" id="ItemEditTemplate">
+<form id="ItemEditForm{{ID}}" class="form box box-info" enctype="multipart/form-data" method="post" onsubmit="return false;">
 	<div class="box-header">
 		<div class="box-title">
 			<? if ($isNew) { ?>
@@ -159,7 +159,7 @@
 	<div class="box-footer">
 		<? if (!$isNew) { ?>
 		<div>
-    	<button class="btn btn-default" onclick="return deletev4_Articles('{{ID}}', '<?= $inList ?>');">
+    	<button class="btn btn-default" onclick="return deleteItem('{{ID}}', '<?= $inList ?>');">
     		<i class="ic-cancel-circle"></i> <?= DELETE ?>
     	</button>
     	</div>
@@ -192,27 +192,14 @@ toolbar: [
   }
 });
 	
-
-
 function postForm() {
 	$('#Article{{ID}}').text($('#Article{{ID}}').code());
 	return false;
 }
-
-
-
-
 		// uklanja ikonu Saved - statusMessage sa ekrana
 		$("form").change(function(){
 			$("#statusMessage").html('');
 		});
-	
-
-
-
 </script>
-
-
-	
 </script>
 	
