@@ -3,14 +3,6 @@
 	AJAX Script !!!!
 */
 require_once "../../config.php";
-function getMyDb()
-{
-	static $mysqli;
-	if (!$mysqli) $mysqli = new mysqli(DB_HOST,DB_USER,DB_PASSWORD, DB_NAME);
-	return $mysqli;
-}
-@session_start();
-if (!$_SESSION['UserAuthorized']) die('Bye, bye');
 
 
 
@@ -76,8 +68,7 @@ if ($next_month == 13 ) {
 				$active .=	"AND TransferStatus != '4' AND TransferStatus != '9'
 							ORDER BY PickupDate, PickupTime ASC
 							";
-				$mysqli = getMyDb();
-				$rec = $mysqli->query($active) ;
+				$rec = $db->RunQuery($active) ;
 				$tr_arr=array();
 				while ($row = $rec->fetch_assoc() ) {
 					$tr_arr[]=$row;
@@ -87,6 +78,16 @@ if ($next_month == 13 ) {
 				$maxday = date("t",$timestamp);
 				$thismonth = getdate ($timestamp);
 				$startday = $thismonth['wday'];
+				for ($i=0; $i<($maxday+$startday); $i++) {
+						$fullDate = date("Y-m-d",mktime(0,0,0,$cMonth,($i - $startday + 1),$cYear));
+						$month_transfers[]=monthTransfersArray($fullDate,$rec,$i,$startday);
+				}	
+	$smarty->assign('dayNames',$dayNames);
+	$smarty->assign('month_transfers',$month_transfers);
+	$smarty->assign('startday',$startday);
+	
+	
+	$smarty->display('monthtransfers.tpl');		
 ?>
 
 <table width="99%" style="border:none;">
@@ -105,10 +106,7 @@ if ($next_month == 13 ) {
 				</thead>
 
 				<?
-				for ($i=0; $i<($maxday+$startday); $i++) {
-						$fullDate = date("Y-m-d",mktime(0,0,0,$cMonth,($i - $startday + 1),$cYear));
-						$month_transfers[]=monthTransfersArray($fullDate,$rec);
-				}
+
 				$i=0;	
 				foreach ($month_transfers as $daytansfers) {
 					if(($i % 7) == 0 ) echo "<tr>\n";
@@ -164,7 +162,7 @@ if ($next_month == 13 ) {
 </script>
 
 <?
-function monthTransfersArray($date,$rec)
+function monthTransfersArray($date,$rec,$count,$startday)
 {
 	global $StatusDescription;
 	global $DriverConfStatus;
@@ -177,6 +175,10 @@ function monthTransfersArray($date,$rec)
 			$arr[]= $row;
 		}
 	}
+	$dayofweek=($count % 7);
+	if($count < $startday) $dayofweek=-1;
+	$dayTransfers['nom']=$count - $startday + 1;
+	$dayTransfers['dayofweek']=$dayofweek;
 	$dayTransfers['date']=$date;
 	$dayTransfers['transfers']=$arr;
 	$dayTransfers['noOfTransfers']=$noOfTransfers;
@@ -189,7 +191,9 @@ function monthTransfers($daytransfers)
 	$transfers = $daytransfers['transfers'];
 	global $StatusDescription;
 	global $DriverConfStatus;
+	
 	foreach ($daytransfers['transfers'] as $transfer) { 
+
 		# No Driver Alert
 		$driver = '<span style="color: #c00"><i class="fa fa-question"></i></span> ';
 		/*
@@ -217,7 +221,7 @@ function monthTransfers($daytransfers)
 			6 = Driver error
 			7 = Completed
 		*/
-		if ($transfer['DriverConfStatus'] == '0') $data .= '<span style="color:#c00"><i class="fa fa-car"></i></span> ';
+		if ($transfer['DriverConfStatus'] == '0') $driver .= '<span style="color:#c00"><i class="fa fa-car"></i></span> ';
 		if ($transfer['DriverConfStatus'] == '1') $driver .= '<span class="text-orange"><i class="fa fa-info-circle"></i></span> ';
 		if ($transfer['DriverConfStatus'] == '2') $driver .= '<span class="text-blue"><i class="fa fa-thumbs-up"></i></span> ';
 		if ($transfer['DriverConfStatus'] == '3') $driver .= '<span class="text-blue"><i class="fa fa-car"></i></span> ';
@@ -252,214 +256,4 @@ function monthTransfers($daytransfers)
 	$data .= '<br><small style="font-size:14px">No of transfers: '.$daytransfers['noOfTransfers'].'</small>';
     return $data;
 }
-
-function dayTransfers($date)
-{
-	global $StatusDescription;
-	global $DriverConfStatus;
-	
-	
-	$mysqli = getMyDb();
-	$data = '';
-	
-	# If user is not a driver, call admin version of function
-	if ($_SESSION['AuthLevelID'] != DRIVER_USER) return dayTransfersAdmin($date);
-
-
-	# PITANJE: sta je ovaj Status ? izbaceno nakon WHERE Status != 3 AND
-	$active = "SELECT * FROM ".DB_PREFIX."OrderDetails
-				WHERE PickupDate = '".$date."' 
-				AND DriverID = '".$_SESSION['AuthUserID']."' 
-				AND TransferStatus != '4' AND TransferStatus != '9'
-				ORDER BY PickupDate, PickupTime ASC
-				";
-
-	$rec = $mysqli->query($active) or die($mysqli->error);
-	$noOfTransfers = 0;
-
-	while ($row = $rec->fetch_assoc() ) {
-
-		# OrdersMaster
-		/*$master = "SELECT * FROM ".DB_PREFIX."OrdersMaster
-				WHERE MOrderID = ".$row['OrderID'];
-
-    	$rr = $mysqli->query($master) or die($mysqli->error);
-    	$m = $rr->fetch_assoc();*/
-
-    	# No Driver Alert
-    	$driver = '<span style="color: #c00"><i class="fa fa-question"></i></span> ';
-
-		if ($row['TransferStatus'] != '3') $noOfTransfers += 1;
-
-  		/*
-		TransferStatus:
-			1 = Active
-			2 = Changed
-			3 = Cancelled
-			4 = TEMP
-			5 = Completed
-		*/
-		if ($row['TransferStatus'] == '1') $driver = '<span class="text-blue"><i class="fa fa-circle-o"></i></span> ';
-		if ($row['TransferStatus'] == '2') $driver = '<span class="text-orange"><i class="fa fa-circle-o"></i></span> ';
-		if ($row['TransferStatus'] == '3') $driver = '<span style="color: #c00"><i class="fa fa-times-circle"></i></span> ';
-		if ($row['TransferStatus'] == '4') $driver = '<span class="text-orange"><i class="fa fa-question-circle"></i></span> ';
-		if ($row['TransferStatus'] == '5') $driver = '<span class="text-green"><i class="fa fa-check-circle"></i></span> ';
-
-		/*
-		DriverConfStatus:
-			0 = No driver
-			1 = Not Confirmed
-			2 = Confirmed
-			3 = Ready
-			4 = Declined
-			5 = No-show
-			6 = Driver error
-			7 = Completed
-		*/
-		if ($row['DriverConfStatus'] == '0') $driver .= '<span style="color:#c00"><i class="fa fa-car"></i></span> ';
-		if ($row['DriverConfStatus'] == '1') $driver .= '<span class="text-orange"><i class="fa fa-info-circle"></i></span> ';
-		if ($row['DriverConfStatus'] == '2') $driver .= '<span class="text-blue"><i class="fa fa-thumbs-up"></i></span> ';
-		if ($row['DriverConfStatus'] == '3') $driver .= '<span class="text-blue"><i class="fa fa-car"></i></span> ';
-		if ($row['DriverConfStatus'] == '4') $driver .= '<span style="color:#c00"><i class="fa fa-thumbs-down"></i></span> ';
-		if ($row['DriverConfStatus'] == '5') $driver .= '<span style="color:#c00"><i class="fa fa-user-times"></i></span> ';
-		if ($row['DriverConfStatus'] == '6') $driver .= '<span style="color:#c00"><i class="fa fa-black-tie"></i></span> ';
-		if ($row['DriverConfStatus'] == '7') $driver .= '<span class="text-green"><i class="fa fa-check-square"></i></span> ';
-
-   	    # Tooltip Setup
-  	    $ttip = NL.
-   	            FLIGHT_NO.': '.$row['FlightNo'].NL.
-   	            FLIGHT_TIME.': '.$row['FlightTime'].NL.
-   	            FROM.': '.$row['PickupName'].NL.
-   	            TO.': '.$row['DropName'].NL.
-   	            DRIVER.': '.$row['DriverName'].NL.
-   	            TRANSFER_STATUS .': '. $StatusDescription[$row['TransferStatus']].NL.
-   	            $DriverConfStatus[$row['DriverConfStatus']].NL.NL;
-
-   	    # Pickup Time
-    	$data .=    $driver . $row['PickupTime'] . ' &rarr; ';
-
-
-        # Link & Tooltip
-        $data .=    '<a href="index.php?p=editActiveTransfer&rec_no='.
-		            $row['DetailsID'].
-		            '" title="<b>'.$row['OrderID'] . '-'.$row['TNo'] .' - '. $row['PaxName'] . '</b>" 
-		            data-content="'. str_replace('"', '',$ttip) .'" 
-		            class="mytooltip">' .
-	                $row['OrderID'] . '-'.$row['TNo'] .
-	                '</a>' .'<br/>';
-
-	}
-	$data .= '<br><small style="font-size:14px">No of transfers: '.$noOfTransfers.'</small>';
-    return $data;
-}
-
-
-# Function for Admins and Operaters
-function dayTransfersAdmin($date)
-{
-	global $StatusDescription;
-	global $DriverConfStatus;
-
-	$mysqli = getMyDb();
-	$data = '';
-
-	# OrderDetails TransferStatus != 3 AND  5.1.2012
-	$active = "SELECT * FROM ".DB_PREFIX."OrderDetails
-				WHERE PickupDate = '".$date."'
-				ORDER BY PickupDate, PickupTime ASC
-				";
-
-	$rec = $mysqli->query($active) or die($mysqli->error);
-	$noOfTransfers = 0;
-
-	while ($row = $rec->fetch_assoc() ) {
-
-		/*
-		# VehicleTimeTable
-		$drivers = "SELECT * FROM ".DB_PREFIX."VehicleTimeTable
-				WHERE OrderDetailsID = ".$row['DetailsID'];
-
-    	$r = $mysqli->query($drivers) or die($mysqli->error);
-    	$mydrvr = $mysqli->fetch_assoc($r);
-        */
-
-		# OrdersMaster
-		/*$master = "SELECT * FROM ".DB_PREFIX."OrdersMaster
-				WHERE MOrderID = ".$row['OrderID'];
-
-    	$rr = $mysqli->query($master) or die($mysqli->error);
-    	$m = $rr->fetch_assoc();*/
-
-    	# No Driver Alert
-    	$driver = '<span style="color: #c00"><i class="fa fa-question"></i></span> ';
-
-		if ($row['TransferStatus'] != '3') $noOfTransfers += 1;
-
-		/*
-		TransferStatus:
-			1 = Active
-			2 = Changed
-			3 = Cancelled
-			4 = TEMP
-			5 = Completed
-		*/
-		if ($row['TransferStatus'] == '1') $driver = '<span class="text-blue"><i class="fa fa-circle-o"></i></span> ';
-		if ($row['TransferStatus'] == '2') $driver = '<span class="text-orange"><i class="fa fa-circle-o"></i></span> ';
-		if ($row['TransferStatus'] == '3') $driver = '<span style="color: #c00"><i class="fa fa-times-circle"></i></span> ';
-		if ($row['TransferStatus'] == '4') $driver = '<span class="text-orange"><i class="fa fa-question-circle"></i></span> ';
-		if ($row['TransferStatus'] == '5') $driver = '<span class="text-green"><i class="fa fa-check-circle"></i></span> ';
-
-		/*
-		DriverConfStatus:
-			0 = No driver
-			1 = Not Confirmed
-			2 = Confirmed
-			3 = Ready
-			4 = Declined
-			5 = No-show
-			6 = Driver error
-			7 = Completed
-		*/
-		if ($row['DriverConfStatus'] == '0') $driver .= '<span style="color:#c00"><i class="fa fa-car"></i></span> ';
-		if ($row['DriverConfStatus'] == '1') $driver .= '<span class="text-orange"><i class="fa fa-info-circle"></i></span> ';
-		if ($row['DriverConfStatus'] == '2') $driver .= '<span class="text-blue"><i class="fa fa-thumbs-up"></i></span> ';
-		if ($row['DriverConfStatus'] == '3') $driver .= '<span class="text-blue"><i class="fa fa-car"></i></span> ';
-		if ($row['DriverConfStatus'] == '4') $driver .= '<span style="color:#c00"><i class="fa fa-thumbs-down"></i></span> ';
-		if ($row['DriverConfStatus'] == '5') $driver .= '<span style="color:#c00"><i class="fa fa-user-times"></i></span> ';
-		if ($row['DriverConfStatus'] == '6') $driver .= '<span style="color:#c00"><i class="fa fa-black-tie"></i></span> ';
-		if ($row['DriverConfStatus'] == '7') $driver .= '<span class="text-green"><i class="fa fa-check-square"></i></span> ';
-
-   	    # Tooltip Setup
-  	    $ttip = NL.
-   	            FLIGHT_NO.': '.$row['FlightNo'].NL.
-   	            FLIGHT_TIME.': '.$row['FlightTime'].NL.
-   	            FROM.': '.$row['PickupName'].NL.
-   	            TO.': '.$row['DropName'].NL.
-   	            DRIVER.': '.$row['DriverName'].NL.
-   	            TRANSFER_STATUS .': '. $StatusDescription[$row['TransferStatus']].NL.
-   	            $DriverConfStatus[$row['DriverConfStatus']];
-
-		if ($row['ExtraCharge'] > 0) $ttip .= NL."<i class='fa fa-cubes'></i> Extra services";
-
-		$ttip .= NL.NL;
-
-   	    # Pickup Time
-    	$data .=    $driver . $row['PickupTime'] . ' &rarr; ';
-
-
-        # Link & Tooltip
-        $data .=    '<a href="index.php?p=editActiveTransfer&rec_no='.
-		            $row['DetailsID'].
-		            '" title="<b>'.$row['OrderID'] . '-'.$row['TNo'] .' - '. $row['PaxName'] . '</b>" 
-		            data-content="'. str_replace('"', '',$ttip) .'" 
-		            class="mytooltip">' .
-	                $row['OrderID'] . '-'.$row['TNo'] .
-	                '</a>' .'<br/>';
-
-	}
-	$data .= '<br><small style="font-size:14px">No of transfers: '.$noOfTransfers.'</small>';
-    return $data;
-}
-
-/* EOF */
 

@@ -8,7 +8,7 @@ $db = new DataBaseMysql();
 // AUTOLOAD FUNCTION
 spl_autoload_register(
 	function($classname) {
-		if ($classname<>'Smarty_Autoloader') require_once ROOT.'/db/'. $classname . '.class.php';	
+		//if ($classname<>'Smarty_Autoloader') require_once ROOT.'/db/'. $classname . '.class.php';	
 	}
 );	
 
@@ -16,9 +16,12 @@ require_once ROOT. '/sessionThingy.php';
 require_once ROOT.'/common/functions/f.php';
 require_once ROOT.'/common/class/PathVars.php';
 
+require_once ROOT.'/common/class/smartyHelper.php';
+require_once ROOT.'/common/class/class.smartypluginblock.php';
 require_once ROOT.'/common/libs/Smarty.class.php'; 
 require_once ROOT.'/common/libs/SmartyValidate.class.php';
 require_once ROOT.'/common/libs/SmartyPaginate.class.php';
+
 require_once ROOT.'/common/class/adminTable.php';
 
 $smarty = new Smarty;
