@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 3.1.32, created on 2022-01-19 07:38:25
+/* Smarty version 3.1.32, created on 2022-01-27 11:56:17
   from 'C:\wamp\www\jamtransfer\templates\pageList.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.32',
-  'unifunc' => 'content_61e7bff1ba5b51_62023619',
+  'unifunc' => 'content_61f2886167d123_01754684',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_61e7bff1ba5b51_62023619 (Smarty_Internal_Template $_smarty_tpl) {
+function content_61f2886167d123_01754684 (Smarty_Internal_Template $_smarty_tpl) {
 echo '<script'; ?>
  type="text/javascript">
 window.root = 'plugins/<?php echo $_smarty_tpl->tpl_vars['base']->value;?>

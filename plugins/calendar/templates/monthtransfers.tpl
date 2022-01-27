@@ -1,7 +1,6 @@
 <table width="99%" style="border:none;">
 	<tr>
 		<td align="center">
-
 			<table id="calendarTable" width="100%" border="0" cellpadding="0" cellspacing="0"  class="table">
 				<thead>
 					<th style="width:14%; background:#FDB5B5"><strong>{$dayNames[0]}</strong></th>
@@ -19,24 +18,47 @@
 						<td valign="top" class="cal_cell" {$style}><div class="cal_days l"><b>{$month_transfers[pom].nom}
 							</b></div><br /><small>
 							{section name=pom2 loop=$month_transfers[pom].transfers}
-								<a href="index.php?p=editActiveTransfer&rec_no=
-									{$month_transfers[pom].transfers[pom2].DetailsID}"> 
-									{$month_transfers[pom].transfers[pom2].OrderID}-{$month_transfers[pom].transfers[pom2].TNo}</a><br/>
-					
+								{if $month_transfers[pom].transfers[pom2].TransferStatus eq '1'} <span class="text-blue"><i class="fa fa-circle-o"></i></span>
+								{else if $month_transfers[pom].transfers[pom2].TransferStatus eq '2'} <span class="text-orange"><i class="fa fa-circle-o"></i></span>
+								{else if $month_transfers[pom].transfers[pom2].TransferStatus eq '3'} <span style="color: #c00"><i class="fa fa-times-circle"></i></span>
+								{else if $month_transfers[pom].transfers[pom2].TransferStatus eq '4'} <span class="text-orange"><i class="fa fa-question-circle"></i></span>
+								{else if $month_transfers[pom].transfers[pom2].TransferStatus eq '5'} <span class="text-green"><i class="fa fa-check-circle"></i></span>
+								{else} <span style="color: #c00"><i class="fa fa-question"></i></span> {/if}
+							
+								{if $month_transfers[pom].transfers[pom2].DriverConfStatus eq '1'} <span style="color:#c00"><i class="fa fa-car"></i></span>
+								{else if $month_transfers[pom].transfers[pom2].DriverConfStatus eq '2'} <span class="text-orange"><i class="fa fa-info-circle"></i></span>
+								{else if $month_transfers[pom].transfers[pom2].DriverConfStatus eq '3'} <span class="text-blue"><i class="fa fa-car"></i></span>
+								{else if $month_transfers[pom].transfers[pom2].DriverConfStatus eq '4'} <span style="color:#c00"><i class="fa fa-thumbs-down"></i></span>
+								{else if $month_transfers[pom].transfers[pom2].DriverConfStatus eq '5'} <span style="color:#c00"><i class="fa fa-user-times"></i></span>
+								{else if $month_transfers[pom].transfers[pom2].DriverConfStatus eq '6'} <span style="color:#c00"><i class="fa fa-black-tie"></i></span>
+								{else if $month_transfers[pom].transfers[pom2].DriverConfStatus eq '7'} <span class="text-green"><i class="fa fa-check-square"></i></span>
+								{else}{/if}
+								
+								{$month_transfers[pom].transfers[pom2].PickupTime}&rarr;
+								<a href="editActiveTransfer/{$month_transfers[pom].transfers[pom2].DetailsID}"
+								title="<b>{$month_transfers[pom].transfers[pom2].OrderID}-{$month_transfers[pom].transfers[pom2].TNo} - {$month_transfers[pom].transfers[pom2].PaxName} </b>" 
+								data-content="
+									<br/>{$FLIGHT_NO}: {$month_transfers[pom].transfers[pom2].FlightNo}
+									<br>{$FLIGHT_TIME}: {$month_transfers[pom].transfers[pom2].FlightTime}
+									<br/>{$FROM}: {$month_transfers[pom].transfers[pom2].PickupName}
+									<br/>{$TO}: {$month_transfers[pom].transfers[pom2].DropName}
+									<br/>{$DRIVER}: {$month_transfers[pom].transfers[pom2].DriverName}
+									<br/>{$TRANSFER_STATUS}: {$StatusDescription[{$month_transfers[pom].transfers[pom2].TransferStatus}]}
+									<br/>{$DriverConfStatus[{$month_transfers[pom].transfers[pom2].DriverConfStatus}]}
+								" 
+								class="mytooltip">
+									{$month_transfers[pom].transfers[pom2].OrderID}-{$month_transfers[pom].transfers[pom2].TNo}
+								</a><br/>
 							{/section}
 							<br><small style="font-size:14px">No of transfers: {$month_transfers[pom].noOfTransfers}</small>
-
 							</small></td>
 					{/if}
 					{if $month_transfers[pom].dayofweek eq '6'} </tr> {/if}
 				{/section}
-
-
 			</table>
 		</td>
 	</tr>
 </table>
-
 <div class="dashboard-legend">
 	Transfer status:
 	<ul>

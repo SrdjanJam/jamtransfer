@@ -47,14 +47,15 @@ if ( isset($_SESSION['CMSLang']) and $_SESSION['CMSLang'] != '') {
 	require_once 'lng/en_text.php';
 }
 require_once 'lng/var-en.php';
+$defvar=get_defined_vars();
+foreach ($defvar as $key => $dv) {
+	if (gettype($dv)=='string' or gettype($dv)=='array') $smarty->assign($key,$dv);
+}	
+$defcon=get_defined_constants();
+foreach ($defcon as $key => $dc) {
+	$smarty->assign($key,$dc);
+}	
 $smarty->assign('language',$_SESSION['CMSLang']);
-
- $smarty->assign('NNEW','New');
- $smarty->assign('ASCENDING','Ascending'); 
- $smarty->assign('DESCENDING','Descending'); 
- $smarty->assign('THERE_ARE_NO_DATA','There are no data'); 
-
-
 
 // END OF LANGUAGES	
 

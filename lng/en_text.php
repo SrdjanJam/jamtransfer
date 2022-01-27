@@ -802,7 +802,7 @@ define("DESCRIPTIONNL", "Description (NL)");
 define("SUBDRIVER_HISTORY", "Subdriver History");
 define("AGENT_TRANSFERS", "Agent transfers");
 define("DEPOSIT", "Deposit (EUR)");
-
+/*
 $smarty->assign("ACCEPTED_PAYMENT", "Accepted Payment");
 $smarty->assign("ACTIONS", "Actions");
 $smarty->assign("ACTIVE", "Active");
@@ -1475,4 +1475,4 @@ $smarty->assign("DESCRIPTIONES", "Description (ES)");
 $smarty->assign("DESCRIPTIONNL", "Description (NL)");
 $smarty->assign("SUBDRIVER_HISTORY", "Subdriver History");
 $smarty->assign("AGENT_TRANSFERS", "Agent transfers");
-$smarty->assign("DEPOSIT", "Deposit (EUR)");
+$smarty->assign("DEPOSIT", "Deposit (EUR)");*/
