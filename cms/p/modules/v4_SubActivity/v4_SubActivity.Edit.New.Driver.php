@@ -24,6 +24,12 @@ while($e = $r->fetch_object()) {
 	$driverArr[] = $e;
 }
 
+$q = "SELECT VehicleID, VehicleDescription FROM v4_SubVehicles WHERE OwnerID = ".$SOwnerID." ORDER BY VehicleDescription ASC";
+$r = $db->RunQuery($q);
+$vehicleArr = array();
+while($e = $r->fetch_object()) {
+	$vehicleArr[] = $e;
+}
 ?>
 
 <div id="v4_SubActivityWrapperNew" class="editFrame container" style="display:none">

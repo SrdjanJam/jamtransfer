@@ -22,7 +22,7 @@ if (isset($_REQUEST['keyValue']) and $_REQUEST['keyValue'] != '') 	$keyValue = $
 $fldList = array();
 $out = array();
 
-require_once ROOT . '/cms/fixDriverID.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/cms/fixDriverID.php';
 foreach($fakeDrivers as $key => $fakeDriverID) {
     if($_REQUEST['OwnerID'] == $fakeDriverID) $_REQUEST['OwnerID'] = $realDrivers[$key];    
 }
@@ -32,6 +32,7 @@ if ($keyName != '' and $keyValue != '') $db->getRow($keyValue);
 	if(isset($_REQUEST['ID'])) { $db->setID($db->myreal_escape_string($_REQUEST['ID']) ); } 
 	if(isset($_REQUEST['OwnerID'])) { $db->setOwnerID($db->myreal_escape_string($_REQUEST['OwnerID']) ); } 
 	if(isset($_REQUEST['DriverID'])) { $db->setDriverID($db->myreal_escape_string($_REQUEST['DriverID']) ); } 
+	if(isset($_REQUEST['VehicleID'])) { $db->setVehicleID($db->myreal_escape_string($_REQUEST['VehicleID']) ); } 
 	if(isset($_REQUEST['Datum'])) { $db->setDatum($db->myreal_escape_string($_REQUEST['Datum']) ); } 
 	if(isset($_REQUEST['Expense'])) { $db->setExpense($db->myreal_escape_string($_REQUEST['Expense']) ); } 
 	if(isset($_REQUEST['Description'])) { $db->setDescription($db->myreal_escape_string($_REQUEST['Description']) ); } 

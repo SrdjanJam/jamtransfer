@@ -175,7 +175,7 @@ function sendDriverNotification($OrderID, $OrderKey='') {
     foreach($k as $nn => $id) {
         $od->getRow($id);
 
-        $link = '<a href="https://' . $_SERVER['SERVER_NAME'] . '/cms/dcN.php?code='.$od->getDetailsID() .
+        $link = '<a href="https://' . $_SERVER['SERVER_NAME'] . '/cms/dc.php?code='.$od->getDetailsID() .
                 '&control='.$orderKey.'&id='.$od->getDriverID().'">'. 
                 $od->getOrderID().'-'.$od->getTNo() .
                 '</a>';

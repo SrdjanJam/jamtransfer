@@ -18,7 +18,7 @@ $titleAddOn = '';
 //FR fix
 $SOwnerID = $_SESSION["OwnerID"];
 
-require_once ROOT . '/cms/fixDriverID.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/cms/fixDriverID.php';
 foreach($fakeDrivers as $key => $fakeDriverID) {
     if($_SESSION['AuthUserID'] == $fakeDriverID) $SOwnerID = $realDrivers[$key];
 }

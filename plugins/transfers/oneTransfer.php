@@ -190,16 +190,26 @@ $detailFlds['DriverPaymentAmtEUR'] = number_format($od->getDriverPaymentAmt(),2)
 
 $au->getRow($od->getDriverID());
 $contractFile=$au->getContractFile();
-if ($contractFile=='inter') {
-	$detailFlds['SubDriverName'] = $au->getContactPerson();
-	$detailFlds['SubDriverMob'] = $au->getAuthUserMob();	
-}
-else {	
-	$subdriverid=$od->getSubDriver();
+//partneri
+if ($contractFile!='inter') {
+	$detailFlds['ContactName'] = $au->getContactPerson();
+	if (empty($au->getAuthUserMob())) $detailFlds['ContactMob'] = $au->getAuthUserTel();
+	else $detailFlds['ContactMob'] = $au->getAuthUserMob();	
 	if ($subdriverid>0) {
 		$au->getRow($subdriverid);
 		$detailFlds['SubDriverName'] = $au->getAuthUserRealName();
 		$detailFlds['SubDriverMob'] = $au->getAuthUserMob();
+	}	
+}
+//JAM grupa
+else {	
+	$subdriverid=$od->getSubDriver();
+	$detailFlds['SubDriverName'] = $au->getContactPerson();
+	$detailFlds['SubDriverMob'] = $au->getAuthUserMob();		
+	if ($subdriverid>0) {
+		$au->getRow($subdriverid);
+		$detailFlds['ContactName'] = $au->getAuthUserRealName();
+		$detailFlds['ContactMob'] = $au->getAuthUserMob();
 	}
 }
 

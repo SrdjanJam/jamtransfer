@@ -18,6 +18,7 @@ Class v4_SubVehicles {
 	public $VehicleTypeID; //int(10) unsigned
 	public $VehicleDescription; //text
 	public $VehicleCapacity; //int(10) unsigned
+	public $RaptorID; //int(10) unsigned
 	public $Active; //tinyint(4)
 	public $connection;
 
@@ -31,11 +32,12 @@ Class v4_SubVehicles {
      * New object to the class. Don´t forget to save this new object "as new" by using the function $class->saveAsNew(); 
      *
      */
-	public function New_v4_SubVehicles($OwnerID,$VehicleTypeID,$VehicleDescription,$VehicleCapacity,$Active){
+	public function New_v4_SubVehicles($OwnerID,$VehicleTypeID,$VehicleDescription,$VehicleCapacity,$RaptorID,$Active){
 		$this->OwnerID = $OwnerID;
 		$this->VehicleTypeID = $VehicleTypeID;
 		$this->VehicleDescription = $VehicleDescription;
 		$this->VehicleCapacity = $VehicleCapacity;
+		$this->RaptorID = $RaptorID;
 		$this->Active = $Active;
 	}
 
@@ -54,6 +56,7 @@ Class v4_SubVehicles {
 			$this->VehicleTypeID = $row["VehicleTypeID"];
 			$this->VehicleDescription = $row["VehicleDescription"];
 			$this->VehicleCapacity = $row["VehicleCapacity"];
+			$this->RaptorID = $row["RaptorID"];
 			$this->Active = $row["Active"];
 		}
 	}
@@ -77,6 +80,7 @@ OwnerID = '".$this->myreal_escape_string($this->OwnerID)."',
 VehicleTypeID = '".$this->myreal_escape_string($this->VehicleTypeID)."', 
 VehicleDescription = '".$this->myreal_escape_string($this->VehicleDescription)."', 
 VehicleCapacity = '".$this->myreal_escape_string($this->VehicleCapacity)."', 
+RaptorID = '".$this->myreal_escape_string($this->RaptorID)."', 
 Active = '".$this->myreal_escape_string($this->Active)."' WHERE VehicleID = '".$this->VehicleID."'");
 	return $result; 
 }
@@ -85,7 +89,7 @@ Active = '".$this->myreal_escape_string($this->Active)."' WHERE VehicleID = '".$
      * Save the active var class as a new row on table
      */
 	public function saveAsNew(){
-		$this->connection->RunQuery("INSERT INTO v4_SubVehicles (OwnerID, VehicleTypeID, VehicleDescription, VehicleCapacity, Active) values ('".$this->myreal_escape_string($this->OwnerID)."', '".$this->myreal_escape_string($this->VehicleTypeID)."', '".$this->myreal_escape_string($this->VehicleDescription)."', '".$this->myreal_escape_string($this->VehicleCapacity)."', '".$this->myreal_escape_string($this->Active)."')");
+		$this->connection->RunQuery("INSERT INTO v4_SubVehicles (OwnerID, VehicleTypeID, VehicleDescription, RaptorID, Active) values ('".$this->myreal_escape_string($this->OwnerID)."', '".$this->myreal_escape_string($this->VehicleTypeID)."', '".$this->myreal_escape_string($this->VehicleDescription)."', '".$this->myreal_escape_string($this->VehicleCapacity)."', '".$this->myreal_escape_string($this->RaptorID)."','".$this->myreal_escape_string($this->Active)."')");
 		return $this->connection->insert_id(); //return insert_id 
 	}
 
@@ -138,6 +142,12 @@ Active = '".$this->myreal_escape_string($this->Active)."' WHERE VehicleID = '".$
 	 */
 	public function getVehicleCapacity(){
 		return $this->VehicleCapacity;
+	}	
+	/**
+	 * @return RaptorID - int(10) unsigned
+	 */
+	public function getRaptorID(){
+		return $this->RaptorID;
 	}
 
 	/**
@@ -180,6 +190,12 @@ Active = '".$this->myreal_escape_string($this->Active)."' WHERE VehicleID = '".$
 	 */
 	public function setVehicleCapacity($VehicleCapacity){
 		$this->VehicleCapacity = $VehicleCapacity;
+	}	
+	/**
+	 * @param Type: int(10) unsigned
+	 */
+	public function setRaptorID($RaptorID){
+		$this->RaptorID = $RaptorID;
 	}
 
 	/**
@@ -202,6 +218,7 @@ Active = '".$this->myreal_escape_string($this->Active)."' WHERE VehicleID = '".$
 			'VehicleTypeID' => $this->getVehicleTypeID(),
 			'VehicleDescription' => $this->getVehicleDescription(),
 			'VehicleCapacity' => $this->getVehicleCapacity(),
+			'RaptorID' => $this->getRaptorID(),
 			'Active' => $this->getActive()		);
 		return $fieldValues;
 	}
@@ -213,7 +230,7 @@ Active = '".$this->myreal_escape_string($this->Active)."' WHERE VehicleID = '".$
      */
 	public function fieldNames(){
 		$fieldNames = array(
-			'VehicleID',			'OwnerID',			'VehicleTypeID',			'VehicleDescription',			'VehicleCapacity',			'Active'		);
+			'VehicleID',			'OwnerID',			'VehicleTypeID',			'VehicleDescription',			'VehicleCapacity',			'VehicleCapacity',		'Active'		);
 		return $fieldNames;
 	}
     /**

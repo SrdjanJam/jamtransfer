@@ -155,7 +155,7 @@
 						<label for="Vehicle">Vehicle</label>
 					</div>
 					<div class="col-md-9">
-						<select class="w100" name="Vehicle">
+						<select class="w100" name="VehicleID">
 						{{#select VehicleID}}
 							<?
 							foreach ($vehicleArr as $vehicle) {
