@@ -6,26 +6,27 @@
 		js/pages/booking_new.php.js
 */
 	//error_reporting(E_PARSE);
-	require_once '../../../../config.php';
-	
 	@session_start();
 
 	if (isset($_REQUEST['returnTransfer'])) $rTransfer=$_REQUEST['returnTransfer'];
 	else $rTransfer=0;
 	
+	require_once $_SERVER['DOCUMENT_ROOT']  . '/cms/headerScripts.php';
+	
+	require_once $_SERVER['DOCUMENT_ROOT']  . '/f/f.php';
 	
 	// LANGUAGES
 	if ( isset($_SESSION['CMSLang']) and $_SESSION['CMSLang'] != '') {
-		$languageFile = ROOT.'/lng/' . $_SESSION['CMSLang'] . '_text.php';
+		$languageFile = $_SERVER['DOCUMENT_ROOT'] .'/lng/' . $_SESSION['CMSLang'] . '_text.php';
 		if ( file_exists( $languageFile) ) require_once $languageFile;
 		else {
 			$_SESSION['CMSLang'] = 'en';
-			require_once ROOT.'/lng/en.php';
+			require_once $_SERVER['DOCUMENT_ROOT'] .'/lng/en.php';
 		}
 	}
 	else {
 		$_SESSION['CMSLang'] = 'en';
-		require_once ROOT.'/lng/en.php';
+		require_once $_SERVER['DOCUMENT_ROOT'] .'/lng/en.php';
 	}	
 	
 	define("SITE_CODE", '2');
@@ -33,17 +34,17 @@
 	define("BD", ': ');
 	define("NL", '<br>');
 	
-	//require_once ROOT . '/db/v4_AuthUsers.class.php';
+	//require_once $_SERVER['DOCUMENT_ROOT'] . '/db/v4_AuthUsers.class.php';
 	//$au = new v4_AuthUsers();
-	require_once ROOT . '/db/v4_OrderDetails.class.php';
+	require_once $_SERVER['DOCUMENT_ROOT']  . '/db/v4_OrderDetails.class.php';
 	$od = new v4_OrderDetails();	
-	require_once ROOT . '/db/v4_DriverTerminals.class.php';
+	require_once $_SERVER['DOCUMENT_ROOT']  . '/db/v4_DriverTerminals.class.php';
 	$dt = new v4_DriverTerminals();	
-	require_once ROOT . '/db/v4_Vehicles.class.php';
+	require_once $_SERVER['DOCUMENT_ROOT']  . '/db/v4_Vehicles.class.php';
 	$vh = new v4_Vehicles();	
-    require_once ROOT .'/db/db.class.php';
+    require_once $_SERVER['DOCUMENT_ROOT']  .'/db/db.class.php';
 	$db = new DataBaseMysql(); 
-
+	
 	$DetailPrice=0;
 	$DriversPrice2=0;
 	
@@ -56,7 +57,7 @@
 		$DriversPrice2+=$od->getDriversPrice();
 		$returnTransfer=1;
 	}	
-
+	
 	$oKey = $od->getKeysBy('OrderID', 'ASC', ' WHERE OrderID = ' .$_REQUEST['OrderID']. ' and TNo = ' . $_REQUEST['TNo']);
 	$od->getRow($oKey[0]);
 	$TerminalID=0;
@@ -68,6 +69,7 @@
 
 
 	$dtKey = $dt->getKeysBy('DriverID', 'ASC', ' WHERE TerminalID = ' .$TerminalID);
+
 
 
 	$_REQUEST['FromID']=$od->getPickupID();
@@ -82,9 +84,9 @@
 	$VTID=$od->getVehicleType();
 	$DriverID=$od->getDriverID();
 	
-
+	
 	// priprema podataka o vozilima i vozacima
-	require_once ROOT . '/api/getCarsAdm.php';
+	require_once $_SERVER['DOCUMENT_ROOT']  . '/cms/t/getCarsAdm.php';
 	
 	$vt->getRow($VTID);
 	if ($od->getDriverID()>0) {
@@ -94,6 +96,7 @@
 	else $driverName="NO DRIVER SELECTED";
 	$capacity=$vt->getMax();
 	$vehicleImage=getCarImage($vt->getVehicleClass());
+
 ?>
 
 
@@ -104,7 +107,6 @@
 	<div class="">
 		<div class="container-fluid side-collapse-container center" >
 			
-			<div style='position: fixed'>
 			<div class="row xpad1em white-text">
 
 				<div class="row z-depth-2 white lighten-5">			
@@ -159,7 +161,7 @@
 				</div>				
 			</div>			
 			
-			</div>
+			
 			
 			
 			<? 	
@@ -361,11 +363,12 @@
 
 
 <script>
+
 	setTimeout(function(){
 	  window.location.reload(1);
 	}, 300000);
 	
-		/*$('.request').click(function(){
+	$('.request').click(function(){
 		var driverid = $(this).attr('data-driverid');
 		var rt = $(this).attr('data-rt');
 		var OrderID=$('#OrderID').val();
@@ -394,6 +397,9 @@
 		});
 			
 			
-		})	*/
+		})	
+
+	
+
 </script>
 

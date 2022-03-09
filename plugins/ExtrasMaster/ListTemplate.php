@@ -15,6 +15,11 @@
 					<div class="col-md-4">
 						{{ServiceEN}}
 					</div>
+					
+					<div class="col-md-4">
+						{{#if setting}} <i class="fa fa-check"></i>
+						{{/if}}
+					</div>
 
 			</div>
 		</div>

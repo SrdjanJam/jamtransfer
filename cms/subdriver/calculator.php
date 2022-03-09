@@ -1,7 +1,7 @@
 <?
 session_start();
 
-require_once ROOT . '/db/db.class.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/db/db.class.php';
 $db = new DataBaseMysql();
 
 $sql = 'SELECT * FROM v4_ExchangeRate WHERE Name = "EUR"';

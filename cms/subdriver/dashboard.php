@@ -6,63 +6,16 @@ require_once '../db/v4_OrderExtras.class.php';
 require_once '../db/v4_Places.class.php';
 require_once '../db/v4_AuthUsers.class.php';
 
-if ($_SESSION['AuthUserID']==948) {
-	?>
-	<script>
-		$(document).ready(function() {
-						
-		var ssid=$('#ssid').html()
-		  setInterval(function() {  
-			cache_clear(ssid)
-		  }, 60000);		  
-		});
-		function cache_clear(ssid) {
 
-		  var window.root = 'https://' + $(location).attr('host');
-		  var url= window.root + '/cms/subdriver/alarm.php?sdid='+ssid;
-		  //window.location.reload(true);
-		  if($.trim($('#alarm3').text())=='') {
-		  $.ajax({
-			  url: url,
-			  dataType: 'json',
-			async: false,
-			  success: function(data){
-					if (data.alarmid !==0) {
-						$('#alarm1').show(500);
-						$('#alarm3').text(data.message);
-						$('#alarmid').text(data.alarmid);
-						$('#alarm2').show(500);
-						var audio = new Audio("/cms/subdriver/Ringtone.mp3");
-						audio.play();
-						audio.loop=true;
-						$("#confirm").click(function() {
-							audio.pause();
-							$('#alarm1').hide(500);
-							$('#alarm2').hide(500);
-							// ajax za zapis 
-							var alarmid=$('#alarmid').text();
-							alert (alarmid);
-						});  
-
-					}
-			  }
-		  });
-		  }
-		}
-
-	</script>
-	<div id='ssid' style='display: none;'><? echo $_SESSION['AuthUserID'] ?></div>
-	<?
-}	
 
 	//trenutni vehicle id
-	require_once ROOT . '/db/v4_SubActivity.class.php';
+	require_once $_SERVER['DOCUMENT_ROOT'] . '/db/v4_SubActivity.class.php';
 	$sa = new v4_SubActivity();
 	$sak = $sa->getKeysBy('ID', 'desc' , ' WHERE DriverID='. $_SESSION['AuthUserID'] .' AND Approved<>9');
 	if (count($sak)>0) {
 		$sa->getRow($sak[0]);
 		$_SESSION['VehicleID']=$sa->VehicleID;
-		require_once ROOT . '/db/v4_SubVehicles.class.php';
+		require_once $_SERVER['DOCUMENT_ROOT'] . '/db/v4_SubVehicles.class.php';
 		$v = new v4_SubVehicles();
 		$v->getRow($_SESSION['VehicleID']);
 		$_SESSION['VehicleTitle']=$v->VehicleDescription;
@@ -85,7 +38,7 @@ $ownerid = $_SESSION['OwnerID'];
 $time = date('H:i',time() + 3600);
 $hour = explode(":",$time);
 $hour=$hour[0];
-if ($hour<3) $dateLimit = date("Y-m-d", time() - 60 * 60 * 24);
+if ($hour<12) $dateLimit = date("Y-m-d", time() - 60 * 60 * 24);
 else $dateLimit = date("Y-m-d", time());
 // TEST
 if(isset($_REQUEST['dateLimit'])) $dateLimit = $_REQUEST['dateLimit'];
@@ -130,7 +83,7 @@ if ($ownerid==843) $afpadd="_Nice";
 if ($ownerid==876) $afpadd="_Lyon";
 if ($ownerid==556) $afpadd="_Split";
 
-	$filename = ROOT . '/cms/approvedFuelPrice'.$afpadd.'.inc';
+	$filename = $_SERVER['DOCUMENT_ROOT'] . '/cms/approvedFuelPrice'.$afpadd.'.inc';
 	$afp = file_get_contents($filename, FILE_USE_INCLUDE_PATH);
 echo "<br><strong>APPROVED FUEL PRICE: ".$afp." EUR</strong></div>";
 
@@ -259,10 +212,11 @@ if($row_cnt > 0) {
 				        'Receipt PDF'	=> $receipt
 		);
 
-		$savedDate = $v->PickupDate;
+		$savedDate = $v->PickupDate;		
 		echo '</div></div></a>';
+		echo '<i class="fa fa-phone"></i> <a href="tel:'.$mo->MPaxTel.'">'.$mo->MPaxTel.'</a>'; 
 	}
-	
+
 } else echo '<h2>No transfers today. Go grab a beer and relax :)</h2>';	
 	
 echo '</div><br><br><br><br>';
@@ -286,13 +240,16 @@ $_SESSION['DETAILS'] = $details;
     </div>
     </div>
     <br><br>
-</footer>
+</footer> 
 
 <script>
-	setTimeout(function(){
-	  window.location.reload(1);
+	geolocation();
+	setTimeout(function(){		
+		window.location.reload(1);	
+		geolocation();
 	}, 300000);
 	
+
 	var action = '';
     
     $("#start").click(function() {
@@ -319,10 +276,57 @@ $_SESSION['DETAILS'] = $details;
         action = 'end';
         updateHours(action);
     });
+function alarm() {
+  var WEBSITEURL = 'https://' + $(location).attr('host');
+  var url= WEBSITEURL + '/cms/subdriver/alarm.php';
+  //window.location.reload(true); 
+  if($.trim($('#alarm3').text())=='') {
+	  $.ajax({
+		  url: url,
+		async: false,
+		  success: function(data){
+				if (data =='OK') {
+					$('#alarm1').show(500);
+					$('#alarm3').text('BUDJENJE');
+					$('#alarmid').text('Test budjenja');
+					$('#alarm2').show(500);
+					var audio = new Audio("/cms/subdriver/Ringtone.mp3");
+					audio.play();
+					audio.loop=true;
+					$("#confirm").click(function() {
+						audio.pause();
+						$('#alarm1').hide(500);
+						$('#alarm2').hide(500);
+						// ajax za zapis 
+						var alarmid=$('#alarmid').text();
+						alert (alarmid);
+					});  
 
+				}
+		  }
+	  });
+  }
+}
+function geolocation () {
+	var WEBSITEURL = 'https://' + $(location).attr('host');
+	if(navigator.geolocation){
+		navigator.geolocation.getCurrentPosition(function(position) {
+			var lat = position.coords.latitude;
+			var lng = position.coords.longitude;
+			var url= WEBSITEURL + '/cms/subdriver/geoLocation.php?lat='+lat+'&lng='+lng;
+console.log(url);
+			$.ajax({
+				url: url,
+				async: false,
+				success: function(data){
+				}
+			});
+		})			
+	}
+}
 
 function updateHours(action) {
-	var url = window.root + '/cms/a/workingHours.php?callback=?&SubDriverID=<?=$mydriver?>&action='+action;
+	var url = WEBSITEURL + '/cms/a/workingHours.php?callback=?&SubDriverID=<?=$mydriver?>&action='+action;
     
 	// kill previous request if still active
 	if(typeof ajax_request !== 'undefined') ajax_request.abort();
@@ -342,11 +346,16 @@ function updateHours(action) {
 	});
 }
 </script>
-
-
-
-
 <?
+if ($_SESSION['AuthUserID']==948) {
+	?>
+	<script>
+			
+		//alarm();
+	</script>
+	<?
+}	
+
 function hasReturn($OrderID, $TNo, $con) {
 	$q  = "SELECT * FROM v4_OrderDetails";
 	$q .= " WHERE OrderID = '" . $OrderID . "' AND TNo > '".$TNo."'";

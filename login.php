@@ -36,12 +36,6 @@ if(!isset($_SESSION['UserAuthorized']) or $_SESSION['UserAuthorized'] !== true) 
 				$access_time=time();
 				$result2 = $db->RunQuery('INSERT INTO `LogUser`(`ip_address`, `time`, `username`) VALUES ("'.$current_ip.'",'.$access_time.',"'.$_REQUEST['username'].'")');									
 			
-				/*
-				//Use the input username and password and check against 'users' table
-				$result = $db->RunQuery('SELECT * FROM '.DB_PREFIX.'AuthUsers 
-									WHERE AuthUserName = "'.$_REQUEST['username'].'" 
-									AND AuthUserPass = "'.$tempPass.'"');
-				*/
 				
 				if($result->num_rows == 1)
 				{

@@ -4,6 +4,9 @@ require_once 'Initial.php';
 
 @session_start();
 
+require_once ROOT . '/db/v4_Extras.class.php';
+$ex = new v4_Extras();
+
 # sastavi filter - posalji ga $_REQUEST-om
 if (isset($type)) {
 	if (!isset($_REQUEST['Type']) or $_REQUEST['Type'] == 0) {
@@ -62,6 +65,12 @@ if (count($dbk) != 0) {
 		// ako treba neki lookup, onda to ovdje
 		# get all fields and values
 		$detailFlds = $db->fieldValues();
+		$detailFlds['setting']=false;		
+		if (isset($_SESSION['UseDriverID']) && $_SESSION['UseDriverID']>0) {
+			$id=$db->getID();
+			$keys=$ex->getKeysBy('ID', '', ' WHERE ServiceID='.$id.' AND OwnerID='.$_SESSION['UseDriverID']);		
+			if (count($keys)>0) $detailFlds['setting']=true;
+		}
 		// ako postoji neko custom polje, onda to ovdje.
 		// npr. $detailFlds["AuthLevelName"] = $nekaDrugaDB->getAuthLevelName().' nesto';
 		$out[] = $detailFlds;    	

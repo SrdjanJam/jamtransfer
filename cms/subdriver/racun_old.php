@@ -7,8 +7,8 @@ define("NUNDERLINED", "!Ĩ");
 define("RESET", "@");
 define("LINE", "\n________________________________");
 
-require_once ROOT . '/cms/subdriver/db.php';
-require_once ROOT . '/db/v4_Places.class.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/cms/subdriver/db.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/db/v4_Places.class.php';
 
 
 $op = new v4_Places;

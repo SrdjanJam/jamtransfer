@@ -2,9 +2,9 @@
 	session_start();
 
 	require_once 'subdriver/db.php';
-	require_once ROOT . '/db/db.class.php';
-	require_once ROOT . '/db/v4_Actions.class.php';
-	require_once ROOT . '/db/v4_SubVehicles.class.php';
+	require_once $_SERVER['DOCUMENT_ROOT'] . '/db/db.class.php';
+	require_once $_SERVER['DOCUMENT_ROOT'] . '/db/v4_Actions.class.php';
+	require_once $_SERVER['DOCUMENT_ROOT'] . '/db/v4_SubVehicles.class.php';
 
 
 	$db = new DataBaseMySql();

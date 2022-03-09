@@ -21,12 +21,20 @@
 			onclick="return editSaveItem('{{ID}}');">
 			<i class="fa fa-save"></i>
 			</button>
-			<? if (!$isNew) { ?>
-				<button class="btn btn-danger" title="<?= PRINTIT ?>" 
-				onclick="return editPrintItem('{{ID}}');">
-				<i class="fa fa-print"></i>
-				</button>
+			<? if (isset($_SESSION['UseDriverID']) && $_SESSION['UseDriverID']>0) { ?>
+				{{#if setting}} 
+					<button class="btn" title="Cancel for Driver" 
+					onclick="return deleteDriverItem('{{ID}}');">
+					<i class="fa fa-ban"></i>
+					</button>
+				{{else}}	
+					<button class="btn" title="Set for Driver" 
+					onclick="return setDriverItem('{{ID}}');">
+					<i class="fa fa-save"></i>
+					</button>				
+				{{/if}}			
 			<? } ?>	
+			
 		</div>
 	</div>
 

@@ -159,13 +159,29 @@
 		});
 		return false;
 	}
-	
-	function editPrintItem(id) {
-	  	 $(".editFrame").hide('slow'); $(".editFrame form").html('');
-	  	alert('Printed');
-	  return false;
-	}
-	
+
+	function setDriverItem(id) {
+		var url = window.root + 'SetForDriver.php?ID='+ id+'&'+'&callback=?';
+		console.log(window.base+url);
+		$.ajax({
+			type: 'GET',
+			url: url,
+			async: false,
+			//contentType: "application/json",
+			dataType: 'jsonp',
+			success: function(data) {
+
+				$("#statusMessage").html('<i class="ic-checkmark-circle s"></i> ');
+
+				// osvjezi podatke na ekranu za zadani element
+				allItems();
+				$(".editFrame").hide('slow');
+				$(".editFrame form").html('');
+			},
+			error: function(xhr, status, error) {alert("Delete error occured: " + xhr.status + " " + xhr.statusText+" "); }
+		});
+		return false;
+	}	
 	function editSaveTerminal(placeid, driverid) { 
 		// update data on server
 		var url = window.root + 'SaveTerminal.php?PlaceID='+placeid+'&DriverID='+ driverid;

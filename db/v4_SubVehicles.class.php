@@ -89,7 +89,20 @@ Active = '".$this->myreal_escape_string($this->Active)."' WHERE VehicleID = '".$
      * Save the active var class as a new row on table
      */
 	public function saveAsNew(){
-		$this->connection->RunQuery("INSERT INTO v4_SubVehicles (OwnerID, VehicleTypeID, VehicleDescription, RaptorID, Active) values ('".$this->myreal_escape_string($this->OwnerID)."', '".$this->myreal_escape_string($this->VehicleTypeID)."', '".$this->myreal_escape_string($this->VehicleDescription)."', '".$this->myreal_escape_string($this->VehicleCapacity)."', '".$this->myreal_escape_string($this->RaptorID)."','".$this->myreal_escape_string($this->Active)."')");
+		$this->connection->RunQuery("INSERT INTO v4_SubVehicles (
+			OwnerID, 
+			VehicleTypeID, 
+			VehicleDescription, 
+			VehicleCapacity,
+			RaptorID, 
+			Active
+		) values (
+		'".$this->myreal_escape_string($this->OwnerID)."', 
+		'".$this->myreal_escape_string($this->VehicleTypeID)."', 
+		'".$this->myreal_escape_string($this->VehicleDescription)."', 
+		'".$this->myreal_escape_string($this->VehicleCapacity)."', 
+		'".$this->myreal_escape_string($this->RaptorID)."',
+		'".$this->myreal_escape_string($this->Active)."')");
 		return $this->connection->insert_id(); //return insert_id 
 	}
 

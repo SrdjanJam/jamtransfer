@@ -21,12 +21,6 @@
 			onclick="return editSaveItem('{{ID}}');">
 			<i class="fa fa-save"></i>
 			</button>
-			<? if (!$isNew) { ?>
-				<button class="btn btn-danger" title="<?= PRINTIT ?>" 
-				onclick="return editPrintItem('{{ID}}');">
-				<i class="fa fa-print"></i>
-				</button>
-			<? } ?>	
 		</div>
 	</div>
 

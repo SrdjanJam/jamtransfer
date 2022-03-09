@@ -1,9 +1,6 @@
 <?
-$SOwnerID = $_SESSION['OwnerID'];
-
 // FRANCUSKA FIX
 $fakeDriverFound = false;
-require_once ROOT . '/cms/fixDriverID.php';
 foreach($fakeDrivers as $key => $fakeDriverID) {
     if($SOwnerID == $fakeDriverID) {
         $fakeDriverFound = true;

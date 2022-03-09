@@ -2,7 +2,7 @@
 	session_start();
 
 	require_once 'subdriver/db.php';
-	require_once ROOT . '/db/db.class.php';
+	require_once $_SERVER['DOCUMENT_ROOT'] . '/db/db.class.php';
 	
 	$db = new DataBaseMySql();
 	$driverId = $_SESSION['DriverID'];

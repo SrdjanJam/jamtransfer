@@ -1,3 +1,4 @@
+<meta http-equiv="refresh" content="300"/>
 <?
 // Timetable sa prikazom transfera po vozacima za odabrani datum
 // za svakog vozaca za odabran datum su izlistani transferi u stupcima (poput kalendarskog prikaza na dashboardu)
@@ -25,6 +26,9 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/db/v4_OrderExtras.class.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/db/v4_Places.class.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/db/v4_Routes.class.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/db/v4_OrderLog.class.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/db/v4_SubActivity.class.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/db/v4_SubVehicles.class.php';
+
 
 $db = new DataBaseMysql();
 $om = new v4_OrdersMaster();
@@ -34,6 +38,9 @@ $oe = new v4_OrderExtras();
 $op = new v4_Places();
 $or = new v4_Routes();
 $ol = new v4_OrderLog();
+$sa = new v4_SubActivity();
+$sv = new v4_SubVehicles();
+
 
 $BsColumnWidth = 12 / $NoColumns;
 
@@ -79,39 +86,13 @@ function getOtherTransferIDArray ($DetailsID,$details) {
 	return $otherDetailsID;
 }
 
-# hidden polja
-function hiddenField($name,$value) {
-	echo '<input name="'.$name.'" id="'.$name.'" type="hidden" value="'.$value.'" />';
+function minutesOfTime($time) {
+	$time_arr=explode(":",$time);
+	$time_min=$time_arr[0]*60+$time_arr[1];
+	return $time_min;
 }
 
-function query_to_csv($db_conn, $query, $filename, $attachment = false, $headers = true) {
-	if($attachment) {
-		// send response headers to the browser
-		header( 'Content-Type: text/csv' );
-		header( 'Content-Disposition: attachment;filename='.$filename);
-		$fp = fopen('php://output', 'w');
-	} else {
-		$fp = fopen($filename, 'w');
-	}
 
-	$result = mysql_query($query, $db_conn) or die( mysql_error( $db_conn ) );
-
-	if($headers) {
-		// output header row (if at least one row exists)
-		$row = mysql_fetch_assoc($result);
-		if($row) {
-		    fputcsv($fp, array_keys($row));
-		    // reset pointer back to beginning
-		    mysql_data_seek($result, 0);
-		}
-	}
-
-	while($row = mysql_fetch_assoc($result)) {
-		fputcsv($fp, $row);
-	}
-
-	fclose($fp);
-}
 
 // dobavi sve transfere za odabrani datum za trenutnog vlasnika timetable-a
 $q = "SELECT DetailsID, SubDriver, SubDriver2, SubDriver3 FROM v4_OrderDetails WHERE DriverID = " . $_SESSION['OwnerID'] . " AND PickupDate >= '" . $DateFrom . "' AND PickupDate <= '" . $DateTo . "' AND TransferStatus < '6' AND TransferStatus != '3' AND TransferStatus != '4' AND DriverConfStatus != '3' ORDER BY DetailsID ASC";
@@ -191,17 +172,11 @@ hr {
 <div class="container-fluid">
 	<div class="row" >
 		<div style="float:left; display:inline-block; width:30%">	
-			<h3>Timetable - Column View</h3>
-			<button class="btn" onclick="hideChecked()"><?= DISPLAY_NOT_CHECKED ?></button>
-			<button class="btn" onclick="displayAll()"><?= DISPLAY_ALL ?></button>
+			<h3>Timetable - Daily View</h3>
 		</div>		
-		<div style="float:left; display:inline-block; width:69%">
-		<form class="ttForm" action="index.php?p=timetableColumnView" method="post" onsubmit="return validate()">
-			From
-			<input id="DateFrom" class="datepicker" name="DateFrom" value="<?=$DateFrom?>">
-			to
-			<input id="DateTo" class="datepicker" name="DateTo" value="<?=$DateTo?>">
-			with
+		<div style="float:left; display:inline-block; ">
+		<form class="ttForm" action="index.php?p=dailyColumnView" method="post">
+			COLUMNS:
 			<select name="NoColumns">
 				<option value="1" <?if($NoColumns==1)echo'selected'?>>1</option>
 				<option value="2" <?if($NoColumns==2)echo'selected'?>>2</option>
@@ -210,18 +185,7 @@ hr {
 				<option value="6" <?if($NoColumns==6)echo'selected'?>>6</option>
 				<option value="12" <?if($NoColumns==12)echo'selected'?>>12</option>
 			</select>
-			columns
 			<button type="submit" class="btn btn-primary">Go</button>
-		</form>
-
-		<form action="p/modules/timetable/print.php" method="post" target="_blank" style="display:inline-block;text-align:right;float:right;margin-top:-55px;">
-			<?
-			hiddenField('DateFrom', $_REQUEST['DateFrom']);
-			hiddenField('DateTo', $_REQUEST['DateTo']);
-			hiddenField('SubDriverID', $_REQUEST['SubDriverID']);
-			hiddenField('SortSubDriver', $_REQUEST['SortSubDriver']);
-			?>
-			<button type="submit" class="btn btn-primary"><i class="fa fa-print l"></i></button>
 		</form>
 		</div>
 	</div>
@@ -268,57 +232,75 @@ hr {
 		$ol->getRow($olid);	
 		$olKeys2[]=$ol->getDetailsID();
 	}		
-	//$olKeys=$olKeys2;
-	
+	date_default_timezone_set("Europe/Paris");		
 	foreach ($subDArray as $SubDriver) { // STUPAC (driver)
 		$au->getRow($SubDriver);
-
-		/*$q = "SELECT DetailsID FROM v4_OrderDetails 
-		      WHERE DriverID = '". $_SESSION['OwnerID']."' 
-		      AND PickupDate >= '" . $DateFrom . "' 
-		      AND PickupDate <= '" . $DateTo . "' 
-		      AND TransferStatus < '6' 
-		      AND TransferStatus != '3' 
-		      AND TransferStatus != '4' 
-		      AND DriverConfStatus != '3' 
-		      AND ((SubDriver = " . $SubDriver . ") OR (SubDriver2 = " . $SubDriver . ") OR (SubDriver3 = " . $SubDriver . ")) 
-		      ORDER BY PickupDate, SubPickupTime, PickupTime ASC"; 
-		
-		// Josip trazio da se sortira po SubPickupTime. Izmjena 31.01.2018.
-		
-		$r = $db->RunQuery($q);*/
 		$DetailsIDArray = array();
-
-		// CEMU OVO SLUZI?
-		/*while ($t = $r->fetch_object()) {
-			$DetailsIDArray[] = $t->DetailsID;
-		}*/
-
+		// zaduzeno vozilo
+		$sql="SELECT `VehicleID` FROM `v4_SubActivity` WHERE `OwnerID`=".$_SESSION['AuthUserID']." and `DriverID`=".$au->getAuthUserID()." and `Expense`=109 and `Approved`=1 and `Datum`<'".date('Y-m-d', time())."' Order by Datum DESC";
+		$rs = $db->RunQuery($sql);
+		$lng=0;
+		$lat=0;				
+		$vID=$rs->fetch_object();
+		if (count($vID)>0) {
+			$sv->getRow($vID->VehicleID);
+			$vDescription=$sv->getVehicleDescription();
+			$time1=time()-1200;
+			$time2=time()-60;	
+			// lokacija i vreme iz UserLocation
+			$timestart=time()-12*3600;
+			$q = "SELECT * FROM `v4_UserLocations` WHERE 
+				`UserID`=".$SubDriver." and
+				`Time` > ".$timestart."
+				order by time desc"; 
+			$r = $db->RunQuery($q);
+			$loc=array(); 
+			while ($t = $r->fetch_object()) {
+				$loc[] = $t;
+			}
+			$lc=$loc[0];
+			// izvlacenje lokacije iz Raptora
+			$link='https://api.giscloud.com/rest/1/vehicles/'.$sv->getRaptorID().'/paths.json?from='.$time1.'&to='.$time2.'&api_key=4a27e4227a88de0508aa9fa2e4c57144&app_instance_id=107495';
+			$json = file_get_contents($link); 
+			$obj = json_decode($json,true);		
+			$lng=($obj['bound']['xmin']+$obj['bound']['xmax'])/2;
+			$lat=($obj['bound']['ymin']+$obj['bound']['ymax'])/2;
+			// uzimanje lokacije za maps
+			if ($lc->Time>($time1+$time2)/2 || ($lng==0 && $lat==0)) {
+				$lat=$lc->Lat;
+				$lng=$lc->Lng;			
+				$device='PHONE at '.date('Y-m-d h:i:s',$lc->Time);
+			} else {
+				$device='RAPTOR at '.date('Y-m-d h:i:s',($time1+$time2)/2);
+			}			
+		}
+		else {
+			$vDescription='';	
+		}	
+			
+		
 		foreach ($row as $rw) {
 			if ($rw->SubDriver==$SubDriver || $rw->SubDriver2==$SubDriver || $rw->SubDriver3==$SubDriver) 
-				$DetailsIDArray[] = $rw->DetailsID;  
+				$DetailsIDArray[] = $rw->DetailsID; 
 		}
-		
-		echo '<div class="col-md-' . $BsColumnWidth . ' stupacWrapper">
-				<div class="xcol-md-12 stupac">
-					<div class="col-md-12 pad4px orange white-text"><strong>' . $au->getAuthUserRealName() . '</strong>  <a style="color:white" href="tel:'.$au->getAuthUserMob().'">' . $au->getAuthUserMob() . '</a></div>';
 
+		
+		?>
+			<div class="col-md-<?= $BsColumnWidth ?> stupacWrapper">
+				<div class="xcol-md-12 stupac">
+					<div class="col-md-12 pad4px orange white-text">
+						<strong><?= $au->getAuthUserRealName() ?></strong>  
+						<a style="color:white" href="tel:<?= $au->getAuthUserMob() ?>"><?= $au->getAuthUserMob() ?></a>
+						<strong><?= $vDescription; ?></strong>  
+					</div>
+		<?			
+		$display_location=true;
 		foreach ($DetailsIDArray as $ID) { // REDAK u STUPCU (transfer)
 
 		    $od->getRow($ID);
 		    $om->getRow($od->getOrderID());
 		    $otherTransfer = getOtherTransferIDArray($od->getDetailsID(),$details);
 		    //$otherTransfer = getOtherTransferID($od->getDetailsID());
-
-		    // promjena pickup time
-			
-			/*$change = false ;
-			foreach ($olKeys2 as $k) {
-				if ($k==$ID) $change=true;
-			}*/
-			
-			//$changedIcon = '';
-			//if( count($olKeys) > 0 ) $changedIcon = '<i class="fa fa-circle text-red"></i>';
 			if( $change) $changedIcon = '<i class="fa fa-circle text-red"></i>';
 			$changedIcon = '';
 			$color= '';
@@ -326,8 +308,6 @@ hr {
 				$changedIcon = '<i class="fa fa-circle text-red"></i>';
 				$color='red';
 			}	
-		    // rjesenje problema kad su SubPickupDate ili SubPickupTime prazni
-		    $saveRow = false;
 
 		    if($od->getSubPickupDate() == '0000-00-00') {
 			    $od->setSubPickupDate( $od->getPickupDate() );
@@ -336,29 +316,6 @@ hr {
 
 		    if($od->getSubPickupTime() == '') {
 			    $od->setSubPickupTime( $od->getPickupTime() );
-			    $saveRow = true;
-		    }
-
-		    if ($saveRow) {
-			    $od->saveRow();
-			    $od->getRow($ID);
-		    }
-		    // end
-
-		    // dohvacanje extra usluga
-		    // FIXME - TEMP: povratni transfer dobavlja extra usluge od dolaznog transfera
-		    $ExtrasID = $ID;
-		    if ($od->getTNo() == 2) {
-			    $ExtrasID = $otherTransfer;
-		    }
-
-		    $extras = '';
-		    $oeArray = $oe->getKeysBy('OrderDetailsID', 'ASC', 'WHERE OrderDetailsID = '.$ExtrasID);
-
-		    foreach ($oeArray as $val => $ID) {
-			    $oe->getRow($ID);
-			    $extras .= $oe->getServiceName();
-			    $extras .= '<br>';
 		    }
 
 		    # oznaci gdje ima, a gdje nema vozaca i vozila
@@ -398,8 +355,41 @@ hr {
 
 		    // oznacavanje zavrsenih transfera
 		    $bgColor = "#caefff";
-		    if($od->getTransferStatus() == "5") $bgColor = "#fefefe";
+			$bgColor2 = "#fefefe";
+			
+			$currenttime=date('H:i',time());
+			if (minutesOfTime($od->getPickupTime())<minutesOfTime($currenttime)) {
+				$bgColor = "#00FF00";
+				$bgColor2 = "#00FF00";
+			}	
+			if ((minutesOfTime($od->getPickupTime())+$duration)<minutesOfTime($currenttime)) {
+				$bgColor = "#FFCCCB";
+				$bgColor2 = "#FFCCCB";
+			}	
+		    if($od->getTransferStatus() == "5") $bgColor = "#fefefe";			
 
+
+			if ($display_location && $od->getTransferStatus() != "5" ) {
+				?>
+					<style>
+						iframe {
+						position: inherit;
+						top: 0;
+						left: 0;
+						width: 100% !important;
+					}		
+					</style>	
+					<div style="background:<?= $bgColor2 ?>;">
+						<div style=''>
+							<? if ($lat>0 && $lng>0) { ?>
+								<iframe src="https://maps.google.com/maps?q=<?= $lat ?>, <?= $lng ?>&z=8&output=embed"  frameborder="0" style="border:0"></iframe>
+								<b><?= $device ?></b>
+							<? } ?>
+						</div>						
+					</div>	
+				<?	
+				$display_location=false;				
+			}	
 		    ?>
 
 		<div class="row white shadow" style="cursor:default; padding:8px !important;background:<?= $bgColor ?>; margin:12px 0">
@@ -408,9 +398,6 @@ hr {
 				<span><?
 					if($od->getUserLevelID() == '2') {
 						echo " <i class='fa fa-user-secret'></i>";
-						//if($od->getUserID() == '1556') echo "M";
-						/*if($od->getUserID() == '1556') echo "<img src='img/mozio.png'> ";	
-						if($od->getUserID() == '2123') echo "<img src='img/stiberia.png'> ";*/	
 						$au->getRow($od->getAgentID());
 						if ($au->getImage()<>"") {
 							echo "<img src='img/".$au->getImage()."'> ";	 
@@ -418,11 +405,6 @@ hr {
 						}
 					}
 				?></span>
-				<strong>
-					<a href="https://www.jamtransfer.com/cms/printTransfer.php?OrderID=
-					<?= $od->getOrderID() ?>" target="_blank"><?= $om->getMOrderKey();?>-
-					<?= $od->getOrderID(); ?>-<?= $od->getTNo() ?></a>
-				</strong>
 			</div>
 
 			<div class="row">
@@ -432,11 +414,9 @@ hr {
 			<div class="row">
 				<div class="row">
 					<div class="col-md-4">
-						<?//= $changedIcon ?>
-						<input type="text" class="timepicker w100 <?= $color ?>" id="SubPickupTime_<?= $i ?>"
-							name="SubPickupTime_<?= $i ?>"
-							value="<?= $od->getSubPickupTime();?>" onchange="saveTransfer(<?=$i?>,0)"
-						style="font-weight:bold;text-align:center"/>
+						<span class="timepicker w100 <?= $color ?>" style="font-weight:bold;text-align:center">
+							<?= $od->getSubPickupTime();?>
+						</span>
 					</div>
 
 					<!-- info icons -->
@@ -474,131 +454,8 @@ hr {
 								<i class="fa fa-clock-o"></i> <?= $duration ?>
 
 							</div>
-
-							<div>
-								<input type="text" name="TransferDuration_<?=$i?>" 
-								id="TransferDuration_<?=$i?>" value="<?= $od->getTransferDuration() ?>" 
-								title="Transfer duration" class="timepicker w75" onchange="saveTransfer(<?=$i?>,0)">
-				
-								<? if($extras != '') echo '<i class="fa fa-cubes red-text"></i>'; ?>
-							</div>
 						</div>
 				</div>
-			</div>
-
-			<div class="row">
-				<div class="row" style="line-height:140%">
-					<div class="col-md-5">
-						<select style="width:100%;height:2em" class="subdriver1" data-id="<?=$i?>"
-						id="SubDriver_<?=$i?>" name="SubDriver_<?=$i?>" onchange="saveTransfer(<?=$i?>,0)">
-							<option value='0'> --- </option>
-							<? foreach ($sdArray as $Driver) {
-								echo '<option value="'.$Driver['DriverID'].'" data-mob="'.$Driver['Mob'].'"';
-								if ($Driver['DriverID'] == $od->getSubDriver())
-									{ echo ' selected'; }
-								else if ($Driver['Active'] == '0')
-									{ echo ' hidden'; }
-								echo '>'.$Driver['DriverName'].'</option>';
-								} ?>
-						</select>
-					</div>
-					<div class="col-md-5">
-						<select style="width:100%;height:2em"
-						id="Car_<?=$i?>" name="Car_<?=$i?>" onchange="saveTransfer(<?=$i?>,0)">
-							<option value='0'> --- </option>
-							<? foreach ($svArray as $Vehicle) {
-								echo '<option value="'.$Vehicle['VehicleID'].'"';
-								if ($Vehicle['VehicleID'] == $od->getCar())
-									{ echo ' selected'; }
-								else if ($Vehicle['Active'] == '0')
-									{ echo ' hidden'; }
-								echo '>'.$Vehicle['VehicleDescription'].'</option>';
-								} ?>
-						</select>
-					</div>
-					<div class="col-md-2">
-						<a href="#" class="btn btn-default" onclick="return ShowSubdriver2('<?= $i ?>');">
-							<i class="fa fa-plus"></i>
-						</a>
-					</div>
-				</div>
-
-				<div id="subDriver2<?=$i?>" class="row"
-				<? if (($od->getPaxNo() < 8) && ($od->getSubDriver2() == 0) && ($od->getCar2() == 0)) echo ' style="display:none"'; ?> >
-					<div class="col-md-5">
-						<select style="width:100%;height:2em"
-						id="SubDriver2_<?=$i?>" name="SubDriver2_<?=$i?>" onchange="saveTransfer(<?=$i?>,0)">
-							<option value='0'> --- </option>
-							<? foreach ($sdArray as $Driver) {
-								echo '<option value="'.$Driver['DriverID'].'"';
-								if ($Driver['DriverID'] == $od->getSubDriver2())
-									{ echo ' selected'; }
-								else if ($Driver['Active'] == '0')
-									{ echo ' hidden'; }
-								echo '>'.$Driver['DriverName'].'</option>';
-								} ?>
-						</select>
-					</div>
-					<div class="col-md-5">
-						<select style="width:100%;height:2em"
-						id="Car2_<?=$i?>" name="Car2_<?=$i?>" onchange="saveTransfer(<?=$i?>,0)">
-							<option value='0'> --- </option>
-							<? foreach ($svArray as $Vehicle) {
-								echo '<option value="'.$Vehicle['VehicleID'].'"';
-								if ($Vehicle['VehicleID'] == $od->getCar2())
-									{ echo ' selected'; }
-								else if ($Vehicle['Active'] == '0')
-									{ echo ' hidden'; }
-								echo '>'.$Vehicle['VehicleDescription'].'</option>';
-								} ?>
-						</select>
-					</div>
-					<div class="col-md-2">
-						<a href="#" class="btn btn-default" onclick="return ShowSubdriver3('<?= $i ?>');">
-							<i class="fa fa-plus"></i>
-						</a>
-					</div>
-				</div>
-
-				<div id="subDriver3<?= $i ?>" class="row"
-				<? if (($od->getSubDriver3() == 0) && ($od->getCar3() == 0)) echo ' style="display:none"'; ?> >
-					<div class="col-md-5">
-						<select style="width:100%;height:2em"
-						id="SubDriver3_<?=$i?>" name="SubDriver3_<?=$i?>" onchange="saveTransfer(<?=$i?>)">
-							<option value='0'> --- </option>
-							<? foreach ($sdArray as $Driver) {
-								echo '<option value="'.$Driver['DriverID'].'"';
-								if ($Driver['DriverID'] == $od->getSubDriver3())
-									{ echo ' selected'; }
-								else if ($Driver['Active'] == '0')
-									{ echo ' hidden'; }
-								echo '>'.$Driver['DriverName'].'</option>';
-								} ?>
-						</select>
-					</div>
-					<div class="col-md-5">
-						<select style="width:100%;height:2em"
-						id="Car3_<?=$i?>" name="Car3_<?=$i?>" onchange="saveTransfer(<?=$i?>,0)">
-							<option value='0'> --- </option>
-							<? foreach ($svArray as $Vehicle) {
-								echo '<option value="'.$Vehicle['VehicleID'].'"';
-								if ($Vehicle['VehicleID'] == $od->getCar3())
-									{ echo ' selected'; }
-								else if ($Vehicle['Active'] == '0')
-									{ echo ' hidden'; }
-								echo '>'.$Vehicle['VehicleDescription'].'</option>';
-								} ?>
-						</select>
-					</div>
-					<div class="col-md-2"></div>
-
-				</div>
-			</div>
-			<div class="row">
-				<a href='mobile' id='mob<?= $i ?>'>Mobile</a>			
-				<input style='float:right;' class='check' onchange="saveTransfer('<?= $i ?>',1);" id="checkdata_<?=$i?>" type="checkbox" name="checkeddata" value="<?= $od->getCustomerID();?>" 
-					<? if ($od->getCustomerID()==1) echo "checked"; ?>>
-				<label style='float:right;' for="checkeddata"><?= DATA_CHECKED ?> </label>			
 			</div>
 			<div class="row">
 				<button class="btn-xs btn-primary btn-block" onclick="ShowShow(<?= $i?>);toggleChevron(this);">
@@ -668,27 +525,18 @@ hr {
 			    <hr style="border-color:gray">
 
 			    <div class="row">
-				    <div class="">
-				        <small class="bold"><?= FLIGHT_NO.' / '.TIME ?></small><br>
 
-				        <input type="text" name="SubFlightNo_<?= $i ?>" id="SubFlightNo_<?= $i ?>" 
-					    value="<? if ($od->getSubFlightNo() != null) echo $od->getSubFlightNo(); else echo $od->getFlightNo(); ?>">
-
-					    <input type="text" class="timepicker" name="SubFlightTime_<?= $i ?>" id="SubFlightTime_<?= $i ?>" 
-					    value="<? if ($od->getSubFlightTime() != null) echo $od->getSubFlightTime(); else echo $od->getFlightTime(); ?>">         
-				    </div>
 
 				    <div class="">
 					    <small class="bold"><?= STAFF_NOTE ?></small></br>
-					    <textarea name="StaffNote_<?= $i ?>" id="StaffNote_<?= $i ?>"
-					    rows="4"><?= stripslashes( $od->getStaffNote() ) ?></textarea>
+					    <span><?= stripslashes( $od->getStaffNote() ) ?></span>
 				    </div>
 
 				    <div class="">
 					    <small class="bold"><?= NOTES_TO_DRIVER ?></small><br>
-					    <textarea style="border: 1px solid #ddd;" name="SubDriverNote_<?= $i ?>" 
-					    id="SubDriverNote_<?= $i ?>" class="span3" rows="4">
-					    <?= stripslashes( $od->getSubDriverNote() ) ?></textarea>
+					    <span style="border: 1px solid #ddd;">
+							<?= stripslashes( $od->getSubDriverNote() ) ?>
+						</span>
 				    </div>
 
 				    <div class="">
@@ -699,44 +547,10 @@ hr {
 
 				    <div class="">
 					    <small class="bold"><?= RAZDUZENO_CASH ?> (€)</small><br>
-					    <input type="text" name="CashIn_<?= $i ?>" id="CashIn_<?= $i ?>" value="<?= $od->getCashIn(); ?>"><br>
-					    <div style="display:inline-block;color:#900;" id="upd<?= $i ?>"></div>
+					    <span><?= $od->getCashIn(); ?></span><br>
 				    </div>
 		        </div>
-			    <hr style="border-color:gray">
-
-			    <!-- PDF Receipt -->
-			    <div class="col-md-6">
-					    <? if($od->getPDFFile()) { ?>
-					    <div id="existingPDF<?= $i ?>" style="display: inline">
-						    <a href="https://www.jamtransfer.com/cms/raspored/PDF/<?= $od->getPDFFile() ?>" target="_blank"
-						    class="btn btn-small btn-primary">
-							    <?= DOWNLOAD_RECEIPT.' '.$od->getPDFFile() ?>
-						    </a>&nbsp;&nbsp;
-						    <button onclick="return deletePDF('<?= $od->getPDFFile() ?>','<?= $i ?>','<?= $od->getDetailsID() ?>');" 
-						    class="btn btn-small btn-danger" >
-							    <?= DELETE_RECEIPT.' '.$od->getPDFFile() ?>
-						    </button>&nbsp;&nbsp; 
-					    </div>
-					    <? }?>
-
-					    <form name="form" action="" method="POST" enctype="multipart/form-data" style="display:inline">
-						    <input type="file" name="PDFFile_<?= $i ?>" id="PDFFile_<?= $i ?>" 
-						    onchange="return ajaxFileUpload('<?= $i ?>');" style="display:none">
-						    <input type="hidden" name="ID_<?= $i ?>" id="ID_<?= $i ?>" value="<?= $od->getDetailsID()?>">
-						    <button id="imgUpload" class="btn btn-small btn-default" 
-							    onclick="$('#PDFFile_<?= $i ?>').click();return false;">
-							    <?= UPLOAD_PDF_RECEIPT ?>
-						    </button>
-					    </form>
-
-					    <div style="display:inline-block;color:#900;" id="PDFUploaded_<?= $i ?>"></div>
-			    </div>
-			    <div class="col-md-6">
-				    <button class="btn btn-primary btn-block" onclick="saveTransfer(<?= $i?>,0)">
-					    <i class="fa fa-save"></i> Save
-				    </button>
-			    </div>
+			    <hr style="border-color:gray">	
 		    </div><!--/row-->
 	    </div>
 	    <?
@@ -774,38 +588,10 @@ hr {
 	</div>
 
 <script>
-$(document).ready(function(){
-    // stats for navbar
-    const stats = $('#stats')
-
-    if (stats.length) {
-        stats.html(`<span style="margin-right: 15px">${$('#noOfTransfers').text()}</span> ${$('#noOfVehicles').text()}`)
-    }
-
-	$(".datepicker").pickadate({format:'yyyy-mm-dd'});
-});
-
-function validate() {
-	var DateFrom = document.getElementById("DateFrom");
-	var DateTo = document.getElementById("DateTo");
-	var error = 0;
-
-	DateFrom.style.borderColor = "#ddd";
-	DateTo.style.borderColor = "#ddd";
+/*setTimeout(function(){		
+	window.location.reload();	
+}, 300000);*/
 	
-	if (DateFrom.value == "") {
-		error = 1;
-		DateFrom.style.borderColor = "red";
-	}
-
-	if (DateTo.value == "") {
-		error = 1;
-		DateTo.style.borderColor = "red";
-	}
-
-	if (error == 1)	return false;
-}
-
 function ShowShow(i) {
 	$("#show"+i).toggle('slow');
 }
@@ -815,441 +601,16 @@ function toggleChevron (button) {
 		button.innerHTML = '<i class="fa fa-chevron-down"></i>';
 	else button.innerHTML = '<i class="fa fa-chevron-up"></i>';
 }
-</script>
-
-<script type="text/javascript">
-	displayMob();
-
-	function hideChecked() {
-		$('.white'). each(function(){
-			if ($(this).find('.check').prop('checked')) $(this).hide(400);
-		})
-	}	
-	
-	function displayAll() {
-		$('.white'). each(function(){
-			$(this).show(400);
-		})
-	}
-	function displayMob() {
-		$( ".subdriver1" ).each(function() {
-			var id = $(this).attr('data-id');
-			var mob = $('option:selected',this).attr('data-mob');
-			var mobid='#'+'mob'+id;
-			$(mobid).text(mob);
-			$(mobid).attr('href',('tel:'+mob));
-		});	
-	}
-	function saveTransfer (i,mail) {
-		displayMob();
-		var id	= $("#ID_" + i).val();
-		var oid	= $("#OrderID_" + i).val();
-		var checked = $('#checkdata_'+i).prop('checked');
-		if (checked) {
-			checked=1;
-			$('#checkdata'+i).prop('checked',true);
-			alert ('Sending mail to client');
-		}	
-		else {
-			checked=0;
-			$('#checkdata'+i).prop('checked',false);
-			mail=0;
-		}				
-		var fn	= $("#SubFlightNo_" + i).val();
-		var ft	= $("#SubFlightTime_" + i).val();
-		var pt	= $("#SubPickupTime_" + i).val();
-		var sd	= $("select#SubDriver_" + i).val();
-		var sd2	= $("select#SubDriver2_" + i).val();
-		var sd3	= $("select#SubDriver3_" + i).val();
-		var c	= $("select#Car_" + i).val();
-		var c2	= $("select#Car2_" + i).val();
-		var c3	= $("select#Car3_" + i).val();
-		var sn	= $("#StaffNote_" + i).val();
-		var n	= $("#SubDriverNote_" + i).val();
-		var g	= $("#CashIn_" + i).val();
-		var td	= $("#TransferDuration_" + i).val();
-		var msg = $("#save-button-msg-" + i);
-
-		msg.innerHTML = "Saving...";
-		var url= "p/modules/timetable/ajax_updateNotes.php";
-		$.ajax({
-			url: url,
-			type: "POST",
-			data: {
-				ID: id,
-				OrderID: oid,
-				CustomerID: checked,								
-				SubFlightNo: fn,
-				SubFlightTime: ft,
-				SubPickupTime: pt,
-				SubDriver: sd,
-				SubDriver2: sd2,
-				SubDriver3: sd3,
-				Car: c,
-				Car2: c2,
-				Car3: c3,
-				StaffNote: sn,
-				Notes: n,
-				CashIn: g,
-				TransferDuration: td,
-				Mail: mail
-			},
-			success: function (result) {
-				msg.innerHTML = "Saved";
-
-				$("#upd"+i).html(result);
-				var res = $.trim(result);
-				
-				if(res != '<small>Saved.</small>') {
-					$.toaster(result, 'Oops', 'success red-2');
-				}
-				if ((sd == '0') || (c == '0')) {
-					$("#indicator_"+i).css("borderLeftColor","red");
-				}
-				else {
-					$("#indicator_"+i).css("borderLeftColor","green");
-				}
-			},
-			error: function (e) {
-				msg.innerHTML = "Error";
-				// console.log("Error:");
-				// console.log(e);
-			}
-		});
-	}
 
 
 
-
-	function ShowSubdriver2(i)
-	{
-	    $("#subDriver2"+i).toggle('slow');
-	    return false;
-	}
-
-	function ShowSubdriver3(i)
-	{
-	    $("#subDriver3"+i).toggle('slow');
-	    return false;
-	}
-
-	
-	function Sortiraj()
-	{
-	    var a = $("#SortSubDriver").val();
-	    if (a == '1') {
-	        a = '0';
-	        $("#SortSubDriver").val(a);
-	        }
-	    else {
-			a = '1';
-		    $("#SortSubDriver").val(a);
-	    }
-
-	}
-	
-		var a = $("#SortSubDriver").val();
-	    if (a == '1') {
-	    
-	    
-	           $("#SortBtn").removeClass('btn-default');
-	           $("#SortBtn").addClass('btn-danger'); 
-	        }
-	    else {
-	    
-	           $("#SortBtn").removeClass('btn-danger');
-	           $("#SortBtn").addClass('btn-default');   
-	    }
-
-
-		function deletePDF(file,i,id) {
-			if(!confirm('Are you sure?')) {return false;}
-			
-			$.get( "p/modules/timetable/deletePDF.php?file="+file+'&DetailsID='+id, function( data ) {
-				$("#existingPDF"+i).hide();
-			});
-			return false;
-		}
-		
-		function ajaxFileUpload(i)
-		{
-			var ID = $("#ID_"+i).val();
-			
-			$.ajaxFileUpload
-			(
-				{
-					url: 'p/modules/timetable/savePDF.php?DetailsID='+ID+'&i='+i,
-					secureuri:false,
-					fileElementId:'PDFFile_'+i,
-					dataType: 'json',
-					//data:{UserID: UserID},
-					success: function (data, status)
-					{
-						if(typeof(data.error) != 'undefined')
-						{
-							if(data.error != '')
-							{
-								alert(data.error);
-							}else
-							{
-								//alert(data.msg);
-								$("#PDFUploaded_"+i).text(data.msg);
-
-
-							}
-						}
-
-					},
-					error: function (data, status, e)
-					{
-						// console.log(data);
-                        alert(e);
-					}
-					
-				}
-			)
-		
-			return false;
-
-		}
-
-
-/*
-ajaxFileUpload - AjaxFileUploaderV2.1
-*/
-
-jQuery.extend({
-    createUploadIframe: function(id, uri)
-	{
-			//create frame
-            var frameId = 'jUploadFrame' + id;
-            var iframeHtml = '<iframe id="' + frameId + '" name="' + frameId + '" style="position:absolute; top:-9999px; left:-9999px"';
-			if(window.ActiveXObject)
-			{
-                if(typeof uri== 'boolean'){
-					iframeHtml += ' src="' + 'javascript:false' + '"';
-
-                }
-                else if(typeof uri== 'string'){
-					iframeHtml += ' src="' + uri + '"';
-
-                }	
-			}
-			iframeHtml += ' />';
-			jQuery(iframeHtml).appendTo(document.body);
-
-            return jQuery('#' + frameId).get(0);			
-    },
-    createUploadForm: function(id, fileElementId, data)
-	{
-		//create form	
-		var formId = 'jUploadForm' + id;
-		var fileId = 'jUploadFile' + id;
-		var form = jQuery('<form  action="" method="POST" name="' + formId + '" id="' + formId + '" enctype="multipart/form-data"></form>');	
-		if(data)
-		{
-			for(var i in data)
-			{
-				jQuery('<input type="hidden" name="' + i + '" value="' + data[i] + '" />').appendTo(form);
-			}			
-		}		
-		var oldElement = jQuery('#' + fileElementId);
-		var newElement = jQuery(oldElement).clone();
-		jQuery(oldElement).attr('id', fileId);
-		jQuery(oldElement).before(newElement);
-		jQuery(oldElement).appendTo(form);
-
-
-		
-		//set attributes
-		jQuery(form).css('position', 'absolute');
-		jQuery(form).css('top', '-1200px');
-		jQuery(form).css('left', '-1200px');
-		jQuery(form).appendTo('body');		
-		return form;
-    },
-
-    ajaxFileUpload: function(s) {
-        // TODO introduce global settings, allowing the client to modify them for all requests, not only timeout		
-        s = jQuery.extend({}, jQuery.ajaxSettings, s);
-        var id = new Date().getTime()        
-		var form = jQuery.createUploadForm(id, s.fileElementId, (typeof(s.data)=='undefined'?false:s.data));
-		var io = jQuery.createUploadIframe(id, s.secureuri);
-		var frameId = 'jUploadFrame' + id;
-		var formId = 'jUploadForm' + id;		
-        // Watch for a new set of requests
-        if ( s.global && ! jQuery.active++ )
-		{
-			jQuery.event.trigger( "ajaxStart" );
-		}            
-        var requestDone = false;
-        // Create the request object
-        var xml = {}   
-        if ( s.global )
-            jQuery.event.trigger("ajaxSend", [xml, s]);
-        // Wait for a response to come back
-        var uploadCallback = function(isTimeout)
-		{			
-			var io = document.getElementById(frameId);
-            try 
-			{				
-				if(io.contentWindow)
-				{
-					 xml.responseText = io.contentWindow.document.body?io.contentWindow.document.body.innerHTML:null;
-                	 xml.responseXML = io.contentWindow.document.XMLDocument?io.contentWindow.document.XMLDocument:io.contentWindow.document;
-					 
-				}else if(io.contentDocument)
-				{
-					 xml.responseText = io.contentDocument.document.body?io.contentDocument.document.body.innerHTML:null;
-                	xml.responseXML = io.contentDocument.document.XMLDocument?io.contentDocument.document.XMLDocument:io.contentDocument.document;
-				}						
-            }catch(e)
-			{
-				jQuery.handleError(s, xml, null, e);
-			}
-            if ( xml || isTimeout == "timeout") 
-			{				
-                requestDone = true;
-                var status;
-                try {
-                    status = isTimeout != "timeout" ? "success" : "error";
-                    // Make sure that the request was successful or notmodified
-                    if ( status != "error" )
-					{
-                        // process the data (runs the xml through httpData regardless of callback)
-                        var data = jQuery.uploadHttpData( xml, s.dataType );    
-                        // If a local callback was specified, fire it and pass it the data
-                        if ( s.success )
-                            s.success( data, status );
-    
-                        // Fire the global callback
-                        if( s.global )
-                            jQuery.event.trigger( "ajaxSuccess", [xml, s] );
-                    } else
-                        jQuery.handleError(s, xml, status);
-                } catch(e) 
-				{
-                    status = "error";
-                    jQuery.handleError(s, xml, status, e);
-                }
-
-                // The request was completed
-                if( s.global )
-                    jQuery.event.trigger( "ajaxComplete", [xml, s] );
-
-                // Handle the global AJAX counter
-                if ( s.global && ! --jQuery.active )
-                    jQuery.event.trigger( "ajaxStop" );
-
-                // Process result
-                if ( s.complete )
-                    s.complete(xml, status);
-
-                jQuery(io).unbind()
-
-                setTimeout(function()
-									{	try 
-										{
-											jQuery(io).remove();
-											jQuery(form).remove();	
-											
-										} catch(e) 
-										{
-											jQuery.handleError(s, xml, null, e);
-										}									
-
-									}, 100)
-
-                xml = null
-
-            }
-        }
-        // Timeout checker
-        if ( s.timeout > 0 ) 
-		{
-            setTimeout(function(){
-                // Check to see if the request is still happening
-                if( !requestDone ) uploadCallback( "timeout" );
-            }, s.timeout);
-        }
-        try 
-		{
-
-			var form = jQuery('#' + formId);
-			jQuery(form).attr('action', s.url);
-			jQuery(form).attr('method', 'POST');
-			jQuery(form).attr('target', frameId);
-            if(form.encoding)
-			{
-				jQuery(form).attr('encoding', 'multipart/form-data');      			
-            }
-            else
-			{	
-				jQuery(form).attr('enctype', 'multipart/form-data');			
-            }			
-            jQuery(form).submit();
-
-        } catch(e) 
-		{			
-            jQuery.handleError(s, xml, null, e);
-        }
-		
-		jQuery('#' + frameId).load(uploadCallback	);
-        return {abort: function () {}};	
-
-    },
-
-    uploadHttpData: function( r, type ) {
-        var data = !type;
-        data = type == "xml" || data ? r.responseXML : r.responseText;
-        // If the type is "script", eval it in global context
-        if ( type == "script" )
-            jQuery.globalEval( data );
-        // Get the JavaScript object, if JSON is used.
-        if ( type == "json" )
-            eval( "data = " + data );
-        // evaluate scripts within html
-        if ( type == "html" )
-            jQuery("<div>").html(data).evalScripts();
-
-        return data;
-    },
-    
-	handleError: function( s, xhr, status, e ) {
-		// If a local callback was specified, fire it
-		if ( s.error ) {
-		    s.error.call( s.context || window, xhr, status, e );
-		}
-
-		// Fire the global callback
-		if ( s.global ) {
-		    (s.context ? jQuery(s.context) : jQuery.event).trigger( "ajaxError", [xhr, s, e] );
-		}
-	}    
-})
 </script>
 
 
 
 
-<?/*
 
 
-	// red u tablici
-	foreach($odArray as $val => $ID) {
-		
-
-		# save OrderID with same index as the price
-		hiddenField('ID_'.$i, $od->getDetailsID());
-		hiddenField('OrderID_'.$i, $od->getOrderID());
-		//hiddenField('FlightTime_'.$i, $t->FlightTime);
-		//hiddenField('SubDriver_'.$i, $t->SubDriver);
-		//hiddenField('Car_'.$i, $t->Car);
-		//hiddenField('SubDriverNote_'.$i, $t->SubDriverNote);
-
-		$i++;
-	}
-?>
 
 
 

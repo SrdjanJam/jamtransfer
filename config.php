@@ -27,7 +27,6 @@ require_once ROOT.'/common/class/adminTable.php';
 $smarty = new Smarty;
 $smarty->compile_check = true;
 $smarty->debugging =false;   
-
 $modulesPath = ROOT . '/plugins'; // base folder for modules
 $smarty->assign('root_home',ROOT_HOME);
 $smarty->assign('root',ROOT);

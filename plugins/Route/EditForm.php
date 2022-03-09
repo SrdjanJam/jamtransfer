@@ -20,13 +20,7 @@
 			<button class="btn btn-info" title="<?= SAVE_CHANGES ?>" 
 			onclick="return editSaveItem('{{RouteID}}');">
 			<i class="fa fa-save"></i>
-			</button>
-			<? if (!$isNew) { ?>
-				<button class="btn btn-danger" title="<?= PRINTIT ?>" 
-				onclick="return editPrintItem('{{RouteID}}');">
-				<i class="fa fa-print"></i>
-				</button>
-			<? } ?>				
+			</button>			
 		</div>
 	</div>
 

@@ -29,12 +29,13 @@
       <div class="navbar-collapse collapse">
         <ul class="nav navbar-nav">
           <li id="dashboard"><a href="dashboard"><?= DASHBOARD ?></a></li>
-		  <li id="calendar"><a href="calendar">Calendar</a></li>
           <li id="transfersList" class="dropdown">
           	<a href="#" class="dropdown-toggle" data-toggle="dropdown">
           		<?= TRANSFERS ?> <span class="caret"></span>
           	</a>
             	<ul class="dropdown-menu" role="menu">
+				<li><a href="calendar">Calendar</a></li>
+				<li class="divider"></li>				
           		<li><a href="transfersList/noDriver"><?= NO_DRIVER ?></a></li>
           		<li><a href="transfersList/notConfirmed"><?= NOT_CONFIRMED ?></a></li>
           		<li><a href="transfersList/confirmed"><?= CONFIRMED ?></a></li>
@@ -59,9 +60,8 @@
           </li>
           
           <li id="users"><a href="users"><?= USERS ?> </a>
-
           </li>
-		<? if ($_SESSION['AuthUserID'] != '2146') { ?>
+		  
           <li id="siteContent" class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
             	<?= SITE_CONTENT ?> <span class="caret"></span>
@@ -88,55 +88,46 @@
           		<li id="locations"><a href="locations"><?= LOCATIONS ?></a></li>
           		<li id="routes"><a href="routes"><?= ROUTES ?></a></li>
 				<li id="vehicleTypes"><a href="vehicleTypes"><?= VEHICLE_TYPES ?></a></li>
-				<li id="extraServices"><a href="extraServices"><?= EXTRA_SERVICES ?></a></li>
-				<li id="actions"><a href="actions">Actions</a></li>
-				<li id="approvedFuelPrice"><a href="approvedFuelPrice">Approved Fuel Price</a></li>
+				<li id="extraServices"><a href="extraServices">Extras</a></li>
+				<li id="coupons"><a href="coupons"><?= COUPONS ?></a></li>				
           	</ul>
           </li>
+		<? 
+		if (isset($_SESSION['UseDriverID']) && $_SESSION['UseDriverID']>0) {
+			require_once ROOT . '/db/v4_AuthUsers.class.php';
+			$au = new v4_AuthUsers();
+			$au->getRow($_SESSION['UseDriverID']);
+			
+		?>	
 
           <li id="serviceSettings" class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-            	Services <span class="caret"></span>
+				<?= $au->getAuthUserRealName() ?><span class="caret"></span>
             </a>
             <ul class="dropdown-menu" role="menu">
-				<li id="setDriver"><a href="index.php?p=setDriver"><? if ($_SESSION['UseDriverID']==0) echo "Set Driver";
-				else echo "Unset Driver"; ?>
-				</a></li>			
-				<li class="divider"></li>	
+                <li id="setout"><a href="setout.php">Set out</a></li>
+				<li class="divider"></li>				
           		<li id="terminals"><a href="index.php?p=terminals">Terminals</a></li>  				
-          		<li id="driverRoutes"><a href="index.php?p=driverRoutes"><?= DRIVER_ROUTES ?></a></li>
+          		<li id="driverRoutes"><a href="index.php?p=driverRoutes"><?= ROUTES ?></a></li>
           		<li id="vehicles"><a href="index.php?p=vehicles"><?= VEHICLES ?></a></li>  
-          		<li id="extras"><a href="index.php?p=extras"><?= EXTRAS ?></a></li>
+          		<li id="extras"><a href="index.php?p=extras">Extras</a></li>
+            	<li id="prices"><a href="index.php?p=prices">Services</a></li>				
 				<li class="divider"></li>
+				<li id="special"><a href="index.php?p=special"><?= SPECIALDATES ?></a></li>
+				<li id="special"><a href="index.php?p=specialtimes"><?= SPECIALTIMES ?></a></li>				
 				<li id="dateSettings"><a href="index.php?p=dateSettings"><?= DATE_SETTINGS ?></a></li>
-				
+				<li class="divider"></li>				
+				<li id="actions"><a href="actions">Actions</a></li>				
+				<li id="activities"><a href="actions">Activities</a></li>				
+				<li id="approvedFuelPrice"><a href="approvedFuelPrice">Fuel Price</a></li>
+				<li class="divider"></li>				
+				<li id="pricesExport"><a href="index.php?p=pricesExport&Active=1">Export prices</a></li>
+				<li id="pricesExport"><a href="index.php?p=allPricesExport&Active=1">Export all prices</a></li>				
+				<li id="pricesImport"><a href="index.php?p=pricesImport&Active=1">Import prices</a></li>
           	</ul>
           </li>
-		  
-          <li id="priceSettings" class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-            	Prices <span class="caret"></span>
-            </a>
-            <ul class="dropdown-menu" role="menu">		
-            	<li id="prices"><a href="index.php?p=prices"><?= PRICES ?></a></li>
-				<li id="coupons"><a href="index.php?p=coupons"><?= COUPONS ?></a></li>
-            	<li class="divider"></li>
-				<li id="special"><a href="index.php?p=special"><?= SPECIALDATES ?></a></li>
-				<li id="special"><a href="index.php?p=specialtimes"><?= SPECIALTIMES ?></a></li>
-          		<!--<li id="daySettings"><a href="index.php?p=daySettings"><?= DAY_SETTINGS ?></a></li> -->
-          		<!--<li id="dateSettings"><a href="index.php?p=dateSettings"><?= DATE_SETTINGS ?></a></li> -->
-          		<!--<li id="nightSettings"><a href="index.php?p=nightSettings"><?= NIGHT_SETTINGS ?></a></li> -->
-				<li class="divider"></li>
-				<li id="transcs"><a href="index.php?p=transcs">Cost Structure</a></li>			
-				<!--<li role="presentation" class="dropdown-header"><?= OTHER ?></li> -->
-				<li id="pricesExport"><a href="index.php?p=pricesExport&Active=1"><?= PRICES_EXPORT ?></a></li>
-				<li id="pricesImport"><a href="index.php?p=pricesImport&Active=1"><?= PRICES_IMPORT ?></a></li>
-				<li id="pricesList"><a href="index.php?p=priceList"><?= PRICE_LIST ?></a></li>
-				<li id="pricesExport"><a href="index.php?p=allPricesExport&Active=1"><?= ALL_PRICES_EXPORT ?></a></li>
-				<li id="pricesExport"><a href="index.php?p=allPricesExport2"><?= ALL_PRICES_EXPORT ?> 2</a></li>
-          	</ul>
-          </li>	
-		<?}?>
+		<? } ?>  
+		
 
           <li id="reports" class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -168,14 +159,10 @@
             	<?= REPORTS ?> <span class="caret"></span>
             </a>
             <ul class="dropdown-menu" role="menu">
+				<li id="transcs"><a href="index.php?p=transcs">Cost Structure</a></li>						
             	<li id="promet"><a href="index.php?p=promet"><?= TRANSFERS_SUMMARY ?></a></li>
             	<li id="promet2"><a href="index.php?p=promet2"><?= TRANSFERS_SUMMARY_BOOKING ?></a></li>
 
-            	<!--<li id="turnover"><a href="index.php?p=turnover"><?= TURNOVER ?></a></li>
-				<li id="netIncome"><a href="index.php?p=netIncome"><?= NET_INCOME ?></a></li>
-          		<li id="bookingIncome"><a href="index.php?p=bookingIncome"><?= BOOKING ?></a></li>
-				
-          		<li id="canceledOrders"><a href="index.php?p=canceledOrders"><?= CANCELED_ORDERS ?></a></li>!-->
           		<li class="divider"></li>
           		<li class="dropdown-header"><?= ORDERS ?></li>              		
           		<li id="agentsByTrDate">
@@ -189,13 +176,12 @@
 				</li>
 				<li class="divider"></li>
 				<li class="dropdown-header"><?= DRIVERS ?></li>                  
-				<!--<li id="agentsByBDate"><a href="index.php?p=driversChart"><?= TOP_DRIVERS ?></a></li>!-->
-				<!--<li><a href="index.php?p=emailsForm"><?= CLIENT_EMAILS ?></a></li>!-->
-				<!--<li><a href="index.php?p=driversEmails"><?= DRIVERS_EMAIL_LIST ?></a></li>!-->
 				<li><a href="index.php?p=driversEmailsActive"><?= DRIVERS_EMAIL_LIST ?> - Active</a></li>
 				<li class="divider"></li>
-
-				<!--<li><a href="index.php?p=exportAgentEmails"><?= AGENT_REPORT ?></a></li>!-->
+				<li class="dropdown-header"><?= PRICES ?></li>                  				
+				<li id="pricesList"><a href="index.php?p=priceList"><?= PRICE_LIST ?></a></li>
+				<li id="pricesExport"><a href="index.php?p=allPricesExport2"><?= ALL_PRICES_EXPORT ?> 2</a></li>
+				<li class="divider"></li>
 				<li><a href="index.php?p=surveyReportForm"><?= SURVEY ?></a></li>
 				<li class="divider"></li>
 				<li id="subHist"><a href="index.php?p=subHist"><?= SUBDRIVER_HISTORY ?></a></li>
@@ -205,33 +191,8 @@
           	</ul>
           </li>
 
-
-
-          <!--<li id="reports" class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-            	Help <span class="caret"></span>
-            </a>
-            <ul class="dropdown-menu" role="menu">
-				<li id="procedures"><a href="indexN.php?p=procedures">Procedures</a></li>				
-				<li id="tutorials"><a href="indexN.php?p=tutorials">Tutorials</a></li>				
-				<li id="documents"><a href="indexN.php?p=documents">Documents</a></li>		 						
-          	</ul>			
-          </li>!--->
-
-
         </ul>
         <ul class="nav navbar-nav navbar-right">
-					 <li class="dropdown user user-menu">
-					<?
-					if (isset($_SESSION['UseDriverID']) && $_SESSION['UseDriverID']>0) {
-						//echo $_SESSION['UseDriverID'];
-						require_once '../db/v4_AuthUsers.class.php';
-						$au = new v4_AuthUsers();
-						$au->getRow($_SESSION['UseDriverID']);
-						echo "<span style='font-size:80%'>Driver:<br>".$au->getAuthUserRealName()."</span>";
-					}	
-					?>	
-					</li>
                     <!-- User Account: style can be found in dropdown.less -->
                     <li class="dropdown user user-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -251,19 +212,6 @@
                                     <small><?= MEMBER_SINCE.' '. $_SESSION['MemberSince'] ?></small>
                                 </p>
                             </li>
-                            <!-- Menu Body 
-                            <li class="user-body">
-                                <div class="col-xs-4 text-center">
-                                    <a href="#">Followers</a>
-                                </div>
-                                <div class="col-xs-4 text-center">
-                                    <a href="#">Sales</a>
-                                </div>
-                                <div class="col-xs-4 text-center">
-                                    <a href="#">Friends</a>
-                                </div>
-                            </li>-->
-                            <!-- Menu Footer-->
                             <li class="user-footer">
                                 <div class="pull-left">
                                     <a href="index.php?p=profileEdit" class="btn btn-default btn-flat">
@@ -283,7 +231,6 @@
 <?
 	$output = ob_get_contents();
 	ob_end_clean();
-	//htmldecode($output);
 	$smarty->assign("menu_render",$output);
 ?>	
   

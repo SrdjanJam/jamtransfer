@@ -21,12 +21,14 @@
 			<i class="fa fa-save"></i>
 			</button>
 			<? if (!$isNew) { ?>
-				<button class="btn btn-danger" title="<?= PRINTIT ?>" 
-				onclick="return editPrintItem('{{AuthUserID}}');">
-				<i class="fa fa-print"></i>
-				</button>
+				{{#compare AuthLevelID "==" '31'}}
+				<a class="btn btn-danger" title="Sat as Driver" 
+				href="satAsDriver/{{AuthUserID}}">
+				<i class="fa fa-car l"></i>
+				</a>		
+				{{/compare}}				
 				<a class="btn btn-danger" title="Login as User" 
-				href="index.php?p=dashboard&sa_u={{AuthUserID}}&sa_l={{AuthLevelID}}">
+				href="loginAsUser/{{AuthUserID}}/{{AuthLevelID}}">
 				<i class="fa fa-user l"></i>
 				</a>				
 			<? } ?>	

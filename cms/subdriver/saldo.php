@@ -1,6 +1,6 @@
 <?
-require_once ROOT .'/f/f.php';
-require_once ROOT .'/db/db.class.php';
+require_once $_SERVER['DOCUMENT_ROOT'] .'/f/f.php';
+require_once $_SERVER['DOCUMENT_ROOT'] .'/db/db.class.php';
 
 $db = new DataBaseMySql();
 
@@ -13,7 +13,7 @@ $SOwnerID   = $_SESSION['OwnerID'];
 
 
 
-require_once ROOT . '/cms/fixDriverID.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/cms/fixDriverID.php';
 foreach($fakeDrivers as $key => $fakeDriverID) {
     if($SOwnerID == $fakeDriverID) $SOwnerID = $realDrivers[$key];    
 }

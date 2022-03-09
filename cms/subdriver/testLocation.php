@@ -1,51 +1,68 @@
-<?
-	//session_start();
-	$sdid=$_REQUEST['sdid'];
-	//require_once ROOT . '/db/db.class.php';
-	/*require_once ROOT . '/db/v4_SubActivity.class.php';	
-	require_once ROOT . '/db/v4_SubVehicles.class.php';
-	require_once ROOT . '/db/v4_Equipment.class.php';
-	require_once ROOT . '/db/v4_VehicleEquipmentList.class.php';
+<!DOCTYPE HTML>
 
+<head>
+   <html>
+		<script src="https://code.jquery.com/jquery-2.0.2.js"></script>
+		<!--<script src="https://www.jamtransfer.com/cms/js/jquery/2.0.2/jquery.min.js"></script>-->
+		<!-- jQuery UI 1.10.3 -->
+		<script src="../js/jquery/ui/1.10.3/jquery-ui.min.js" type="text/javascript"></script>
+   
+      <script type = "text/javascript">
+	  		geolocation();
 
-	$db = new DataBaseMySql();
-	$ac = new v4_SubActivity();
-	$sv = new v4_SubVehicles();
-	$eq = new v4_Equipment();
-	$veql = new v4_VehicleEquipmentList();
-	
-	$sv->getRow($_REQUEST['VehicleID']);
-	$vehicle=$sv->getVehicleDescription();
-	
-	$where="Where VehicleID=".$_REQUEST['VehicleID'];
-	$eqk = $eq->getKeysBy('DisplayOrder ','', 'Where Active=1');
-	$veqlk = $veql->getKeysBy('Datum Desc','', $where);
-	$veql->getRow($veqlk[0]);
-	$ListID=$veql->ListID;
-	$query="SELECT EquipmentID FROM `v4_VehicleEquipmentItem` WHERE `ListID`='".$ListID."' AND VehicleID=".$_REQUEST['VehicleID'];
-	$eqids = mysqli_query($con, $query) or die('Error in VehicleEquipmentItem query' . mysqli_connect_error());
-	while($eqid = mysqli_fetch_object($eqids) ) {
-		$eq_arr[] = $eqid->EquipmentID;
-	}
-	$delete=true;
-	
-	if (!isset($_REQUEST['SubmitFlag'])) {
-		//select iz redova tabele
-		$sqls="SELECT EquipmentID FROM `v4_VehicleCheckList` WHERE `ActivityID`=".$_REQUEST['ActivityID'];
-		$query=mysqli_query($con, $sqls) or die('Error in VehicleCheckList query' . mysqli_connect_error());
-		while($eqp = mysqli_fetch_object($query) ) {
-			$eq_arr2[]=$eqp->EquipmentID;
-		}
-	}	*/
-	$back=array();
-	$back['alarmid']=1;
-	$back['userid']=$_REQUEST['sdid'];
-	$back['message']='Ovo je test';
-	echo json_encode($back);
-	
-	//if ($sdid==948) echo TRUE;
-	//else FALSE;
-	
+		setInterval(function(){		
+			//window.location.reload(1);	
+			//getLocationUpdate();
+			//geolocation();
+		}, 60000);	  
+         var watchID;
+         var geoLoc;
+         
+         
+         function getLocationUpdate(){
+            
+            if(navigator.geolocation){
+               
+               // timeout at 60000 milliseconds (60 seconds)
+               var options = {timeout:5000};
+               geoLoc = navigator.geolocation;
+               watchID = geoLoc.watchPosition(showLocation, errorHandler, options);
+			   
+            } else {
+               alert("Sorry, browser does not support geolocation!");
+            }
+         }
+		 
+		function geolocation () {
+			if(navigator.geolocation){
+				navigator.geolocation.getCurrentPosition(
+					function(position) {
+						var lat = position.coords.latitude;
+						var lng = position.coords.longitude;
+						alert("Latitude : " + lat + " Longitude: " + lng);
+						var url= 'https://cms.jamtransfer.com/cms/subdriver/geoLocation.php?lat='+lat+'&lng='+lng;
+						//alert (url);
+						$.ajax({
+							url: url,
+							async: false,
+							success: function(data){
+								//alert ('OK');
+							},
+							error: function(){
+								//alert ('FAIL');
+							}
+						});
+					
+					}
+				)			
+			}
+		}		 
+      </script>
+   </head>
+	TEST LOCATIONS DATA
+</html>
+<?php
+  $arr=(unserialize(file_get_contents('http://www.geoplugin.net/php.gp?ip='.$_SERVER['HTTP_X_FORWARDED_FOR'])));
+ echo $arr['geoplugin_latitude'];
+ echo $arr['geoplugin_longitude'];
 ?>
-
-

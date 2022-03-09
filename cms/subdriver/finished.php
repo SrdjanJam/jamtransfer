@@ -47,6 +47,29 @@ if (isset($_POST['saveData'])) {
 		$q = "UPDATE v4_OrderDetails SET CashIn='".$CashIn."',TransferStatus='".$TransferStatus."',PaymentStatus='".$PaymentStatus."',DriverConfStatus='".$DriverConfStatus."',SubFinalNote='".$SubFinalNote ."' WHERE DetailsID=".$id;
 		$qr = mysqli_query($con, $q) or die('Error writing Finished query <br/>' . mysqli_connect_error());
 		echo '<h2>Data saved</h2>';
+		require_once '../db/v4_OrderLog.class.php';
+		$ol = new v4_OrderLog();
+		$icon = 'fa fa-cloud-upload bg-blue';
+		$logDescription = '';
+		$logAction = 'Finished';
+		$logTitle = 'Order Finished by ' . $_SESSION['UserName'];
+		$showToCustomer = 0;
+		$customerDescription = '';		
+	    $ol->setOrderID($o->OrderID);
+	    $ol->setDetailsID($o->DetailsID);
+	    $ol->setAction($logAction);
+	    $ol->setTitle($logTitle);
+	    $ol->setDescription($logDescription);
+	    $ol->setDateAdded(date("Y-m-d"));
+	    $ol->setTimeAdded(date("H:i:s"));
+	    $ol->setUserID($_SESSION['AuthUserID']);
+	    $ol->setIcon($icon);
+	    $ol->setShowToCustomer($showToCustomer);
+
+	    $ol->saveAsNew();
+		
+
+		
 	} else {
 		echo '<h2>Error: please enter data</h2>';
 	}

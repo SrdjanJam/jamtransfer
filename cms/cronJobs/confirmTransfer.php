@@ -80,7 +80,7 @@ foreach ($driverKeys as $key) {
 			}
 
 			$message .= '</td><td>'.$od->getPickupDate().' '.$od->getPickupTime().' - '.$od->getPickupName().'</td><td><a href="https://www.jamtransfer.com/cms/index.php?p=transfersList&transfersFilter=details&id='.$key.'">View</a></td></tr>';
-			//$message .= '</td><td>'.$od->getPickupDate().' '.$od->getPickupTime().' - '.$od->getPickupName().'</td><td><a href="https://www.jamtransfer.com/cms/dcN.php?code='.$od->getDetailsID() .'&control='.$orderKey.'&id='.$od->getDriverID().'">'. $od->getOrderID().'-'.$od->getTNo() .'</a></td></tr>';
+			//$message .= '</td><td>'.$od->getPickupDate().' '.$od->getPickupTime().' - '.$od->getPickupName().'</td><td><a href="https://www.jamtransfer.com/cms/dc.php?code='.$od->getDetailsID() .'&control='.$orderKey.'&id='.$od->getDriverID().'">'. $od->getOrderID().'-'.$od->getTNo() .'</a></td></tr>';
 			
 		}
 

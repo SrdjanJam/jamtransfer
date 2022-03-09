@@ -2,8 +2,8 @@
 	session_start();
 
 	require_once 'subdriver/db.php';
-	require_once ROOT . '/db/db.class.php';
-	require_once ROOT . '/db/v4_Actions.class.php';
+	require_once $_SERVER['DOCUMENT_ROOT'] . '/db/db.class.php';
+	require_once $_SERVER['DOCUMENT_ROOT'] . '/db/v4_Actions.class.php';
 	$db = new DataBaseMySql();
 	$ac = new v4_Actions();
 	$ack = $ac->getKeysBy('DisplayOrder ', '','WHERE Active=1');
@@ -115,7 +115,7 @@
 				if ($_SESSION['OwnerID']==843) $afpadd="_Nice";
 				if ($_SESSION['OwnerID']==876) $afpadd="_Lyon";
 				if ($_SESSION['OwnerID']==556) $afpadd="_Split";
-				$filename = ROOT . '/cms/approvedFuelPrice'.$afpadd.'.inc';
+				$filename = $_SERVER['DOCUMENT_ROOT'] . '/cms/approvedFuelPrice'.$afpadd.'.inc';
 				$afp = file_get_contents($filename, FILE_USE_INCLUDE_PATH);				
 			}
 

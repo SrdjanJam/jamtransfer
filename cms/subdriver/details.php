@@ -120,7 +120,7 @@ else $PaxNo=$od->PaxNo;
 	</div>
 	<div class="row">
 		<div class="col-xs-6 right">Pax Tel :</div>
-		<div class="col-xs-6"><b><?= $om->MPaxTel ?></b></div>
+		<div class="col-xs-6"><b><a href='tel: <?= $om->MPaxTel ?>'><?= $om->MPaxTel ?></a></b></div>
 	</div>
 	<div class="row">
 		<div class="col-xs-6 right">Pax No :</div>

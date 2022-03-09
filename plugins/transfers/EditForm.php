@@ -27,12 +27,6 @@
 			onclick="return editSaveItem('{{PlaceID}}');">
 			<i class="fa fa-save"></i>
 			</button>
-			<? if (!$isNew) { ?>
-				<button class="btn btn-danger" title="<?= PRINTIT ?>" 
-				onclick="return editPrintItem('{{PlaceID}}');">
-				<i class="fa fa-print"></i>
-				</button>
-			<? } ?>	
 			{{#compare PlaceType "==" 1}}
 				<? if (isset($_SESSION['UseDriverID']) && $_SESSION['UseDriverID']>0) {?>
 				<button class="btn" title="TERMINAL" 
