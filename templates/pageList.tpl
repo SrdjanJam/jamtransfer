@@ -24,11 +24,12 @@ window.currenturl = '{/literal}{$currenturl}{literal}';
 <script type="text/javascript">
 	$(document).ready(function(){
 		allItems(); 
+		oneItem({/literal}{$item}{literal});
 	});	
 </script>
 {/literal}
 <div class=" container">
-	<a class="btn btn-primary btn-xs" href="{$root_home}{$code}/new">{$NNEW}</a>
+	{if $parentID ne 5}<a class="btn btn-primary btn-xs" href="{$root_home}{$code}/new">{$NNEW}</a>{/if}
 	<br><br>
 	<input type="hidden"  id="whereCondition" name="whereCondition" 
 	value=" WHERE {$ItemID} > 0">

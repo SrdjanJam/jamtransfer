@@ -45,7 +45,7 @@
 					</div>
 				</div>
 
-				<div class="row">
+				<div class="row hidden">
 					<div class="col-md-3">
 						<label for="FromID"><?=FROM;?></label>
 					</div>
@@ -54,7 +54,7 @@
 					</div>
 				</div>
 
-				<div class="row">
+				<div class="row hidden">
 					<div class="col-md-3">
 						<label for="ToID"><?=TO;?></label>
 					</div>
@@ -72,7 +72,7 @@
 					</div>
 				</div>
 
-				<div class="row">
+				<div class="row hidden">
 					<div class="col-md-3">
 						<label for="RouteName"><?=ROUTENAME;?></label>
 					</div>

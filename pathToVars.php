@@ -17,8 +17,23 @@ switch ($activePage) {
 		$activePage = 'dashboard';		
 	case 'satAsDriver':
 		$_SESSION['UseDriverID']=$pathVars->fetchByIndex($indexStart + 2);
+		require_once ROOT . '/db/v4_AuthUsers.class.php';
+		$au = new v4_AuthUsers();
+		$au->getRow($_SESSION['UseDriverID']);
+		$_SESSION['UseDriverName']=$au->getAuthUserRealName();
 		header('Location: '.ROOT_HOME);
 	default:
+		if ($pathVars->fetchByIndex($indexStart + 2)) { 
+			if (is_numeric($pathVars->fetchByIndex($indexStart + 2))) {
+				$item=$pathVars->fetchByIndex($indexStart + 2);
+				$smarty->assign('item',$item);
+			}
+			else if (($pathVars->fetchByIndex($indexStart + 2))=='connect') {
+				$item=$pathVars->fetchByIndex($indexStart + 3);
+				// ovde ubaciti program koji vrsi konekciju master i driver tabela	
+				require '/plugins/makeDriverConnection.php?page='.$activePage.'&id='.$item;
+			}
+		}	
 }
 
 

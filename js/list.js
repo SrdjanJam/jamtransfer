@@ -89,6 +89,10 @@
 				$("#one_Item"+id).html(HTML);
 
 				$("#ItemWrapper"+id).show('slow');
+				$("#ItemWrapper"+id)[0].scrollIntoView({
+					behavior: "smooth", // or "auto" or "instant"
+					block: "start" // or "end"
+				});				
 			},
 			error: function(xhr, status, error) {alert("Show error occured: " + xhr.status + " " + xhr.statusText); }
 		});

@@ -1,12 +1,11 @@
 <?
 header('Content-Type: text/javascript; charset=UTF-8');
 require_once 'Initial.php';
-require_once ROOT . '/db/v4_DriverRoutes.class.php';
-$dbC = new v4_DriverRoutes();
 
 @session_start();
 
 # sastavi filter - posalji ga $_REQUEST-om
+$filter= " AND OwnerID=".$_SESSION['UseDriverID'];
 if (isset($type)) {
 	if (!isset($_REQUEST['Type']) or $_REQUEST['Type'] == 0) {
 		$filter = "  AND ".$type." != 0 ";
@@ -64,25 +63,6 @@ if (count($dbk) != 0) {
 		// ako treba neki lookup, onda to ovdje
 		# get all fields and values
 		$detailFlds = $db->fieldValues();
-		$detailFlds['driver']='';
-		$detailFlds['check']=-1;		
-		if (isset($_SESSION['UseDriverID']) && $_SESSION['UseDriverID']>0) {
-			$id=$db->getRouteID();
-			$keys=$dbC->getKeysBy('ID', '', ' WHERE RouteID='.$id.' AND OwnerID='.$_SESSION['UseDriverID']);		
-			if (count($keys)>0) {
-				$detailFlds['driver']=$_SESSION['UseDriverName'];
-				$detailFlds['check']=1;
-				$dbC->getRow($keys[0]);
-				$cid=$dbC->getID();
-				$driverlink='driverRoutes/'.$cid;
-				$detailFlds['driverlink']=$driverlink;
-			}	
-			else {
-				$detailFlds['driver']='*';
-				$detailFlds['check']=0;
-				$detailFlds['driverlink']='driverRoutes/connect/'.$id;
-			}	
-		}
 		// ako postoji neko custom polje, onda to ovdje.
 		// npr. $detailFlds["AuthLevelName"] = $nekaDrugaDB->getAuthLevelName().' nesto';
 		$out[] = $detailFlds;    	

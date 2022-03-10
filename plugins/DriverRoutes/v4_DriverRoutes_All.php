@@ -1,23 +1,33 @@
 <?
 header('Content-Type: text/javascript; charset=UTF-8');
-require_once 'Initial.php';
-require_once ROOT . '/db/v4_DriverRoutes.class.php';
-$dbC = new v4_DriverRoutes();
+error_reporting(E_PARSE);
 
 @session_start();
+# init libs
+require_once ROOT . '/db/db.class.php';
+require_once ROOT . '/db/v4_DriverRoutes.class.php';
+require_once ROOT . '/db/v4_AuthUsers.class.php';
+
+# init class
+$db = new v4_DriverRoutes();
+$au = new v4_AuthUsers();
+
+#********************************************
+# ulazni parametri su where, status i search
+#********************************************
 
 # sastavi filter - posalji ga $_REQUEST-om
-if (isset($type)) {
-	if (!isset($_REQUEST['Type']) or $_REQUEST['Type'] == 0) {
-		$filter = "  AND ".$type." != 0 ";
-	}
-	else {
-		$filter = "  AND ".$type." = '" . $_REQUEST['Type'] . "'";
-	}
-}
+
+
 $page 		= $_REQUEST['page'];
 $length 	= $_REQUEST['length'];
 $sortOrder 	= $_REQUEST['sortOrder'];
+$OwnerID	= $_REQUEST['ownerId'];
+
+require_once ROOT . '/cms/fixDriverID.php';
+foreach($fakeDrivers as $key => $fakeDriverID) {
+    if($OwnerID == $fakeDriverID) $OwnerID = $realDrivers[$key];    
+}
 
 $start = ($page * $length) - $length;
 
@@ -35,7 +45,20 @@ $flds = array();
 
 # kombinacija where i filtera
 $DB_Where = " " . $_REQUEST['where'];
+if(!empty($OwnerID)) $DB_Where .= " AND OwnerID = " . $OwnerID; 
+
 $DB_Where .= $filter;
+
+#********************************
+# kolone za koje je moguc Search 
+# treba ih samo nabrojati ovdje
+# Search ce ih sam pretraziti
+#********************************
+$aColumns = array(
+	'ID', // dodaj ostala polja!
+	'RouteName'
+);
+
 
 # dodavanje search parametra u qry
 # DB_Where sad ima sve potrebno za qry
@@ -53,44 +76,48 @@ if ( $_REQUEST['Search'] != "" )
 	$DB_Where = substr_replace( $DB_Where, "", -3 );
 	$DB_Where .= ')';
 }
-$dbTotalRecords = $db->getKeysBy($ItemName . $sortOrder, '',$DB_Where);
+
+
+
+
+
+
+$dbTotalRecords = $db->getKeysBy('ID ASC', '',$DB_Where);
+
 # test za LIMIT - trebalo bi ga iskoristiti za pagination! 'asc' . ' LIMIT 0,50'
-$dbk = $db->getKeysBy($ItemName . $sortOrder, '' . $limit , $DB_Where);
+$dbk = $db->getKeysBy('RouteName ' . $sortOrder, '' . $limit , $DB_Where);
 
 if (count($dbk) != 0) {
+   
     foreach ($dbk as $nn => $key)
     {
+    	
     	$db->getRow($key);
+    	
+	
 		// ako treba neki lookup, onda to ovdje
+		
 		# get all fields and values
 		$detailFlds = $db->fieldValues();
-		$detailFlds['driver']='';
-		$detailFlds['check']=-1;		
-		if (isset($_SESSION['UseDriverID']) && $_SESSION['UseDriverID']>0) {
-			$id=$db->getRouteID();
-			$keys=$dbC->getKeysBy('ID', '', ' WHERE RouteID='.$id.' AND OwnerID='.$_SESSION['UseDriverID']);		
-			if (count($keys)>0) {
-				$detailFlds['driver']=$_SESSION['UseDriverName'];
-				$detailFlds['check']=1;
-				$dbC->getRow($keys[0]);
-				$cid=$dbC->getID();
-				$driverlink='driverRoutes/'.$cid;
-				$detailFlds['driverlink']=$driverlink;
-			}	
-			else {
-				$detailFlds['driver']='*';
-				$detailFlds['check']=0;
-				$detailFlds['driverlink']='driverRoutes/connect/'.$id;
-			}	
+
+    	$au->getRow($db->getOwnerID());
+    	if ($au->getAuthUserID() == $db->getOwnerID()) {
+    		$DriverName = $au->getAuthUserCompany();
+			$detailFlds["DriverName"] = $DriverName;
 		}
-		// ako postoji neko custom polje, onda to ovdje.
-		// npr. $detailFlds["AuthLevelName"] = $nekaDrugaDB->getAuthLevelName().' nesto';
+		
 		$out[] = $detailFlds;    	
+
+		
     }
 }
+
+
 # send output back
 $output = array(
 'recordsTotal' => count($dbTotalRecords),
 'data' =>$out
 );
-echo $_GET['callback'] . '(' . json_encode($output) . ')';	
+
+echo $_GET['callback'] . '(' . json_encode($output) . ')';
+	

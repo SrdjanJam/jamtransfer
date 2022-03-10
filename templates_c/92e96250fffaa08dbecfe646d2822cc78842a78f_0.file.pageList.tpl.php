@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.32, created on 2022-01-27 11:56:17
+/* Smarty version 3.1.32, created on 2022-03-10 10:24:08
   from 'C:\wamp\www\jamtransfer\templates\pageList.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.32',
-  'unifunc' => 'content_61f2886167d123_01754684',
+  'unifunc' => 'content_6229d1c8bc23d8_65615274',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '92e96250fffaa08dbecfe646d2822cc78842a78f' => 
     array (
       0 => 'C:\\wamp\\www\\jamtransfer\\templates\\pageList.tpl',
-      1 => 1642508526,
+      1 => 1646907841,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_61f2886167d123_01754684 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6229d1c8bc23d8_65615274 (Smarty_Internal_Template $_smarty_tpl) {
 echo '<script'; ?>
  type="text/javascript">
 window.root = 'plugins/<?php echo $_smarty_tpl->tpl_vars['base']->value;?>
@@ -55,15 +55,17 @@ window.currenturl = '<?php echo $_smarty_tpl->tpl_vars['currenturl']->value;?>
  type="text/javascript">
 	$(document).ready(function(){
 		allItems(); 
+		oneItem(<?php echo $_smarty_tpl->tpl_vars['item']->value;?>
+);
 	});	
 <?php echo '</script'; ?>
 >
 
 <div class=" container">
-	<a class="btn btn-primary btn-xs" href="<?php echo $_smarty_tpl->tpl_vars['root_home']->value;
+	<?php if ($_smarty_tpl->tpl_vars['parentID']->value != 5) {?><a class="btn btn-primary btn-xs" href="<?php echo $_smarty_tpl->tpl_vars['root_home']->value;
 echo $_smarty_tpl->tpl_vars['code']->value;?>
 /new"><?php echo $_smarty_tpl->tpl_vars['NNEW']->value;?>
-</a>
+</a><?php }?>
 	<br><br>
 	<input type="hidden"  id="whereCondition" name="whereCondition" 
 	value=" WHERE <?php echo $_smarty_tpl->tpl_vars['ItemID']->value;?>

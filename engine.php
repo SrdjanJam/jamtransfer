@@ -48,7 +48,7 @@ if (count($mdk)==1) {
 	$smarty->assign('pageList',$md->getName());	
 	$smarty->assign('title',$md->getName());
 	$smarty->assign('base',$md->getBase());
-	$smarty->assign('code',$md->getCode());
+	$smarty->assign('parentID',$md->getParentID());
 	
 }
 //staro resenje 

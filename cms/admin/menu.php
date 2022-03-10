@@ -93,25 +93,21 @@
           	</ul>
           </li>
 		<? 
-		if (isset($_SESSION['UseDriverID']) && $_SESSION['UseDriverID']>0) {
-			require_once ROOT . '/db/v4_AuthUsers.class.php';
-			$au = new v4_AuthUsers();
-			$au->getRow($_SESSION['UseDriverID']);
-			
+		if (isset($_SESSION['UseDriverID']) && $_SESSION['UseDriverID']>0) {			
 		?>	
 
           <li id="serviceSettings" class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-				<?= $au->getAuthUserRealName() ?><span class="caret"></span>
+				<?= $_SESSION['UseDriverName'] ?><span class="caret"></span>
             </a>
             <ul class="dropdown-menu" role="menu">
                 <li id="setout"><a href="setout.php">Set out</a></li>
 				<li class="divider"></li>				
-          		<li id="terminals"><a href="index.php?p=terminals">Terminals</a></li>  				
-          		<li id="driverRoutes"><a href="index.php?p=driverRoutes"><?= ROUTES ?></a></li>
-          		<li id="vehicles"><a href="index.php?p=vehicles"><?= VEHICLES ?></a></li>  
-          		<li id="extras"><a href="index.php?p=extras">Extras</a></li>
-            	<li id="prices"><a href="index.php?p=prices">Services</a></li>				
+          		<li id="terminals"><a href="terminals">Terminals</a></li>  				
+          		<li id="driverRoutes"><a href="driverRoutes"><?= ROUTES ?></a></li>
+          		<li id="vehicles"><a href="vehicles"><?= VEHICLES ?></a></li>  
+          		<li id="extras"><a href="extras">Extras</a></li>
+            	<li id="prices"><a href="prices">Services</a></li>				
 				<li class="divider"></li>
 				<li id="special"><a href="index.php?p=special"><?= SPECIALDATES ?></a></li>
 				<li id="special"><a href="index.php?p=specialtimes"><?= SPECIALTIMES ?></a></li>				
