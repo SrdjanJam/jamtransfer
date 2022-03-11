@@ -8,7 +8,6 @@
 	 	var active = $("#Active").val(); // prikazuje samo aktivne	
 	 	var filter = $("#Search").val(); // filtrira prema zadanom tekstu
 	 	var length = $("#length").val(); // dropdown za broj prikazanih usera na stranici
-
 	 	// advanced search
 	 	var sortOrder  = $("#sortOrder").val();
 	 	

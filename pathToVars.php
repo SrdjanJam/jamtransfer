@@ -31,7 +31,7 @@ switch ($activePage) {
 			else if (($pathVars->fetchByIndex($indexStart + 2))=='connect') {
 				$item=$pathVars->fetchByIndex($indexStart + 3);
 				// ovde ubaciti program koji vrsi konekciju master i driver tabela	
-				require '/plugins/makeDriverConnection.php?page='.$activePage.'&id='.$item;
+				require ROOT."/plugins/makeDriverConnection.php";
 			}
 		}	
 }

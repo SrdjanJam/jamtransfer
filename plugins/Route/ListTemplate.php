@@ -9,7 +9,7 @@
 				>
 			</div>
 			<div class="col-sm-1">	
-				<a target='_blank' href='{{driverlink}}'>
+				<a href='{{driverlink}}'>
 					{{#compare check ">" 0}}<i class="fa fa-pencil"></i>
 					{{else}}<i class="fa fa-link"></i>
 					{{/compare}}
