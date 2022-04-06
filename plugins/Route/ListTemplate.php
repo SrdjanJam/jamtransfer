@@ -1,13 +1,9 @@
 <script type="text/x-handlebars-template" id="ItemListTemplate">
 
+
 	{{#each Item}}
 	<div class="row">
 		{{#compare check ">" -1}}	
-			<div class="col-sm-1">		
-				<input type="checkbox" id="cb_{{RouteID}}" name="checkbox{{RouteID}}"
-				{{#compare check ">" 0}}checked{{/compare}}
-				>
-			</div>
 			<div class="col-sm-1">	
 				<a href='{{driverlink}}'>
 					{{#compare check ">" 0}}<i class="fa fa-pencil"></i>

@@ -72,6 +72,15 @@
 					</div>
 				</div>
 
+				<div class="row">
+					<div class="col-md-3">
+						<label for="Terminal">Top Route</label>
+					</div>
+					<div class="col-md-9">
+						{{yesNoSelect TopRoute 'TopRoute' }}
+					</div>
+				</div>
+				
 				<div class="row hidden">
 					<div class="col-md-3">
 						<label for="RouteName"><?=ROUTENAME;?></label>

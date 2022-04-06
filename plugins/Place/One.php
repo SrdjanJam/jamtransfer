@@ -3,15 +3,14 @@ header('Content-Type: text/javascript; charset=UTF-8');
 require_once 'Initial.php';
 
 	# init libs
-	require_once ROOT . '/db/v4_Places.class.php';
 	require_once ROOT . '/db/v4_AuthUsers.class.php';
-	require_once ROOT  . '/db/v4_DriverTerminals.class.php';
+	require_once ROOT . '/db/v4_DriverTerminals.class.php';
+	
 
 	# init vars
 	$out = array();
 
 	# init class
-	$db = new v4_Places();
 	$au = new v4_AuthUsers();
 
 	# filters
@@ -72,6 +71,7 @@ require_once 'Initial.php';
 		return $keys;
 		}
 	}	
+	
 	$dt = new v4_TerminalsJoin();
 	$dtk = $dt->getKeysBy('DriverID ASC ', '', '');
 	if (count($dtk) != 0) {
@@ -82,6 +82,12 @@ require_once 'Initial.php';
 		}
 		$detailFlds["Drivers"] = $drivers;
 	}
+	//Da li je lokacija terminal?
+	$detailFlds["Terminal"]=0;
+	$result = $dbT->RunQuery("SELECT * FROM v4_Terminals WHERE TerminalID=".$_REQUEST['ItemID']);
+		while($row = $result->fetch_array(MYSQLI_ASSOC)){
+			$detailFlds["Terminal"]=1;
+		}	
 	
 	$out[] = $detailFlds;
 

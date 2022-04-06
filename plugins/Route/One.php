@@ -11,6 +11,12 @@ $detailFlds = $db->fieldValues();
 foreach ($detailFlds as $key=>$value) {
 	$detailFlds[$key] = stripslashes($value);
 }
+	$detailFlds["TopRoute"]=0;
+	$result = $dbT->RunQuery("SELECT * FROM v4_TopRoutes WHERE TopRouteID=".$_REQUEST['ItemID']);
+		while($row = $result->fetch_array(MYSQLI_ASSOC)){
+			$detailFlds["TopRoute"]=1;
+		}	
+
 $out[] = $detailFlds;
 # send output back
 $output = json_encode($out);

@@ -91,6 +91,11 @@ if ($ownerid==556) $afpadd="_Split";
 	$afp = file_get_contents($filename, FILE_USE_INCLUDE_PATH);
 echo "<br><strong>APPROVED FUEL PRICE: ".$afp." EUR</strong></div>";
 
+# print exchange rates
+# echo '<div class="col-md-6">|';
+# foreach ($r as $row) {echo '1 ' . $row['Currency'] . ' = ' . $row['EUR'] . ' EUR |';}
+# echo '<br>(eg: 20 ' . $row['Currency'] . ' = 20*' . $row['EUR'] . ' = ' . 20 * $row['EUR'] . ' EUR)';
+# echo '</div>';
 
 echo '</div>';
 
@@ -101,48 +106,91 @@ if($row_cnt > 0) {
 		// dohvacanje engleskih imena lokacija iz v4_Places
 		// ako je FREEFORM, PickupID i DropID su 0,
 		// pa se imena dohvacaju iz v4_OrderDetails
-	
-		$mq = "SELECT MOrderKey, MPaxTel, MConfirmFile FROM v4_OrdersMaster WHERE MOrderID = ".$v->OrderID;
-		$mr = mysqli_query($con, $mq) or die('Error in OrdersMaster query <br>' . mysqli_connect_error());
-		$mo = mysqli_fetch_object($mr);	
-		$au->getRow($v->AgentID);
-		
 		if (($v->PickupID != 0) and ($v->DropID != 0)) {
 			$op->getRow($v->PickupID);
 			$PickupName = $op->getPlaceNameEN();
-			if($op->getPlaceType()!=1) {
-				$addressL=$PickupName.'+'.$v->PickupAddress;
-				$point='Pickup point in '.$PickupName;
-			}	
 			$op->getRow($v->DropID);
 			$DropName = $op->getPlaceNameEN();
-			if($op->getPlaceType()!=1) {
-				$addressL=$DropName.'+'.$v->DropAddress;
-				$point='Drop point in '.$DropName;				
-			}	
 		} else {
 			$PickupName = $v->PickupName;
 			$DropName = $v->DropName;
 		}
-		$addressL=str_replace(', ','+',$addressL);
-		$addressL=str_replace(',','+',$addressL);
-		$addressL=str_replace(' ','+',$addressL);
-		$addressL='https://www.google.com/search?q=maps+'.$addressL;
-		$PickupName=mysqli_real_escape_string($con, $PickupName);
-		$DropName=mysqli_real_escape_string($con, $DropName);		
-		
+
+		if ($savedDate != $v->PickupDate and $v->PickupDate < date("Y-m-d")) { // oznaka datuma za dan
+			echo '<div class="row pad4px red">'.convertTime($v->PickupDate).'</div>';
+		}
+
+		if ($savedDate != $v->PickupDate and $v->PickupDate >= date("Y-m-d")) { // oznaka datuma za dan
+			echo '<div class="row pad4px blue">'.convertTime($v->PickupDate).'</div>';
+		}
+
+		echo '<a href="index.php?p=details&id='.$v->DetailsID.'">';
+		echo '<div class="row"><div class="col-md-12 pad1em listTile"';
+		if ($v->TransferStatus==3) echo 'style="text-decoration: line-through;"';
+		echo '>';
+
+		$mq = "SELECT MOrderKey, MPaxTel, MConfirmFile FROM v4_OrdersMaster WHERE MOrderID = ".$v->OrderID;
+		$mr = mysqli_query($con, $mq) or die('Error in OrdersMaster query <br>' . mysqli_connect_error());
+		$mo = mysqli_fetch_object($mr);
+
 		$moreCars = 0;
 		if($v->SubDriver != 0 and $v->SubDriver2 != 0) $moreCars = 2;
 		if($v->SubDriver != 0 and $v->SubDriver2 != 0 and $v->SubDriver3 != 0) $moreCars = 3;
-		$hasReturn = hasReturn($v->OrderID, $v->TNo, $con);
-		if ($hasReturn != '') $returnTransfer = $hasReturn;
 
+		$hasReturn = hasReturn($v->OrderID, $v->TNo, $con);
+	
 		// koji auto vozi ovaj vozač
 		if($mydriver == $v->SubDriver) $myCar = carName($v->Car);
 		if($mydriver == $v->SubDriver2) $myCar = carName($v->Car2);
 		if($mydriver == $v->SubDriver3) $myCar = carName($v->Car3);
-		if ($v->TransferStatus==3) $cancelstyle='style="text-decoration: line-through;"';
-		else $cancelstyle='';
+
+		echo $v->OrderID . '-'.$v->TNo;
+		if ($v->TransferStatus==3) echo "CANCELED";
+		$au->getRow($v->AgentID);
+		if ($mo->MConfirmFile<>"") {
+			//echo "<img src='img/".$au->getImage()."'> ";	 
+			//echo "<b>".$au->getAuthUserRealName()."</b> ";	
+			echo " Ref.No: <b>".$mo->MConfirmFile."</b>";
+			echo " Emergency: <b>".$au->getEmergencyPhone()."</b>";	
+		}
+					
+		
+		echo '<br>';
+		echo '<strong>'.$v->SubPickupTime . '</strong> ' .mysqli_real_escape_string($con, $PickupName)  .
+		' &raquo; ' . mysqli_real_escape_string($con, $DropName);
+
+		echo '<br>'.$v->PaxName.' :: ' . $v->PaxNo . ' pax ';
+
+		echo '&nbsp;';
+
+		// TODO ima li ovih klasa?
+		$carColor = 'text-lightgrey';
+		$vehicleType = $v->VehicleType;
+		if($vehicleType >= 100 and $vehicleType < 200) {
+			$carColor = 'text-green white';
+			$vehicleType = 'P'.($vehicleType - 100);
+		}
+		if($vehicleType >= 200) {
+			$carColor = 'text-red white';
+			$vehicleType = 'FC'.($vehicleType - 200);
+		} 
+		echo '<i class="fa fa-car '. $carColor .' pad4px"></i> ';
+									
+		echo $myCar;
+		$extras = $oe->getKeysBy('ID', 'ASC', 'WHERE OrderDetailsID = ' . $v->DetailsID);
+		if(count($extras) > 0) echo ' <i class="fa fa-cubes red-text"></i>';
+							
+		if ($moreCars > 0) {
+		    echo ' :: <strong>'.$moreCars.' cars </strong>' ;
+		    // TODO staviti ime vozaca koji naplacuje
+		}
+
+		if ($hasReturn != '') {
+			echo ' :: <strong>'.$hasReturn.'</strong>' ;
+			echo '</small></li>';
+			$returnTransfer = $hasReturn;
+		}
+
 		$order = $mo->MOrderKey.'-'.$v->OrderID.' '.$returnTransfer;
 		$receipt = '<a href="https://www.jamtransfer.com/cms/raspored/PDF/'.$v->PDFFile.'">'.$v->PDFFile.'</a>';
 		$details[$v->DetailsID] = array(
@@ -169,80 +217,25 @@ if($row_cnt > 0) {
 				        'Cash'			=> $v->PayLater . ' Eur',
 				        'hr4'			=> '-',
 				        'Receipt PDF'	=> $receipt
-		);						
-		if ($savedDate != $v->PickupDate and $v->PickupDate < date("Y-m-d")) { // oznaka datuma za dan
-			echo '<div class="row pad4px red">'.convertTime($v->PickupDate).'</div>';
-		}
-		if ($savedDate != $v->PickupDate and $v->PickupDate >= date("Y-m-d")) { // oznaka datuma za dan
-			echo '<div class="row pad4px blue">'.convertTime($v->PickupDate).'</div>';
-		}
+		);
+
 		$savedDate = $v->PickupDate;		
+		echo '</div></div></a>';
+		echo '<i class="fa fa-phone"></i> <a href="tel:'.$mo->MPaxTel.'">'.$mo->MPaxTel.'</a>'; 
 		$DetailsID=$v->DetailsID;
-		$_SESSION['DETAILS'] = $details;
-		require_once '../db/v4_Flights.class.php';		
-		require('../cms/a/getFlightStat.php');
-		// TODO ima li ovih klasa?
-		$carColor = 'text-lightgrey';
-		$vehicleType = $v->VehicleType;
-		if($vehicleType >= 100 and $vehicleType < 200) {
-			$carColor = 'text-green white';
-			$vehicleType = 'P'.($vehicleType - 100);
-		}
-		if($vehicleType >= 200) {
-			$carColor = 'text-red white';
-			$vehicleType = 'FC'.($vehicleType - 200);
-		} 
-		$extras = $oe->getKeysBy('ID', 'ASC', 'WHERE OrderDetailsID = ' . $v->DetailsID);
-		if ($v->TransferStatus==3) $canceled="CANCELED";	
-		else $canceled="";	
+		require_once '../db/v4_Flights.class.php';
 		
-		$ephone=$au->getEmergencyPhone();
-		$ephone=explode(',',$ephone);
-		?>
-			<div <?= $cancelstyle?> class="pad1em listTile">
-				<? if ($mo->MConfirmFile<>"") {?> 
-					<div class="row">
-						<img src='img/<?= $au->getImage()?>'> 
-						<b><?= $mo->MConfirmFile?></b>
-						<? foreach ($ephone as $ep) { ?>						
-							<i class="fa fa-phone"></i> 
-							<a href="tel:<?= $ep ?>"><?= $ep ?></a>
-						<? }?>	
-					</div>
-				<? } ?>	
-				<div class="row">
-					<a href="index.php?p=details&id=<?= $v->DetailsID?>">
-						<?= $v->OrderID ?>-<?= $v->TNo?><?= $canceled ?>
-						<br>
-						<strong><?= $v->SubPickupTime ?></strong> <?= $PickupName ?> &raquo; <?= $DropName?>
-						<br>
-						<?= $v->PaxNo ?> pax &nbsp; <i class="fa fa-car <?= $carColor ?> pad4px"></i> 							
-						<?= $myCar?>
-						<? if(count($extras) > 0) {?> 
-							<i class="fa fa-cubes red-text"></i>
-						<? } ?>
-						<? if ($moreCars > 0) {?>
-							:: <strong><?= $moreCars?> cars </strong>
-						<? } ?>	
-						<? if ($hasReturn != '') {?>
-							:: <strong><?= $hasReturn?></strong>
-						<? } ?>
-					</a>
-				</div>
-				<div class="row">				
-					<i class="fa fa-user"></i> <?= $v->PaxName?> <i class="fa fa-phone"></i> <a href="tel:<?= $mo->MPaxTel?>"><?= $mo->MPaxTel?></a>
-				</div>	
-				<div class="row">		
-					<i class="fa fa-plane"></i> <a class="mytooltip" data-content="<?= $message?>"><?= $v->FlightNo?></a> <?= $v->FlightTime?>										
-				</div>
-				<div class="row">		
-					<i class="fa fa-map-marker"></i> <a target="_blank" href="<?= $addressL?>"><?= $point?></a>
-				</div>				
-			</div>
-		<?			
+		require('../cms/a/getFlightStat.php');
+		echo '<span class="flight mytooltip" data-content="'. $message.'">
+				<i class="fa fa-plane"></i>'.$v->FlightNo.' '.$v->FlightTime.'											
+					</span>';		
 	}
+
 } else echo '<h2>No transfers today. Go grab a beer and relax :)</h2>';	
+	
 echo '</div><br><br><br><br>';
+
+$_SESSION['DETAILS'] = $details;
 ?>
 
 

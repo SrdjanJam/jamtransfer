@@ -87,7 +87,7 @@ $cachetime = 84600;
 		}						
 	}
 	
-	$api_key="5b3ce3597851110001cf6248ec7fafd8eca44e0ca5590caf093aa7cb";
+	api_key="5b3ce3597851110001cf6248ec7fafd8eca44e0ca5590caf093aa7cb";
 	$layers="coarse";
 	$source1="whosonfirst";
 	$source2="geonames";
@@ -114,7 +114,7 @@ $cachetime = 84600;
 												);
 			}
 		}
-	}	
+	}
 
 	# Sort by name
 	//ksort($fromPlaces);

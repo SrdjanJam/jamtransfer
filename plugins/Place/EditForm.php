@@ -27,7 +27,7 @@
 			onclick="return editSaveItem('{{PlaceID}}');">
 			<i class="fa fa-save"></i>
 			</button>
-			{{#compare PlaceType "==" 1}}
+			{{#compare Terminal "==" 1}}
 				<? if (isset($_SESSION['UseDriverID']) && $_SESSION['UseDriverID']>0) {?>
 				<button class="btn" title="TERMINAL" 
 				onclick="return editSaveTerminal('{{PlaceID}}', '<?= $_SESSION['UseDriverID'] ?>');">
@@ -174,6 +174,14 @@
 					</div>
 					<div class="col-md-9">
 						{{yesNoSelect PlaceActive 'PlaceActive' }}
+					</div>
+				</div>				
+				<div class="row">
+					<div class="col-md-3">
+						<label for="Terminal">Terminal</label>
+					</div>
+					<div class="col-md-9">
+						{{yesNoSelect Terminal 'Terminal' }}
 					</div>
 				</div>
 				
