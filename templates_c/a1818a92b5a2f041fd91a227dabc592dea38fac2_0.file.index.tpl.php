@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.32, created on 2022-01-27 11:56:17
+/* Smarty version 3.1.32, created on 2022-04-12 09:39:08
   from 'C:\wamp\www\jamtransfer\templates\index.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.32',
-  'unifunc' => 'content_61f288613e40f6_95533320',
+  'unifunc' => 'content_625548bcac8160_07989500',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'a1818a92b5a2f041fd91a227dabc592dea38fac2' => 
     array (
       0 => 'C:\\wamp\\www\\jamtransfer\\templates\\index.tpl',
-      1 => 1642581759,
+      1 => 1649752840,
       2 => 'file',
     ),
   ),
@@ -21,7 +21,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:pageList.tpl' => 1,
   ),
 ),false)) {
-function content_61f288613e40f6_95533320 (Smarty_Internal_Template $_smarty_tpl) {
+function content_625548bcac8160_07989500 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html>
 	<head>
@@ -106,7 +106,7 @@ function content_61f288613e40f6_95533320 (Smarty_Internal_Template $_smarty_tpl)
 > -->
 		<!-- jQuery UI 1.10.3 -->
 		<?php echo '<script'; ?>
- src="js/jquery/ui/1.10.3/jquery-ui.min.js" type="text/javascript"><?php echo '</script'; ?>
+ src="js/jQuery/ui/1.10.3/jquery-ui.min.js" type="text/javascript"><?php echo '</script'; ?>
 >
 
 		<!-- Bootstrap -->

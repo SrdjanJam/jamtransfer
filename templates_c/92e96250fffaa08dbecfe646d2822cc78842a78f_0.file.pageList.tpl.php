@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.32, created on 2022-03-11 09:31:05
+/* Smarty version 3.1.32, created on 2022-04-07 11:49:47
   from 'C:\wamp\www\jamtransfer\templates\pageList.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.32',
-  'unifunc' => 'content_622b16d9aff068_82670249',
+  'unifunc' => 'content_624ecfdba6a768_92656791',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '92e96250fffaa08dbecfe646d2822cc78842a78f' => 
     array (
       0 => 'C:\\wamp\\www\\jamtransfer\\templates\\pageList.tpl',
-      1 => 1646990995,
+      1 => 1649332177,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_622b16d9aff068_82670249 (Smarty_Internal_Template $_smarty_tpl) {
+function content_624ecfdba6a768_92656791 (Smarty_Internal_Template $_smarty_tpl) {
 echo '<script'; ?>
  type="text/javascript">
 window.root = 'plugins/<?php echo $_smarty_tpl->tpl_vars['base']->value;?>
@@ -62,7 +62,7 @@ window.currenturl = '<?php echo $_smarty_tpl->tpl_vars['currenturl']->value;?>
 >
 
 <div class=" container">
-	<?php if ($_smarty_tpl->tpl_vars['parentID']->value != 5) {?><a class="btn btn-primary btn-xs" href="<?php echo $_smarty_tpl->tpl_vars['root_home']->value;
+	<?php if (!$_SESSION['UseDriverID']) {?><a class="btn btn-primary btn-xs" href="<?php echo $_smarty_tpl->tpl_vars['root_home']->value;
 echo $_smarty_tpl->tpl_vars['code']->value;?>
 /new"><?php echo $_smarty_tpl->tpl_vars['NNEW']->value;?>
 </a><?php }?>

@@ -124,7 +124,7 @@
           </li>
 		<? } ?>  
 		
-
+<!--
           <li id="reports" class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
             	Invoice <span class="caret"></span>
@@ -134,7 +134,6 @@
 				<li id="agentsWTransfers"><a href="index.php?p=invoices">
 					<i class="fa fa-exclamation-circle red-text"></i> <?= INVOICES_AGENTS ?><br><small>...read help first!</small></a></li>
 				<li class="divider"></li>				
-				<!--<li id="agentsByBDate"><a href="index.php?p=invoiceSum"><?= SUMMARY_INVOICE_DRIVER ?></a></li>-->
 				<li id="driversWTransfers"><a href="index.php?p=driversWTransfersCash"><?= DRIVERS_WITH_TRANSFERS ?> - <?= CASH ?></a></li>
 				<li id="driversBalance"><a href="index.php?p=driversBalanceCash"><?= DRIVERS_BALANCE ?> - <?= CASH ?></a></li>
 				<li id="driversWTransfers"><a href="index.php?p=driversWTransfers"><?= DRIVERS_WITH_TRANSFERS ?> - <?= OTHER ?></a></li>
@@ -186,8 +185,10 @@
 				<li id="tranStat"><a href="indexN.php?p=transfersReview">Transfers Review</a></li>				
           	</ul>
           </li>
-
+!-->
+		  
         </ul>
+		
         <ul class="nav navbar-nav navbar-right">
                     <!-- User Account: style can be found in dropdown.less -->
                     <li class="dropdown user user-menu">

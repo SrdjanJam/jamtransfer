@@ -167,7 +167,7 @@ $date = new DateTime();
 $date->setTimestamp($defDate);
 $defDate = $date->format('Y-m-d');
 
-if ($filterDate == '') $filterDate = $defDate;
+if (isset($filterDate) && $filterDate == '') $filterDate = $defDate;
 
 
 

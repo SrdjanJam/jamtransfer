@@ -2,6 +2,10 @@
 	require_once ROOT.'/db/v4_PlaceTypes.class.php';
 	$pt = new v4_PlaceTypes();
 	$placeTypes = $pt->getKeysBy('PlaceTypeEN', 'asc');
+	$arr_row['id']=99;
+	$arr_row['name']="Terminal";
+	$arr_all[]=$arr_row;
+	
 	foreach($placeTypes as $nn => $id) {
 		$pt->getRow($id);
 		$arr_row['id']=$pt->getPlaceTypeID();

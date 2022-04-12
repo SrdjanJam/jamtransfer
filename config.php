@@ -1,4 +1,5 @@
 <?
+
 require_once 'conn_string.php';
 require_once ROOT. '/definitions.php';
 require_once ROOT . '/db/db.class.php';	
@@ -30,8 +31,6 @@ $smarty->debugging =false;
 $modulesPath = ROOT . '/plugins'; // base folder for modules
 $smarty->assign('root_home',ROOT_HOME);
 $smarty->assign('root',ROOT);
-
-session_start();	
 
 // LANGUAGES
 if ( isset($_SESSION['CMSLang']) and $_SESSION['CMSLang'] != '') {
@@ -75,8 +74,11 @@ if (!is('co_name')) {
 		$_SESSION[$name] = $value;
 	}
 }
-$AuthUserID = $_SESSION['AuthUserID'];
-$local = isLocalAgent($AuthUserID);
-$smarty->assign('local',$local);
+
+if (isset($_SESSION['AuthUserID'])) {
+	$AuthUserID=$_SESSION['AuthUserID'];
+	$local = isLocalAgent($AuthUserID);
+	$smarty->assign('local',$local);
+}	
 
 ?>

@@ -1,6 +1,5 @@
 <?
 	define("B", ' ');
-	define("NL", '<br/>'); // newline char for tooltips
 	
 /*	
 	# TransferStatus taxido - trenutni
@@ -535,7 +534,6 @@ define("CLICK_TO_BOOK_AGAIN", "Click on a link to book again");
 define("THIS_YEAR", "This year");
 define("UNPAID_INVOICES", "Amount due");
 define("PAID_INVOICES", "Amount paid");
-define("PROVISION", "Agent commission");
 define("INVOICES", "Invoices total");
 define("INVOICE", "Invoice");
 
@@ -587,7 +585,6 @@ define("TELEPHONE", "Telephone");
 define("EXPENSES_REPORT", "Expenses - Report");
 define("SHOW_EXPENSES", "Show Expenses");
 define("OPTIONAL", "optional");
-define("NOTESS", "Notes");
 define("TOTAL_CARD", "Total Card");
 define("TOTAL_CASH", "Total Cash");
 define("TOTAL_PAID", "Total Paid");
@@ -637,7 +634,6 @@ define("SHOW_CLIENTS", "Show Clients");
 define("SHOW_EMAILS", "Show Emails");
 define("USER_TYPE", "User Type");
 define("AGENT_REPORT", "Agent Report");
-define("APPROVED", "Approved");
 
 // driver confirmation
 	define("SERVICES_DESC1", "
@@ -756,8 +752,6 @@ define("ENDTIME", "End Time");
 define("CORRECTIONPERCENT", "Percent");
 
 //Company info - Leo
-define("CO_NAME", "Company name");
-define("CO_ADDRESS", "Company address");
 define("CO_TEL", "Company phone");
 define("CO_FAX", "Company fax");
 define("CO_CITY", "Company city");
@@ -779,7 +773,6 @@ define("CO_YOUTUBE", "Youtube");
 define("CO_GOOGLEPLUS", "Google+");
 
 //Extra Services
-define("ID", "Service ID");
 define("DISPLAYORDER", "Service Display order");
 define("SERVICEEN", "Extra service (EN)");
 define("SERVICEDE", "Extra service (DE)");

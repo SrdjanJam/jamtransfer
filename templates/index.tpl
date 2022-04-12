@@ -71,7 +71,7 @@
 		<script src="https://code.jquery.com/jquery-2.0.2.js"></script>
 		<!-- <script src="cms/js/jquery/2.0.2/jquery.min.js"></script> -->
 		<!-- jQuery UI 1.10.3 -->
-		<script src="js/jquery/ui/1.10.3/jquery-ui.min.js" type="text/javascript"></script>
+		<script src="js/jQuery/ui/1.10.3/jquery-ui.min.js" type="text/javascript"></script>
 
 		<!-- Bootstrap -->
 		<!-- <script src="js/bootstrap.js" type="text/javascript"></script>-->

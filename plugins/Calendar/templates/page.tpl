@@ -26,7 +26,7 @@
 	calendar();
 	function calendar() {
 		$.get(
-			'plugins/calendar/calendar.php', 
+			'plugins/Calendar/calendar.php', 
 			{cal_month: $('#cal_month').val(), cal_year: $('#cal_year').val()},
 			function(data) {
 				$('#cal').html(data);

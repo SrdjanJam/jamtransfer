@@ -1,6 +1,7 @@
 <?
+//session_start();
 require_once 'config.php';
-session_start();
+
 //$_SESSION = array();
 
 # Language
@@ -9,8 +10,8 @@ if(!empty($_COOKIE['CMSLang'])) $_SESSION['CMSLang'] = $_COOKIE['CMSLang'];
 require_once('lng/' . $_SESSION['CMSLang'] . '_text.php');
 if(!isset($_SESSION['UserAuthorized']) or $_SESSION['UserAuthorized'] !== true) {
 	# Config File
+
 	require_once ROOT . '/db/db.class.php';
-	define("DB_PREFIX", "v4_");
 	$db = new DataBaseMysql();
 	$showLoginForm = true;
 
@@ -23,7 +24,7 @@ if(!isset($_SESSION['UserAuthorized']) or $_SESSION['UserAuthorized'] !== true) 
 				$tempPass = md5($_REQUEST['password']);
 				$cleanUserName 	= $db->conn->real_escape_string($_REQUEST['username']);
 				$cleanPass		= $db->conn->real_escape_string($tempPass);
-			
+
 				//Use the input username and password and check against 'users' table
 				$result = $db->RunQuery('SELECT * FROM '.DB_PREFIX.'AuthUsers 
 									WHERE AuthUserName = "'.$cleanUserName.'" 
@@ -193,4 +194,3 @@ if(!isset($_SESSION['UserAuthorized']) or $_SESSION['UserAuthorized'] !== true) 
 }
 // already Logged in 
 else header("Location: index.php");
-

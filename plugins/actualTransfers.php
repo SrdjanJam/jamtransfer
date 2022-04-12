@@ -1,7 +1,5 @@
 <?
 	$data = '';
-	require_once '../db/db.class.php';
-	require_once 'lng/en_text.php';
 
 	$db = new DataBaseMysql();
 	

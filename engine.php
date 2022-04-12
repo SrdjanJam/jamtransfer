@@ -1,11 +1,6 @@
 <?
-// Ako je booking zapoceo, spremi OrderKey u COOKIE
-// da bi korisnik mogao nastaviti booking kasnije
-if($_SESSION['BOOKING_STARTED']) {
-	if (isset($_SESSION['OrderKey'])) {
-		setcookie("Key", $_SESSION['OrderKey'], time() + (7*24*60*60));
-	}
-}
+
+
 // Sprema adresu na koju korisnik zeli doci
 // ali ako nije logiran, ne moze
 // nakon Logina vraca korisnika na spremljenu stranicu
@@ -27,10 +22,9 @@ if(isset($_REQUEST['sa_u']) and $_REQUEST['sa_u'] !='' and is_numeric($_REQUEST[
 and isset($_REQUEST['sa_l']) and $_REQUEST['sa_l'] !='' and is_numeric($_REQUEST['sa_l'])) {
 	require_once 'loginasuser.php'; 
 }
-
 // SELECT FOLDER/PAGE TO LOAD, ovisno o profilu korisnika
-if ($_REQUEST['af']) $_SESSION['af']=$_REQUEST['af'];
-if ($_SESSION['af']) $activeFolder=$_SESSION['af'];
+if (isset($_REQUEST['af']) && $_REQUEST['af']) $_SESSION['af']=$_REQUEST['af'];
+if (isset ($_SESSION['af']) && $_SESSION['af']) $activeFolder=$_SESSION['af'];
 else $activeFolder = 'cms/'.trim( strtolower($_SESSION['GroupProfile']) );
 		
 // meni

@@ -37,6 +37,15 @@ $flds = array();
 $DB_Where = " " . $_REQUEST['where'];
 $DB_Where .= $filter;
 
+if (isset($_SESSION['UseDriverID'])) {
+	$sql="SELECT RouteID FROM `v4_DriverTerminals`,v4_RoutesTerminals WHERE `DriverID`=".$_SESSION['UseDriverID']." and v4_DriverTerminals.TerminalID=v4_RoutesTerminals.TerminalID";	
+	$result = $dbT->RunQuery($sql);
+	while($row = $result->fetch_array(MYSQLI_ASSOC)){
+		$routes_arr.=$row['RouteID'].",";
+	}
+	$routes_arr = substr($routes_arr,0,strlen($routes_arr)-1);	
+	$DB_Where .= " AND RouteID in (".$routes_arr.")";
+}
 # dodavanje search parametra u qry
 # DB_Where sad ima sve potrebno za qry
 if ( $_REQUEST['Search'] != "" )
