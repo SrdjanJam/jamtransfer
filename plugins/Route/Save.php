@@ -29,9 +29,14 @@ $out = array(
 	'update' => $upd,
 	'insert' => $newID
 );
-
+if (isset($_SESSION['UseDriverID']) && $_SESSION['UseDriverID']>0) {
+	if ($_REQUEST['DriverRoute']==1) $result = $dbT->RunQuery("INSERT IGNORE INTO `v4_DriverRoutes`(`RouteID`,`OwnerID`) VALUES (".$keyValue.",".$_SESSION['UseDriverID'].")");
+	else $result = $dbT->RunQuery("DELETE FROM `v4_DriverRoutes` WHERE `RouteID`=".$keyValue);
+}
+else {	
 	if ($_REQUEST['TopRoute']==1) $result = $dbT->RunQuery("INSERT IGNORE INTO `v4_TopRoutes`(`TopRouteID`) VALUES (".$topRouteID.")");
 	else $result = $dbT->RunQuery("DELETE FROM `v4_TopRoutes` WHERE `TopRouteID`=".$topRouteID);
+}	
 
 # send output back
 $output = json_encode($out);

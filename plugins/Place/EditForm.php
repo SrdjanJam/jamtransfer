@@ -27,14 +27,6 @@
 			onclick="return editSaveItem('{{PlaceID}}');">
 			<i class="fa fa-save"></i>
 			</button>
-			{{#compare Terminal "==" 1}}
-				<? if (isset($_SESSION['UseDriverID']) && $_SESSION['UseDriverID']>0) {?>
-				<button class="btn" title="TERMINAL" 
-				onclick="return editSaveTerminal('{{PlaceID}}', '<?= $_SESSION['UseDriverID'] ?>');">
-				<b>T</b>
-				</button>
-				<? } ?>		
-			{{/compare}}			
 		</div>
 	</div>
 	
@@ -49,7 +41,7 @@
 						{{PlaceID}}
 					</div>
 				</div>
-
+				{{#compare UseDriverID "==" 0}}
 				<div class="row">
 					<div class="col-md-3">
 						<label for="PlaceCountry"><?=PLACECOUNTRY;?></label>
@@ -58,15 +50,6 @@
 						{{countrySelect PlaceCountry 'PlaceCountry' 'ID'}}
 					</div>
 				</div>
-
-<!--				<div class="row">-->
-<!--					<div class="col-md-3">-->
-<!--						<label for="CountryNameEN"><?=COUNTRYNAMEEN;?></label>-->
-<!--					</div>-->
-<!--					<div class="col-md-9">-->
-						<input type="hidden" name="CountryNameEN" id="CountryNameEN" class="w100" value="{{CountryNameEN}}">
-<!--					</div>-->
-<!--				</div>-->
 
 				<div class="row">
 					<div class="col-md-3">
@@ -175,7 +158,7 @@
 					<div class="col-md-9">
 						{{yesNoSelect PlaceActive 'PlaceActive' }}
 					</div>
-				</div>				
+				</div>	
 				<div class="row">
 					<div class="col-md-3">
 						<label for="Terminal">Terminal</label>
@@ -193,7 +176,16 @@
 						{{Drivers}}
 					</div>
 				</div>
-
+				{{else}}				
+				<div class="row">
+					<div class="col-md-3">
+						<label for="DriverTerminal">Driver Terminal</label>
+					</div>
+					<div class="col-md-9">
+						{{yesNoSelect Terminal 'Terminal' }}
+					</div>
+				</div>
+				{{/compare}}
 
 			</div>
 	    </div>

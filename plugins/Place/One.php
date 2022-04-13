@@ -18,7 +18,8 @@ require_once 'Initial.php';
 
 	# get fields and values
 	$detailFlds = $db->fieldValues();
-
+	if (isset($_SESSION['UseDriverID']) && $_SESSION['UseDriverID']>0) $detailFlds['UseDriverID']=$_SESSION['UseDriverID'];
+	else $detailFlds['UseDriverID']=0;
     
     # remove slashes 
     foreach ($detailFlds as $key=>$value) {
@@ -84,7 +85,10 @@ require_once 'Initial.php';
 	}
 	//Da li je lokacija terminal?
 	$detailFlds["Terminal"]=0;
-	$result = $dbT->RunQuery("SELECT * FROM v4_Terminals WHERE TerminalID=".$_REQUEST['ItemID']);
+	if (isset($_SESSION['UseDriverID']) && $_SESSION['UseDriverID']>0) 
+		$result = $dbT->RunQuery("SELECT * FROM v4_DriverTerminals WHERE TerminalID=".$_REQUEST['ItemID']." AND DriverID=".$_SESSION['UseDriverID']); 
+	else 
+		$result = $dbT->RunQuery("SELECT * FROM v4_Terminals WHERE TerminalID=".$_REQUEST['ItemID']);
 		while($row = $result->fetch_array(MYSQLI_ASSOC)){
 			$detailFlds["Terminal"]=1;
 		}	

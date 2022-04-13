@@ -5,8 +5,10 @@ require_once 'Initial.php';
 $out = array();
 
 # delete row by key value
-$db->deleteRow($_REQUEST['ID']);
-$out[] = 'Deleted';
+if (isset($_SESSION['UseDriverID']) && $_SESSION['UseDriverID']>0) 
+	$result = $dbT->RunQuery("DELETE FROM `v4_DriverRoutes` WHERE `RouteID`=".$_REQUEST['ID']." AND `OwnerID`=".$_SESSION['UseDriverID']);	
+else
+	$out[] = 'Deleted';
 
 # send output back
 $output = json_encode($out);

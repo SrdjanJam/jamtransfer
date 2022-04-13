@@ -38,11 +38,20 @@ $DB_Where = " " . $_REQUEST['where'];
 $DB_Where .= $filter;
 
 if (isset($_SESSION['UseDriverID'])) {
-	$sql="SELECT RouteID FROM `v4_DriverTerminals`,v4_RoutesTerminals WHERE `DriverID`=".$_SESSION['UseDriverID']." and v4_DriverTerminals.TerminalID=v4_RoutesTerminals.TerminalID";	
+	$sql="SELECT RouteID FROM `v4_DriverTerminals`,v4_RoutesTerminals WHERE `DriverID`=".$_SESSION['UseDriverID']." and v4_DriverTerminals.TerminalID=v4_RoutesTerminals.TerminalID";		
 	$result = $dbT->RunQuery($sql);
+	if ($_REQUEST['Type']>0) {
+		$sql="SELECT RouteID FROM `v4_DriverRoutes` WHERE `OwnerID`=".$_SESSION['UseDriverID'];					
+		$result2 = $dbT->RunQuery($sql);
+		while($row2 = $result2->fetch_array(MYSQLI_ASSOC)){
+			$routes[]=$row2['RouteID'];
+		}
+	}	
 	while($row = $result->fetch_array(MYSQLI_ASSOC)){
-		$routes_arr.=$row['RouteID'].",";
-	}
+		if ($_REQUEST['Type']==1 && in_array($row['RouteID'],$routes)) $routes_arr.=$row['RouteID'].",";
+		else if ($_REQUEST['Type']==2 && !in_array($row['RouteID'],$routes)) $routes_arr.=$row['RouteID'].",";
+		else if ($_REQUEST['Type']==0) $routes_arr.=$row['RouteID'].",";
+	}		
 	$routes_arr = substr($routes_arr,0,strlen($routes_arr)-1);	
 	$DB_Where .= " AND RouteID in (".$routes_arr.")";
 }
@@ -73,25 +82,6 @@ if (count($dbk) != 0) {
 		// ako treba neki lookup, onda to ovdje
 		# get all fields and values
 		$detailFlds = $db->fieldValues();
-		$detailFlds['driver']='';
-		$detailFlds['check']=-1;		
-		if (isset($_SESSION['UseDriverID']) && $_SESSION['UseDriverID']>0) {
-			$id=$db->getRouteID();
-			$keys=$dbC->getKeysBy('ID', '', ' WHERE RouteID='.$id.' AND OwnerID='.$_SESSION['UseDriverID']);		
-			if (count($keys)>0) {
-				$detailFlds['driver']=$_SESSION['UseDriverName'];
-				$detailFlds['check']=1;
-				$dbC->getRow($keys[0]);
-				$cid=$dbC->getID();
-				$driverlink='driverRoutes/'.$cid;
-				$detailFlds['driverlink']=$driverlink;
-			}	
-			else {
-				$detailFlds['driver']='*';
-				$detailFlds['check']=0;
-				$detailFlds['driverlink']='driverRoutes/connect/'.$id;
-			}	
-		}
 		// ako postoji neko custom polje, onda to ovdje.
 		// npr. $detailFlds["AuthLevelName"] = $nekaDrugaDB->getAuthLevelName().' nesto';
 		$out[] = $detailFlds;    	

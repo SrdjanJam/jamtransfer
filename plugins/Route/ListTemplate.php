@@ -1,18 +1,21 @@
+<?
+if (isset($_SESSION['UseDriverID']) && $_SESSION['UseDriverID']>0) {	
+	$arr_row['id']=1;
+	$arr_row['name']="Connected";
+	$arr_all[]=$arr_row;	
+	$arr_row['id']=2;
+	$arr_row['name']="Not Connected";
+	$arr_all[]=$arr_row;	
+	$smarty->assign('options',$arr_all);
+	$smarty->assign('selecttype',true);
+}
+?>
+
 <script type="text/x-handlebars-template" id="ItemListTemplate">
 
 
 	{{#each Item}}
 	<div class="row">
-		{{#compare check ">" -1}}	
-			<div class="col-sm-1">	
-				<a href='{{driverlink}}'>
-					{{#compare check ">" 0}}<i class="fa fa-pencil"></i>
-					{{else}}<i class="fa fa-link"></i>
-					{{/compare}}
-				</a>
-			</div>			
-		{{/compare}}
-
 		<div class="col-sm-10">		
 			<div  onclick="oneItem({{RouteID}});">		
 				<div class="row {{color}} pad1em listTile" 
@@ -22,11 +25,6 @@
 						<div class="col-sm-5">
 							{{RouteName}}
 						</div>					
-						
-						<div class="col-sm-3">
-							{{driver}}
-						</div>
-					
 						<div class="col-sm-1">
 						
 							{{#compare Approved ">" 0}}

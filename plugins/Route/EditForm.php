@@ -63,6 +63,7 @@
 					</div>
 				</div>
 
+				{{#compare UseDriverID "==" 0}}
 				<div class="row">
 					<div class="col-md-3">
 						<label for="Approved"><?=APPROVED;?></label>
@@ -74,7 +75,7 @@
 
 				<div class="row">
 					<div class="col-md-3">
-						<label for="Terminal">Top Route</label>
+						<label for="TopRoute">Top Route</label>
 					</div>
 					<div class="col-md-9">
 						{{yesNoSelect TopRoute 'TopRoute' }}
@@ -107,7 +108,17 @@
 						<input type="text" name="Duration" id="Duration" class="w100" value="{{Duration}}">
 					</div>
 				</div>
-
+				
+				{{else}}
+				<div class="row">
+					<div class="col-md-3">
+						<label for="DriverRoute">Driver Route</label>
+					</div>
+					<div class="col-md-9">
+						{{yesNoSelect DriverRoute 'DriverRoute' }}
+					</div>
+				</div>				
+				{{/compare}}
 
 			</div>
 	    </div>
