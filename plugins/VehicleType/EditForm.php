@@ -26,6 +26,7 @@
 	<div class="box-body ">
         <div class="row">
 			<div class="col-md-12">
+				{{#compare UseDriverID "==" 0}}			
 				<div class="row">
 					<div class="col-md-4">
 						<label for="VehicleTypeID"><?=VEHICLETYPEID;?></label>
@@ -34,7 +35,15 @@
 						<input type="text" name="VehicleTypeID" id="VehicleTypeID" class="w100" value="{{VehicleTypeID}}" readonly >
 					</div>
 				</div>
-
+				<div class="row">
+					<div class="col-md-3">
+						<label for="VehicleClass"><?=VEHICLECLASS;?></label>
+					</div>
+					<div class="col-md-9">
+						<input type="text" name="VehicleClass" id="VehicleClass" class="w100" value="{{VehicleClass}}" readonly >
+					</div>
+				</div>
+				
 				<div class="row">
 					<div class="col-md-4">
 						<label for="VehicleTypeName"><?=VEHICLETYPENAME;?></label>
@@ -61,25 +70,24 @@
 						<input type="text" name="Max" id="Max" class="w100" value="{{Max}}">
 					</div>
 				</div>
-
-				<div class="row">
-					<div class="col-md-3">
-						<label for="VehicleClass"><?=VEHICLECLASS;?></label>
-					</div>
-					<div class="col-md-9">
-						<input type="text" name="VehicleClass" id="VehicleClass" class="w100" value="{{VehicleClass}}" readonly >
-					</div>
-				</div>
-
 				<div class="row">
 					<div class="col-md-3">
 						<label for="DescriptionEN"><?=DESCRIPTION;?></label>
 					</div>
 					<div class="col-md-9">
-						<textarea name="DescriptionEN" id="DescriptionEN" rows="5" 
-					class="textarea" rows="10" style="width:100%">{{DescriptionEN}}</textarea>
+						<textarea name="DescriptionEN" id="DescriptionEN" rows="5" class="textarea" rows="10" style="width:100%" >{{DescriptionEN}}</textarea>
+					</div>
+				</div>				
+				{{else}}				
+				<div class="row">
+					<div class="col-md-3">
+						<label for="DriverVehicle">Driver Vehicle</label>
+					</div>
+					<div class="col-md-9">
+						{{yesNoSelect DriverVehicle 'DriverVehicle' }}
 					</div>
 				</div>
+				{{/compare}}
 			</div>
 	    </div>
 </form>

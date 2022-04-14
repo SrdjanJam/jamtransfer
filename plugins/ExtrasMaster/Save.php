@@ -22,6 +22,10 @@ if ($keyName != '' and $keyValue != '') {
 if ($keyName != '' and $keyValue == '') {
 	$newID = $db->saveAsNew();
 }
+if (isset($_SESSION['UseDriverID']) && $_SESSION['UseDriverID']>0) {
+	if ($_REQUEST['DriverExtras']==1) $result = $dbT->RunQuery("INSERT IGNORE INTO `v4_Extras`(`ServiceID`,`OwnerID`) VALUES (".$keyValue.",".$_SESSION['UseDriverID'].")");
+	else $result = $dbT->RunQuery("DELETE FROM `v4_Extras` WHERE `ServiceID`=".$keyValue." AND `OwnerID`=".$_SESSION['UseDriverID']);
+}
 $out = array(
 	'update' => $upd,
 	'insert' => $newID

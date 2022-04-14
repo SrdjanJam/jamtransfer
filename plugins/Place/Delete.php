@@ -7,8 +7,7 @@ $out = array();
 # delete row by key value
 if (isset($_SESSION['UseDriverID']) && $_SESSION['UseDriverID']>0) 
 	$result = $dbT->RunQuery("DELETE FROM `v4_DriverTerminals` WHERE `TerminalID`=".$_REQUEST['ID']." AND `DriverID`=".$_SESSION['UseDriverID']);	
-else
-	$db->deleteRow($_REQUEST['ID']);
+else $db->deleteRow($_REQUEST['ID']);
 $out[] = 'Deleted';
 
 # send output back

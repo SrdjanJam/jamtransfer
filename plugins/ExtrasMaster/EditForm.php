@@ -20,27 +20,14 @@
 			<button class="btn btn-info" title="<?= SAVE_CHANGES ?>" 
 			onclick="return editSaveItem('{{ID}}');">
 			<i class="fa fa-save"></i>
-			</button>
-			<? if (isset($_SESSION['UseDriverID']) && $_SESSION['UseDriverID']>0) { ?>
-				{{#if setting}} 
-					<button class="btn" title="Cancel for Driver" 
-					onclick="return deleteDriverItem('{{ID}}');">
-					<i class="fa fa-ban"></i>
-					</button>
-				{{else}}	
-					<button class="btn" title="Set for Driver" 
-					onclick="return setDriverItem('{{ID}}');">
-					<i class="fa fa-save"></i>
-					</button>				
-				{{/if}}			
-			<? } ?>	
-			
+			</button>			
 		</div>
 	</div>
 
 	<div class="box-body ">
         <div class="row">
 			<div class="col-md-12">
+				{{#compare UseDriverID "==" 0}}						
 				<div class="row">
 					<div class="col-md-2">
 						<label for="ID"><?=ID;?></label>
@@ -139,7 +126,16 @@
 						<input type="text" name="ServiceNL" id="ServiceNL" class="w100" value="{{ServiceNL}}">
 					</div>
 				</div>
-
+				{{else}}				
+				<div class="row">
+					<div class="col-md-3">
+						<label for="DriverExtras">Driver Extras</label>
+					</div>
+					<div class="col-md-9">
+						{{yesNoSelect DriverExtras 'DriverExtras' }}
+					</div>
+				</div>
+				{{/compare}}
 			</div>
 	    </div>
 		    

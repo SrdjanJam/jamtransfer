@@ -34,7 +34,17 @@ $flds = array();
 # kombinacija where i filtera
 $DB_Where = " " . $_REQUEST['where'];
 $DB_Where .= $filter;
-
+// filter za ulogovane vozace
+if (isset($_SESSION['UseDriverID']) && $_REQUEST['Type']>0) { 
+	$sql="SELECT VehicleTypeID FROM `v4_Vehicles` WHERE `OwnerID`=".$_SESSION['UseDriverID'];	
+	$result = $dbT->RunQuery($sql);
+	while($row = $result->fetch_array(MYSQLI_ASSOC)){
+		$vehicles_arr.=$row['VehicleTypeID'].",";
+	}	
+	$vehicles_arr = substr($vehicles_arr,0,strlen($vehicles_arr)-1);
+	if ($_REQUEST['Type']==1) $DB_Where .= " AND VehicleTypeID in (".$vehicles_arr.")";
+	else $DB_Where .= " AND VehicleTypeID not in (".$vehicles_arr.")";	
+}	
 # dodavanje search parametra u qry
 # DB_Where sad ima sve potrebno za qry
 if ( $_REQUEST['Search'] != "" )

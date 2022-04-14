@@ -31,7 +31,7 @@ $out = array(
 );
 if (isset($_SESSION['UseDriverID']) && $_SESSION['UseDriverID']>0) {
 	if ($_REQUEST['DriverRoute']==1) $result = $dbT->RunQuery("INSERT IGNORE INTO `v4_DriverRoutes`(`RouteID`,`OwnerID`) VALUES (".$keyValue.",".$_SESSION['UseDriverID'].")");
-	else $result = $dbT->RunQuery("DELETE FROM `v4_DriverRoutes` WHERE `RouteID`=".$keyValue);
+	else $result = $dbT->RunQuery("DELETE FROM `v4_DriverRoutes` WHERE `RouteID`=".$keyValue." AND `OwnerID`=".$_SESSION['UseDriverID']);
 }
 else {	
 	if ($_REQUEST['TopRoute']==1) $result = $dbT->RunQuery("INSERT IGNORE INTO `v4_TopRoutes`(`TopRouteID`) VALUES (".$topRouteID.")");

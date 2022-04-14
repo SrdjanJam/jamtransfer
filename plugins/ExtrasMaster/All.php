@@ -38,6 +38,17 @@ $flds = array();
 $DB_Where = " " . $_REQUEST['where'];
 $DB_Where .= $filter;
 
+if (isset($_SESSION['UseDriverID']) && $_REQUEST['Type']>0) { 
+	$sql="SELECT ServiceID FROM `v4_Extras` WHERE `OwnerID`=".$_SESSION['UseDriverID'];	
+	$result = $dbT->RunQuery($sql);
+	while($row = $result->fetch_array(MYSQLI_ASSOC)){
+		$extras_arr.=$row['ServiceID'].",";
+	}	
+	$extras_arr = substr($extras_arr,0,strlen($extras_arr)-1);
+	if ($_REQUEST['Type']==1) $DB_Where .= " AND ID in (".$extras_arr.")";
+	else $DB_Where .= " AND ID not in (".$extras_arr.")";	
+}
+
 # dodavanje search parametra u qry
 # DB_Where sad ima sve potrebno za qry
 if ( $_REQUEST['Search'] != "" )

@@ -1,5 +1,7 @@
 <?
 	ob_start();
+	if (isset($_SESSION['UseDriverID']) && $_SESSION['UseDriverID']>0) $driver=true;
+	else $driver=false;
 ?>
 	<style>
 	
@@ -29,6 +31,21 @@
       <div class="navbar-collapse collapse">
         <ul class="nav navbar-nav">
           <li id="dashboard"><a href="dashboard"><?= DASHBOARD ?></a></li>
+          <li id="siteContent" class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            	<?= SITE_CONTENT ?> <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu" role="menu">
+            	<!--<li id="siteSettings"><a href="index.php?p=siteSettings"><?= SITE_SETTINGS ?></a></li>-->
+          		<li id="fileman"><a href="fileman"><?= IMAGE_MANAGER ?></a></li>
+          		<li id="siteArticles"><a href="siteArticles"><?= ARTICLES ?></a></li>
+          		<li id="sitePages"><a href="sitePages"><?= PAGES ?></a></li>
+          		<li id="coInfo"><a href="coInfo"><?= COMPANY_INFO ?></a></li>
+          		<!--<li id="coTexts"><a href="coTexts"><?= COMPANY_TEXTS ?></a></li>-->
+          		<li id="headerImages"><a href="headerImages"><?= HEADER_IMAGES ?></a></li> 
+				<li id="routeReviews"><a href="routeReviews"><?= ROUTE_REVIEWS ?></a></li>
+          	</ul>
+          </li>		  
           <li id="transfersList" class="dropdown">
           	<a href="#" class="dropdown-toggle" data-toggle="dropdown">
           		<?= TRANSFERS ?> <span class="caret"></span>
@@ -62,38 +79,22 @@
           <li id="users"><a href="users"><?= USERS ?> </a>
           </li>
 		  
-          <li id="siteContent" class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-            	<?= SITE_CONTENT ?> <span class="caret"></span>
-            </a>
-            <ul class="dropdown-menu" role="menu">
-            	<!--<li id="siteSettings"><a href="index.php?p=siteSettings"><?= SITE_SETTINGS ?></a></li>-->
-          		<li id="fileman"><a href="fileman"><?= IMAGE_MANAGER ?></a></li>
-          		<li id="siteArticles"><a href="siteArticles"><?= ARTICLES ?></a></li>
-          		<li id="sitePages"><a href="sitePages"><?= PAGES ?></a></li>
-          		<li id="coInfo"><a href="coInfo"><?= COMPANY_INFO ?></a></li>
-          		<!--<li id="coTexts"><a href="coTexts"><?= COMPANY_TEXTS ?></a></li>-->
-          		<li id="headerImages"><a href="headerImages"><?= HEADER_IMAGES ?></a></li> 
-				<li id="routeReviews"><a href="routeReviews"><?= ROUTE_REVIEWS ?></a></li>
-          	</ul>
-          </li>
-
           <li id="masterSettings" class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
             	Masters <span class="caret"></span>
             </a>
             <ul class="dropdown-menu" role="menu">
-            	<li id="countries"><a href="countries"><?= COUNTRIES ?></a></li>
-          		<li id="locations"><a href="locationTypes"><?= LOCATION_TYPES ?></a></li>				
+            	<? if (!$driver) { ?><li id="countries"><a href="countries"><?= COUNTRIES ?></a></li>
+          		<li id="locations"><a href="locationTypes"><?= LOCATION_TYPES ?></a></li><? } ?>	
           		<li id="locations"><a href="locations"><?= LOCATIONS ?></a></li>
           		<li id="routes"><a href="routes"><?= ROUTES ?></a></li>
 				<li id="vehicleTypes"><a href="vehicleTypes"><?= VEHICLE_TYPES ?></a></li>
-				<li id="extraServices"><a href="extraServices">Extras</a></li>
-				<li id="coupons"><a href="coupons"><?= COUPONS ?></a></li>				
+				<li id="extraServices"><a href="extraServices"><?= EXTRAS ?></a></li>
+				<? if (!$driver) { ?><li id="coupons"><a href="coupons"><?= COUPONS ?></a></li><? } ?>				
           	</ul>
           </li>
 		<? 
-		if (isset($_SESSION['UseDriverID']) && $_SESSION['UseDriverID']>0) {			
+		if ($driver) {			
 		?>	
 
           <li id="serviceSettings" class="dropdown">
@@ -103,7 +104,6 @@
             <ul class="dropdown-menu" role="menu">
                 <li id="setout"><a href="setout.php">Set out</a></li>
 				<li class="divider"></li>				
-          		<li id="terminals"><a href="terminals">Terminals</a></li>  				
           		<li id="driverRoutes"><a href="driverRoutes"><?= ROUTES ?></a></li>
           		<li id="vehicles"><a href="vehicles"><?= VEHICLES ?></a></li>  
           		<li id="extras"><a href="extras">Extras</a></li>
@@ -123,6 +123,7 @@
           	</ul>
           </li>
 		<? } ?>  
+		
 		
 <!--
           <li id="reports" class="dropdown">
