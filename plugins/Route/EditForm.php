@@ -117,7 +117,22 @@
 					<div class="col-md-9">
 						{{yesNoSelect DriverRoute 'DriverRoute' }}
 					</div>
-				</div>				
+				</div>	
+				<div class="row">
+					<div class="col-md-3">
+						<label for="SurCategory"><?=SURCATEGORY;?></label>
+					</div>
+					<div class="col-md-9">
+						<select name="SurCategory" id="SurCategory" class="w100">
+							{{#select SurCategory}}
+								<option value="1" {{#compare SurCategory "==" 1}}selected{{/compare}}><?= USE_GLOBAL ?></option>
+								<option value="3" {{#compare SurCategory "==" 3}}selected{{/compare}}><?= ROUTE_SPECIFIC ?></option>
+								<option value="0" {{#compare SurCategory "==" 0}}selected{{/compare}}><?= NO_SURCHARGES ?></option>
+							{{/select}}								
+						</select>
+					</div>
+				</div>
+					
 				{{/compare}}
 
 			</div>

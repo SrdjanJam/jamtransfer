@@ -55,6 +55,17 @@ if (isset($_SESSION['UseDriverID'])) {
 	$routes_arr = substr($routes_arr,0,strlen($routes_arr)-1);	
 	$DB_Where .= " AND RouteID in (".$routes_arr.")";
 }
+else if ($_REQUEST['Type']>0) {
+	$sql="SELECT TopRouteID FROM `v4_TopRoutes` WHERE 1=1";
+	$result3 = $dbT->RunQuery($sql);
+	while($row3 = $result3->fetch_array(MYSQLI_ASSOC)){
+		$routes_arr.=$row3['TopRouteID'].",";
+	}
+	
+	$routes_arr = substr($routes_arr,0,strlen($routes_arr)-1);	
+	if ($_REQUEST['Type']==1) $DB_Where .= " AND RouteID in (".$routes_arr.")";
+	else $DB_Where .= " AND RouteID not in (".$routes_arr.")";
+}	
 # dodavanje search parametra u qry
 # DB_Where sad ima sve potrebno za qry
 if ( $_REQUEST['Search'] != "" )

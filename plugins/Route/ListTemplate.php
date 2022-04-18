@@ -1,14 +1,15 @@
 <?
-if (isset($_SESSION['UseDriverID']) && $_SESSION['UseDriverID']>0) {	
 	$arr_row['id']=1;
-	$arr_row['name']="Connected";
+	if (isset($_SESSION['UseDriverID']) && $_SESSION['UseDriverID']>0) 	$arr_row['name']="Connected";
+	else $arr_row['name']="Top";
 	$arr_all[]=$arr_row;	
 	$arr_row['id']=2;
-	$arr_row['name']="Not Connected";
+	if (isset($_SESSION['UseDriverID']) && $_SESSION['UseDriverID']>0) 	$arr_row['name']="Not Connected";
+	else $arr_row['name']="Not top";	
 	$arr_all[]=$arr_row;	
 	$smarty->assign('options',$arr_all);
 	$smarty->assign('selecttype',true);
-}
+
 ?>
 
 <script type="text/x-handlebars-template" id="ItemListTemplate">

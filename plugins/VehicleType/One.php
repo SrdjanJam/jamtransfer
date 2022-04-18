@@ -19,6 +19,7 @@ foreach ($detailFlds as $key=>$value) {
 		$result = $dbT->RunQuery("SELECT * FROM v4_Vehicles WHERE VehicleTypeID=".$_REQUEST['ItemID']." AND OwnerID=".$_SESSION['UseDriverID']); 
 		while($row = $result->fetch_array(MYSQLI_ASSOC)){
 			$detailFlds["DriverVehicle"]=1;
+			$detailFlds["SurCategory"]=$row['SurCategory'];
 		}
 	}	
 $out[] = $detailFlds;
