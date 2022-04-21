@@ -55,18 +55,6 @@
 			</div>
 	    </div>
 		    
-
-	<!-- Statuses and messages -->
-	<div class="box-footer">
-		<? if (!$isNew) { ?>
-		<div>
-    	<button class="btn btn-default" onclick="return deleteItem('{{PlaceTypeID}}', '<?= $inList ?>');">
-    		<i class="ic-cancel-circle"></i> <?= DELETE ?>
-    	</button>
-    	</div>
-    	<? } ?>
-
-	</div>
 </form>
 
 

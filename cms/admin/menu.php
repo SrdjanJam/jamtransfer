@@ -104,10 +104,7 @@
             <ul class="dropdown-menu" role="menu">
                 <li id="setout"><a href="setout.php">Set out</a></li>
 				<li class="divider"></li>				
-          		<li id="driverRoutes"><a href="driverRoutes"><?= ROUTES ?></a></li>
-          		<li id="vehicles"><a href="vehicles"><?= VEHICLES ?></a></li>  
-          		<li id="extras"><a href="extras">Extras</a></li>
-            	<li id="prices"><a href="prices">Services</a></li>				
+            	<li id="services"><a href="services">Services</a></li>				
 				<li class="divider"></li>
 				<li id="special"><a href="index.php?p=special"><?= SPECIALDATES ?></a></li>
 				<li id="special"><a href="index.php?p=specialtimes"><?= SPECIALTIMES ?></a></li>				
