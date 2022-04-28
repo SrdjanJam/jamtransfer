@@ -80,5 +80,5 @@ if (isset($_SESSION['AuthUserID'])) {
 	$local = isLocalAgent($AuthUserID);
 	$smarty->assign('local',$local);
 }	
-
+$smarty->assign('isNew',false);
 ?>

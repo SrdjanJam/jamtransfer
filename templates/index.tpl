@@ -28,13 +28,13 @@
 		<link href="css/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css" rel="stylesheet" type="text/css" media="screen"/>
 		<link href="css/bootstrap-slider/slider.css" rel="stylesheet" type="text/css"/>
 		<link href="js/summernote/summernote.css" rel="stylesheet" type="text/css" media="screen"/>
-
 		<!-- Theme style WORKING !!!-->
 		<link href="css/theme.css" rel="stylesheet" type="text/css" media="screen"/>
+		<!-- Preuzeto za novu administraciju -->
+		<link href="css/admin.css" rel="stylesheet">
 
 		<!-- Misc -->
 		<link rel="stylesheet" href="css/jquery-ui-1.8.9.custom.css" type="text/css" />
-		<link href="css/admin.css" rel="stylesheet">
 
 		<link rel="stylesheet" href="js/pickadate/themes/default.css" type="text/css" media="screen"/>
 		<link rel="stylesheet" href="js/pickadate/themes/default.date.css" type="text/css" media="screen"/>
@@ -124,7 +124,31 @@
 		<script src="js/jquery.toaster.js"></script>
 		<script src="lng/{$language}_init.js"></script>	
 		<script src="js/cms.jquery.js"></script>
-		
+		{if isset($pageList)}
+		<script src="js/list.js"></script>
+		{literal}
+		<script type="text/javascript">
+		window.root = 'plugins/{/literal}{$base}{literal}/';
+		window.currenturl = '{/literal}{$currenturl}{literal}';
+		</script>
+		{/literal}
+			{if $isNew}
+			<script type="text/javascript">
+				$(document).ready(function(){
+					new_Item(); 
+				});	
+			</script>
+			{else}
+			{literal}
+			<script type="text/javascript">
+				$(document).ready(function(){
+					allItems(); 
+					oneItem({/literal}{$item}{literal});
+				});	
+			</script>
+			{/literal}
+			{/if}
+		{/if}		
 	</head>
 	<body class="fixed-top" style="height:100%!important;font-size:16px">
 		<div class="wrapper">
@@ -175,8 +199,31 @@
 				   </ul>
 				</div>
 			</nav>
-			<div id="page-wrapper" class="gray-bg dashbard-1">
-				<div class="row border-bottom">
+
+			<style type="text/css" >
+				.content {
+					height: 100%;
+					display: flex;
+					flex-direction: column;
+					flex-wrap: nowrap;
+					overflow: hidden;
+
+				}
+
+				.header {
+					flex-shrink: 0;
+				}
+				.body{
+					flex-grow: 1;
+					overflow: auto;
+					min-height: 2em;
+				}
+				.footer{
+					flex-shrink: 0;
+				}		
+			</style>			
+			<div id="page-wrapper" class="content gray-bg dashbard-1">
+				<div class="header row border-bottom">
 				   <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
 					  <div class="navbar-header">
 						 <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
@@ -195,8 +242,13 @@
 						 </li>
 					  </ul>
 				   </nav>
+				</div>   
+				{if not $isNew and isset($pageList)}
+				<div class="header">  
+					{include file="pageListHeader.tpl"} 				   
 				</div>
-				<div class="row wrapper border-bottom white-bg page-heading">
+				{/if}
+				<div class="body row wrapper border-bottom white-bg page-heading">
 				   <div class="col-lg-12">
 						{if isset($pageOLD)}
 							NOT MODEL VIEW CONTROL
@@ -213,13 +265,14 @@
 				   </div>
 				</div>
 				<div class="footer">
-				   <div class="pull-right">
-				   </div>
-				   <div>
+					{if not $isNew and isset($pageList)}				
+					<div id="pageSelect" class="col-sm-12"></div>
+					{/if}
+					<div class="pull-right">
 					  Powered by <strong>Jamtransfer</strong>
-				   </div>
-				   <div class="backdrop"><div class="spiner"></div></div>
-				   <div class="backdropP"><div class="spiner"></div></div>
+					</div>
+					<div class="backdrop"><div class="spiner"></div></div>
+					<div class="backdropP"><div class="spiner"></div></div>
 				</div>
 			</div>
 		</div>

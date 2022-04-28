@@ -1,27 +1,28 @@
 <?php
-/* Smarty version 3.1.32, created on 2022-04-28 11:13:38
+/* Smarty version 3.1.32, created on 2022-04-28 12:51:00
   from 'C:\wamp\www\jamtransfer\templates\index.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.32',
-  'unifunc' => 'content_626a5ac26f4366_69936235',
+  'unifunc' => 'content_626a8db4d9cf76_42833507',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'a1818a92b5a2f041fd91a227dabc592dea38fac2' => 
     array (
       0 => 'C:\\wamp\\www\\jamtransfer\\templates\\index.tpl',
-      1 => 1651137214,
+      1 => 1651150258,
       2 => 'file',
     ),
   ),
   'includes' => 
   array (
+    'file:pageListHeader.tpl' => 1,
     'file:pageList.tpl' => 1,
   ),
 ),false)) {
-function content_626a5ac26f4366_69936235 (Smarty_Internal_Template $_smarty_tpl) {
+function content_626a8db4d9cf76_42833507 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html>
 	<head>
@@ -54,13 +55,13 @@ function content_626a5ac26f4366_69936235 (Smarty_Internal_Template $_smarty_tpl)
 		<link href="css/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css" rel="stylesheet" type="text/css" media="screen"/>
 		<link href="css/bootstrap-slider/slider.css" rel="stylesheet" type="text/css"/>
 		<link href="js/summernote/summernote.css" rel="stylesheet" type="text/css" media="screen"/>
-
 		<!-- Theme style WORKING !!!-->
 		<link href="css/theme.css" rel="stylesheet" type="text/css" media="screen"/>
+		<!-- Preuzeto za novu administraciju -->
+		<link href="css/admin.css" rel="stylesheet">
 
 		<!-- Misc -->
 		<link rel="stylesheet" href="css/jquery-ui-1.8.9.custom.css" type="text/css" />
-		<link href="css/admin.css" rel="stylesheet">
 
 		<link rel="stylesheet" href="js/pickadate/themes/default.css" type="text/css" media="screen"/>
 		<link rel="stylesheet" href="js/pickadate/themes/default.date.css" type="text/css" media="screen"/>
@@ -211,7 +212,42 @@ _init.js"><?php echo '</script'; ?>
 		<?php echo '<script'; ?>
  src="js/cms.jquery.js"><?php echo '</script'; ?>
 >
+		<?php if (isset($_smarty_tpl->tpl_vars['pageList']->value)) {?>
+		<?php echo '<script'; ?>
+ src="js/list.js"><?php echo '</script'; ?>
+>
 		
+		<?php echo '<script'; ?>
+ type="text/javascript">
+		window.root = 'plugins/<?php echo $_smarty_tpl->tpl_vars['base']->value;?>
+/';
+		window.currenturl = '<?php echo $_smarty_tpl->tpl_vars['currenturl']->value;?>
+';
+		<?php echo '</script'; ?>
+>
+		
+			<?php if ($_smarty_tpl->tpl_vars['isNew']->value) {?>
+			<?php echo '<script'; ?>
+ type="text/javascript">
+				$(document).ready(function(){
+					new_Item(); 
+				});	
+			<?php echo '</script'; ?>
+>
+			<?php } else { ?>
+			
+			<?php echo '<script'; ?>
+ type="text/javascript">
+				$(document).ready(function(){
+					allItems(); 
+					oneItem(<?php echo $_smarty_tpl->tpl_vars['item']->value;?>
+);
+				});	
+			<?php echo '</script'; ?>
+>
+			
+			<?php }?>
+		<?php }?>		
 	</head>
 	<body class="fixed-top" style="height:100%!important;font-size:16px">
 		<div class="wrapper">
@@ -291,8 +327,31 @@ for ($__section_index1_1_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section
 				   </ul>
 				</div>
 			</nav>
-			<div id="page-wrapper" class="gray-bg dashbard-1">
-				<div class="row border-bottom">
+
+			<style type="text/css" >
+				.content {
+					height: 100%;
+					display: flex;
+					flex-direction: column;
+					flex-wrap: nowrap;
+					overflow: hidden;
+
+				}
+
+				.header {
+					flex-shrink: 0;
+				}
+				.body{
+					flex-grow: 1;
+					overflow: auto;
+					min-height: 2em;
+				}
+				.footer{
+					flex-shrink: 0;
+				}		
+			</style>			
+			<div id="page-wrapper" class="content gray-bg dashbard-1">
+				<div class="header row border-bottom">
 				   <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
 					  <div class="navbar-header">
 						 <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
@@ -312,8 +371,14 @@ for ($__section_index1_1_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section
 						 </li>
 					  </ul>
 				   </nav>
+				</div>   
+				<?php if (!$_smarty_tpl->tpl_vars['isNew']->value && isset($_smarty_tpl->tpl_vars['pageList']->value)) {?>
+				<div class="header">  
+					<?php $_smarty_tpl->_subTemplateRender("file:pageListHeader.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
+?> 				   
 				</div>
-				<div class="row wrapper border-bottom white-bg page-heading">
+				<?php }?>
+				<div class="body row wrapper border-bottom white-bg page-heading">
 				   <div class="col-lg-12">
 						<?php if (isset($_smarty_tpl->tpl_vars['pageOLD']->value)) {?>
 							NOT MODEL VIEW CONTROL
@@ -333,13 +398,14 @@ for ($__section_index1_1_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section
 				   </div>
 				</div>
 				<div class="footer">
-				   <div class="pull-right">
-				   </div>
-				   <div>
+					<?php if (!$_smarty_tpl->tpl_vars['isNew']->value && isset($_smarty_tpl->tpl_vars['pageList']->value)) {?>				
+					<div id="pageSelect" class="col-sm-12"></div>
+					<?php }?>
+					<div class="pull-right">
 					  Powered by <strong>Jamtransfer</strong>
-				   </div>
-				   <div class="backdrop"><div class="spiner"></div></div>
-				   <div class="backdropP"><div class="spiner"></div></div>
+					</div>
+					<div class="backdrop"><div class="spiner"></div></div>
+					<div class="backdropP"><div class="spiner"></div></div>
 				</div>
 			</div>
 		</div>
