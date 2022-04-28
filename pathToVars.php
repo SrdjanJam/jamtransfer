@@ -5,7 +5,7 @@ $pathVars = new PathVars($baseUrl);
 if (LOCAL) $indexStart = 1;
 else $indexStart = 0;
 $size=$pathVars->size();
-if ($size>0) {
+if ($size>$indexStart) {
 	$activePage=$pathVars->fetchByIndex($indexStart);
 }	
 else $activePage = 'dashboard';

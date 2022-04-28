@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.32, created on 2022-04-12 09:39:08
+/* Smarty version 3.1.32, created on 2022-04-28 11:13:38
   from 'C:\wamp\www\jamtransfer\templates\index.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.32',
-  'unifunc' => 'content_625548bcac8160_07989500',
+  'unifunc' => 'content_626a5ac26f4366_69936235',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'a1818a92b5a2f041fd91a227dabc592dea38fac2' => 
     array (
       0 => 'C:\\wamp\\www\\jamtransfer\\templates\\index.tpl',
-      1 => 1649752840,
+      1 => 1651137214,
       2 => 'file',
     ),
   ),
@@ -21,7 +21,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:pageList.tpl' => 1,
   ),
 ),false)) {
-function content_625548bcac8160_07989500 (Smarty_Internal_Template $_smarty_tpl) {
+function content_626a5ac26f4366_69936235 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html>
 	<head>
@@ -60,11 +60,13 @@ function content_625548bcac8160_07989500 (Smarty_Internal_Template $_smarty_tpl)
 
 		<!-- Misc -->
 		<link rel="stylesheet" href="css/jquery-ui-1.8.9.custom.css" type="text/css" />
+		<link href="css/admin.css" rel="stylesheet">
+
 		<link rel="stylesheet" href="js/pickadate/themes/default.css" type="text/css" media="screen"/>
 		<link rel="stylesheet" href="js/pickadate/themes/default.date.css" type="text/css" media="screen"/>
 		<link rel="stylesheet" href="js/pickadate/themes/default.time.css" type="text/css" media="screen"/>
 		<link rel="stylesheet" href="css/colors.css" media="all">
-		<link rel="stylesheet" href="css/simplegrid.css" media="all">
+		<!--<link rel="stylesheet" href="css/simplegrid.css" media="all">!-->
 		<link rel="stylesheet" type="text/css" href="css/JAMTimepicker.css">
 		<link rel="stylesheet" type="text/css" href="js/select/css/select2.css">		
 
@@ -107,6 +109,11 @@ function content_625548bcac8160_07989500 (Smarty_Internal_Template $_smarty_tpl)
 		<!-- jQuery UI 1.10.3 -->
 		<?php echo '<script'; ?>
  src="js/jQuery/ui/1.10.3/jquery-ui.min.js" type="text/javascript"><?php echo '</script'; ?>
+>
+
+		<!-- Mainly scripts -->
+		<?php echo '<script'; ?>
+ src="js/main.admin.js"><?php echo '</script'; ?>
 >
 
 		<!-- Bootstrap -->
@@ -208,30 +215,132 @@ _init.js"><?php echo '</script'; ?>
 	</head>
 	<body class="fixed-top" style="height:100%!important;font-size:16px">
 		<div class="wrapper">
-			<?php echo $_smarty_tpl->tpl_vars['menu_render']->value;?>
-
-
-			<div class="container-fluid side-collapse-container"
-			style="padding:0px!important">
-				<?php if (isset($_smarty_tpl->tpl_vars['pageOLD']->value)) {?>
-					NOT MODEL VIEW CONTROL
-				<?php } elseif (isset($_smarty_tpl->tpl_vars['page']->value)) {?>
-					<h1><?php echo $_smarty_tpl->tpl_vars['page']->value;?>
-</h1>
-					<?php $_smarty_tpl->_subTemplateRender(((string)$_smarty_tpl->tpl_vars['root']->value)."/plugins/".((string)$_smarty_tpl->tpl_vars['base']->value)."/templates/page.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, true);
+			<nav class="navbar-default navbar-static-side" role="navigation">
+				<div class="sidebar-collapse">
+					<ul class="nav metismenu" id="side-menu">
+						<li class="nav-header">
+							<div class="dropdown profile-element">
+								<a data-toggle="dropdown" class="dropdown-toggle" href="#">
+								<span class="clear"> 
+								<span class="block m-t-xs">
+									<a href="profile" >
+										<img src="api/showProfileImage.php?UserID=<?php echo $_SESSION['AuthUserID'];?>
+" class="img-circle" alt="User Image" style="height:2em;padding:-.5em;margin:-.5em" />
+										<strong class="font-bold"><?php echo $_SESSION['UserRealName'];?>
+</strong>
+									</a>
+								</span>
+								<ul class="dropdown-menu animated fadeInRight m-t-xs">
+									<li><a href="profile" data-param="">Profile</a></li>
+									<li class="divider"></li>
+									<li><a href='logout'>Logout</a></li>
+								</ul>
+							</div>
+						</li>
+						<?php if (isset($_SESSION['UseDriverName'])) {?>
+						<li class="nav-header">
+							<strong class="font-bold"><?php echo $_SESSION['UseDriverName'];?>
+</strong>
+						</li>
+						<?php }?>
+						<li class=""><a href="dashboard"><i class='fa fa-th-large'></i><span>Dashboard</span></a></li>
+						<?php
+$__section_index_0_loop = (is_array(@$_loop=$_smarty_tpl->tpl_vars['menu1']->value) ? count($_loop) : max(0, (int) $_loop));
+$__section_index_0_total = $__section_index_0_loop;
+$_smarty_tpl->tpl_vars['__smarty_section_index'] = new Smarty_Variable(array());
+if ($__section_index_0_total !== 0) {
+for ($__section_index_0_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_index']->value['index'] = 0; $__section_index_0_iteration <= $__section_index_0_total; $__section_index_0_iteration++, $_smarty_tpl->tpl_vars['__smarty_section_index']->value['index']++){
 ?>
-					MODEL VIEW CONTROL SMARTY		
-				<?php } elseif (isset($_smarty_tpl->tpl_vars['pageList']->value)) {?>
-					<h1><?php echo $_smarty_tpl->tpl_vars['pageList']->value;?>
-</h1>
-					<?php $_smarty_tpl->_subTemplateRender("file:pageList.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
+						<li class="<?php echo $_smarty_tpl->tpl_vars['menu1']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_index']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_index']->value['index'] : null)]['active'];?>
+">
+							<a href='<?php echo $_smarty_tpl->tpl_vars['menu1']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_index']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_index']->value['index'] : null)]['link'];?>
+' >
+								<i class="fa <?php echo $_smarty_tpl->tpl_vars['menu1']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_index']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_index']->value['index'] : null)]['icon'];?>
+"></i> 
+								<span class="nav-label"><?php echo $_smarty_tpl->tpl_vars['menu1']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_index']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_index']->value['index'] : null)]['title'];?>
+</span> 
+								<span class="<?php echo $_smarty_tpl->tpl_vars['menu1']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_index']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_index']->value['index'] : null)]['arrow'];?>
+"></span>
+							</a>
+							<?php if ($_smarty_tpl->tpl_vars['menu1']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_index']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_index']->value['index'] : null)]['menu']) {?>
+							<ul class="nav nav-second-level collapse" >
+								<?php
+$__section_index1_1_loop = (is_array(@$_loop=$_smarty_tpl->tpl_vars['menu1']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_index']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_index']->value['index'] : null)]['menu']) ? count($_loop) : max(0, (int) $_loop));
+$__section_index1_1_total = $__section_index1_1_loop;
+$_smarty_tpl->tpl_vars['__smarty_section_index1'] = new Smarty_Variable(array());
+if ($__section_index1_1_total !== 0) {
+for ($__section_index1_1_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_index1']->value['index'] = 0; $__section_index1_1_iteration <= $__section_index1_1_total; $__section_index1_1_iteration++, $_smarty_tpl->tpl_vars['__smarty_section_index1']->value['index']++){
+?>	
+								<li class="<?php echo $_smarty_tpl->tpl_vars['menu1']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_index']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_index']->value['index'] : null)]['menu'][(isset($_smarty_tpl->tpl_vars['__smarty_section_index1']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_index1']->value['index'] : null)]['active'];?>
+">
+									<a href="<?php echo $_smarty_tpl->tpl_vars['menu1']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_index']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_index']->value['index'] : null)]['menu'][(isset($_smarty_tpl->tpl_vars['__smarty_section_index1']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_index1']->value['index'] : null)]['link'];?>
+"><span class="nav-label"><?php echo $_smarty_tpl->tpl_vars['menu1']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_index']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_index']->value['index'] : null)]['menu'][(isset($_smarty_tpl->tpl_vars['__smarty_section_index1']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_index1']->value['index'] : null)]['title'];?>
+</span></a>
+								</li>
+								<?php
+}
+}
+?>	
+							</ul>
+							<?php }?>
+						</li>
+						<?php
+}
+}
+?>
+				   </ul>
+				</div>
+			</nav>
+			<div id="page-wrapper" class="gray-bg dashbard-1">
+				<div class="row border-bottom">
+				   <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+					  <div class="navbar-header">
+						 <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
+					  </div>
+					  <div class="navbar-header">
+						 <button type="button" class="minimalize-styl-2 btn btn-primary " id="cashe"><i class="fa fa-refresh"></i></button>
+					  </div>					  					  						
+					  <ul class="nav navbar-top-links navbar-right">
+						 <li>
+							<h2><span class="m-r-sm text-muted"><?php echo $_smarty_tpl->tpl_vars['title']->value;?>
+</span></h2>
+						 </li>
+						 <li>
+							<a href='logout'>
+							<i class="fa fa-sign-out"></i>Logout
+							</a>
+						 </li>
+					  </ul>
+				   </nav>
+				</div>
+				<div class="row wrapper border-bottom white-bg page-heading">
+				   <div class="col-lg-12">
+						<?php if (isset($_smarty_tpl->tpl_vars['pageOLD']->value)) {?>
+							NOT MODEL VIEW CONTROL
+						<?php } elseif (isset($_smarty_tpl->tpl_vars['page']->value)) {?>
+							<?php $_smarty_tpl->_subTemplateRender(((string)$_smarty_tpl->tpl_vars['root']->value)."/plugins/".((string)$_smarty_tpl->tpl_vars['base']->value)."/templates/index.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, true);
+?>
+							MODEL VIEW CONTROL SMARTY		
+						<?php } elseif (isset($_smarty_tpl->tpl_vars['pageList']->value)) {?>
+							<?php $_smarty_tpl->_subTemplateRender("file:pageList.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?> 
-					MODEL VIEW CONTROL HANDLEBARS
-				<?php } else { ?>
-					<?php echo $_smarty_tpl->tpl_vars['page_render']->value;?>
+							MODEL VIEW CONTROL HANDLEBARS
+						<?php } else { ?>
+							<?php echo $_smarty_tpl->tpl_vars['page_render']->value;?>
 
-					SEMI MODEL VIEW CONTROL via OB_GET_CONTENTS
-				<?php }?>
+							SEMI MODEL VIEW CONTROL via OB_GET_CONTENTS
+						<?php }?>				  
+				   </div>
+				</div>
+				<div class="footer">
+				   <div class="pull-right">
+				   </div>
+				   <div>
+					  Powered by <strong>Jamtransfer</strong>
+				   </div>
+				   <div class="backdrop"><div class="spiner"></div></div>
+				   <div class="backdropP"><div class="spiner"></div></div>
+				</div>
 			</div>
 		</div>
 		<input type='hidden' id='local' value='<?php echo $_smarty_tpl->tpl_vars['local']->value;?>

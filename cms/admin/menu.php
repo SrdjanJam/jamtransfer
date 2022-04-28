@@ -36,12 +36,10 @@
             	<?= SITE_CONTENT ?> <span class="caret"></span>
             </a>
             <ul class="dropdown-menu" role="menu">
-            	<!--<li id="siteSettings"><a href="index.php?p=siteSettings"><?= SITE_SETTINGS ?></a></li>-->
           		<li id="fileman"><a href="fileman"><?= IMAGE_MANAGER ?></a></li>
           		<li id="siteArticles"><a href="siteArticles"><?= ARTICLES ?></a></li>
           		<li id="sitePages"><a href="sitePages"><?= PAGES ?></a></li>
           		<li id="coInfo"><a href="coInfo"><?= COMPANY_INFO ?></a></li>
-          		<!--<li id="coTexts"><a href="coTexts"><?= COMPANY_TEXTS ?></a></li>-->
           		<li id="headerImages"><a href="headerImages"><?= HEADER_IMAGES ?></a></li> 
 				<li id="routeReviews"><a href="routeReviews"><?= ROUTE_REVIEWS ?></a></li>
           	</ul>
@@ -122,68 +120,6 @@
 		<? } ?>  
 		
 		
-<!--
-          <li id="reports" class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-            	Invoice <span class="caret"></span>
-            </a>
-            <ul class="dropdown-menu" role="menu">
-				<li class="dropdown-header"><?= BILLING ?></li>    
-				<li id="agentsWTransfers"><a href="index.php?p=invoices">
-					<i class="fa fa-exclamation-circle red-text"></i> <?= INVOICES_AGENTS ?><br><small>...read help first!</small></a></li>
-				<li class="divider"></li>				
-				<li id="driversWTransfers"><a href="index.php?p=driversWTransfersCash"><?= DRIVERS_WITH_TRANSFERS ?> - <?= CASH ?></a></li>
-				<li id="driversBalance"><a href="index.php?p=driversBalanceCash"><?= DRIVERS_BALANCE ?> - <?= CASH ?></a></li>
-				<li id="driversWTransfers"><a href="index.php?p=driversWTransfers"><?= DRIVERS_WITH_TRANSFERS ?> - <?= OTHER ?></a></li>
-				<li id="driversBalance"><a href="index.php?p=driversBalance"><?= DRIVERS_BALANCE ?> - <?= OTHER ?></a></li>
-				<li class="divider"></li>
-				<li id="agentsWTransfers"><a href="index.php?p=agentsWTransfersCash"><?= AGENTS_WITH_TRANSFERS ?> - <?= CASH ?></a></li>
-				<li id="agentsWTransfers"><a href="index.php?p=agentsWTransfers"><?= AGENTS_WITH_TRANSFERS ?> - <?= OTHER ?></a></li>
-				<li class="divider"></li>				
-				<li id="exchangeRate"><a href="index.php?p=exchangeRate"><?= EXCHANGE_RATE ?></a></li>
-				<li id="vatRate"><a href="index.php?p=vatRate">Vat rate</a></li>
-          	</ul>			
-          </li>
-
-
-
-          <li id="reports" class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-            	<?= REPORTS ?> <span class="caret"></span>
-            </a>
-            <ul class="dropdown-menu" role="menu">
-				<li id="transcs"><a href="index.php?p=transcs">Cost Structure</a></li>						
-            	<li id="promet"><a href="index.php?p=promet"><?= TRANSFERS_SUMMARY ?></a></li>
-            	<li id="promet2"><a href="index.php?p=promet2"><?= TRANSFERS_SUMMARY_BOOKING ?></a></li>
-
-          		<li class="divider"></li>
-          		<li class="dropdown-header"><?= ORDERS ?></li>              		
-          		<li id="agentsByTrDate">
-					<a href="index.php?p=agentOrders&ByWhat=1">...<?= ORDERS_BY_TR_DATE ?></a>
-				</li>
-          		<li id="agentsByBDate">
-					<a href="index.php?p=agentOrders&ByWhat=2">...<?= ORDERS_BY_B_DATE ?></a>
-				</li>
-          		<li id="agentsByBDate">
-					<a href="index.php?p=taxiSiteOrdersBookingDate">...<?= TAXI_SITE_ORDERS.'-'.BOOKING_DATE ?></a>
-				</li>
-				<li class="divider"></li>
-				<li class="dropdown-header"><?= DRIVERS ?></li>                  
-				<li><a href="index.php?p=driversEmailsActive"><?= DRIVERS_EMAIL_LIST ?> - Active</a></li>
-				<li class="divider"></li>
-				<li class="dropdown-header"><?= PRICES ?></li>                  				
-				<li id="pricesList"><a href="index.php?p=priceList"><?= PRICE_LIST ?></a></li>
-				<li id="pricesExport"><a href="index.php?p=allPricesExport2"><?= ALL_PRICES_EXPORT ?> 2</a></li>
-				<li class="divider"></li>
-				<li><a href="index.php?p=surveyReportForm"><?= SURVEY ?></a></li>
-				<li class="divider"></li>
-				<li id="subHist"><a href="index.php?p=subHist"><?= SUBDRIVER_HISTORY ?></a></li>
-				<li id="timelineOperatorReview"><a href="index.php?p=timelineReview">Timeline Review</a></li>
-				<li id="tranRatio"><a href="index.php?p=tranRatio">Transfers Ratio</a></li>
-				<li id="tranStat"><a href="indexN.php?p=transfersReview">Transfers Review</a></li>				
-          	</ul>
-          </li>
-!-->
 		  
         </ul>
 		

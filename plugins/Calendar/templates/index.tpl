@@ -1,9 +1,5 @@
 <div class="row-fluid">
-	<div class="container box box-info">
-		<div class="box-header">
-			<i class="fa fa-calendar"></i>
-			<div class="box-title">Calendar</div>
-		</div><!-- /.box-header -->
+	<div class="">
 		<div class="col-md-1" style="width:99% !important;">
 			<div class="dp_content">
 				<div align="center">

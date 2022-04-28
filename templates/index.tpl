@@ -34,11 +34,13 @@
 
 		<!-- Misc -->
 		<link rel="stylesheet" href="css/jquery-ui-1.8.9.custom.css" type="text/css" />
+		<link href="css/admin.css" rel="stylesheet">
+
 		<link rel="stylesheet" href="js/pickadate/themes/default.css" type="text/css" media="screen"/>
 		<link rel="stylesheet" href="js/pickadate/themes/default.date.css" type="text/css" media="screen"/>
 		<link rel="stylesheet" href="js/pickadate/themes/default.time.css" type="text/css" media="screen"/>
 		<link rel="stylesheet" href="css/colors.css" media="all">
-		<link rel="stylesheet" href="css/simplegrid.css" media="all">
+		<!--<link rel="stylesheet" href="css/simplegrid.css" media="all">!-->
 		<link rel="stylesheet" type="text/css" href="css/JAMTimepicker.css">
 		<link rel="stylesheet" type="text/css" href="js/select/css/select2.css">		
 
@@ -72,6 +74,9 @@
 		<!-- <script src="cms/js/jquery/2.0.2/jquery.min.js"></script> -->
 		<!-- jQuery UI 1.10.3 -->
 		<script src="js/jQuery/ui/1.10.3/jquery-ui.min.js" type="text/javascript"></script>
+
+		<!-- Mainly scripts -->
+		<script src="js/main.admin.js"></script>
 
 		<!-- Bootstrap -->
 		<!-- <script src="js/bootstrap.js" type="text/javascript"></script>-->
@@ -123,24 +128,99 @@
 	</head>
 	<body class="fixed-top" style="height:100%!important;font-size:16px">
 		<div class="wrapper">
-			{$menu_render}
-
-			<div class="container-fluid side-collapse-container"
-			style="padding:0px!important">
-				{if isset($pageOLD)}
-					NOT MODEL VIEW CONTROL
-				{elseif isset($page)}
-					<h1>{$page}</h1>
-					{include file="{$root}/plugins/{$base}/templates/page.tpl"}
-					MODEL VIEW CONTROL SMARTY		
-				{elseif isset($pageList)}
-					<h1>{$pageList}</h1>
-					{include file="pageList.tpl"} 
-					MODEL VIEW CONTROL HANDLEBARS
-				{else}
-					{$page_render}
-					SEMI MODEL VIEW CONTROL via OB_GET_CONTENTS
-				{/if}
+			<nav class="navbar-default navbar-static-side" role="navigation">
+				<div class="sidebar-collapse">
+					<ul class="nav metismenu" id="side-menu">
+						<li class="nav-header">
+							<div class="dropdown profile-element">
+								<a data-toggle="dropdown" class="dropdown-toggle" href="#">
+								<span class="clear"> 
+								<span class="block m-t-xs">
+									<a href="profile" >
+										<img src="api/showProfileImage.php?UserID={$smarty.session.AuthUserID}" class="img-circle" alt="User Image" style="height:2em;padding:-.5em;margin:-.5em" />
+										<strong class="font-bold">{$smarty.session.UserRealName}</strong>
+									</a>
+								</span>
+								<ul class="dropdown-menu animated fadeInRight m-t-xs">
+									<li><a href="profile" data-param="">Profile</a></li>
+									<li class="divider"></li>
+									<li><a href='logout'>Logout</a></li>
+								</ul>
+							</div>
+						</li>
+						{if isset($smarty.session.UseDriverName)}
+						<li class="nav-header">
+							<strong class="font-bold">{$smarty.session.UseDriverName}</strong>
+						</li>
+						{/if}
+						<li class=""><a href="dashboard"><i class='fa fa-th-large'></i><span>Dashboard</span></a></li>
+						{section name=index loop=$menu1}
+						<li class="{$menu1[index].active}">
+							<a href='{$menu1[index].link}' >
+								<i class="fa {$menu1[index].icon}"></i> 
+								<span class="nav-label">{$menu1[index].title}</span> 
+								<span class="{$menu1[index].arrow}"></span>
+							</a>
+							{if $menu1[index].menu}
+							<ul class="nav nav-second-level collapse" >
+								{section name=index1 loop=$menu1[index].menu}	
+								<li class="{$menu1[index].menu[index1].active}">
+									<a href="{$menu1[index].menu[index1].link}"><span class="nav-label">{$menu1[index].menu[index1].title}</span></a>
+								</li>
+								{/section}	
+							</ul>
+							{/if}
+						</li>
+						{/section}
+				   </ul>
+				</div>
+			</nav>
+			<div id="page-wrapper" class="gray-bg dashbard-1">
+				<div class="row border-bottom">
+				   <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+					  <div class="navbar-header">
+						 <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
+					  </div>
+					  <div class="navbar-header">
+						 <button type="button" class="minimalize-styl-2 btn btn-primary " id="cashe"><i class="fa fa-refresh"></i></button>
+					  </div>					  					  						
+					  <ul class="nav navbar-top-links navbar-right">
+						 <li>
+							<h2><span class="m-r-sm text-muted">{$title}</span></h2>
+						 </li>
+						 <li>
+							<a href='logout'>
+							<i class="fa fa-sign-out"></i>Logout
+							</a>
+						 </li>
+					  </ul>
+				   </nav>
+				</div>
+				<div class="row wrapper border-bottom white-bg page-heading">
+				   <div class="col-lg-12">
+						{if isset($pageOLD)}
+							NOT MODEL VIEW CONTROL
+						{elseif isset($page)}
+							{include file="{$root}/plugins/{$base}/templates/index.tpl"}
+							MODEL VIEW CONTROL SMARTY		
+						{elseif isset($pageList)}
+							{include file="pageList.tpl"} 
+							MODEL VIEW CONTROL HANDLEBARS
+						{else}
+							{$page_render}
+							SEMI MODEL VIEW CONTROL via OB_GET_CONTENTS
+						{/if}				  
+				   </div>
+				</div>
+				<div class="footer">
+				   <div class="pull-right">
+				   </div>
+				   <div>
+					  Powered by <strong>Jamtransfer</strong>
+				   </div>
+				   <div class="backdrop"><div class="spiner"></div></div>
+				   <div class="backdropP"><div class="spiner"></div></div>
+				</div>
 			</div>
 		</div>
 		<input type='hidden' id='local' value='{$local}' name='local'>

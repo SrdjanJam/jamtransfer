@@ -8,6 +8,8 @@ Class v4_Modules {
 	public $Code; //varchar(20)
 	public $Base; //varchar(20)
 	public $ParentID; //int(11)
+	public $MenuOrder; //int(11)
+	public $Icon; //int(11)
 	public $connection;
 
 	function __construct(){
@@ -23,11 +25,13 @@ Class v4_Modules {
 			'Name' => $this->getName(),
 			'Code' => $this->getCode(),
 			'Base' => $this->getBase(),
-			'ParentID' => $this->getParentID()		);
+			'ParentID' => $this->getParentID(),
+			'MenuOrder' => $this->getMenuOrder(),
+			'Icon' => $this->getIcon()		);
 		return $fieldValues;
 	}
 	public function fieldNames(){
-		$fieldNames = array('ModulID','Name','Code','Base','ParentID');
+		$fieldNames = array('ModulID','Name','Code','Base','ParentID','MenuOrder','Icon');
 		return $fieldNames;
 	}
 	
@@ -40,6 +44,8 @@ Class v4_Modules {
 			$this->Code = $row["Code"];
 			$this->Base = $row["Base"];
 			$this->ParentID = $row["ParentID"];
+			$this->MenuOrder = $row["MenuOrder"];
+			$this->Icon = $row["Icon"];
 		}
 	}
 
@@ -67,6 +73,12 @@ Class v4_Modules {
 	}	
 	public function getParentID(){
 		return $this->ParentID;
+	}	
+	public function getMenuOrder(){
+		return $this->MenuOrder;
+	}	
+	public function getIcon(){
+		return $this->Icon;
 	}
 
 	public function endv4_Modules(){

@@ -28,7 +28,7 @@ window.currenturl = '{/literal}{$currenturl}{literal}';
 	});	
 </script>
 {/literal}
-<div class=" container">
+<div class="">
 	{if not $smarty.session.UseDriverID}<a class="btn btn-primary btn-xs" href="{$root_home}{$code}/new">{$NNEW}</a>{/if}
 	<br><br>
 	<input type="hidden"  id="whereCondition" name="whereCondition" 
