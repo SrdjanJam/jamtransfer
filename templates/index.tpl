@@ -4,7 +4,7 @@
 		<base href="{$root_home}">	
 		
 		<meta charset="UTF-8">
-		<title>CMS {$title}</title>
+		<title>WIS {$title}</title>
 
 		<meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
 
@@ -126,7 +126,7 @@
 		<script src="js/cms.jquery.js"></script>
 		{if isset($pageList)}
 		<script src="js/list.js"></script>
-		{literal}
+		{literal}		
 		<script type="text/javascript">
 		window.root = 'plugins/{/literal}{$base}{literal}/';
 		window.currenturl = '{/literal}{$currenturl}{literal}';
@@ -222,7 +222,11 @@
 					flex-shrink: 0;
 				}		
 			</style>			
-			<div id="page-wrapper" class="content gray-bg dashbard-1">
+			<div id="page-wrapper" class="content gray-bg dashbard-1" style="height: 100%;
+					display: flex;
+					flex-direction: column;
+					flex-wrap: nowrap;
+					overflow: hidden;">
 				<div class="header row border-bottom">
 				   <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
 					  <div class="navbar-header">
@@ -243,6 +247,7 @@
 					  </ul>
 				   </nav>
 				</div>   
+			
 				{if not $isNew and isset($pageList)}
 				<div class="header">  
 					{include file="pageListHeader.tpl"} 				   

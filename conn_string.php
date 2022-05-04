@@ -32,8 +32,8 @@ else {
 	else define("DB_NAME", "jamtrans_touradria");
 }	
 
-if (DEVELOPMENT) error_reporting(E_ALL ^ E_NOTICE ^ E_WARNING);
-//if (DEVELOPMENT) error_reporting(0);
+//if (DEVELOPMENT) error_reporting(E_ALL ^ E_NOTICE ^ E_WARNING);
+if (DEVELOPMENT) error_reporting(0);
 else error_reporting(E_PARSE);
 
 ?>

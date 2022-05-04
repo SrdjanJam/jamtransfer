@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.32, created on 2022-04-28 12:51:00
+/* Smarty version 3.1.32, created on 2022-04-29 10:53:33
   from 'C:\wamp\www\jamtransfer\templates\index.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.32',
-  'unifunc' => 'content_626a8db4d9cf76_42833507',
+  'unifunc' => 'content_626bc3ad0d6c44_23483985',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'a1818a92b5a2f041fd91a227dabc592dea38fac2' => 
     array (
       0 => 'C:\\wamp\\www\\jamtransfer\\templates\\index.tpl',
-      1 => 1651150258,
+      1 => 1651229611,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:pageList.tpl' => 1,
   ),
 ),false)) {
-function content_626a8db4d9cf76_42833507 (Smarty_Internal_Template $_smarty_tpl) {
+function content_626bc3ad0d6c44_23483985 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html>
 	<head>
@@ -30,7 +30,7 @@ function content_626a8db4d9cf76_42833507 (Smarty_Internal_Template $_smarty_tpl)
 ">	
 		
 		<meta charset="UTF-8">
-		<title>CMS <?php echo $_smarty_tpl->tpl_vars['title']->value;?>
+		<title>WIS <?php echo $_smarty_tpl->tpl_vars['title']->value;?>
 </title>
 
 		<meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
@@ -216,7 +216,7 @@ _init.js"><?php echo '</script'; ?>
 		<?php echo '<script'; ?>
  src="js/list.js"><?php echo '</script'; ?>
 >
-		
+				
 		<?php echo '<script'; ?>
  type="text/javascript">
 		window.root = 'plugins/<?php echo $_smarty_tpl->tpl_vars['base']->value;?>
@@ -350,7 +350,11 @@ for ($__section_index1_1_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section
 					flex-shrink: 0;
 				}		
 			</style>			
-			<div id="page-wrapper" class="content gray-bg dashbard-1">
+			<div id="page-wrapper" class="content gray-bg dashbard-1" style="height: 100%;
+					display: flex;
+					flex-direction: column;
+					flex-wrap: nowrap;
+					overflow: hidden;">
 				<div class="header row border-bottom">
 				   <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
 					  <div class="navbar-header">
@@ -372,6 +376,7 @@ for ($__section_index1_1_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section
 					  </ul>
 				   </nav>
 				</div>   
+			
 				<?php if (!$_smarty_tpl->tpl_vars['isNew']->value && isset($_smarty_tpl->tpl_vars['pageList']->value)) {?>
 				<div class="header">  
 					<?php $_smarty_tpl->_subTemplateRender("file:pageListHeader.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);

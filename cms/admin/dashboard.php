@@ -26,4 +26,3 @@
                         </section>
                     </div>	        
 		<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-        <script src="js/theme/dashboard.js" type="text/javascript"></script>  

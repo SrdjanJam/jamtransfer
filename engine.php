@@ -69,9 +69,10 @@ if (count($mdk)==1) {
 	$key=$mdk[0];
 	$md->getRow($key);
 	require_once $modulesPath . '/'.$md->getBase().'/index.php';
+	if (is_dir($modulesPath . '/'.$md->getBase().'/templates')) 
+		$smarty->assign('page',$md->getName());		
+	else $smarty->assign('pageList',$md->getName());	
 	$smarty->assign('currenturl',ROOT_HOME.$activePage);
-	$smarty->assign('pageList',$md->getName());	
-	//$smarty->assign('page',$md->getName());		
 	$smarty->assign('title',$md->getName());
 	$smarty->assign('base',$md->getBase());
 	$smarty->assign('parentID',$md->getParentID());
