@@ -1,5 +1,5 @@
 {if not $smarty.session.UseDriverID}
-	<a class="btn btn-primary btn-xs" href="{$root_home}{$code}/new">{$NNEW}</a><br>
+	<a class="btn btn-primary btn-xs" href="{$currenturl}/new">{$NNEW}</a><br>
 {/if}
 <input type="hidden"  id="whereCondition" name="whereCondition" 
 value=" WHERE {$ItemID} > 0">

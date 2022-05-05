@@ -24,11 +24,20 @@ and isset($_REQUEST['sa_l']) and $_REQUEST['sa_l'] !='' and is_numeric($_REQUEST
 if (isset($_REQUEST['af']) && $_REQUEST['af']) $_SESSION['af']=$_REQUEST['af'];
 if (isset ($_SESSION['af']) && $_SESSION['af']) $activeFolder=$_SESSION['af'];
 else $activeFolder = 'cms/'.trim( strtolower($_SESSION['GroupProfile']) );
-		
+
+// kontrola pristupa
+if(isset($_SESSION['UseDriverID'])) $AuthLevelID=43;
+else $AuthLevelID=$_SESSION['AuthLevelID'];
+$sql="SELECT ModulID FROM `v4_ModulesLevel` WHERE AuthLevelID=".$AuthLevelID;
+$result = $db->RunQuery($sql);
+while($row = $result->fetch_array(MYSQLI_ASSOC)){
+	$modules_arr.=$row['ModulID'].",";
+}
+$modules_arr = substr($modules_arr,0,strlen($modules_arr)-1);
 // meni
 require_once 'db/v4_Modules.php';
 $md = new v4_Modules();
-$mdk = $md->getKeysBy('MenuOrder ' ,'asc', "where ParentID=0");
+$mdk = $md->getKeysBy('MenuOrder ' ,'asc', "where ParentID=0 AND ModulID in (".$modules_arr.")");
 $menu1=array();
 foreach($mdk as $key) {
 	$md->getRow($key);
@@ -85,6 +94,8 @@ else {
 }	
  
 // display
+?><script type="text/x-handlebars-template"></script><?
+
 $smarty->display("index.tpl");	
 
 ?>

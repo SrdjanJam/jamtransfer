@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.32, created on 2022-04-29 10:53:33
+/* Smarty version 3.1.32, created on 2022-05-05 11:31:17
   from 'C:\wamp\www\jamtransfer\templates\index.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.32',
-  'unifunc' => 'content_626bc3ad0d6c44_23483985',
+  'unifunc' => 'content_6273b5859dd736_44142568',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'a1818a92b5a2f041fd91a227dabc592dea38fac2' => 
     array (
       0 => 'C:\\wamp\\www\\jamtransfer\\templates\\index.tpl',
-      1 => 1651229611,
+      1 => 1651750275,
       2 => 'file',
     ),
   ),
@@ -22,8 +22,9 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:pageList.tpl' => 1,
   ),
 ),false)) {
-function content_626bc3ad0d6c44_23483985 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6273b5859dd736_44142568 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
+
 <html>
 	<head>
 		<base href="<?php echo $_smarty_tpl->tpl_vars['root_home']->value;?>
@@ -248,7 +249,8 @@ _init.js"><?php echo '</script'; ?>
 			
 			<?php }?>
 		<?php }?>		
-	</head>
+	</head>		
+
 	<body class="fixed-top" style="height:100%!important;font-size:16px">
 		<div class="wrapper">
 			<nav class="navbar-default navbar-static-side" role="navigation">
@@ -277,6 +279,7 @@ _init.js"><?php echo '</script'; ?>
 						<li class="nav-header">
 							<strong class="font-bold"><?php echo $_SESSION['UseDriverName'];?>
 </strong>
+							<a href="setout.php">Setout</a>
 						</li>
 						<?php }?>
 						<li class=""><a href="dashboard"><i class='fa fa-th-large'></i><span>Dashboard</span></a></li>
@@ -331,23 +334,20 @@ for ($__section_index1_1_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section
 			<style type="text/css" >
 				.content {
 					height: 100%;
-					display: flex;
-					flex-direction: column;
-					flex-wrap: nowrap;
 					overflow: hidden;
+					display: grid;
 
 				}
 
 				.header {
-					flex-shrink: 0;
+					grid-row: 1; 
 				}
 				.body{
-					flex-grow: 1;
-					overflow: auto;
-					min-height: 2em;
+					grid-row: 2;
+					overflow-y: auto;
 				}
 				.footer{
-					flex-shrink: 0;
+					grid-row: 3;
 				}		
 			</style>			
 			<div id="page-wrapper" class="content gray-bg dashbard-1" style="height: 100%;
@@ -383,34 +383,31 @@ for ($__section_index1_1_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section
 ?> 				   
 				</div>
 				<?php }?>
-				<div class="body row wrapper border-bottom white-bg page-heading">
-				   <div class="col-lg-12">
-						<?php if (isset($_smarty_tpl->tpl_vars['pageOLD']->value)) {?>
-							NOT MODEL VIEW CONTROL
-						<?php } elseif (isset($_smarty_tpl->tpl_vars['page']->value)) {?>
-							<?php $_smarty_tpl->_subTemplateRender(((string)$_smarty_tpl->tpl_vars['root']->value)."/plugins/".((string)$_smarty_tpl->tpl_vars['base']->value)."/templates/index.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, true);
+				<div class="body row white-bg">
+					<?php if (isset($_smarty_tpl->tpl_vars['pageOLD']->value)) {?>
+						NOT MODEL VIEW CONTROL
+					<?php } elseif (isset($_smarty_tpl->tpl_vars['page']->value)) {?>
+						<?php $_smarty_tpl->_subTemplateRender(((string)$_smarty_tpl->tpl_vars['root']->value)."/plugins/".((string)$_smarty_tpl->tpl_vars['base']->value)."/templates/index.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, true);
 ?>
-							MODEL VIEW CONTROL SMARTY		
-						<?php } elseif (isset($_smarty_tpl->tpl_vars['pageList']->value)) {?>
-							<?php $_smarty_tpl->_subTemplateRender("file:pageList.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
+						MODEL VIEW CONTROL SMARTY		
+					<?php } elseif (isset($_smarty_tpl->tpl_vars['pageList']->value)) {?>
+						<?php $_smarty_tpl->_subTemplateRender("file:pageList.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?> 
-							MODEL VIEW CONTROL HANDLEBARS
-						<?php } else { ?>
-							<?php echo $_smarty_tpl->tpl_vars['page_render']->value;?>
+						MODEL VIEW CONTROL HANDLEBARS
+					<?php } else { ?>
+						<?php echo $_smarty_tpl->tpl_vars['page_render']->value;?>
 
-							SEMI MODEL VIEW CONTROL via OB_GET_CONTENTS
-						<?php }?>				  
-				   </div>
+						SEMI MODEL VIEW CONTROL via OB_GET_CONTENTS
+					<?php }?>				  
 				</div>
-				<div class="footer">
+				<div class="footer row">
 					<?php if (!$_smarty_tpl->tpl_vars['isNew']->value && isset($_smarty_tpl->tpl_vars['pageList']->value)) {?>				
-					<div id="pageSelect" class="col-sm-12"></div>
+					<div id="pageSelect" class="pull-left"></div>
 					<?php }?>
 					<div class="pull-right">
 					  Powered by <strong>Jamtransfer</strong>
 					</div>
 					<div class="backdrop"><div class="spiner"></div></div>
-					<div class="backdropP"><div class="spiner"></div></div>
 				</div>
 			</div>
 		</div>
@@ -438,6 +435,5 @@ for ($__section_index1_1_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section
 	<?php echo '</script'; ?>
 >
 	
-<?php echo '<?	';
-}
+	<?php }
 }

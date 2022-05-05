@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html>
 	<head>
 		<base href="{$root_home}">	
@@ -149,7 +150,8 @@
 			{/literal}
 			{/if}
 		{/if}		
-	</head>
+	</head>		
+
 	<body class="fixed-top" style="height:100%!important;font-size:16px">
 		<div class="wrapper">
 			<nav class="navbar-default navbar-static-side" role="navigation">
@@ -175,6 +177,7 @@
 						{if isset($smarty.session.UseDriverName)}
 						<li class="nav-header">
 							<strong class="font-bold">{$smarty.session.UseDriverName}</strong>
+							<a href="setout.php">Setout</a>
 						</li>
 						{/if}
 						<li class=""><a href="dashboard"><i class='fa fa-th-large'></i><span>Dashboard</span></a></li>
@@ -203,23 +206,20 @@
 			<style type="text/css" >
 				.content {
 					height: 100%;
-					display: flex;
-					flex-direction: column;
-					flex-wrap: nowrap;
 					overflow: hidden;
+					display: grid;
 
 				}
 
 				.header {
-					flex-shrink: 0;
+					grid-row: 1; 
 				}
 				.body{
-					flex-grow: 1;
-					overflow: auto;
-					min-height: 2em;
+					grid-row: 2;
+					overflow-y: auto;
 				}
 				.footer{
-					flex-shrink: 0;
+					grid-row: 3;
 				}		
 			</style>			
 			<div id="page-wrapper" class="content gray-bg dashbard-1" style="height: 100%;
@@ -253,31 +253,28 @@
 					{include file="pageListHeader.tpl"} 				   
 				</div>
 				{/if}
-				<div class="body row wrapper border-bottom white-bg page-heading">
-				   <div class="col-lg-12">
-						{if isset($pageOLD)}
-							NOT MODEL VIEW CONTROL
-						{elseif isset($page)}
-							{include file="{$root}/plugins/{$base}/templates/index.tpl"}
-							MODEL VIEW CONTROL SMARTY		
-						{elseif isset($pageList)}
-							{include file="pageList.tpl"} 
-							MODEL VIEW CONTROL HANDLEBARS
-						{else}
-							{$page_render}
-							SEMI MODEL VIEW CONTROL via OB_GET_CONTENTS
-						{/if}				  
-				   </div>
+				<div class="body row white-bg">
+					{if isset($pageOLD)}
+						NOT MODEL VIEW CONTROL
+					{elseif isset($page)}
+						{include file="{$root}/plugins/{$base}/templates/index.tpl"}
+						MODEL VIEW CONTROL SMARTY		
+					{elseif isset($pageList)}
+						{include file="pageList.tpl"} 
+						MODEL VIEW CONTROL HANDLEBARS
+					{else}
+						{$page_render}
+						SEMI MODEL VIEW CONTROL via OB_GET_CONTENTS
+					{/if}				  
 				</div>
-				<div class="footer">
+				<div class="footer row">
 					{if not $isNew and isset($pageList)}				
-					<div id="pageSelect" class="col-sm-12"></div>
+					<div id="pageSelect" class="pull-left"></div>
 					{/if}
 					<div class="pull-right">
 					  Powered by <strong>Jamtransfer</strong>
 					</div>
 					<div class="backdrop"><div class="spiner"></div></div>
-					<div class="backdropP"><div class="spiner"></div></div>
 				</div>
 			</div>
 		</div>
@@ -302,4 +299,4 @@
 		});
 	</script>
 	{/literal}
-<?	
+	
