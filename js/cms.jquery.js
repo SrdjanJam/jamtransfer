@@ -968,7 +968,6 @@ Handlebars.registerHelper("myDriverSelect", function(id,routeId) {
 	function driverSelectDropdown() {
 
 		var url = 'api/getDriversForRoute.php?RouteID='+routeId+'&callback=';
-
 		var selector = "<select class=\"w100\" name=\"DriverSelect\" id=\"DriverSelect\" onchange=\"applyChangeDriver(this);\">";
 
 		selector += '<option value="0"> --- </option>';

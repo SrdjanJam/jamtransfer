@@ -24,6 +24,12 @@ switch ($activePage) {
 		$au->getRow($_SESSION['UseDriverID']);
 		$_SESSION['UseDriverName']=$au->getAuthUserRealName();
 		header('Location: '.ROOT_HOME);
+	case 'rules':
+		$smarty->assign('rulesType',$pathVars->fetchByIndex($indexStart + 1));
+		if (is_numeric($pathVars->fetchByIndex($indexStart + 2))) {
+			$item=$pathVars->fetchByIndex($indexStart + 2);
+			$smarty->assign('item',$item);
+		}		
 	default:
 		if ($pathVars->fetchByIndex($indexStart + 1)) { 
 			if (is_numeric($pathVars->fetchByIndex($indexStart + 1))) {
@@ -34,7 +40,7 @@ switch ($activePage) {
 				$item=$pathVars->fetchByIndex($indexStart + 2);
 				// ovde ubaciti program koji vrsi konekciju master i driver tabela	
 				require ROOT."/plugins/makeDriverConnection.php";
-			}
+			}			
 		}	
 }
 

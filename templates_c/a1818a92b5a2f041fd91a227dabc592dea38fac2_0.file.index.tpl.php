@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.32, created on 2022-05-05 11:31:17
+/* Smarty version 3.1.32, created on 2022-05-06 10:07:56
   from 'C:\wamp\www\jamtransfer\templates\index.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.32',
-  'unifunc' => 'content_6273b5859dd736_44142568',
+  'unifunc' => 'content_6274f37c1332b3_16017162',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'a1818a92b5a2f041fd91a227dabc592dea38fac2' => 
     array (
       0 => 'C:\\wamp\\www\\jamtransfer\\templates\\index.tpl',
-      1 => 1651750275,
+      1 => 1651831673,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:pageList.tpl' => 1,
   ),
 ),false)) {
-function content_6273b5859dd736_44142568 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6274f37c1332b3_16017162 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 
 <html>
@@ -344,7 +344,9 @@ for ($__section_index1_1_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section
 				}
 				.body{
 					grid-row: 2;
+					padding: 10px;
 					overflow-y: auto;
+					overflow-x: hidden;
 				}
 				.footer{
 					grid-row: 3;

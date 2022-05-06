@@ -41,7 +41,7 @@
 						{{PlaceID}}
 					</div>
 				</div>
-				{{#compare UseDriverID "==" 0}}
+				<? if ($isNew || !isset($_SESSION['UseDriverID'])) { ?>
 				<div class="row">
 					<div class="col-md-3">
 						<label for="PlaceCountry"><?=PLACECOUNTRY;?></label>
@@ -176,7 +176,7 @@
 						{{Drivers}}
 					</div>
 				</div>
-				{{else}}				
+				<? } else { ?>				
 				<div class="row">
 					<div class="col-md-3">
 						<label for="DriverTerminal">Driver Terminal</label>
@@ -185,7 +185,7 @@
 						{{yesNoSelect Terminal 'Terminal' }}
 					</div>
 				</div>
-				{{/compare}}
+				<? } ?>
 
 			</div>
 	    </div>

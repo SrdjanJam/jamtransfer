@@ -16,15 +16,16 @@
 
 
 	{{#each Item}}
-	<div class="row">
-		<div class="col-sm-10">		
 			<div  onclick="oneItem({{RouteID}});">		
 				<div class="row {{color}} pad1em listTile" 
 				style="border-top:1px solid #ddd" 
 				id="t_{{RouteID}}">
 						
+						<div class="col-sm-3">
+							{{RouteID}}
+						</div>							
 						<div class="col-sm-5">
-							{{RouteName}}
+							<strong>{{RouteName}}</strong>
 						</div>					
 						<div class="col-sm-1">
 						
@@ -43,8 +44,6 @@
 					</div>
 				</div>
 			</div>
-		</div>
-	</div>	
 	{{/each}}
 
 

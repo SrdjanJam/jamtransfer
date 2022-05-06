@@ -2,8 +2,7 @@
 
 
 	{{#each Item}}
-	<div class="row">
-		<div class="col-sm-10">		
+	
 			<div  onclick="oneItem({{ServiceID}});">		
 				<div class="row {{color}} pad1em listTile" 
 				style="border-top:1px solid #ddd" 
@@ -34,8 +33,7 @@
 					</div>
 				</div>
 			</div>
-		</div>
-	</div>	
+	
 	{{/each}}
 
 

@@ -216,7 +216,9 @@
 				}
 				.body{
 					grid-row: 2;
+					padding: 10px;
 					overflow-y: auto;
+					overflow-x: hidden;
 				}
 				.footer{
 					grid-row: 3;

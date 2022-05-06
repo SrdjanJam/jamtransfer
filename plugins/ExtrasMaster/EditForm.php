@@ -27,7 +27,7 @@
 	<div class="box-body ">
         <div class="row">
 			<div class="col-md-12">
-				{{#compare UseDriverID "==" 0}}						
+				<? if ($isNew || !isset($_SESSION['UseDriverID'])) { ?>
 				<div class="row">
 					<div class="col-md-2">
 						<label for="ID"><?=ID;?></label>
@@ -126,7 +126,7 @@
 						<input type="text" name="ServiceNL" id="ServiceNL" class="w100" value="{{ServiceNL}}">
 					</div>
 				</div>
-				{{else}}				
+				<? } else { ?>				
 				<div class="row">
 					<div class="col-md-3">
 						<label for="DriverExtras">Driver Extras</label>
@@ -135,7 +135,7 @@
 						{{yesNoSelect DriverExtras 'DriverExtras' }}
 					</div>
 				</div>
-				{{/compare}}
+				<? } ?>
 			</div>
 	    </div>
 		    

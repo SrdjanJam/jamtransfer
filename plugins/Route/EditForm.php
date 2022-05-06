@@ -63,7 +63,7 @@
 					</div>
 				</div>
 
-				{{#compare UseDriverID "==" 0}}
+				<? if ($isNew || !isset($_SESSION['UseDriverID'])) { ?>
 				<div class="row">
 					<div class="col-md-3">
 						<label for="Approved"><?=APPROVED;?></label>
@@ -99,7 +99,6 @@
 						<input type="text" name="Km" id="Km" class="w100" value="{{Km}}">
 					</div>
 				</div>
-
 				<div class="row">
 					<div class="col-md-3">
 						<label for="Duration"><?=DURATION;?></label>
@@ -108,8 +107,7 @@
 						<input type="text" name="Duration" id="Duration" class="w100" value="{{Duration}}">
 					</div>
 				</div>
-				
-				{{else}}
+				<? } else { ?>				
 				<div class="row">
 					<div class="col-md-3">
 						<label for="DriverRoute">Driver Route</label>
@@ -132,8 +130,7 @@
 						</select>
 					</div>
 				</div>
-					
-				{{/compare}}
+				<? } ?>
 
 			</div>
 	    </div>
