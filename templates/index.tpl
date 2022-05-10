@@ -255,6 +255,22 @@
 					{include file="pageListHeader.tpl"} 				   
 				</div>
 				{/if}
+				{if $page eq 'Price Rules'}	
+				<div class="header row"> 
+					<div class="pull-left">
+						<span>Rule: <strong>{$smarty.request.rulesType}</strong></span>
+						{if $routeName}<span>Route:<strong>{$routeName}</strong></span>{/if}
+						{if $vehicleName}<span>Vehicle:<strong>{$vehicleName}</strong></span>{/if}
+
+					</div>
+					<div class="pull-right">
+						<button type="submit" class="btn btn-info" title="{$SAVE_CHANGES}" >
+							<i class="fa fa-save"></i>
+						</button>					
+					</div>
+				</div>	
+				{/if}
+					
 				<div class="body row white-bg">
 					{if isset($pageOLD)}
 						NOT MODEL VIEW CONTROL

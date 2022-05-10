@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.32, created on 2022-05-06 10:07:56
+/* Smarty version 3.1.32, created on 2022-05-10 06:49:05
   from 'C:\wamp\www\jamtransfer\templates\index.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.32',
-  'unifunc' => 'content_6274f37c1332b3_16017162',
+  'unifunc' => 'content_627a0ae1c69a74_17728645',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'a1818a92b5a2f041fd91a227dabc592dea38fac2' => 
     array (
       0 => 'C:\\wamp\\www\\jamtransfer\\templates\\index.tpl',
-      1 => 1651831673,
+      1 => 1652165343,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:pageList.tpl' => 1,
   ),
 ),false)) {
-function content_6274f37c1332b3_16017162 (Smarty_Internal_Template $_smarty_tpl) {
+function content_627a0ae1c69a74_17728645 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 
 <html>
@@ -385,6 +385,26 @@ for ($__section_index1_1_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section
 ?> 				   
 				</div>
 				<?php }?>
+				<?php if ($_smarty_tpl->tpl_vars['page']->value == 'Price Rules') {?>	
+				<div class="header row"> 
+					<div class="pull-left">
+						<span>Rule: <strong><?php echo $_REQUEST['rulesType'];?>
+</strong></span>
+						<?php if ($_smarty_tpl->tpl_vars['routeName']->value) {?><span>Route:<strong><?php echo $_smarty_tpl->tpl_vars['routeName']->value;?>
+</strong></span><?php }?>
+						<?php if ($_smarty_tpl->tpl_vars['vehicleName']->value) {?><span>Vehicle:<strong><?php echo $_smarty_tpl->tpl_vars['vehicleName']->value;?>
+</strong></span><?php }?>
+
+					</div>
+					<div class="pull-right">
+						<button type="submit" class="btn btn-info" title="<?php echo $_smarty_tpl->tpl_vars['SAVE_CHANGES']->value;?>
+" >
+							<i class="fa fa-save"></i>
+						</button>					
+					</div>
+				</div>	
+				<?php }?>
+					
 				<div class="body row white-bg">
 					<?php if (isset($_smarty_tpl->tpl_vars['pageOLD']->value)) {?>
 						NOT MODEL VIEW CONTROL

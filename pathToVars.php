@@ -25,10 +25,9 @@ switch ($activePage) {
 		$_SESSION['UseDriverName']=$au->getAuthUserRealName();
 		header('Location: '.ROOT_HOME);
 	case 'rules':
-		$smarty->assign('rulesType',$pathVars->fetchByIndex($indexStart + 1));
+		$_REQUEST['rulesType']=$pathVars->fetchByIndex($indexStart + 1);
 		if (is_numeric($pathVars->fetchByIndex($indexStart + 2))) {
-			$item=$pathVars->fetchByIndex($indexStart + 2);
-			$smarty->assign('item',$item);
+			$_REQUEST['item']=$pathVars->fetchByIndex($indexStart + 2);
 		}		
 	default:
 		if ($pathVars->fetchByIndex($indexStart + 1)) { 
