@@ -4,7 +4,7 @@
 
 					<div class="row">
 						<section class="col-lg-6 xconnectedSortable"> 
-							<? require_once $modulesPath . '/transfers/getOrder.php'; ?>
+							<? require_once $modulesPath . '/Orders/getOrder.php'; ?>
 						</section><!-- /.Left col -->
 						<section class="col-lg-6 xconnectedSortable"> 
 							<? require_once $modulesPath . '/getUnfinishedPayment.php'; ?>

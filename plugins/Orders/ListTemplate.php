@@ -1,8 +1,17 @@
-<script type="text/x-handlebars-template" id="transfersTemplate">
+<?
+	foreach($StatusDescription as $nn => $id) {
+		$arr_row['id']=$nn;
+		$arr_row['name']=$id;
+		$arr_all[]=$arr_row;
+	}
+	$smarty->assign('options',$arr_all);
+	$smarty->assign('selecttype',true);
+?>
 
-	{{#each transfers}}
+<script type="text/x-handlebars-template" id="ItemListTemplate">
 
-		<a  onclick="showOneTransfer({{DetailsID}});">
+	{{#each Item}}
+		<div  onclick="oneItem({{DetailID}});">
 		
 			<div class="row xbox-solid xbg-light-blue {{color}} pad1em listTile" 
 			style="border-top:1px solid #eee;border-bottom:0px solid #eee" 
@@ -15,17 +24,14 @@
 							<br>
 							<i class="fa fa-phone"></i> {{MPaxTel}}
 							<br>
-							<small>{{OrderDate}}</small>
+							<small>{{OrderDate}} {{MOrderTime}}</small>
 						</small>
 					</div>
-		
 					<div class="col-md-2">
 						<strong>{{MOrderID}} - {{TNo}}</strong><br>
 						{{addNumbers DetailPrice ExtraCharge}} €<br>
 						<small>{{displayTransferStatusText TransferStatus}}</small>
 					</div>
-					
-
 					
 					<div class="col-md-2">
 						{{#compare PickupDate ">=" "<?=date('Y')+1;?>-01-01"}}<span class="red-text">{{/compare}}
@@ -45,6 +51,8 @@
 						<strong>{{PickupName}}</strong>
 						<br>
 						<strong>{{DropName}}</strong>
+						<br>
+						{{#if StaffNote}}<small style="color:red">STAFF NOTE</small>{{/if}}	
 					</div>
 					<div class="col-md-3">
 						{{!-- userName DriverID "AuthUserCompany" --}}
@@ -53,23 +61,28 @@
 						{{/if}}	
 						<br>
 						<span class="{{driverConfStyle DriverConfStatus}}">{{driverConfText DriverConfStatus}}</span>
+						{{#if FinalNote}}<span class="note btn btn-danger">Note</span>{{/if}}	
 						<br>
-						<small>{{DriverConfDate}} {{DriverConfTime}}</small>
-
-					 
+						<small>{{DriverConfDate}} {{DriverConfTime}}</small>					 
+						<br>
+						{{#compare PaymentMethod "==" "1"}} {{MCardNumber}}	{{/compare}}
+						{{#compare PaymentMethod "==" "3"}} {{MCardNumber}}	{{/compare}}							
 					</div>
+					{{#if FinalNote}}<small style="color:red">{{FinalNote}}</small>{{/if}}	
+	
 			</div>
-		</a>
-		
-		<div id="transferWrapper{{DetailsID}}" class="editFrame" style="display:none">
-			<div id="inlineContent{{DetailsID}}" class="row ">
-				<div id="oneTransfer{{DetailsID}}" class="xcol-md-12">
-					<?= THERE_ARE_NO_DATA ?>
+
+		</div>
+		<div id="ItemWrapper{{DetailID}}" class="editFrame" style="display:none">
+			<div id="inlineContent{{DetailID}}" class="row">
+				<div id="one_Item{{DetailID}}" >
+					<?= LOADING ?>
 				</div>
 			</div>
 		</div>
 
 	{{/each}}
 
-</script>
 
+</script>
+	

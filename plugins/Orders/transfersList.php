@@ -1,6 +1,12 @@
 <? 
-require_once 'transfers_JS.php';
+error_reporting(E_PARSE);
+
+//echo ROOTPATH;
+require_once ROOT.'/f/f.php';
+require_once ROOT.'/db/db.class.php';
+
 require_once ROOT.'/db/v4_AuthUsers.class.php';
+
 $au = new v4_AuthUsers();
 $au->getRow($_SESSION['AuthUserID']);
 $contractFile=$au->getContractFile();
@@ -9,7 +15,7 @@ $auK = $au->getKeysBy('Country', 'asc', ' WHERE AuthLevelID = 31');
 $dashboardFilter = "";
 $documentFilter = 0;
 $titleAddOn = '';
-$show_price_agent=array(803,924,2415,2568,69);
+$show_price_agent=array(924,2415,2568,69);
 
 $today              = strtotime("today 00:00");
 $yesterday          = strtotime("yesterday 00:00");
@@ -20,154 +26,174 @@ $lastWeek 			= strtotime("yesterday -1 week 00:00");
 $today = date("Y-m-d", $today);
 $lastWeek= date("Y-m-d", $lastWeek);
 
-	if ($pathVars->size()>2) {	
-		switch($pathVars->fetchByIndex($indexStart + 2)) {
+//if ($_SESSION['AuthLevelID'] == DRIVER_USER) $dashboardFilter = " AND DriverID = '".$_SESSION['AuthUserID']."' ";
+//https://www.jamtransfer.com/cms/a/allTransfers.php?where= WHERE v4_OrderDetails.TransferStatus!='9'  AND v4_OrderDetails.DriverConfStatus='1' AND v4_OrderDetails.TransferStatus<'3'&status=0&Search=&page=1&length=20&sortOrder=ASC
+if ($_REQUEST['transfersFilter'] == 'noDriver') {
+	$dashboardFilter .= " AND DriverConfStatus ='0' AND TransferStatus < '3'";
+	$titleAddOn = ' - ' . NO_DRIVER;
+}
 
-			case 'noDriver':
-				$dashboardFilter .= " AND DriverConfStatus ='0' AND TransferStatus < '3'";
-				$titleAddOn = ' - ' . NO_DRIVER;
-				break;			
-			case 'notConfirmed':
-				$dashboardFilter .= " AND DriverConfStatus = '1' AND TransferStatus < '3'";
-				$titleAddOn = ' - ' . NOT_CONFIRMED;
-				break;
-			case 'notConfirmedToday':
-				$dashboardFilter .= " AND PickupDate = '".$today ."' AND (DriverConfStatus = '1' OR DriverConfStatus = '4') AND TransferStatus < '3'";
-				$titleAddOn = ' - ' . NOT_CONFIRMED . ' OR ' . DECLINED .' for Today ';
-				break;			
-			case 'notConfirmedTomorrow':
-				$dashboardFilter .= " AND PickupDate = '".$tomorrow ."' AND (DriverConfStatus = '1' OR DriverConfStatus = '4')  AND TransferStatus < '3'";
-				$titleAddOn = ' - ' . NOT_CONFIRMED . ' OR ' . DECLINED .' for Tomorrow ';
-				break;				
-			case 'confirmed':
-				$dashboardFilter .= " AND (DriverConfStatus ='2' OR DriverConfStatus ='3') AND TransferStatus < '3'";
-				$titleAddOn = ' - ' . CONFIRMED;
-				break;			
-			case 'declined':
-				$dashboardFilter .= " AND DriverConfStatus ='4' AND TransferStatus < '3'";
-				$titleAddOn = ' - ' . DECLINED;
-				break;
-			case 'canceled':
-				$dashboardFilter .= " AND TransferStatus = '3'";
-				$titleAddOn = ' - ' . CANCELED;
-				break;			
-			case 'noshow':
-				$dashboardFilter .= " AND DriverConfStatus = '5'";
-				$titleAddOn = ' - ' . NO_SHOW;
-				break;			
-			case 'driverError':
-				$dashboardFilter .= " AND DriverConfStatus = '6'";
-				$titleAddOn = ' - ' . DRIVER_ERROR;
-				break;
-			case 'notCompleted':
-				$dashboardFilter .= " AND TransferStatus < '3' AND PickupDate <  (CURRENT_DATE)-INTERVAL 1 DAY ";  
-				$titleAddOn = ' -  NOT COMPLETED';
-				break;			
-			case 'active':
-				$dashboardFilter .= " AND TransferStatus < '3'";
-				$titleAddOn = ' - ' . ACTIVE;
-				break;	
-			case 'new':
-				$dashboardFilter .= " AND TransferStatus < '3' AND OrderDate = '" . $today . "'";
-				$titleAddOn = ' - ' . NEWW;
-				break;			
-			case 'tomorrow':
-				$dashboardFilter .= " AND TransferStatus < '3' AND PickupDate = '" . $tomorrow . "'";
-				$titleAddOn = ' - ' . TOMORROW;
-				break;
-			case 'deleted':
-				$dashboardFilter .= " AND TransferStatus = '9'";
-				$titleAddOn = ' - ' . DELETED;
-				break;			
-			case 'agent':
-				$dashboardFilter .= " AND UserLevelID = '2'";
-				$titleAddOn = ' - ' . AGENT_TRANSFERS;
-				break;			
-			case 'notConfirmedAgent':
-				$dashboardFilter .= " AND DriverConfStatus = '1' AND TransferStatus < '3' AND UserLevelID = '2'";
-				$titleAddOn = ' - ' . NOT_CONFIRMED;
-				break;	
-			case 'invoice2':
-				$dashboardFilter .= " AND PaymentMethod = '6'";
-				$titleAddOn = ' -  INVOICE 2';
-				break;			
-			case 'agentinvoice':
-				$dashboardFilter .= " AND (PaymentMethod = '4' OR PaymentMethod = '6')";
-				$titleAddOn = ' -  AGENT INVOICE';
-				break;	
-			case 'online':
-				$dashboardFilter .= " AND (PaymentMethod = '1' OR PaymentMethod = '3')";
-				$titleAddOn = ' -  ONLINE';
-				break;			
-			case 'cash':
-				$dashboardFilter .= " AND PaymentMethod = '2'";
-				$titleAddOn = ' -  DRIVER INVOICE';
-				break;	
-			case 'proforma':
-				$dashboardFilter .= "";
-				$documentFilter = 1;
-				$titleAddOn = ' -  PROFORMA';
-				break;			
-			case 'invoice':
-				$dashboardFilter .= "";
-				$documentFilter = 3;
-				$titleAddOn = ' -  INVOICE';
-				break;				
-			case 'sentvoucher':
-				$dashboardFilter .= "";
-				$documentFilter = 10;
-				$titleAddOn = ' -  SENT VOUCHER';
-				break;
-			case 'acceptedvoucher':
-				$dashboardFilter .= "";
-				$documentFilter = 11;
-				$titleAddOn = ' -  ACCEPTED VOUCHER';
-				break;				
-			case 'declinedvoucher':
-				$dashboardFilter .= "";
-				$documentFilter = 12;
-				$titleAddOn = ' -  DECLINED VOUCHER';
-				break;	
-			case 'order':
-				if (isset($_REQUEST['orderid'])) $orderid=$_REQUEST['orderid'];
-				if ($pathVars->size()>3) $orderid=$pathVars->fetchByIndex($indexStart + 3);
-				$oid_arr=explode('-',$orderid);
-				if (count($oid_arr)>1) {
-					$oid=rtrim($oid_arr[0]);
-					$tn=rtrim($oid_arr[1]);
-					$dashboardFilter .= " AND OrderID = ".$oid." AND TNo = ".$tn;
-				}
-				else $dashboardFilter .= " AND OrderID = ".$orderid;	
-				$titleAddOn = ' - ORDER -'.$orderid  ;
-				break;				
-			case 'details':
-				$dashboardFilter .= " AND DetailsID = ". $_REQUEST['id'];
-				$titleAddOn = ' - ' . AGENT_TRANSFERS;
-				break;
-			case 'nodate':
-				$dashboardFilter .= " AND PickupDate = ' '";
-				$titleAddOn = ' -  NO DATE ';
-				break;				
-			default:
-				break;					
-		}
-	}	
+if ($_REQUEST['transfersFilter'] == 'notConfirmed') {
+	$dashboardFilter .= " AND DriverConfStatus = '1' AND TransferStatus < '3'";
+	$titleAddOn = ' - ' . NOT_CONFIRMED;
+}
+
+elseif ($_REQUEST['transfersFilter'] == 'notConfirmedToday') {
+	$dashboardFilter .= " AND PickupDate = '".$today ."' AND (DriverConfStatus = '1' OR DriverConfStatus = '4') AND TransferStatus < '3'";
+	$titleAddOn = ' - ' . NOT_CONFIRMED . ' OR ' . DECLINED .' for Today ';
+}
+
+elseif ($_REQUEST['transfersFilter'] == 'notConfirmedTomorrow') {
+	$dashboardFilter .= " AND PickupDate = '".$tomorrow ."' AND (DriverConfStatus = '1' OR DriverConfStatus = '4')  AND TransferStatus < '3'";
+	$titleAddOn = ' - ' . NOT_CONFIRMED . ' OR ' . DECLINED .' for Tomorrow ';
+}
+
+elseif ($_REQUEST['transfersFilter'] == 'confirmed') {
+	$dashboardFilter .= " AND (DriverConfStatus ='2' OR DriverConfStatus ='3') AND TransferStatus < '3'";
+	$titleAddOn = ' - ' . CONFIRMED;
+}
+
+elseif ($_REQUEST['transfersFilter'] == 'declined') {
+	$dashboardFilter .= " AND DriverConfStatus ='4' AND TransferStatus < '3'";
+	$titleAddOn = ' - ' . DECLINED;
+}
+
+elseif ($_REQUEST['transfersFilter'] == 'canceled') {
+	$dashboardFilter .= " AND TransferStatus = '3'";
+	$titleAddOn = ' - ' . CANCELED;
+}
+
+elseif ($_REQUEST['transfersFilter'] == 'noshow') {
+	$dashboardFilter .= " AND DriverConfStatus = '5'";
+	$titleAddOn = ' - ' . NO_SHOW;
+}
+
+elseif ($_REQUEST['transfersFilter'] == 'driverError') {
+	$dashboardFilter .= " AND DriverConfStatus = '6'";
+	$titleAddOn = ' - ' . DRIVER_ERROR;
+}
+
+elseif ($_REQUEST['transfersFilter'] == 'notCompleted') { 
+$dashboardFilter .= " AND TransferStatus < '3' AND PickupDate <  (CURRENT_DATE)-INTERVAL 1 DAY ";  
+$titleAddOn = ' -  NOT COMPLETED';
+}
+
+elseif ($_REQUEST['transfersFilter'] == 'active') {
+$dashboardFilter .= " AND TransferStatus < '3'";
+$titleAddOn = ' - ' . ACTIVE;
+}
+
+elseif ($_REQUEST['transfersFilter'] == 'new') {
+$dashboardFilter .= " AND TransferStatus < '3' AND OrderDate = '" . $today . "'";
+$titleAddOn = ' - ' . NEWW;
+}
+
+elseif ($_REQUEST['transfersFilter'] == 'tomorrow') {
+$dashboardFilter .= " AND TransferStatus < '3' AND PickupDate = '" . $tomorrow . "'";
+$titleAddOn = ' - ' . TOMORROW;
+}
+
+elseif ($_REQUEST['transfersFilter'] == 'deleted') {
+$dashboardFilter .= " AND TransferStatus = '9'";
+$titleAddOn = ' - ' . DELETED;
+}
 
 
+elseif ($_REQUEST['transfersFilter'] == 'agent') {
+$dashboardFilter .= " AND UserLevelID = '2'";
+$titleAddOn = ' - ' . AGENT_TRANSFERS;
+}
 
-if (isset($_REQUEST['archive'])) $titleAddOn = ' - ARCHIVE' ;
+if ($_REQUEST['transfersFilter'] == 'notConfirmedAgent') {
+	$dashboardFilter .= " AND DriverConfStatus = '1' AND TransferStatus < '3' AND UserLevelID = '2'";
+	$titleAddOn = ' - ' . NOT_CONFIRMED;
+}
+
+elseif ($_REQUEST['transfersFilter'] == 'invoice2') {
+$dashboardFilter .= " AND PaymentMethod = '6'";
+$titleAddOn = ' -  INVOICE 2';
+}
+
+elseif ($_REQUEST['transfersFilter'] == 'agentinvoice') {
+$dashboardFilter .= " AND (PaymentMethod = '4' OR PaymentMethod = '6')";
+$titleAddOn = ' -  AGENT INVOICE';
+}
+
+elseif ($_REQUEST['transfersFilter'] == 'online') {
+$dashboardFilter .= " AND (PaymentMethod = '1' OR PaymentMethod = '3')";
+$titleAddOn = ' -  ONLINE';
+}
+
+elseif ($_REQUEST['transfersFilter'] == 'cash') {
+$dashboardFilter .= " AND PaymentMethod = '2'";
+$titleAddOn = ' -  DRIVER INVOICE';
+}
+
+elseif ($_REQUEST['transfersFilter'] == 'proforma') {
+$dashboardFilter .= "";
+$documentFilter = 1;
+$titleAddOn = ' -  PROFORMA';
+}
+
+elseif ($_REQUEST['transfersFilter'] == 'invoice') {
+$dashboardFilter .= "";
+$documentFilter = 3;
+$titleAddOn = ' -  INVOICE';
+}
+
+elseif ($_REQUEST['transfersFilter'] == 'sentvoucher') {
+$dashboardFilter .= "";
+$documentFilter = 10;
+$titleAddOn = ' -  SENT VOUCHER';
+}
+
+elseif ($_REQUEST['transfersFilter'] == 'acceptedvoucher') {
+$dashboardFilter .= "";
+$documentFilter = 11;
+$titleAddOn = ' -  ACCEPTED VOUCHER';
+}
+
+elseif ($_REQUEST['transfersFilter'] == 'declinedvoucher') {
+$dashboardFilter .= "";
+$documentFilter = 12;
+$titleAddOn = ' -  DECLINED VOUCHER';
+}
+
+elseif ($_REQUEST['transfersFilter'] == 'order') {
+$oid_arr=explode('-',$_REQUEST['orderid']);
+	if (count($oid_arr)>1) {
+		$oid=rtrim($oid_arr[0]);
+		$tn=rtrim($oid_arr[1]);
+		$dashboardFilter .= " AND OrderID = ".$oid." AND TNo = ".$tn;
+	}
+	else $dashboardFilter .= " AND OrderID = ".$_REQUEST['orderid'];	
+	$titleAddOn = ' - ORDER' ;
+}
+
+elseif ($_REQUEST['transfersFilter'] == 'details') {
+$dashboardFilter .= " AND DetailsID = ". $_REQUEST['id'];
+$titleAddOn = ' - ' . AGENT_TRANSFERS;
+}
 
 
+elseif (isset($_REQUEST['archive'])) {
+$titleAddOn = ' - ARCHIVE' ;
+}
 
-
-
+elseif ($_REQUEST['transfersFilter'] == 'nodate') {
+$dashboardFilter .= " AND PickupDate = ' '";
+$titleAddOn = ' -  NO DATE ';
+}
 
 $defDate=time()-540*24*3600;
 $date = new DateTime();	
 $date->setTimestamp($defDate);
 $defDate = $date->format('Y-m-d');
 
-if (isset($filterDate) && $filterDate == '') $filterDate = $defDate;
+if ($filterDate == '') $filterDate = $defDate;
+
+//if ( isset($_REQUEST['transfersFilter']) ) $filterDate = date("Y-m-d"); // ovo cu razmislit
+/*else*/if ( isset($_COOKIE['dateFilterCookie']) && $_COOKIE['dateFilterCookie'] !="") $filterDate = $_COOKIE['dateFilterCookie'];
 
 
 
@@ -301,8 +327,6 @@ if (isset($filterDate) && $filterDate == '') $filterDate = $defDate;
 	<div id='arh' style='display:none'><? if (isset($_REQUEST['archive'])) echo 'archive'; ?></div> 
 	<div id='order_only' style='display:none'><? if ($_REQUEST['transfersFilter'] == 'order') echo 'order_only'; ?></div> 
 	<? 
-
-	
 		// ovo nije u primjeni, ali je ideja
 		if ($_SESSION['AuthLevelID'] == '31') define("READ_ONLY_FLD", 'readonly="readonly"');		
 		if ($_SESSION['AuthLevelID'] >= '91') define("READ_ONLY_FLD", '');
@@ -333,6 +357,8 @@ if (isset($filterDate) && $filterDate == '') $filterDate = $defDate;
 	function getAllTransfersFilter() {
 		getAllTransfers(); // definirano u cms.jquery.js
 	}
-
+	
+	
+	
 </script>
 
