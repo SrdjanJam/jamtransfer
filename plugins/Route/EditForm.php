@@ -120,7 +120,7 @@
 					<div class="col-md-3">
 						<label for="SurCategory"><?=SURCATEGORY;?></label>
 					</div>
-					<div class="col-md-9">
+					<div class="col-md-3">
 						<select name="SurCategory" id="SurCategory" class="w100">
 							{{#select SurCategory}}
 								<option value="1" {{#compare SurCategory "==" 1}}selected{{/compare}}><?= USE_GLOBAL ?></option>
@@ -129,7 +129,14 @@
 							{{/select}}								
 						</select>
 					</div>
+					<div class="col-md-3">
+						<a target='_blank' href='rules/global'>Edit Global Rules</a>
+					</div>					
+					<div class="col-md-3">
+						<a target='_blank' href='rules/routes/{{RouteID}}'>Edit Route Rules</a>
+					</div>
 				</div>
+			
 				<? } ?>
 
 			</div>

@@ -1,7 +1,7 @@
 <?
 	$smarty->assign('page',$md->getName());	
 	
-		
+	if	($_REQUEST['rulesType']=='') $_REQUEST['rulesType']='global';
 	switch ($_REQUEST['rulesType']) {
 		case 'global':
 			require_once ROOT . '/db/v4_SurGlobal.class.php';	
@@ -53,7 +53,8 @@
 		$rt = new v4_Routes();
 		$rt->getRow($rid);
 		$smarty->assign('routeName',$rt->getRouteName());
-	}	if ($vehicle_name) {
+	}	
+	if ($vehicle_name) {
 		require_once ROOT . '/db/v4_VehicleTypes.class.php';	
 		$vh = new v4_VehicleTypes();
 		$vh->getRow($vid);

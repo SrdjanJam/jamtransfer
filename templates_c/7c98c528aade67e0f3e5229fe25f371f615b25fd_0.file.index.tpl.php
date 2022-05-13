@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 3.1.32, created on 2022-05-09 12:32:09
+/* Smarty version 3.1.32, created on 2022-05-12 07:59:53
   from 'c:\wamp\www\jamtransfer\plugins\PriceRules\templates\index.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.32',
-  'unifunc' => 'content_627909c9beeb09_72734316',
+  'unifunc' => 'content_627cbe7930de05_91063369',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_627909c9beeb09_72734316 (Smarty_Internal_Template $_smarty_tpl) {
+function content_627cbe7930de05_91063369 (Smarty_Internal_Template $_smarty_tpl) {
 ?><form id="" class="form " method="post">	
 	<div class="box-body ">
         <div class="row">
