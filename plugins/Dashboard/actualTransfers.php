@@ -87,26 +87,8 @@
 		$data .= ' <span>'. $row['PickupName'] .'-'. $row['DropName']  .'</span><br/>';
 	}
 	$data .= '<br><small style="font-size:14px">No of transfers: '.$noOfTransfers.'</small>';
-?>	
-	<style>
-		table {
-			border: 1px solid black;
-		}
-
-
-		td, th {
-			border: 1px solid black;
-			text-align: center;
-		}	
-	</style>
-    <div class="box box-info">
-        <div class="box-header">
-            <i class="fa fa-road"></i>
-            <h3 class="box-title">Actual transfers <?= $timeStart?> - <?= $timeEnd?> (<?= date('Y-m-d')?>)</h3>
-		</div>	
-	<div class="box-body">	
-		<?= $data ?>
-	</div>
-<script>
-	$(".mytooltip").popover({trigger:'hover', html:true, placement:'bottom'});
-</script>
+	$smarty->assign('timeStart',$timeStart);
+	$smarty->assign('timeEnd',$timeEnd);
+	$smarty->assign('today',date('Y-m-d'));
+	$smarty->assign('data',$data);
+	

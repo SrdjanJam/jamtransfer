@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.32, created on 2022-05-12 07:17:07
+/* Smarty version 3.1.32, created on 2022-06-07 06:50:24
   from 'C:\wamp\www\jamtransfer\templates\index.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.32',
-  'unifunc' => 'content_627cb473051a01_70739552',
+  'unifunc' => 'content_629ef530c6c5b3_48471861',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'a1818a92b5a2f041fd91a227dabc592dea38fac2' => 
     array (
       0 => 'C:\\wamp\\www\\jamtransfer\\templates\\index.tpl',
-      1 => 1652339413,
+      1 => 1654584577,
       2 => 'file',
     ),
   ),
@@ -22,9 +22,8 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:pageList.tpl' => 1,
   ),
 ),false)) {
-function content_627cb473051a01_70739552 (Smarty_Internal_Template $_smarty_tpl) {
+function content_629ef530c6c5b3_48471861 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
-
 <html>
 	<head>
 		<base href="<?php echo $_smarty_tpl->tpl_vars['root_home']->value;?>
@@ -250,7 +249,6 @@ _init.js"><?php echo '</script'; ?>
 			<?php }?>
 		<?php }?>		
 	</head>		
-
 	<body class="fixed-top" style="height:100%!important;font-size:16px">
 		<div class="wrapper">
 			<nav class="navbar-default navbar-static-side" role="navigation">
@@ -282,7 +280,6 @@ _init.js"><?php echo '</script'; ?>
 							<a href="setout.php">Setout</a>
 						</li>
 						<?php }?>
-						<li class=""><a href="dashboard"><i class='fa fa-th-large'></i><span>Dashboard</span></a></li>
 						<?php
 $__section_index_0_loop = (is_array(@$_loop=$_smarty_tpl->tpl_vars['menu1']->value) ? count($_loop) : max(0, (int) $_loop));
 $__section_index_0_total = $__section_index_0_loop;

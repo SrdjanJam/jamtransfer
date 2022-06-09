@@ -4,6 +4,9 @@
 <input type="hidden"  id="whereCondition" name="whereCondition" 
 value=" WHERE {$ItemID} > 0">
 
+<input type="hidden"  id="transfersFilter" name="transfersFilter" value="{$transfersFilter}">
+<input type="hidden"  id="orderid" name="orderid" value="{$orderid}">
+
 <div class="row">
 	<div class="col-md-2" id="infoShow"></div>
 	{if isset($selecttype)}

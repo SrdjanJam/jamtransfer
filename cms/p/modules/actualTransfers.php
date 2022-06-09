@@ -1,4 +1,5 @@
-<?php   
+<?
+		error_reporting(0);
 		$password = file_get_contents('weby_key.inc', FILE_USE_INCLUDE_PATH);
 		$link="https://city-airport-taxis.com/api/getAllBookingsConfirmedPast48?password=".$password;   
 		$json = file_get_contents($link);   

@@ -11,9 +11,9 @@
 <script type="text/x-handlebars-template" id="ItemListTemplate">
 
 	{{#each Item}}
-		<div  onclick="oneItem({{DetailID}});">
+		<div  onclick="oneItem({{DetailsID}});">
 		
-			<div class="row xbox-solid xbg-light-blue {{color}} pad1em listTile" 
+			<div class="row {{color}} pad1em listTile" 
 			style="border-top:1px solid #eee;border-bottom:0px solid #eee" 
 			id="t_{{DetailsID}}">
 
@@ -73,9 +73,9 @@
 			</div>
 
 		</div>
-		<div id="ItemWrapper{{DetailID}}" class="editFrame" style="display:none">
-			<div id="inlineContent{{DetailID}}" class="row">
-				<div id="one_Item{{DetailID}}" >
+		<div id="ItemWrapper{{DetailsID}}" class="editFrame" style="display:none">
+			<div id="inlineContent{{DetailsID}}" class="row">
+				<div id="one_Item{{DetailsID}}" >
 					<?= LOADING ?>
 				</div>
 			</div>

@@ -28,7 +28,12 @@ switch ($activePage) {
 		$_REQUEST['rulesType']=$pathVars->fetchByIndex($indexStart + 1);
 		if (is_numeric($pathVars->fetchByIndex($indexStart + 2))) {
 			$_REQUEST['item']=$pathVars->fetchByIndex($indexStart + 2);
-		}		
+		}	
+	case 'orders':
+		if ($pathVars->fetchByIndex($indexStart + 1)) { 
+			$transfersFilter=$pathVars->fetchByIndex($indexStart + 1);
+			if ($transfersFilter=='order') $orderid=$pathVars->fetchByIndex($indexStart + 2);
+		}
 	default:
 		if ($pathVars->fetchByIndex($indexStart + 1)) { 
 			if (is_numeric($pathVars->fetchByIndex($indexStart + 1))) {

@@ -13,7 +13,129 @@ if (isset($type)) {
 		$filter = "  AND ".$type." = '" . $_REQUEST['Type'] . "'";
 	}
 }
+	if (isset($_REQUEST['transfersFilter'])) {
+		$today              = strtotime("today 00:00");
+		$yesterday          = strtotime("yesterday 00:00");
+		$datetime 			= new DateTime('tomorrow');
+		$tomorrow 			= $datetime->format('Y-m-d');
+		$lastWeek 			= strtotime("yesterday -1 week 00:00");
 
+		$today = date("Y-m-d", $today);
+		$lastWeek= date("Y-m-d", $lastWeek);
+		
+		switch ($_REQUEST['transfersFilter']) {
+			case 'noDriver':
+				$filter .= " AND DriverConfStatus ='0' AND TransferStatus < '3'";	
+				break;
+			
+			case 'notConfirmed':
+				$filter .= " AND DriverConfStatus = '1' AND TransferStatus < '3'";
+				break;			
+				
+			case 'notConfirmedTomorrow':
+				$filter .= " AND PickupDate = '".$tomorrow ."' AND (DriverConfStatus = '1' OR DriverConfStatus = '4')  AND TransferStatus < '3'";
+				break;			
+				
+			case 'confirmed':
+				$filter .= " AND (DriverConfStatus ='2' OR DriverConfStatus ='3') AND TransferStatus < '3'";
+				break;			
+				
+			case 'declined':
+				$filter .= " AND DriverConfStatus ='4' AND TransferStatus < '3'";
+				break;			
+				
+			case 'canceled':
+				$filter .= " AND TransferStatus = '3'";
+				break;			
+				
+			case 'noshow':
+				$filter .= " AND DriverConfStatus = '5'";
+				break;			
+				
+			case 'driverError':
+				$filter .= " AND DriverConfStatus = '6'";
+				break;			
+				
+			case 'notCompleted':
+				$filter .= " AND TransferStatus < '3' AND PickupDate <  (CURRENT_DATE)-INTERVAL 1 DAY ";  
+				break;			
+				
+			case 'active':
+				$filter .= " AND TransferStatus < '3'";
+				break;			
+				
+			case 'newTransfers':
+				$filter .= " AND TransferStatus < '3' AND OrderDate = '" . $today . "'";
+				break;			
+				
+			case 'tomorrow':
+				$filter .= " AND TransferStatus < '3' AND PickupDate = '" . $tomorrow . "'";
+				break;			
+				
+			case 'deleted':
+				$filter .= " AND TransferStatus = '9'";
+				break;			
+				
+			case 'agent':
+				$filter .= " AND UserLevelID = '2'";
+				break;			
+				
+			case 'notConfirmedAgent':
+				$filter .= " AND DriverConfStatus = '1' AND TransferStatus < '3' AND UserLevelID = '2'";
+				break;			
+				
+			case 'invoice2':
+				$filter .= " AND PaymentMethod = '6'";
+				break;			
+				
+			case 'agentinvoice':
+				$filter .= " AND (PaymentMethod = '4' OR PaymentMethod = '6')";
+				break;			
+				
+			case 'online':
+				$filter .= " AND (PaymentMethod = '1' OR PaymentMethod = '3')";
+				break;			
+				
+			case 'cash':
+				$filter .= " AND PaymentMethod = '2'";
+				break;			
+				
+			case 'proforma':
+				$documentFilter = 1;
+				break;			
+				
+			case 'invoice':
+				$documentFilter = 3;
+				break;			
+				
+			case 'invoice':
+				$documentFilter = 3;
+				break;				
+				
+			case 'nodate':
+				$filter .= " AND PickupDate = ' '";
+				break;				
+				
+			case 'order':
+				$oid_arr=explode('-',$_REQUEST['orderid']);
+				if (count($oid_arr)>1) {
+					$oid=rtrim($oid_arr[0]);
+					$tn=rtrim($oid_arr[1]);
+					$filter .= " AND OrderID = ".$oid." AND TNo = ".$tn;
+				}
+				else $filter .= " AND OrderID = ".$_REQUEST['orderid'];					
+				break;			
+		}
+
+		$defDate=time()-540*24*3600;
+		$date = new DateTime();	
+		$date->setTimestamp($defDate);
+		$defDate = $date->format('Y-m-d');
+
+		if ($filterDate == '') $filterDate = $defDate;
+
+		
+	}	
 $page 		= $_REQUEST['page'];
 $length 	= $_REQUEST['length'];
 $sortOrder 	= $_REQUEST['sortOrder'];

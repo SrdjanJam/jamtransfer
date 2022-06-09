@@ -26,6 +26,7 @@ if (isset ($_SESSION['af']) && $_SESSION['af']) $activeFolder=$_SESSION['af'];
 else $activeFolder = 'cms/'.trim( strtolower($_SESSION['GroupProfile']) );
 
 // kontrola pristupa
+$modules_arr='';
 if(isset($_SESSION['UseDriverID'])) $AuthLevelID=43;
 else $AuthLevelID=$_SESSION['AuthLevelID'];
 $sql="SELECT ModulID FROM `v4_ModulesLevel` WHERE AuthLevelID=".$AuthLevelID;
@@ -91,7 +92,7 @@ if (count($mdk)==1) {
 else {
 	require_once $activeFolder . '/' . 'controler.php';	
 	$smarty->assign('title',$activePage);
-}	
+}
  
 // display
 ?><script type="text/x-handlebars-template"></script><?

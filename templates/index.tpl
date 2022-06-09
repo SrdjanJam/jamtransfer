@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html>
 	<head>
 		<base href="{$root_home}">	
@@ -151,7 +150,6 @@
 			{/if}
 		{/if}		
 	</head>		
-
 	<body class="fixed-top" style="height:100%!important;font-size:16px">
 		<div class="wrapper">
 			<nav class="navbar-default navbar-static-side" role="navigation">
@@ -180,7 +178,6 @@
 							<a href="setout.php">Setout</a>
 						</li>
 						{/if}
-						<li class=""><a href="dashboard"><i class='fa fa-th-large'></i><span>Dashboard</span></a></li>
 						{section name=index loop=$menu1}
 						<li class="{$menu1[index].active}">
 							<a href='{$menu1[index].link}' >
