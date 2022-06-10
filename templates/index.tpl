@@ -190,6 +190,17 @@
 								{section name=index1 loop=$menu1[index].menu}	
 								<li class="{$menu1[index].menu[index1].active}">
 									<a href="{$menu1[index].menu[index1].link}"><span class="nav-label">{$menu1[index].menu[index1].title}</span></a>
+										{if $menu1[index].menu[index1].title eq 'Orders'}
+										<ul class="nav nav-third-level collapse" >
+											<li><a href="{$menu1[index].menu[index1].link}"><span class="nav-label">All</span></a></li>
+											{section name=pom loop=$transfersFilters}
+												<li {if $transfersFilters[pom].id eq $transfersFilter} class="active" {/if}>
+													<a href="{$menu1[index].menu[index1].link}/{$transfersFilters[pom].id}"><span class="nav-label">{$transfersFilters[pom].name}</span></a>
+												</li>
+											{/section}
+										</select>						
+										</ul>
+										{/if}
 								</li>
 								{/section}	
 							</ul>

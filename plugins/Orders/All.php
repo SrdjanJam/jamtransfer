@@ -48,7 +48,7 @@ if (isset($type)) {
 				$filter .= " AND TransferStatus = '3'";
 				break;			
 				
-			case 'noshow':
+			case 'noShow':
 				$filter .= " AND DriverConfStatus = '5'";
 				break;			
 				
@@ -112,7 +112,7 @@ if (isset($type)) {
 				$documentFilter = 3;
 				break;				
 				
-			case 'nodate':
+			case 'noDate':
 				$filter .= " AND PickupDate = ' '";
 				break;				
 				

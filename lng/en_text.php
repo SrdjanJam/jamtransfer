@@ -120,7 +120,20 @@
 		'3' => 'Compensated'
 	);
 	
-	
+	# Transfers Filters
+	$transfersFilters = array(
+		array ("id" => "noDriver", "name" => "No Driver"), 
+		array ("id" => "notConfirmed", "name" => "Not Confirmed"), 
+		array ("id" => "confirmed", "name" => "Confirmed"), 
+		array ("id" => "declined", "name" => "Declined"), 
+		array ("id" => "canceled", "name" => "Canceled"), 
+		array ("id" => "noShow", "name" => "No Show"), 
+		array ("id" => "driverError", "name" => "Driver Error"), 
+		array ("id" => "agent", "name" => "Agent transfers"), 
+		array ("id" => "notConfirmedAgent", "name" => "Agent transfers Not Confirmed"), 
+		array ("id" => "notComplited", "name" => "Not Complited"), 
+		array ("id" => "invoice2", "name" => "Invoice 2"), 
+	) ;	
 	
 	$monthNames = array("January", "February", "March", "April", "May", "June", "July",
 	"August", "September", "October", "November", "December");

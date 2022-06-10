@@ -45,6 +45,7 @@ if ( isset($_SESSION['CMSLang']) and $_SESSION['CMSLang'] != '') {
 	require_once 'lng/en_text.php';
 }
 require_once 'lng/var-en.php';
+
 $defvar=get_defined_vars();
 foreach ($defvar as $key => $dv) {
 	if (gettype($dv)=='string' or gettype($dv)=='array') $smarty->assign($key,$dv);
@@ -81,4 +82,5 @@ if (isset($_SESSION['AuthUserID'])) {
 	$smarty->assign('local',$local);
 }	
 $smarty->assign('isNew',false);
+
 ?>
