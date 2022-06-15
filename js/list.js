@@ -5,10 +5,12 @@
 		// podaci iz input polja - filtriranje
 		var where  = $("#whereCondition").val(); // glavni filter koji uvijek radi
 	 	var status = $("#Type").val(); // prikazuje po tipu	
+		
 	 	var active = $("#Active").val(); // prikazuje samo aktivne	
 	 	var filter = $("#Search").val(); // filtrira prema zadanom tekstu
 	 	var length = $("#length").val(); // dropdown za broj prikazanih usera na stranici
-	 	// advanced search
+	 	var transfersFilter = $("#transfersFilter").val(); // filter za transfere
+	 	var orderid = $("#orderid").val(); // filter za orderid
 	 	var sortOrder  = $("#sortOrder").val();
 	 	
 		var callFunction = 'allItems()'; // funkcija koju paginator poziva kod promjene stranice
@@ -21,7 +23,10 @@
 		if(page<=0) {page=1;}
 
 	 	var url = window.root+'All.php?where='+where+'&Type='+status+'&Active='+active+
-	 	'&Search='+filter+'&page='+page+'&length='+length+'&sortOrder='+sortOrder+'&callback=?';
+	 	'&Search='+filter+'&page='+page+'&length='+length+'&sortOrder='+sortOrder+
+		'&transfersFilter='+transfersFilter+
+		'&orderid='+orderid+	
+		'&callback=?';
 		console.log(window.base+url);
 		$.ajax({
 		 type: 'GET',
@@ -73,9 +78,7 @@
 			success: function(data) {
 
 				// CUSTOM STUFF
-				$.each(data, function(i, item) {
-					data[i].color ='white';
-				});
+				$('.bg-light-blue').removeClass('bg-light-blue').addClass('white');
 
 				var source   = $("#ItemEditTemplate").html();
 				var template = Handlebars.compile(source);

@@ -1,89 +1,17 @@
-<?
-error_reporting(E_ALL);
-/*
-# TransferStatus
-$StatusDescription = array(
-    '1' =>    'New',
-    '2' =>    'Confirmed',
-    '3' =>    'Canceled',
-    '4' =>    'Refunded',
-    '5' =>    'No-Show',
-    '6' =>    'DriverError',
-    '7' =>    'Completed',
-    '8' =>    'Comm.Paid'
-);
-*/
-    require_once 'db/v4_OrderDetails.class.php';
-
-    $od = new v4_OrderDetails();
-
-    $where = ' WHERE PickupDate >= "'.date("Y-m-d").'" AND TransferStatus < "3"';
-    $k = $od->getKeysBy('DetailsID', 'asc', $where);
-    $activeOrders = count($k);
-
-
-    $where = ' WHERE PickupDate >= "'.date("Y-m-d").'" AND TransferStatus < "3" AND (DriverConfStatus = "2" OR DriverConfStatus = "3")';
-    $k = $od->getKeysBy('DetailsID', 'asc', $where);
-    $confirmedOrders = count($k);
-
-
-    $where = ' WHERE TransferStatus < "3" AND DriverConfStatus = "1"';
-    $k = $od->getKeysBy('DetailsID', 'asc', $where);
-    $notConfirmedOrders = count($k);    
-	
-	$where = ' WHERE PickupDate = "'.date("Y-m-d").'" AND TransferStatus < "3" AND (DriverConfStatus = "1" OR DriverConfStatus = "4")';
-    $k = $od->getKeysBy('DetailsID', 'asc', $where);
-    $notConfirmedOrdersToday = count($k);	
-	
-	$where = ' WHERE PickupDate = ("'.date("Y-m-d").'"+INTERVAL 1 DAY) AND TransferStatus < "3" AND (DriverConfStatus = "1" OR DriverConfStatus = "4")';
-    $k = $od->getKeysBy('DetailsID', 'asc', $where);
-    $notConfirmedOrdersTomorrow = count($k);
-
-    $where = ' WHERE PickupDate >= "'.date("Y-m-d").'" AND TransferStatus < "3" AND DriverConfStatus = "4"';
-    $k = $od->getKeysBy('DetailsID', 'asc', $where);
-    $declined = count($k);
-
-	$today              = strtotime("today 00:00");
-	$yesterday          = strtotime("yesterday 00:00");
-	$lastWeek = strtotime("yesterday -1 week 00:00");
-
-	$fromDate= date("Y-m-d", $today);
-	$lastWeek= date("Y-m-d", $lastWeek);
-
-    $where = ' WHERE OrderDate = "'. $fromDate.'" AND TransferStatus < "3"';
-    $k = $od->getKeysBy('DetailsID', 'asc', $where);
-    $todayBooking = count($k);
-
-
-    $where = ' WHERE OrderDate >= "'.$lastWeek.'" AND TransferStatus < "3" AND (DriverConfStatus = "2" OR DriverConfStatus = "3")';
-    $k = $od->getKeysBy('DetailsID', 'asc', $where);
-    $lastWeekBooking = count($k);	
-
-    // Tomorrow
-
-	$datetime = new DateTime('tomorrow');
-	$tomorrow = $datetime->format('Y-m-d');
-    $where = ' WHERE PickupDate = "'.$tomorrow.'" AND TransferStatus < "3"';
-    $k = $od->getKeysBy('DetailsID', 'asc', $where);
-    $tomorrowTransfers = count($k);
-
-	
-    $od->endv4_OrderDetails();
-
-?>    
+   
 
                     <!-- Small boxes (Stat box) -->
                     <div class="row">
                         <div class="col-lg-2 col-xs-6">
                             <!-- small box -->
-                            <a href="index.php?p=transfersList&transfersFilter=new">
+                            <a href="orders/newTransfers">
                                 <div class="small-box xblue xwhite-text">
                                     <div class="inner">
                                         <h3>
-                                            <?= $todayBooking ?>
+                                            {$todayBooking}
                                         </h3>
                                         <p>
-                                            <?= NNEW . ' ' .TODAY ?>
+                                            {$NNEW} {$TODAY}
                                         </p>
                                     </div>
                                     <div class="icon">
@@ -97,20 +25,16 @@ $StatusDescription = array(
                                 </div>
                             </a>
                         </div><!-- ./col -->
-						<?php 
-						$nswitch=false;
-						if ($nswitch) { 
-						?>
-                        <div class="col-lg-2 col-xs-6">
+                        {*<div class="col-lg-2 col-xs-6">
                             <!-- small box -->
-                            <a href="index.php?p=transfersList&transfersFilter=active">
+                            <a href="orders/active">
                                 <div class="small-box bg-aqua">
                                     <div class="inner">
                                         <h3>
-                                            <?= $activeOrders ?>
+                                            {$activeOrders}
                                         </h3>
                                         <p>
-                                            <?= ACTIVE ?>
+                                            {$ACTIVE}
                                         </p>
                                     </div>
                                     <div class="icon">
@@ -126,14 +50,14 @@ $StatusDescription = array(
                         </div><!-- ./col -->
                         <div class="col-lg-2 col-xs-6">
                             <!-- small box -->
-                            <a href="index.php?p=transfersList&transfersFilter=confirmed">
+                            <a href="orders/confirmed">
                                 <div class="small-box xgreen  xwhite-text">
                                     <div class="inner">
                                         <h3>
-                                            <?= $confirmedOrders ?>
+                                            {$confirmedOrders}
                                         </h3>
                                         <p>
-                                            <?= CONFIRMED ?>
+                                            {$CONFIRMED}
                                         </p>
                                     </div>
                                     <div class="icon">
@@ -144,18 +68,17 @@ $StatusDescription = array(
                                     </span>
                                 </div>
                             </a>
-                        </div><!-- ./col -->
-						<?php } ?>
+						</div>*}
                         <div class="col-lg-2 col-xs-6">
                             <!-- small box -->
-                            <a href="index.php?p=transfersList&transfersFilter=notConfirmed">
+                            <a href="orders/notConfirmed">
                                 <div class="small-box bg-warning">
                                     <div class="inner">
                                         <h3>
-                                            <?= $notConfirmedOrders ?>
+                                            {$notConfirmedOrders}
                                         </h3>
                                         <p>
-                                            <?= NOT_CONFIRMED ?> All
+                                            {$NOT_CONFIRMED} All
                                         </p>
                                     </div>
                                     <div class="icon">
@@ -166,17 +89,14 @@ $StatusDescription = array(
                                     </span>
                                 </div>
                             </a>
-                        </div><!-- ./col -->      
-						<?php 
-						if (!$nswitch) { 
-						?>						
+                        </div><!-- ./col -->      					
 						<div class="col-lg-2 col-xs-6">
                             <!-- small box -->
-                            <a href="index.php?p=transfersList&transfersFilter=notConfirmedToday">
+                            <a href="orders/notConfirmedToday">
                                 <div class="small-box bg-yellow">
                                     <div class="inner">
                                         <h3>
-                                            <?= $notConfirmedOrdersToday ?>
+                                            {$notConfirmedOrdersToday}
                                         </h3>
                                         <p>
                                             Today unconfirmed/declined 
@@ -193,11 +113,11 @@ $StatusDescription = array(
                         </div><!-- ./col -->						
 						<div class="col-lg-2 col-xs-6">
                             <!-- small box -->
-                            <a href="index.php?p=transfersList&transfersFilter=notConfirmedTomorrow">
+                            <a href="orders/notConfirmedTomorrow">
                                 <div class="small-box bg-orange">
                                     <div class="inner">
                                         <h3>
-                                            <?= $notConfirmedOrdersTomorrow ?>
+                                            {$notConfirmedOrdersTomorrow}
                                         </h3>
                                         <p>
                                             Tomorrow unconfirmed/declined 
@@ -212,17 +132,16 @@ $StatusDescription = array(
                                 </div>
                             </a>
                         </div><!-- ./col -->
-						<?php } ?>
                         <div class="col-lg-2 col-xs-6">
                             <!-- small box -->
-                            <a href="index.php?p=transfersList&transfersFilter=declined">
+                            <a href="orders/declined">
                                 <div class="small-box red darken-2 xwhite-text">
                                     <div class="inner">
                                         <h3>
-                                            <?= $declined ?>
+                                            {$declined}
                                         </h3>
                                         <p>
-                                            <?= DECLINED ?>
+                                            {$DECLINED}
                                         </p>
                                     </div>
                                     <div class="icon">
@@ -234,18 +153,16 @@ $StatusDescription = array(
                                 </div>
                             </a>
                         </div><!-- ./col -->
-						
-
                         <div class="col-lg-2 col-xs-6">
                             <!-- small box -->
-                            <a href="index.php?p=transfersList&transfersFilter=tomorrow">
+                            <a href="orders/tomorrow">
                                 <div class="small-box teal darken-2 xwhite-text">
                                     <div class="inner">
                                         <h3>
-                                            <?= $tomorrowTransfers ?>
+                                            {$tomorrowTransfers}
                                         </h3>
                                         <p>
-                                            <?= TOMORROW ?>
+                                            {$TOMORROW}
                                         </p>
                                     </div>
                                     <div class="icon ">

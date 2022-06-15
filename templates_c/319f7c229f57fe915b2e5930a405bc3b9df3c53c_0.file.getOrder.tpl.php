@@ -1,4 +1,27 @@
-    <!-- get transfer  widget -->
+<?php
+/* Smarty version 3.1.32, created on 2022-06-09 14:16:03
+  from 'C:\wamp\www\jamtransfer\plugins\Dashboard\templates\getOrder.tpl' */
+
+/* @var Smarty_Internal_Template $_smarty_tpl */
+if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
+  'version' => '3.1.32',
+  'unifunc' => 'content_62a1e4834c45c3_21075160',
+  'has_nocache_code' => false,
+  'file_dependency' => 
+  array (
+    '319f7c229f57fe915b2e5930a405bc3b9df3c53c' => 
+    array (
+      0 => 'C:\\wamp\\www\\jamtransfer\\plugins\\Dashboard\\templates\\getOrder.tpl',
+      1 => 1654776957,
+      2 => 'file',
+    ),
+  ),
+  'includes' => 
+  array (
+  ),
+),false)) {
+function content_62a1e4834c45c3_21075160 (Smarty_Internal_Template $_smarty_tpl) {
+?>    <!-- get transfer  widget -->
     <div class="box box-info">
         <div class="box-header">
             <i class="fa fa-car"></i>
@@ -15,7 +38,7 @@
             </div><!-- /. tools -->
         </div>
         <div class="box-body">
-			<form action="transfersList/order" method="post"> 
+			<form action="orders/order" method="post"> 
 				<div class="row">
 					<div class="col-md-4">Transfer order number: </div>
 					<div class="col-md-3">
@@ -30,4 +53,5 @@
 				</div>
 			</form>
         </div>
-    </div>
+    </div><?php }
+}

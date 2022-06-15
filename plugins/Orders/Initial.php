@@ -4,7 +4,15 @@ require_once ROOT . '/db/v4_Places.class.php';
 require_once ROOT . '/db/v4_OrderDetails.class.php';
 require_once ROOT . '/db/v4_OrdersMaster.class.php';
 require_once ROOT . '/db/v4_OrderDocument.class.php';
-require_once ROOT . '/db/v4_Places.class.php';
+
+require_once ROOT . '/db/v4_OrderLog.class.php';
+require_once ROOT . '/db/v4_VehicleTypes.class.php';
+require_once ROOT . '/db/v4_OrderExtras.class.php';
+require_once ROOT . '/db/v4_Invoices.class.php';
+require_once ROOT . '/db/v4_InvoiceDetails.class.php';
+require_once ROOT . '/db/v4_AuthUsers.class.php';
+
+
 
 class v4_OrdersJoin extends v4_OrderDetails {
 	public function getFullOrderByDetailsID($column, $order, $where = NULL) {
@@ -22,10 +30,17 @@ class v4_OrdersJoin extends v4_OrderDetails {
 	}
 }
 
+$db = new v4_OrderDetails();
 $od = new v4_OrdersJoin();
 $pl = new v4_Places();
 $om = new v4_OrdersMaster();
 $odoc = new v4_OrderDocument();
+$ol = new v4_OrderLog();
+$vt = new v4_VehicleTypes();
+$in = new v4_Invoices();
+$ind = new v4_InvoiceDetails();
+$oe = new v4_OrderExtras();
+$au = new v4_AuthUsers();
 
 $keyName = 'DetailsID';
 //$ItemName='PlaceNameEN ';
