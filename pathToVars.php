@@ -11,6 +11,9 @@ if ($size>$indexStart) {
 else $activePage = 'dashboard';
 $help="menu";
 $isNew=false;
+$transfersFilter='';
+$includefile='/index.php';
+$includefiletpl='index.tpl';
 
 switch ($activePage) {
 	case 'loginAsUser':
@@ -34,6 +37,11 @@ switch ($activePage) {
 			$transfersFilter=$pathVars->fetchByIndex($indexStart + 1);
 			if ($transfersFilter=='order') $orderid=$pathVars->fetchByIndex($indexStart + 2);
 		}
+	case 'buking':
+		if ($pathVars->fetchByIndex($indexStart + 1)) { 
+			$includefile='/'.$pathVars->fetchByIndex($indexStart + 1).'.php';
+			$includefiletpl=$pathVars->fetchByIndex($indexStart + 1).'.tpl';
+		}		
 	default:
 		if ($pathVars->fetchByIndex($indexStart + 1)) { 
 			if (is_numeric($pathVars->fetchByIndex($indexStart + 1))) {
@@ -47,7 +55,8 @@ switch ($activePage) {
 			}			
 		}	
 }
-
+$smarty->assign('transfersFilter',$transfersFilter);
+$smarty->assign('includefiletpl',$includefiletpl);
 
 $specialpage=$pathVars->fetchByIndex($indexStart + $size - 2);
 switch ($specialpage) {

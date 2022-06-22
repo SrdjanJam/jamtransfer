@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.32, created on 2022-06-10 12:47:09
+/* Smarty version 3.1.32, created on 2022-06-22 13:20:42
   from 'C:\wamp\www\jamtransfer\templates\index.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.32',
-  'unifunc' => 'content_62a33d4dabd8d4_73574704',
+  'unifunc' => 'content_62b2fb0a3742c3_53280522',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'a1818a92b5a2f041fd91a227dabc592dea38fac2' => 
     array (
       0 => 'C:\\wamp\\www\\jamtransfer\\templates\\index.tpl',
-      1 => 1654865227,
+      1 => 1655896837,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:pageList.tpl' => 1,
   ),
 ),false)) {
-function content_62a33d4dabd8d4_73574704 (Smarty_Internal_Template $_smarty_tpl) {
+function content_62b2fb0a3742c3_53280522 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html>
 	<head>
@@ -430,7 +430,7 @@ for ($__section_pom_2_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_po
 					<?php if (isset($_smarty_tpl->tpl_vars['pageOLD']->value)) {?>
 						NOT MODEL VIEW CONTROL
 					<?php } elseif (isset($_smarty_tpl->tpl_vars['page']->value)) {?>
-						<?php $_smarty_tpl->_subTemplateRender(((string)$_smarty_tpl->tpl_vars['root']->value)."/plugins/".((string)$_smarty_tpl->tpl_vars['base']->value)."/templates/index.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, true);
+						<?php $_smarty_tpl->_subTemplateRender(((string)$_smarty_tpl->tpl_vars['root']->value)."/plugins/".((string)$_smarty_tpl->tpl_vars['base']->value)."/templates/".((string)$_smarty_tpl->tpl_vars['includefiletpl']->value), $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, true);
 ?>
 						MODEL VIEW CONTROL SMARTY		
 					<?php } elseif (isset($_smarty_tpl->tpl_vars['pageList']->value)) {?>

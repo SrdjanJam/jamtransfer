@@ -283,7 +283,7 @@
 					{if isset($pageOLD)}
 						NOT MODEL VIEW CONTROL
 					{elseif isset($page)}
-						{include file="{$root}/plugins/{$base}/templates/index.tpl"}
+						{include file="{$root}/plugins/{$base}/templates/{$includefiletpl}"}
 						MODEL VIEW CONTROL SMARTY		
 					{elseif isset($pageList)}
 						{include file="pageList.tpl"} 
