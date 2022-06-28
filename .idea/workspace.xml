@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="5b0b735c-4f72-47ac-a246-9da08bc9de26" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/api/dbAddOrder.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/error_log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/getCars (copy).php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/getCars.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/getCarsAdm.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/getCarsAjax.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/getCarsN.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/getExtrasOld.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/getFromPlaces.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/getFromPlacesEdge.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/getFromPlacesEdgeN.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/getFromPlacesN.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/getToPlaces.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/getToPlacesEdge (copy).php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/getToPlacesEdge.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/selectCar.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/selectCarAdm.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/selectCarNoDate.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/selectJSON.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/Buking/final.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/Buking/index.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/Buking/scripts.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/Buking/templates/bookingAdmJS.tpl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/Buking/templates/bookingJS.tpl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/Buking/templates/final.tpl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/Buking/templates/index.tpl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/Buking/templates/scriptsAdm.tpl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/Buking/templates_c/5ebc09ea4b1f0ee21360208ea0b6ee557773e62c_0.file.monthtransfers.tpl.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates_c/7091e2520e71f35a12b2c5157b5506e71e9dce41_0.file.bookingJS.tpl.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates_c/ad0fc7ed55afca8a9474ba1b63609d1da561ac37_0.file.bookingAdmJS.tpl.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/conn_string.php" beforeDir="false" afterPath="$PROJECT_DIR$/conn_string.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/css/admin.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/admin.css" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings">
+    <execution>
+      <executable />
+    </execution>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="2BCC7vJUEGAQ1ltTFhrbEyKZXSb" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="showServicesTree" value="false" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="5b0b735c-4f72-47ac-a246-9da08bc9de26" name="Default Changelist" comment="" />
+      <created>1656400515611</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1656400515611</updated>
+      <workItem from="1656400518963" duration="5377000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
+</project>
