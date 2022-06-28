@@ -12,7 +12,7 @@
 
         // da ne prolaze krivi podaci
         $("#FromID").val(0);
-
+ 
         // pre-fill Return Transfer data
         $("#XToID").val(0);
 

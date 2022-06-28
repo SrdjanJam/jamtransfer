@@ -14,7 +14,7 @@
 
         <div class="row">
             <div class="row xz-depth-3 white xxwhite-text">
-
+ 
 
                 <div class="col l3 s11  xwhite m1em ">
                     <img class="" src="{$VehicleImage}" alt="vehicle"
