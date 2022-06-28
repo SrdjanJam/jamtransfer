@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.32, created on 2022-06-28 11:38:13
+/* Smarty version 3.1.32, created on 2022-06-28 12:28:28
   from 'C:\xampp\htdocs\jamtransfer\plugins\Buking\templates\bookingAdmJS.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.32',
-  'unifunc' => 'content_62bacc0596edf4_60722098',
+  'unifunc' => 'content_62bad7cc3d5195_01987582',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'ad0fc7ed55afca8a9474ba1b63609d1da561ac37' => 
     array (
       0 => 'C:\\xampp\\htdocs\\jamtransfer\\plugins\\Buking\\templates\\bookingAdmJS.tpl',
-      1 => 1656409087,
+      1 => 1656411990,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_62bacc0596edf4_60722098 (Smarty_Internal_Template $_smarty_tpl) {
+function content_62bad7cc3d5195_01987582 (Smarty_Internal_Template $_smarty_tpl) {
 echo '<script'; ?>
 >
     var apiPath="/cms/api2/";
@@ -34,7 +34,7 @@ echo '<script'; ?>
         })
     }
 
-
+ 
     $('#FromName').on('click keyup', function(event) {
 
         $("#ToName").val('');

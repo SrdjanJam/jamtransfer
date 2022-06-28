@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.32, created on 2022-06-28 11:35:13
+/* Smarty version 3.1.32, created on 2022-06-28 12:28:28
   from 'C:\xampp\htdocs\jamtransfer\plugins\Buking\templates\bookingJS.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.32',
-  'unifunc' => 'content_62bacb51a34f50_08835263',
+  'unifunc' => 'content_62bad7cc3eb8d1_61822520',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '7091e2520e71f35a12b2c5157b5506e71e9dce41' => 
     array (
       0 => 'C:\\xampp\\htdocs\\jamtransfer\\plugins\\Buking\\templates\\bookingJS.tpl',
-      1 => 1656408906,
+      1 => 1656411992,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_62bacb51a34f50_08835263 (Smarty_Internal_Template $_smarty_tpl) {
+function content_62bad7cc3eb8d1_61822520 (Smarty_Internal_Template $_smarty_tpl) {
 echo '<script'; ?>
 >
     var loadingBar = '<br><br><div class="cssload-loader"><div></div><div></div><div></div><div></div><div></div></div>';
@@ -37,7 +37,7 @@ echo '<script'; ?>
 
         // da ne prolaze krivi podaci
         $("#FromID").val(0);
-
+ 
         // pre-fill Return Transfer data
         $("#XToID").val(0);
 

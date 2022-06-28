@@ -1,7 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5b0b735c-4f72-47ac-a246-9da08bc9de26" name="Default Changelist" comment="" />
+    <list default="true" id="5b0b735c-4f72-47ac-a246-9da08bc9de26" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/plugins/Buking/calendar.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/Buking/final.php" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/Buking/final.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/Buking/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/Buking/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/Buking/scripts.php" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/Buking/scripts.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/Buking/scriptsAdm.php" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/Buking/scriptsAdm.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/Buking/templates/bookingAdmJS.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/Buking/templates/bookingAdmJS.tpl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/Buking/templates/bookingJS.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/Buking/templates/bookingJS.tpl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/Buking/templates/final.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/Buking/templates/final.tpl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/Buking/templates/index.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/Buking/templates/index.tpl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/Buking/templates/monthtransfers.tpl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/Buking/templates/scriptsAdm.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/Buking/templates/scriptsAdm.tpl" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,6 +69,7 @@
       <option name="presentableId" value="Default" />
       <updated>1656400515611</updated>
       <workItem from="1656400518963" duration="5861000" />
+      <workItem from="1656412047976" duration="597000" />
     </task>
     <servers />
   </component>
@@ -68,7 +81,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
