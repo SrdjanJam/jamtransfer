@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.32, created on 2022-06-28 12:28:28
+/* Smarty version 3.1.32, created on 2022-06-29 10:25:25
   from 'c:\xampp\htdocs\jamtransfer\plugins\Buking\templates\index.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.32',
-  'unifunc' => 'content_62bad7cc39b1d0_63411782',
+  'unifunc' => 'content_62bc0c75b34249_28216676',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '87220c244f24fc92549d60a5baea20b82187c70f' => 
     array (
       0 => 'c:\\xampp\\htdocs\\jamtransfer\\plugins\\Buking\\templates\\index.tpl',
-      1 => 1656412003,
+      1 => 1656491122,
       2 => 'file',
     ),
   ),
@@ -23,12 +23,8 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:plugins\\Buking\\templates\\bookingJS.tpl' => 1,
   ),
 ),false)) {
-function content_62bad7cc39b1d0_63411782 (Smarty_Internal_Template $_smarty_tpl) {
-?><<<<<<< Updated upstream
-<div><?php echo $_smarty_tpl->tpl_vars['test']->value;?>
-</div>
- 
-<?php $_smarty_tpl->_subTemplateRender('file:plugins\Buking\templates\scriptsAdm.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
+function content_62bc0c75b34249_28216676 (Smarty_Internal_Template $_smarty_tpl) {
+$_smarty_tpl->_subTemplateRender('file:plugins\Buking\templates\scriptsAdm.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
 
 <div style="background: transparent url('./i/header/112.jpg') center fixed; background-size: cover;
@@ -45,7 +41,7 @@ function content_62bad7cc39b1d0_63411782 (Smarty_Internal_Template $_smarty_tpl)
             </div>
             <div class="col s12 xgrey xlighten-3">
                 <br>
-                <form id="bookingForm" name="bookingForm" action="final" method="POST"
+                <form id="bookingForm" name="bookingForm" action="buking/final" method="POST"
                       enctype="multipart/form-data">
                     <input type="text" id="pleaseSelect" value="<?php echo $_smarty_tpl->tpl_vars['PLEASE_SELECT']->value;?>
 "/>
@@ -352,7 +348,7 @@ $_smarty_tpl->tpl_vars['pax']->first = $_smarty_tpl->tpl_vars['pax']->iteration 
 </div>
 
 <?php echo '<script'; ?>
- src="js\old_ztest.js"><?php echo '</script'; ?>
+ src="js\ztest.js"><?php echo '</script'; ?>
 >
 
 <?php echo '<script'; ?>
@@ -523,6 +519,5 @@ $_smarty_tpl->_subTemplateRender('file:plugins\Buking\templates\bookingJS.tpl', 
 
 
 
->>>>>>> Stashed changes
 <?php }
 }

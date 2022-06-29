@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.32, created on 2022-06-28 12:28:28
+/* Smarty version 3.1.32, created on 2022-06-29 10:00:25
   from 'C:\xampp\htdocs\jamtransfer\plugins\Buking\templates\scriptsAdm.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.32',
-  'unifunc' => 'content_62bad7cc3b5756_11093180',
+  'unifunc' => 'content_62bc06997d2f48_31423345',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'e5e0ac1dc40ad7d4be1b0a82119a5aa47dca820d' => 
     array (
       0 => 'C:\\xampp\\htdocs\\jamtransfer\\plugins\\Buking\\templates\\scriptsAdm.tpl',
-      1 => 1656412006,
+      1 => 1656489617,
       2 => 'file',
     ),
   ),
@@ -20,12 +20,13 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_62bad7cc3b5756_11093180 (Smarty_Internal_Template $_smarty_tpl) {
+function content_62bc06997d2f48_31423345 (Smarty_Internal_Template $_smarty_tpl) {
 ?><link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 <link rel="stylesheet" type="text/css" href="./css/admin.css" media="screen">
 <link rel="stylesheet" type="text/css" href="./js/jQuery/jquery-ui-1.8.9.custom.css">
 <link rel="stylesheet" type="text/css" href="./js/jQuery/jquery.ui.datepicker.css">
 <link rel="stylesheet" type="text/css" href="./js/jQuery/jquery-ui-timepicker.css">
+<link rel="stylesheet" href="booking.css">
   
 
 

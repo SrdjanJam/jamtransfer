@@ -207,11 +207,11 @@
                         selectActive = '';
                     }
 
-                    var cName = data[i].text;
-                    var cNameShow = cName.split('|');
+                    //var cName = data[i].text;
+                    //var cNameShow = cName.split('|');
 
-                    $("#countrySelector").append('<option value="'+
-                        data[i].id+'" ' +selectActive+'>'+cNameShow[0].ucwords()+'</option>');
+                   // $("#countrySelector").append('<option value="'+
+                     //   data[i].id+'" ' +selectActive+'>'+cNameShow[0].ucwords()+'</option>');
                 }
 
                 $("#countrySelector").select2({

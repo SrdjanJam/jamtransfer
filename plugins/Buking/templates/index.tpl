@@ -1,6 +1,4 @@
-<<<<<<< Updated upstream
-<div>{$test}</div>
- 
+
 {include file='plugins\Buking\templates\scriptsAdm.tpl'}
 
 <div style="background: transparent url('./i/header/112.jpg') center fixed; background-size: cover;
@@ -16,7 +14,7 @@
             </div>
             <div class="col s12 xgrey xlighten-3">
                 <br>
-                <form id="bookingForm" name="bookingForm" action="final" method="POST"
+                <form id="bookingForm" name="bookingForm" action="buking/final" method="POST"
                       enctype="multipart/form-data">
                     <input type="text" id="pleaseSelect" value="{$PLEASE_SELECT}"/>
                     <input type="text" id="loading" value="{$LOADING}"/>
@@ -245,7 +243,7 @@
     <br>&nbsp;
 </div>
 
-<script src="js\old_ztest.js"></script>
+<script src="js\ztest.js"></script>
 
 <script>
     function selectJSON() {
@@ -412,4 +410,3 @@
 
 
 
->>>>>>> Stashed changes
