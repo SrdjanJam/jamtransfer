@@ -2,17 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5b0b735c-4f72-47ac-a246-9da08bc9de26" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/plugins/Buking/calendar.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugins/Buking/final.php" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/Buking/final.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugins/Buking/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/Buking/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugins/Buking/scripts.php" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/Buking/scripts.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugins/Buking/scriptsAdm.php" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/Buking/scriptsAdm.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugins/Buking/templates/bookingAdmJS.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/Buking/templates/bookingAdmJS.tpl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugins/Buking/templates/bookingJS.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/Buking/templates/bookingJS.tpl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugins/Buking/templates/final.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/Buking/templates/final.tpl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugins/Buking/templates/index.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/Buking/templates/index.tpl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugins/Buking/templates/monthtransfers.tpl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugins/Buking/templates/scriptsAdm.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/Buking/templates/scriptsAdm.tpl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,7 +64,16 @@
       <workItem from="1656400518963" duration="5861000" />
       <workItem from="1656412047976" duration="597000" />
       <workItem from="1656487764427" duration="4075000" />
+      <workItem from="1656491890143" duration="240000" />
     </task>
+    <task id="LOCAL-00001" summary="Update of final page (final.tpl and final.php stage I)">
+      <created>1656492097968</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1656492097968</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -95,16 +94,18 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="Update of final page (final.tpl and final.php stage I)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update of final page (final.tpl and final.php stage I)" />
   </component>
   <component name="WindowStateProjectService">
     <state x="552" y="181" key="#Deployment" timestamp="1656491821172">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="552" y="181" key="#Deployment/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1656491821172" />
-    <state x="574" y="108" key="CommitChangelistDialog2" timestamp="1656491852548">
+    <state x="574" y="108" key="CommitChangelistDialog2" timestamp="1656492095809">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="574" y="108" key="CommitChangelistDialog2/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1656491852548" />
+    <state x="574" y="108" key="CommitChangelistDialog2/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1656492095809" />
     <state x="740" y="277" key="FileChooserDialogImpl" timestamp="1656487927241">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
