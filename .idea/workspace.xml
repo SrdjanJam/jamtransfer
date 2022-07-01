@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="5b0b735c-4f72-47ac-a246-9da08bc9de26" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/plugins/Buking/config.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/Buking/dbAddOrder.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/Buking/f.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/Buking/payment.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/Buking/templates/dbAddOrder.tpl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/Buking/templates/payment.tpl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/Buking/templates/test.tpl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/Buking/templates/thankyou.tpl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/Buking/templates/thankyou2.tpl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/Buking/test.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/Buking/thankyou.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/Buking/thankyou2.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/booking/index.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/booking/templates/index.tpl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates_c/12858bedd67fb7e28d41a9653623b09c4dd14d1e_0.file.dbAddOrder.tpl.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates_c/30e64b7d2891472bdc0b96c5fb46212515c5a044_0.file.bookingStep1.tpl.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates_c/69eeffe11af5feb2b2f7467c5dcea3c8a454ad50_0.file.test.tpl.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates_c/c0f8c5c89f99bc72e96ba29c799c466739691a97_0.file.thankyou.tpl.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.htaccess" beforeDir="false" afterPath="$PROJECT_DIR$/.htaccess" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/getExtras.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/getExtras.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/conn_string.php" beforeDir="false" afterPath="$PROJECT_DIR$/conn_string.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/db.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/db/db.class.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/Buking/final.php" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/Buking/final.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/Buking/final2.php" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/Buking/final2.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/Buking/templates/final2.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/Buking/templates/final2.tpl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/booking/bookingStep1.php" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/booking/bookingStep1.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates_c/5ced0b39076cad63038a36f262365934ef37508e_0.file.final2.tpl.php" beforeDir="false" afterPath="$PROJECT_DIR$/templates_c/5ced0b39076cad63038a36f262365934ef37508e_0.file.final2.tpl.php" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings">
+    <execution>
+      <executable />
+    </execution>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="CSS File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="PATH_TO_GIT" value="C:\Program Files\Git\bin\git.exe" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="MERGE" />
+  </component>
+  <component name="ProjectId" id="2BCC7vJUEGAQ1ltTFhrbEyKZXSb" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="settings.editor.selected.configurable" value="vcs.Git" />
+  </component>
+  <component name="ServiceViewManager">
+    <option name="showServicesTree" value="false" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="5b0b735c-4f72-47ac-a246-9da08bc9de26" name="Default Changelist" comment="" />
+      <created>1656400515611</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1656400515611</updated>
+      <workItem from="1656400518963" duration="5861000" />
+      <workItem from="1656412047976" duration="597000" />
+      <workItem from="1656487764427" duration="4075000" />
+      <workItem from="1656491890143" duration="946000" />
+      <workItem from="1656591806921" duration="1079000" />
+      <workItem from="1656597872111" duration="21000" />
+      <workItem from="1656658292589" duration="11211000" />
+    </task>
+    <task id="LOCAL-00001" summary="Update of final page (final.tpl and final.php stage I)">
+      <created>1656492097968</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1656492097968</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Update of final page (final.tpl and final.php stage I)">
+      <created>1656492145344</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1656492145344</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Update of final page (final.tpl and final.php stage I)">
+      <created>1656492184051</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1656492184051</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="Update of final page (final.tpl and final.php stage I)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update of final page (final.tpl and final.php stage I)" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="552" y="181" key="#Deployment" timestamp="1656491821172">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="552" y="181" key="#Deployment/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1656491821172" />
+    <state x="574" y="108" key="CommitChangelistDialog2" timestamp="1656492182978">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="574" y="108" key="CommitChangelistDialog2/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1656492182978" />
+    <state x="740" y="277" key="FileChooserDialogImpl" timestamp="1656487927241">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="740" y="277" key="FileChooserDialogImpl/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1656487927241" />
+    <state x="794" y="451" key="NewPhpFileDialog" timestamp="1656671524004">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="794" y="451" key="NewPhpFileDialog/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1656671524004" />
+    <state x="463" y="165" key="SettingsEditor" timestamp="1656491846542">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="463" y="165" key="SettingsEditor/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1656491846542" />
+    <state x="463" y="165" key="SettingsEditor/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1656487929623" />
+    <state x="552" y="256" key="Vcs.Push.Dialog.v2" timestamp="1656492244045">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="552" y="256" key="Vcs.Push.Dialog.v2/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1656492244045" />
+    <state x="668" y="347" key="com.intellij.ide.util.TipDialog" timestamp="1656658292418">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="668" y="347" key="com.intellij.ide.util.TipDialog/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1656658292418" />
+    <state x="668" y="347" key="com.intellij.ide.util.TipDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1656487765721" />
+    <state x="771" y="439" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1656487931732">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="771" y="439" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1656487931732" />
+    <state x="605" y="110" width="710" height="819" key="find.popup" timestamp="1656662120925">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="605" y="110" width="710" height="819" key="find.popup/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1656662120925" />
+    <state x="605" y="110" width="710" height="819" key="find.popup/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1656488730920" />
+  </component>
+</project>

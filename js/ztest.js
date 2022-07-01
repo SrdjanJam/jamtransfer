@@ -213,12 +213,58 @@ JSON.parse = JSON.parse || function (str) {
 		});
 */
 
-$('.modal-trigger').leanModal({
+/*$('.modal-trigger').leanModal({
 	dismissible: true, // Modal can be dismissed by clicking outside of the modal
 	opacity: .5, // Opacity of modal background
 	in_duration: 300, // Transition in duration
 	out_duration: 200, // Transition out duration
 	//ready: function() { alert('Ready'); }, // Callback for Modal open
 	//complete: function() { alert('Closed'); } // Callback for Modal close
-});
+});*/
 
+function validateBookingForm() {
+	var errorMessage = '';
+	if ($("#countrySelector").val() == 0) {
+		errorMessage +='Country\n';
+	}
+	if ($("#fromSelector").val() == 0) {
+		errorMessage +='From\n';
+	}
+	if ($("#toSelector").val() == 0) {
+		errorMessage +='To\n';
+	}
+
+	if ($("#transferDate").val() == 0) {
+		errorMessage +='Pickup Date\n';
+	}
+	if ($("#transferTime").val() == 0) {
+		errorMessage +='Pickup Time\n';
+	}
+	if ($("#paxSelector").val() == 0) {
+		errorMessage +='Passengers\n';
+	}
+
+	if ($("#returnTransfer").val() == 1) {
+		if ($("#returnDate").val() == '') {
+			errorMessage +='Return date\n';
+		}
+		if ($("#returnTime").val() == '') {
+			errorMessage +='Return time\n';
+		}
+	}
+
+	if ($("#PaxName").val() == '') {
+		errorMessage +='Your Name\n';
+	}
+	if ($("#PaxEmail").val() == '') {
+		errorMessage +='Your E-mail\n';
+	}
+
+
+
+	if (errorMessage != '') {
+		alert('Please fill-in:\n\n' + errorMessage);
+		return false;
+	}
+	return true;
+}

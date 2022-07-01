@@ -73,12 +73,11 @@ foreach($mdk as $key) {
 	$menu1[]=$row1;
 }	
 $smarty->assign('menu1',$menu1);
-
 $mdk = $md->getKeysBy('ModulID ' ,'asc', "where code='$activePage'");
 if (count($mdk)==1) {
 	$key=$mdk[0];
 	$md->getRow($key);
-	require_once $modulesPath . '/'.$md->getBase().'/index.php';
+	require_once $modulesPath . '/'.$md->getBase().$includefile;
 	if (is_dir($modulesPath . '/'.$md->getBase().'/templates')) 
 		$smarty->assign('page',$md->getName());		
 	else $smarty->assign('pageList',$md->getName());	
