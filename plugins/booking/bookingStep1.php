@@ -78,7 +78,7 @@
                 
                 <div class="col s12 xgrey xlighten-3">
                     <br>
-                    <form id="bookingForm" name="bookingForm" action="booking/step2" method="POST" enctype="multipart/form-data"
+                    <form id="bookingForm" name="bookingForm" action="booking/final" method="POST" enctype="multipart/form-data"
                     onsubmit="return validateBookingForm();">
                         <input type="hidden" id="pleaseSelect" value="<?= PLEASE_SELECT?>"/>
                         <input type="hidden" id="loading" value="<?= LOADING ?>"/>

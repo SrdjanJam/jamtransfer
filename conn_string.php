@@ -33,7 +33,7 @@ else {
 }	
 
 //if (DEVELOPMENT) error_reporting(E_ALL);
-if (DEVELOPMENT) error_reporting(0);
-else error_reporting(E_PARSE);
+if (DEVELOPMENT) error_reporting(1);
+else error_reporting(E_ALL);
 
 ?>

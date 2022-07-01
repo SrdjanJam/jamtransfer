@@ -10,7 +10,7 @@ $e = new v4_Extras();
 
 $em = new v4_ExtrasMaster();
 
-$k = $e->getKeysBy('Service', 'ASC', ' WHERE OwnerID = ' . $_REQUEST['DriverID']);
+$k = $e->getKeysBy('Service', 'ASC', ' WHERE OwnerID = ' . $_SESSION['DriverID']);
 
 $extras = array();
 

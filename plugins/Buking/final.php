@@ -8,7 +8,7 @@ require_once ROOT . '/db/v4_Countries.class.php';
 require_once "scripts.php";
 
 ?>
-	<form method="post" id="finalForm" name="finalForm" action="buking/final2"
+	<form method="post" id="finalForm" name="finalForm" action="buking/thankyou2"
 		  onsubmit="return $('#finalForm').valid();"
 		  style="background: #eee;
     margin-top:-20px !important">
@@ -466,7 +466,7 @@ require_once "scripts.php";
 
 
 							<div class="col s12 center  xblack-text">
-								<label for="PaxEmail"><?= CONTACT_EMAIL?> *</label>
+								<label for="PaxEmail"><? echo  "CONTACT_EMAIL";?> *</label>
 								<input type="email" id="PaxEmail" name="MPaxEmail" class="w75"
 									   placeholder="myemail@mysite.com"
 									   value="<?= $paxEmail?>" title="<?= YOUR_EMAIL ?>"
@@ -481,7 +481,7 @@ require_once "scripts.php";
 									</a>
 								</label>
 								<select id="acceptTC" onchange="acceptDeclineTC();" class="browser-default">
-									<option value="0"><?= DECLINE ?></options>
+									<option value="0"><?= DECLINE ?></option>
 									<option value="1"><?= ACCEPT ?></option>
 								</select>
 								<br><br>
