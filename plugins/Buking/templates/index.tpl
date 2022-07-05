@@ -5,7 +5,7 @@
     margin-top:-20px !important">
     <br>
     <div class="container pad1em"
-         style="background-color: rgba(70,79,96,0.75); border:1px solid #000;border-radius:6px;">
+    style="background-color: rgba(70,79,96,0.75); border:1px solid #000;border-radius:6px;">
         <div class="row">
             <div class="col s12 xucase center white-text">
                 <h3>ADMINISTRATION {$BOOKING}

@@ -8,7 +8,7 @@ require_once ROOT . '/db/v4_Countries.class.php';
 require_once "scripts.php";
 
 ?>
-	<form method="post" id="finalForm" name="finalForm" action="buking/thankyou2"
+	<form method="post" id="finalForm" name="finalForm" action="buking/thankyou"
 		  onsubmit="return $('#finalForm').valid();"
 		  style="background: #eee;
     margin-top:-20px !important">

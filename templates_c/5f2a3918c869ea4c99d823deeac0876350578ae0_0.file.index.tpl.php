@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.32, created on 2022-07-05 09:37:50
+/* Smarty version 3.1.32, created on 2022-07-05 10:16:13
   from 'C:\xampp\htdocs\jamtransfer\plugins\Buking\templates\index.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.32',
-  'unifunc' => 'content_62c3ea4e4937c0_48407562',
+  'unifunc' => 'content_62c3f34dda3961_04575661',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '5f2a3918c869ea4c99d823deeac0876350578ae0' => 
     array (
       0 => 'C:\\xampp\\htdocs\\jamtransfer\\plugins\\Buking\\templates\\index.tpl',
-      1 => 1656491122,
+      1 => 1657008048,
       2 => 'file',
     ),
   ),
@@ -23,7 +23,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:plugins\\Buking\\templates\\bookingJS.tpl' => 1,
   ),
 ),false)) {
-function content_62c3ea4e4937c0_48407562 (Smarty_Internal_Template $_smarty_tpl) {
+function content_62c3f34dda3961_04575661 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_subTemplateRender('file:plugins\Buking\templates\scriptsAdm.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
 
@@ -31,7 +31,7 @@ $_smarty_tpl->_subTemplateRender('file:plugins\Buking\templates\scriptsAdm.tpl',
     margin-top:-20px !important">
     <br>
     <div class="container pad1em"
-         style="background-color: rgba(70,79,96,0.75); border:1px solid #000;border-radius:6px;">
+    style="background-color: rgba(70,79,96,0.75); border:1px solid #000;border-radius:6px;">
         <div class="row">
             <div class="col s12 xucase center white-text">
                 <h3>ADMINISTRATION <?php echo $_smarty_tpl->tpl_vars['BOOKING']->value;?>
