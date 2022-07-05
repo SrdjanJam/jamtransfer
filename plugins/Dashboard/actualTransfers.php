@@ -10,6 +10,7 @@
 				WHERE PickupDate = '".date('Y-m-d')."' 
 				AND PickupTime>'".$timeStart."' 
 				AND PickupTime<'".$timeEnd."'
+				AND TransferStatus not in (3,4,9)
 				ORDER BY PickupDate, PickupTime ASC
 				";
 	$result = $db->RunQuery($query); 

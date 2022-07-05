@@ -14,6 +14,7 @@ Class DataBaseMysql {
     }
 
     public function RunQuery($query_tag){
+		ini_set('memory_limit', '8192M');
         $result = $this->conn->query($query_tag) or die("Error SQL query-> $query_tag  ". mysqli_error());
         return $result;
     }
