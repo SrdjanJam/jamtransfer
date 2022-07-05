@@ -77,5 +77,3 @@ switch ($specialpage) {
 		$smarty->assign('isNew',$isNew);	
 	default:
 }	
-
-

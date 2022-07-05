@@ -43,7 +43,7 @@
 			break;
 			
 		case 'final2': 
-			require_once 't/final2.php'; 
+			require_once 't/final2.tpl'; 
 			break;
 
 		case 'agentPayment2': 

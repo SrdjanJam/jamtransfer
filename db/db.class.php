@@ -1,5 +1,8 @@
 <?
-
+define("DB_HOST", "localhost");
+define("DB_USER", "root");
+define("DB_PASSWORD", "");
+define("DB_NAME", "jamtrans_touradria");
 Class DataBaseMysql {
 
     public $conn;
