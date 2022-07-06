@@ -151,8 +151,8 @@
 		{/if}		
 	</head>		
 	<body class="fixed-top" style="height:100%!important;font-size:16px">
-		<div class="wrapper">
-			<nav class="navbar-default navbar-static-side" role="navigation">
+		<div id="wrapper">
+			<nav class="navbar-static-side" role="navigation">
 				<div class="sidebar-collapse">
 					<ul class="nav metismenu" id="side-menu">
 						<li class="nav-header">
@@ -283,7 +283,7 @@
 					{if isset($pageOLD)}
 						NOT MODEL VIEW CONTROL
 					{elseif isset($page)}
-						{include file="{$root}/plugins/{$base}/templates/index.tpl"}
+						{include file="{$root}/plugins/{$base}/templates/{$includefiletpl}"}
 						MODEL VIEW CONTROL SMARTY		
 					{elseif isset($pageList)}
 						{include file="pageList.tpl"} 

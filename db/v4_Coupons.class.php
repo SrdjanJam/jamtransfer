@@ -17,6 +17,7 @@ Class v4_Coupons {
 	public $CreatorID; //int(10)
 	public $Code; //varchar(50)
 	public $Discount; //decimal(5,2)
+	public $Description; //varchar255
 	public $VehicleTypeID; //int(11)
 	public $DriverID; //int(11)
 	public $ValidFrom; //varchar(10)
@@ -40,10 +41,11 @@ Class v4_Coupons {
      * New object to the class. Don´t forget to save this new object "as new" by using the function $class->saveAsNew(); 
      *
      */
-	public function New_v4_Coupons($CreatorID,$Code,$Discount,$VehicleTypeID,$ValidFrom,$ValidTo,$TransferFromDate,$TransferToDate,$LimitLocationID,$WeekdaysOnly,$ReturnOnly,$Active,$TimesUsed){
+	public function New_v4_Coupons($CreatorID,$Code,$Discount,$Description,$VehicleTypeID,$ValidFrom,$ValidTo,$TransferFromDate,$TransferToDate,$LimitLocationID,$WeekdaysOnly,$ReturnOnly,$Active,$TimesUsed){
 		$this->CreatorID = $CreatorID;
 		$this->Code = $Code;
 		$this->Discount = $Discount;
+		$this->Description = $Description;
 		$this->VehicleTypeID = $VehicleTypeID;
 		$this->DriverID = $DriverID;
 		$this->ValidFrom = $ValidFrom;
@@ -71,6 +73,7 @@ Class v4_Coupons {
 			$this->CreatorID = $row["CreatorID"];
 			$this->Code = $row["Code"];
 			$this->Discount = $row["Discount"];
+			$this->Description = $row["Description"];
 			$this->VehicleTypeID = $row["VehicleTypeID"];
 			$this->DriverID = $row["DriverID"];
 			$this->ValidFrom = $row["ValidFrom"];
@@ -103,6 +106,7 @@ Class v4_Coupons {
 CreatorID = '".$this->myreal_escape_string($this->CreatorID)."', 
 Code = '".$this->myreal_escape_string($this->Code)."', 
 Discount = '".$this->myreal_escape_string($this->Discount)."', 
+Description = '".$this->myreal_escape_string($this->Description)."', 
 VehicleTypeID = '".$this->myreal_escape_string($this->VehicleTypeID)."', 
 DriverID = '".$this->myreal_escape_string($this->DriverID)."', 
 ValidFrom = '".$this->myreal_escape_string($this->ValidFrom)."', 
@@ -121,7 +125,9 @@ TimesUsed = '".$this->myreal_escape_string($this->TimesUsed)."' WHERE ID = '".$t
      * Save the active var class as a new row on table
      */
 	public function saveAsNew(){
-		$this->connection->RunQuery("INSERT INTO v4_Coupons (CreatorID, Code, Discount, VehicleTypeID, DriverID, ValidFrom, ValidTo, TransferFromDate, TransferToDate, LimitLocationID, WeekdaysOnly, ReturnOnly, Active, TimesUsed) values ('".$this->myreal_escape_string($this->CreatorID)."', '".$this->myreal_escape_string($this->Code)."', '".$this->myreal_escape_string($this->Discount)."',
+		$this->connection->RunQuery("INSERT INTO v4_Coupons (CreatorID, Code, Discount, Description, VehicleTypeID, DriverID, ValidFrom, ValidTo, TransferFromDate, TransferToDate, LimitLocationID, WeekdaysOnly, ReturnOnly, Active, TimesUsed) values ('".$this->myreal_escape_string($this->CreatorID)."', '".$this->myreal_escape_string($this->Code)."', 
+		'".$this->myreal_escape_string($this->Discount)."',
+		'".$this->myreal_escape_string($this->Description)."',
 		'".$this->myreal_escape_string($this->VehicleTypeID)."',
 		'".$this->myreal_escape_string($this->DriverID)."',
 		'".$this->myreal_escape_string($this->ValidFrom)."', '".$this->myreal_escape_string($this->ValidTo)."', '".$this->myreal_escape_string($this->TransferFromDate)."', '".$this->myreal_escape_string($this->TransferToDate)."', '".$this->myreal_escape_string($this->LimitLocationID)."', '".$this->myreal_escape_string($this->WeekdaysOnly)."', '".$this->myreal_escape_string($this->ReturnOnly)."', '".$this->myreal_escape_string($this->Active)."', '".$this->myreal_escape_string($this->TimesUsed)."')");
@@ -170,6 +176,13 @@ TimesUsed = '".$this->myreal_escape_string($this->TimesUsed)."' WHERE ID = '".$t
 	 */
 	public function getDiscount(){
 		return $this->Discount;
+	}	
+	
+	/**
+	 * @return Description - varchar (255)
+	 */
+	public function getDescription(){
+		return $this->Description;
 	}
 
 	/**
@@ -275,8 +288,15 @@ TimesUsed = '".$this->myreal_escape_string($this->TimesUsed)."' WHERE ID = '".$t
 	 */
 	public function setDiscount($Discount){
 		$this->Discount = $Discount;
-	}
-
+	}	
+	
+	/**
+	 * @param Type: varchar(255)
+	 */
+	public function setDescription($Description){
+		$this->Description = $Description;
+	}	
+	
 	/**
 	 * @param Type: int(11)
 	 */
@@ -366,6 +386,7 @@ TimesUsed = '".$this->myreal_escape_string($this->TimesUsed)."' WHERE ID = '".$t
 			'CreatorID' => $this->getCreatorID(),
 			'Code' => $this->getCode(),
 			'Discount' => $this->getDiscount(),
+			'Description' => $this->getDescription(),
 			'VehicleTypeID' => $this->getVehicleTypeID(),
 			'DriverID' => $this->getDriverID(),			
 			'ValidFrom' => $this->getValidFrom(),
@@ -387,7 +408,7 @@ TimesUsed = '".$this->myreal_escape_string($this->TimesUsed)."' WHERE ID = '".$t
      */
 	public function fieldNames(){
 		$fieldNames = array(
-			'ID',			'CreatorID',			'Code',			'Discount',			'VehicleTypeID',			'DriverID',			'ValidFrom',			'ValidTo',			'TransferFromDate',			'TransferToDate',			'LimitLocationID',			'WeekdaysOnly',			'ReturnOnly',			'Active',			'TimesUsed'		);
+			'ID',			'CreatorID',			'Code',			'Discount',			'Description',		'VehicleTypeID',			'DriverID',			'ValidFrom',			'ValidTo',			'TransferFromDate',			'TransferToDate',			'LimitLocationID',			'WeekdaysOnly',			'ReturnOnly',			'Active',			'TimesUsed'		);
 		return $fieldNames;
 	}
     /**

@@ -49,6 +49,16 @@
 					<div class="col-md-9">
 						<input type="text" name="Discount" id="Discount" class="w100" value="{{Discount}}">
 					</div>
+				</div>				
+				
+				<div class="row">
+					<div class="col-md-3">
+						<label for="Description"><?=DESCRIPTION;?></label>
+					</div>
+					<div class="col-md-9">
+						<textarea name="Description" id="Description" rows="3" 
+					class="textarea" cols="50" style="width:100%">{{Description}}</textarea>
+					</div>
 				</div>
 
 				<div class="row">

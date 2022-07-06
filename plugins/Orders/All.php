@@ -139,6 +139,8 @@ if (isset($type)) {
 $page 		= $_REQUEST['page'];
 $length 	= $_REQUEST['length'];
 $sortOrder 	= $_REQUEST['sortOrder'];
+$yearsOrder 	= $_REQUEST['yearsOrder'];
+$yearsPickup 	= $_REQUEST['yearsPickup'];
 
 $start = ($page * $length) - $length;
 
@@ -157,8 +159,8 @@ $flds = array();
 $dbWhere = " " . $_REQUEST['where'];
 $dbWhere .= $filter . $userFilter;
 
-if (!isset($_REQUEST['PickupDate'])) $_REQUEST['PickupDate']='2022-01-01';
-$dbWhere .=' AND PickupDate>='.$_REQUEST['PickupDate'];
+if (!isset($_REQUEST['PickupDate'])) $_REQUEST['PickupDate']='2019-01-01';
+$dbWhere .=' AND PickupDate>="'.$_REQUEST['PickupDate'].'"';
 
 $documentType=$_REQUEST['document'];
 if ($documentType>0 && $documentType<10) {	 
@@ -230,6 +232,24 @@ if ( $_REQUEST['Search'] != "" )
 	$dbWhere = substr_replace( $dbWhere, "", -3 );
 	$dbWhere .= ')';
 }
+// pravljenje filtera
+// year of OrderDate
+$query='SELECT YEAR(`OrderDate`) as yearOrder FROM `v4_OrderDetails` '.$dbWhere.' group by YEAR(`OrderDate`) order by yearOrder DESC';
+$result = $dbT->RunQuery($query);
+$odYearsOrder=array();
+while($row = $result->fetch_array(MYSQLI_ASSOC)){ 			
+	$odYearsOrder[]=$row['yearOrder'];
+}
+if ($yearsOrder>0) $dbWhere .= " AND YEAR(`OrderDate`)=".$yearsOrder;
+
+// year of PickupDate
+$query='SELECT YEAR(`PickupDate`) as yearPickup FROM `v4_OrderDetails` '.$dbWhere.' group by YEAR(`PickupDate`) order by yearPickup DESC';
+$result = $dbT->RunQuery($query);
+$odYearsPickup=array();
+while($row = $result->fetch_array(MYSQLI_ASSOC)){ 			
+	$odYearsPickup[]=$row['yearPickup'];
+}
+if ($yearsPickup>0) $dbWhere .= " AND YEAR(`PickupDate`)=".$yearsPickup;
 
 $odTotalRecords = $od->getFullOrderByDetailsID('v4_OrderDetails.PickupDate DESC, v4_OrderDetails.PickupTime ASC', '',$dbWhere);
 $dbk = $od->getFullOrderByDetailsID('v4_OrderDetails.PickupDate ' . $sortOrder.', v4_OrderDetails.PickupTime '. $sortOrder, '' . $limit , $dbWhere);
@@ -237,11 +257,11 @@ $dbk = $od->getFullOrderByDetailsID('v4_OrderDetails.PickupDate ' . $sortOrder.'
 if (count($dbk) != 0) {
     foreach ($dbk as $nn => $key)
     {
-    	$od->getRow($key);
-    	
+    	$od->getRow($key);    	
     	
 		# OrderID za OrdersMaster
 		$OrderID = $od->getOrderID();
+
 
 
 		# master key
@@ -317,6 +337,8 @@ if (count($dbk) != 0) {
 # send output back
 $output = array(
 'draw' => '0',
+'yearsOrder' => $odYearsOrder,
+'yearsPickup' => $odYearsPickup,
 'recordsTotal' => count($odTotalRecords),
 'recordsFiltered' => $length,
 'data' =>$out
