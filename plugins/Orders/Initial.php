@@ -41,6 +41,7 @@ $in = new v4_Invoices();
 $ind = new v4_InvoiceDetails();
 $oe = new v4_OrderExtras();
 $au = new v4_AuthUsers();
+$dbT = new DataBaseMysql();
 
 $keyName = 'DetailsID';
 //$ItemName='PlaceNameEN ';
@@ -58,9 +59,11 @@ $aColumns = array(
 	'v4_OrderDetails.PickupDate',
 	'v4_OrderDetails.InvoiceNumber',
 	'v4_OrderDetails.UserID',	
-	'v4_OrderDetails.DriverName',	
+	'v4_OrderDetails.DriverName',
+	'v4_OrderDetails.FlightNo',
 	'v4_OrderDetails.DriverInvoiceNumber',	
 	'v4_OrdersMaster.MPaxEmail',
+	'v4_OrdersMaster.MPaxTel',
 	'v4_OrdersMaster.MCardNumber',
 	'v4_OrdersMaster.MOrderKey',
 	'v4_OrdersMaster.MConfirmFile',

@@ -1,7 +1,6 @@
 	var data_Items = [];
 	window.base='http://localhost/jamtransfer/';
 	function allItems() {
-
 		// podaci iz input polja - filtriranje
 		var where  = $("#whereCondition").val(); // glavni filter koji uvijek radi
 	 	var status = $("#Type").val(); // prikazuje po tipu	
@@ -12,7 +11,13 @@
 	 	var transfersFilter = $("#transfersFilter").val(); // filter za transfere
 	 	var orderid = $("#orderid").val(); // filter za orderid
 	 	var sortOrder  = $("#sortOrder").val();
-	 	
+		
+	 	var yearsOrder = $("#yearsOrder").val();
+		if (typeof yearsOrder=='undefined') yearsOrder='0';
+	 	var yearsPickup = $("#yearsPickup").val();
+		if (typeof yearsPickup=='undefined') yearsPickup='0';
+		
+		
 		var callFunction = 'allItems()'; // funkcija koju paginator poziva kod promjene stranice
 	
 		// ovo koristi i paginator funkcija!
@@ -25,7 +30,9 @@
 	 	var url = window.root+'All.php?where='+where+'&Type='+status+'&Active='+active+
 	 	'&Search='+filter+'&page='+page+'&length='+length+'&sortOrder='+sortOrder+
 		'&transfersFilter='+transfersFilter+
-		'&orderid='+orderid+	
+		'&orderid='+orderid+
+		'&yearsOrder='+yearsOrder+
+		'&yearsPickup='+yearsPickup+
 		'&callback=?';
 		console.log(window.base+url);
 		$.ajax({
@@ -41,7 +48,6 @@
 			  var data = ItemsData.data;
 			  recordsTotal = ItemsData.recordsTotal;
 			  paginator(page,recordsTotal,length, callFunction);
-			  
 			  $.each(data, function(i, item) {
 				data[i].color ='white';
 			  });
@@ -53,6 +59,21 @@
 				var HTML = template({Item : data_Items});
 
 				$("#show_Items").html(HTML);
+				
+			  if (ItemsData.yearsOrder ) {
+				  var yearsOrderArr = ItemsData.yearsOrder;
+				  $.each(yearsOrderArr, function(i, item) {
+					    $('#yearsOrder').append('<option value="'+yearsOrderArr[i]+'">'+yearsOrderArr[i]+'</option>');
+					});
+					$("#yearsOrder option[value="+yearsOrder+"]").prop("selected", true)
+			  }				  
+			  if (ItemsData.yearsPickup ) {
+				  var yearsPickupArr = ItemsData.yearsPickup;
+				  $.each(yearsPickupArr, function(i, item) {
+					    $('#yearsPickup').append('<option value="'+yearsPickupArr[i]+'">'+yearsPickupArr[i]+'</option>');
+					});
+					$("#yearsPickup option[value="+yearsPickup+"]").prop("selected", true)
+			  }				
 		  },
 		  error: function() { alert('Get error occured.');}
 		});

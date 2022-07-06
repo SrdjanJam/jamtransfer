@@ -19,7 +19,9 @@ switch ($activePage) {
 	case 'loginAsUser':
 		$_REQUEST['sa_u']=$pathVars->fetchByIndex($indexStart + 1);
 		$_REQUEST['sa_l']=$pathVars->fetchByIndex($indexStart + 2);
-		$activePage = 'dashboard';		
+		$activePage = 'dashboard';	
+		break;		
+		
 	case 'satAsDriver':
 		$_SESSION['UseDriverID']=$pathVars->fetchByIndex($indexStart + 1);
 		require_once ROOT . '/db/v4_AuthUsers.class.php';
@@ -27,21 +29,28 @@ switch ($activePage) {
 		$au->getRow($_SESSION['UseDriverID']);
 		$_SESSION['UseDriverName']=$au->getAuthUserRealName();
 		header('Location: '.ROOT_HOME);
+		break;		
+				
 	case 'rules':
 		$_REQUEST['rulesType']=$pathVars->fetchByIndex($indexStart + 1);
 		if (is_numeric($pathVars->fetchByIndex($indexStart + 2))) {
 			$_REQUEST['item']=$pathVars->fetchByIndex($indexStart + 2);
-		}	
+		}
+		break;		
+		
 	case 'orders':
 		if ($pathVars->fetchByIndex($indexStart + 1)) { 
 			$transfersFilter=$pathVars->fetchByIndex($indexStart + 1);
 			if ($transfersFilter=='order') $orderid=$pathVars->fetchByIndex($indexStart + 2);
 		}
+		break;
 	case 'buking':
 		if ($pathVars->fetchByIndex($indexStart + 1)) { 
+		
 			$includefile='/'.$pathVars->fetchByIndex($indexStart + 1).'.php';
 			$includefiletpl=$pathVars->fetchByIndex($indexStart + 1).'.tpl';
-		}		
+		}	
+		break;		
 	default:
 		if ($pathVars->fetchByIndex($indexStart + 1)) { 
 			if (is_numeric($pathVars->fetchByIndex($indexStart + 1))) {
@@ -68,5 +77,3 @@ switch ($specialpage) {
 		$smarty->assign('isNew',$isNew);	
 	default:
 }	
-
-

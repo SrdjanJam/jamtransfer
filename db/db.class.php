@@ -1,5 +1,8 @@
 <?
-
+define("DB_HOST", "localhost");
+define("DB_USER", "root");
+define("DB_PASSWORD", "");
+define("DB_NAME", "jamtrans_touradria");
 Class DataBaseMysql {
 
     public $conn;
@@ -14,6 +17,7 @@ Class DataBaseMysql {
     }
 
     public function RunQuery($query_tag){
+		ini_set('memory_limit', '8192M');
         $result = $this->conn->query($query_tag) or die("Error SQL query-> $query_tag  ". mysqli_error());
         return $result;
     }

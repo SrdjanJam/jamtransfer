@@ -46,7 +46,7 @@ foreach($mdk as $key) {
 	$row1['title']=$md->getName();;
 	$row1['link']=$md->getCode();	
 	$row1['icon']=$md->getIcon();
-	$mdk2 = $md->getKeysBy('MenuOrder ' ,'asc', "where ParentID=".$md->getModulID());
+	$mdk2 = $md->getKeysBy('MenuOrder ' ,'asc', "where ParentID=".$md->getModulID()." AND ModulID in (".$modules_arr.")");
 	$menu2=array();
 	if ($md->getCode()==$activePage) $active_parent=true;		
 	else $active_parent=false;

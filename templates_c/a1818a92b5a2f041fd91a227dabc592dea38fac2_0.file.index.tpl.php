@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.32, created on 2022-06-22 13:20:42
+/* Smarty version 3.1.32, created on 2022-07-04 10:41:53
   from 'C:\wamp\www\jamtransfer\templates\index.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.32',
-  'unifunc' => 'content_62b2fb0a3742c3_53280522',
+  'unifunc' => 'content_62c2c3f168b153_87851796',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'a1818a92b5a2f041fd91a227dabc592dea38fac2' => 
     array (
       0 => 'C:\\wamp\\www\\jamtransfer\\templates\\index.tpl',
-      1 => 1655896837,
+      1 => 1656931307,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:pageList.tpl' => 1,
   ),
 ),false)) {
-function content_62b2fb0a3742c3_53280522 (Smarty_Internal_Template $_smarty_tpl) {
+function content_62c2c3f168b153_87851796 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html>
 	<head>
@@ -250,8 +250,8 @@ _init.js"><?php echo '</script'; ?>
 		<?php }?>		
 	</head>		
 	<body class="fixed-top" style="height:100%!important;font-size:16px">
-		<div class="wrapper">
-			<nav class="navbar-default navbar-static-side" role="navigation">
+		<div id="wrapper">
+			<nav class="navbar-static-side" role="navigation">
 				<div class="sidebar-collapse">
 					<ul class="nav metismenu" id="side-menu">
 						<li class="nav-header">
