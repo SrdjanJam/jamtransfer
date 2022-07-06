@@ -29,20 +29,59 @@
           enctype="multipart/form-data"
           onsubmit="return validateBookingForm();"
         >
-    <input type="hidden" id="pleaseSelect" value="{$PLEASE_SELECT}">
-    <input type="hidden" id="loading" value="{$LOADING}">
-    <div class="col l6 s12">
-        <label for="AuthUserIDe"><i class="fa fa-globe"></i>Book as <strong>Agent</strong></label><br>
-        <div>
-            <select name="AgentID" id="AgentID" class="xchosen-select browser-default" value='{$AgentID}'>
-                <option value="0"> --- </option>
+          <input type="hidden" id="pleaseSelect" value="{$PLEASE_SELECT}" />
+          <input type="hidden" id="loading" value="{$LOADING}" />
+          <div class="col l6 s12">
+            <label for="AuthUserIDe"
+              ><i class="fa fa-globe"></i>Book as <strong>Agent</strong></label
+            ><br />
+            <div>
+              <select
+                name="AgentID"
+                id="AgentID"
+                class="xchosen-select browser-default"
+                value="{$AgentID}"
+              >
+                <option value="0">---</option>
                 {section name=index loop=$agents}
-                        <option value="{$agents[index].AuthUserID}">{$agents[index].AuthUserCompany}</option>
+                <option value="{$agents[index].AuthUserID}">
+                  {$agents[index].AuthUserCompany}
+                </option>
                 {/section}
-            </select>
+              </select>
+            </div>
+          </div>
+          <div class="col s12 l2">
+            <label for="ReferenceNo"
+              ><i class="fa fa-book"></i>Agent Reference Number</label
+            ><br />
+            <input type="text" id="ReferenceNo" value="" />
+          </div>
+          <div class="col s12 l2" id="webyblock" style="display: none">
+            <label for="wrn"
+              ><i class="fa fa-book">Weby Reference Number</i></label
+            >
+            <input
+              type="text"
+              id="weby_key"
+              name="weby_key"
+              value="{$weby_key}"
+              disabled
+            /><br />
+            <select
+              name="wref"
+              id="wref"
+              class="browser-default"
+              value=""
+            ></select>
+          </div>
+
+          <div class="col s12 l2" id="sunblock" style="display: none;">
+          <label for="srb"><i class="fa fa-book"></i>Sun Reference Number1</label><br>
+            <input type="file" id="srn" class="browser-default" name="SunReferenceNo" value="">
         </div>
-    </div>
-    </form>
+        <div class="col s12 l6"></div>
+        </form>
       </div>
     </div>
   </div>
