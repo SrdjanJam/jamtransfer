@@ -663,14 +663,5 @@ function printAgentVoucher($OrderID, $showPrices = true) {
         document.body.innerHTML = originalContents;
     }
 </script>
-<script>
 
-    setTimeout(window.onload = function() {
-        // similar behavior as clicking on a link
-        window.location.href = "http://localhost/jamtransfer/buking";
-    }, 2000);
-
-
-
-</script>
 
