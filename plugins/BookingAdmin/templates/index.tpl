@@ -18,7 +18,7 @@
 					enctype="multipart/form-data" onsubmit="return validateBookingForm();">
 					<input type="hidden" id="pleaseSelect" value="<?= PLEASE_SELECT ?>" />
 					<input type="hidden" id="loading" value="<?= LOADING ?>" />
-
+div
 					<div class="col l6 s12">
 						<label for="AuthUserIDe"><i class="fa fa-globe"></i> Book as <strong>Agent</strong></label><br>
 						<div>
