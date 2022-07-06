@@ -1,20 +1,6 @@
 {if not $smarty.session.UseDriverID and $title ne "Orders"}
 	<a class="btn btn-primary btn-xs" href="{$currenturl}/new">{$NNEW}</a><br>
 {/if}
-{if $title eq "Orders"}
-<div class="row">
-	{*<input type="text"  id="transfersFilter" name="transfersFilter" value="{$transfersFilter}">*}
-	<div class="col-sm-2">
-		<i class="fa fa-list-ul"></i>
-		<select id="transfersFilter" class="w75" name="transfersFilter" onchange="allItems();">
-			<option value="0">{$ALL}</option>
-			{section name=pom loop=$transfersFilters}
-				<option {if $transfersFilter eq $transfersFilters[pom].id} selected {/if} value="{$transfersFilters[pom].id}">{$transfersFilters[pom].name}</option>
-			{/section}
-		</select>
-	</div>	
-</div>	
-{/if}
 <input type="hidden"  id="whereCondition" name="whereCondition" 
 value=" WHERE {$ItemID} > 0">
 
@@ -50,7 +36,7 @@ value=" WHERE {$ItemID} > 0">
 		<i class="fa fa-text-width"></i>
 		<input type="text" id="Search" class=" w75" onchange="allItems();" placeholder="Text + Enter to Search">
 	</div>
-
+	{if $title ne "Orders"}
 	<div class="col-md-2">
 		<i class="fa fa-sort-amount-asc"></i> 
 		<select name="sortOrder" id="sortOrder" onchange="allItems();">
@@ -58,6 +44,17 @@ value=" WHERE {$ItemID} > 0">
 			<option value="DESC"> {$DESCENDING} </option>
 		</select>			
 	</div>
+	{else}
+	<div class="col-sm-2">
+		<i class="fa fa-list-ul"></i>
+		<select id="transfersFilter" class="w75" name="transfersFilter" onchange="allItems();">
+			<option value="0">{$ALL}</option>
+			{section name=pom loop=$transfersFilters}
+				<option {if $transfersFilter eq $transfersFilters[pom].id} selected {/if} value="{$transfersFilters[pom].id}">{$transfersFilters[pom].name}</option>
+			{/section}
+		</select>
+	</div>	
+	{/if}
 	
 	{if isset($selectactive)}		
 	<div class="col-sm-2">

@@ -15,11 +15,11 @@ require_once ROOT . '/db/v4_AuthUsers.class.php';
 
 
 class v4_OrdersJoin extends v4_OrderDetails {
-	public function getFullOrderByDetailsID($column, $order, $where = NULL) {
+	public function getFullOrderByDetailsID($column, $order, $limit, $where = NULL) {
 		$keys = array(); $i = 0;
 		$sql="
 			SELECT v4_OrderDetails.*,v4_OrdersMaster.*,v4_AuthUsers.AuthUserRealName FROM v4_OrderDetails AS v4_OrderDetails, v4_OrdersMaster, v4_AuthUsers $where
-			AND v4_OrderDetails.OrderID = v4_OrdersMaster.MOrderID AND v4_AuthUsers.AuthUserID=UserID ORDER BY $column $order";
+			AND v4_OrderDetails.OrderID = v4_OrdersMaster.MOrderID AND v4_AuthUsers.AuthUserID=UserID ORDER BY $column $order $limit";
 		$result = $this->connection->RunQuery($sql);
 			
 			while($row = $result->fetch_array(MYSQLI_ASSOC)){

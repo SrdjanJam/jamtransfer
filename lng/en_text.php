@@ -131,7 +131,7 @@
 		array ("id" => "driverError", "name" => "Driver Error"), 
 		array ("id" => "agent", "name" => "Agent transfers"), 
 		array ("id" => "notConfirmedAgent", "name" => "Agent transfers Not Confirmed"), 
-		array ("id" => "notComplited", "name" => "Not Complited"), 
+		array ("id" => "notCompleted", "name" => "Not Completed"), 
 		array ("id" => "invoice2", "name" => "Invoice 2"), 
 	) ;	
 	

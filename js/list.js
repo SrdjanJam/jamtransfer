@@ -15,8 +15,12 @@
 	 	var yearsOrder = $("#yearsOrder").val();
 		if (typeof yearsOrder=='undefined') yearsOrder='0';
 	 	var yearsPickup = $("#yearsPickup").val();
-		if (typeof yearsPickup=='undefined') yearsPickup='0';
-		
+		var currentTime = new Date()
+		if (typeof yearsPickup=='undefined') yearsPickup=currentTime.getFullYear();
+	 	var sortField = $("#sortField").val();
+		if (typeof sortField=='undefined') sortField='PickupDate';	 	
+		var sortDirection = $("#sortDirection").val();
+		if (typeof sortDirection=='undefined') sortDirection='DESC';	
 		
 		var callFunction = 'allItems()'; // funkcija koju paginator poziva kod promjene stranice
 	
@@ -26,13 +30,14 @@
 
 		if(typeof page==='undefined') {page=1;}
 		if(page<=0) {page=1;}
-
 	 	var url = window.root+'All.php?where='+where+'&Type='+status+'&Active='+active+
 	 	'&Search='+filter+'&page='+page+'&length='+length+'&sortOrder='+sortOrder+
 		'&transfersFilter='+transfersFilter+
 		'&orderid='+orderid+
 		'&yearsOrder='+yearsOrder+
 		'&yearsPickup='+yearsPickup+
+		'&sortField='+sortField+
+		'&sortDirection='+sortDirection+
 		'&callback=?';
 		console.log(window.base+url);
 		$.ajax({

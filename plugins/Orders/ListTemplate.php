@@ -9,11 +9,16 @@
 ?>
 
 <script type="text/x-handlebars-template" id="ItemListTemplate">
+	<input type='hidden' id='sortField' name='sortField'/>
+	<input type='hidden' id='sortDirection' name='sortDirection'/>
+	
 	<div class="row">
 		<div class="col-md-2">
 			<select id='yearsOrder' name='yearsOrder' val='0' onchange="allItems();">
 				<option val='0'>All</option>
 			</select>
+			<button onclick="allSort('OrderDate','ASC')"><i class="fa fa-sort-asc"></i></button>
+			<button onclick="allSort('OrderDate','DESC')"><i class="fa fa-sort-desc"></i></button>
 		</div>		
 		<div class="col-md-2">
 		</div>
@@ -21,6 +26,8 @@
 			<select id='yearsPickup' name='yearsPickup' val='0' onchange="allItems();">
 				<option val='0'>All</option>
 			</select>		
+			<button onclick="allSort('PickupDate','ASC')"><i class="fa fa-sort-asc"></i></button>
+			<button onclick="allSort('PickupDate','DESC')"><i class="fa fa-sort-desc"></i></button>			
 		</div>		
 		<div class="col-md-3">
 		</div>			
@@ -102,4 +109,12 @@
 
 
 </script>
-	
+<script>
+	async function setSort(field,direction) {
+		$('#sortField').val(field);
+		$('#sortDirection').val(direction);
+	}	
+	function allSort(field,direction) {
+		setSort(field,direction).then(function() {allItems();});
+	}	
+</script>	

@@ -138,18 +138,23 @@ if (isset($type)) {
 	}	
 $page 		= $_REQUEST['page'];
 $length 	= $_REQUEST['length'];
-$sortOrder 	= $_REQUEST['sortOrder'];
+//$sortOrder 	= $_REQUEST['sortOrder'];
 $yearsOrder 	= $_REQUEST['yearsOrder'];
 $yearsPickup 	= $_REQUEST['yearsPickup'];
+$sortField 	= $_REQUEST['sortField'];
+$sortDirection 	= $_REQUEST['sortDirection'];
+
 
 $start = ($page * $length) - $length;
 
 if ($length > 0) {
-	$limit = ' LIMIT '. $start . ','. $length;
+	$limit = ' LIMIT ' .$start . ','. $length;
 }
 else $limit = ' LIMIT 0, ' .$length;
 
-if(empty($sortOrder)) $sortOrder = 'ASC';
+//if(empty($sortOrder)) $sortOrder = 'ASC';
+if(empty($sortField)) $sortField = 'PickupDate';
+if(empty($sortDirection)) $sortDirection = 'DESC';
 
 
 # init vars
@@ -159,8 +164,8 @@ $flds = array();
 $dbWhere = " " . $_REQUEST['where'];
 $dbWhere .= $filter . $userFilter;
 
-if (!isset($_REQUEST['PickupDate'])) $_REQUEST['PickupDate']='2019-01-01';
-$dbWhere .=' AND PickupDate>="'.$_REQUEST['PickupDate'].'"';
+/*if (!isset($_REQUEST['PickupDate'])) $_REQUEST['PickupDate']='2019-01-01';
+$dbWhere .=' AND PickupDate>="'.$_REQUEST['PickupDate'].'"';*/
 
 $documentType=$_REQUEST['document'];
 if ($documentType>0 && $documentType<10) {	 
@@ -251,8 +256,8 @@ while($row = $result->fetch_array(MYSQLI_ASSOC)){
 }
 if ($yearsPickup>0) $dbWhere .= " AND YEAR(`PickupDate`)=".$yearsPickup;
 
-$odTotalRecords = $od->getFullOrderByDetailsID('v4_OrderDetails.PickupDate DESC, v4_OrderDetails.PickupTime ASC', '',$dbWhere);
-$dbk = $od->getFullOrderByDetailsID('v4_OrderDetails.PickupDate ' . $sortOrder.', v4_OrderDetails.PickupTime '. $sortOrder, '' . $limit , $dbWhere);
+$odTotalRecords = $od->getFullOrderByDetailsID($sortField, $sortDirection, $limit , $dbWhere);
+$dbk = $od->getFullOrderByDetailsID($sortField, $sortDirection, '' , $dbWhere);
 
 if (count($dbk) != 0) {
     foreach ($dbk as $nn => $key)
