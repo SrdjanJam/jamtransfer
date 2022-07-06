@@ -7,8 +7,8 @@ define("CMS_ONLY", true);
 if ($_SERVER['HTTP_HOST']=='wis.jamtransfer.com') define("LOCAL",false);
 else  define("LOCAL",true);
 if (LOCAL) {
-	define("ROOT_HOME", 'http://'.$_SERVER['HTTP_HOST'] . "/jamtransfer/");
-	define("ROOT", $_SERVER['DOCUMENT_ROOT'] . "/jamtransfer/");
+	define("ROOT_HOME", "http://localhost/jamtransfer/");
+	define("ROOT", "c:\\wamp\\www\\jamtransfer");
 
 }	
 else {
@@ -19,9 +19,9 @@ define("ROOTPATH", ROOT.'/cms');
 define("SITE_CODE", '1');
 if (LOCAL) {
 	define("DB_HOST", "localhost");
-	define("DB_USER", "jamtestd_root");
-	define("DB_PASSWORD", "jamtestd_root");
-	define("DB_NAME", "jamtestd_jamtrans_touradria");
+	define("DB_USER", "root");
+	define("DB_PASSWORD", "");
+	define("DB_NAME", "jamtrans_touradria");
 }
 else {
 	define("DB_HOST", "127.0.0.1");
