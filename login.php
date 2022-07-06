@@ -95,7 +95,7 @@ if(!isset($_SESSION['UserAuthorized']) or $_SESSION['UserAuthorized'] !== true) 
 						$qu  = "UPDATE v4_AuthUsers SET LastVisited = '".date("Y-m-d H:i:s") ."' ";
 						$qu .= " WHERE AuthUserID = '" .$_SESSION['AuthUserID']. "'";
 						$db->RunQuery($qu);
-						if (isset($_COOKIE['page'])) $page=$_COOKIE['page'];
+						if (isset($_COOKIE['page'])&& $_COOKIE['page']<>'logout') $page=$_COOKIE['page'];
 						else $page='dashboard';
 						header("Location: " .$page);
 						exit();

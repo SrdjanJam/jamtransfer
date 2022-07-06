@@ -9,7 +9,24 @@
 ?>
 
 <script type="text/x-handlebars-template" id="ItemListTemplate">
-
+	<div class="row">
+		<div class="col-md-2">
+			<select id='yearsOrder' name='yearsOrder' val='0' onchange="allItems();">
+				<option val='0'>All</option>
+			</select>
+		</div>		
+		<div class="col-md-2">
+		</div>
+		<div class="col-md-2">
+			<select id='yearsPickup' name='yearsPickup' val='0' onchange="allItems();">
+				<option val='0'>All</option>
+			</select>		
+		</div>		
+		<div class="col-md-3">
+		</div>			
+		<div class="col-md-3">
+		</div>			
+	</div>
 	{{#each Item}}
 		<div  onclick="oneItem({{DetailsID}});">
 		

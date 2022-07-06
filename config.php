@@ -23,7 +23,12 @@ require_once ROOT.'/common/libs/Smarty.class.php';
 require_once ROOT.'/common/libs/SmartyValidate.class.php';
 require_once ROOT.'/common/libs/SmartyPaginate.class.php';
 
+require_once ROOT.'/common/class/SortLink.class.php';
 require_once ROOT.'/common/class/adminTable.php';
+require_once ROOT.'/common/class/factoryBase.php';
+require_once ROOT.'/common/class/ObjectFactory.class.php';
+
+
 
 $smarty = new Smarty;
 $smarty->compile_check = true;
