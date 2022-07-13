@@ -729,6 +729,32 @@ return new Handlebars.SafeString(paymentMethodDropdown());
 });
 
 /*
+driverConfStatus select
+uzima podatke iz languages u lng/en_init.js
+*/
+
+Handlebars.registerHelper("driverConfStatusSelect", function(currentValue) {
+	function driverConfStatusDropdown() {
+		var driverConfStatusSelect = '<select name="driverConfStatus" id="driverConfStatus">';
+
+		$.each (driverConfStatus, function(i, val) {
+			driverConfStatusSelect += '<option value="'+i+'" ';
+			if (i == currentValue) {
+				driverConfStatusSelect += 'selected="selected" ';
+			}
+			driverConfStatusSelect += '>' + val + '</option>';
+		});
+
+		driverConfStatusSelect += '</select>';
+
+		return  driverConfStatusSelect;
+	}
+
+return new Handlebars.SafeString(driverConfStatusDropdown());
+
+});
+
+/*
 DocumentType select
 uzima podatke iz languages u lng/en_init.js
 */

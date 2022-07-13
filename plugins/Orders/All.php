@@ -139,6 +139,14 @@ if (isset($type)) {
 $page 		= $_REQUEST['page'];
 $length 	= $_REQUEST['length'];
 //$sortOrder 	= $_REQUEST['sortOrder'];
+$orderFromID 	= $_REQUEST['orderFromID'];
+$paymentNumber 	= $_REQUEST['paymentNumber'];
+$locationName 	= $_REQUEST['locationName'];
+$driverName 	= $_REQUEST['driverName'];
+$agentName 	= $_REQUEST['agentName'];
+$passengerData 	= $_REQUEST['passengerData'];
+$paymentMethod 	= $_REQUEST['paymentMethod'];
+$driverConfStatus 	= $_REQUEST['driverConfStatus'];
 $yearsOrder 	= $_REQUEST['yearsOrder'];
 $yearsPickup 	= $_REQUEST['yearsPickup'];
 $sortField 	= $_REQUEST['sortField'];
@@ -164,8 +172,6 @@ $flds = array();
 $dbWhere = " " . $_REQUEST['where'];
 $dbWhere .= $filter . $userFilter;
 
-/*if (!isset($_REQUEST['PickupDate'])) $_REQUEST['PickupDate']='2019-01-01';
-$dbWhere .=' AND PickupDate>="'.$_REQUEST['PickupDate'].'"';*/
 
 $documentType=$_REQUEST['document'];
 if ($documentType>0 && $documentType<10) {	 
@@ -193,15 +199,13 @@ if ($documentType>9) {
 	$query="SELECT * FROM `v4_VoutcherOrderRequests` WHERE ConfirmDecline=".$cd;
 	$result = $db->RunQuery($query);
 	$orders_arr="";
-	//if (count($result->fetch_array(MYSQLI_ASSOC))>0) {
-		while($row = $result->fetch_array(MYSQLI_ASSOC)){ 			
-			$orders_arr.=$row['OrderID'].",";
-		}
- 
-		$orders_arr = substr($orders_arr,0,strlen($orders_arr)-1);
-		$dbWhere .=" AND OrderID IN (".$orders_arr.") "; 
-	/*}
-	else $dbWhere .=" AND OrderID IN (1) "; */
+	while($row = $result->fetch_array(MYSQLI_ASSOC)){ 			
+		$orders_arr.=$row['OrderID'].",";
+	}
+
+	$orders_arr = substr($orders_arr,0,strlen($orders_arr)-1);
+	$dbWhere .=" AND OrderID IN (".$orders_arr.") "; 
+
 }
 
 // ako nema potrebnih podataka, izlaz
@@ -237,9 +241,25 @@ if ( $_REQUEST['Search'] != "" )
 	$dbWhere = substr_replace( $dbWhere, "", -3 );
 	$dbWhere .= ')';
 }
+if ($paymentMethod>-1) $dbWhere .= " AND PaymentMethod = ".$paymentMethod;
+if ($driverConfStatus>-1) $dbWhere .= " AND DriverConfStatus = ".$driverConfStatus;
+if ($paymentNumber<>'') $dbWhere .= " AND MCardNumber = ".$paymentNumber;
+if ($orderFromID<>'') $dbWhere .= " AND OrderID > ".$orderFromID;
+if (strlen($locationName)>2) $dbWhere .= " AND (PickupName LIKE ('%".$locationName."%') OR 
+													DropName LIKE ('%".$locationName."%')) ";
+$queryDrivers="SELECT AuthUserID FROM v4_AuthUsers WHERE AuthUserRealName LIKE ('%".$driverName."%') 
+														OR AuthUserID = '".$driverName."'";												
+if (strlen($driverName)>2) $dbWhere .= " AND v4_OrderDetails.DriverID IN (".$queryDrivers.") ";
+$queryAgents="SELECT AuthUserID FROM v4_AuthUsers WHERE AuthUserRealName LIKE ('%".$agentName."%') 
+														OR AuthUserID = '".$agentName."'";												
+if (strlen($agentName)>2) $dbWhere .= " AND v4_OrderDetails.AgentID IN (".$queryAgents.") ";
+if (strlen($passengerData)>2) $dbWhere .= " AND (MPaxFirstName LIKE ('%".$passengerData."%') OR 
+													MPaxLastName LIKE ('%".$passengerData."%') OR
+													MPaxTel LIKE ('%".$passengerData."%') OR
+													MPaxEmail LIKE ('%".$passengerData."%')) ";
 // pravljenje filtera
 // year of OrderDate
-$query='SELECT YEAR(`OrderDate`) as yearOrder FROM `v4_OrderDetails` '.$dbWhere.' group by YEAR(`OrderDate`) order by yearOrder DESC';
+$query='SELECT YEAR(`OrderDate`) as yearOrder FROM `v4_OrderDetails`,`v4_OrdersMaster` '.$dbWhere.' AND MOrderID=OrderID group by YEAR(`OrderDate`) order by yearOrder DESC';
 $result = $dbT->RunQuery($query);
 $odYearsOrder=array();
 while($row = $result->fetch_array(MYSQLI_ASSOC)){ 			
@@ -248,7 +268,7 @@ while($row = $result->fetch_array(MYSQLI_ASSOC)){
 if ($yearsOrder>0) $dbWhere .= " AND YEAR(`OrderDate`)=".$yearsOrder;
 
 // year of PickupDate
-$query='SELECT YEAR(`PickupDate`) as yearPickup FROM `v4_OrderDetails` '.$dbWhere.' group by YEAR(`PickupDate`) order by yearPickup DESC';
+$query='SELECT YEAR(`PickupDate`) as yearPickup FROM `v4_OrderDetails`,`v4_OrdersMaster` '.$dbWhere.' AND MOrderID=OrderID group by YEAR(`PickupDate`) order by yearPickup DESC';
 $result = $dbT->RunQuery($query);
 $odYearsPickup=array();
 while($row = $result->fetch_array(MYSQLI_ASSOC)){ 			
@@ -256,8 +276,8 @@ while($row = $result->fetch_array(MYSQLI_ASSOC)){
 }
 if ($yearsPickup>0) $dbWhere .= " AND YEAR(`PickupDate`)=".$yearsPickup;
 
-$odTotalRecords = $od->getFullOrderByDetailsID($sortField, $sortDirection, $limit , $dbWhere);
-$dbk = $od->getFullOrderByDetailsID($sortField, $sortDirection, '' , $dbWhere);
+$odTotalRecords = $od->getFullOrderByDetailsID($sortField, $sortDirection, '' , $dbWhere);
+$dbk = $od->getFullOrderByDetailsID($sortField, $sortDirection, $limit  , $dbWhere);
 
 if (count($dbk) != 0) {
     foreach ($dbk as $nn => $key)
@@ -282,17 +302,8 @@ if (count($dbk) != 0) {
 		$detailFlds['DetailPrice'] = number_format($od->getDetailPrice()*$_SESSION['CurrencyRate'],2);
 		$detailFlds['ExtraCharge'] = number_format($od->getExtraCharge()*$_SESSION['CurrencyRate'],2);
 		$detailFlds['DriverExtraCharge'] = number_format($od->getDriverExtraCharge()*$_SESSION['CurrencyRate'],2);
-		$detailFlds['PayLater'] = number_format($od->getPayLater()*$_SESSION['CurrencyRate'],2);
-		$detailFlds['PayNow'] = number_format($od->getPayNow()*$_SESSION['CurrencyRate'],2);
-		$detailFlds['InvoiceAmount'] = number_format($od->getInvoiceAmount()*$_SESSION['CurrencyRate'],2);
-		$detailFlds['Provision'] = number_format($od->getProvision()*$_SESSION['CurrencyRate'],2);
-		$detailFlds['ProvisionAmount'] = number_format($od->getProvisionAmount()*$_SESSION['CurrencyRate'],2);
-		$detailFlds['Discount'] = number_format($od->getDiscount()*$_SESSION['CurrencyRate'],2);
-		$detailFlds['DriverPaymentAmt'] = number_format($od->getDriverPaymentAmt()*$_SESSION['CurrencyRate'],2);
-
-		$pm=$detailFlds["PaymentMethod"];
-		$detailFlds["PaymentMethodName"]=$PaymentMethod[$pm];
-
+		$vt->getRow($od->getVehicleType() );
+		$detailFlds['VehicleTypeName'] = $vt->getVehicleTypeName();
 		# document key
 		$odock = $odoc->getKeysBy('DocumentDate', 'desc' , ' WHERE OrderID = ' . $OrderID);
 		if (count($odock)>0) {
@@ -342,6 +353,14 @@ if (count($dbk) != 0) {
 # send output back
 $output = array(
 'draw' => '0',
+'orderFromID' => $orderFromID,
+'paymentNumber' => $paymentNumber,
+'locationName' => $locationName,
+'driverName' => $driverName,
+'agentName' => $agentName,
+'passengerData' => $passengerData,
+'paymentMethod' => $paymentMethod,
+'driverConfStatus' => $driverConfStatus,
 'yearsOrder' => $odYearsOrder,
 'yearsPickup' => $odYearsPickup,
 'recordsTotal' => count($odTotalRecords),

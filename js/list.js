@@ -12,10 +12,26 @@
 	 	var orderid = $("#orderid").val(); // filter za orderid
 	 	var sortOrder  = $("#sortOrder").val();
 		
-	 	var yearsOrder = $("#yearsOrder").val();
+	 	var orderFromID = $("#orderFromID").val();
+		if (typeof orderFromID=='undefined') orderFromID='';
+	 	var locationName = $("#locationName").val();
+		if (typeof locationName=='undefined') locationName='';
+	 	var paymentNumber = $("#paymentNumber").val();
+		if (typeof paymentNumber=='undefined') paymentNumber='';		
+	 	var driverName = $("#driverName").val();
+		if (typeof driverName=='undefined') driverName='';
+	 	var agentName = $("#agentName").val();
+		if (typeof agentName=='undefined') agentName='';
+	 	var passengerData = $("#passengerData").val();
+		if (typeof passengerData=='undefined') passengerData='';
+		var paymentMethod = $("#PaymentMethod").val();
+		if (typeof paymentMethod=='undefined') paymentMethod='-1';		
+		var driverConfStatus = $("#driverConfStatus").val();
+		if (typeof driverConfStatus=='undefined') driverConfStatus='-1';		
+		var yearsOrder = $("#yearsOrder").val();
 		if (typeof yearsOrder=='undefined') yearsOrder='0';
 	 	var yearsPickup = $("#yearsPickup").val();
-		var currentTime = new Date()
+		var currentTime = new Date();
 		if (typeof yearsPickup=='undefined') yearsPickup=currentTime.getFullYear();
 	 	var sortField = $("#sortField").val();
 		if (typeof sortField=='undefined') sortField='PickupDate';	 	
@@ -34,6 +50,14 @@
 	 	'&Search='+filter+'&page='+page+'&length='+length+'&sortOrder='+sortOrder+
 		'&transfersFilter='+transfersFilter+
 		'&orderid='+orderid+
+		'&orderFromID='+orderFromID+
+		'&paymentNumber='+paymentNumber+
+		'&locationName='+locationName+
+		'&driverName='+driverName+
+		'&agentName='+agentName+
+		'&passengerData='+passengerData+
+		'&paymentMethod='+paymentMethod+
+		'&driverConfStatus='+driverConfStatus+
 		'&yearsOrder='+yearsOrder+
 		'&yearsPickup='+yearsPickup+
 		'&sortField='+sortField+
@@ -65,12 +89,40 @@
 
 				$("#show_Items").html(HTML);
 				
+			  $("#PaymentMethod").prepend('<option value="-1">All method</option>');
+			  $("#PaymentMethod option[value="+paymentMethod+"]").prop("selected", true)
+			  $("#PaymentMethod").change(function() {
+				  allItems();
+			  }) 			  
+			  $("#driverConfStatus").prepend('<option value="-1">All status</option>');
+			  $("#driverConfStatus option[value="+driverConfStatus+"]").prop("selected", true)
+			  $("#driverConfStatus").change(function() {
+				  allItems();
+			  }) 
 			  if (ItemsData.yearsOrder ) {
 				  var yearsOrderArr = ItemsData.yearsOrder;
 				  $.each(yearsOrderArr, function(i, item) {
 					    $('#yearsOrder').append('<option value="'+yearsOrderArr[i]+'">'+yearsOrderArr[i]+'</option>');
 					});
 					$("#yearsOrder option[value="+yearsOrder+"]").prop("selected", true)
+			  }				  
+			  if (ItemsData.orderFromID) {
+				  $("#orderFromID").val(ItemsData.orderFromID);
+			  }
+			  if (ItemsData.paymentNumber ) {
+				  $("#paymentNumber").val(ItemsData.paymentNumber);
+			  }				  
+			  if (ItemsData.locationName ) {
+				  $("#locationName").val(ItemsData.locationName);
+			  }				  
+			  if (ItemsData.driverName ) {
+				  $("#driverName").val(ItemsData.driverName);
+			  }				 
+			  if (ItemsData.agentName ) {
+				  $("#agentName").val(ItemsData.agentName);
+			  }				  
+			  if (ItemsData.passengerData ) {
+				  $("#passengerData").val(ItemsData.passengerData);
 			  }				  
 			  if (ItemsData.yearsPickup ) {
 				  var yearsPickupArr = ItemsData.yearsPickup;

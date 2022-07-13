@@ -44,16 +44,6 @@ value=" WHERE {$ItemID} > 0">
 			<option value="DESC"> {$DESCENDING} </option>
 		</select>			
 	</div>
-	{else}
-	<div class="col-sm-2">
-		<i class="fa fa-list-ul"></i>
-		<select id="transfersFilter" class="w75" name="transfersFilter" onchange="allItems();">
-			<option value="0">{$ALL}</option>
-			{section name=pom loop=$transfersFilters}
-				<option {if $transfersFilter eq $transfersFilters[pom].id} selected {/if} value="{$transfersFilters[pom].id}">{$transfersFilters[pom].name}</option>
-			{/section}
-		</select>
-	</div>	
 	{/if}
 	
 	{if isset($selectactive)}		

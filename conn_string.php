@@ -8,7 +8,7 @@ if ($_SERVER['HTTP_HOST']=='wis.jamtransfer.com') define("LOCAL",false);
 else  define("LOCAL",true);
 if (LOCAL) {
 	define("ROOT_HOME", "http://localhost/jamtransfer/");
-	define("ROOT", "c:\\wamp\\www\\jamtransfer");	
+	define("ROOT", "c:\\wamp\\www\\jamtransfer");
 }	
 else {
 	define("ROOT", $_SERVER['DOCUMENT_ROOT']);
