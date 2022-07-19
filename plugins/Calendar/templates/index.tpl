@@ -1,3 +1,4 @@
+
 <div class="row-fluid">
 	<div class="">
 		<div class="col-md-1" style="width:99% !important;">
@@ -11,12 +12,21 @@
 					</select>
 				</div>
 				<div id="cal" align="center">
+					{* Glavni sadrzaj ukljucen ovde *}
+						{* 
+							<table></table>
+							<div class="dashboard-legend"></div>
+							<script></script>
+						*}
 				</div>
 				<br/><br/>
 			</div>
 		</div>
 	</div>
 </div>
+
+
+
 <script type="text/javascript">
 {literal}
 	calendar();
@@ -30,5 +40,5 @@
 		);
 		$('#xMonth').val($('#cal_month').val());
 	}	
-{/literal}		
+{/literal}	
 </script>
