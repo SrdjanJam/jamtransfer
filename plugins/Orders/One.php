@@ -1,7 +1,5 @@
 <?
-header('Content-Type: text/javascript; charset=UTF-8');
-require_once 'Initial.php';
-
+require_once ROOT . '/plugins/Orders/Initial.php';
 	$PaymentStatus = array(
 		'0'	=>	'Not Paid',
 		'1'	=>	'Warning sent',
@@ -37,7 +35,7 @@ require_once 'Initial.php';
 	$orderLog = array();
 	
 # filters
-$odWhere = $_REQUEST['where'];
+$odWhere = ' WHERE DetailsID='/$detailsid;
 
 # Details keys
 $odk = $od->getKeysBy('DetailsID', 'asc' , $odWhere);

@@ -31,12 +31,11 @@ value=" WHERE {$ItemID} > 0">
 			<option value="100"> 100 </option>
 		</select>
 	</div>
-
+	{if $title ne "Orders"}
 	<div class="col-md-2">
 		<i class="fa fa-text-width"></i>
 		<input type="text" id="Search" class=" w75" onchange="allItems();" placeholder="Text + Enter to Search">
 	</div>
-	{if $title ne "Orders"}
 	<div class="col-md-2">
 		<i class="fa fa-sort-amount-asc"></i> 
 		<select name="sortOrder" id="sortOrder" onchange="allItems();">

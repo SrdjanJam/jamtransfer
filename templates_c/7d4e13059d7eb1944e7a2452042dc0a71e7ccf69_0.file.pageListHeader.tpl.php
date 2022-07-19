@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.32, created on 2022-07-13 08:53:36
+/* Smarty version 3.1.32, created on 2022-07-18 07:59:06
   from 'C:\wamp\www\jamtransfer\templates\pageListHeader.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.32',
-  'unifunc' => 'content_62ce8810088e15_25659522',
+  'unifunc' => 'content_62d512ca8e0092_50855836',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '7d4e13059d7eb1944e7a2452042dc0a71e7ccf69' => 
     array (
       0 => 'C:\\wamp\\www\\jamtransfer\\templates\\pageListHeader.tpl',
-      1 => 1657702411,
+      1 => 1658131086,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_62ce8810088e15_25659522 (Smarty_Internal_Template $_smarty_tpl) {
+function content_62d512ca8e0092_50855836 (Smarty_Internal_Template $_smarty_tpl) {
 if (!$_SESSION['UseDriverID'] && $_smarty_tpl->tpl_vars['title']->value != "Orders") {?>
 	<a class="btn btn-primary btn-xs" href="<?php echo $_smarty_tpl->tpl_vars['currenturl']->value;?>
 /new"><?php echo $_smarty_tpl->tpl_vars['NNEW']->value;?>
@@ -70,12 +70,11 @@ for ($__section_pom_0_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_po
 			<option value="100"> 100 </option>
 		</select>
 	</div>
-
+	<?php if ($_smarty_tpl->tpl_vars['title']->value != "Orders") {?>
 	<div class="col-md-2">
 		<i class="fa fa-text-width"></i>
 		<input type="text" id="Search" class=" w75" onchange="allItems();" placeholder="Text + Enter to Search">
 	</div>
-	<?php if ($_smarty_tpl->tpl_vars['title']->value != "Orders") {?>
 	<div class="col-md-2">
 		<i class="fa fa-sort-amount-asc"></i> 
 		<select name="sortOrder" id="sortOrder" onchange="allItems();">

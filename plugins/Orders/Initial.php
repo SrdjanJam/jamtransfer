@@ -52,11 +52,5 @@ $type='TransferStatus';
 # Search ce ih sam pretraziti
 #********************************
 $aColumns = array(
-	'v4_OrderDetails.PickupDate',
-	'v4_OrderDetails.InvoiceNumber',
-	'v4_OrderDetails.FlightNo',
-	'v4_OrderDetails.DriverInvoiceNumber',	
-	'v4_OrdersMaster.MOrderKey',
-	'v4_OrdersMaster.MConfirmFile',
-	'v4_AuthUsers.AuthUserRealName'
+
 );

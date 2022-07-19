@@ -23,7 +23,7 @@ if (isset($type)) {
 		$today = date("Y-m-d", $today);
 		$lastWeek= date("Y-m-d", $lastWeek);
 		
-		switch ($_REQUEST['transfersFilter']) {
+		/*switch ($_REQUEST['transfersFilter']) {
 			case 'noDriver':
 				$filter .= " AND DriverConfStatus ='0' AND TransferStatus < '3'";	
 				break;
@@ -125,14 +125,14 @@ if (isset($type)) {
 				}
 				else $filter .= " AND OrderID = ".$_REQUEST['orderid'];					
 				break;			
-		}
+		}*/
 
-		$defDate=time()-540*24*3600;
+		/*$defDate=time()-540*24*3600;
 		$date = new DateTime();	
 		$date->setTimestamp($defDate);
 		$defDate = $date->format('Y-m-d');
 
-		if ($filterDate == '') $filterDate = $defDate;
+		if ($filterDate == '') $filterDate = $defDate;*/
 
 		
 	}	
@@ -144,6 +144,7 @@ $paymentNumber 	= $_REQUEST['paymentNumber'];
 $locationName 	= $_REQUEST['locationName'];
 $driverName 	= $_REQUEST['driverName'];
 $agentName 	= $_REQUEST['agentName'];
+$agentOrder 	= $_REQUEST['agentOrder'];
 $passengerData 	= $_REQUEST['passengerData'];
 $paymentMethod 	= $_REQUEST['paymentMethod'];
 $driverConfStatus 	= $_REQUEST['driverConfStatus'];
@@ -227,7 +228,7 @@ if (strpos($dbWhere, 'undefined') !== false) {
 
 # dodavanje search parametra u qry
 # DB_Where sad ima sve potrebno za qry
-if ( $_REQUEST['Search'] != "" )
+/*if ( $_REQUEST['Search'] != "" )
 {
 	$dbWhere .= " AND (";
 
@@ -240,10 +241,12 @@ if ( $_REQUEST['Search'] != "" )
 	}
 	$dbWhere = substr_replace( $dbWhere, "", -3 );
 	$dbWhere .= ')';
-}
+}*/
 if ($paymentMethod>-1) $dbWhere .= " AND PaymentMethod = ".$paymentMethod;
 if ($driverConfStatus>-1) $dbWhere .= " AND DriverConfStatus = ".$driverConfStatus;
-if ($paymentNumber<>'') $dbWhere .= " AND MCardNumber = ".$paymentNumber;
+if ($paymentNumber<>'') $dbWhere .= " AND (MCardNumber = '".$paymentNumber."' OR 
+											InvoiceNumber ='".$paymentNumber."' OR 
+											DriverInvoiceNumber ='".$paymentNumber."')";
 if ($orderFromID<>'') $dbWhere .= " AND OrderID > ".$orderFromID;
 if (strlen($locationName)>2) $dbWhere .= " AND (PickupName LIKE ('%".$locationName."%') OR 
 													DropName LIKE ('%".$locationName."%')) ";
@@ -253,10 +256,13 @@ if (strlen($driverName)>2) $dbWhere .= " AND v4_OrderDetails.DriverID IN (".$que
 $queryAgents="SELECT AuthUserID FROM v4_AuthUsers WHERE AuthUserRealName LIKE ('%".$agentName."%') 
 														OR AuthUserID = '".$agentName."'";												
 if (strlen($agentName)>2) $dbWhere .= " AND v4_OrderDetails.AgentID IN (".$queryAgents.") ";
+if (strlen($agentOrder)>2) $dbWhere .= " AND ( MConfirmFile LIKE ('%".$agentOrder."%') OR
+												MOrderKey LIKE ('%".$agentOrder."%') ) ";
 if (strlen($passengerData)>2) $dbWhere .= " AND (MPaxFirstName LIKE ('%".$passengerData."%') OR 
 													MPaxLastName LIKE ('%".$passengerData."%') OR
 													MPaxTel LIKE ('%".$passengerData."%') OR
-													MPaxEmail LIKE ('%".$passengerData."%')) ";
+													MPaxEmail LIKE ('%".$passengerData."%') OR
+													FlightNo LIKE ('%".$passengerData."%')) ";
 // pravljenje filtera
 // year of OrderDate
 $query='SELECT YEAR(`OrderDate`) as yearOrder FROM `v4_OrderDetails`,`v4_OrdersMaster` '.$dbWhere.' AND MOrderID=OrderID group by YEAR(`OrderDate`) order by yearOrder DESC';
@@ -275,7 +281,6 @@ while($row = $result->fetch_array(MYSQLI_ASSOC)){
 	$odYearsPickup[]=$row['yearPickup'];
 }
 if ($yearsPickup>0) $dbWhere .= " AND YEAR(`PickupDate`)=".$yearsPickup;
-
 $odTotalRecords = $od->getFullOrderByDetailsID($sortField, $sortDirection, '' , $dbWhere);
 $dbk = $od->getFullOrderByDetailsID($sortField, $sortDirection, $limit  , $dbWhere);
 
@@ -358,6 +363,7 @@ $output = array(
 'locationName' => $locationName,
 'driverName' => $driverName,
 'agentName' => $agentName,
+'agentOrder' => $agentOrder,
 'passengerData' => $passengerData,
 'paymentMethod' => $paymentMethod,
 'driverConfStatus' => $driverConfStatus,

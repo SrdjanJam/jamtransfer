@@ -1,3 +1,8 @@
+
+
+
+
+
 <script type="text/x-handlebars-template" id="ItemEditTemplate">
 
 	<form id="ItemEditForm{{details.DetailsID}}" class="form box box-solid" onsubmit="return false;">

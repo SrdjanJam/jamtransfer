@@ -40,8 +40,13 @@ switch ($activePage) {
 		
 	case 'orders':
 		if ($pathVars->fetchByIndex($indexStart + 1)) { 
+			$isEdit=false;
 			$transfersFilter=$pathVars->fetchByIndex($indexStart + 1);
 			if ($transfersFilter=='order') $orderid=$pathVars->fetchByIndex($indexStart + 2);
+			if (is_numeric($transfersFilter)) {
+				$detailid=$pathVars->fetchByIndex($indexStart + 1);
+				$isEdit=true;
+			}	
 		}
 		break;
 	case 'buking':

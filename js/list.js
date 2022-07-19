@@ -22,6 +22,8 @@
 		if (typeof driverName=='undefined') driverName='';
 	 	var agentName = $("#agentName").val();
 		if (typeof agentName=='undefined') agentName='';
+	 	var agentOrder = $("#agentOrder").val();
+		if (typeof agentOrder=='undefined') agentOrder='';
 	 	var passengerData = $("#passengerData").val();
 		if (typeof passengerData=='undefined') passengerData='';
 		var paymentMethod = $("#PaymentMethod").val();
@@ -55,6 +57,7 @@
 		'&locationName='+locationName+
 		'&driverName='+driverName+
 		'&agentName='+agentName+
+		'&agentOrder='+agentOrder+
 		'&passengerData='+passengerData+
 		'&paymentMethod='+paymentMethod+
 		'&driverConfStatus='+driverConfStatus+
@@ -120,6 +123,9 @@
 			  }				 
 			  if (ItemsData.agentName ) {
 				  $("#agentName").val(ItemsData.agentName);
+			  }				  
+			  if (ItemsData.agentOrder ) {
+				  $("#agentOrder").val(ItemsData.agentOrder);
 			  }				  
 			  if (ItemsData.passengerData ) {
 				  $("#passengerData").val(ItemsData.passengerData);

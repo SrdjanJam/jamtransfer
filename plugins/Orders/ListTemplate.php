@@ -13,7 +13,7 @@
 	<input type='hidden' id='sortDirection' name='sortDirection'/>
 	
 	<div class="row">
-		<div class="col-md-2">
+		<div class="col-md-2 xorange">
 			<select id='yearsOrder' name='yearsOrder' value='0' onchange="allItems();">
 				<option value='0'>All years</option>
 			</select>
@@ -24,11 +24,11 @@
 			<button onclick="allSort('OrderID','ASC')"><i class="fa fa-sort-asc"></i></button>
 			<button onclick="allSort('OrderID','DESC')"><i class="fa fa-sort-desc"></i></button>
 		</div>		
-		<div class="col-md-2"> 
+		<div class="col-md-2 amber"> 
 			{{paymentMethodSelect PaymentMethod}}<br>
-			<input id='paymentNumber' name='paymentNumber'  placeholder="Payment No" onchange="allItems();"/>					
+			<input id='paymentNumber' name='paymentNumber'  placeholder="Payment / Invoice No" onchange="allItems();"/>					
 		</div>
-		<div class="col-md-2">
+		<div class="col-md-2 yellow">
 			<select id='yearsPickup' name='yearsPickup' value='0' onchange="allItems();">
 				<option value='0'>All years</option>
 			</select>		
@@ -37,37 +37,43 @@
 			</br>
 			<input id='locationName' name='locationName'  placeholder="Location Name" onchange="allItems();"/>					
 		</div>		
-		<div class="col-md-2">
+		<div class="col-md-2 lime">
 			<input id='driverName' name='driverName'  placeholder="Driver Name/ID" onchange="allItems();"/><br>				
 			{{driverConfStatusSelect DriverConfStatus}}
 		</div>			
-		<div class="col-md-2">
+		<div class="col-md-2 xgreen">
 			<input id='agentName' name='agentName'  placeholder="Agent Name/ID" onchange="allItems();"/><br>				
+			<input id='agentOrder' name='agentOrder'  placeholder="Order Key / Agent Order" onchange="allItems();"/><br>				
 		</div>			
-		<div class="col-md-2">
+		<div class="col-md-2 grey">
 			<input id='passengerData' name='passengerData'  placeholder="Passenger Data" onchange="allItems();"/>					
 		</div>			
 	</div>
 	{{#each Item}}
-		<div  onclick="oneItem({{DetailsID}});">
+		<div><!--- onclick="oneItem({{DetailsID}});" !-->
 		
 			<div class="row {{color}} pad1em listTile" 
 			style="border-top:1px solid #eee;border-bottom:0px solid #eee" 
 			id="t_{{DetailsID}}">
 
-					<div class="col-md-2">
+					<div class="col-md-2 xorange">
 						<small>{{OrderDate}} {{MOrderTime}}</small></br>
-						<strong>{{MOrderID}} - {{TNo}}</strong><br>
+						<strong>{{DetailsID}} {{MOrderID}} - {{TNo}}</strong><br>
 						<small>{{displayTransferStatusText TransferStatus}}</small>
 					</div>
-					<div class="col-md-2">
+					<div class="col-md-2 amber">
 						<strong>{{addNumbers DetailPrice ExtraCharge}} €</strong><br>
 						{{paymentMethodText PaymentMethod}} <br>
-						<small>{{#compare PaymentMethod "==" "1"}} {{MCardNumber}}	{{/compare}}
-						{{#compare PaymentMethod "==" "3"}} {{MCardNumber}}	{{/compare}}</small>							
+						<small>
+						{{#compare PaymentMethod "==" "1"}} {{MCardNumber}}	{{/compare}}
+						{{#compare PaymentMethod "==" "3"}} {{MCardNumber}}	{{/compare}}						
+						{{#compare PaymentMethod "==" "2"}} {{DriverInvoiceNumber}}	{{/compare}}
+						{{#compare PaymentMethod "==" "4"}} {{InvoiceNumber}} {{/compare}}
+						{{#compare PaymentMethod "==" "6"}} {{InvoiceNumber}}	{{/compare}}
+						</small>							
 					</div>
 					
-					<div class="col-md-2">
+					<div class="col-md-2 yellow">
 						{{#compare PickupDate ">=" "<?=date('Y')+1;?>-01-01"}}<span class="red-text">{{/compare}}
 						{{PickupDate}}
 						{{#compare PickupDate ">=" "<?=date('Y')+1;?>-01-01"}}</span>{{/compare}}
@@ -75,28 +81,27 @@
 						</br>
 						<strong>{{PickupName}} - {{DropName}}</strong>
 						<br>						
-						<i class="fa fa-car"></i> {{VehicleTypeName}}*{{VehiclesNo}}
+						<small><i class="fa fa-car"></i> {{VehicleTypeName}}*{{VehiclesNo}}</small>
 						{{#compare ExtraCharge ">" 0}}
 							<i class="fa fa-cubes" style="color:#900"></i>
 						{{/compare}}
 						
 					</div>
-					<div class="col-md-2">
+					<div class="col-md-2 lime">
 						{{!-- userName DriverID "AuthUserCompany" --}}
 						{{#if DriverName}}
-							<strong>{{DriverName}}</strong>
+							<strong><small>{{DriverName}}</small></strong>
 						{{/if}}	
 						<br>
 						{{DriversPrice}} €<br>
 						<small class="{{driverConfStyle DriverConfStatus}}">{{driverConfText DriverConfStatus}}</small>
 					</div>
-					<div class="col-md-2">
-						{{#if UserID}}
-							<strong>{{ userName UserID "AuthUserRealName" }}</strong><br>
-							{{MConfirmFile}}
-						{{/if}}	
+					<div class="col-md-2 xgreen">
+						{{MOrderKey}}<br>
+						{{MConfirmFile}}<br>						
+						<strong>{{ userName UserID "AuthUserRealName" }}</strong>
 					</div>					
-					<div class="col-md-2">
+					<div class="col-md-2 grey">
 						<i class="fa fa-user"></i> <strong>{{PaxName}}</strong><br>
 						<small>
 							<i class="fa fa-envelope-o"></i> {{MPaxEmail}}
@@ -118,7 +123,7 @@
 				</div>
 			</div>
 		</div>
-
+	<hr></hr>
 	{{/each}}
 
 
