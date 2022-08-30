@@ -38,17 +38,30 @@ switch ($activePage) {
 		}
 		break;		
 		
+	case 'driverReOrder':
+		if ($pathVars->fetchByIndex($indexStart + 1)) { 
+			$_REQUEST['OrderID']=$pathVars->fetchByIndex($indexStart + 1);
+			$_REQUEST['TNo']=$pathVars->fetchByIndex($indexStart + 2);
+			if ($pathVars->fetchByIndex($indexStart + 3)) {
+				$_REQUEST['returnTransfer']=$pathVars->fetchByIndex($indexStart + 3);
+			}
+		}
+		break;
+		
 	case 'orders':
 		if ($pathVars->fetchByIndex($indexStart + 1)) { 
 			$isEdit=false;
 			$transfersFilter=$pathVars->fetchByIndex($indexStart + 1);
-			if ($transfersFilter=='order') $orderid=$pathVars->fetchByIndex($indexStart + 2);
+			if ($transfersFilter=='order') $smarty->assign('orderid',$pathVars->fetchByIndex($indexStart + 2));
+			if ($transfersFilter=='detail')  $smarty->assign('detailid',$pathVars->fetchByIndex($indexStart + 2));
+		
 			if (is_numeric($transfersFilter)) {
 				$detailid=$pathVars->fetchByIndex($indexStart + 1);
 				$isEdit=true;
 			}	
 		}
 		break;
+		
 	case 'buking':
 		if ($pathVars->fetchByIndex($indexStart + 1)) { 
 		

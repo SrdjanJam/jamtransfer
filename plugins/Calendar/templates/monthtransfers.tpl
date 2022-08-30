@@ -1,19 +1,15 @@
-
 {* Jquery *}
 <script src="https://code.jquery.com/jquery-2.0.2.js"></script>
 
 <script>
-
 $(document).ready(function(){
 	if ($(window).width() < 760) {
 		// alert('Less than 960');
-
 		$(".small").hide();
 		$(".small-mini").show();
 		
 		
 			$('.show-data').hide();
-
 			$('.days').click(function(){
 				
 				var selector = '#' + $(this).attr('id')+' .show-data';
@@ -24,18 +20,13 @@ $(document).ready(function(){
 				
 				if(x == -1){
 					$(grid).toggleClass('fullscreen');
-
 					$(selector).show();
 					$('.close-gi').show();
 					$(".small").show();
 					$(".small-mini").hide();
-
 				}
-
 			}); // </.days
-
 			$('.close-gi').click(function(){
-
 				var grid = '#' + $(this).parent().attr('id');
 				$(grid).toggleClass('fullscreen');
 				$('.show-data').hide();
@@ -43,25 +34,19 @@ $(document).ready(function(){
 				$(".small").hide();
 				$(".small-mini").show();
 			});
-
 			
 			
 		} // </if $(window).width() < 760
 });
 		
 </script>
-
-
 <style>
-
 * {
   box-sizing: border-box;
 }
-
 body {
   font-family: Arial, Helvetica, sans-serif;
 }
-
 .grid-container {
   display: grid;
   grid-gap: 1px;
@@ -76,28 +61,21 @@ body {
   font-size: 15px;
   text-align: center;
 }
-
 .grid-item-2 {
 	background:white;
 }
-
 .show-data .small{
 	font-size:16px;
 }
-
 /*///////////////////////////////////////////////////////////*/
 /*MEDIA SECTION:*/
-
 @media screen and (max-width:767px) {
-
 	.wrapper{
 		padding:0px;
 	}
-
 	.body{
 		padding:0;
 	}
-
 	.fullscreen{
 		z-index: 9999; 
 		width: 100%; 
@@ -107,41 +85,29 @@ body {
 		left: 0; 
 		background:#ffffff;
  	}
-
 	a.close-gi{
 		color:rgb(185, 65, 65);
 		font-size:35px;
 		border:1px solid red;
 		padding:5px;
 	}
-
 	.grid-item-2{
 		overflow-y: auto;
 	}
-
 	.days .small{
 		color:black;
 		font-size:30px;
 	}
-
 	.days b{
 		font-size:30px;
 	}
-
 	.days .small-mini{
 		font-size:17px;
 	}
-
-
 	
 }
-
-
 </style>
-
-
 <div class="grid-container">
-
 	<div class="grid-item" style="background:#FDB5B5">{$dayNames[0]}</div>
 	<div class="grid-item" style="background:#f2f2f2">{$dayNames[1]}</div>
 	<div class="grid-item" style="background:#f2f2f2">{$dayNames[2]}</div>  
@@ -149,16 +115,12 @@ body {
 	<div class="grid-item" style="background:#f2f2f2">{$dayNames[4]}</div>
 	<div class="grid-item" style="background:#f2f2f2">{$dayNames[5]}</div>  
 	<div class="grid-item" style="background:#ABF1A6">{$dayNames[6]}</div>
-
 	<!-- grid-item-2: ================================================================================= -->
-
 	{* First Section *}
 	{section name=pom loop=$month_transfers}
-
 		{if $month_transfers[pom].dayofweek eq '0'} 
 			{* Old <tr> *}
 		{/if}
-
 		{if $month_transfers[pom].dayofweek eq '-1'} 
 			{* Old <td></td> *} <div class="grid-item-2"></div>
 			{else}
@@ -173,7 +135,6 @@ body {
 										<small class="small">
 											{* Second Section *}
 											{section name=pom2 loop=$month_transfers[pom].transfers}
-
 												{if $month_transfers[pom].transfers[pom2].TransferStatus eq '1'} <span class="text-blue"><i class="fa fa-circle-o"></i></span>
 													{else if $month_transfers[pom].transfers[pom2].TransferStatus eq '2'} <span class="text-orange"><i class="fa fa-circle-o"></i></span>
 													{else if $month_transfers[pom].transfers[pom2].TransferStatus eq '3'} <span style="color: #c00"><i class="fa fa-times-circle"></i></span>
@@ -193,8 +154,7 @@ body {
 												{/if}
 											
 												{$month_transfers[pom].transfers[pom2].PickupTime}&rarr;
-
-												<a href="editActiveTransfer/{$month_transfers[pom].transfers[pom2].DetailsID}"
+												<a href="orders/detail/{$month_transfers[pom].transfers[pom2].DetailsID}"
 												title="<b>{$month_transfers[pom].transfers[pom2].OrderID}-{$month_transfers[pom].transfers[pom2].TNo} - {$month_transfers[pom].transfers[pom2].PaxName} </b>" 
 												data-content="
 													<br/>{$FLIGHT_NO}: {$month_transfers[pom].transfers[pom2].FlightNo}
@@ -207,11 +167,9 @@ body {
 												" 
 												class="mytooltip">
 													{$month_transfers[pom].transfers[pom2].OrderID}-{$month_transfers[pom].transfers[pom2].TNo}
-
 												</a><br/>
 												
 											{/section} {* / Second Section *}
-
 										</small>
 										
 									</div> {* / show-date *}
@@ -222,10 +180,8 @@ body {
 							
 					
 					</div> {* / days *}
-
 					{* close *}
 					<a class="close-gi" data-id ="{$month_transfers[pom].nom}" style="display:none;">Close</a>		
-
 				</div> {* / .grid-item-2 *}  {* old - </td>*}
 				
 				
@@ -238,17 +194,10 @@ body {
 			{* </div> *}
 		{/if}
 		
-
 	{/section} {* / First Section *}
 	
-
 {* </div> / .grid-container-2 *}
-
 </div> {* / .grid-container *}
-
-
-
-
 {* <div class="dashboard-legend">
 	Transfer status:
 	<ul>
@@ -270,7 +219,6 @@ body {
 		<i class="fa fa-check-square text-green"></i> Completed
 	</ul>
 </div> *}
-
 <script>
 {literal}
 	$(".mytooltip").popover({trigger:'hover', html:true, placement:'bottom'});

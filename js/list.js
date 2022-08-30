@@ -10,6 +10,7 @@
 	 	var length = $("#length").val(); // dropdown za broj prikazanih usera na stranici
 	 	var transfersFilter = $("#transfersFilter").val(); // filter za transfere
 	 	var orderid = $("#orderid").val(); // filter za orderid
+	 	var detailid = $("#detailid").val(); // filter za detailid
 	 	var sortOrder  = $("#sortOrder").val();
 		
 	 	var orderFromID = $("#orderFromID").val();
@@ -52,6 +53,7 @@
 	 	'&Search='+filter+'&page='+page+'&length='+length+'&sortOrder='+sortOrder+
 		'&transfersFilter='+transfersFilter+
 		'&orderid='+orderid+
+		'&detailid='+detailid+
 		'&orderFromID='+orderFromID+
 		'&paymentNumber='+paymentNumber+
 		'&locationName='+locationName+
@@ -136,19 +138,43 @@
 					    $('#yearsPickup').append('<option value="'+yearsPickupArr[i]+'">'+yearsPickupArr[i]+'</option>');
 					});
 					$("#yearsPickup option[value="+yearsPickup+"]").prop("selected", true)
-			  }				
+			  }	
+		      if (orderid.trim() || detailid.trim()) $('.itemsheader').hide();
+		      if (orderid.trim() || detailid.trim()) $('#pageSelect').hide();
+			  if ($(window).width() < 760) filtersDown();
+			  else	filtersUP();	
+			  
 		  },
 		  error: function() { alert('Get error occured.');}
 		});
 	}
-
-	function oneItem(id) { 
+	function filtersUP() {
+		$('.itemsheader').show();
+		$('#filtersUP').hide();
+		$('#filtersDown').show();
+	}		
+	function filtersDown() {
+		$('.itemsheader').hide();
+		$('#pageSelect').show();		
+		$('#filtersDown').hide();	
+		$('#filtersUP').show();		
+	}	
+	function oneItem(id,tab) { 
 
 		// click na element - hide element ako je vec prikazan, nema potrebe za ajax
-		if ( $("#ItemWrapper"+id).css('display') != 'none') {$("#ItemWrapper"+id).hide('slow'); return;}
-
+		if ( $("#ItemWrapper"+id).css('display') != 'none') {
+			$("#ItemWrapper"+id).hide('slow'); 
+			if (typeof tab == 'undefined') return;
+			if (window.tab == tab) return;
+		}
 		// ako element nije prikazan, uzmi potrebne podatke i prikazi ga
 		var url = window.root + 'One.php?ItemID='+id;
+		if (typeof tab !== 'undefined') {
+			url = url + '&tab='+tab;
+			$('.'+window.tab).removeClass('grey');
+			window.tab=tab;
+			$('#t_'+id+' .'+tab).addClass('grey');
+		}	
 		// sakrij sve ostale elemente prije nego se otvori novi
 		$(".editFrame").hide('slow'); $(".editFrame form").html('');
 		// idemo po podatke
@@ -160,15 +186,12 @@
 			contentType: "application/json",
 			dataType: 'jsonp',
 			success: function(data) {
-
 				// CUSTOM STUFF
 				$('.bg-light-blue').removeClass('bg-light-blue').addClass('white');
 
 				var source   = $("#ItemEditTemplate").html();
 				var template = Handlebars.compile(source);
-
 				var HTML = template(data[0]);
-
 				// promjena boje pozadine zadnje gledane plocice
 				$("#t_"+id).removeClass('white').addClass('bg-light-blue');
 
@@ -178,7 +201,9 @@
 				$("#ItemWrapper"+id)[0].scrollIntoView({
 					behavior: "smooth", // or "auto" or "instant"
 					block: "start" // or "end"
-				});				
+				});	
+				$('.dorder, .dpayment, .dtransfer, .dpdriver, .dagent, .dpassenger').hide();
+				$('.d'+tab).show();
 			},
 			error: function(xhr, status, error) {alert("Show error occured: " + xhr.status + " " + xhr.statusText); }
 		});

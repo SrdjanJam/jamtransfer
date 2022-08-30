@@ -13,7 +13,16 @@
 	<input type='hidden' id='sortDirection' name='sortDirection'/>
 	
 	<div class="row">
-		<div class="col-md-2 xorange">
+		<span class="right">
+			<i class="fa fa-filter"></i>
+			<i id='filtersDown' class="fa fa-angle-down" onclick="filtersDown()"></i>
+			<i id='filtersUP' class="fa fa-angle-up" onclick="filtersUP()"></i>	
+		</span>
+	</div>	
+	<div class="row itemsheader">
+
+		<div class="col-md-2 grey">
+			<small class="badge blue text-black">Order</small><br>
 			<select id='yearsOrder' name='yearsOrder' value='0' onchange="allItems();">
 				<option value='0'>All years</option>
 			</select>
@@ -24,11 +33,13 @@
 			<button onclick="allSort('OrderID','ASC')"><i class="fa fa-sort-asc"></i></button>
 			<button onclick="allSort('OrderID','DESC')"><i class="fa fa-sort-desc"></i></button>
 		</div>		
-		<div class="col-md-2 amber"> 
+		<div class="col-md-2"> 
+			<small class="badge blue text-black">Payment</small><br>
 			{{paymentMethodSelect PaymentMethod}}<br>
 			<input id='paymentNumber' name='paymentNumber'  placeholder="Payment / Invoice No" onchange="allItems();"/>					
 		</div>
-		<div class="col-md-2 yellow">
+		<div class="col-md-2 grey"> 
+			<small class="badge blue text-black">Transfer</small><br>		
 			<select id='yearsPickup' name='yearsPickup' value='0' onchange="allItems();">
 				<option value='0'>All years</option>
 			</select>		
@@ -37,31 +48,33 @@
 			</br>
 			<input id='locationName' name='locationName'  placeholder="Location Name" onchange="allItems();"/>					
 		</div>		
-		<div class="col-md-2 lime">
+		<div class="col-md-2">
+			<small class="badge blue text-black">Driver</small><br>
 			<input id='driverName' name='driverName'  placeholder="Driver Name/ID" onchange="allItems();"/><br>				
 			{{driverConfStatusSelect DriverConfStatus}}
 		</div>			
-		<div class="col-md-2 xgreen">
+		<div class="col-md-2 grey">
+			<small class="badge blue text-black">Client/Agent</small><br>
 			<input id='agentName' name='agentName'  placeholder="Agent Name/ID" onchange="allItems();"/><br>				
 			<input id='agentOrder' name='agentOrder'  placeholder="Order Key / Agent Order" onchange="allItems();"/><br>				
 		</div>			
-		<div class="col-md-2 grey">
+		<div class="col-md-2">
+			<small class="badge blue text-black">Passenger</small><br>
 			<input id='passengerData' name='passengerData'  placeholder="Passenger Data" onchange="allItems();"/>					
 		</div>			
 	</div>
 	{{#each Item}}
-		<div><!--- onclick="oneItem({{DetailsID}});" !-->
+		<div>
 		
 			<div class="row {{color}} pad1em listTile" 
-			style="border-top:1px solid #eee;border-bottom:0px solid #eee" 
 			id="t_{{DetailsID}}">
 
-					<div class="col-md-2 xorange">
+					<div class="col-md-2 order"  onclick="oneItem({{DetailsID}},'order');">	
 						<small>{{OrderDate}} {{MOrderTime}}</small></br>
-						<strong>{{DetailsID}} {{MOrderID}} - {{TNo}}</strong><br>
+						<strong>{{MOrderID}} - {{TNo}}</strong><br>
 						<small>{{displayTransferStatusText TransferStatus}}</small>
 					</div>
-					<div class="col-md-2 amber">
+					<div class="col-md-2 payment" onclick="oneItem({{DetailsID}},'payment');">
 						<strong>{{addNumbers DetailPrice ExtraCharge}} €</strong><br>
 						{{paymentMethodText PaymentMethod}} <br>
 						<small>
@@ -73,7 +86,7 @@
 						</small>							
 					</div>
 					
-					<div class="col-md-2 yellow">
+					<div class="col-md-2 transfer" onclick="oneItem({{DetailsID}},'transfer');">
 						{{#compare PickupDate ">=" "<?=date('Y')+1;?>-01-01"}}<span class="red-text">{{/compare}}
 						{{PickupDate}}
 						{{#compare PickupDate ">=" "<?=date('Y')+1;?>-01-01"}}</span>{{/compare}}
@@ -87,7 +100,7 @@
 						{{/compare}}
 						
 					</div>
-					<div class="col-md-2 lime">
+					<div class="col-md-2 pdriver" onclick="oneItem({{DetailsID}},'pdriver');">
 						{{!-- userName DriverID "AuthUserCompany" --}}
 						{{#if DriverName}}
 							<strong><small>{{DriverName}}</small></strong>
@@ -96,12 +109,12 @@
 						{{DriversPrice}} €<br>
 						<small class="{{driverConfStyle DriverConfStatus}}">{{driverConfText DriverConfStatus}}</small>
 					</div>
-					<div class="col-md-2 xgreen">
+					<div class="col-md-2 agent" onclick="oneItem({{DetailsID}},'agent');">
 						{{MOrderKey}}<br>
 						{{MConfirmFile}}<br>						
 						<strong>{{ userName UserID "AuthUserRealName" }}</strong>
 					</div>					
-					<div class="col-md-2 grey">
+					<div class="col-md-2 passenger" onclick="oneItem({{DetailsID}},'passenger');">
 						<i class="fa fa-user"></i> <strong>{{PaxName}}</strong><br>
 						<small>
 							<i class="fa fa-envelope-o"></i> {{MPaxEmail}}

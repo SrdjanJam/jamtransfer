@@ -7,8 +7,10 @@ value=" WHERE {$ItemID} > 0">
 
 
 <input type="hidden"  id="orderid" name="orderid" value="{$orderid}">
+<input type="hidden"  id="detailid" name="detailid" value="{$detailid}">
+<input type="hidden"  id="transfersFilter" name="transfersFilter" value="{$transfersFilter}">
 
-<div class="row">
+<div class="row itemsheader">
 	<div class="col-md-2" id="infoShow"></div>
 	{if isset($selecttype)}
 	<div class="col-sm-2">
@@ -43,6 +45,8 @@ value=" WHERE {$ItemID} > 0">
 			<option value="DESC"> {$DESCENDING} </option>
 		</select>			
 	</div>
+	{else}
+		<strong>{$transfersFiltersName}</strong>
 	{/if}
 	
 	{if isset($selectactive)}		

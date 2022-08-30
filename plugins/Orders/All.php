@@ -23,7 +23,7 @@ if (isset($type)) {
 		$today = date("Y-m-d", $today);
 		$lastWeek= date("Y-m-d", $lastWeek);
 		
-		/*switch ($_REQUEST['transfersFilter']) {
+		switch ($_REQUEST['transfersFilter']) {
 			case 'noDriver':
 				$filter .= " AND DriverConfStatus ='0' AND TransferStatus < '3'";	
 				break;
@@ -124,17 +124,12 @@ if (isset($type)) {
 					$filter .= " AND OrderID = ".$oid." AND TNo = ".$tn;
 				}
 				else $filter .= " AND OrderID = ".$_REQUEST['orderid'];					
+				break;				
+				
+			case 'detail':
+				$filter .= " AND DetailsID = ".$_REQUEST['detailid'];					
 				break;			
-		}*/
-
-		/*$defDate=time()-540*24*3600;
-		$date = new DateTime();	
-		$date->setTimestamp($defDate);
-		$defDate = $date->format('Y-m-d');
-
-		if ($filterDate == '') $filterDate = $defDate;*/
-
-		
+		}		
 	}	
 $page 		= $_REQUEST['page'];
 $length 	= $_REQUEST['length'];
@@ -207,23 +202,6 @@ if ($documentType>9) {
 	$orders_arr = substr($orders_arr,0,strlen($orders_arr)-1);
 	$dbWhere .=" AND OrderID IN (".$orders_arr.") "; 
 
-}
-
-// ako nema potrebnih podataka, izlaz
-// kod Delete transfer (kad je samo jedan na ekranu) 
-// se pojavi 'undefined' u Where dijelu, pa se dogodi greska
-// Da se to izbjegne, koristim ovaj dio:
-
-if (strpos($dbWhere, 'undefined') !== false) {
-	# send output back
-	$output = array(
-	'draw' => '0',
-	'recordsTotal' => 0,
-	'recordsFiltered' => 0,
-	'data' =>array()
-	);
-	echo $_GET['callback'] . '(' . json_encode($output) . ')';
-	die();
 }
 
 # dodavanje search parametra u qry

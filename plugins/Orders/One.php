@@ -1,5 +1,7 @@
 <?
-require_once ROOT . '/plugins/Orders/Initial.php';
+header('Content-Type: text/javascript; charset=UTF-8');
+require_once 'Initial.php';
+
 	$PaymentStatus = array(
 		'0'	=>	'Not Paid',
 		'1'	=>	'Warning sent',
@@ -35,75 +37,37 @@ require_once ROOT . '/plugins/Orders/Initial.php';
 	$orderLog = array();
 	
 # filters
-$odWhere = ' WHERE DetailsID='/$detailsid;
-
-# Details keys
-$odk = $od->getKeysBy('DetailsID', 'asc' , $odWhere);
-		
-# Details  red
-$od->getRow($odk[0]);
+$db->getRow($_REQUEST['ItemID']);
 
 # OrderID za OrdersMaster
-$OrderID = $od->getOrderID();
-$DetailsID = $od->getDetailsID();
-
-# Vezani transfer, ako postoji
-$odk2 = $od->getKeysBy('DetailsID', 'asc' , ' WHERE OrderID='. $OrderID);
-
-foreach ($odk2 as $key => $value)
-{
-	$od->getRow($value);
-	if ($od->getDetailsID() != $DetailsID) {
-		$relatedTransfers[] = array(
-			"RelatedTransfer" => $od->getDetailsID(),
-			"RelatedTransferText" => $od->getOrderID().'-'.$od->getTNo()
-		);
-	}
-	
-}
-
-# Details  red
-$od->getRow($odk[0]);
+$OrderID = $db->getOrderID();
+$DetailsID = $db->getDetailsID();
 
 # get fields and values
-$detailFlds = $od->fieldValues();
+$detailFlds = $db->fieldValues();
 
-if ($od->getPayNow()>0) {
-	$query="SELECT * FROM `v4_VoutcherOrderRequests` WHERE OrderID=". $OrderID;
-	
-	$db = new DataBaseMysql(); 
-	$result = $db->RunQuery($query);
-	$row = $result->fetch_array(MYSQLI_ASSOC);
-	if (count($row)>0) {
-		switch ($row['ConfirmDecline']) {
-			case 0:
-				$text="Send request";
-				break;
-			case 1:
-				$text="Confirm request";
-				break; 
-			case 2:
-				$text="Decline request";
-				break;
-		}		 
-		$detailFlds["VoutcherText"]=$text;
-		$PDFfile = 	'/cms/pdfvoutcher/'.$row['OrderKey'].'-'.$row['OrderID'].'.pdf';
-		$pdflink = "<a target='_blank' href='".$PDFfile."'>".$row['OrderKey']."</a>";	
-		$detailFlds["VoutcherPDFfile"]=$PDFfile;				
-		$detailFlds["VoutcherKey"]=$row['OrderKey'];		
-		$detailFlds["VoutcherValue"]=$row['VoutcherValue'];		
+
+# Vezani transfer, ako postoji
+$odk = $db->getKeysBy('DetailsID', 'asc' , ' WHERE OrderID='. $OrderID);
+
+foreach ($odk as $key => $value)
+{
+	$db->getRow($value);
+	if ($db->getDetailsID() != $DetailsID) {
+		$relatedTransfers = array(
+			"RelatedTransfer" => $db->getDetailsID(),
+			"RelatedTransferText" => $db->getOrderID().'-'.$db->getTNo()
+		);
 	}	
-	else $detailFlds["Voutcher"]="";
-		
-	
-}	
+}
+$db->getRow($_REQUEST['ItemID']);
 
 
 $pm=$detailFlds["PaymentMethod"];
 $detailFlds["PaymentMethodName"]=$PaymentMethod[$pm];
 //zamena naziva mesta sa engleskim nazivom iz tabele places
-$PickupID=$od->getPickupID();
-$DropID=$od->getDropID();
+$PickupID=$db->getPickupID();
+$DropID=$db->getDropID();
 if ($PickupID!=0) {
 	$pl->getRow($PickupID);
 	$detailFlds["PickupName"]=$pl->getPlaceNameEN();
@@ -117,33 +81,33 @@ if ($DropID!=0) {
 $detailFlds["RelatedTransfers"] = $relatedTransfers;
 
 # VehicleTypes
-$vt->getRow($od->getVehicleType() );
+$vt->getRow($db->getVehicleType() );
 $detailFlds['VehicleTypeName'] = $vt->getVehicleTypeName();
 $detailFlds['VehicleClass'] = $vt->getVehicleClass();
-$detailFlds['DriversPrice'] = number_format($od->getDriversPrice()*$_SESSION['CurrencyRate'],2);
-$detailFlds['DetailPrice'] = number_format($od->getDetailPrice()*$_SESSION['CurrencyRate'],2);
-$detailFlds['ExtraCharge'] = number_format($od->getExtraCharge()*$_SESSION['CurrencyRate'],2);
-$detailFlds['DriverExtraCharge'] = number_format($od->getDriverExtraCharge()*$_SESSION['CurrencyRate'],2);
-$detailFlds['PayLater'] = number_format($od->getPayLater()*$_SESSION['CurrencyRate'],2);
-$detailFlds['PayNow'] = number_format($od->getPayNow()*$_SESSION['CurrencyRate'],2);
-$detailFlds['InvoiceAmount'] = number_format($od->getInvoiceAmount()*$_SESSION['CurrencyRate'],2);
-$detailFlds['Provision'] = number_format($od->getProvision()*$_SESSION['CurrencyRate'],2);
-$detailFlds['ProvisionAmount'] = number_format($od->getProvisionAmount()*$_SESSION['CurrencyRate'],2);
-$detailFlds['Discount'] = number_format($od->getDiscount()*$_SESSION['CurrencyRate'],2);
-$detailFlds['DriverPaymentAmt'] = number_format($od->getDriverPaymentAmt()*$_SESSION['CurrencyRate'],2);
-$detailFlds['DriversPriceEUR'] = number_format($od->getDriversPrice(),2);
-$detailFlds['DetailPriceEUR'] = number_format($od->getDetailPrice(),2);
-$detailFlds['ExtraChargeEUR'] = number_format($od->getExtraCharge(),2);
-$detailFlds['DriverExtraChargeEUR'] = number_format($od->getDriverExtraCharge(),2);
-$detailFlds['PayLaterEUR'] = number_format($od->getPayLater(),2);
-$detailFlds['PayNowEUR'] = number_format($od->getPayNow(),2);
-$detailFlds['InvoiceAmountEUR'] = number_format($od->getInvoiceAmount(),2);
-$detailFlds['ProvisionEUR'] = number_format($od->getProvision(),2);
-$detailFlds['ProvisionAmountEUR'] = number_format($od->getProvisionAmount(),2);
-$detailFlds['DiscountEUR'] = number_format($od->getDiscount(),2);
-$detailFlds['DriverPaymentAmtEUR'] = number_format($od->getDriverPaymentAmt(),2);
+$detailFlds['DriversPrice'] = number_format($db->getDriversPrice()*$_SESSION['CurrencyRate'],2);
+$detailFlds['DetailPrice'] = number_format($db->getDetailPrice()*$_SESSION['CurrencyRate'],2);
+$detailFlds['ExtraCharge'] = number_format($db->getExtraCharge()*$_SESSION['CurrencyRate'],2);
+$detailFlds['DriverExtraCharge'] = number_format($db->getDriverExtraCharge()*$_SESSION['CurrencyRate'],2);
+$detailFlds['PayLater'] = number_format($db->getPayLater()*$_SESSION['CurrencyRate'],2);
+$detailFlds['PayNow'] = number_format($db->getPayNow()*$_SESSION['CurrencyRate'],2);
+$detailFlds['InvoiceAmount'] = number_format($db->getInvoiceAmount()*$_SESSION['CurrencyRate'],2);
+$detailFlds['Provision'] = number_format($db->getProvision()*$_SESSION['CurrencyRate'],2);
+$detailFlds['ProvisionAmount'] = number_format($db->getProvisionAmount()*$_SESSION['CurrencyRate'],2);
+$detailFlds['Discount'] = number_format($db->getDiscount()*$_SESSION['CurrencyRate'],2);
+$detailFlds['DriverPaymentAmt'] = number_format($db->getDriverPaymentAmt()*$_SESSION['CurrencyRate'],2);
+$detailFlds['DriversPriceEUR'] = number_format($db->getDriversPrice(),2);
+$detailFlds['DetailPriceEUR'] = number_format($db->getDetailPrice(),2);
+$detailFlds['ExtraChargeEUR'] = number_format($db->getExtraCharge(),2);
+$detailFlds['DriverExtraChargeEUR'] = number_format($db->getDriverExtraCharge(),2);
+$detailFlds['PayLaterEUR'] = number_format($db->getPayLater(),2);
+$detailFlds['PayNowEUR'] = number_format($db->getPayNow(),2);
+$detailFlds['InvoiceAmountEUR'] = number_format($db->getInvoiceAmount(),2);
+$detailFlds['ProvisionEUR'] = number_format($db->getProvision(),2);
+$detailFlds['ProvisionAmountEUR'] = number_format($db->getProvisionAmount(),2);
+$detailFlds['DiscountEUR'] = number_format($db->getDiscount(),2);
+$detailFlds['DriverPaymentAmtEUR'] = number_format($db->getDriverPaymentAmt(),2);
 
-$au->getRow($od->getDriverID());
+$au->getRow($db->getDriverID());
 $contractFile=$au->getContractFile();
 //partneri
 if ($contractFile!='inter') {
@@ -158,7 +122,7 @@ if ($contractFile!='inter') {
 }
 //JAM grupa
 else {	
-	$subdriverid=$od->getSubDriver();
+	$subdriverid=$db->getSubDriver();
 	$detailFlds['SubDriverName'] = $au->getContactPerson();
 	$detailFlds['SubDriverMob'] = $au->getAuthUserMob();		
 	if ($subdriverid>0) {
@@ -169,12 +133,7 @@ else {
 }
 
 # Invoice data
-//$inn=$od->getInvoiceNumber(); 
-//if ($inn<>'') {
-//$inid=$in->getKeysBy('ID', 'asc', " WHERE `InvoiceNumber` = '". $inn . "'");   
-//$inid = $in->getKeysBy('ID', 'asc', "WHERE `UserID` =  '".$od->getUserID()."'  AND `EndDate` >= '".$od->getOrderDate()."' AND `StartDate` <= '".$od->getOrderDate()."'");
-//$inid = $in->getKeysBy('ID', 'asc', "WHERE `UserID` =  '".$od->getUserID()."'  AND `EndDate` >= '".$od->getPickupDate()."' AND `StartDate` <= '".$od->getPickupDate()."'");
-$inid = $ind->getKeysBy('ID', 'asc', "WHERE `DetailsID` =  ".$od->getDetailsID());
+$inid = $ind->getKeysBy('ID', 'asc', "WHERE `DetailsID` =  ".$db->getDetailsID());
 
 $cinid=count($inid);
 if ($cinid>0) {	
@@ -188,12 +147,9 @@ if ($cinid>0) {
 	$detailFlds['GrandTotalO'] = $in->getGrandTotal();
 }
 # Driver Invoice data
-//$dinn=$od->getDriverInvoiceNumber(); 
-//if ($dinn<>'') {
-//$inid=$in->getKeysBy('ID', 'asc', " WHERE `InvoiceNumber` = '". $dinn . "'"); 
-$inid = $in->getKeysBy('ID', 'asc', "WHERE `UserID` =  '".$od->getDriverID()."' 
-	AND `EndDate` >= '".$od->getPickupDate()."' 
-	AND `StartDate` <= '".$od->getPickupDate()."'");
+$inid = $in->getKeysBy('ID', 'asc', "WHERE `UserID` =  '".$db->getDriverID()."' 
+	AND `EndDate` >= '".$db->getPickupDate()."' 
+	AND `StartDate` <= '".$db->getPickupDate()."'");
  if (count($inid)>0) {	 
 	$in->getRow($inid[0]);
 	$detailFlds['DriverInvoiceNumberO'] = $in->getInvoiceNumber();	
@@ -207,35 +163,35 @@ $inid = $in->getKeysBy('ID', 'asc', "WHERE `UserID` =  '".$od->getDriverID()."'
 //prarametri za racune
 if ($_SESSION['AuthLevelID']==44) {
 	//service type
-	switch ($od->PaymentMethod) {
+	switch ($db->PaymentMethod) {
 		case 1:
 		case 4:
 		case 5:
 		case 6:
 			$detailFlds['ServiceType']="Usluga prevoza";
-			$detailFlds['DocumentValue']=$od->PayNow+$od->InvoiceAmount;
+			$detailFlds['DocumentValue']=$db->PayNow+$db->InvoiceAmount;
 			break;
 		case 2:
 			$detailFlds['ServiceType']="Usluga nalaženja putnika";
-			$detailFlds['DocumentValue']=$od->PayLater-$od->DriversPrice-$od->DriverExtraCharge;
+			$detailFlds['DocumentValue']=$db->PayLater-$db->DriversPrice-$db->DriverExtraCharge;
 			break;
 		case 3:
 			$detailFlds['ServiceType']="Usluga nalaženja prevoznika";
-			$detailFlds['DocumentValue']=$od->PayNow;			
+			$detailFlds['DocumentValue']=$db->PayNow;			
 			break;	
 	}
 	// transfer arrea
-	$pl->getRow($od->PickupID);
+	$pl->getRow($db->PickupID);
 	$country1=$pl->CountryNameEN;
-	$pl->getRow($od->DropID);
+	$pl->getRow($db->DropID);
 	$country2=$pl->CountryNameEN;
 	if ($country1=='Serbia'	&& $country2=='Serbia') $detailFlds['TransferArea']="Srbija";
 	if ($country1!='Serbia'	&& $country2!='Serbia') $detailFlds['TransferArea']="Van Srbije";
 	//if ($country1!='Serbia'	&& $country2=='Serbia') $detailFlds['TransferArea']="Prekogranično";
 	//if ($country1=='Serbia'	&& $country2!='Serbia') $detailFlds['TransferArea']="Prekogranično";
 	// Document recepient
-	if ($detailFlds['ServiceType']=="Usluga nalaženja putnika") $rid=$od->DriverID;
-	else  $rid=$od->UserID;
+	if ($detailFlds['ServiceType']=="Usluga nalaženja putnika") $rid=$db->DriverID;
+	else  $rid=$db->UserID;
 	$au->getRow($rid);
 	$detailFlds['DocumentRecepient']=$au->AuthUserRealName;
 	// Type of document recipient
@@ -250,7 +206,7 @@ if ($_SESSION['AuthLevelID']==44) {
 	else $detailFlds['VatDocumentStatus']="Oslobođen PDV-a";
 	// document currency
 	//service type
-	switch ($od->PaymentMethod) {
+	switch ($db->PaymentMethod) {
 		case 1:
 		case 3:
 			$detailFlds['DocumentCurrency']="RSD";			
@@ -283,7 +239,6 @@ $detailFlds['Documents']=$orderDocument;
 
 # master key
 $omk = $om->getKeysBy('MOrderID', 'asc' , ' WHERE MOrderID = ' . $OrderID);
-
 # master row
 $om->getRow($omk[0]);
 
@@ -302,15 +257,7 @@ if(count($olk) > 0) {
 
 # extra services
 $OrderDetailsID = $DetailsID;
-// ako je ovo povratni transfer dohvati extra services iz prvog transfera
 
-/* Uto 27 Ožu 2018 22:30:59  ovo sam izbacio, ali mozda nije trebalo. Javili su da se pojavljuju duple extras.
-if ($od->getTNo() == 2) {
-	$odk3 = $od->getKeysBy('DetailsID', 'asc' , ' WHERE OrderID = ' . $OrderID . ' AND TNo = 1');
-	$od->getRow($odk3[0]);
-	$OrderDetailsID = $od->getDetailsID();
-}
-*/
 $oek = $oe->getKeysBy('ID', 'ASC', ' WHERE OrderDetailsID = ' . $OrderDetailsID);
 if(count($oek) > 0) {
 	foreach ($oek as $key => $value) {
@@ -320,7 +267,8 @@ if(count($oek) > 0) {
 }
 
 // output everything
-$out = array(
+$out[] = array(
+	'tab'			=> $_REQUEST['tab'],
 	'details' 		=> $detailFlds,
 	'master'  		=> $masterFlds,
 	'orderLog'		=> $orderLog,

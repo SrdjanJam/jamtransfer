@@ -194,7 +194,9 @@
 										<ul class="nav nav-third-level collapse" >
 											<li><a href="{$menu1[index].menu[index1].link}"><span class="nav-label">All</span></a></li>
 											{section name=pom loop=$transfersFilters}
-												<li {if $transfersFilters[pom].id eq $transfersFilter} class="active" {/if}>
+												<li {if $transfersFilters[pom].id eq $transfersFilter} class="active" 
+														{assign var="transfersFiltersName" value="{$transfersFilters[pom].name}"}												
+													{/if}>
 													<a href="{$menu1[index].menu[index1].link}/{$transfersFilters[pom].id}"><span class="nav-label">{$transfersFilters[pom].name}</span></a>
 												</li>
 											{/section}
@@ -263,7 +265,7 @@
 					{include file="pageListHeader.tpl"} 				   
 				</div>
 				{/if}
-				{if $page eq 'Price Rules'}	
+				{if $title eq 'Price Rules'}	
 				<div class="header row"> 
 					<div class="pull-left">
 						<span>Rule: <strong>{$smarty.request.rulesType}</strong></span>

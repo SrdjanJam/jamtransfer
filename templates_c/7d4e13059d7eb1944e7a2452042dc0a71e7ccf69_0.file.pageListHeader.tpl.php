@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.32, created on 2022-07-18 07:59:06
+/* Smarty version 3.1.32, created on 2022-07-26 12:16:41
   from 'C:\wamp\www\jamtransfer\templates\pageListHeader.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.32',
-  'unifunc' => 'content_62d512ca8e0092_50855836',
+  'unifunc' => 'content_62dfdb2913f486_35200633',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '7d4e13059d7eb1944e7a2452042dc0a71e7ccf69' => 
     array (
       0 => 'C:\\wamp\\www\\jamtransfer\\templates\\pageListHeader.tpl',
-      1 => 1658131086,
+      1 => 1658837798,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_62d512ca8e0092_50855836 (Smarty_Internal_Template $_smarty_tpl) {
+function content_62dfdb2913f486_35200633 (Smarty_Internal_Template $_smarty_tpl) {
 if (!$_SESSION['UseDriverID'] && $_smarty_tpl->tpl_vars['title']->value != "Orders") {?>
 	<a class="btn btn-primary btn-xs" href="<?php echo $_smarty_tpl->tpl_vars['currenturl']->value;?>
 /new"><?php echo $_smarty_tpl->tpl_vars['NNEW']->value;?>
@@ -34,8 +34,12 @@ value=" WHERE <?php echo $_smarty_tpl->tpl_vars['ItemID']->value;?>
 
 <input type="hidden"  id="orderid" name="orderid" value="<?php echo $_smarty_tpl->tpl_vars['orderid']->value;?>
 ">
+<input type="hidden"  id="detailid" name="detailid" value="<?php echo $_smarty_tpl->tpl_vars['detailid']->value;?>
+">
+<input type="hidden"  id="transfersFilter" name="transfersFilter" value="<?php echo $_smarty_tpl->tpl_vars['transfersFilter']->value;?>
+">
 
-<div class="row">
+<div class="row itemsheader">
 	<div class="col-md-2" id="infoShow"></div>
 	<?php if (isset($_smarty_tpl->tpl_vars['selecttype']->value)) {?>
 	<div class="col-sm-2">
@@ -84,6 +88,9 @@ for ($__section_pom_0_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_po
  </option>
 		</select>			
 	</div>
+	<?php } else { ?>
+		<strong><?php echo $_smarty_tpl->tpl_vars['transfersFiltersName']->value;?>
+</strong>
 	<?php }?>
 	
 	<?php if (isset($_smarty_tpl->tpl_vars['selectactive']->value)) {?>		

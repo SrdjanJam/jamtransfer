@@ -257,6 +257,45 @@ th {
         border: 1px solid #ddd !important;
     }
 }
+i {
+  line-height: inherit;
+}
+
+.left {
+  float: left;
+  margin-left: 15px;
+}
+
+.right {
+  float: right;
+  margin-right: 15px;
+}
+
+.tiny {
+  font-size: 1rem;
+}
+
+.small {
+  font-size: 2rem;
+}
+
+.medium {
+  font-size: 4rem;
+}
+
+.large {
+  font-size: 6rem;
+}
+
+@media (max-width: 760px) {
+	.listTile div {
+		border:1px solid gray;
+	}
+	.listTile {
+		border:2px solid black;
+	}	
+}
+	
 @font-face {
     font-family: "Glyphicons Halflings";
     src: url(../fonts/glyphicons-halflings-regular.eot);
