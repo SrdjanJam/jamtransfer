@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.32, created on 2022-08-01 09:04:51
+/* Smarty version 3.1.32, created on 2022-08-30 12:54:19
   from 'C:\wamp\www\jamtransfer\templates\index.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.32',
-  'unifunc' => 'content_62e77b132e7d58_12420522',
+  'unifunc' => 'content_630e087b4f5783_27743445',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'a1818a92b5a2f041fd91a227dabc592dea38fac2' => 
     array (
       0 => 'C:\\wamp\\www\\jamtransfer\\templates\\index.tpl',
-      1 => 1659335885,
+      1 => 1661863822,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:pageList.tpl' => 1,
   ),
 ),false)) {
-function content_62e77b132e7d58_12420522 (Smarty_Internal_Template $_smarty_tpl) {
+function content_630e087b4f5783_27743445 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html>
 	<head>
@@ -440,9 +440,7 @@ for ($__section_pom_2_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_po
 ?> 
 						MODEL VIEW CONTROL HANDLEBARS
 					<?php } else { ?>
-						<?php echo $_smarty_tpl->tpl_vars['page_render']->value;?>
-
-						SEMI MODEL VIEW CONTROL via OB_GET_CONTENTS
+						UNDER CONSTRUCTION
 					<?php }?>				  
 				</div>
 				<div class="footer row">

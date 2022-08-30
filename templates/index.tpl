@@ -291,8 +291,7 @@
 						{include file="pageList.tpl"} 
 						MODEL VIEW CONTROL HANDLEBARS
 					{else}
-						{$page_render}
-						SEMI MODEL VIEW CONTROL via OB_GET_CONTENTS
+						UNDER CONSTRUCTION
 					{/if}				  
 				</div>
 				<div class="footer row">

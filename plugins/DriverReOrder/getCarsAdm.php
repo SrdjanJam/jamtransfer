@@ -162,8 +162,8 @@ else {
 						$s->getRow($sId);
 						$ServiceID = $s->getServiceID();
 						//
-						if (DEBUG) //echo $ServiceID . '<br>';
-						if (DEBUG) //echo $OwnerID . '<br>';
+						if (DEBUG) echo $ServiceID . '<br>';
+						if (DEBUG) echo $OwnerID . '<br>';
 						//
 						$Correction= $s->getCorrection();
 						

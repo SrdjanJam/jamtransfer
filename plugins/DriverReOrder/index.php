@@ -17,46 +17,27 @@
 	require_once ROOT  . '/db/v4_Vehicles.class.php';
 	$vh = new v4_Vehicles();	
 
-	
-	$DetailPrice=0;
-	$DriversPrice2=0;
-	
-	
+
 	$oKey2 = $od->getKeysBy('OrderID', 'ASC', ' WHERE OrderID = ' .$_REQUEST['OrderID']);	
 	if(count($oKey2) == 2 && ($_REQUEST['returnTransfer'] == 1)) {
 		$od->getRow($oKey2[1]);
-		$_REQUEST['returnDate']=$od->getPickupDate();
-		$_REQUEST['returnTime']=$od->getPickupTime();
-		$DetailPrice+=$od->getDetailPrice();
-		$DriversPrice2+=$od->getDriversPrice();
-		$returnTransfer=1;
-		$smarty->assign($orderReturn,(array) $od);
+		$smarty->assign('orderReturn',(array) $od);
 	}	
 	$oKey = $od->getKeysBy('OrderID', 'ASC', ' WHERE OrderID = ' .$_REQUEST['OrderID']. ' and TNo = ' . $_REQUEST['TNo']);
 	$od->getRow($oKey[0]);
+	$smarty->assign('order',(array) $od);
+
 	$TerminalID=0;
 	if (isset($_REQUEST['TerminalID'])) $TerminalID=$_REQUEST['TerminalID'];
 	else {	
 		if(getPlaceType($od->getDropID()) == 1) $TerminalID=$od->getDropID();
 		if(getPlaceType($od->getPickupID()) == 1) $TerminalID=$od->getPickupID();
 	}
-
-
+	$smarty->assign('terminalID', $TerminalID);
+	
 	$dtKey = $dt->getKeysBy('DriverID', 'ASC', ' WHERE TerminalID = ' .$TerminalID);
 
 
-
-	$_REQUEST['FromID']=$od->getPickupID();
-	$_REQUEST['ToID']=$od->getDropID();
-	$_REQUEST['PaxNo']=$od->getPaxNo();	
-	$_REQUEST['transferDate']=$od->getPickupDate();
-	$_REQUEST['transferTime']=$od->getPickupTime();
-	$DetailPrice+=$od->getDetailPrice();
-	$DriversPrice2+=$od->getDriversPrice();
-	$returnTransfer=0;
-
-	$VTID=$od->getVehicleType();
-	$DriverID=$od->getDriverID();
 	
 	
 	// priprema podataka o vozilima i vozacima
@@ -68,8 +49,9 @@
 		$driverName=$au->getAuthUserRealName();
 	}	
 	else $driverName="NO DRIVER SELECTED";
-	$capacity=$vt->getMax();
-	$vehicleImage=getCarImage($vt->getVehicleClass());
+	$smarty->assign('driverName',$driverName);
+	$smarty->assign('capacity',$vt->getMax());
+	$smarty->assign('vehicleImage',getCarImage($vt->getVehicleClass()));
 
 ?>
 

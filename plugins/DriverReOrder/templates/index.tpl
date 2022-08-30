@@ -1,4 +1,4 @@
-tralalala
+
 <input type='hidden' name="OrderID" id="OrderID" value="<?= $_REQUEST['OrderID'] ?>">
 <input type='hidden' name="TNo" id="TNo" value="<?= $_REQUEST['TNo'] ?>">
 <input type='hidden' name="returnTransfer" id="returnTransfer" value="<?= $returnTransfer ?>">
@@ -60,7 +60,7 @@ tralalala
 				</div>				
 			</div>			
 			
-			
+			<h4>Select Terminal for this transfer</h4>
 			
 			
 			<? 	
@@ -77,38 +77,7 @@ tralalala
 			
 			
 			foreach($dtKey as $dtID) {
-				$dt->getRow($dtID);
-				$au->getRow($dt->getDriverID());
-				if ($dt->getDriverID()<>$DriverID && $au->getActive()==1) {
-					$au->getAuthUserRealName();
-					$vhKey = $vh->getKeysBy('VehicleID', 'ASC', ' WHERE OwnerID = ' .$dt->getDriverID());
-					$query1="SELECT * FROM `v4_OrderRequests` WHERE `OrderID`=".$_REQUEST['OrderID']." AND `TNo`=".$_REQUEST['TNo']." AND `ReturnTransfer`=".$rTransfer ." AND DriverID = ".$dt->getDriverID()." AND requestType = 1" ;
-					$result1 = $db->RunQuery($query1);	
-					$row1 = $result1->fetch_array(MYSQLI_ASSOC);
-					$request1=false; 
-					if (isset($row1['ID'])) {
-						$request1=true;
-						if ($row1['ConfirmDecline']==1) $content1="Confirm / ". $row1['ResponseDate'] . " " . $row1['ResponseTime'];
-						else if ($row1['ConfirmDecline']==2) $content1="Decline / ". $row1['ResponseDate'] . " " . $row1['ResponseTime'];									
-						else $content1="Sent at ". $row1['RequestDate'] . " " . $row1['RequestTime'];		
-					}	
-					else {
-						$content1="<button type='button' class='form-control request'  data-driverid='". $dt->getDriverID() ."' data-rt='1' name='request_fc' id='request_fc'>Send</button>";
-					}
 
-					$query2="SELECT * FROM `v4_OrderRequests` WHERE `OrderID`=".$_REQUEST['OrderID']." AND `TNo`=".$_REQUEST['TNo']." AND `ReturnTransfer`=".$rTransfer ." AND DriverID = ".$dt->getDriverID()." AND requestType = 2" ;
-					$result2 = $db->RunQuery($query2);	
-					$row2 = $result2->fetch_array(MYSQLI_ASSOC);
-					$request2=false;
-					if (isset($row2['ID'])) {
-						$request2=true;
-						if ($row2['ConfirmDecline']==1) $content2="Offered price <b>".$row2['Price']."</b> / ". $row2['ResponseDate'] . " " . $row2['ResponseTime'];
-						else if ($row2['ConfirmDecline']==2) $content2="Decline / ". $row2['ResponseDate'] . " " . $row2['ResponseTime'];									
-						else $content2="Sent / ". $row2['RequestDate'] . " " . $row2['RequestTime'];		
-					}	
-					else {
-						$content2="<button type='button' class='form-control request' data-driverid='". $dt->getDriverID() ."' data-rt='2' name='request_lo' id='request_lo'>Send</button>";
-					}	
 					
 								?>				
 

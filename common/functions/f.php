@@ -4566,4 +4566,4 @@ function getConnectedUserNamePlus($id) {
 	}
 }
 
-require_once ROOT.'/plugins/booking/functions.php';
+require_once ROOT.'/plugins/Booking/functions.php';

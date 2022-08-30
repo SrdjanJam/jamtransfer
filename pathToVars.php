@@ -62,7 +62,7 @@ switch ($activePage) {
 		}
 		break;
 		
-	case 'buking':
+	case 'booking':
 		if ($pathVars->fetchByIndex($indexStart + 1)) { 
 		
 			$includefile='/'.$pathVars->fetchByIndex($indexStart + 1).'.php';
