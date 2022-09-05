@@ -195,19 +195,5 @@ $smarty->assign('totInv',$totInv);
 $smarty->assign('totNetto',$totNetto);
 
 $smarty->assign('transfers', $transfers);
-
  
 ?>
-
-
-<script>
-	$('.exclude').click(function() {
-		var par =  $(this).parent().parent();
-		var excl = $(par).find('.orderid').html();
-		$(par).hide(2000);
-		var  link = $("#CreateInvoice").attr('href');
-		linkF = link+'&'+excl+"=NO";
-		$("#CreateInvoice").attr('href',linkF);
-		//alert (linkF);
-	})	
-</script>

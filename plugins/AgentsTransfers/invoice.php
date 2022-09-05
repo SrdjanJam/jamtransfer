@@ -18,7 +18,6 @@
 	$si 	= $_REQUEST['Sistem']; // Sistem
 
 
-//exit ($_REQUEST['Save']);
 
 
 	$detailsID = array();
@@ -78,6 +77,8 @@
 	if($de != 1) $whereD .= " AND DriverConfStatus != 6 ";//driver error
 	
 	$whereD .= " AND PaymentMethod in (4,6) ";
+
+	if (isset($_REQUEST['Exclude'])) $whereD .= " AND DetailsID  NOT IN (".$_REQUEST['Exclude'].") ";
 	// echo $whereD;
 	
 	$kd = $od->getKeysBy('DetailsID', 'asc', $whereD);

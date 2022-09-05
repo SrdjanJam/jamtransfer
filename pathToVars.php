@@ -103,7 +103,7 @@ switch ($activePage) {
 				
 			} else if($pathVars->fetchByIndex($indexStart + 1) =="invoice"){
 				$includeFile = "/invoice.php";
-				$includeFileTpl = "invoice.tpl";
+				$includeFileTpl = "/invoice.tpl";
 			}
 			else{
 				$steps = 0;
@@ -118,8 +118,10 @@ switch ($activePage) {
 				$_REQUEST['CompletedTransfers']=$pathVars->fetchByIndex($indexStart + 5 + $steps);
 				$_REQUEST['Sistem']=$pathVars->fetchByIndex($indexStart + 6 + $steps);
 			
-		}
+			if ($pathVars->fetchByIndex($indexStart + 7 + $steps))  
+				$_REQUEST['Exclude']=$pathVars->fetchByIndex($indexStart + 7 + $steps);
 
+		}
 		break;	
 	default:
 		if ($pathVars->fetchByIndex($indexStart + 1)) { 

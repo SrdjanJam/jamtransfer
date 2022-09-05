@@ -20,7 +20,7 @@
                     </td>
 
                     <td style="vertical-align:top">
-                        <b class="orderid">{$transfers[index].OrderID} - {$transfers[index].TNo}</b>
+                        <b class="orderid" data-id="{$transfers[index].DetailsID}">{$transfers[index].OrderID} - {$transfers[index].TNo}</b>
                         <br>{$transfers[index].PickupDate}
                     </td>
 
@@ -86,3 +86,18 @@
     {/if}
 
 </div> {* / .container white *}
+
+<script>
+	window.exclude='';
+	window.link = $("#CreateInvoice").attr('href');
+	$('.exclude').click(function() {
+	var par =  $(this).parent().parent();
+	var excl = $(par).find('.orderid').attr('data-id');
+	window.exclude=window.exclude+excl+',';
+	var excludeR=window.exclude+excl;
+	$(par).hide(2000);
+	linkF = window.link + '/'+excludeR;
+	$("#CreateInvoice").attr('href',linkF);
+	})
+	
+</script>

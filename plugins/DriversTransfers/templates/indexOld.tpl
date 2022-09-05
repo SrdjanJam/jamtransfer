@@ -49,8 +49,8 @@
 
 		{/section} {* End of section*}
 
-		<div class="row" style="font-weight:bold;background:#f5f5f5;padding:15px;">
-			Total Balance <div class="col-md-2 col-md-offset-3 text-right">{$totalBalance|number_format:2}</div>
+		<div class="row" style="font-weight:bold;background:#f5f5f5">
+			<div class="col-md-2 col-md-offset-3 text-right">{$totalBalance|number_format:2}</div>
 		</div>
 		{else}
 

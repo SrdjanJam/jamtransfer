@@ -257,45 +257,6 @@ th {
         border: 1px solid #ddd !important;
     }
 }
-i {
-  line-height: inherit;
-}
-
-.left {
-  float: left;
-  margin-left: 15px;
-}
-
-.right {
-  float: right;
-  margin-right: 15px;
-}
-
-.tiny {
-  font-size: 1rem;
-}
-
-.small {
-  font-size: 2rem;
-}
-
-.medium {
-  font-size: 4rem;
-}
-
-.large {
-  font-size: 6rem;
-}
-
-@media (max-width: 760px) {
-	.listTile div {
-		border:1px solid gray;
-	}
-	.listTile {
-		border:2px solid black;
-	}	
-}
-	
 @font-face {
     font-family: "Glyphicons Halflings";
     src: url(../fonts/glyphicons-halflings-regular.eot);
@@ -6902,14 +6863,14 @@ button.close {
  *  Font Awesome 4.7.0 by @davegandy - http://fontawesome.io - @fontawesome
  *  License - http://fontawesome.io/license (Font: SIL OFL 1.1, CSS: MIT License)
  */
-/*@font-face {
+@font-face {
     font-family: "FontAwesome";
     src: url("../fonts/fontawesome-webfont3e6e.eot?v=4.7.0");
     src: url("../fonts/fontawesome-webfontd41d.eot?#iefix&v=4.7.0") format("embedded-opentype"), url("../fonts/fontawesome-webfont3e6e.woff2?v=4.7.0") format("woff2"), url("../fonts/fontawesome-webfont3e6e.woff?v=4.7.0") format("woff"),
         url("../fonts/fontawesome-webfont3e6e.ttf?v=4.7.0") format("truetype"), url("../fonts/fontawesome-webfont3e6e.svg?v=4.7.0#fontawesomeregular") format("svg");
     font-weight: normal;
     font-style: normal;
-}*/
+}
 .fa {
     display: inline-block;
     font: normal normal normal 14px/1 FontAwesome;
@@ -15750,14 +15711,14 @@ li.ui-timepicker-selected .ui-timepicker-duration {
     src: local("Open Sans Light"), local("OpenSans-Light"), url(../fonts/opensans/v18/mem5YaGs126MiZpBA-UN_r8OXOhpOqc.woff2) format("woff2");
     unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
-/*@font-face {
+@font-face {
     font-family: "Open Sans";
     font-style: normal;
     font-weight: 300;
     font-display: swap;
     src: local("Open Sans Light"), local("OpenSans-Light"), url(../fonts/opensans/v18/mem5YaGs126MiZpBA-UN_r8OUuhp.woff2) format("woff2");
     unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}*/
+}
 @font-face {
     font-family: "Open Sans";
     font-style: normal;
@@ -15774,22 +15735,22 @@ li.ui-timepicker-selected .ui-timepicker-duration {
     src: local("Open Sans Regular"), local("OpenSans-Regular"), url(../fonts/opensans/v18/mem8YaGs126MiZpBA-UFUZ0bbck.woff2) format("woff2");
     unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
 }
-/*@font-face {
+@font-face {
     font-family: "Open Sans";
     font-style: normal;
     font-weight: 400;
     font-display: swap;
     src: local("Open Sans Regular"), local("OpenSans-Regular"), url(../fonts/opensans/v18/mem8YaGs126MiZpBA-UFW50bbck.woff2) format("woff2");
     unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}*/
-/*@font-face {
+}
+@font-face {
     font-family: "Open Sans";
     font-style: normal;
     font-weight: 400;
     font-display: swap;
     src: local("Open Sans Regular"), local("OpenSans-Regular"), url(../fonts/opensans/v18/mem8YaGs126MiZpBA-UFVZ0b.woff2) format("woff2");
     unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}*/
+}
 @font-face {
     font-family: "Open Sans";
     font-style: normal;
@@ -15806,22 +15767,22 @@ li.ui-timepicker-selected .ui-timepicker-duration {
     src: local("Open Sans SemiBold"), local("OpenSans-SemiBold"), url(../fonts/opensans/v18/mem5YaGs126MiZpBA-UNirkOVuhpOqc.woff2) format("woff2");
     unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
 }
-/*@font-face {
+@font-face {
     font-family: "Open Sans";
     font-style: normal;
     font-weight: 600;
     font-display: swap;
     src: local("Open Sans SemiBold"), local("OpenSans-SemiBold"), url(../fonts/opensans/v18/mem5YaGs126MiZpBA-UNirkOXOhpOqc.woff2) format("woff2");
     unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}*/
-/*@font-face {
+}
+@font-face {
     font-family: "Open Sans";
     font-style: normal;
     font-weight: 600;
     font-display: swap;
     src: local("Open Sans SemiBold"), local("OpenSans-SemiBold"), url(../fonts/opensans/v18/mem5YaGs126MiZpBA-UNirkOUuhp.woff2) format("woff2");
     unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}*/
+}
 @font-face {
     font-family: "Open Sans";
     font-style: normal;
@@ -15846,14 +15807,14 @@ li.ui-timepicker-selected .ui-timepicker-duration {
     src: local("Open Sans Bold"), local("OpenSans-Bold"), url(../fonts/opensans/v18/mem5YaGs126MiZpBA-UN7rgOXOhpOqc.woff2) format("woff2");
     unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
-/*@font-face {
+@font-face {
     font-family: "Open Sans";
     font-style: normal;
     font-weight: 700;
     font-display: swap;
     src: local("Open Sans Bold"), local("OpenSans-Bold"), url(../fonts/opensans/v18/mem5YaGs126MiZpBA-UN7rgOUuhp.woff2) format("woff2");
     unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}*/
+}
 @font-face {
     font-family: Roboto;
     font-style: normal;
@@ -15878,14 +15839,14 @@ li.ui-timepicker-selected .ui-timepicker-duration {
     src: local("Roboto Light"), local("Roboto-Light"), url(../fonts/roboto/v20/KFOlCnqEu92Fr1MmSU5fChc4EsA.woff2) format("woff2");
     unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
-/*@font-face {
+@font-face {
     font-family: Roboto;
     font-style: normal;
     font-weight: 300;
     font-display: swap;
     src: local("Roboto Light"), local("Roboto-Light"), url(../fonts/roboto/v20/KFOlCnqEu92Fr1MmSU5fBBc4.woff2) format("woff2");
     unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}*/
+}
 @font-face {
     font-family: Roboto;
     font-style: normal;
@@ -15910,14 +15871,14 @@ li.ui-timepicker-selected .ui-timepicker-duration {
     src: local("Roboto"), local("Roboto-Regular"), url(../fonts/roboto/v20/KFOmCnqEu92Fr1Mu7GxKOzY.woff2) format("woff2");
     unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
-/*@font-face {
+@font-face {
     font-family: Roboto;
     font-style: normal;
     font-weight: 400;
     font-display: swap;
     src: local("Roboto"), local("Roboto-Regular"), url(../fonts/roboto/v20/KFOmCnqEu92Fr1Mu4mxK.woff2) format("woff2");
     unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}*/
+}
 @font-face {
     font-family: Roboto;
     font-style: normal;
@@ -16143,11 +16104,11 @@ h5 {
 .nav.navbar-top-links .dropdown-alerts a {
     font-size: 12px;
 }
-/*.nav-header {
+.nav-header {
     padding: 33px 25px;
     background-color: #2f4050;
     background-image: url(patterns/header-profile.png);
-}*/
+}
 .pace-done .nav-header {
     transition: all 0.4s;
 }
@@ -19698,7 +19659,7 @@ body.body-small .footer.fixed {
     /* border-top: 1px solid #e7eaec; */
     line-height: 1.42857;
   /*  padding: 8px; */
-    vertical-align: middle;
+    /* vertical-align: middle; */
 }
 .pos > tbody > tr > td,
 .pos > tbody > tr > th,

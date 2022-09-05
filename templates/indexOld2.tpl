@@ -151,22 +151,16 @@
 		{/if}		
 	</head>	
 	
-	<style>
-	.wrapper-edit{
-		padding:0px;
-	}
-	</style>
 	
 	<body class="fixed-top" style="height:100%!important;font-size:16px">
-		<div class="wrapper wrapper-edit">
+		<div class="wrapper">
 		
 			{* Start from here *}
 
 			{* Navbar *}
 			<nav class="navbar-default navbar-static-side" role="navigation"  style="position: fixed;
 			height: 100vh;
-			overflow-y: auto;
-			width:250px;">
+			overflow-y: auto;">
 
 				<div class="sidebar-collapse">
 					<ul class="nav metismenu" id="side-menu">
@@ -177,7 +171,7 @@
 								<span class="block m-t-xs">
 									<a href="profile" >
 										<img src="api/showProfileImage.php?UserID={$smarty.session.AuthUserID}" class="img-circle" alt="User Image" style="height:2em;padding:-.5em;margin:-.5em" />
-										<strong class="font-bold" style="margin:0 0 0 10px;">{$smarty.session.UserRealName}</strong>
+										<strong class="font-bold">{$smarty.session.UserRealName}</strong>
 									</a>
 								</span>
 								<ul class="dropdown-menu animated fadeInRight m-t-xs">
@@ -255,9 +249,7 @@
 					display: flex;
 					flex-direction: column;
 					flex-wrap: nowrap;
-					overflow: hidden;
-					margin:0 0 0 250px;
-					">
+					overflow: hidden;">
 
 				<div class="header row border-bottom">
 				   <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
