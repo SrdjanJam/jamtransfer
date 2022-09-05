@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.32, created on 2022-08-30 12:54:19
+/* Smarty version 3.1.32, created on 2022-09-05 10:15:13
   from 'C:\wamp\www\jamtransfer\templates\index.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.32',
-  'unifunc' => 'content_630e087b4f5783_27743445',
+  'unifunc' => 'content_6315b011f1a5a9_93215783',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'a1818a92b5a2f041fd91a227dabc592dea38fac2' => 
     array (
       0 => 'C:\\wamp\\www\\jamtransfer\\templates\\index.tpl',
-      1 => 1661863822,
+      1 => 1662365697,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:pageList.tpl' => 1,
   ),
 ),false)) {
-function content_630e087b4f5783_27743445 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6315b011f1a5a9_93215783 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html>
 	<head>
@@ -248,10 +248,17 @@ _init.js"><?php echo '</script'; ?>
 			
 			<?php }?>
 		<?php }?>		
-	</head>		
+	</head>	
+	
+	
 	<body class="fixed-top" style="height:100%!important;font-size:16px">
-		<div id="wrapper">
-			<nav class="navbar-static-side" role="navigation">
+		<div class="wrapper">
+		
+			
+						<nav class="navbar-default navbar-static-side" role="navigation"  style="position: fixed;
+			height: 100vh;
+			overflow-y: auto;">
+
 				<div class="sidebar-collapse">
 					<ul class="nav metismenu" id="side-menu">
 						<li class="nav-header">
@@ -323,9 +330,7 @@ $_smarty_tpl->tpl_vars['__smarty_section_pom'] = new Smarty_Variable(array());
 if ($__section_pom_2_total !== 0) {
 for ($__section_pom_2_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_pom']->value['index'] = 0; $__section_pom_2_iteration <= $__section_pom_2_total; $__section_pom_2_iteration++, $_smarty_tpl->tpl_vars['__smarty_section_pom']->value['index']++){
 ?>
-												<li <?php if ($_smarty_tpl->tpl_vars['transfersFilters']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_pom']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_pom']->value['index'] : null)]['id'] == $_smarty_tpl->tpl_vars['transfersFilter']->value) {?> class="active" 
-														<?php $_smarty_tpl->_assignInScope('transfersFiltersName', ((string)$_smarty_tpl->tpl_vars['transfersFilters']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_pom']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_pom']->value['index'] : null)]['name']));?>												
-													<?php }?>>
+												<li <?php if ($_smarty_tpl->tpl_vars['transfersFilters']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_pom']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_pom']->value['index'] : null)]['id'] == $_smarty_tpl->tpl_vars['transfersFilter']->value) {?> class="active" <?php }?>>
 													<a href="<?php echo $_smarty_tpl->tpl_vars['menu1']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_index']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_index']->value['index'] : null)]['menu'][(isset($_smarty_tpl->tpl_vars['__smarty_section_index1']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_index1']->value['index'] : null)]['link'];?>
 /<?php echo $_smarty_tpl->tpl_vars['transfersFilters']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_pom']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_pom']->value['index'] : null)]['id'];?>
 "><span class="nav-label"><?php echo $_smarty_tpl->tpl_vars['transfersFilters']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_pom']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_pom']->value['index'] : null)]['name'];?>
@@ -352,7 +357,8 @@ for ($__section_pom_2_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_po
 ?>
 				   </ul>
 				</div>
-			</nav>
+
+			</nav> 
 
 			<style type="text/css" >
 				.content {
@@ -374,12 +380,14 @@ for ($__section_pom_2_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_po
 				.footer{
 					grid-row: 3;
 				}		
-			</style>			
-			<div id="page-wrapper" class="content gray-bg dashbard-1" style="height: 100%;
+			</style>
+
+						<div id="page-wrapper" class="content gray-bg dashbard-1" style="height: 100%;
 					display: flex;
 					flex-direction: column;
 					flex-wrap: nowrap;
 					overflow: hidden;">
+
 				<div class="header row border-bottom">
 				   <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
 					  <div class="navbar-header">
@@ -408,7 +416,7 @@ for ($__section_pom_2_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_po
 ?> 				   
 				</div>
 				<?php }?>
-				<?php if ($_smarty_tpl->tpl_vars['title']->value == 'Price Rules') {?>	
+				<?php if ($_smarty_tpl->tpl_vars['page']->value == 'Price Rules') {?>	
 				<div class="header row"> 
 					<div class="pull-left">
 						<span>Rule: <strong><?php echo $_REQUEST['rulesType'];?>
@@ -432,7 +440,7 @@ for ($__section_pom_2_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_po
 					<?php if (isset($_smarty_tpl->tpl_vars['pageOLD']->value)) {?>
 						NOT MODEL VIEW CONTROL
 					<?php } elseif (isset($_smarty_tpl->tpl_vars['page']->value)) {?>
-						<?php $_smarty_tpl->_subTemplateRender(((string)$_smarty_tpl->tpl_vars['root']->value)."/plugins/".((string)$_smarty_tpl->tpl_vars['base']->value)."/templates/".((string)$_smarty_tpl->tpl_vars['includefiletpl']->value), $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, true);
+						<?php $_smarty_tpl->_subTemplateRender(((string)$_smarty_tpl->tpl_vars['root']->value)."/plugins/".((string)$_smarty_tpl->tpl_vars['base']->value)."/templates/".((string)$_smarty_tpl->tpl_vars['includeFileTpl']->value), $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, true);
 ?>
 						MODEL VIEW CONTROL SMARTY		
 					<?php } elseif (isset($_smarty_tpl->tpl_vars['pageList']->value)) {?>
@@ -440,7 +448,9 @@ for ($__section_pom_2_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_po
 ?> 
 						MODEL VIEW CONTROL HANDLEBARS
 					<?php } else { ?>
-						UNDER CONSTRUCTION
+						<?php echo $_smarty_tpl->tpl_vars['page_render']->value;?>
+
+						SEMI MODEL VIEW CONTROL via OB_GET_CONTENTS
 					<?php }?>				  
 				</div>
 				<div class="footer row">
@@ -452,12 +462,15 @@ for ($__section_pom_2_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_po
 					</div>
 					<div class="backdrop"><div class="spiner"></div></div>
 				</div>
-			</div>
-		</div>
+
+			</div> 
+		</div> 
 		<input type='hidden' id='local' value='<?php echo $_smarty_tpl->tpl_vars['local']->value;?>
 ' name='local'>
+
 	</body>
 </html>
+
 	
 	<?php echo '<script'; ?>
 >

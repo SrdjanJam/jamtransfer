@@ -1,5 +1,5 @@
 <?
-require_once '../../config.php';
+require_once '../../../config.php';
 require_once ROOT . '/db/v4_Articles.class.php';
 $db = new v4_Articles();
 $keyName = 'ID';

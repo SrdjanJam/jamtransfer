@@ -128,6 +128,7 @@
 		<script src="js/list.js"></script>
 		{literal}		
 		<script type="text/javascript">
+		//window.root = 'plugins/{/literal}{$parentFolder}{literal}/{/literal}{$base}{literal}/';
 		window.root = 'plugins/{/literal}{$base}{literal}/';
 		window.currenturl = '{/literal}{$currenturl}{literal}';
 		</script>
@@ -149,19 +150,10 @@
 			{/literal}
 			{/if}
 		{/if}		
-	</head>	
-	
-	
+	</head>		
 	<body class="fixed-top" style="height:100%!important;font-size:16px">
-		<div class="wrapper">
-		
-			{* Start from here *}
-
-			{* Navbar *}
-			<nav class="navbar-default navbar-static-side" role="navigation"  style="position: fixed;
-			height: 100vh;
-			overflow-y: auto;">
-
+		<div id="wrapper">
+			<nav class="navbar-static-side" role="navigation">
 				<div class="sidebar-collapse">
 					<ul class="nav metismenu" id="side-menu">
 						<li class="nav-header">
@@ -203,7 +195,9 @@
 										<ul class="nav nav-third-level collapse" >
 											<li><a href="{$menu1[index].menu[index1].link}"><span class="nav-label">All</span></a></li>
 											{section name=pom loop=$transfersFilters}
-												<li {if $transfersFilters[pom].id eq $transfersFilter} class="active" {/if}>
+												<li {if $transfersFilters[pom].id eq $transfersFilter} class="active" 
+														{assign var="transfersFiltersName" value="{$transfersFilters[pom].name}"}												
+													{/if}>
 													<a href="{$menu1[index].menu[index1].link}/{$transfersFilters[pom].id}"><span class="nav-label">{$transfersFilters[pom].name}</span></a>
 												</li>
 											{/section}
@@ -218,9 +212,7 @@
 						{/section}
 				   </ul>
 				</div>
-
-			</nav> {* End of navbar-default navbar-static-side *}
-
+			</nav>
 
 			<style type="text/css" >
 				.content {
@@ -242,15 +234,12 @@
 				.footer{
 					grid-row: 3;
 				}		
-			</style>
-
-			{* #page-wrapper *}
+			</style>			
 			<div id="page-wrapper" class="content gray-bg dashbard-1" style="height: 100%;
 					display: flex;
 					flex-direction: column;
 					flex-wrap: nowrap;
 					overflow: hidden;">
-
 				<div class="header row border-bottom">
 				   <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
 					  <div class="navbar-header">
@@ -277,7 +266,7 @@
 					{include file="pageListHeader.tpl"} 				   
 				</div>
 				{/if}
-				{if $page eq 'Price Rules'}	
+				{if $title eq 'Price Rules'}	
 				<div class="header row"> 
 					<div class="pull-left">
 						<span>Rule: <strong>{$smarty.request.rulesType}</strong></span>
@@ -297,14 +286,14 @@
 					{if isset($pageOLD)}
 						NOT MODEL VIEW CONTROL
 					{elseif isset($page)}
+						{*include file="{$root}/plugins/{$parentFolder}/{$base}/templates/{$includeFileTpl}"*}
 						{include file="{$root}/plugins/{$base}/templates/{$includeFileTpl}"}
 						MODEL VIEW CONTROL SMARTY		
 					{elseif isset($pageList)}
 						{include file="pageList.tpl"} 
 						MODEL VIEW CONTROL HANDLEBARS
 					{else}
-						{$page_render}
-						SEMI MODEL VIEW CONTROL via OB_GET_CONTENTS
+						UNDER CONSTRUCTION
 					{/if}				  
 				</div>
 				<div class="footer row">
@@ -316,16 +305,11 @@
 					</div>
 					<div class="backdrop"><div class="spiner"></div></div>
 				</div>
-
-			</div> {* End of page-wrapper *}
-
-		</div> {* End of wrapper *}
-
+			</div>
+		</div>
 		<input type='hidden' id='local' value='{$local}' name='local'>
-
 	</body>
 </html>
-
 	{literal}
 	<script>
 		document.addEventListener("keydown", function(event) {

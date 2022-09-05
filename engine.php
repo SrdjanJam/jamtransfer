@@ -78,12 +78,24 @@ if (count($mdk)==1) {
 	$key=$mdk[0];
 	$md->getRow($key);
 	if (is_dir($modulesPath . '/'.$md->getBase())) {
-		require_once $modulesPath . '/'.$md->getBase().$includefile;
+		require_once $modulesPath . '/'.$md->getBase().$includeFile;
 	
 		if (is_dir($modulesPath . '/'.$md->getBase().'/templates')) 
 			$smarty->assign('page',$md->getName());		
 		else $smarty->assign('pageList',$md->getName());
 	}	
+	/*$md->getRow($md->getParentID());
+	$parentFolder=$md->getBase();
+	$md->getRow($key);
+	if (is_dir($modulesPath . '/'.$parentFolder.'/'.$md->getBase())) {
+		require_once $modulesPath . '/'.$parentFolder.'/'.$md->getBase().$includefile;
+	
+		if (is_dir($modulesPath . '/'.$parentFolder.'/'.$md->getBase().'/templates')) 
+			$smarty->assign('page',$md->getName());		
+		else $smarty->assign('pageList',$md->getName());
+	}	
+	$smarty->assign('parentFolder',$parentFolder);
+	*/
 	$smarty->assign('currenturl',ROOT_HOME.$activePage);
 	$smarty->assign('title',$md->getName());
 	$smarty->assign('base',$md->getBase());

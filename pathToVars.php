@@ -12,8 +12,8 @@ else $activePage = 'dashboard';
 $help="menu";
 $isNew=false;
 $transfersFilter='';
-$includefile='/index.php';
-$includefiletpl='index.tpl';
+$includeFile='/index.php';
+$includeFileTpl='index.tpl';
 
 switch ($activePage) {
 	case 'loginAsUser':
@@ -65,10 +65,62 @@ switch ($activePage) {
 	case 'booking':
 		if ($pathVars->fetchByIndex($indexStart + 1)) { 
 		
-			$includefile='/'.$pathVars->fetchByIndex($indexStart + 1).'.php';
-			$includefiletpl=$pathVars->fetchByIndex($indexStart + 1).'.tpl';
+			$includeFile='/'.$pathVars->fetchByIndex($indexStart + 1).'.php';
+			$includeFileTpl=$pathVars->fetchByIndex($indexStart + 1).'.tpl';
 		}	
-		break;		
+		break;	
+	case 'driversTransfers':
+		if ($pathVars->fetchByIndex($indexStart + 1)){
+			$steps = 2;
+			if( $pathVars->fetchByIndex($indexStart + 1) =="driversBalance") { 
+				// Dodano
+				$includeFile = "/driversBalance.php";
+				$includeFileTpl = "/driversBalance.tpl";
+				
+			} else if($pathVars->fetchByIndex($indexStart + 1) =="invoice"){
+				$includeFile = "/invoice.php";
+				$includeFileTpl = "/invoice.tpl";
+			}
+			else{
+				$steps = 0;
+			}
+				// Metoda fetchByIndex nalazi se u common/class/PathVars.php
+				if($steps == 2) $_REQUEST['driverid']=$pathVars->fetchByIndex($indexStart + 2);
+			
+				$_REQUEST['StartDate']=$pathVars->fetchByIndex($indexStart + 1 + $steps);
+				$_REQUEST['EndDate']=$pathVars->fetchByIndex($indexStart + 2 + $steps);
+				$_REQUEST['includePaymentMethod']=$pathVars->fetchByIndex($indexStart + 3 + $steps);
+			
+		}
+		break;
+
+	case 'agentsTransfers':
+		if ($pathVars->fetchByIndex($indexStart + 1)){
+			$steps = 2;
+			if( $pathVars->fetchByIndex($indexStart + 1) =="agentsBalance") { 
+				$includeFile = "/agentsBalance.php";
+				$includeFileTpl = "/agentsBalance.tpl";
+				
+			} else if($pathVars->fetchByIndex($indexStart + 1) =="invoice"){
+				$includeFile = "/invoice.php";
+				$includeFileTpl = "invoice.tpl";
+			}
+			else{
+				$steps = 0;
+			}
+				// Metoda fetchByIndex nalazi se u common/class/PathVars.php
+				if($steps == 2) $_REQUEST['agentid']=$pathVars->fetchByIndex($indexStart + 2);
+			
+				$_REQUEST['StartDate']=$pathVars->fetchByIndex($indexStart + 1 + $steps);
+				$_REQUEST['EndDate']=$pathVars->fetchByIndex($indexStart + 2 + $steps);
+				$_REQUEST['NoShow']=$pathVars->fetchByIndex($indexStart + 3 + $steps);
+				$_REQUEST['DrErr']=$pathVars->fetchByIndex($indexStart + 4 + $steps);
+				$_REQUEST['CompletedTransfers']=$pathVars->fetchByIndex($indexStart + 5 + $steps);
+				$_REQUEST['Sistem']=$pathVars->fetchByIndex($indexStart + 6 + $steps);
+			
+		}
+
+		break;	
 	default:
 		if ($pathVars->fetchByIndex($indexStart + 1)) { 
 			if (is_numeric($pathVars->fetchByIndex($indexStart + 1))) {
@@ -83,7 +135,8 @@ switch ($activePage) {
 		}	
 }
 $smarty->assign('transfersFilter',$transfersFilter);
-$smarty->assign('includefiletpl',$includefiletpl);
+$smarty->assign('includeFile',$includeFile);
+$smarty->assign('includeFileTpl',$includeFileTpl);
 
 $specialpage=$pathVars->fetchByIndex($indexStart + $size - 2);
 switch ($specialpage) {
