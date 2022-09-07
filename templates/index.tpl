@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<base href="{$root_home}">	
+		<base href="{$root_home}">
 		
 		<meta charset="UTF-8">
 		<title>WIS {$title}</title>
@@ -11,7 +11,7 @@
 		<!-- STYLES -->
 		<!-- bootstrap 3.0.2 -->
 		<!-- <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" media="all"/>-->
-
+	
 		<!-- Latest compiled and minified CSS -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
@@ -150,15 +150,18 @@
 			{/if}
 		{/if}		
 	</head>	
-	
+
 	{include file="{$root}/templates/add-style.tpl"}
-	
+
 	<body class="fixed-top" style="height:100%!important;font-size:16px">
 		<div class="wrapper wrapper-edit">
 		
 			{* Start from here *}
+
 			{* Navbar *}
-			<nav class="navbar-default navbar-static-side" role="navigation">
+
+			<nav class="navbar-default navbar-static-side additional-class" role="navigation">
+
 				<script>
 					$(document).ready(function(){
 						$("a.navbar-minimalize").click(function(){
@@ -166,6 +169,7 @@
 						});
 					});
 				</script>
+				
 				<div class="sidebar-collapse">
 					<ul class="nav metismenu" id="side-menu">
 						<li class="nav-header">
@@ -222,13 +226,18 @@
 						{/section}
 				   </ul>
 				</div>
+
 			</nav> {* End of navbar-default navbar-static-side *}
+			
+
 			<style type="text/css" >
 				.content {
 					height: 100%;
 					overflow: hidden;
 					display: grid;
+
 				}
+
 				.header {
 					grid-row: 1; 
 				}
@@ -242,6 +251,7 @@
 					grid-row: 3;
 				}		
 			</style>
+
 			{* #page-wrapper *}
 			<div id="page-wrapper" class="content gray-bg dashbard-1" style="height: 100%;
 					display: flex;
@@ -249,13 +259,16 @@
 					flex-wrap: nowrap;
 					overflow: hidden;
 					">
+
 				<div class="header row border-bottom">
 				   <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
 					  <div class="navbar-header">
-						 <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
+
+						{* target***** *}
+						 <a class="navbar-minimalize minimalize-styl-2 btn btn-primary additional-class-navbar" href="#"><i class="fa fa-bars"></i> </a>
 					  </div>
 					  <div class="navbar-header">
-						 <button type="button" class="minimalize-styl-2 btn btn-primary " id="cashe"><i class="fa fa-refresh"></i></button>
+						 <button type="button" class="minimalize-styl-2 btn btn-primary" id="cashe"><i class="fa fa-refresh"></i></button>
 					  </div>					  					  						
 					  <ul class="nav navbar-top-links navbar-right">
 						 <li>
@@ -281,6 +294,7 @@
 						<span>Rule: <strong>{$smarty.request.rulesType}</strong></span>
 						{if $routeName}<span>Route:<strong>{$routeName}</strong></span>{/if}
 						{if $vehicleName}<span>Vehicle:<strong>{$vehicleName}</strong></span>{/if}
+
 					</div>
 					<div class="pull-right">
 						<button type="submit" class="btn btn-info" title="{$SAVE_CHANGES}" >
@@ -313,11 +327,16 @@
 					</div>
 					<div class="backdrop"><div class="spiner"></div></div>
 				</div>
+
 			</div> {* End of page-wrapper *}
+
 		</div> {* End of wrapper *}
+
 		<input type='hidden' id='local' value='{$local}' name='local'>
+
 	</body>
 </html>
+
 	{literal}
 	<script>
 		document.addEventListener("keydown", function(event) {
@@ -336,3 +355,4 @@
 		});
 	</script>
 	{/literal}
+	
