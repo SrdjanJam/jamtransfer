@@ -151,11 +151,7 @@
 		{/if}		
 	</head>	
 	
-	<style>
-	.wrapper-edit{
-		padding:0px;
-	}
-	</style>
+	{include file="{$root}/templates/add-style.tpl"}
 	
 	<body class="fixed-top" style="height:100%!important;font-size:16px">
 		<div class="wrapper wrapper-edit">
@@ -163,10 +159,15 @@
 			{* Start from here *}
 
 			{* Navbar *}
-			<nav class="navbar-default navbar-static-side" role="navigation"  style="position: fixed;
-			height: 100vh;
-			overflow-y: auto;
-			width:250px;">
+			<nav class="navbar-default navbar-static-side" role="navigation">
+
+				<script>
+					$(document).ready(function(){
+						$("a.navbar-minimalize").click(function(){
+							$("nav.navbar-default").toggleClass("additional-class")
+						});
+					});
+				</script>
 
 				<div class="sidebar-collapse">
 					<ul class="nav metismenu" id="side-menu">
@@ -256,7 +257,6 @@
 					flex-direction: column;
 					flex-wrap: nowrap;
 					overflow: hidden;
-					margin:0 0 0 250px;
 					">
 
 				<div class="header row border-bottom">
