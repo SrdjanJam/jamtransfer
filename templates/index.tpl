@@ -336,5 +336,3 @@
 		});
 	</script>
 	{/literal}
-	
-
