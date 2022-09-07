@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.32, created on 2022-09-07 10:48:14
+/* Smarty version 3.1.32, created on 2022-09-07 12:18:48
   from 'C:\wamp\www\jamtransfer\templates\index.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.32',
-  'unifunc' => 'content_63185ace159a88_45216608',
+  'unifunc' => 'content_631870082b6492_95708621',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'a1818a92b5a2f041fd91a227dabc592dea38fac2' => 
     array (
       0 => 'C:\\wamp\\www\\jamtransfer\\templates\\index.tpl',
-      1 => 1662540417,
+      1 => 1662545919,
       2 => 'file',
     ),
   ),
@@ -22,12 +22,12 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:pageList.tpl' => 1,
   ),
 ),false)) {
-function content_63185ace159a88_45216608 (Smarty_Internal_Template $_smarty_tpl) {
+function content_631870082b6492_95708621 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html>
 	<head>
 		<base href="<?php echo $_smarty_tpl->tpl_vars['root_home']->value;?>
-">	
+">
 		
 		<meta charset="UTF-8">
 		<title>WIS <?php echo $_smarty_tpl->tpl_vars['title']->value;?>
@@ -38,7 +38,7 @@ function content_63185ace159a88_45216608 (Smarty_Internal_Template $_smarty_tpl)
 		<!-- STYLES -->
 		<!-- bootstrap 3.0.2 -->
 		<!-- <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" media="all"/>-->
-
+	
 		<!-- Latest compiled and minified CSS -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
@@ -249,14 +249,17 @@ _init.js"><?php echo '</script'; ?>
 			<?php }?>
 		<?php }?>		
 	</head>	
-	
+
 	<?php $_smarty_tpl->_subTemplateRender(((string)$_smarty_tpl->tpl_vars['root']->value)."/templates/add-style.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, true);
 ?>
-	
+
 	<body class="fixed-top" style="height:100%!important;font-size:16px">
 		<div class="wrapper wrapper-edit">
 		
-									<nav class="navbar-default navbar-static-side" role="navigation">
+			
+			
+			<nav class="navbar-default navbar-static-side additional-class" role="navigation">
+
 				<?php echo '<script'; ?>
 >
 					$(document).ready(function(){
@@ -266,6 +269,7 @@ _init.js"><?php echo '</script'; ?>
 					});
 				<?php echo '</script'; ?>
 >
+				
 				<div class="sidebar-collapse">
 					<ul class="nav metismenu" id="side-menu">
 						<li class="nav-header">
@@ -364,12 +368,17 @@ for ($__section_pom_2_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_po
 ?>
 				   </ul>
 				</div>
-			</nav> 			<style type="text/css" >
+
+			</nav> 			
+
+			<style type="text/css" >
 				.content {
 					height: 100%;
 					overflow: hidden;
 					display: grid;
+
 				}
+
 				.header {
 					grid-row: 1; 
 				}
@@ -383,19 +392,22 @@ for ($__section_pom_2_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_po
 					grid-row: 3;
 				}		
 			</style>
+
 						<div id="page-wrapper" class="content gray-bg dashbard-1" style="height: 100%;
 					display: flex;
 					flex-direction: column;
 					flex-wrap: nowrap;
 					overflow: hidden;
 					">
+
 				<div class="header row border-bottom">
 				   <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
 					  <div class="navbar-header">
-						 <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
+
+												 <a class="navbar-minimalize minimalize-styl-2 btn btn-primary additional-class-navbar" href="#"><i class="fa fa-bars"></i> </a>
 					  </div>
 					  <div class="navbar-header">
-						 <button type="button" class="minimalize-styl-2 btn btn-primary " id="cashe"><i class="fa fa-refresh"></i></button>
+						 <button type="button" class="minimalize-styl-2 btn btn-primary" id="cashe"><i class="fa fa-refresh"></i></button>
 					  </div>					  					  						
 					  <ul class="nav navbar-top-links navbar-right">
 						 <li>
@@ -426,6 +438,7 @@ for ($__section_pom_2_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_po
 </strong></span><?php }?>
 						<?php if ($_smarty_tpl->tpl_vars['vehicleName']->value) {?><span>Vehicle:<strong><?php echo $_smarty_tpl->tpl_vars['vehicleName']->value;?>
 </strong></span><?php }?>
+
 					</div>
 					<div class="pull-right">
 						<button type="submit" class="btn btn-info" title="<?php echo $_smarty_tpl->tpl_vars['SAVE_CHANGES']->value;?>
@@ -462,10 +475,15 @@ for ($__section_pom_2_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_po
 					</div>
 					<div class="backdrop"><div class="spiner"></div></div>
 				</div>
-			</div> 		</div> 		<input type='hidden' id='local' value='<?php echo $_smarty_tpl->tpl_vars['local']->value;?>
+
+			</div> 
+		</div> 
+		<input type='hidden' id='local' value='<?php echo $_smarty_tpl->tpl_vars['local']->value;?>
 ' name='local'>
+
 	</body>
 </html>
+
 	
 	<?php echo '<script'; ?>
 >
@@ -485,5 +503,6 @@ for ($__section_pom_2_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_po
 		});
 	<?php echo '</script'; ?>
 >
+	
 	<?php }
 }
