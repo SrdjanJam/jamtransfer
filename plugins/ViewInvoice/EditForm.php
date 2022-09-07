@@ -163,16 +163,7 @@
 		$("form").change(function(){
 			$("#statusMessage").html('');
 		});
-	
-	
-		$("#PlaceNameEN").keyup(function(){
-			var place = $("#PlaceNameEN").val();
-			$("#PlaceNameSEO").val( getSlug( place , '+') );
-		});
-		
-		$("#PlaceCountry").change(function(){
-			$("#CountryNameEN").val( $("#PlaceCountry option:selected").text());
-		});
+
 	</script>
 </script>
 

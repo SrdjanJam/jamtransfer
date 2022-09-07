@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.32, created on 2022-09-05 08:57:58
+/* Smarty version 3.1.32, created on 2022-09-06 09:33:00
   from 'C:\wamp\www\jamtransfer\templates\pageListHeader.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.32',
-  'unifunc' => 'content_6315ba166907a0_96243058',
+  'unifunc' => 'content_631713cc7e5ef3_83876267',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '7d4e13059d7eb1944e7a2452042dc0a71e7ccf69' => 
     array (
       0 => 'C:\\wamp\\www\\jamtransfer\\templates\\pageListHeader.tpl',
-      1 => 1662368205,
+      1 => 1662456775,
       2 => 'file',
     ),
   ),
@@ -20,12 +20,21 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6315ba166907a0_96243058 (Smarty_Internal_Template $_smarty_tpl) {
-if (!$_SESSION['UseDriverID'] && $_smarty_tpl->tpl_vars['title']->value != "Orders" && $_smarty_tpl->tpl_vars['title']->value != "Invoices") {?>
+function content_631713cc7e5ef3_83876267 (Smarty_Internal_Template $_smarty_tpl) {
+if ((!$_SESSION['UseDriverID'] && $_smarty_tpl->tpl_vars['title']->value != "Orders" && $_smarty_tpl->tpl_vars['title']->value != "Invoices") || $_SESSION['UseDriverID'] && ($_smarty_tpl->tpl_vars['title']->value == "Drivers" || $_smarty_tpl->tpl_vars['title']->value == "Vehicles")) {?>
 	<a class="btn btn-primary btn-xs" href="<?php echo $_smarty_tpl->tpl_vars['currenturl']->value;?>
 /new"><?php echo $_smarty_tpl->tpl_vars['NNEW']->value;?>
-</a><br>
+</a>
+<?php }
+if ($_smarty_tpl->tpl_vars['title']->value == "Drivers") {?>
+	<a target="_blank" class="btn btn-primary btn-xs" href="<?php echo $_smarty_tpl->tpl_vars['root_home']->value;?>
+plugins/SubDrivers/getRaptorDrivers.php">Raptor</a>	
+<?php }
+if ($_smarty_tpl->tpl_vars['title']->value == "Vehicles") {?>
+	<a target="_blank" class="btn btn-primary btn-xs" href="<?php echo $_smarty_tpl->tpl_vars['root_home']->value;?>
+plugins/SubVehicles/getRaptorVehicles.php">Raptor</a>	
 <?php }?>
+
 <input type="hidden"  id="whereCondition" name="whereCondition" 
 value=" WHERE <?php echo $_smarty_tpl->tpl_vars['ItemID']->value;?>
  > 0">

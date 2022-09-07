@@ -1,6 +1,15 @@
-{if not $smarty.session.UseDriverID and $title ne "Orders" and $title ne "Invoices"}
-	<a class="btn btn-primary btn-xs" href="{$currenturl}/new">{$NNEW}</a><br>
+{if (not $smarty.session.UseDriverID and $title ne "Orders" and $title ne "Invoices") 
+	or $smarty.session.UseDriverID and ($title eq "Drivers" or $title eq "Vehicles")
+}
+	<a class="btn btn-primary btn-xs" href="{$currenturl}/new">{$NNEW}</a>
 {/if}
+{if $title eq "Drivers"}
+	<a target="_blank" class="btn btn-primary btn-xs" href="{$root_home}plugins/SubDrivers/getRaptorDrivers.php">Raptor</a>	
+{/if}
+{if $title eq "Vehicles"}
+	<a target="_blank" class="btn btn-primary btn-xs" href="{$root_home}plugins/SubVehicles/getRaptorVehicles.php">Raptor</a>	
+{/if}
+
 <input type="hidden"  id="whereCondition" name="whereCondition" 
 value=" WHERE {$ItemID} > 0">
 

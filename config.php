@@ -64,7 +64,7 @@ $smarty->assign('language',$_SESSION['CMSLang']);
 // END OF LANGUAGES	
 
 // pdv
-$filename = ROOT . '/cms/vatRate.inc';	
+$filename = ROOT . '/plugins/vatRate/vatRate.inc';	
 $vat = file_get_contents($filename, FILE_USE_INCLUDE_PATH);
 $_SESSION['vat'] = $vat;
 

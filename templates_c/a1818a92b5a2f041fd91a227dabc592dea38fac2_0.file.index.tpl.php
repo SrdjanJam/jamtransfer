@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.32, created on 2022-09-05 10:15:13
+/* Smarty version 3.1.32, created on 2022-09-07 10:34:32
   from 'C:\wamp\www\jamtransfer\templates\index.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.32',
-  'unifunc' => 'content_6315b011f1a5a9_93215783',
+  'unifunc' => 'content_631857985464e3_79126515',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'a1818a92b5a2f041fd91a227dabc592dea38fac2' => 
     array (
       0 => 'C:\\wamp\\www\\jamtransfer\\templates\\index.tpl',
-      1 => 1662365697,
+      1 => 1662539431,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:pageList.tpl' => 1,
   ),
 ),false)) {
-function content_6315b011f1a5a9_93215783 (Smarty_Internal_Template $_smarty_tpl) {
+function content_631857985464e3_79126515 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html>
 	<head>
@@ -250,15 +250,22 @@ _init.js"><?php echo '</script'; ?>
 		<?php }?>		
 	</head>	
 	
+	<?php $_smarty_tpl->_subTemplateRender(((string)$_smarty_tpl->tpl_vars['root']->value)."/templates/add-style.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, true);
+?>
 	
 	<body class="fixed-top" style="height:100%!important;font-size:16px">
-		<div class="wrapper">
+		<div class="wrapper wrapper-edit">
 		
-			
-						<nav class="navbar-default navbar-static-side" role="navigation"  style="position: fixed;
-			height: 100vh;
-			overflow-y: auto;">
-
+									<nav class="navbar-default navbar-static-side" role="navigation">
+				<?php echo '<script'; ?>
+>
+					$(document).ready(function(){
+						$("a.navbar-minimalize").click(function(){
+							$("nav.navbar-default").toggleClass("additional-class")
+						});
+					});
+				<?php echo '</script'; ?>
+>
 				<div class="sidebar-collapse">
 					<ul class="nav metismenu" id="side-menu">
 						<li class="nav-header">
@@ -269,7 +276,7 @@ _init.js"><?php echo '</script'; ?>
 									<a href="profile" >
 										<img src="api/showProfileImage.php?UserID=<?php echo $_SESSION['AuthUserID'];?>
 " class="img-circle" alt="User Image" style="height:2em;padding:-.5em;margin:-.5em" />
-										<strong class="font-bold"><?php echo $_SESSION['UserRealName'];?>
+										<strong class="font-bold" style="margin:0 0 0 10px;"><?php echo $_SESSION['UserRealName'];?>
 </strong>
 									</a>
 								</span>
@@ -357,17 +364,12 @@ for ($__section_pom_2_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_po
 ?>
 				   </ul>
 				</div>
-
-			</nav> 
-
-			<style type="text/css" >
+			</nav> 			<style type="text/css" >
 				.content {
 					height: 100%;
 					overflow: hidden;
 					display: grid;
-
 				}
-
 				.header {
 					grid-row: 1; 
 				}
@@ -381,13 +383,12 @@ for ($__section_pom_2_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_po
 					grid-row: 3;
 				}		
 			</style>
-
 						<div id="page-wrapper" class="content gray-bg dashbard-1" style="height: 100%;
 					display: flex;
 					flex-direction: column;
 					flex-wrap: nowrap;
-					overflow: hidden;">
-
+					overflow: hidden;
+					">
 				<div class="header row border-bottom">
 				   <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
 					  <div class="navbar-header">
@@ -425,7 +426,6 @@ for ($__section_pom_2_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_po
 </strong></span><?php }?>
 						<?php if ($_smarty_tpl->tpl_vars['vehicleName']->value) {?><span>Vehicle:<strong><?php echo $_smarty_tpl->tpl_vars['vehicleName']->value;?>
 </strong></span><?php }?>
-
 					</div>
 					<div class="pull-right">
 						<button type="submit" class="btn btn-info" title="<?php echo $_smarty_tpl->tpl_vars['SAVE_CHANGES']->value;?>
@@ -462,15 +462,10 @@ for ($__section_pom_2_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_po
 					</div>
 					<div class="backdrop"><div class="spiner"></div></div>
 				</div>
-
-			</div> 
-		</div> 
-		<input type='hidden' id='local' value='<?php echo $_smarty_tpl->tpl_vars['local']->value;?>
+			</div> 		</div> 		<input type='hidden' id='local' value='<?php echo $_smarty_tpl->tpl_vars['local']->value;?>
 ' name='local'>
-
 	</body>
 </html>
-
 	
 	<?php echo '<script'; ?>
 >
@@ -491,5 +486,7 @@ for ($__section_pom_2_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_po
 	<?php echo '</script'; ?>
 >
 	
-	<?php }
+	
+
+<?php }
 }

@@ -1,10 +1,4 @@
 <?
-// Obrisati
-// require_once $_SERVER['DOCUMENT_ROOT'] . '/db/db.class.php';
-// $db = new DataBaseMysql();
-
-# Submitted
-// exit('nesto drugo');
 
 $StartDate 	= $_REQUEST['StartDate'];
 $EndDate	= $_REQUEST['EndDate'];
@@ -25,9 +19,7 @@ if(!isset($_REQUEST['includePaymentMethod'])){
 
 	$includePaymentMethod = substr_replace($includePaymentMethod,"",strlen($includePaymentMethod)-1,1); // Replace the words of a text in a string
 }else{
-	
 	$includePaymentMethod = $_REQUEST['includePaymentMethod'];
-	// exit('poruka');
 }
 	// SQL: ====================================================
 	$q = 	"SELECT DriverID, sum(DriversPrice) AS DriversPriceTotal, sum(DriverExtraCharge) AS DriverExtraChargeTotal, sum(PayLater) AS PayLaterTotal FROM v4_OrderDetails 
@@ -53,12 +45,7 @@ if(!isset($_REQUEST['includePaymentMethod'])){
 
 	while($o = $w->fetch_object()) {
 		$driverId[] = $o->DriverID;
-		// $o->DriverID from database
-
-		$user[] = getUserData($o->DriverID);
-		
-		//$userData[] = trim($user['Country']).' - '.trim($user['Terminal']).' - '.trim($user['AuthUserCompany']).' - '.trim($user['AuthUserTel']);
-		// $driversBalance[] = nf(getDriversBalance($StartDate, $EndDate, $o->DriverID,$includePaymentMethod ));
+		$user[] = getUserData($o->DriverID);		
 		$driversPriceSum = $o->DriversPriceTotal + $o->DriverExtraChargeTotal;
 		$cashTotal = $o->PayLaterTotal;
 
@@ -84,34 +71,3 @@ function GetDriverNameNew($driver) {
 	$d = mysql_fetch_object($w);
 	return trim($d->Country).' - '.trim($d->Terminal).' - '.trim($d->Prezime).' - '.trim($d->Tel);
 }
-
-// Nije potrebno stara verzija:
-// function getDriversBalance($start, $end, $driver,$includePaymentMethod) {
-// 	require_once ROOT . '/db/v4_OrderDetails.class.php';
-
-	
-// 	$od = new v4_OrderDetails();
-
-// 	//$whereD  = " WHERE DriverID ='" . $driver ."' ";
-// 	if (getConnectedUser($driver)>0) $whereD= ' WHERE (DriverID = ' . $driver . '  OR DriverID =  '.getConnectedUser($driver). ') '; 
-// 	else $whereD  = " WHERE DriverID ='" . $driver ."' ";
-	
-// 	$whereD .= " AND PickupDate >= '{$start}' AND PickupDate <= '{$end}' ";
-// 	$whereD .= " AND TransferStatus != 3 ";
-// 	$whereD .= " AND TransferStatus != 4 ";
-// 	$whereD .= " AND TransferStatus != 9 ";	
-// 	if(!empty($includePaymentMethod)) $q.=" AND PaymentMethod in (".$includePaymentMethod.")"; 
-	
-// 	$kd = $od->getKeysBy('DetailsID', 'asc', $whereD);						
-						
-// 	foreach($kd as $nn => $id) {
-// 		$od->getRow($id);
-// 		$driversPriceSum += $od->getDriversPrice()+$od->DriverExtraCharge;
-// 		$cashTotal		+= $od->getPayLater();
-
-// 	} //endforeach	
-
-// 	// Balans je primnjene kes minus vozaceva cena 
-// 	return $cashTotal - $driversPriceSum;	
-// }
-
