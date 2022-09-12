@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.32, created on 2022-09-07 12:18:48
+/* Smarty version 3.1.32, created on 2022-09-12 12:35:03
   from 'C:\wamp\www\jamtransfer\templates\index.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.32',
-  'unifunc' => 'content_631870082b6492_95708621',
+  'unifunc' => 'content_631f277762a834_63045932',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'a1818a92b5a2f041fd91a227dabc592dea38fac2' => 
     array (
       0 => 'C:\\wamp\\www\\jamtransfer\\templates\\index.tpl',
-      1 => 1662545919,
+      1 => 1662986100,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:pageList.tpl' => 1,
   ),
 ),false)) {
-function content_631870082b6492_95708621 (Smarty_Internal_Template $_smarty_tpl) {
+function content_631f277762a834_63045932 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html>
 	<head>
@@ -411,8 +411,14 @@ for ($__section_pom_2_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_po
 					  </div>					  					  						
 					  <ul class="nav navbar-top-links navbar-right">
 						 <li>
-							<h2><span class="m-r-sm text-muted"><?php echo $_smarty_tpl->tpl_vars['title']->value;?>
-</span></h2>
+							<h2>
+								<span class="m-r-sm text-muted">
+									<?php echo $_smarty_tpl->tpl_vars['title']->value;?>
+
+									<?php if (isset($_REQUEST['Date'])) {?>/<?php echo $_REQUEST['Date'];
+}?>
+								</span>
+							</h2>
 						 </li>
 						 <li>
 							<a href='logout'>

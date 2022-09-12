@@ -123,6 +123,11 @@ switch ($activePage) {
 
 		}
 		break;	
+	case 'distribution':
+		if ($pathVars->fetchByIndex($indexStart + 1)){
+			$_REQUEST['Date']=$pathVars->fetchByIndex($indexStart + 1);
+		}
+		break;			
 	default:
 		if ($pathVars->fetchByIndex($indexStart + 1)) { 
 			if (is_numeric($pathVars->fetchByIndex($indexStart + 1))) {

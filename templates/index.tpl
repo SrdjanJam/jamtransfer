@@ -272,7 +272,12 @@
 					  </div>					  					  						
 					  <ul class="nav navbar-top-links navbar-right">
 						 <li>
-							<h2><span class="m-r-sm text-muted">{$title}</span></h2>
+							<h2>
+								<span class="m-r-sm text-muted">
+									{$title}
+									{if isset($smarty.request.Date)}/{$smarty.request.Date}{/if}
+								</span>
+							</h2>
 						 </li>
 						 <li>
 							<a href='logout'>

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.32, created on 2022-09-07 08:53:02
+/* Smarty version 3.1.32, created on 2022-09-12 06:53:16
   from 'C:\wamp\www\jamtransfer\plugins\Calendar\templates\monthtransfers.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.32',
-  'unifunc' => 'content_63185beeac8672_68238809',
+  'unifunc' => 'content_631ed75c190ce3_05379778',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '5ebc09ea4b1f0ee21360208ea0b6ee557773e62c' => 
     array (
       0 => 'C:\\wamp\\www\\jamtransfer\\plugins\\Calendar\\templates\\monthtransfers.tpl',
-      1 => 1658839800,
+      1 => 1662965591,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_63185beeac8672_68238809 (Smarty_Internal_Template $_smarty_tpl) {
+function content_631ed75c190ce3_05379778 (Smarty_Internal_Template $_smarty_tpl) {
 echo '<script'; ?>
  src="https://code.jquery.com/jquery-2.0.2.js"><?php echo '</script'; ?>
 >
@@ -166,7 +166,9 @@ for ($__section_pom_0_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_po
 					<div class="days" id="day<?php echo $_smarty_tpl->tpl_vars['month_transfers']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_pom']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_pom']->value['index'] : null)]['nom'];?>
 ">
 													<div class="cal_days l"><b><?php echo $_smarty_tpl->tpl_vars['month_transfers']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_pom']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_pom']->value['index'] : null)]['nom'];?>
-</b></div>
+</b> <a target='_blank' href='<?php echo $_smarty_tpl->tpl_vars['root_home']->value;?>
+distribution/<?php echo $_smarty_tpl->tpl_vars['month_transfers']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_pom']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_pom']->value['index'] : null)]['date'];?>
+'>Dist</a></div>
 									<div class="show-data">
 																														<small class="small">
 																						<?php

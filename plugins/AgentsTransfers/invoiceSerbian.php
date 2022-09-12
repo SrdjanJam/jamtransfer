@@ -20,7 +20,6 @@
 			$orders_row[$key] = $ord;
 		}
 		$orders[] = $orders_row;
-		// print_r($orders);
 
 		$order=$od->getOrderID().'-'. $od->getTNo();
 
@@ -37,10 +36,12 @@
 
 		$transferPrice 	= $od->getDetailPrice();
 		$extrasPrice 	= $od->getExtraCharge();
+		$driversExtrasPrice 	= $od->getDriverExtraCharge();	
 		$provision		= $od->getProvisionAmount();
 
 		$transfersSum	+= $transferPrice;
 		$extrasSum		+= $extrasPrice;
+		$driversExtrasSum		+= $driversExtrasPrice;	
 		$provisionSum	+= $provision;
 
 		$i += 1;
@@ -67,61 +68,33 @@
 
 		// FullPrice and SubTotal:
 		$fullPrice = $transferPrice + $extrasPrice;
+		$driversFullPrice = $driversPrice + $driversExtrasPrice;
 		$subTotal += $fullPrice;
 		
 		$isInSerbia = InSerbia($od->RouteID);
 
 		if($isInSerbia == true) $transfersInSerbia += 1;
 
-		// ako je racun za knjigovodstvo uvijek prikazi podatke! - ovo sam krivo shvatio
-		//if($knjigovodstvo == '1') $isInSerbia = true;
 		$commissionAmt += $provision;
 
 		$totalEur += nf( $fullPrice -  $provision );
 
 		if($isInSerbia) 
-			$VATbaseTemp =  (($fullPrice - $driversPrice - $provision) / ((100+$vat)/100)* s('TecajRSD'));
+			$VATbaseTemp =  (($fullPrice - $driversFullPrice - $provision) / ((100+$vat)/100)* s('TecajRSD'));
 			$VATbase += nfT( $VATbaseTemp);
 			
 		if($isInSerbia == false and $knjigovodstvo == '1') {
-			$VATbase +=  nf( ($fullPrice - $driversPrice - $provision) * s('TecajRSD'));
+			$VATbase +=  nf( ($fullPrice - $driversFullPrice - $provision) * s('TecajRSD'));
 		}
-		
-		//if($isInSerbia == false and $knjigovodstvo != '1') {
-			//$VATbase = '0.00';
-		//}						
+					
 
 		if($isInSerbia) $VATtotal +=  nf($VATbaseTemp * $vat / 100);
-		//if($isInSerbia == false) $VATtotal = '0.00';
 
 			
 	} //endforeach
 					
 	// OBREADA PODATAKA
-	// uskladjeno sa Dusicom 
-/*				
-	$subTotal = $transfersSum + $extrasSum;
-
-	// ako je samo jedan transfer iz Srbije, podaci se prikazuju
-	// znaci ako je isInSerbia false, onda se ispituje 
-	// ako je vec true, ne treba dalje ispitivati, 
-	// nego se podaci moraju prikazati - vidi dolje
-	if($isInSerbia == false) $isInSerbia = InSerbia($od->RouteID);
-
-	// ako je racun za knjigovodstvo uvijek prikazi podatke! - ovo sam krivo shvatio
-	//if($knjigovodstvo == '1') $isInSerbia = true;
-	$commissionAmt = nf( $provisionSum );
-
-	$totalEur = nf( $subTotal -  $commissionAmt );
-
-	$VATbase = nf( ( ($subTotal - $driversPriceSum - $commissionAmt) / ((100+$vat)/100)) * 
-					s('TecajRSD'));
-
-	if($isInSerbia == false and $knjigovodstvo == '1') {
-		$VATbase =  nf(  ($subTotal - $driversPriceSum - $commissionAmt) * 
-							s('TecajRSD'));
-	}
-*/							
+						
 	if($transfersInSerbia == 0 and $knjigovodstvo != '1') {
 		$VATbase = '0.00';
 	}						
@@ -132,7 +105,7 @@
 
 	$totalEur_TecajRSD = $totalEur * $TecajRSD;
 	$VATbase_vat = $VATbase*$vat/100;
-	$driversPriceSum_TecajRSD = $driversPriceSum * $TecajRSD;
+	$driversPriceSum_TecajRSD = ($driversPriceSum+$driversExtrasSum) * $TecajRSD;
 
 	$smarty->assign('totalEur_TecajRSD',$totalEur_TecajRSD);
 	$smarty->assign('VATbase_vat',$VATbase_vat);
