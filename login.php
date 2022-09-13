@@ -121,6 +121,7 @@ if(!isset($_SESSION['UserAuthorized']) or $_SESSION['UserAuthorized'] !== true) 
 	<!DOCTYPE html>
 	<html style="background: transparent  url('i/header/121.jpg') center fixed;background-size:cover;">
 	<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" />
 	<link rel="stylesheet" href="css/theme.css" type="text/css" />
 	<style>
@@ -162,9 +163,25 @@ if(!isset($_SESSION['UserAuthorized']) or $_SESSION['UserAuthorized'] !== true) 
           margin-bottom: 10px;
           border-top-left-radius: 0;
           border-top-right-radius: 0;
-        }	        
+		}
+		
+		
+		/* @media screen: */
+		@media screen and (max-width:767px) {
+
+			.form-signin {
+				width: 100%;
+				padding: 0;
+				/* margin: 0; */
+			}
+
+
+		}
+
+
 	</style>
 	</head>
+	
 
 	<body style="background:transparent;display:block">
     <div class="container">
