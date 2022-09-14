@@ -198,7 +198,9 @@ body {
 	
 {* </div> / .grid-container-2 *}
 </div> {* / .grid-container *}
-{* <div class="dashboard-legend">
+
+
+<div class="dashboard-legend">
 	Transfer status:
 	<ul>
 		<i class="fa fa-circle-o text-blue"></i> Active |
@@ -218,7 +220,9 @@ body {
 		<i class="fa fa-black-tie" style="color:#c00"></i> Driver error |
 		<i class="fa fa-check-square text-green"></i> Completed
 	</ul>
-</div> *}
+</div> {* /.dashboard-legend*}
+
+
 <script>
 {literal}
 	$(".mytooltip").popover({trigger:'hover', html:true, placement:'bottom'});
