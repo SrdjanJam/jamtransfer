@@ -2,44 +2,65 @@
 <script src="https://code.jquery.com/jquery-2.0.2.js"></script>
 
 <script>
-$(document).ready(function(){
+
+function resize(){
+
 	if ($(window).width() < 760) {
-		// alert('Less than 960');
+
 		$(".small").hide();
 		$(".small-mini").show();
-		
-		
-			$('.show-data').hide();
-			$('.days').click(function(){
-				
-				var selector = '#' + $(this).attr('id')+' .show-data';
-				
-				var grid = '#' + $(this).parent().attr('id');
-				var classes=($(grid).attr('class'));
-				var x =classes.search("fullscreen");
-				
-				if(x == -1){
-					$(grid).toggleClass('fullscreen');
-					$(selector).show();
-					$('.close-gi').show();
-					$(".small").show();
-					$(".small-mini").hide();
-				}
-			}); // </.days
-			$('.close-gi').click(function(){
-				var grid = '#' + $(this).parent().attr('id');
+		$('.show-data').hide();
+
+		$('.days').click(function(){
+			
+			var selector = '#' + $(this).attr('id')+' .show-data';
+			
+			var grid = '#' + $(this).parent().attr('id');
+			var classes=($(grid).attr('class'));
+			var x =classes.search("fullscreen");
+			
+			if(x == -1){
 				$(grid).toggleClass('fullscreen');
-				$('.show-data').hide();
-				$('.close-gi').hide();
-				$(".small").hide();
-				$(".small-mini").show();
-			});
+				$(selector).show();
+				$('.close-gi').show();
+				$(".small").show();
+				$(".small-mini").hide();
+
+			}
+
+		}); // </.days
+
+		$('.close-gi').click(function(){
+			var grid = '#' + $(this).parent().attr('id');
+			$(grid).toggleClass('fullscreen');
+			$('.show-data').hide();
+			$('.close-gi').hide();
+			$(".small").hide();
+			$(".small-mini").show();
+		});
 			
-			
-		} // </if $(window).width() < 760
+	} // </if $(window).width() < 760
+	else{
+		$('.show-data').show();
+		$(".small").show();
+		$(".small-mini").hide();
+		$('.close-gi').hide();
+		$('.grid-item-2').removeClass('fullscreen');
+	}
+
+} // End of resize function
+
+
+// Call the ready function:
+$(document).ready(function(){
+	resize();
+	$(window).resize(resize);
 });
+
 		
 </script>
+
+
 <style>
 * {
   box-sizing: border-box;
@@ -67,6 +88,7 @@ body {
 .show-data .small{
 	font-size:16px;
 }
+
 /*///////////////////////////////////////////////////////////*/
 /*MEDIA SECTION:*/
 @media screen and (max-width:767px) {
@@ -83,8 +105,24 @@ body {
 		position: fixed; 
 		top: 0; 
 		left: 0; 
-		background:#ffffff;
+		background:#f3f1f1;
+
+		/* Animation */
+		animation: myAnim 0.5s ease 0s 1 normal forwards;
  	}
+
+	/* keyframes  */
+	@keyframes myAnim {
+		0% {
+			transform: scale(0.5);
+		}
+
+		100% {
+			transform: scale(1);
+		}
+	}
+
+
 	a.close-gi{
 		color:rgb(185, 65, 65);
 		font-size:35px;
@@ -220,7 +258,7 @@ body {
 		<i class="fa fa-black-tie" style="color:#c00"></i> Driver error |
 		<i class="fa fa-check-square text-green"></i> Completed
 	</ul>
-</div> {* /.dashboard-legend*}
+</div>
 
 
 <script>
