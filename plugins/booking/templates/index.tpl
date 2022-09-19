@@ -1,26 +1,31 @@
 
 {include file='plugins\Booking\templates\scriptsAdm.tpl'}
 
+{* STYLE TPL: *}
+{include file="{$root}/templates/add-style.tpl"}
+
+
 <div style="background: transparent url('./i/header/112.jpg') center fixed; background-size: cover;
     margin-top:-20px !important">
     <br>
     <div class="container pad1em"
     style="background-color: rgba(70,79,96,0.75); border:1px solid #000;border-radius:6px;">
-        <div class="row">
+        <div class="row row-add">
             <div class="col s12 xucase center white-text">
-                <h3>ADMINISTRATION {$BOOKING}
-                </h3>
+                <h3 class="book">ADMINISTRATION {$BOOKING} </h3>
                 <p class="divider clearfix"></p>
             </div>
-            <div class="col s12 xgrey xlighten-3">
+            <div class="col s12 xgray xlighten-1">
                 <br>
+                {* Form *}
                 <form id="bookingForm" name="bookingForm" action="booking/final" method="POST"
                       enctype="multipart/form-data">
                     <input type="text" id="pleaseSelect" value="{$PLEASE_SELECT}"/>
                     <input type="text" id="loading" value="{$LOADING}"/>
-
+                    <br><br>
                     <div class="col l6 s12">
-                        <label for="AuthUserIDe"><i class="fa fa-globe"></i> Book as <strong>Agent</strong></label><br>
+                        <label class="book" for="AuthUserIDe"><i class="fa fa-globe"></i> Book as <strong>Agent</strong></label><br>
+
                         <div>
                             <select name="AgentID" id="AgentID" class="xchosen-select browser-default"
                                     value='{$AgentID}'>
@@ -30,11 +35,14 @@
                                 {/section}
                             </select>
                         </div>
+
                     </div>
+                    <br>
                     <div class="col s12 l2">
-                        <label for="ReferenceNo"><i class="fa fa-book"></i> Agent Reference Number</label><br>
+                        <label class="book" for="ReferenceNo"><i class="fa fa-book"></i> Agent Reference Number</label><br>
                         <input type="text" id="ReferenceNo" class="browser-default" name="ReferenceNo" value="">
                     </div>
+
                     <div class="col s12 l2" id='webyblock' style="display:none">
                         <label for="wrn"><i class="fa fa-book"></i> Weby Reference Number</label>
                         <input type="text" id="weby_key" name="weby_key" value="{$weby_key}" disabled><br>
@@ -46,40 +54,43 @@
                         <label for="srn"><i class="fa fa-book"></i> Sun Reference Number</label><br>
                         <input type="file" id="srn" class="browser-default" name="SunReferenceNo" value="">
                     </div>
+
                     <div class="col s12 l6">
                         <br>
-                        <label for="fromSelectorValue"><i class="fa fa-map-marker"></i>
+                        <label class="book" for="fromSelectorValue"><i class="fa fa-map-marker"></i>
                             {$FROM}
                         </label><br>
                         <input type="text" id="FromID" name="FromID" value="{$fromID}"><i
-                                class="pe-7s-car pe-lg  pe-va white-text"></i>
-                        {$STARTING_FROM}
+                                class="pe-7s-car pe-lg  pe-va white-text book"></i>
+                        <span class="book">{$STARTING_FROM}</span>
                         <input type="text" id="FromName" name="FromName" value="{$fromName}" class="input-lg"
                                style="width:100%" placeholder="{$SEARCH_PLACEHOLDER}" autocomplete="off">
-                        <span id="fromLoading" class="small">
+                        <span id="fromLoading" class="small book">
 							{$TYPE_SEARCH}
 						</span>
                         <div id="selectFrom_options" class="list-group white" style="max-height:15em;overflow:auto">
                         </div>
                     </div>
+
                     <div class="col l6 s12">
                         <br>
-                        <label for="toSelectorValue"><i class="fa fa-map-marker"></i>
+                        <label class="book" for="toSelectorValue"><i class="fa fa-map-marker"></i>
                             {$TO}
                         </label> <span style='color:white' id='toname2'></span><br>
                         <input type="text" id="ToID" name="ToID" value="{$toID}"><i
                                 class="pe-7s-map-marker pe-lg  pe-va white-text"></i>
-                        {$GOING_TO}
+                        <span class="book">{$GOING_TO}</span>
                         <input type="text" id="ToName" name="ToName" value="{$toName}" class="input-lg"
                                style="width:100%" placeholder="{$SEARCH_PLACEHOLDER}" autocomplete="off">
-                        <span id="toLoading" class="small">
+                        <span id="toLoading" class="small book">
 							{$TYPE_SEARCH}
 						</span>
-                        <div id="selectTo_options" class="list-group white" style="max-height:15em;overflow:auto"></div>
+                        <div id="selectTo_options" class="list-group white" style="max-height:15em;overflow:auto;"></div>
                     </div>
+
                     <div class="col l6 s12">
                         <br>
-                        <label for="paxSelector">
+                        <label class="book" for="paxSelector">
                             <i class="fa fa-user"></i>
                             {$PASSENGERS_NO}
                         </label>
@@ -93,7 +104,7 @@
                     </div>
                     <div class="col s12 l3">
                         <br>
-                        <label for="transferDate"><i class="fa fa-calendar-o"></i>
+                        <label class="book" for="transferDate"><i class="fa fa-calendar-o"></i>
                             {$PICKUP_DATE}
                         </label><br>
                         <input type="text" id="transferDate" class="browser-default" name="transferDate" readonly
@@ -101,7 +112,7 @@
                     </div>
                     <div class="col s12 l3">
                         <br>
-                        <label for="transferTime"><i class="fa fa-clock-o"></i>
+                        <label class="book" for="transferTime"><i class="fa fa-clock-o"></i>
                             {$PICKUP_TIME}
                         </label><br>
                         <input type="text" id="transferTime" class="browser-default timepick" name="transferTime"
@@ -110,12 +121,12 @@
                     <div class="col l6 s12">
                         <br>
                         <div class="switch">
-                            <label for="returnTransferCheck">
+                            <label class="book" for="returnTransferCheck">
                                 <i class="fa fa-undo"></i>
                                 {$RETURN_TRANSFER}
                             </label>
                             <br><br>
-                            <label class="center">
+                            <label class="center book">
                                 {$NO}
                                 <input type="checkbox" name="returnTransferCheck" id="returnTransferCheck">
                                 <span class="lever"></span>
@@ -127,7 +138,7 @@
                     <div id="showReturn" style="display:none;margin:-0.75rem !important" class="col s12">
                         <div class="col s12 l3">
                             <br>
-                            <label for="returnDate"><i class="fa fa-calendar-o"></i>
+                            <label class="book" for="returnDate"><i class="fa fa-calendar-o"></i>
                                 {$RETURN_DATE}
                             </label><br>
                             <input type="text" id="returnDate" class="browser-default" name="returnDate" readonly
@@ -135,7 +146,7 @@
                         </div>
                         <div class="col s12 l3">
                             <br>
-                            <label for="returnTime"><i class="fa fa-clock-o"></i>
+                            <label class="book" for="returnTime"><i class="fa fa-clock-o"></i>
                                 {$PICKUP_TIME}
                             </label><br>
                             <input type="text" id="returnTime" name="returnTime" class="browser-default timepick"
@@ -146,7 +157,7 @@
                     <br>
                     <div class="col s12 pad1em white-text" style="padding: 1rem !important; background: rgba(0,0,0,.5)">
                         <div class="col s12 l9">
-                            <p><i class="fa fa-info-circle fa-2x red-text"></i>
+                            <p class="book"><i class="fa fa-info-circle fa-2x red-text"></i>
                                 {$AVAILABILITY_DEPENDS}
                             </p>
                         </div>
@@ -234,7 +245,10 @@
                     <input id='DropAddress' name='DropAddress' type='hidden' value="{$DropAddress}"/>
                     <input id='RPickupAddress' name='RPickupAddress' type='hidden' value="{$RPickupAddress}"/>
                     <input id='RDropAddress' name='RDropAddress' type='hidden' value="{$RDropAddress}"/>
-                </form>
+
+                </form> {* End of form*}
+
+
                 <br>&nbsp;
             </div>
             <br><br>
