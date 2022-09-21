@@ -1,15 +1,6 @@
-{if (not $smarty.session.UseDriverID and $title ne "Orders" and $title ne "Invoices") 
-	or $smarty.session.UseDriverID and ($title eq "Drivers" or $title eq "Vehicles")
-}
-	<a class="btn btn-primary btn-xs" href="{$currenturl}/new">{$NNEW}</a>
+{if not $smarty.session.UseDriverID and $title ne "Orders" and $title ne "Invoices"}
+	<a class="btn btn-primary btn-xs" href="{$currenturl}/new">{$NNEW}</a><br>
 {/if}
-{if $title eq "Drivers"}
-	<a target="_blank" class="btn btn-primary btn-xs" href="{$root_home}plugins/SubDrivers/getRaptorDrivers.php">Raptor</a>	
-{/if}
-{if $title eq "Vehicles"}
-	<a target="_blank" class="btn btn-primary btn-xs" href="{$root_home}plugins/SubVehicles/getRaptorVehicles.php">Raptor</a>	
-{/if}
-
 <input type="hidden"  id="whereCondition" name="whereCondition" 
 value=" WHERE {$ItemID} > 0">
 
@@ -24,24 +15,32 @@ value=" WHERE {$ItemID} > 0">
 	{if isset($selecttype)}
 	<div class="col-sm-2">
 		<i class="fa fa-list-ul"></i>
+
 		<select id="Type" class="w75" onchange="allItems();">
 			<option value="0">{$ALL}</option>
 			{section name=pom loop=$options}
 				<option value="{$options[pom].id}">{$options[pom].name}</option>
 			{/section}
 		</select>
+
 	</div>	
-	{/if}	
+	{/if}
+
+	{if not isset($pagelength)}{assign var="pagelength" value="10"}{/if}
+	
 	<div class="col-md-2">
 		<i class="fa fa-eye"></i>
+
 		<select id="length" class="w75" onchange="allItems();">
-			<option value="5"> 5 </option>
-			<option value="10" selected> 10 </option>
-			<option value="20"> 20 </option>
-			<option value="50"> 50 </option>
-			<option value="100"> 100 </option>
+			<option value="5" {if $pagelength eq '5'} selected {/if}> 5 </option>
+			<option value="10" {if $pagelength eq '10'} selected {/if}> 10 </option>
+			<option value="20" {if $pagelength eq '20'} selected {/if}> 20 </option>
+			<option value="50" {if $pagelength eq '50'} selected {/if}> 50 </option>
+			<option value="100" {if $pagelength eq '100'} selected {/if}> 100 </option>
 		</select>
+		
 	</div>
+
 	{if $title ne "Orders"}
 	<div class="col-md-2">
 		<i class="fa fa-text-width"></i>

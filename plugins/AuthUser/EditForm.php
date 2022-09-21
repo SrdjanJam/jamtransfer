@@ -44,6 +44,7 @@
                 <li><a href="#tab_2{{AuthUserID}}" data-toggle="tab"><?= SURCHARGES ?></a></li>
                 <? } ?>
             </ul>
+
 			<div class="tab-content">			
 				<div class="tab-pane active" id="tab_1{{AuthUserID}}">		
 

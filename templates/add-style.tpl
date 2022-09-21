@@ -11,10 +11,10 @@
 
 /* ------------------------------------------ */
 /* DriversTransfers/templates/index.tpl and AgentsTransfers/templates/index.tpl */
-.row_e{ 
+/* .row_e{ 
     padding:0 0 3px 0; 
     font-size:18px; 
-}
+} */
 
 .row_e:hover{ background:rgb(229, 229, 240); }
 
@@ -41,7 +41,10 @@
 .row-add{ padding:20px; }
 
 .fa-user{ color:white; }
+/* ------------------------------------------ */
 
-.white-bg{ padding:0px; }
+.white-bg{ padding:10px 0 20px 0; }
+
+.container{ padding:10px 0 20px 0; }
 
 </style>
