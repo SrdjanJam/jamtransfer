@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.32, created on 2022-09-06 09:33:00
+/* Smarty version 3.1.32, created on 2022-09-21 11:44:06
   from 'C:\wamp\www\jamtransfer\templates\pageListHeader.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.32',
-  'unifunc' => 'content_631713cc7e5ef3_83876267',
+  'unifunc' => 'content_632af9066160e3_40650322',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '7d4e13059d7eb1944e7a2452042dc0a71e7ccf69' => 
     array (
       0 => 'C:\\wamp\\www\\jamtransfer\\templates\\pageListHeader.tpl',
-      1 => 1662456775,
+      1 => 1663745549,
       2 => 'file',
     ),
   ),
@@ -20,21 +20,12 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_631713cc7e5ef3_83876267 (Smarty_Internal_Template $_smarty_tpl) {
-if ((!$_SESSION['UseDriverID'] && $_smarty_tpl->tpl_vars['title']->value != "Orders" && $_smarty_tpl->tpl_vars['title']->value != "Invoices") || $_SESSION['UseDriverID'] && ($_smarty_tpl->tpl_vars['title']->value == "Drivers" || $_smarty_tpl->tpl_vars['title']->value == "Vehicles")) {?>
+function content_632af9066160e3_40650322 (Smarty_Internal_Template $_smarty_tpl) {
+if (!$_SESSION['UseDriverID'] && $_smarty_tpl->tpl_vars['title']->value != "Orders" && $_smarty_tpl->tpl_vars['title']->value != "Invoices") {?>
 	<a class="btn btn-primary btn-xs" href="<?php echo $_smarty_tpl->tpl_vars['currenturl']->value;?>
 /new"><?php echo $_smarty_tpl->tpl_vars['NNEW']->value;?>
-</a>
-<?php }
-if ($_smarty_tpl->tpl_vars['title']->value == "Drivers") {?>
-	<a target="_blank" class="btn btn-primary btn-xs" href="<?php echo $_smarty_tpl->tpl_vars['root_home']->value;?>
-plugins/SubDrivers/getRaptorDrivers.php">Raptor</a>	
-<?php }
-if ($_smarty_tpl->tpl_vars['title']->value == "Vehicles") {?>
-	<a target="_blank" class="btn btn-primary btn-xs" href="<?php echo $_smarty_tpl->tpl_vars['root_home']->value;?>
-plugins/SubVehicles/getRaptorVehicles.php">Raptor</a>	
+</a><br>
 <?php }?>
-
 <input type="hidden"  id="whereCondition" name="whereCondition" 
 value=" WHERE <?php echo $_smarty_tpl->tpl_vars['ItemID']->value;?>
  > 0">
@@ -53,6 +44,7 @@ value=" WHERE <?php echo $_smarty_tpl->tpl_vars['ItemID']->value;?>
 	<?php if (isset($_smarty_tpl->tpl_vars['selecttype']->value)) {?>
 	<div class="col-sm-2">
 		<i class="fa fa-list-ul"></i>
+
 		<select id="Type" class="w75" onchange="allItems();">
 			<option value="0"><?php echo $_smarty_tpl->tpl_vars['ALL']->value;?>
 </option>
@@ -71,18 +63,27 @@ for ($__section_pom_0_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_po
 }
 ?>
 		</select>
+
 	</div>	
-	<?php }?>	
+	<?php }?>
+
+	<?php if (!isset($_smarty_tpl->tpl_vars['pagelength']->value)) {
+$_smarty_tpl->_assignInScope('pagelength', "10");
+}?>
+	
 	<div class="col-md-2">
 		<i class="fa fa-eye"></i>
+
 		<select id="length" class="w75" onchange="allItems();">
-			<option value="5"> 5 </option>
-			<option value="10" selected> 10 </option>
-			<option value="20"> 20 </option>
-			<option value="50"> 50 </option>
-			<option value="100"> 100 </option>
+			<option value="5" <?php if ($_smarty_tpl->tpl_vars['pagelength']->value == '5') {?> selected <?php }?>> 5 </option>
+			<option value="10" <?php if ($_smarty_tpl->tpl_vars['pagelength']->value == '10') {?> selected <?php }?>> 10 </option>
+			<option value="20" <?php if ($_smarty_tpl->tpl_vars['pagelength']->value == '20') {?> selected <?php }?>> 20 </option>
+			<option value="50" <?php if ($_smarty_tpl->tpl_vars['pagelength']->value == '50') {?> selected <?php }?>> 50 </option>
+			<option value="100" <?php if ($_smarty_tpl->tpl_vars['pagelength']->value == '100') {?> selected <?php }?>> 100 </option>
 		</select>
+		
 	</div>
+
 	<?php if ($_smarty_tpl->tpl_vars['title']->value != "Orders") {?>
 	<div class="col-md-2">
 		<i class="fa fa-text-width"></i>

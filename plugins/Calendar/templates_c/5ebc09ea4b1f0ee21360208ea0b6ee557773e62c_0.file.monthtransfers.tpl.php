@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.32, created on 2022-09-12 06:53:16
+/* Smarty version 3.1.32, created on 2022-09-20 11:54:14
   from 'C:\wamp\www\jamtransfer\plugins\Calendar\templates\monthtransfers.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.32',
-  'unifunc' => 'content_631ed75c190ce3_05379778',
+  'unifunc' => 'content_6329a9e684ae60_00750696',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '5ebc09ea4b1f0ee21360208ea0b6ee557773e62c' => 
     array (
       0 => 'C:\\wamp\\www\\jamtransfer\\plugins\\Calendar\\templates\\monthtransfers.tpl',
-      1 => 1662965591,
+      1 => 1663236163,
       2 => 'file',
     ),
   ),
@@ -20,52 +20,73 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_631ed75c190ce3_05379778 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6329a9e684ae60_00750696 (Smarty_Internal_Template $_smarty_tpl) {
 echo '<script'; ?>
  src="https://code.jquery.com/jquery-2.0.2.js"><?php echo '</script'; ?>
 >
 
 <?php echo '<script'; ?>
 >
-$(document).ready(function(){
+
+function resize(){
+
 	if ($(window).width() < 760) {
-		// alert('Less than 960');
+
 		$(".small").hide();
 		$(".small-mini").show();
-		
-		
-			$('.show-data').hide();
-			$('.days').click(function(){
-				
-				var selector = '#' + $(this).attr('id')+' .show-data';
-				
-				var grid = '#' + $(this).parent().attr('id');
-				var classes=($(grid).attr('class'));
-				var x =classes.search("fullscreen");
-				
-				if(x == -1){
-					$(grid).toggleClass('fullscreen');
-					$(selector).show();
-					$('.close-gi').show();
-					$(".small").show();
-					$(".small-mini").hide();
-				}
-			}); // </.days
-			$('.close-gi').click(function(){
-				var grid = '#' + $(this).parent().attr('id');
+		$('.show-data').hide();
+
+		$('.days').click(function(){
+			
+			var selector = '#' + $(this).attr('id')+' .show-data';
+			
+			var grid = '#' + $(this).parent().attr('id');
+			var classes=($(grid).attr('class'));
+			var x =classes.search("fullscreen");
+			
+			if(x == -1){
 				$(grid).toggleClass('fullscreen');
-				$('.show-data').hide();
-				$('.close-gi').hide();
-				$(".small").hide();
-				$(".small-mini").show();
-			});
+				$(selector).show();
+				$('.close-gi').show();
+				$(".small").show();
+				$(".small-mini").hide();
+
+			}
+
+		}); // </.days
+
+		$('.close-gi').click(function(){
+			var grid = '#' + $(this).parent().attr('id');
+			$(grid).toggleClass('fullscreen');
+			$('.show-data').hide();
+			$('.close-gi').hide();
+			$(".small").hide();
+			$(".small-mini").show();
+		});
 			
-			
-		} // </if $(window).width() < 760
+	} // </if $(window).width() < 760
+	else{
+		$('.show-data').show();
+		$(".small").show();
+		$(".small-mini").hide();
+		$('.close-gi').hide();
+		$('.grid-item-2').removeClass('fullscreen');
+	}
+
+} // End of resize function
+
+
+// Call the ready function:
+$(document).ready(function(){
+	resize();
+	$(window).resize(resize);
 });
+
 		
 <?php echo '</script'; ?>
 >
+
+
 <style>
 * {
   box-sizing: border-box;
@@ -93,6 +114,7 @@ body {
 .show-data .small{
 	font-size:16px;
 }
+
 /*///////////////////////////////////////////////////////////*/
 /*MEDIA SECTION:*/
 @media screen and (max-width:767px) {
@@ -109,8 +131,24 @@ body {
 		position: fixed; 
 		top: 0; 
 		left: 0; 
-		background:#ffffff;
+		background:#f3f1f1;
+
+		/* Animation */
+		animation: myAnim 0.5s ease 0s 1 normal forwards;
  	}
+
+	/* keyframes  */
+	@keyframes myAnim {
+		0% {
+			transform: scale(0.5);
+		}
+
+		100% {
+			transform: scale(1);
+		}
+	}
+
+
 	a.close-gi{
 		color:rgb(185, 65, 65);
 		font-size:35px;
@@ -264,7 +302,32 @@ echo $_smarty_tpl->tpl_vars['DriverConfStatus']->value[$_prefixVariable2];?>
 }
 }
 ?> 	
-</div> <?php echo '<script'; ?>
+</div> 
+
+<div class="dashboard-legend">
+	Transfer status:
+	<ul>
+		<i class="fa fa-circle-o text-blue"></i> Active |
+		<i class="fa fa-circle-o text-orange"></i> Changed |
+		<i class="fa fa-question-circle text-orange"></i> Temp |
+		<i class="fa fa-times-circle" style="color:#c00"></i> Cancelled |
+		<i class="fa fa-check-circle text-green"></i> Completed<br>
+	</ul><br>
+	Driver confirmation status:
+	<ul>
+		<i class="fa fa-car" style="color:#c00"></i> No driver |
+		<i class="fa fa-info-circle text-orange"></i> Not Confirmed |
+		<i class="fa fa-thumbs-up text-blue"></i> Confirmed |
+		<i class="fa fa-car text-blue"></i> Ready |
+		<i class="fa fa-thumbs-down" style="color:#c00"></i> Declined |
+		<i class="fa fa-user-times" style="color:#c00"></i> No-show |
+		<i class="fa fa-black-tie" style="color:#c00"></i> Driver error |
+		<i class="fa fa-check-square text-green"></i> Completed
+	</ul>
+</div>
+
+
+<?php echo '<script'; ?>
 >
 
 	$(".mytooltip").popover({trigger:'hover', html:true, placement:'bottom'});

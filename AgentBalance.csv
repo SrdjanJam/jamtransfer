@@ -1,4 +1,2 @@
 ReferenceNo;OrderKey;PickupDate;Passenger;PaxNo;Veh.Type;Route;Agent;InvoiceAmt;DriversPrice;
-;128775-1;2021-11-02;Sanja Bojanic;3;3;Ljubljana Airport-Ljubljana;Sky Multicom doo;32.98;26.00;
-;128775-2;2021-11-05;Sanja Bojanic;3;3;Ljubljana-Ljubljana Airport;Sky Multicom doo;32.98;26.00;
-;;;;;;0;;;;
+;;;;;;;;;;

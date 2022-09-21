@@ -33,14 +33,14 @@
 	$smarty->assign('drivers',$sdArray);
 	
 
-	$column = 'PickupDate';
+	$column = 'SubPickupTime';
 	$order = 'ASC';
 	$where = " WHERE DriverID = " . $_SESSION['UseDriverID'];
 
-	$order = " ASC, SubPickupTime ASC";
+	$order = " ASC";
 	//$where .= " AND SubDriver = 0 ";
 	if (($_REQUEST['Date'] != null)) $where .= " AND PickupDate = '".$_REQUEST['Date']."' "; 
-	else $where .= " AND SubDriver = 0 AND PickupDate > CURDATE()";
+	else $where .= " AND PickupDate > CURDATE()";
 	$where .= " AND TransferStatus < '6' AND TransferStatus != '3' AND TransferStatus != '4'
 				AND DriverConfStatus != '3' ";
 

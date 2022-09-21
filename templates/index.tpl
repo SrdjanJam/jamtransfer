@@ -185,7 +185,7 @@
 								<ul class="dropdown-menu animated fadeInRight m-t-xs">
 									<li><a href="profile" data-param="">Profile</a></li>
 									<li class="divider"></li>
-									<li><a href='logout'>Logout</a></li>
+									<li><a href='logout.php'>Logout</a></li>
 								</ul>
 							</div>
 						</li>
@@ -280,7 +280,7 @@
 							</h2>
 						 </li>
 						 <li>
-							<a href='logout'>
+							<a href='logout.php'>
 							<i class="fa fa-sign-out"></i>Logout
 							</a>
 						 </li>

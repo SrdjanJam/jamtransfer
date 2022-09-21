@@ -1,13 +1,10 @@
 <?
-
-
 // Sprema adresu na koju korisnik zeli doci
 // ali ako nije logiran, ne moze
 // nakon Logina vraca korisnika na spremljenu stranicu
 $_SESSION['InitialRequest'] = $_SERVER['REQUEST_URI'];
 
 require_once 'pathToVars.php';
-
 // LOGIN
 if(!isset($_SESSION['UserAuthorized']) or $_SESSION['UserAuthorized'] == false) {
 	require_once 'login.php';
@@ -29,6 +26,8 @@ else $activeFolder = 'cms/'.trim( strtolower($_SESSION['GroupProfile']) );
 $modules_arr='';
 if(isset($_SESSION['UseDriverID'])) $AuthLevelID=43;
 else $AuthLevelID=$_SESSION['AuthLevelID'];
+if ($AuthLevelID==31) $AuthLevelID=43;
+
 $sql="SELECT ModulID FROM `v4_ModulesLevel` WHERE AuthLevelID=".$AuthLevelID;
 $result = $db->RunQuery($sql);
 while($row = $result->fetch_array(MYSQLI_ASSOC)){
@@ -105,8 +104,7 @@ if (count($mdk)==1) {
 }
 //staro resenje 
 else {
-	require_once $activeFolder . '/' . 'controler.php';	
-	$smarty->assign('title',$activePage);
+	exit('Page not found');
 }
  
 // display

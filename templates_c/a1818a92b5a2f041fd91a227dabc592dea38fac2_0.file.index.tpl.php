@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.32, created on 2022-09-12 12:35:03
+/* Smarty version 3.1.32, created on 2022-09-20 11:57:43
   from 'C:\wamp\www\jamtransfer\templates\index.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.32',
-  'unifunc' => 'content_631f277762a834_63045932',
+  'unifunc' => 'content_63298e9701ed12_80511155',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'a1818a92b5a2f041fd91a227dabc592dea38fac2' => 
     array (
       0 => 'C:\\wamp\\www\\jamtransfer\\templates\\index.tpl',
-      1 => 1662986100,
+      1 => 1663591604,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:pageList.tpl' => 1,
   ),
 ),false)) {
-function content_631f277762a834_63045932 (Smarty_Internal_Template $_smarty_tpl) {
+function content_63298e9701ed12_80511155 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html>
 	<head>
@@ -287,7 +287,7 @@ _init.js"><?php echo '</script'; ?>
 								<ul class="dropdown-menu animated fadeInRight m-t-xs">
 									<li><a href="profile" data-param="">Profile</a></li>
 									<li class="divider"></li>
-									<li><a href='logout'>Logout</a></li>
+									<li><a href='logout.php'>Logout</a></li>
 								</ul>
 							</div>
 						</li>
@@ -421,7 +421,7 @@ for ($__section_pom_2_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_po
 							</h2>
 						 </li>
 						 <li>
-							<a href='logout'>
+							<a href='logout.php'>
 							<i class="fa fa-sign-out"></i>Logout
 							</a>
 						 </li>
