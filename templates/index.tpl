@@ -151,6 +151,7 @@
 		{/if}		
 	</head>	
 
+	{* INCLUDE TPL: *}
 	{include file="{$root}/templates/add-style.tpl"}
 
 	<body class="fixed-top" style="height:100%!important;font-size:16px">
@@ -190,9 +191,9 @@
 							</div>
 						</li>
 						{if isset($smarty.session.UseDriverName)}
-						<li class="nav-header">
+						<li class="nav-header" style="padding: 5px 0 5px 2px">
 							<strong class="font-bold">{$smarty.session.UseDriverName}</strong>
-							<a href="setout.php">Setout</a>
+							<a href="setout.php" style="padding: 5px 0 5px 2px">Setout</a>
 						</li>
 						{/if}
 						{section name=index loop=$menu1}
@@ -260,6 +261,7 @@
 					overflow: hidden;
 					">
 
+				{* .header row border-bottom *}
 				<div class="header row border-bottom">
 				   <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
 					  <div class="navbar-header">
@@ -272,12 +274,7 @@
 					  </div>					  					  						
 					  <ul class="nav navbar-top-links navbar-right">
 						 <li>
-							<h2>
-								<span class="m-r-sm text-muted">
-									{$title}
-									{if isset($smarty.request.Date)}/{$smarty.request.Date}{/if}
-								</span>
-							</h2>
+							<h2><span class="m-r-sm text-muted">{$title}</span></h2>
 						 </li>
 						 <li>
 							<a href='logout.php'>
@@ -286,29 +283,36 @@
 						 </li>
 					  </ul>
 				   </nav>
-				</div>   
+				</div> {* /.header row border-bottom *}
 			
 				{if not $isNew and isset($pageList)}
-				<div class="header">  
-					{include file="pageListHeader.tpl"} 				   
-				</div>
+
+					{* .header *}
+					<div class="header">  
+						{include file="pageListHeader.tpl"} 				   
+					</div> {* /.header *}
+
 				{/if}
 				{if $page eq 'Price Rules'}	
-				<div class="header row"> 
-					<div class="pull-left">
-						<span>Rule: <strong>{$smarty.request.rulesType}</strong></span>
-						{if $routeName}<span>Route:<strong>{$routeName}</strong></span>{/if}
-						{if $vehicleName}<span>Vehicle:<strong>{$vehicleName}</strong></span>{/if}
 
-					</div>
-					<div class="pull-right">
-						<button type="submit" class="btn btn-info" title="{$SAVE_CHANGES}" >
-							<i class="fa fa-save"></i>
-						</button>					
-					</div>
-				</div>	
+					{* .header row *}
+					<div class="header row"> 
+						<div class="pull-left">
+							<span>Rule: <strong>{$smarty.request.rulesType}</strong></span>
+							{if $routeName}<span>Route:<strong>{$routeName}</strong></span>{/if}
+							{if $vehicleName}<span>Vehicle:<strong>{$vehicleName}</strong></span>{/if}
+
+						</div>
+						<div class="pull-right">
+							<button type="submit" class="btn btn-info" title="{$SAVE_CHANGES}" >
+								<i class="fa fa-save"></i>
+							</button>					
+						</div>
+					</div> {* /.header row *}
+
 				{/if}
 					
+				{* .body row white-bg *}
 				<div class="body row white-bg">
 					{if isset($pageOLD)}
 						NOT MODEL VIEW CONTROL
@@ -322,7 +326,9 @@
 						{$page_render}
 						SEMI MODEL VIEW CONTROL via OB_GET_CONTENTS
 					{/if}				  
-				</div>
+				</div> {* / .body row white-bg *}
+
+				{* .footer row *}
 				<div class="footer row">
 					{if not $isNew and isset($pageList)}				
 					<div id="pageSelect" class="pull-left"></div>
@@ -331,7 +337,7 @@
 					  Powered by <strong>Jamtransfer</strong>
 					</div>
 					<div class="backdrop"><div class="spiner"></div></div>
-				</div>
+				</div>{* /.footer row *}
 
 			</div> {* End of page-wrapper *}
 
@@ -342,11 +348,12 @@
 	</body>
 </html>
 
-	{literal}
+
+{literal}
 	<script>
 		document.addEventListener("keydown", function(event) {
-		  //event.preventDefault();
-		  if (event.which==121) window.open(window.location.href+'/help','_blank');
+			//event.preventDefault();
+			if (event.which==121) window.open(window.location.href+'/help','_blank');
 		})	
 		$(document).ready(function() {
 			$(".datepicker").pickadate({format{/literal}:{literal} 'yyyy-mm-dd'});
@@ -355,9 +362,9 @@
 		
 		$.ajaxSetup({
 			beforeSend: function (xhr,settings) {
-			   return settings;
+				return settings;
 			}
 		});
 	</script>
-	{/literal}
+{/literal}
 	
