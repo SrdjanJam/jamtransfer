@@ -20,10 +20,33 @@
 			margin-left: 10px;			
 		}		
 		.dropzoneN{
+		}		
+		.marked{
+			font-size: 150%; 
+			color: green;
+		}
+		a{
+			color: gray;
 		}
 	</style>
 
     <body>
+		<div style="text-align: center;">
+			<a href='{$root_home}distribution/{$days[2]}'>
+				<i class="fa fa-arrow-left" aria-hidden="true"></i>		
+			</a>		
+			{section name=pom loop=$days}
+				<a {if $days[pom] eq $smarty.request.Date}class='marked'{/if} href='{$root_home}distribution/{$days[pom]}'>
+					{$days[pom]}
+				</a>
+			{/section}
+			<a href='{$root_home}distribution/{$days[4]}'>
+				<i class="fa fa-arrow-right" aria-hidden="true"></i>		
+			</a>
+			&nbsp;&nbsp;&nbsp;&nbsp;
+			&nbsp;&nbsp;&nbsp;&nbsp;
+			<a class='marked' href='{$root_home}calendar'>Calendar</a>
+		</div>
         <div class="row transfers"> 
 		
 			<div class="col-md-10">

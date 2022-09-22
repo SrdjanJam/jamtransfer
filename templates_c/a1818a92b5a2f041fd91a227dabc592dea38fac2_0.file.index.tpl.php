@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.32, created on 2022-09-20 11:57:43
+/* Smarty version 3.1.32, created on 2022-09-22 07:38:04
   from 'C:\wamp\www\jamtransfer\templates\index.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.32',
-  'unifunc' => 'content_63298e9701ed12_80511155',
+  'unifunc' => 'content_632bf4bcaa9117_26201478',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'a1818a92b5a2f041fd91a227dabc592dea38fac2' => 
     array (
       0 => 'C:\\wamp\\www\\jamtransfer\\templates\\index.tpl',
-      1 => 1663591604,
+      1 => 1663762183,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:pageList.tpl' => 1,
   ),
 ),false)) {
-function content_63298e9701ed12_80511155 (Smarty_Internal_Template $_smarty_tpl) {
+function content_632bf4bcaa9117_26201478 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html>
 	<head>
@@ -250,7 +250,7 @@ _init.js"><?php echo '</script'; ?>
 		<?php }?>		
 	</head>	
 
-	<?php $_smarty_tpl->_subTemplateRender(((string)$_smarty_tpl->tpl_vars['root']->value)."/templates/add-style.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, true);
+		<?php $_smarty_tpl->_subTemplateRender(((string)$_smarty_tpl->tpl_vars['root']->value)."/templates/add-style.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, true);
 ?>
 
 	<body class="fixed-top" style="height:100%!important;font-size:16px">
@@ -292,10 +292,10 @@ _init.js"><?php echo '</script'; ?>
 							</div>
 						</li>
 						<?php if (isset($_SESSION['UseDriverName'])) {?>
-						<li class="nav-header">
+						<li class="nav-header" style="padding: 5px 0 5px 2px">
 							<strong class="font-bold"><?php echo $_SESSION['UseDriverName'];?>
 </strong>
-							<a href="setout.php">Setout</a>
+							<a href="setout.php" style="padding: 5px 0 5px 2px">Setout</a>
 						</li>
 						<?php }?>
 						<?php
@@ -400,7 +400,7 @@ for ($__section_pom_2_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_po
 					overflow: hidden;
 					">
 
-				<div class="header row border-bottom">
+								<div class="header row border-bottom">
 				   <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
 					  <div class="navbar-header">
 
@@ -411,14 +411,8 @@ for ($__section_pom_2_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_po
 					  </div>					  					  						
 					  <ul class="nav navbar-top-links navbar-right">
 						 <li>
-							<h2>
-								<span class="m-r-sm text-muted">
-									<?php echo $_smarty_tpl->tpl_vars['title']->value;?>
-
-									<?php if (isset($_REQUEST['Date'])) {?>/<?php echo $_REQUEST['Date'];
-}?>
-								</span>
-							</h2>
+							<h2><span class="m-r-sm text-muted"><?php echo $_smarty_tpl->tpl_vars['title']->value;?>
+</span></h2>
 						 </li>
 						 <li>
 							<a href='logout.php'>
@@ -427,35 +421,36 @@ for ($__section_pom_2_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_po
 						 </li>
 					  </ul>
 				   </nav>
-				</div>   
-			
+				</div> 			
 				<?php if (!$_smarty_tpl->tpl_vars['isNew']->value && isset($_smarty_tpl->tpl_vars['pageList']->value)) {?>
-				<div class="header">  
-					<?php $_smarty_tpl->_subTemplateRender("file:pageListHeader.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
+
+										<div class="header">  
+						<?php $_smarty_tpl->_subTemplateRender("file:pageListHeader.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?> 				   
-				</div>
+					</div> 
 				<?php }?>
 				<?php if ($_smarty_tpl->tpl_vars['page']->value == 'Price Rules') {?>	
-				<div class="header row"> 
-					<div class="pull-left">
-						<span>Rule: <strong><?php echo $_REQUEST['rulesType'];?>
+
+										<div class="header row"> 
+						<div class="pull-left">
+							<span>Rule: <strong><?php echo $_REQUEST['rulesType'];?>
 </strong></span>
-						<?php if ($_smarty_tpl->tpl_vars['routeName']->value) {?><span>Route:<strong><?php echo $_smarty_tpl->tpl_vars['routeName']->value;?>
+							<?php if ($_smarty_tpl->tpl_vars['routeName']->value) {?><span>Route:<strong><?php echo $_smarty_tpl->tpl_vars['routeName']->value;?>
 </strong></span><?php }?>
-						<?php if ($_smarty_tpl->tpl_vars['vehicleName']->value) {?><span>Vehicle:<strong><?php echo $_smarty_tpl->tpl_vars['vehicleName']->value;?>
+							<?php if ($_smarty_tpl->tpl_vars['vehicleName']->value) {?><span>Vehicle:<strong><?php echo $_smarty_tpl->tpl_vars['vehicleName']->value;?>
 </strong></span><?php }?>
 
-					</div>
-					<div class="pull-right">
-						<button type="submit" class="btn btn-info" title="<?php echo $_smarty_tpl->tpl_vars['SAVE_CHANGES']->value;?>
+						</div>
+						<div class="pull-right">
+							<button type="submit" class="btn btn-info" title="<?php echo $_smarty_tpl->tpl_vars['SAVE_CHANGES']->value;?>
 " >
-							<i class="fa fa-save"></i>
-						</button>					
-					</div>
-				</div>	
+								<i class="fa fa-save"></i>
+							</button>					
+						</div>
+					</div> 
 				<?php }?>
 					
-				<div class="body row white-bg">
+								<div class="body row white-bg">
 					<?php if (isset($_smarty_tpl->tpl_vars['pageOLD']->value)) {?>
 						NOT MODEL VIEW CONTROL
 					<?php } elseif (isset($_smarty_tpl->tpl_vars['page']->value)) {?>
@@ -471,8 +466,8 @@ for ($__section_pom_2_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_po
 
 						SEMI MODEL VIEW CONTROL via OB_GET_CONTENTS
 					<?php }?>				  
-				</div>
-				<div class="footer row">
+				</div> 
+								<div class="footer row">
 					<?php if (!$_smarty_tpl->tpl_vars['isNew']->value && isset($_smarty_tpl->tpl_vars['pageList']->value)) {?>				
 					<div id="pageSelect" class="pull-left"></div>
 					<?php }?>
@@ -481,7 +476,6 @@ for ($__section_pom_2_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_po
 					</div>
 					<div class="backdrop"><div class="spiner"></div></div>
 				</div>
-
 			</div> 
 		</div> 
 		<input type='hidden' id='local' value='<?php echo $_smarty_tpl->tpl_vars['local']->value;?>
@@ -490,12 +484,13 @@ for ($__section_pom_2_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_po
 	</body>
 </html>
 
-	
+
+
 	<?php echo '<script'; ?>
 >
 		document.addEventListener("keydown", function(event) {
-		  //event.preventDefault();
-		  if (event.which==121) window.open(window.location.href+'/help','_blank');
+			//event.preventDefault();
+			if (event.which==121) window.open(window.location.href+'/help','_blank');
 		})	
 		$(document).ready(function() {
 			$(".datepicker").pickadate({format: 'yyyy-mm-dd'});
@@ -504,11 +499,11 @@ for ($__section_pom_2_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_po
 		
 		$.ajaxSetup({
 			beforeSend: function (xhr,settings) {
-			   return settings;
+				return settings;
 			}
 		});
 	<?php echo '</script'; ?>
 >
-	
+
 	<?php }
 }

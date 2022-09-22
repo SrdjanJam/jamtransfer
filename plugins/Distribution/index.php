@@ -39,8 +39,9 @@
 
 	$order = " ASC";
 	//$where .= " AND SubDriver = 0 ";
-	if (($_REQUEST['Date'] != null)) $where .= " AND PickupDate = '".$_REQUEST['Date']."' "; 
-	else $where .= " AND PickupDate > CURDATE()";
+	if (!isset($_REQUEST['Date'])) $_REQUEST['Date']=date('Y-m-d');
+	
+	$where .= " AND PickupDate = '".$_REQUEST['Date']."' "; 
 	$where .= " AND TransferStatus < '6' AND TransferStatus != '3' AND TransferStatus != '4'
 				AND DriverConfStatus != '3' ";
 
@@ -63,6 +64,14 @@
 		$transfers[]=$transfersR;
 		
 	}
+	
 	$smarty->assign('transfers',$transfers);
+	$startday=strtotime($_REQUEST['Date'])-3*24*3600;
+	$days=array();
+	for ($i=0; $i<7; $i++) 
+	{	
+		$days[]=gmdate('Y-m-d',$startday+$i*24*3600);
+	}	
+	$smarty->assign('days',$days);	
 
 	

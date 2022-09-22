@@ -166,7 +166,12 @@ body {
 				<div class="grid-item-2" id="grid{$month_transfers[pom].nom}">
 					<div class="days" id="day{$month_transfers[pom].nom}">
 						{* <div class="cal_days l"><b>{$month_transfers[pom].nom}</b></div> *}
-							<div class="cal_days l"><b>{$month_transfers[pom].nom}</b> <a target='_blank' href='{$root_home}distribution/{$month_transfers[pom].date}'>Dist</a></div>
+							<div class="cal_days l">
+								<b>{$month_transfers[pom].nom}</b> 
+								{if $smarty.session.AuthLevelID eq '31' or isset($smarty.session.UseDriverID)}
+									<a target='_blank' href='{$root_home}distribution/{$month_transfers[pom].date}'>Distribution</a>
+								{/if}	
+							</div>
 									<div class="show-data">
 										{* <div class="cal_days l"><b>{$month_transfers[pom].nom}</b></div> *}
 										{* <br /> *}

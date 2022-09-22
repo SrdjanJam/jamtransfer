@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.32, created on 2022-09-21 11:54:07
+/* Smarty version 3.1.32, created on 2022-09-22 09:45:23
   from 'c:\wamp\www\jamtransfer\plugins\Distribution\templates\index.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.32',
-  'unifunc' => 'content_632afb5f838ac8_35232336',
+  'unifunc' => 'content_632c2eb31de328_59909017',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '0ce427e459c94127294fe8c13ded3834cabf8fb9' => 
     array (
       0 => 'c:\\wamp\\www\\jamtransfer\\plugins\\Distribution\\templates\\index.tpl',
-      1 => 1663761242,
+      1 => 1663839920,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_632afb5f838ac8_35232336 (Smarty_Internal_Template $_smarty_tpl) {
+function content_632c2eb31de328_59909017 (Smarty_Internal_Template $_smarty_tpl) {
 ?>	<style>
         body{
 			font-size: 32px;
@@ -43,19 +43,59 @@ function content_632afb5f838ac8_35232336 (Smarty_Internal_Template $_smarty_tpl)
 			margin-left: 10px;			
 		}		
 		.dropzoneN{
+		}		
+		.marked{
+			font-size: 150%; 
+			color: green;
+		}
+		a{
+			color: gray;
 		}
 	</style>
 
     <body>
+		<div style="text-align: center;">
+			<a href='<?php echo $_smarty_tpl->tpl_vars['root_home']->value;?>
+distribution/<?php echo $_smarty_tpl->tpl_vars['days']->value[2];?>
+'>
+				<i class="fa fa-arrow-left" aria-hidden="true"></i>		
+			</a>		
+			<?php
+$__section_pom_0_loop = (is_array(@$_loop=$_smarty_tpl->tpl_vars['days']->value) ? count($_loop) : max(0, (int) $_loop));
+$__section_pom_0_total = $__section_pom_0_loop;
+$_smarty_tpl->tpl_vars['__smarty_section_pom'] = new Smarty_Variable(array());
+if ($__section_pom_0_total !== 0) {
+for ($__section_pom_0_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_pom']->value['index'] = 0; $__section_pom_0_iteration <= $__section_pom_0_total; $__section_pom_0_iteration++, $_smarty_tpl->tpl_vars['__smarty_section_pom']->value['index']++){
+?>
+				<a <?php if ($_smarty_tpl->tpl_vars['days']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_pom']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_pom']->value['index'] : null)] == $_REQUEST['Date']) {?>class='marked'<?php }?> href='<?php echo $_smarty_tpl->tpl_vars['root_home']->value;?>
+distribution/<?php echo $_smarty_tpl->tpl_vars['days']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_pom']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_pom']->value['index'] : null)];?>
+'>
+					<?php echo $_smarty_tpl->tpl_vars['days']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_pom']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_pom']->value['index'] : null)];?>
+
+				</a>
+			<?php
+}
+}
+?>
+			<a href='<?php echo $_smarty_tpl->tpl_vars['root_home']->value;?>
+distribution/<?php echo $_smarty_tpl->tpl_vars['days']->value[4];?>
+'>
+				<i class="fa fa-arrow-right" aria-hidden="true"></i>		
+			</a>
+			&nbsp;&nbsp;&nbsp;&nbsp;
+			&nbsp;&nbsp;&nbsp;&nbsp;
+			<a class='marked' href='<?php echo $_smarty_tpl->tpl_vars['root_home']->value;?>
+calendar'>Calendar</a>
+		</div>
         <div class="row transfers"> 
 		
 			<div class="col-md-10">
 				<?php
-$__section_pom1_0_loop = (is_array(@$_loop=$_smarty_tpl->tpl_vars['drivers']->value) ? count($_loop) : max(0, (int) $_loop));
-$__section_pom1_0_total = $__section_pom1_0_loop;
+$__section_pom1_1_loop = (is_array(@$_loop=$_smarty_tpl->tpl_vars['drivers']->value) ? count($_loop) : max(0, (int) $_loop));
+$__section_pom1_1_total = $__section_pom1_1_loop;
 $_smarty_tpl->tpl_vars['__smarty_section_pom1'] = new Smarty_Variable(array());
-if ($__section_pom1_0_total !== 0) {
-for ($__section_pom1_0_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_pom1']->value['index'] = 0; $__section_pom1_0_iteration <= $__section_pom1_0_total; $__section_pom1_0_iteration++, $_smarty_tpl->tpl_vars['__smarty_section_pom1']->value['index']++){
+if ($__section_pom1_1_total !== 0) {
+for ($__section_pom1_1_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_pom1']->value['index'] = 0; $__section_pom1_1_iteration <= $__section_pom1_1_total; $__section_pom1_1_iteration++, $_smarty_tpl->tpl_vars['__smarty_section_pom1']->value['index']++){
 ?>
 				<div class="col-md-3 dropzoneN driver-style" data-id="<?php echo $_smarty_tpl->tpl_vars['drivers']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_pom1']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_pom1']->value['index'] : null)]['DriverID'];?>
 ">
@@ -63,11 +103,11 @@ for ($__section_pom1_0_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_p
  <i class="fa fa-eye-slash driver_hide"></i>
 					<div class='sort'>
 					<?php
-$__section_pom2_1_loop = (is_array(@$_loop=$_smarty_tpl->tpl_vars['transfers']->value) ? count($_loop) : max(0, (int) $_loop));
-$__section_pom2_1_total = $__section_pom2_1_loop;
+$__section_pom2_2_loop = (is_array(@$_loop=$_smarty_tpl->tpl_vars['transfers']->value) ? count($_loop) : max(0, (int) $_loop));
+$__section_pom2_2_total = $__section_pom2_2_loop;
 $_smarty_tpl->tpl_vars['__smarty_section_pom2'] = new Smarty_Variable(array());
-if ($__section_pom2_1_total !== 0) {
-for ($__section_pom2_1_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_pom2']->value['index'] = 0; $__section_pom2_1_iteration <= $__section_pom2_1_total; $__section_pom2_1_iteration++, $_smarty_tpl->tpl_vars['__smarty_section_pom2']->value['index']++){
+if ($__section_pom2_2_total !== 0) {
+for ($__section_pom2_2_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_pom2']->value['index'] = 0; $__section_pom2_2_iteration <= $__section_pom2_2_total; $__section_pom2_2_iteration++, $_smarty_tpl->tpl_vars['__smarty_section_pom2']->value['index']++){
 ?>
 						<?php if ($_smarty_tpl->tpl_vars['drivers']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_pom1']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_pom1']->value['index'] : null)]['DriverID'] == $_smarty_tpl->tpl_vars['transfers']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_pom2']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_pom2']->value['index'] : null)]['SubDriver']) {?>
 							<div data-sort="<?php echo $_smarty_tpl->tpl_vars['transfers']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_pom2']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_pom2']->value['index'] : null)]['PickupTime'];?>
@@ -131,11 +171,11 @@ echo $_smarty_tpl->tpl_vars['transfers']->value[(isset($_smarty_tpl->tpl_vars['_
 			<div class="col-md-2 dropzoneN transfers-style" data-id='0'>
 				<div class="sort">
 				<?php
-$__section_pom1_2_loop = (is_array(@$_loop=$_smarty_tpl->tpl_vars['transfers']->value) ? count($_loop) : max(0, (int) $_loop));
-$__section_pom1_2_total = $__section_pom1_2_loop;
+$__section_pom1_3_loop = (is_array(@$_loop=$_smarty_tpl->tpl_vars['transfers']->value) ? count($_loop) : max(0, (int) $_loop));
+$__section_pom1_3_total = $__section_pom1_3_loop;
 $_smarty_tpl->tpl_vars['__smarty_section_pom1'] = new Smarty_Variable(array());
-if ($__section_pom1_2_total !== 0) {
-for ($__section_pom1_2_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_pom1']->value['index'] = 0; $__section_pom1_2_iteration <= $__section_pom1_2_total; $__section_pom1_2_iteration++, $_smarty_tpl->tpl_vars['__smarty_section_pom1']->value['index']++){
+if ($__section_pom1_3_total !== 0) {
+for ($__section_pom1_3_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_pom1']->value['index'] = 0; $__section_pom1_3_iteration <= $__section_pom1_3_total; $__section_pom1_3_iteration++, $_smarty_tpl->tpl_vars['__smarty_section_pom1']->value['index']++){
 ?>
 					<?php if ($_smarty_tpl->tpl_vars['transfers']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_pom1']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_pom1']->value['index'] : null)]['SubDriver'] == 0) {?>				
 						<div data-sort="<?php echo $_smarty_tpl->tpl_vars['transfers']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_pom1']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_pom1']->value['index'] : null)]['PickupTime'];?>
