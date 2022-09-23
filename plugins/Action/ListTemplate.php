@@ -1,4 +1,13 @@
-
+<?
+	$arr_row['id']=1;
+	$arr_row['name']="Expence";
+	$arr_all[]=$arr_row;		
+	$arr_row['id']=2;
+	$arr_row['name']="Activity";
+	$arr_all[]=$arr_row;
+	$smarty->assign('options',$arr_all);
+	$smarty->assign('selecttype',true);
+?>	
 <script type="text/x-handlebars-template" id="ItemListTemplate">
 
 	{{#each Item}}

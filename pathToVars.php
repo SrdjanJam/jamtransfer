@@ -125,7 +125,10 @@ switch ($activePage) {
 		break;	
 	case 'distribution':
 		if ($pathVars->fetchByIndex($indexStart + 1)){
-			$_REQUEST['Date']=$pathVars->fetchByIndex($indexStart + 1);
+			if($pathVars->fetchByIndex($indexStart + 1) =="vehicles"){
+				$includeFile = "/vehicles.php";
+				$includeFileTpl = "/vehicles.tpl";	
+			} else $_REQUEST['Date']=$pathVars->fetchByIndex($indexStart + 1);
 		}
 		break;			
 	default:

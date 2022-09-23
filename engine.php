@@ -12,21 +12,14 @@ if(!isset($_SESSION['UserAuthorized']) or $_SESSION['UserAuthorized'] == false) 
 }
 else setcookie("page", $activePage, time() + (7*24*60*60));
 
-// LOGIN AS USER
-if(isset($_REQUEST['sa_u']) and $_REQUEST['sa_u'] !='' and is_numeric($_REQUEST['sa_u'])
-and isset($_REQUEST['sa_l']) and $_REQUEST['sa_l'] !='' and is_numeric($_REQUEST['sa_l'])) {
-	require_once 'loginasuser.php'; 
-}
-// SELECT FOLDER/PAGE TO LOAD, ovisno o profilu korisnika
-if (isset($_REQUEST['af']) && $_REQUEST['af']) $_SESSION['af']=$_REQUEST['af'];
-if (isset ($_SESSION['af']) && $_SESSION['af']) $activeFolder=$_SESSION['af'];
-else $activeFolder = 'cms/'.trim( strtolower($_SESSION['GroupProfile']) );
-
 // kontrola pristupa
 $modules_arr='';
 if(isset($_SESSION['UseDriverID'])) $AuthLevelID=43;
 else $AuthLevelID=$_SESSION['AuthLevelID'];
-if ($AuthLevelID==31) $AuthLevelID=43;
+if ($AuthLevelID==31) {
+	$AuthLevelID=43;
+	$_SESSION['UseDriverID']=$_SESSION['AuthLevelID'];
+}	
 
 $sql="SELECT ModulID FROM `v4_ModulesLevel` WHERE AuthLevelID=".$AuthLevelID;
 $result = $db->RunQuery($sql);
@@ -36,14 +29,16 @@ while($row = $result->fetch_array(MYSQLI_ASSOC)){
 $modules_arr = substr($modules_arr,0,strlen($modules_arr)-1);
 // meni
 require_once 'db/v4_Modules.php';
+$active_pages=array();
 $md = new v4_Modules();
 $mdk = $md->getKeysBy('MenuOrder ' ,'asc', "where ParentID=0 AND ModulID in (".$modules_arr.")");
 $menu1=array();
 foreach($mdk as $key) {
 	$md->getRow($key);
 	$row1=array();
-	$row1['title']=$md->getName();;
-	$row1['link']=$md->getCode();	
+	$row1['title']=$md->getName();
+	$row1['link']=$md->getCode();
+	$active_pages[]=$md->getCode();			
 	$row1['icon']=$md->getIcon();
 	$mdk2 = $md->getKeysBy('MenuOrder ' ,'asc', "where ParentID=".$md->getModulID()." AND ModulID in (".$modules_arr.")");
 	$menu2=array();
@@ -54,8 +49,9 @@ foreach($mdk as $key) {
 		foreach($mdk2 as $key2) {
 			$md->getRow($key2);
 			$row2=array();
-			$row2['title']=$md->getName();;
+			$row2['title']=$md->getName();
 			$row2['link']=$md->getCode();	
+			$active_pages[]=$md->getCode();			
 			//$row2['icon']=$md->getIcon();
 			if ($md->getCode()==$activePage) {
 				$row2['active']='active';
@@ -73,7 +69,7 @@ foreach($mdk as $key) {
 }	
 $smarty->assign('menu1',$menu1);
 $mdk = $md->getKeysBy('ModulID ' ,'asc', "where code='$activePage'");
-if (count($mdk)==1) {
+if (count($mdk)==1 && in_array($activePage,$active_pages)) {
 	$key=$mdk[0];
 	$md->getRow($key);
 	if (is_dir($modulesPath . '/'.$md->getBase())) {
@@ -104,7 +100,8 @@ if (count($mdk)==1) {
 }
 //staro resenje 
 else {
-	exit('Page not found');
+	if (count($mdk)==1) header("Location: ". ROOT_HOME . '/dashboard');
+	else exit('Page not found');
 }
  
 // display

@@ -32,6 +32,9 @@
 
     <body>
 		<div style="text-align: center;">
+			<a class='marked' href='{$root_home}calendar'>Calendar</a>	
+			&nbsp;&nbsp;&nbsp;&nbsp;
+			&nbsp;&nbsp;&nbsp;&nbsp;			
 			<a href='{$root_home}distribution/{$days[2]}'>
 				<i class="fa fa-arrow-left" aria-hidden="true"></i>		
 			</a>		
@@ -45,14 +48,22 @@
 			</a>
 			&nbsp;&nbsp;&nbsp;&nbsp;
 			&nbsp;&nbsp;&nbsp;&nbsp;
-			<a class='marked' href='{$root_home}calendar'>Calendar</a>
+			<a class='marked' href='{$root_home}distribution/vehicles'>Vehicles</a>
 		</div>
         <div class="row transfers"> 
 		
 			<div class="col-md-10">
 				{section name=pom1 loop=$drivers}
-				<div class="col-md-3 dropzoneN driver-style" data-id="{$drivers[pom1].DriverID}">
-					{$drivers[pom1].DriverName} <i class="fa fa-eye-slash driver_hide"></i>
+				<div class="col-md-3 dropzoneN driver-style" data-svid="{$drivers[pom1].SubVehicleID}" data-id="{$drivers[pom1].DriverID}">
+					<div>{$drivers[pom1].DriverName}</div> 
+					<div>
+						{if $drivers[pom1].SubVehicleID}	
+						<small>
+							{$drivers[pom1].SubVehicleDescription} / <i class="fa fa-user"></i>{$drivers[pom1].SubVehicleCapacity}
+						</small>
+						{/if}
+						<i class="fa fa-eye-slash driver_hide"></i>
+					</div>	
 					<div class='sort'>
 					{section name=pom2 loop=$transfers}
 						{if $drivers[pom1].DriverID eq $transfers[pom2].SubDriver}
@@ -137,9 +148,10 @@
 					
 				});
 			}
-			function changeOrder(detailid,driverid) {
+			function changeOrder(detailid,driverid,subvehicleid) {
 				var link = '{/literal}{$root_home}{literal}plugins/Distribution/update.php';
-				var param = "DetailsID="+detailid+"&SubDriverID="+driverid;
+				var param = "DetailsID="+detailid+"&SubDriverID="+driverid+"&SubVehicleID="+subvehicleid;
+				alert (link+'?'+param);
 				$.ajax({
 					type: 'POST',
 					url: link,
@@ -150,7 +162,8 @@
 			$(".dropzoneN").droppable({
 				drop: function(event, ui) {
 					var driverid=$(this).attr('data-id');
-					changeOrder(window.id,driverid)
+					var subvehicleid=$(this).attr('data-svid');
+					changeOrder(window.id,driverid,subvehicleid)
 					$(".transfers").find("[data-id='" + window.id + "']").appendTo(this);	
 					$(".transfers").find("[data-id='" + window.id + "']").removeAttr('style');
 

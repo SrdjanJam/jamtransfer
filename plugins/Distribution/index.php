@@ -18,13 +18,35 @@
 	
 	$q = "SELECT * FROM v4_AuthUsers";
 	$q .= " WHERE DriverID = ".$_SESSION['UseDriverID']." AND Active=1 ORDER BY AuthUserRealName ASC";
-	$r = $db->RunQuery($q);
-
+	$r = $db->RunQuery($q);	
+	
+	$q2 = "SELECT * FROM v4_SubVehiclesSubDrivers,v4_SubVehicles";
+	$q2 .= " WHERE v4_SubVehiclesSubDrivers.OwnerID = ".$_SESSION['UseDriverID']." AND VehicleID=SubVehicleID";
+	$r2 = $db->RunQuery($q2);
+	$subvehicles=array();
+	while ($d = $r2->fetch_object()) {
+		$row = array();
+		$row['SubDriverID'] = $d->SubDriverID;
+		$row['SubVehicleID'] = $d->SubVehicleID;
+		$row['SubVehicleDescription'] = $d->VehicleDescription;
+		$row['SubVehicleCapacity'] = $d->VehicleCapacity;		
+		$subvehicles[] = $row;
+	}	
+	
 	$sdArray = array();
 
 	while ($d = $r->fetch_object()) {
 		$row = array();
 		$row['DriverID'] = $d->AuthUserID;
+		$key = array_search($d->AuthUserID, array_column($subvehicles, 'SubDriverID'));
+		if ($key) {
+			$row['SubVehicleID']=$subvehicles[$key]['SubVehicleID'];
+			$row['SubVehicleDescription']=$subvehicles[$key]['SubVehicleDescription'];
+			$row['SubVehicleID']=$subvehicles[$key]['SubVehicleID'];
+			$row['SubVehicleDescription']=$subvehicles[$key]['SubVehicleDescription'];
+			$row['SubVehicleCapacity']=$subvehicles[$key]['SubVehicleCapacity'];			
+		}	else $row['SubVehicleID']=0;
+			
 		$row['DriverName'] = $d->AuthUserRealName;
 		$row['Active'] = $d->Active;
 		$sdArray[] = $row;
