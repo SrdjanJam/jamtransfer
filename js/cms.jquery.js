@@ -592,6 +592,16 @@ return new Handlebars.SafeString(yesNoDropdown());
 });
 
 
+Handlebars.registerHelper("yesNoSlider", function(currentLevel, fieldName) {
+	function yesNoSlide() {
+		var yesNoInput = '<input style="float:right; width: 30px;" type="range" max="1" class="Choice" name="'+fieldName+'" value="'+currentLevel+'"/>';
+		return  yesNoInput;
+	}
+
+return new Handlebars.SafeString(yesNoSlide());
+
+});
+
 /*
 driverConfStatus
 */

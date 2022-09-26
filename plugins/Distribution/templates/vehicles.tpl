@@ -49,7 +49,7 @@
 			<div class="col-md-4 sort" data-id='0'>
 				{section name=pom1 loop=$vehicles}
 					{if $vehicles[pom1].SubDriver eq 0}
-						<div class="col-md-6 dropzoneN">
+						<div class="col-md-6 dropzoneN" data-id='0'>
 							<div class=" dropelement" data-sort="{$vehicles[pom1].VehicleCapacity}" data-id="{$vehicles[pom1].VehicleID}">
 								{$vehicles[pom1].VehicleDescription} / <i class="fa fa-user"></i>{$vehicles[pom1].VehicleCapacity}
 							</div>

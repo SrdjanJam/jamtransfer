@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.32, created on 2022-09-23 09:28:19
+/* Smarty version 3.1.32, created on 2022-09-26 11:23:28
   from 'c:\wamp\www\jamtransfer\plugins\Distribution\templates\vehicles.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.32',
-  'unifunc' => 'content_632d7c33aa25e4_34353869',
+  'unifunc' => 'content_63318bb073e683_85295248',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '58809821130fe8db053ca1766b5bd4ed5351d675' => 
     array (
       0 => 'c:\\wamp\\www\\jamtransfer\\plugins\\Distribution\\templates\\vehicles.tpl',
-      1 => 1663925296,
+      1 => 1664191405,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_632d7c33aa25e4_34353869 (Smarty_Internal_Template $_smarty_tpl) {
+function content_63318bb073e683_85295248 (Smarty_Internal_Template $_smarty_tpl) {
 ?>	<style>
         body{
 			font-size: 32px;
@@ -83,7 +83,7 @@ for ($__section_pom1_0_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_p
 			</div>
 
 			<!-- For drop: -->
-			<div class="col-md-4 sort" data-id='0'>
+			<div class="col-md-4 sort">
 				<?php
 $__section_pom1_1_loop = (is_array(@$_loop=$_smarty_tpl->tpl_vars['vehicles']->value) ? count($_loop) : max(0, (int) $_loop));
 $__section_pom1_1_total = $__section_pom1_1_loop;
@@ -92,7 +92,7 @@ if ($__section_pom1_1_total !== 0) {
 for ($__section_pom1_1_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_pom1']->value['index'] = 0; $__section_pom1_1_iteration <= $__section_pom1_1_total; $__section_pom1_1_iteration++, $_smarty_tpl->tpl_vars['__smarty_section_pom1']->value['index']++){
 ?>
 					<?php if ($_smarty_tpl->tpl_vars['vehicles']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_pom1']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_pom1']->value['index'] : null)]['SubDriver'] == 0) {?>
-						<div class="col-md-6 dropzoneN">
+						<div class="col-md-6 dropzoneN" data-id='0'>
 							<div class=" dropelement" data-sort="<?php echo $_smarty_tpl->tpl_vars['vehicles']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_pom1']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_pom1']->value['index'] : null)]['VehicleCapacity'];?>
 " data-id="<?php echo $_smarty_tpl->tpl_vars['vehicles']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_pom1']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_pom1']->value['index'] : null)]['VehicleID'];?>
 ">
@@ -131,7 +131,9 @@ for ($__section_pom1_1_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_p
 			function changeOrder(vehicleid,driverid) {
 				var link = '<?php echo $_smarty_tpl->tpl_vars['root_home']->value;?>
 plugins/Distribution/updateVehicles.php';
+				
 				var param = "SubVehicleID="+vehicleid+"&SubDriverID="+driverid;
+				//alert (link+'?'+param);
 				$.ajax({
 					type: 'POST',
 					url: link,
@@ -142,16 +144,17 @@ plugins/Distribution/updateVehicles.php';
 			$(".dropzoneN").droppable({
 				drop: function(event, ui) {
 					var driverid=$(this).attr('data-id');
+					alert (driverid);
 					changeOrder(window.id,driverid)
 					$(".vehicles").find("[data-id='" + window.id + "']").appendTo(this);	
 					$(".vehicles").find("[data-id='" + window.id + "']").removeAttr('style');
 
-					var result = $(this).find('.dropelement').sort(function (a, b) {
+					/*var result = $(this).find('.dropelement').sort(function (a, b) {
 						var contentA =parseInt( $(a).data('sort'));
 						var contentB =parseInt( $(b).data('sort'));
 						return (contentA < contentB) ? -1 : (contentA > contentB) ? 1 : 0;
 					});
-					$(this).find('.sort').html(result);	
+					$(this).find('.sort').html(result);	*/
 					elementdragg();	
 				}	
 			});
