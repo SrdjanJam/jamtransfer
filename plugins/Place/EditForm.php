@@ -113,7 +113,7 @@
 						<label for="Island"><?=ISLAND;?></label>
 					</div>
 					<div class="col-md-9">
-						{{yesNoSelect Island 'Island' }}
+						{{yesNoSliderEdit Island 'Island' }}
 					</div>
 				</div>
 
@@ -156,7 +156,7 @@
 						<label for="PlaceActive"><?=PLACEACTIVE;?></label>
 					</div>
 					<div class="col-md-9">
-						{{yesNoSelect PlaceActive 'PlaceActive' }}
+						{{yesNoSliderEdit PlaceActive 'PlaceActive' }}
 					</div>
 				</div>	
 				<div class="row">
@@ -164,7 +164,7 @@
 						<label for="Terminal">Terminal</label>
 					</div>
 					<div class="col-md-9">
-						{{yesNoSelect Terminal 'Terminal' }}
+						{{yesNoSliderEdit Terminal 'Terminal' }}
 					</div>
 				</div>
 				
@@ -182,7 +182,7 @@
 						<label for="DriverTerminal">Driver Terminal</label>
 					</div>
 					<div class="col-md-9">
-						{{yesNoSelect Terminal 'Terminal' }}
+						{{yesNoSliderEdit Terminal 'Terminal' }}
 					</div>
 				</div>
 				<? } ?>

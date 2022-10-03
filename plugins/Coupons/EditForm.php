@@ -140,7 +140,7 @@
 						<label for="WeekdaysOnly"><?=WEEKDAYSONLY;?></label>
 					</div>
 					<div class="col-md-9">
-						{{yesNoSelect WeekdaysOnly 'WeekdaysOnly'}}
+						{{yesNoSliderEdit WeekdaysOnly 'WeekdaysOnly'}}
 					</div>
 				</div>
 
@@ -149,7 +149,7 @@
 						<label for="ReturnOnly"><?=RETURNONLY;?></label>
 					</div>
 					<div class="col-md-9">
-						{{yesNoSelect ReturnOnly 'ReturnOnly'}}
+						{{yesNoSliderEdit ReturnOnly 'ReturnOnly'}}
 					</div>
 				</div>
 
@@ -158,7 +158,7 @@
 						<label for="Active"><?=ACTIVE;?></label>
 					</div>
 					<div class="col-md-9">
-						{{yesNoSelect Active 'Active'}}
+						{{yesNoSliderEdit Active 'Active'}}
 					</div>
 				</div>
 

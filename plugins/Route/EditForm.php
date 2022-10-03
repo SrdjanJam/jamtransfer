@@ -69,7 +69,7 @@
 						<label for="Approved"><?=APPROVED;?></label>
 					</div>
 					<div class="col-md-9">
-						{{yesNoSelect Approved 'Approved'}}
+						{{yesNoSliderEdit Approved 'Approved'}}
 					</div>
 				</div>
 
@@ -78,7 +78,7 @@
 						<label for="TopRoute">Top Route</label>
 					</div>
 					<div class="col-md-9">
-						{{yesNoSelect TopRoute 'TopRoute' }}
+						{{yesNoSliderEdit TopRoute 'TopRoute' }}
 					</div>
 				</div>
 				
