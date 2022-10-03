@@ -32,7 +32,9 @@
 		$row['SubVehicleCapacity'] = $d->VehicleCapacity;		
 		$subvehicles[] = $row;
 	}	
-	
+	// print_r($subvehicles);
+
+
 	$sdArray = array();
 
 	while ($d = $r->fetch_object()) {
@@ -50,7 +52,9 @@
 		$row['DriverName'] = $d->AuthUserRealName;
 		$row['Active'] = $d->Active;
 		$sdArray[] = $row;
+
 	}
+	// print_r($sdArray);
 	
 	$smarty->assign('drivers',$sdArray);
 	
