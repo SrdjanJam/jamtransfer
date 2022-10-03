@@ -85,12 +85,7 @@
 							<div class="row">
 								<div class="col-md-3 "><label><?= STATUS ?></label></div>
 								<div class="col-md-9">
-									<select name="Active" id="Active">
-										{{#select Active}}
-										<option value="0"><?= NOT_ACTIVE?></option>
-										<option value="1"><?= ACTIVE?></option>
-										{{/select}}
-									</select>
+									{{yesNoSliderEdit Active 'Active' }}
 								</div>
 							</div>
 
