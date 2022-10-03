@@ -123,7 +123,7 @@
 					<div class="col-md-3">
 						<select name="SurCategory" id="SurCategory" class="w100">
 							{{#select SurCategory}}
-								<option value="1" {{#compare SurCategory "==" 1}}selected{{/compare}}><a target='_blank' href='rules/global'><?= USE_GLOBAL ?></a></option>
+								<option value="1" {{#compare SurCategory "==" 1}}selected{{/compare}}><?= USE_GLOBAL ?></option>
 								<option value="3" {{#compare SurCategory "==" 3}}selected{{/compare}}><?= ROUTE_SPECIFIC ?></option>
 								<option value="0" {{#compare SurCategory "==" 0}}selected{{/compare}}><?= NO_SURCHARGES ?></option>
 							{{/select}}								

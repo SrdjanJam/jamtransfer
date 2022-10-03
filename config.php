@@ -87,5 +87,6 @@ if (isset($_SESSION['AuthUserID'])) {
 	$smarty->assign('local',$local);
 }	
 $smarty->assign('isNew',false);
-
+//inicijalizacija promenljivih
+$filter='';
 ?>

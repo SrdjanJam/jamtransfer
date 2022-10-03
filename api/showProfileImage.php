@@ -1,19 +1,18 @@
 <?
 	header("Content-type: image/jpeg");
 	require '../config.php';
-	//error_reporting(E_PARSE);
+	error_reporting(E_ALL);
 
 
 	if (!isset($_REQUEST['UserID']) or $_REQUEST['UserID'] == '') {
-		$img = file_get_contents(ROOT . '/cms/img/default.jpg');
+		$img = file_get_contents(ROOT . '/i/default.jpg');
 		echo $img;
 		die();
 	}
 	
 	//require $_SERVER['DOCUMENT_ROOT'] . '/db/db.class.php';
 	
-	$db = new DataBaseMysql();
-			
+	//$db = new DataBaseMysql();
 	$r = $db->RunQuery("SELECT DBImage, DBImageType FROM v4_AuthUsers 
 	                    WHERE AuthUserID = " . $_REQUEST['UserID']);
 	$img = $r->fetch_object();
@@ -35,7 +34,7 @@
 
 		else { 
 		header("Content-type: image/jpg");
-		$img = file_get_contents(ROOT . '/cms/img/default.jpg');
+		$img = file_get_contents(ROOT . '/i/default.jpg');
 		echo $img;
 		}
 	}
