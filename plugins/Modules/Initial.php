@@ -1,15 +1,15 @@
 <?
 require_once '../../config.php';
-require_once ROOT . '/db/v4_CoInfo.class.php';
-$db = new v4_CoInfo();
-$keyName = 'ID';
-$ItemName='co_name ';
+require_once ROOT . '/db/v4_Modules.class.php';
+$db = new v4_Modules();
+$keyName = 'ModulID';
+$ItemName='ParentID,MenuOrder ';
 #********************************
 # kolone za koje je moguc Search 
 # treba ih samo nabrojati ovdje
 # Search ce ih sam pretraziti
 #********************************
 $aColumns = array(
-	'ID', // dodaj ostala polja!
-	'co_name',
+	'ModulID', // dodaj ostala polja!
+	'Name',
 );

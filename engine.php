@@ -28,7 +28,7 @@ while($row = $result->fetch_array(MYSQLI_ASSOC)){
 }
 $modules_arr = substr($modules_arr,0,strlen($modules_arr)-1);
 // meni
-require_once 'db/v4_Modules.php';
+require_once 'db/v4_Modules.class.php';
 $active_pages=array();
 $md = new v4_Modules();
 $mdk = $md->getKeysBy('MenuOrder ' ,'asc', "where ParentID=0 AND ModulID in (".$modules_arr.")");
@@ -40,6 +40,9 @@ foreach($mdk as $key) {
 	$row1['link']=$md->getCode();
 	$active_pages[]=$md->getCode();			
 	$row1['icon']=$md->getIcon();
+	$row1['description']=$md->getDescription();
+	$row1['activestatus']=activeStatus($md->getActive());
+	
 	$mdk2 = $md->getKeysBy('MenuOrder ' ,'asc', "where ParentID=".$md->getModulID()." AND ModulID in (".$modules_arr.")");
 	$menu2=array();
 	if ($md->getCode()==$activePage) $active_parent=true;		
@@ -51,6 +54,8 @@ foreach($mdk as $key) {
 			$row2=array();
 			$row2['title']=$md->getName();
 			$row2['link']=$md->getCode();	
+			$row2['description']=$md->getDescription();	
+			$row2['activestatus']=activeStatus($md->getActive());
 			$active_pages[]=$md->getCode();			
 			//$row2['icon']=$md->getIcon();
 			if ($md->getCode()==$activePage) {
@@ -98,7 +103,6 @@ if (count($mdk)==1 && in_array($activePage,$active_pages)) {
 
 	
 }
-//staro resenje 
 else {
 	if (count($mdk)==1) header("Location: ". ROOT_HOME . '/dashboard');
 	else exit('Page not found');
@@ -109,4 +113,25 @@ else {
 
 $smarty->display("index.tpl");	
 
+function activeStatus($status) {
+	switch ($status) {
+		case 0:
+			return "";
+			break;			
+		case 1:
+			return "A";
+			break;			
+		case 2:
+			return "T";
+			break;		
+		case 3:
+			return "D";
+			break;		
+		case 4:
+			return "P";
+			break;	
+		default:
+			break;	
+	}	
+}		
 ?>

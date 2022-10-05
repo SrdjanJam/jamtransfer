@@ -60,6 +60,13 @@
 				div [class*='w100'] { display: inline-block !important; width: 99%; }
 				button, .btn { display:none; }
 			}
+			.badge {
+			  background-color: white;
+			  color: black;
+			  padding: 4px 8px;
+			  text-align: center;
+			  border-radius: 5px;
+			}			
 		</style>
 		<!-- SCRIPTS -->
 		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -200,14 +207,14 @@
 						<li class="{$menu1[index].active}">
 							<a href='{$menu1[index].link}' >
 								<i class="fa {$menu1[index].icon}"></i> 
-								<span class="nav-label">{$menu1[index].title}</span> 
+								<span class="nav-label" title="{$menu1[index].description}">{$menu1[index].title} <span class='badge'>{$menu1[index].activestatus}</span></span> 
 								<span class="{$menu1[index].arrow}"></span>
 							</a>
 							{if $menu1[index].menu}
 							<ul class="nav nav-second-level collapse" >
 								{section name=index1 loop=$menu1[index].menu}	
 								<li class="{$menu1[index].menu[index1].active}">
-									<a href="{$menu1[index].menu[index1].link}"><span class="nav-label">{$menu1[index].menu[index1].title}</span></a>
+									<a href="{$menu1[index].menu[index1].link}"><span class="nav-label" title="{$menu1[index].menu[index1].description}">{$menu1[index].menu[index1].title} <span class='badge'>{{$menu1[index].menu[index1].activestatus}}</span></span></a>
 										{if $menu1[index].menu[index1].title eq 'Orders'}
 										<ul class="nav nav-third-level collapse" >
 											<li><a href="{$menu1[index].menu[index1].link}"><span class="nav-label">All</span></a></li>
@@ -226,8 +233,12 @@
 						</li>
 						{/section}
 				   </ul>
+				   <ul>A - Active</ul>
+				   <ul>T- Test</ul>
+				   <ul>D - Development</ul>
+				   <ul>P - Plan</ul>
 				</div>
-
+				
 			</nav> {* End of navbar-default navbar-static-side *}
 			
 
