@@ -47,10 +47,7 @@
 						<label for="Active">Active</label>
 					</div>
 					<div class="col-md-10">
-						<select class="w100" name="Active"  value="{{Active}}">
-							<option value="0" {{#compare Active "==" 0}} selected {{/compare}}>Not Active</option>
-							<option value="1" {{#compare Active "==" 1}} selected {{/compare}}>Active</option>
-						</select>					
+						{{yesNoSliderEdit Active 'Active' }}
 					</div>
 				</div>						
 			</div>
