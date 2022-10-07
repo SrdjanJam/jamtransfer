@@ -82,10 +82,13 @@ if (count($dbk) != 0) {
 		# get all fields and values
 		$detailFlds = $db->fieldValues();
 		$detailFlds["DriverRoute"]=0;
+		$detailFlds["PriceRules"]=1;
+		$detailFlds["PriceRules2"]=0;
 		$result = $dbT->RunQuery("SELECT * FROM v4_DriverRoutes WHERE RouteID=".$key." AND OwnerID=".$_SESSION['UseDriverID']);
 			while($row = $result->fetch_array(MYSQLI_ASSOC)){
 				$detailFlds["DriverRoute"]=1;
-				$detailFlds["SurCategory"]=$row['SurCategory'];
+				$detailFlds["PriceRules"]=$row['SurCategory'];
+				$detailFlds["PriceRules2"]=$row['SurCategory'];
 			}			
 		// ako postoji neko custom polje, onda to ovdje.
 		// npr. $detailFlds["AuthLevelName"] = $nekaDrugaDB->getAuthLevelName().' nesto';

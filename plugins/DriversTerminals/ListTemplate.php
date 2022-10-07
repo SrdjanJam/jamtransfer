@@ -10,7 +10,7 @@
 <script type="text/x-handlebars-template" id="ItemListTemplate">
 
 	{{#each Item}}
-		<div  onclick="oneItem({{PlaceID}});">
+		<div>
 		
 			<div class="row {{color}} pad1em listTile" 
 			style="border-top:1px solid #ddd" 

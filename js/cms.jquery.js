@@ -638,7 +638,7 @@ return new Handlebars.SafeString(SurCategoryDropdown());
 
 Handlebars.registerHelper("SurCategoryRB", function(currentLevel, fieldName, category,catName,id) {
 	function SurCategoryDropdown() {
-		var SurCategorySelector = '';
+		var SurCategorySelector = '<form style="float:right;">';
 		$.each (surCategory, function(i, val) {
 			if (
 				(category==2 && i!=3 && i!=4) || 
@@ -655,8 +655,8 @@ Handlebars.registerHelper("SurCategoryRB", function(currentLevel, fieldName, cat
 				SurCategorySelector += '</label>';
 			}
 
-
 		});
+		SurCategorySelector += '</form>';
 		return  SurCategorySelector;
 	}
 
