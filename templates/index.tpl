@@ -33,7 +33,10 @@
 		<!-- Preuzeto za novu administraciju -->
 		<link href="css/admin.css" rel="stylesheet">
 
-		<!-- Misc -->
+
+		<!-- MISC -->
+
+		<!-- Jquery ui css: -->
 		<link rel="stylesheet" href="css/jquery-ui-1.8.9.custom.css" type="text/css" />
 
 		<link rel="stylesheet" href="js/pickadate/themes/default.css" type="text/css" media="screen"/>
@@ -77,10 +80,10 @@
 
 
 		<!-- jQuery -->
-		<script src="https://code.jquery.com/jquery-2.0.2.js"></script>
-		<!-- <script src="cms/js/jquery/2.0.2/jquery.min.js"></script> -->
+		<script src="cms/js/jquery/2.0.2/jquery.min.js"></script>
 		<!-- jQuery UI 1.10.3 -->
 		<script src="js/jQuery/ui/1.10.3/jquery-ui.min.js" type="text/javascript"></script>
+
 
 		<!-- Mainly scripts -->
 		<script src="js/main.admin.js"></script>
@@ -164,22 +167,24 @@
 	<body class="fixed-top" style="height:100%!important;font-size:16px">
 		<div class="wrapper wrapper-edit">
 		
-			{* Start from here *}
-
 			{* Navbar *}
-
 			<nav class="navbar-default navbar-static-side additional-class" role="navigation">
 
 				<script>
 					$(document).ready(function(){
 						$("a.navbar-minimalize").click(function(){
-							$("nav.navbar-default").toggleClass("additional-class")
-						});
-					});
+							// Full navbar:
+							$("nav.navbar-default").toggleClass("additional-class");
+							// Hide and show status on toggle:
+							$("#status").toggle(100,function(){ });
+						}); // End of click
+					}); // End of document.ready
 				</script>
-				
+
 				<div class="sidebar-collapse">
+
 					<ul class="nav metismenu" id="side-menu">
+
 						<li class="nav-header">
 							<div class="dropdown profile-element">
 								<a data-toggle="dropdown" class="dropdown-toggle" href="#">
@@ -197,47 +202,65 @@
 								</ul>
 							</div>
 						</li>
+
 						{if isset($smarty.session.UseDriverName)}
-						<li class="nav-header" style="padding: 5px 0 5px 2px">
-							<strong class="font-bold">{$smarty.session.UseDriverName}</strong>
-							<a href="setout.php" style="padding: 5px 0 5px 2px">Setout</a>
-						</li>
+							<li class="nav-header" style="padding: 5px 0 5px 2px">
+								<strong class="font-bold">{$smarty.session.UseDriverName}</strong>
+								<a href="setout.php" style="padding: 5px 0 5px 2px">Setout</a>
+							</li>
 						{/if}
+
 						{section name=index loop=$menu1}
-						<li class="{$menu1[index].active}">
-							<a href='{$menu1[index].link}' >
-								<i class="fa {$menu1[index].icon}"></i> 
-								<span class="nav-label" title="{$menu1[index].description}">{$menu1[index].title} <span class='badge'>{$menu1[index].activestatus}</span></span> 
-								<span class="{$menu1[index].arrow}"></span>
-							</a>
-							{if $menu1[index].menu}
-							<ul class="nav nav-second-level collapse" >
-								{section name=index1 loop=$menu1[index].menu}	
-								<li class="{$menu1[index].menu[index1].active}">
-									<a href="{$menu1[index].menu[index1].link}"><span class="nav-label" title="{$menu1[index].menu[index1].description}">{$menu1[index].menu[index1].title} <span class='badge'>{{$menu1[index].menu[index1].activestatus}}</span></span></a>
-										{if $menu1[index].menu[index1].title eq 'Orders'}
-										<ul class="nav nav-third-level collapse" >
-											<li><a href="{$menu1[index].menu[index1].link}"><span class="nav-label">All</span></a></li>
-											{section name=pom loop=$transfersFilters}
-												<li {if $transfersFilters[pom].id eq $transfersFilter} class="active" {/if}>
-													<a href="{$menu1[index].menu[index1].link}/{$transfersFilters[pom].id}"><span class="nav-label">{$transfersFilters[pom].name}</span></a>
-												</li>
-											{/section}
-										</select>						
-										</ul>
-										{/if}
-								</li>
-								{/section}	
-							</ul>
-							{/if}
-						</li>
+							<li class="{$menu1[index].active}">
+								<a href='{$menu1[index].link}' >
+									<i class="fa {$menu1[index].icon}"></i> 
+									<span class="nav-label" title="{$menu1[index].description}">{$menu1[index].title} <span class='badge'>{$menu1[index].activestatus}</span></span> 
+									<span class="{$menu1[index].arrow}"></span>
+								</a>
+
+								
+								{if $menu1[index].menu}
+									{* collapse: ul: *}
+									<ul class="nav nav-second-level collapse" >
+
+										{section name=index1 loop=$menu1[index].menu}	
+										<li class="{$menu1[index].menu[index1].active}">
+											<a href="{$menu1[index].menu[index1].link}"><span class="nav-label" title="{$menu1[index].menu[index1].description}">{$menu1[index].menu[index1].title} <span class='badge'>{{$menu1[index].menu[index1].activestatus}}</span></span></a>
+
+												{if $menu1[index].menu[index1].title eq 'Orders'}
+													{* collapse: ul second level: *}
+												<ul class="nav nav-third-level collapse" >
+													<li><a href="{$menu1[index].menu[index1].link}"><span class="nav-label">All</span></a></li>
+
+													{section name=pom loop=$transfersFilters}
+														<li {if $transfersFilters[pom].id eq $transfersFilter} class="active" {/if}>
+															<a href="{$menu1[index].menu[index1].link}/{$transfersFilters[pom].id}"><span class="nav-label">{$transfersFilters[pom].name}</span></a>
+														</li>
+													{/section}
+
+												</select>						
+												</ul>
+												{/if}
+										</li>
+
+										{/section}	
+									</ul>
+								{/if}
+
+							</li>
 						{/section}
+
+				   </ul> {* End of nav metismenu *}
+				   
+				   {* For developing status *}
+				   <ul id="status" style="list-style-type:none;">
+						<li>A - Active</li>
+						<li>T - Test</li>
+						<li>D - Development</li>
+						<li>P - Plan</li>
 				   </ul>
-				   <ul>A - Active</ul>
-				   <ul>T- Test</ul>
-				   <ul>D - Development</ul>
-				   <ul>P - Plan</ul>
-				</div>
+
+				</div> {* End of sidebar-collapse *}
 				
 			</nav> {* End of navbar-default navbar-static-side *}
 			
