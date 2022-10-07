@@ -38,6 +38,14 @@ var yesNo = {};
 yesNo[0] = 'No';
 yesNo[1] = 'Yes';
 
+// surCategory price rules
+var surCategory = {};
+surCategory[0] = 'No rules';
+surCategory[1] = 'Global';
+surCategory[2] = 'Vehicle';
+surCategory[3] = 'Route';
+surCategory[4] = 'Service';
+
 // payment Status
 var paymentStatus = {};
 paymentStatus [0] = 	'Not Paid';

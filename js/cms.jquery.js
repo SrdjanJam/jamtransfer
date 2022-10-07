@@ -602,13 +602,65 @@ return new Handlebars.SafeString(yesNoSlide());
 
 });
 
+
+
 Handlebars.registerHelper("yesNoSliderEdit", function(currentLevel, fieldName) {
 	function yesNoSlide() {
-		var yesNoInput = '<input style="width: 30px;" type="range" max="1" class="Choice" name="'+fieldName+'" value="'+currentLevel+'"/>';
+		var yesNoInput = 'No<span><input style="width: 30px;" type="range" max="1" class="Choice" name="'+fieldName+'" value="'+currentLevel+'"/></span>Yes';
 		return  yesNoInput;
 	}
 
 return new Handlebars.SafeString(yesNoSlide());
+
+});
+
+Handlebars.registerHelper("SurCategory", function(currentLevel, fieldName) {
+	function SurCategoryDropdown() {
+		var SurCategorySelector = '<select name="'+fieldName+'" id="'+fieldName+'">';
+
+		$.each (surCategory, function(i, val) {
+			//i = i-1;
+			SurCategorySelector += '<option value="'+i+'" ';
+			if (i == currentLevel) {
+				SurCategorySelector += 'selected="selected" ';
+			}
+			SurCategorySelector += '>' + val + '</option>';
+		});
+
+		SurCategorySelector += '</select>';
+
+		return  SurCategorySelector;
+	}
+
+return new Handlebars.SafeString(SurCategoryDropdown());
+
+});
+
+Handlebars.registerHelper("SurCategoryRB", function(currentLevel, fieldName, category,catName,id) {
+	function SurCategoryDropdown() {
+		var SurCategorySelector = '';
+		$.each (surCategory, function(i, val) {
+			if (
+				(category==2 && i!=3 && i!=4) || 
+				(category==3 && i!=2 && i!=4) ||
+				category==4
+			) {
+				SurCategorySelector += '&nbsp;&nbsp;<input type="radio"  name="SurCategory" value="'+i+'"' ;
+				if (i == currentLevel) { SurCategorySelector += ' checked="checked" ';}
+				SurCategorySelector += '>';
+				SurCategorySelector += '&nbsp;<label>';
+				if (i == category) SurCategorySelector += '<a target="_blank" title="Edit rules" href="rules/'+catName+'/'+id+'">';
+				SurCategorySelector += val;
+				if (i == category) SurCategorySelector += '</a>';
+				SurCategorySelector += '</label>';
+			}
+
+
+		});
+		return  SurCategorySelector;
+	}
+
+return new Handlebars.SafeString(SurCategoryDropdown());
 
 });
 

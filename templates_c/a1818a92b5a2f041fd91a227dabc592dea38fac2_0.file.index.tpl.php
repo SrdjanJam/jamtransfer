@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.32, created on 2022-10-05 10:32:18
+/* Smarty version 3.1.32, created on 2022-10-07 07:00:09
   from 'C:\wamp\www\jamtransfer\templates\index.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.32',
-  'unifunc' => 'content_633d5d327e4e57_21261460',
+  'unifunc' => 'content_633fce79911a51_62548023',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'a1818a92b5a2f041fd91a227dabc592dea38fac2' => 
     array (
       0 => 'C:\\wamp\\www\\jamtransfer\\templates\\index.tpl',
-      1 => 1664965935,
+      1 => 1665124973,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:pageList.tpl' => 1,
   ),
 ),false)) {
-function content_633d5d327e4e57_21261460 (Smarty_Internal_Template $_smarty_tpl) {
+function content_633fce79911a51_62548023 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html>
 	<head>
@@ -60,7 +60,10 @@ function content_633d5d327e4e57_21261460 (Smarty_Internal_Template $_smarty_tpl)
 		<!-- Preuzeto za novu administraciju -->
 		<link href="css/admin.css" rel="stylesheet">
 
-		<!-- Misc -->
+
+		<!-- MISC -->
+
+		<!-- Jquery ui css: -->
 		<link rel="stylesheet" href="css/jquery-ui-1.8.9.custom.css" type="text/css" />
 
 		<link rel="stylesheet" href="js/pickadate/themes/default.css" type="text/css" media="screen"/>
@@ -109,15 +112,13 @@ function content_633d5d327e4e57_21261460 (Smarty_Internal_Template $_smarty_tpl)
 
 		<!-- jQuery -->
 		<?php echo '<script'; ?>
- src="https://code.jquery.com/jquery-2.0.2.js"><?php echo '</script'; ?>
->
-		<!-- <?php echo '<script'; ?>
  src="cms/js/jquery/2.0.2/jquery.min.js"><?php echo '</script'; ?>
-> -->
+>
 		<!-- jQuery UI 1.10.3 -->
 		<?php echo '<script'; ?>
  src="js/jQuery/ui/1.10.3/jquery-ui.min.js" type="text/javascript"><?php echo '</script'; ?>
 >
+
 
 		<!-- Mainly scripts -->
 		<?php echo '<script'; ?>
@@ -263,22 +264,25 @@ _init.js"><?php echo '</script'; ?>
 	<body class="fixed-top" style="height:100%!important;font-size:16px">
 		<div class="wrapper wrapper-edit">
 		
-			
-			
-			<nav class="navbar-default navbar-static-side additional-class" role="navigation">
+						<nav class="navbar-default navbar-static-side additional-class" role="navigation">
 
 				<?php echo '<script'; ?>
 >
 					$(document).ready(function(){
 						$("a.navbar-minimalize").click(function(){
-							$("nav.navbar-default").toggleClass("additional-class")
-						});
-					});
+							// Full navbar:
+							$("nav.navbar-default").toggleClass("additional-class");
+							// Hide and show status on toggle:
+							$("#status").toggle(100,function(){ });
+						}); // End of click
+					}); // End of document.ready
 				<?php echo '</script'; ?>
 >
-				
+
 				<div class="sidebar-collapse">
+
 					<ul class="nav metismenu" id="side-menu">
+
 						<li class="nav-header">
 							<div class="dropdown profile-element">
 								<a data-toggle="dropdown" class="dropdown-toggle" href="#">
@@ -298,13 +302,15 @@ _init.js"><?php echo '</script'; ?>
 								</ul>
 							</div>
 						</li>
+
 						<?php if (isset($_SESSION['UseDriverName'])) {?>
-						<li class="nav-header" style="padding: 5px 0 5px 2px">
-							<strong class="font-bold"><?php echo $_SESSION['UseDriverName'];?>
+							<li class="nav-header" style="padding: 5px 0 5px 2px">
+								<strong class="font-bold"><?php echo $_SESSION['UseDriverName'];?>
 </strong>
-							<a href="setout.php" style="padding: 5px 0 5px 2px">Setout</a>
-						</li>
+								<a href="setout.php" style="padding: 5px 0 5px 2px">Setout</a>
+							</li>
 						<?php }?>
+
 						<?php
 $__section_index_0_loop = (is_array(@$_loop=$_smarty_tpl->tpl_vars['menu1']->value) ? count($_loop) : max(0, (int) $_loop));
 $__section_index_0_total = $__section_index_0_loop;
@@ -312,31 +318,34 @@ $_smarty_tpl->tpl_vars['__smarty_section_index'] = new Smarty_Variable(array());
 if ($__section_index_0_total !== 0) {
 for ($__section_index_0_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_index']->value['index'] = 0; $__section_index_0_iteration <= $__section_index_0_total; $__section_index_0_iteration++, $_smarty_tpl->tpl_vars['__smarty_section_index']->value['index']++){
 ?>
-						<li class="<?php echo $_smarty_tpl->tpl_vars['menu1']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_index']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_index']->value['index'] : null)]['active'];?>
+							<li class="<?php echo $_smarty_tpl->tpl_vars['menu1']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_index']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_index']->value['index'] : null)]['active'];?>
 ">
-							<a href='<?php echo $_smarty_tpl->tpl_vars['menu1']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_index']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_index']->value['index'] : null)]['link'];?>
+								<a href='<?php echo $_smarty_tpl->tpl_vars['menu1']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_index']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_index']->value['index'] : null)]['link'];?>
 ' >
-								<i class="fa <?php echo $_smarty_tpl->tpl_vars['menu1']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_index']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_index']->value['index'] : null)]['icon'];?>
+									<i class="fa <?php echo $_smarty_tpl->tpl_vars['menu1']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_index']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_index']->value['index'] : null)]['icon'];?>
 "></i> 
-								<span class="nav-label" title="<?php echo $_smarty_tpl->tpl_vars['menu1']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_index']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_index']->value['index'] : null)]['description'];?>
+									<span class="nav-label" title="<?php echo $_smarty_tpl->tpl_vars['menu1']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_index']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_index']->value['index'] : null)]['description'];?>
 "><?php echo $_smarty_tpl->tpl_vars['menu1']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_index']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_index']->value['index'] : null)]['title'];?>
  <span class='badge'><?php echo $_smarty_tpl->tpl_vars['menu1']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_index']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_index']->value['index'] : null)]['activestatus'];?>
 </span></span> 
-								<span class="<?php echo $_smarty_tpl->tpl_vars['menu1']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_index']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_index']->value['index'] : null)]['arrow'];?>
+									<span class="<?php echo $_smarty_tpl->tpl_vars['menu1']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_index']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_index']->value['index'] : null)]['arrow'];?>
 "></span>
-							</a>
-							<?php if ($_smarty_tpl->tpl_vars['menu1']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_index']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_index']->value['index'] : null)]['menu']) {?>
-							<ul class="nav nav-second-level collapse" >
-								<?php
+								</a>
+
+								
+								<?php if ($_smarty_tpl->tpl_vars['menu1']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_index']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_index']->value['index'] : null)]['menu']) {?>
+																		<ul class="nav nav-second-level collapse" >
+
+										<?php
 $__section_index1_1_loop = (is_array(@$_loop=$_smarty_tpl->tpl_vars['menu1']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_index']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_index']->value['index'] : null)]['menu']) ? count($_loop) : max(0, (int) $_loop));
 $__section_index1_1_total = $__section_index1_1_loop;
 $_smarty_tpl->tpl_vars['__smarty_section_index1'] = new Smarty_Variable(array());
 if ($__section_index1_1_total !== 0) {
 for ($__section_index1_1_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_index1']->value['index'] = 0; $__section_index1_1_iteration <= $__section_index1_1_total; $__section_index1_1_iteration++, $_smarty_tpl->tpl_vars['__smarty_section_index1']->value['index']++){
 ?>	
-								<li class="<?php echo $_smarty_tpl->tpl_vars['menu1']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_index']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_index']->value['index'] : null)]['menu'][(isset($_smarty_tpl->tpl_vars['__smarty_section_index1']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_index1']->value['index'] : null)]['active'];?>
+										<li class="<?php echo $_smarty_tpl->tpl_vars['menu1']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_index']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_index']->value['index'] : null)]['menu'][(isset($_smarty_tpl->tpl_vars['__smarty_section_index1']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_index1']->value['index'] : null)]['active'];?>
 ">
-									<a href="<?php echo $_smarty_tpl->tpl_vars['menu1']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_index']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_index']->value['index'] : null)]['menu'][(isset($_smarty_tpl->tpl_vars['__smarty_section_index1']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_index1']->value['index'] : null)]['link'];?>
+											<a href="<?php echo $_smarty_tpl->tpl_vars['menu1']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_index']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_index']->value['index'] : null)]['menu'][(isset($_smarty_tpl->tpl_vars['__smarty_section_index1']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_index1']->value['index'] : null)]['link'];?>
 "><span class="nav-label" title="<?php echo $_smarty_tpl->tpl_vars['menu1']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_index']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_index']->value['index'] : null)]['menu'][(isset($_smarty_tpl->tpl_vars['__smarty_section_index1']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_index1']->value['index'] : null)]['description'];?>
 "><?php echo $_smarty_tpl->tpl_vars['menu1']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_index']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_index']->value['index'] : null)]['menu'][(isset($_smarty_tpl->tpl_vars['__smarty_section_index1']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_index1']->value['index'] : null)]['title'];?>
  <span class='badge'><?php ob_start();
@@ -344,49 +353,57 @@ echo $_smarty_tpl->tpl_vars['menu1']->value[(isset($_smarty_tpl->tpl_vars['__sma
 $_prefixVariable1 = ob_get_clean();
 echo $_prefixVariable1;?>
 </span></span></a>
-										<?php if ($_smarty_tpl->tpl_vars['menu1']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_index']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_index']->value['index'] : null)]['menu'][(isset($_smarty_tpl->tpl_vars['__smarty_section_index1']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_index1']->value['index'] : null)]['title'] == 'Orders') {?>
-										<ul class="nav nav-third-level collapse" >
-											<li><a href="<?php echo $_smarty_tpl->tpl_vars['menu1']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_index']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_index']->value['index'] : null)]['menu'][(isset($_smarty_tpl->tpl_vars['__smarty_section_index1']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_index1']->value['index'] : null)]['link'];?>
+
+												<?php if ($_smarty_tpl->tpl_vars['menu1']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_index']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_index']->value['index'] : null)]['menu'][(isset($_smarty_tpl->tpl_vars['__smarty_section_index1']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_index1']->value['index'] : null)]['title'] == 'Orders') {?>
+																									<ul class="nav nav-third-level collapse" >
+													<li><a href="<?php echo $_smarty_tpl->tpl_vars['menu1']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_index']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_index']->value['index'] : null)]['menu'][(isset($_smarty_tpl->tpl_vars['__smarty_section_index1']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_index1']->value['index'] : null)]['link'];?>
 "><span class="nav-label">All</span></a></li>
-											<?php
+
+													<?php
 $__section_pom_2_loop = (is_array(@$_loop=$_smarty_tpl->tpl_vars['transfersFilters']->value) ? count($_loop) : max(0, (int) $_loop));
 $__section_pom_2_total = $__section_pom_2_loop;
 $_smarty_tpl->tpl_vars['__smarty_section_pom'] = new Smarty_Variable(array());
 if ($__section_pom_2_total !== 0) {
 for ($__section_pom_2_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_pom']->value['index'] = 0; $__section_pom_2_iteration <= $__section_pom_2_total; $__section_pom_2_iteration++, $_smarty_tpl->tpl_vars['__smarty_section_pom']->value['index']++){
 ?>
-												<li <?php if ($_smarty_tpl->tpl_vars['transfersFilters']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_pom']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_pom']->value['index'] : null)]['id'] == $_smarty_tpl->tpl_vars['transfersFilter']->value) {?> class="active" <?php }?>>
-													<a href="<?php echo $_smarty_tpl->tpl_vars['menu1']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_index']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_index']->value['index'] : null)]['menu'][(isset($_smarty_tpl->tpl_vars['__smarty_section_index1']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_index1']->value['index'] : null)]['link'];?>
+														<li <?php if ($_smarty_tpl->tpl_vars['transfersFilters']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_pom']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_pom']->value['index'] : null)]['id'] == $_smarty_tpl->tpl_vars['transfersFilter']->value) {?> class="active" <?php }?>>
+															<a href="<?php echo $_smarty_tpl->tpl_vars['menu1']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_index']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_index']->value['index'] : null)]['menu'][(isset($_smarty_tpl->tpl_vars['__smarty_section_index1']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_index1']->value['index'] : null)]['link'];?>
 /<?php echo $_smarty_tpl->tpl_vars['transfersFilters']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_pom']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_pom']->value['index'] : null)]['id'];?>
 "><span class="nav-label"><?php echo $_smarty_tpl->tpl_vars['transfersFilters']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_pom']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_pom']->value['index'] : null)]['name'];?>
 </span></a>
-												</li>
-											<?php
+														</li>
+													<?php
 }
 }
 ?>
-										</select>						
-										</ul>
-										<?php }?>
-								</li>
-								<?php
+
+												</select>						
+												</ul>
+												<?php }?>
+										</li>
+
+										<?php
 }
 }
 ?>	
-							</ul>
-							<?php }?>
-						</li>
+									</ul>
+								<?php }?>
+
+							</li>
 						<?php
 }
 }
 ?>
+
+				   </ul> 				   
+				   				   <ul id="status" style="list-style-type:none;">
+						<li>A - Active</li>
+						<li>T - Test</li>
+						<li>D - Development</li>
+						<li>P - Plan</li>
 				   </ul>
-				   <ul>A - Active</ul>
-				   <ul>T- Test</ul>
-				   <ul>D - Development</ul>
-				   <ul>P - Plan</ul>
-				</div>
-				
+
+				</div> 				
 			</nav> 			
 
 			<style type="text/css" >

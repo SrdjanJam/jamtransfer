@@ -41,7 +41,6 @@
 						{{PlaceID}}
 					</div>
 				</div>
-				<? if ($isNew || !isset($_SESSION['UseDriverID'])) { ?>
 				<div class="row">
 					<div class="col-md-3">
 						<label for="PlaceCountry"><?=PLACECOUNTRY;?></label>
@@ -176,17 +175,6 @@
 						{{Drivers}}
 					</div>
 				</div>
-				<? } else { ?>				
-				<div class="row">
-					<div class="col-md-3">
-						<label for="DriverTerminal">Driver Terminal</label>
-					</div>
-					<div class="col-md-9">
-						{{yesNoSliderEdit Terminal 'Terminal' }}
-					</div>
-				</div>
-				<? } ?>
-
 			</div>
 	    </div>
 		   
