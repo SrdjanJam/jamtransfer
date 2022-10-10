@@ -84,7 +84,7 @@
 						<label for="DriverVehicle">Driver Vehicle</label>
 					</div>
 					<div class="col-md-9">
-						{{yesNoSelect DriverVehicle 'DriverVehicle' }}
+						{{yesNoSliderEdit DriverVehicle 'DriverVehicle' }}
 					</div>
 				</div>
 				<div class="row">

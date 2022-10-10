@@ -47,7 +47,7 @@
 						<label for="Active">Active</label>
 					</div>
 					<div class="col-md-10">
-						{{yesNoSliderEdit Active 'Active' }}
+						{{ yesNoSliderEdit Active 'Active'}}					
 					</div>
 				</div>						
 			</div>

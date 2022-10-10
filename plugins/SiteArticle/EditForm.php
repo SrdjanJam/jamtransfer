@@ -122,7 +122,7 @@
 						<label for="Published"><?=PUBLISHED;?></label>
 					</div>
 					<div class="col-md-9">
-						{{yesNoSelect Published 'Published' }}
+						{{yesNoSliderEdit Published 'Published' }}
 					</div>
 				</div>
 
