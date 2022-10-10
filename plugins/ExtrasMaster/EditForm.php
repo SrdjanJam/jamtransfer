@@ -132,7 +132,7 @@
 						<label for="DriverExtras">Driver Extras</label>
 					</div>
 					<div class="col-md-9">
-						{{yesNoSelect DriverExtras 'DriverExtras' }}
+						{{yesNoSliderEdit DriverExtras 'DriverExtras' }}
 					</div>
 				</div>
 				<? } ?>
