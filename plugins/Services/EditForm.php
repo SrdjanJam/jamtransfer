@@ -77,7 +77,7 @@
 									<label for="VehicleAvailable"><?=VEHICLEAVAILABLE;?></label>
 								</div>
 								<div class="col-md-9">
-									{{yesNoSelect VehicleAvailable 'VehicleAvailable'}}
+									{{yesNoSliderEdit VehicleAvailable 'VehicleAvailable'}}
 								</div>
 							</div>
 
@@ -105,7 +105,7 @@
 									<label for="Active"><?=ACTIVE;?></label>
 								</div>
 								<div class="col-md-9">
-									{{ yesNoSelect Active 'Active'}}
+									{{ yesNoSliderEdit Active 'Active'}}
 
 								</div>
 							</div>
