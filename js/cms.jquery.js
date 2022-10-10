@@ -594,7 +594,10 @@ return new Handlebars.SafeString(yesNoDropdown());
 
 Handlebars.registerHelper("yesNoSlider", function(currentLevel, fieldName) {
 	function yesNoSlide() {
-		var yesNoInput = '<input style="float:right; width: 30px;" type="range" max="1" class="Choice" name="'+fieldName+'" value="'+currentLevel+'"/>';
+		var yesNoInput = '<div style="float:right;"><span style="float:left;">No</span>';
+		yesNoInput+= '<input style="float:left;width: 30px;margin:2px 5px 0 5px;" type="range" max="1" class="Choice" name="'+fieldName+'" value="'+currentLevel+'"/>';
+		yesNoInput+= '<span style="float:left;">Yes</span>';
+		yesNoInput+= '</div>';
 		return  yesNoInput;
 	}
 
@@ -606,7 +609,9 @@ return new Handlebars.SafeString(yesNoSlide());
 
 Handlebars.registerHelper("yesNoSliderEdit", function(currentLevel, fieldName) {
 	function yesNoSlide() {
-		var yesNoInput = 'No<span><input style="width: 30px;" type="range" max="1" class="Choice" name="'+fieldName+'" value="'+currentLevel+'"/></span>Yes';
+		var yesNoInput = '<span style="float:left">No</span>';
+		yesNoInput+= '<input style="width: 30px;float:left;margin:2px 5px 0 5px;" type="range" max="1" class="Choice" name="'+fieldName+'" value="'+currentLevel+'"/>';
+		yesNoInput+= '<span style="float:left;">Yes</span>';
 		return  yesNoInput;
 	}
 
@@ -636,9 +641,10 @@ return new Handlebars.SafeString(SurCategoryDropdown());
 
 });
 
+// New SurCategoryDropdown():
 Handlebars.registerHelper("SurCategoryRB", function(currentLevel, fieldName, category,catName,id) {
 	function SurCategoryDropdown() {
-		var SurCategorySelector = '<form style="float:right;">';
+		var SurCategorySelector = '<form style="float:right; margin:0;">';
 		$.each (surCategory, function(i, val) {
 			if (
 				(category==2 && i!=3 && i!=4) || 
