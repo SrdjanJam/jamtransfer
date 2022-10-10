@@ -4,7 +4,9 @@
 		<base href="{$root_home}">
 		
 		<meta charset="UTF-8">
-		<title>WIS {$title}</title>
+		{* <title>WIS {$title}</title> *}
+
+		<title>CMS LOCAL</title>
 
 		<meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
 
@@ -301,7 +303,8 @@
 					  <div class="navbar-header">
 
 						{* target***** *}
-						 <a class="navbar-minimalize minimalize-styl-2 btn btn-primary additional-class-navbar" href="#"><i class="fa fa-bars"></i> </a>
+						 <a class="navbar-minimalize minimalize-styl-2 btn btn-primary"><i class="fa fa-bars"></i> </a>
+
 					  </div>
 					  <div class="navbar-header">
 						 <button type="button" class="minimalize-styl-2 btn btn-primary" id="cashe"><i class="fa fa-refresh"></i></button>
