@@ -168,7 +168,7 @@
 						<label for="DriverOnTime"><?=DRIVERONTIME;?></label>
 					</div>
 					<div class="col-md-8">
-						{{yesNoSelect DriverOnTime}}
+						{{yesNoSliderEdit DriverOnTime}}
 					</div>
 				</div>
 
