@@ -25,7 +25,7 @@
 							<strong>{{RouteName}}</strong>
 						</div>	
 						<div class="col-md-2 route" data-id="{{RouteID}}">
-							Driver Route
+							Connected Route
 							{{yesNoSlider DriverRoute 'DriverRoute' }}
 						</div>
 						<div class="col-md-4 surcategory" data-status="{{PriceRules2}}" data-id="{{RouteID}}">
