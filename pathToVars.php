@@ -69,6 +69,18 @@ switch ($activePage) {
 			$includeFileTpl=$pathVars->fetchByIndex($indexStart + 1).'.tpl';
 		}	
 		break;	
+	case 'services':
+		if ($pathVars->fetchByIndex($indexStart + 1)) { 
+			if ($pathVars->fetchByIndex($indexStart + 1)=='route') {
+				$smarty->assign('RouteID',$pathVars->fetchByIndex($indexStart + 2));
+			}			
+			if ($pathVars->fetchByIndex($indexStart + 1)=='vehicle') {
+				$smarty->assign('VehicleID',$pathVars->fetchByIndex($indexStart + 2));
+			}
+		}	
+	
+		break;
+	
 	case 'driversTransfers':
 		if ($pathVars->fetchByIndex($indexStart + 1)){
 			$steps = 2;

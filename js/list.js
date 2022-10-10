@@ -40,6 +40,10 @@
 		if (typeof sortField=='undefined') sortField='PickupDate';	 	
 		var sortDirection = $("#sortDirection").val();
 		if (typeof sortDirection=='undefined') sortDirection='DESC';	
+		var routeID = $("#routeID").val();
+		if (typeof routeID=='undefined') routeID=0;	
+		var vehicleID = $("#vehicleID").val();
+		if (typeof vehicleID=='undefined') vehicleID=0;	
 		
 		var callFunction = 'allItems()'; // funkcija koju paginator poziva kod promjene stranice
 	
@@ -67,6 +71,8 @@
 		'&yearsPickup='+yearsPickup+
 		'&sortField='+sortField+
 		'&sortDirection='+sortDirection+
+		'&routeID='+routeID+
+		'&vehicleID='+vehicleID+
 		'&callback=?';
 		console.log(window.base+url);
 		$.ajax({

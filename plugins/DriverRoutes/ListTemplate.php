@@ -10,8 +10,26 @@
 ?>
 
 <script type="text/x-handlebars-template" id="ItemListTemplate">
-
-
+		<div class="row">
+				<div class="col-sm-1">
+					Route ID
+				</div>							
+				<div class="col-sm-3">
+					Route Name
+				</div>	
+				<div class="col-md-1">
+					Connected
+				</div>
+				<div class="col-md-3">
+					<?=SURCATEGORY;?>
+				</div>
+				<div class="col-md-2">
+					Vehicles prices
+				</div>				
+				<div class="col-sm-1">
+					Approved						
+				</div>
+			</div>	
 	{{#each Item}}
 			<div>		
 				<div class="row {{color}} pad1em listTile" 
@@ -24,14 +42,15 @@
 						<div class="col-sm-3">
 							<strong>{{RouteName}}</strong>
 						</div>	
-						<div class="col-md-2 route" data-id="{{RouteID}}">
-							Connected Route
+						<div class="col-md-1 route" data-id="{{RouteID}}">
 							{{yesNoSlider DriverRoute 'DriverRoute' }}
 						</div>
-						<div class="col-md-4 surcategory" data-status="{{PriceRules2}}" data-id="{{RouteID}}">
-							<?=SURCATEGORY;?>
+						<div class="col-md-3 surcategory" data-status="{{PriceRules2}}" data-id="{{RouteID}}">
 							{{SurCategoryRB PriceRules 'SurCategory' '3' 'routes' RouteID}}
 						</div>
+						<div class="col-md-2">
+							<a target='_blank' href='/route/{{RouteID}}'>Prices</a>
+						</div>						
 						<div class="col-sm-1">
 						
 							{{#compare Approved ">" 0}}
