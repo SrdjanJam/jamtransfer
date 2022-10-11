@@ -87,6 +87,7 @@ if (count($dbk) != 0) {
 		$result = $dbT->RunQuery("SELECT * FROM v4_DriverRoutes WHERE RouteID=".$key." AND OwnerID=".$_SESSION['UseDriverID']);
 			while($row = $result->fetch_array(MYSQLI_ASSOC)){
 				$detailFlds["DriverRoute"]=1;
+				$detailFlds["Active"]=$row['Active'];
 				$detailFlds["PriceRules"]=$row['SurCategory'];
 				$detailFlds["PriceRules2"]=$row['SurCategory'];
 			}			

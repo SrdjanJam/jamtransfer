@@ -19,12 +19,15 @@
 				</div>	
 				<div class="col-md-1">
 					Connected
+				</div>				
+				<div class="col-md-1">
+					Active
 				</div>
 				<div class="col-md-3">
 					<?=SURCATEGORY;?>
 				</div>
-				<div class="col-md-2">
-					Vehicles prices
+				<div class="col-md-1">
+					Prices
 				</div>				
 				<div class="col-sm-1">
 					Approved						
@@ -42,14 +45,17 @@
 						<div class="col-sm-3">
 							<strong>{{RouteName}}</strong>
 						</div>	
-						<div class="col-md-1 route" data-id="{{RouteID}}">
+						<div class="col-md-1 route" data-id="{{RouteID}}" data-change="1">
 							{{yesNoSlider DriverRoute 'DriverRoute' }}
+						</div>						
+						<div class="col-md-1 route" data-id="{{RouteID}}" data-change="2">
+							{{yesNoSlider Active 'Active' }}
 						</div>
 						<div class="col-md-3 surcategory" data-status="{{PriceRules2}}" data-id="{{RouteID}}">
 							{{SurCategoryRB PriceRules 'SurCategory' '3' 'routes' RouteID}}
 						</div>
-						<div class="col-md-2">
-							<a target='_blank' href='/route/{{RouteID}}'>Prices</a>
+						<div class="col-md-1">
+							<a target='_blank' href='services/route/{{RouteID}}'>Vehicles</a>
 						</div>						
 						<div class="col-sm-1">
 						
@@ -67,20 +73,25 @@
 			if ($(this).attr('data-status')==0) $(this).hide();
 		});		
 		$('.route input').change(function(){
-			var routeid=$(this).parent().attr('data-id');
-			var driverroute=$(this).val();	
+			var change=$(this).parent().parent().attr('data-change');			
+			var routeid=$(this).parent().parent().attr('data-id');
+			if (change==1) var driverroute=$(this).val();	
+			if (change==2) var active=$(this).val();	
 			var base=window.location.origin;
-			if (window.location.host=='localhost') base=base+'/jamtransfer';		
-			var link = base+'/plugins/DriverRoutes/Save.php';
-			var param = "RouteID="+routeid+"&DriverRoute="+driverroute;
+			if (window.location.host=='localhost') base=base+'/jamtransfer';
+			if (change==1) var link = base+'/plugins/DriverRoutes/Save.php';
+			if (change==2) var link = base+'/plugins/DriverRoutes/SaveActive.php';	
+			if (change==1) var param = "RouteID="+routeid+"&DriverRoute="+driverroute;
+			if (change==2) var param = "RouteID="+routeid+"&Active="+active;
+			alert (link+'?'+param);
 			var $t = $(this);
 			$.ajax({
 				type: 'POST',
 				url: link,
 				data: param,
 				success: function(data) {
-					if (data==0) $t.parent().parent().find('.surcategory').hide(500);
-					else $t.parent().parent().find('.surcategory').show(500);						
+					if (data==0) $t.parent().parent().parent().find('.surcategory').hide(500);
+					else $t.parent().parent().parent().find('.surcategory').show(500);						
 				}				
 			});
 		})	
