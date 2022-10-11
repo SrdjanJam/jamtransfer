@@ -11,52 +11,61 @@
 
 <script type="text/x-handlebars-template" id="ItemListTemplate">
 		<div class="row">
-				<div class="col-sm-1">
-					Route ID
-				</div>							
-				<div class="col-sm-3">
-					Route Name
-				</div>	
-				<div class="col-md-1">
-					Connected
-				</div>				
-				<div class="col-md-1">
-					Active
-				</div>
-				<div class="col-md-3">
-					<?=SURCATEGORY;?>
-				</div>
-				<div class="col-md-1">
-					Prices
-				</div>				
-				<div class="col-sm-1">
-					Approved						
-				</div>
+			<div class="col-sm-1">
+				Route ID
+			</div>							
+			<div class="col-sm-3">
+				Route Name
 			</div>	
+			<div class="col-md-1">
+				Connected
+			</div>				
+			<div class="col-md-1">
+				Active
+			</div>
+			<!-- SURCATEGORY: -->
+			<div class="col-md-3">
+				<?=SURCATEGORY;?>
+			</div>
+			<div class="col-md-1">
+				Prices
+			</div>				
+			<div class="col-sm-1">
+				Approved						
+			</div>
+		</div>
+
 	{{#each Item}}
+
 			<div>		
 				<div class="row {{color}} pad1em listTile" 
 				style="border-top:1px solid #ddd" 
 				id="t_{{RouteID}}">
-						
+						<!-- RouteID: -->
 						<div class="col-sm-1">
 							{{RouteID}}
-						</div>							
+						</div>
+						<!-- RouteName: -->
 						<div class="col-sm-3">
 							<strong>{{RouteName}}</strong>
-						</div>	
-						<div class="col-md-1 route active1" data-id="{{RouteID}}" data-change="1" data-active="{{DriverRoute}}">
-							<span>{{yesNoSlider DriverRoute 'DriverRoute' }}</span>
-						</div>						
-						<div class="col-md-1 route active2" data-id="{{RouteID}}" data-change="2" data-active="{{Active}}">
-							<span class="show_hide">{{yesNoSlider Active 'Active' }}</span>
 						</div>
+						<!-- Connected:  -->
+						<div class="col-md-1 route active1" data-id="{{RouteID}}" data-change="1" data-active="{{DriverRoute}}">
+							<span>{{yesNoSliderEdit DriverRoute 'DriverRoute' }}</span>
+						</div>
+						<!-- Active: -->
+						<div class="col-md-1 route active2" data-id="{{RouteID}}" data-change="2" data-active="{{Active}}">
+							<span class="show_hide">{{yesNoSliderEdit Active 'Active' }}</span>
+						</div>
+						<!-- Subcategory: -->
 						<div class="col-md-3 surcategory" data-status="{{PriceRules2}}" data-id="{{RouteID}}">
 							<span class="show_hide">{{SurCategoryRB PriceRules 'SurCategory' '3' 'routes' RouteID}}</span>
 						</div>
+						<!-- Prices: -->
 						<div class="col-md-1">
 							<span class="show_hide"><a target='_blank' href='services/route/{{RouteID}}'>Vehicles</a></span>
-						</div>						
+						</div>
+						<!-- Approved: -->
 						<div class="col-sm-1">
 						
 							{{#compare Approved ">" 0}}
@@ -67,6 +76,7 @@
 						</div>
 				</div>
 			</div>
+
 	{{/each}}
 	<script>
 		$('.show_hide').each(function(){
@@ -85,7 +95,7 @@
 			if (change==1) var param = "RouteID="+routeid+"&DriverRoute="+driverroute;
 			if (change==2) var param = "RouteID="+routeid+"&Active="+active;
 			var $t = $(this);
-			alert (link+'?'+param);
+			// alert (link+'?'+param);
 			$.ajax({
 				type: 'POST',
 				url: link,
