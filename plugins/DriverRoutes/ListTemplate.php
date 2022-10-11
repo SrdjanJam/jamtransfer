@@ -84,8 +84,8 @@
 		});		
 
 		$('.route input').change(function(){
-			var change=$(this).parent().parent().parent().attr('data-change');			
-			var routeid=$(this).parent().parent().parent().attr('data-id');
+			var change=$(this).parent().parent().attr('data-change');	
+			var routeid=$(this).parent().parent().attr('data-id');
 			if (change==1) var driverroute=$(this).val();	
 			if (change==2) var active=$(this).val();	
 			var base=window.location.origin;
@@ -95,14 +95,13 @@
 			if (change==1) var param = "RouteID="+routeid+"&DriverRoute="+driverroute;
 			if (change==2) var param = "RouteID="+routeid+"&Active="+active;
 			var $t = $(this);
-			// alert (link+'?'+param);
 			$.ajax({
 				type: 'POST',
 				url: link,
 				data: param,
 				success: function(data) {
-					if (data==0) $t.parent().parent().parent().parent().find('.show_hide').hide(500);
-					else $t.parent().parent().parent().parent().find('.show_hide').show(500);						
+					if (data==0) $t.parent().parent().parent().find('.show_hide').hide(500);
+					else $t.parent().parent().parent().find('.show_hide').show(500);						
 				}				
 			});
 		})	
