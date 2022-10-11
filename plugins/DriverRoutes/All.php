@@ -82,6 +82,7 @@ if (count($dbk) != 0) {
 		# get all fields and values
 		$detailFlds = $db->fieldValues();
 		$detailFlds["DriverRoute"]=0;
+		$detailFlds["Active"]=0;
 		$detailFlds["PriceRules"]=1;
 		$detailFlds["PriceRules2"]=0;
 		$result = $dbT->RunQuery("SELECT * FROM v4_DriverRoutes WHERE RouteID=".$key." AND OwnerID=".$_SESSION['UseDriverID']);
