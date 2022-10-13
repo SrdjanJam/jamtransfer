@@ -9,6 +9,21 @@
 ?>
 <script type="text/x-handlebars-template" id="ItemListTemplate">
 
+	<div class="row">
+		<div class="col-sm-1">
+			Terminal ID
+		</div>							
+		<div class="col-sm-8">
+			Terminal Name
+		</div>	
+		<div class="col-md-1">
+			Terminal
+		</div>				
+		<div class="col-sm-2">
+			Active
+		</div>
+	</div>
+
 	{{#each Item}}
 		<div>
 		
@@ -16,29 +31,28 @@
 			style="border-top:1px solid #ddd" 
 			id="t_{{PlaceID}}">
 		
-					<div class="col-sm-1">
-						{{PlaceID}}
-					</div>
+				<div class="col-sm-1">
+					{{PlaceID}}
+				</div>
 
-					<div class="col-sm-8">
-						<strong>{{PlaceNameEN}}</strong>,
-						{{CountryNameEN}}
-					</div>
+				<div class="col-sm-8">
+					<strong>{{PlaceNameEN}}</strong>,
+					{{CountryNameEN}}
+				</div>
 
-					<div class="col-md-2 terminal" data-id="{{PlaceID}}">
-						<label for="Terminal">Terminal:</label>{{yesNoSlider Terminal 'Terminal' }}
-					</div>
+				<div class="col-md-1 terminal" data-id="{{PlaceID}}">
+					{{yesNoSliderEdit Terminal 'Terminal' }}
+				</div>
 
-					<div class="col-sm-1">
-						{{#compare PlaceActive ">" 0}}
-							<i class="fa fa-circle text-green"></i>
-						{{else}}
-							<i class="fa fa-circle text-red"></i>
-						{{/compare}}
-					</div>
+				<div class="col-sm-2">
+					{{#compare PlaceActive ">" 0}}
+						<i class="fa fa-circle text-green"></i>
+					{{else}}
+						<i class="fa fa-circle text-red"></i>
+					{{/compare}}
+				</div>
 			</div>
 		</div>
-
 
 	{{/each}}
 	<script>
