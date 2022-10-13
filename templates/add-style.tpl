@@ -47,4 +47,19 @@
 
 .container{ padding:10px 0 20px 0; }
 
+/* ------------------------------------------ */
+/* pageListHeader.tpl */
+
+.form-group.group-edit{
+    display: inline-block;
+    width:70%;
+}
+
+@media screen and (max-width:1000px){
+    .form-group.group-edit{
+        width:90%;
+    }
+    
+}
+
 </style>

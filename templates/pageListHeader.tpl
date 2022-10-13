@@ -9,65 +9,70 @@ value=" WHERE {$ItemID} > 0">
 <input type="hidden"  id="orderid" name="orderid" value="{$orderid}">
 <input type="hidden"  id="detailid" name="detailid" value="{$detailid}">
 <input type="hidden"  id="transfersFilter" name="transfersFilter" value="{$transfersFilter}">
-<input type="hidden"  id="routeID" name="routeID" value="{$RouteID}">
-<input type="hidden"  id="vehicleID" name="vehicleID" value="{$VehicleID}">
 
 <div class="row itemsheader">
-	<div class="col-md-2" id="infoShow"></div>
+	<div class="col-md-2 asd" id="infoShow"></div>
 	{if isset($selecttype)}
-	<div class="col-sm-2">
-		<i class="fa fa-list-ul"></i>
-
-		<select id="Type" class="w75" onchange="allItems();">
-			<option value="0">{$ALL}</option>
-			{section name=pom loop=$options}
-				<option value="{$options[pom].id}">{$options[pom].name}</option>
-			{/section}
-		</select>
-
-	</div>	
+	
+	<div class="col-md-2 asd">
+		<i class="fa fa-list-ul edit-fa"></i>
+		<div class="form-group group-edit">
+		
+			<select id="Type" class="w75 form-control control-edit" onchange="allItems();">
+				<option value="0">{$ALL}</option>
+				{section name=pom loop=$options}
+					<option value="{$options[pom].id}">{$options[pom].name}</option>
+				{/section}
+			</select>
+		</div>
+	</div>
 	{/if}
 
 	{if not isset($pagelength)}{assign var="pagelength" value="10"}{/if}
 	
-	<div class="col-md-2">
-		<i class="fa fa-eye"></i>
-
-		<select id="length" class="w75" onchange="allItems();">
-			<option value="5" {if $pagelength eq '5'} selected {/if}> 5 </option>
-			<option value="10" {if $pagelength eq '10'} selected {/if}> 10 </option>
-			<option value="20" {if $pagelength eq '20'} selected {/if}> 20 </option>
-			<option value="50" {if $pagelength eq '50'} selected {/if}> 50 </option>
-			<option value="100" {if $pagelength eq '100'} selected {/if}> 100 </option>
-		</select>
-		
+	<div class="col-md-2 asd">
+		<i class="fa fa-eye edit-fa"></i>
+		<div class="form-group group-edit">
+			<select id="length" class="w75 form-control control-edit" onchange="allItems();">
+				<option value="5" {if $pagelength eq '5'} selected {/if}> 5 </option>
+				<option value="10" {if $pagelength eq '10'} selected {/if}> 10 </option>
+				<option value="20" {if $pagelength eq '20'} selected {/if}> 20 </option>
+				<option value="50" {if $pagelength eq '50'} selected {/if}> 50 </option>
+				<option value="100" {if $pagelength eq '100'} selected {/if}> 100 </option>
+			</select>
+		</div>
 	</div>
 
 	{if $title ne "Orders"}
-	<div class="col-md-2">
-		<i class="fa fa-text-width"></i>
-		<input type="text" id="Search" class=" w75" onchange="allItems();" placeholder="Text + Enter to Search">
+	<div class="col-md-2 asd">
+		<i class="fa fa-text-width edit-fa"></i>
+		<div class="form-group group-edit">
+			<input type="text" id="Search" class=" w75 form-control control-edit" onchange="allItems();" placeholder="Text + Enter to Search">
+		</div>
 	</div>
-	<div class="col-md-2">
-		<i class="fa fa-sort-amount-asc"></i> 
-		<select name="sortOrder" id="sortOrder" onchange="allItems();">
-			<option value="ASC" selected="selected"> {$ASCENDING} </option>
-			<option value="DESC"> {$DESCENDING} </option>
-		</select>			
+	<div class="col-md-2 asd">
+		<i class="fa fa-sort-amount-asc edit-fa"></i>
+		<div class="form-group group-edit">
+			<select name="sortOrder" id="sortOrder" onchange="allItems();" class="form-control control-edit">
+				<option value="ASC" selected="selected"> {$ASCENDING} </option>
+				<option value="DESC"> {$DESCENDING} </option>
+			</select>
+		</div>		
 	</div>
 	{else}
 		<strong>{$transfersFiltersName}</strong>
 	{/if}
 	
 	{if isset($selectactive)}		
-	<div class="col-sm-2">
-		<i class="fa fa-filter"></i> 
-		<select name="Active" id="Active" onchange="allItems();">
-			<option value="99" selected="selected">{$ALL}</option>			
-			<option value="1"> Active </option>
-			<option value="0"> Not Active </option>
-		</select>
-		
+	<div class="col-md-2 asd">
+		<i class="fa fa-filter edit-fa"></i> 
+		<div class="form-group group-edit">
+			<select name="Active" id="Active" onchange="allItems();" class="form-control control-edit">
+				<option value="99" selected="selected">{$ALL}</option>			
+				<option value="1"> Active </option>
+				<option value="0"> Not Active </option>
+			</select>
+		</div>
 	</div>
 	{/if}
 </div>
