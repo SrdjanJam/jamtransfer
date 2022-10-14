@@ -11,16 +11,22 @@
 
 .nav-header-edit{
     padding: 5px 0 5px 2px;
-    background-color: #a1a1a1;
+    background-color: #e4e4e4;
     text-align: center;
 }
 .nav-header-edit strong{
-    color:black;
+    color:rgb(16, 20, 83);
+    font-family: 'Times New Roman', Times, serif;
 }
 .nav-header-edit #a-setout{
     text-decoration: underline;
-    color: white;
+    color: rgb(61, 61, 61);
     padding: 5px 0 5px 2px;
+    display: inline-block;
+}
+.nav-header-edit #a-setout:hover{
+    color: rgb(71, 88, 184);
+    background: none;
 }
 
 /* ------------------------------------------ */
