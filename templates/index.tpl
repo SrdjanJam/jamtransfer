@@ -4,9 +4,7 @@
 		<base href="{$root_home}">
 		
 		<meta charset="UTF-8">
-		{* <title>WIS {$title}</title> *}
-
-		<title>CMS LOCAL</title>
+		<title>WIS {$title}</title>
 
 		<meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
 
@@ -17,19 +15,31 @@
 		<!-- Latest compiled and minified CSS -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
-		<!-- font Awesome -->
-		<link href="css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+		{* ============================================================================================================================ *}
+		<!-- ICONS: -->
 
+		<!-- Older: -->
+		<!-- font Awesome -->
+		{* <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css"/> *}
 		<!-- Ionicons -->
-		<link href="css/ionicons.min.css" rel="stylesheet" type="text/css"/>
+		{* <link href="css/ionicons.min.css" rel="stylesheet" type="text/css"/> *}
+
+		{* <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/font-awesome-line-awesome/css/all.min.css"> *}
+
+		<!-- New: -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+		{* ============================================================================================================================ *}
 
 		<!-- Morris chart -->
 		<link href="css/morris/morris.css" rel="stylesheet" type="text/css"/>
 
+		{* ============================================================================================================================ *}
 		<!-- bootstrap wysihtml5 - text editor -->
 		<link href="css/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css" rel="stylesheet" type="text/css" media="screen"/>
 		<link href="css/bootstrap-slider/slider.css" rel="stylesheet" type="text/css"/>
 		<link href="js/summernote/summernote.css" rel="stylesheet" type="text/css" media="screen"/>
+		{* ============================================================================================================================ *}
+
 		<!-- Theme style WORKING !!!-->
 		<link href="css/theme.css" rel="stylesheet" type="text/css" media="screen"/>
 		<!-- Preuzeto za novu administraciju -->
@@ -38,6 +48,7 @@
 
 		<!-- MISC -->
 
+		{* ============================================================================================================================ *}
 		<!-- Jquery ui css: -->
 		<link rel="stylesheet" href="css/jquery-ui-1.8.9.custom.css" type="text/css" />
 
@@ -45,6 +56,7 @@
 		<link rel="stylesheet" href="js/pickadate/themes/default.date.css" type="text/css" media="screen"/>
 		<link rel="stylesheet" href="js/pickadate/themes/default.time.css" type="text/css" media="screen"/>
 		<link rel="stylesheet" href="css/colors.css" media="all">
+		{* ============================================================================================================================ *}
 		<!--<link rel="stylesheet" href="css/simplegrid.css" media="all">!-->
 		<link rel="stylesheet" type="text/css" href="css/JAMTimepicker.css">
 		<link rel="stylesheet" type="text/css" href="js/select/css/select2.css">		
@@ -80,12 +92,12 @@
 		<script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
 		<![endif]-->
 
-
+		{* ============================================================================================================================ *}
 		<!-- jQuery -->
 		<script src="cms/js/jquery/2.0.2/jquery.min.js"></script>
 		<!-- jQuery UI 1.10.3 -->
 		<script src="js/jQuery/ui/1.10.3/jquery-ui.min.js" type="text/javascript"></script>
-
+		{* ============================================================================================================================ *}
 
 		<!-- Mainly scripts -->
 		<script src="js/main.admin.js"></script>
@@ -136,14 +148,16 @@
 		<script src="js/jquery.toaster.js"></script>
 		<script src="lng/{$language}_init.js"></script>	
 		<script src="js/cms.jquery.js"></script>
+
 		{if isset($pageList)}
-		<script src="js/list.js"></script>
-		{literal}		
-		<script type="text/javascript">
-		window.root = 'plugins/{/literal}{$base}{literal}/';
-		window.currenturl = '{/literal}{$currenturl}{literal}';
-		</script>
-		{/literal}
+			<script src="js/list.js"></script>
+			{literal}		
+				<script type="text/javascript">
+					window.root = 'plugins/{/literal}{$base}{literal}/';
+					window.currenturl = '{/literal}{$currenturl}{literal}';
+				</script>
+			{/literal}
+
 			{if $isNew}
 			<script type="text/javascript">
 				$(document).ready(function(){
@@ -151,6 +165,7 @@
 				});	
 			</script>
 			{else}
+
 			{literal}
 			<script type="text/javascript">
 				$(document).ready(function(){
@@ -159,8 +174,11 @@
 				});	
 			</script>
 			{/literal}
+
 			{/if}
-		{/if}		
+
+		{/if}
+
 	</head>	
 
 	{* INCLUDE TPL: *}
@@ -171,7 +189,7 @@
 		
 			{* Navbar *}
 			<nav class="navbar-default navbar-static-side additional-class" role="navigation">
-
+			<i class="lab la-accessible-icon"></i>
 				<script>
 					$(document).ready(function(){
 						$("a.navbar-minimalize").click(function(){
@@ -307,7 +325,7 @@
 
 					  </div>
 					  <div class="navbar-header">
-						 <button type="button" class="minimalize-styl-2 btn btn-primary" id="cashe"><i class="fa fa-refresh"></i></button>
+						 <button type="button" class="minimalize-styl-2 btn btn-primary" id="cashe"><i class="fas fa-redo-alt"></i></button>
 					  </div>					  					  						
 					  <ul class="nav navbar-top-links navbar-right">
 						 <li>
