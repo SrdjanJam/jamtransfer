@@ -16353,7 +16353,8 @@ body.canvas-menu .logo-element {
 }
 body.mini-navbar .nav-header {
     padding: 0;
-    background-color: #1ab394;
+    /* Changed: */
+    /* background-color: #1ab394; */
 }
 body.canvas-menu .nav-header {
     padding: 33px 25px;
