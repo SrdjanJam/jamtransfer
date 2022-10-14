@@ -4,9 +4,9 @@
 		<base href="{$root_home}">
 		
 		<meta charset="UTF-8">
-		<title>WIS {$title}</title>
+		{* <title>WIS {$title}</title> *}
 
-		{* <title>CMS LOCAL</title> *}
+		<title>CMS LOCAL</title>
 
 		<meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
 
@@ -206,9 +206,9 @@
 						</li>
 
 						{if isset($smarty.session.UseDriverName)}
-							<li class="nav-header" style="padding: 5px 0 5px 2px">
+							<li class="nav-header nav-header-edit">
 								<strong class="font-bold">{$smarty.session.UseDriverName}</strong>
-								<a href="setout.php" style="padding: 5px 0 5px 2px">Setout</a>
+								<a href="setout.php" id="a-setout">Setout</a>
 							</li>
 						{/if}
 
