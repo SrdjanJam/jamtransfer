@@ -9,8 +9,23 @@
     overflow-y: auto;
 }
 
+.nav-header-edit{
+    padding: 5px 0 5px 2px;
+    background-color: #a1a1a1;
+    text-align: center;
+}
+.nav-header-edit strong{
+    color:black;
+}
+.nav-header-edit #a-setout{
+    text-decoration: underline;
+    color: white;
+    padding: 5px 0 5px 2px;
+}
+
 /* ------------------------------------------ */
 /* DriversTransfers/templates/index.tpl and AgentsTransfers/templates/index.tpl */
+
 /* .row_e{ 
     padding:0 0 3px 0; 
     font-size:18px; 
