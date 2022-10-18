@@ -98,10 +98,53 @@ Class v4_LanguageLines {
 	return $keys;
 	}
 
+	public function getId(){
+		return $this->id;
+	}
+	public function getGroup(){
+		return $this->group;
+	}
+	public function getKey(){
+		return $this->key;
+	}
+	public function getText(){
+		return $this->text;
+	}
+	public function getCreatedAt(){
+		return $this->created_at;
+	}
+	public function getUpdatedAt(){
+		return $this->updated_at;
+	}
+
+	public function fieldValues(){
+		$fieldValues = array(
+			'id' => $this->getId(),
+			'group' => $this->getGroup(),
+			'key' => $this->getKey(),
+			'text' => $this->getText(),
+			'created_at' => $this->getCreatedAt(),
+			'updated_at' => $this->getUpdatedAt()
+		);
+
+		return $fieldValues;
+	}
+    /**
+     * fieldNames - returns array of fieldNames 
+     *
+     * @param 
+     * 
+     */
+	public function fieldNames(){
+		$fieldNames = array(
+			'id',		'group',			'key',			'text',			'created_at',			'updated_at'		);
+		return $fieldNames;
+	}
+
     /**
      * Close mysql connection
      */
-	public function endv4_Labels(){
+	public function endv4_LanguageLines(){
 		$this->connection->CloseMysql();
 	}
 
