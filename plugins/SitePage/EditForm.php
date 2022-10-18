@@ -2,13 +2,7 @@
 <script type="text/x-handlebars-template" id="ItemEditTemplate">
 <form id="ItemEditForm{{ID}}" class="form box box-info" enctype="multipart/form-data" method="post" onsubmit="return false;">
 	<div class="box-header">
-		<div class="box-title">
-			<? if ($isNew) { ?>
-				<h3><?= NNEW ?></h3>
-			<? } else { ?>
-				<h3><?= EDIT ?> - {{ID}}</h3>
-			<? } ?>
-		</div>
+
 		<div class="box-tools pull-right">
 			
 			<span id="statusMessage" class="text-info xl"></span>
@@ -88,17 +82,6 @@
 	    </div>
 		    
 
-	<!-- Statuses and messages -->
-	<div class="box-footer">
-		<? if (!$isNew) { ?>
-		<div>
-    	<button class="btn btn-default" onclick="return deleteItem('{{ID}}', '<?= $inList ?>');">
-    		<i class="ic-cancel-circle"></i> <?= DELETE ?>
-    	</button>
-    	</div>
-    	<? } ?>
-
-	</div>
 	
 	<input type="hidden" name="LastChange" id="LastChange"  value="<?= date("Y-m-d H:i:s") ?>">
 </form>

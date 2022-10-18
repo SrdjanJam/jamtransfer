@@ -2,9 +2,14 @@
 // aktivna stranica iz url-a	
 $baseUrl = "/";
 $pathVars = new PathVars($baseUrl);
-if (LOCAL) $indexStart = 1;
-else $indexStart = 0;
-$size=$pathVars->size();
+if (LOCAL) {
+	$indexStart = 1;
+	$size=$pathVars->size();
+}
+else {
+	$indexStart = 0;
+	$size=$pathVars->size()+1;
+}	
 if ($size>$indexStart) {
 	$activePage=$pathVars->fetchByIndex($indexStart);
 }	

@@ -2,13 +2,7 @@
 <script type="text/x-handlebars-template" id="ItemEditTemplate">
 <form id="ItemEditForm{{ID}}" class="form box box-info" enctype="multipart/form-data" method="post" onsubmit="return false;">
 	<div class="box-header">
-		<div class="box-title">
-			<? if ($isNew) { ?>
-				<h3><?= NNEW ?></h3>
-			<? } else { ?>
-				<h3><?= EDIT ?> - {{Title}}</h3>
-			<? } ?>
-		</div>
+
 		<div class="box-tools pull-right">
 			
 			<span id="statusMessage" class="text-info xl"></span>
@@ -34,6 +28,9 @@
 	<div class="box-body ">
         <div class="row">
 			<div class="col-md-12">
+
+				<input type="hidden" name="ID" id="ID" class="w100" value="{{ID}}">
+
 				<div class="row">
 					<div class="col-md-3">
 						<label for="ID"><?=ID;?></label>
@@ -57,20 +54,20 @@
 						<label for="Title"><?=TITLE;?></label>
 					</div>
 					<div class="col-md-9">
-						<input type="text" name="Title" id="Title" class="w100" value="{{Title}}">
+						<input type="text" name="Title" id="Title" class="w300" value="{{Title}}">
 					</div>
 				</div>
 
 				<div class="row">
 					<div class="col-md-3">
-						<label for="Article"><?=ARTICLE;?></label>
+						<label for="Content"><?=ARTICLE;?></label>
 					</div>
 					<div class="col-md-9">
-						<textarea name="Article" id="Article{{ID}}" rows="100" 
-							class="textarea" cols="70" style="width:100%">{{{Article}}}</textarea>
+						<textarea name="Article" id="Article" rows="15" 
+					class="textarea" style="width:100%">{{Article}}</textarea>
 					</div>
 				</div>
-
+				
 				<div class="row">
 					<div class="col-md-3">
 						<label for="Page"><?=PAGE;?></label>
@@ -135,65 +132,37 @@
 					</div>
 				</div>
 
-				<div class="row">
-					<div class="col-md-3">
-						<label for="UserID"><?=USERID;?></label>
-					</div>
-					<div class="col-md-9">
-						{{UserID}}
-					</div>
-				</div>
-
-
 			</div>
 	    </div>
 		    
 
 	<!-- Statuses and messages -->
-	<div class="box-footer">
-		<? if (!$isNew) { ?>
-		<div>
-    	<button class="btn btn-default" onclick="return deleteItem('{{ID}}', '<?= $inList ?>');">
-    		<i class="ic-cancel-circle"></i> <?= DELETE ?>
-    	</button>
-    	</div>
-    	<? } ?>
 
-	</div>
+	
+	<input type="hidden" name="UserID" id="UserID"  value="{{UserID}}">
+	<input type="hidden" name="LastChange" id="LastChange"  value="<?= date("Y-m-d H:i:s") ?>">
 </form>
 
 
 	<script>
-//$('#Article').destroy();	
 
-
-$("#Article{{ID}}").summernote({
-height: 320,
-toolbar: [
-    //[groupname, [button list]]
-     
-    ['style', ['bold', 'italic', 'underline', 'clear']],
-    ['font', ['strikethrough']],
-    ['fontsize', ['fontsize']],
-    ['color', ['color']],
-    ['para', ['ul', 'ol', 'paragraph']],
-    //['height', ['height']],
-    ['misc', ['codeview']],
-    ['insert',['picture', 'video','link','hr']]
-  ],
-  codemirror: {
-  		lineWrapping:true
-  }
-});
-	
-function postForm() {
-	$('#Article{{ID}}').text($('#Article{{ID}}').code());
-	return false;
-}
+		//bootstrap WYSIHTML5 - text editor
+		$(".textarea").wysihtml5({
+				"font-styles": true, //Font styling, e.g. h1, h2, etc. Default true
+				"emphasis": true, //Italics, bold, etc. Default true
+				"lists": true, //(Un)ordered lists, e.g. Bullets, Numbers. Default true
+				"html": true, //Button which allows you to edit the generated HTML. Default false
+				"link": true, //Button to insert a link. Default true
+				"image": true, //Button to insert an image. Default true,
+				"color": true //Button to change color of font 
+				
+		});
+		
 		// uklanja ikonu Saved - statusMessage sa ekrana
 		$("form").change(function(){
 			$("#statusMessage").html('');
 		});
-</script>
+	
+	</script>
 </script>
 	

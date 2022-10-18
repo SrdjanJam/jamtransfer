@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.32, created on 2022-10-10 12:32:52
+/* Smarty version 3.1.32, created on 2022-10-17 14:15:17
   from 'C:\wamp\www\jamtransfer\templates\index.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.32',
-  'unifunc' => 'content_634410f4a654a1_47683394',
+  'unifunc' => 'content_634d4755aa5d72_67487172',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'a1818a92b5a2f041fd91a227dabc592dea38fac2' => 
     array (
       0 => 'C:\\wamp\\www\\jamtransfer\\templates\\index.tpl',
-      1 => 1665398287,
+      1 => 1665746873,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:pageList.tpl' => 1,
   ),
 ),false)) {
-function content_634410f4a654a1_47683394 (Smarty_Internal_Template $_smarty_tpl) {
+function content_634d4755aa5d72_67487172 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html>
 	<head>
@@ -33,7 +33,6 @@ function content_634410f4a654a1_47683394 (Smarty_Internal_Template $_smarty_tpl)
 		<title>WIS <?php echo $_smarty_tpl->tpl_vars['title']->value;?>
 </title>
 
-		
 		<meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
 
 		<!-- STYLES -->
@@ -43,19 +42,24 @@ function content_634410f4a654a1_47683394 (Smarty_Internal_Template $_smarty_tpl)
 		<!-- Latest compiled and minified CSS -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
+				<!-- ICONS: -->
+
+		<!-- Older: -->
 		<!-- font Awesome -->
-		<link href="css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
-
-		<!-- Ionicons -->
-		<link href="css/ionicons.min.css" rel="stylesheet" type="text/css"/>
-
+				<!-- Ionicons -->
+		
+		
+		<!-- New: -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+		
 		<!-- Morris chart -->
 		<link href="css/morris/morris.css" rel="stylesheet" type="text/css"/>
 
-		<!-- bootstrap wysihtml5 - text editor -->
+				<!-- bootstrap wysihtml5 - text editor -->
 		<link href="css/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css" rel="stylesheet" type="text/css" media="screen"/>
 		<link href="css/bootstrap-slider/slider.css" rel="stylesheet" type="text/css"/>
 		<link href="js/summernote/summernote.css" rel="stylesheet" type="text/css" media="screen"/>
+		
 		<!-- Theme style WORKING !!!-->
 		<link href="css/theme.css" rel="stylesheet" type="text/css" media="screen"/>
 		<!-- Preuzeto za novu administraciju -->
@@ -64,14 +68,14 @@ function content_634410f4a654a1_47683394 (Smarty_Internal_Template $_smarty_tpl)
 
 		<!-- MISC -->
 
-		<!-- Jquery ui css: -->
+				<!-- Jquery ui css: -->
 		<link rel="stylesheet" href="css/jquery-ui-1.8.9.custom.css" type="text/css" />
 
 		<link rel="stylesheet" href="js/pickadate/themes/default.css" type="text/css" media="screen"/>
 		<link rel="stylesheet" href="js/pickadate/themes/default.date.css" type="text/css" media="screen"/>
 		<link rel="stylesheet" href="js/pickadate/themes/default.time.css" type="text/css" media="screen"/>
 		<link rel="stylesheet" href="css/colors.css" media="all">
-		<!--<link rel="stylesheet" href="css/simplegrid.css" media="all">!-->
+				<!--<link rel="stylesheet" href="css/simplegrid.css" media="all">!-->
 		<link rel="stylesheet" type="text/css" href="css/JAMTimepicker.css">
 		<link rel="stylesheet" type="text/css" href="js/select/css/select2.css">		
 
@@ -110,8 +114,7 @@ function content_634410f4a654a1_47683394 (Smarty_Internal_Template $_smarty_tpl)
 >
 		<![endif]-->
 
-
-		<!-- jQuery -->
+				<!-- jQuery -->
 		<?php echo '<script'; ?>
  src="cms/js/jquery/2.0.2/jquery.min.js"><?php echo '</script'; ?>
 >
@@ -119,8 +122,7 @@ function content_634410f4a654a1_47683394 (Smarty_Internal_Template $_smarty_tpl)
 		<?php echo '<script'; ?>
  src="js/jQuery/ui/1.10.3/jquery-ui.min.js" type="text/javascript"><?php echo '</script'; ?>
 >
-
-
+		
 		<!-- Mainly scripts -->
 		<?php echo '<script'; ?>
  src="js/main.admin.js"><?php echo '</script'; ?>
@@ -221,20 +223,22 @@ _init.js"><?php echo '</script'; ?>
 		<?php echo '<script'; ?>
  src="js/cms.jquery.js"><?php echo '</script'; ?>
 >
+
 		<?php if (isset($_smarty_tpl->tpl_vars['pageList']->value)) {?>
-		<?php echo '<script'; ?>
+			<?php echo '<script'; ?>
  src="js/list.js"><?php echo '</script'; ?>
 >
-				
-		<?php echo '<script'; ?>
+					
+				<?php echo '<script'; ?>
  type="text/javascript">
-		window.root = 'plugins/<?php echo $_smarty_tpl->tpl_vars['base']->value;?>
+					window.root = 'plugins/<?php echo $_smarty_tpl->tpl_vars['base']->value;?>
 /';
-		window.currenturl = '<?php echo $_smarty_tpl->tpl_vars['currenturl']->value;?>
+					window.currenturl = '<?php echo $_smarty_tpl->tpl_vars['currenturl']->value;?>
 ';
-		<?php echo '</script'; ?>
+				<?php echo '</script'; ?>
 >
-		
+			
+
 			<?php if ($_smarty_tpl->tpl_vars['isNew']->value) {?>
 			<?php echo '<script'; ?>
  type="text/javascript">
@@ -244,6 +248,7 @@ _init.js"><?php echo '</script'; ?>
 			<?php echo '</script'; ?>
 >
 			<?php } else { ?>
+
 			
 			<?php echo '<script'; ?>
  type="text/javascript">
@@ -255,8 +260,11 @@ _init.js"><?php echo '</script'; ?>
 			<?php echo '</script'; ?>
 >
 			
+
 			<?php }?>
-		<?php }?>		
+
+		<?php }?>
+
 	</head>	
 
 		<?php $_smarty_tpl->_subTemplateRender(((string)$_smarty_tpl->tpl_vars['root']->value)."/templates/add-style.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, true);
@@ -266,7 +274,7 @@ _init.js"><?php echo '</script'; ?>
 		<div class="wrapper wrapper-edit">
 		
 						<nav class="navbar-default navbar-static-side additional-class" role="navigation">
-
+			<i class="lab la-accessible-icon"></i>
 				<?php echo '<script'; ?>
 >
 					$(document).ready(function(){
@@ -305,10 +313,10 @@ _init.js"><?php echo '</script'; ?>
 						</li>
 
 						<?php if (isset($_SESSION['UseDriverName'])) {?>
-							<li class="nav-header" style="padding: 5px 0 5px 2px">
+							<li class="nav-header nav-header-edit">
 								<strong class="font-bold"><?php echo $_SESSION['UseDriverName'];?>
 </strong>
-								<a href="setout.php" style="padding: 5px 0 5px 2px">Setout</a>
+								<a href="setout.php" id="a-setout">Setout</a>
 							</li>
 						<?php }?>
 
@@ -444,7 +452,7 @@ for ($__section_pom_2_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_po
 
 					  </div>
 					  <div class="navbar-header">
-						 <button type="button" class="minimalize-styl-2 btn btn-primary" id="cashe"><i class="fa fa-refresh"></i></button>
+						 <button type="button" class="minimalize-styl-2 btn btn-primary" id="cashe"><i class="fas fa-redo-alt"></i></button>
 					  </div>					  					  						
 					  <ul class="nav navbar-top-links navbar-right">
 						 <li>

@@ -233,11 +233,13 @@
 		var newData = $("#ItemEditForm"+id).serializeObject();
 		var formData = $("#ItemEditForm"+id).serialize();
 		// update data on server
-		var url = window.root + 'Save.php?callback=?&id=' + id + '&' + formData;
-		console.log(window.base+url);		
+		var url = window.root + 'Save.php';
+		var data = 'callback=?&id=' + id + '&' + formData;
+		console.log(data);		
 		$.ajax({
 			type: 'POST',
 			url: url,
+			data: data,			
 			async: false,
 			//contentType: "application/json",
 			dataType: 'jsonp',
