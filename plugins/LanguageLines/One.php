@@ -11,6 +11,8 @@ $detailFlds = $db->fieldValues();
 foreach ($detailFlds as $key=>$value) {
 	$detailFlds[$key] = stripslashes($value);
 }
+$arr=json_decode($detailFlds['text']);
+$detailFlds['text_arr']= (array) $arr;	
 $out[] = $detailFlds;
 # send output back
 $output = json_encode($out);

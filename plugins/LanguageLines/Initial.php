@@ -10,7 +10,5 @@ $ItemName='id ';
 # Search ce ih sam pretraziti
 #********************************
 $aColumns = array(
-	'id', // dodaj ostala polja!
-	'key',
 	'text'
 );

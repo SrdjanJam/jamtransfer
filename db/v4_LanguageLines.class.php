@@ -66,11 +66,11 @@ Class v4_LanguageLines {
      */
 	public function saveRow(){
 		$result = $this->connection->RunQuery("UPDATE v4_LanguageLines set 
-		group = '".$this->myreal_escape_string($this->group)."', 
-		key = '".$this->myreal_escape_string($this->key)."', 
-		text = '".$this->myreal_escape_string($this->text)."', 
-		created_at = '".$this->myreal_escape_string($this->created_at)."', 
-		updated_at = '".$this->myreal_escape_string($this->updated_at)."' WHERE id = '".$this->id."'");
+		`group` = '".$this->myreal_escape_string($this->group)."', 
+		`key` = '".$this->myreal_escape_string($this->key)."', 
+		`text` = '".$this->myreal_escape_string($this->text)."', 
+		`created_at` = '".$this->myreal_escape_string($this->created_at)."', 
+		`updated_at` = '".$this->myreal_escape_string($this->updated_at)."' WHERE id = '".$this->id."'");
 	return $result; 
 }
 
@@ -98,33 +98,52 @@ Class v4_LanguageLines {
 	return $keys;
 	}
 
-	public function getId(){
+	public function getid(){
 		return $this->id;
 	}
-	public function getGroup(){
+	public function getgroup(){
 		return $this->group;
 	}
-	public function getKey(){
+	public function getkey(){
 		return $this->key;
 	}
-	public function getText(){
+	public function gettext(){
 		return $this->text;
 	}
-	public function getCreatedAt(){
+	public function getcreated_at(){
 		return $this->created_at;
 	}
-	public function getUpdatedAt(){
+	public function getupdated_at(){
 		return $this->updated_at;
 	}
-
+	
+	public function setid($id){
+		$this->id=$id;
+	}
+	public function setgroup($group){
+		$this->group=$group;
+	}
+	public function setkey($key){
+		$this->key=$key;
+	}
+	public function settext($text){
+		$this->text=$text;
+	}
+	public function setcreated_at($created_at){
+		$this->created_at=$created_at;
+	}
+	public function setupdated_at($updated_at){
+		$this->updated_at=$updated_at;
+	}
+	
 	public function fieldValues(){
 		$fieldValues = array(
-			'id' => $this->getId(),
-			'group' => $this->getGroup(),
-			'key' => $this->getKey(),
+			'id' => $this->getid(),
+			'group' => $this->getgroup(),
+			'key' => $this->getkey(),
 			'text' => $this->getText(),
-			'created_at' => $this->getCreatedAt(),
-			'updated_at' => $this->getUpdatedAt()
+			'created_at' => $this->getcreated_at(),
+			'updated_at' => $this->getupdated_at()
 		);
 
 		return $fieldValues;

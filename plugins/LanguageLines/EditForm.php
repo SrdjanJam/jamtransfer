@@ -46,16 +46,25 @@
 					</div>
 				</div>
 
-				<div class="row">
+				<!--<div class="row">
 					<div class="col-md-3">
 						<label for="text"><?=TEXT;?></label>
 					</div>
 					<div class="col-md-9">
 						<textarea name="text" id="text" class="w100">{{text}}</textarea>
 					</div>
-					
-				</div>
-				
+				</div>!-->
+				{{#each text_arr}}
+				<div class="row">
+					<div class="col-md-3">
+						<label for="text"><?=TEXT;?> {{@key}}</label>
+					</div>	
+					<div class="col-md-9">	
+						<textarea name='text_{{@key}}' rows="15" 
+						class="textarea" style="width:100%">{{this}}</textarea>
+					</div>	
+				</div>	
+				{{/each}}
 				
 			</div><!-- End of .box-body -->
 	    </div> <!-- End of .row -->

@@ -2,18 +2,20 @@
 // aktivna stranica iz url-a	
 $baseUrl = "/";
 $pathVars = new PathVars($baseUrl);
+$activePage = 'dashboard';
 if (LOCAL) {
 	$indexStart = 1;
 	$size=$pathVars->size();
+	$specialpage=$pathVars->fetchByIndex($indexStart + $size - 2);
+	if ($size>1) $activePage=$pathVars->fetchByIndex($indexStart);
 }
 else {
 	$indexStart = 0;
-	$size=$pathVars->size()+1;
+	$size=$pathVars->size();
+	$specialpage=$pathVars->fetchByIndex($indexStart + $size - 1);
+	if ($size>0) $activePage=$pathVars->fetchByIndex($indexStart);
 }	
-if ($size>$indexStart) {
-	$activePage=$pathVars->fetchByIndex($indexStart);
-}	
-else $activePage = 'dashboard';
+
 $help="menu";
 $isNew=false;
 $transfersFilter='';
@@ -165,7 +167,6 @@ $smarty->assign('transfersFilter',$transfersFilter);
 $smarty->assign('includeFile',$includeFile);
 $smarty->assign('includeFileTpl',$includeFileTpl);
 
-$specialpage=$pathVars->fetchByIndex($indexStart + $size - 2);
 switch ($specialpage) {
 	case 'help':
 		$help=$activePage;

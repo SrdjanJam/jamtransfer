@@ -235,7 +235,7 @@
 		// update data on server
 		var url = window.root + 'Save.php';
 		var data = 'callback=?&id=' + id + '&' + formData;
-		console.log(data);		
+		console.log(url+'?'+data);		
 		$.ajax({
 			type: 'POST',
 			url: url,
