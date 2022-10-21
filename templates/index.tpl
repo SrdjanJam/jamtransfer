@@ -4,16 +4,19 @@
 		<base href="{$root_home}">
 		
 		<meta charset="UTF-8">
-		<title>WIS {$title}</title>
+		{* <title>WIS {$title}</title> *}
+
+		<title>CMS LOCAL</title>
+		
 
 		<meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
 
 		<!-- STYLES -->
 		<!-- bootstrap 3.0.2 -->
-		<!-- <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" media="all"/>-->
+		<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" media="all"/>
 	
 		<!-- Latest compiled and minified CSS -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+		{* <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"> *}
 
 		{* ============================================================================================================================ *}
 		<!-- ICONS: -->
@@ -45,7 +48,6 @@
 		<!-- Preuzeto za novu administraciju -->
 		<link href="css/admin.css" rel="stylesheet">
 
-
 		<!-- MISC -->
 
 		{* ============================================================================================================================ *}
@@ -61,30 +63,7 @@
 		<link rel="stylesheet" type="text/css" href="css/JAMTimepicker.css">
 		<link rel="stylesheet" type="text/css" href="js/select/css/select2.css">		
 
-		<style type="text/css" media="print">
-			body {
-				font-family: 'Roboto', sans-serif;
-				font-size: 10px !important;
-			}
-			.nav, .footer { display:none; }
-			@page { margin: 0.5cm; }
-			@media print {
-				div [class*='col-'] { display: table-cell !important; }
-				div [class*='row'] { display: table-row !important; width: 100%; }
-				div [class*='grid'] { display: table-row !important; width: 100%; }
-				div [class*='w25'] { display: inline-block !important; width: 30%; }
-				div [class*='w75'] { display: inline-block !important; width: 69%; }
-				div [class*='w100'] { display: inline-block !important; width: 99%; }
-				button, .btn { display:none; }
-			}
-			.badge {
-			  background-color: white;
-			  color: black;
-			  padding: 4px 8px;
-			  text-align: center;
-			  border-radius: 5px;
-			}			
-		</style>
+		
 		<!-- SCRIPTS -->
 		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 		<!--[if lt IE 9]>
@@ -151,6 +130,8 @@
 
 		{if isset($pageList)}
 			<script src="js/list.js"></script>
+
+
 			{literal}		
 				<script type="text/javascript">
 					window.root = 'plugins/{/literal}{$base}{literal}/';
@@ -179,6 +160,7 @@
 
 		{/if}
 
+		
 	</head>	
 
 	{* INCLUDE TPL: *}
@@ -190,21 +172,9 @@
 			{* Navbar *}
 			<nav class="navbar-default navbar-static-side additional-class" role="navigation">
 			<i class="lab la-accessible-icon"></i>
-				<script>
-					$(document).ready(function(){
-						$("a.navbar-minimalize").click(function(){
-							// Full navbar:
-							$("nav.navbar-default").toggleClass("additional-class");
-							// Hide and show status on toggle:
-							$("#status").toggle(100,function(){ });
-						}); // End of click
-					}); // End of document.ready
-				</script>
 
 				<div class="sidebar-collapse">
-
 					<ul class="nav metismenu" id="side-menu">
-
 						<li class="nav-header">
 							<div class="dropdown profile-element">
 								<a data-toggle="dropdown" class="dropdown-toggle" href="#">
@@ -222,11 +192,12 @@
 								</ul>
 							</div>
 						</li>
-
+						
 						{if isset($smarty.session.UseDriverName)}
 							<li class="nav-header nav-header-edit">
+								<h3>Set as:</h3>
 								<strong class="font-bold">{$smarty.session.UseDriverName}</strong>
-								<a href="setout.php" id="a-setout">Setout</a>
+								<a href="setout.php" id="a-setout">Setout	<i class="fas fa-sign-out-alt"></i></a>	
 							</li>
 						{/if}
 
@@ -244,25 +215,24 @@
 									<ul class="nav nav-second-level collapse" >
 
 										{section name=index1 loop=$menu1[index].menu}	
-										<li class="{$menu1[index].menu[index1].active}">
-											<a href="{$menu1[index].menu[index1].link}"><span class="nav-label" title="{$menu1[index].menu[index1].description}">{$menu1[index].menu[index1].title} <span class='badge'>{{$menu1[index].menu[index1].activestatus}}</span></span></a>
+											<li class="{$menu1[index].menu[index1].active}">
+												<a href="{$menu1[index].menu[index1].link}"><span class="nav-label" title="{$menu1[index].menu[index1].description}">{$menu1[index].menu[index1].title} <span class='badge'>{{$menu1[index].menu[index1].activestatus}}</span></span></a>
 
-												{if $menu1[index].menu[index1].title eq 'Orders'}
-													{* collapse: ul second level: *}
-												<ul class="nav nav-third-level collapse" >
-													<li><a href="{$menu1[index].menu[index1].link}"><span class="nav-label">All</span></a></li>
+													{if $menu1[index].menu[index1].title eq 'Orders'}
+														{* collapse: ul second level: *}
+													<ul class="nav nav-third-level collapse" >
+														<li><a href="{$menu1[index].menu[index1].link}"><span class="nav-label">All</span></a></li>
 
-													{section name=pom loop=$transfersFilters}
-														<li {if $transfersFilters[pom].id eq $transfersFilter} class="active" {/if}>
-															<a href="{$menu1[index].menu[index1].link}/{$transfersFilters[pom].id}"><span class="nav-label">{$transfersFilters[pom].name}</span></a>
-														</li>
-													{/section}
+														{section name=pom loop=$transfersFilters}
+															<li {if $transfersFilters[pom].id eq $transfersFilter} class="active" {/if}>
+																<a href="{$menu1[index].menu[index1].link}/{$transfersFilters[pom].id}"><span class="nav-label">{$transfersFilters[pom].name}</span></a>
+															</li>
+														{/section}
 
-												</select>						
-												</ul>
-												{/if}
-										</li>
-
+													</select>						
+													</ul>
+													{/if}
+											</li>
 										{/section}	
 									</ul>
 								{/if}
@@ -284,29 +254,6 @@
 				
 			</nav> {* End of navbar-default navbar-static-side *}
 			
-
-			<style type="text/css" >
-				.content {
-					height: 100%;
-					overflow: hidden;
-					display: grid;
-
-				}
-
-				.header {
-					grid-row: 1; 
-				}
-				.body{
-					grid-row: 2;
-					padding: 10px;
-					overflow-y: auto;
-					overflow-x: hidden;
-				}
-				.footer{
-					grid-row: 3;
-				}		
-			</style>
-
 			{* #page-wrapper *}
 			<div id="page-wrapper" class="content gray-bg dashbard-1" style="height: 100%;
 					display: flex;
@@ -321,11 +268,11 @@
 					  <div class="navbar-header">
 
 						{* target***** *}
-						 <a class="navbar-minimalize minimalize-styl-2 btn btn-primary"><i class="fa fa-bars"></i> </a>
+						 <a class="navbar-minimalize minimalize-styl-2 btn btn-primary btn-primary-edit"><i class="fa fa-bars"></i> </a>
 
 					  </div>
 					  <div class="navbar-header">
-						 <button type="button" class="minimalize-styl-2 btn btn-primary" id="cashe"><i class="fas fa-redo-alt"></i></button>
+						 <button type="button" class="minimalize-styl-2 btn btn-primary btn-primary-edit" id="cashe"><i class="fas fa-redo-alt"></i></button>
 					  </div>					  					  						
 					  <ul class="nav navbar-top-links navbar-right">
 						 <li>
@@ -341,15 +288,13 @@
 				</div> {* /.header row border-bottom *}
 			
 				{if not $isNew and isset($pageList)}
-
 					{* .header *}
 					<div class="header">  
 						{include file="pageListHeader.tpl"} 				   
 					</div> {* /.header *}
-
 				{/if}
-				{if $page eq 'Price Rules'}	
 
+				{if $page eq 'Price Rules'}	
 					{* .header row *}
 					<div class="header row"> 
 						<div class="pull-left">
@@ -364,32 +309,33 @@
 							</button>					
 						</div>
 					</div> {* /.header row *}
-
 				{/if}
 					
 				{* .body row white-bg *}
 				<div class="body row white-bg">
 					{if isset($pageOLD)}
 						NOT MODEL VIEW CONTROL
-					{elseif isset($page)}
-						{include file="{$root}/plugins/{$base}/templates/{$includeFileTpl}"}
-						MODEL VIEW CONTROL SMARTY		
-					{elseif isset($pageList)}
-						{include file="pageList.tpl"} 
-						MODEL VIEW CONTROL HANDLEBARS
-					{else}
-						{$page_render}
-						SEMI MODEL VIEW CONTROL via OB_GET_CONTENTS
+						{elseif isset($page)}
+							{include file="{$root}/plugins/{$base}/templates/{$includeFileTpl}"}
+							MODEL VIEW CONTROL SMARTY		
+						{elseif isset($pageList)}
+							{include file="pageList.tpl"} 
+							MODEL VIEW CONTROL HANDLEBARS
+						{else}
+							{$page_render}
+							SEMI MODEL VIEW CONTROL via OB_GET_CONTENTS
 					{/if}				  
 				</div> {* / .body row white-bg *}
 
 				{* .footer row *}
 				<div class="footer row">
+
 					{if not $isNew and isset($pageList)}				
-					<div id="pageSelect" class="pull-left"></div>
+						<div id="pageSelect" class="pull-left"></div>
 					{/if}
+
 					<div class="pull-right">
-					  Powered by <strong>Jamtransfer</strong>
+						Powered by <strong>Jamtransfer</strong>
 					</div>
 					<div class="backdrop"><div class="spiner"></div></div>
 				</div>{* /.footer row *}
@@ -422,4 +368,16 @@
 		});
 	</script>
 {/literal}
-	
+
+
+<script>
+	// toggleClass:
+	$(document).ready(function(){
+		$("a.navbar-minimalize").click(function(){
+			// Full navbar:
+			$("nav.navbar-default").toggleClass("additional-class");
+			// Hide and show status on toggle:
+			$("#status").toggle(100,function(){ });
+		}); // End of click
+	}); // End of document.ready
+</script>
