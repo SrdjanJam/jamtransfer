@@ -4,9 +4,8 @@
 		<base href="{$root_home}">
 		
 		<meta charset="UTF-8">
-		{* <title>WIS {$title}</title> *}
-
-		<title>CMS LOCAL</title>
+		
+		<title>WIS {$title}</title>
 		
 
 		<meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
