@@ -42,8 +42,8 @@
 		if (typeof sortDirection=='undefined') sortDirection='DESC';	
 		var routeID = $("#routeID").val();
 		if (typeof routeID=='undefined') routeID=0;	
-		var vehicleID = $("#vehicleID").val();
-		if (typeof vehicleID=='undefined') vehicleID=0;	
+		var vehicleTypeID = $("#vehicleTypeID").val();
+		if (typeof vehicleTypeID=='undefined') vehicleTypeID=0;	
 		
 		var callFunction = 'allItems()'; // funkcija koju paginator poziva kod promjene stranice
 	
@@ -72,7 +72,7 @@
 		'&sortField='+sortField+
 		'&sortDirection='+sortDirection+
 		'&routeID='+routeID+
-		'&vehicleID='+vehicleID+
+		'&vehicleTypeID='+vehicleTypeID+
 		'&callback=?';
 		console.log(window.base+url);
 		$.ajax({

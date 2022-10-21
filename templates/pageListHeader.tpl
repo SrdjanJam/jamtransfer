@@ -9,6 +9,8 @@ value=" WHERE {$ItemID} > 0">
 <input type="hidden"  id="orderid" name="orderid" value="{$orderid}">
 <input type="hidden"  id="detailid" name="detailid" value="{$detailid}">
 <input type="hidden"  id="transfersFilter" name="transfersFilter" value="{$transfersFilter}">
+<input type="hidden"  id="routeID" name="routeID" value="{$RouteID}">
+<input type="hidden"  id="vehicleTypeID" name="vehicleTypeID" value="{$VehicleTypeID}">
 
 <div class="row itemsheader">
 	<div class="col-md-2 asd" id="infoShow"></div>

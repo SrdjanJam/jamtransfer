@@ -1,7 +1,7 @@
 <?
 header('Content-Type: text/javascript; charset=UTF-8');
 require_once 'Initial.php';
-require_once ROOT . '/db/v4_v4_Vehicles.class.php';
+require_once ROOT . '/db/v4_Vehicles.class.php';
 $dbC = new v4_Vehicles();
 
 @session_start();
@@ -37,7 +37,17 @@ $flds = array();
 $DB_Where = " " . $_REQUEST['where'];
 $DB_Where .= $filter;
 
-
+	if ($_REQUEST['Type']>0) {
+		$sql="SELECT VehicleTypeID FROM `v4_Vehicles` WHERE `OwnerID`=".$_SESSION['UseDriverID'];					
+		$result = $dbT->RunQuery($sql);
+		while($row = $result->fetch_array(MYSQLI_ASSOC)){
+			$vehicles .= $row['VehicleTypeID'].",";
+		}
+		$vehicles = substr($vehicles,0,strlen($vehicles)-1);	
+	
+		if ($_REQUEST['Type']==1) $DB_Where .= " AND VehicleTypeID in (".$vehicles.")";
+		else $DB_Where .= " AND VehicleTypeID not in (".$vehicles.")";
+	}	
 # dodavanje search parametra u qry
 # DB_Where sad ima sve potrebno za qry
 if ( $_REQUEST['Search'] != "" )
@@ -62,24 +72,17 @@ if (count($dbk) != 0) {
     foreach ($dbk as $nn => $key)
     {
     	$db->getRow($key);
-		// ako treba neki lookup, onda to ovdje
-		# get all fields and values
-
-		// $detailFlds = $db->fieldValues();
-		// $detailFlds["DriverRoute"]=0;
-		// $detailFlds["Active"]=0;
-		// $detailFlds["PriceRules"]=1;
-		// $detailFlds["PriceRules2"]=0;
-		// $result = $dbT->RunQuery("SELECT * FROM v4_DriverRoutes WHERE RouteID=".$key." AND OwnerID=".$_SESSION['UseDriverID']);
-		// 	while($row = $result->fetch_array(MYSQLI_ASSOC)){
-		// 		$detailFlds["DriverRoute"]=1;
-		// 		$detailFlds["Active"]=$row['Active'];
-		// 		$detailFlds["PriceRules"]=$row['SurCategory'];
-		// 		$detailFlds["PriceRules2"]=$row['SurCategory'];
-		// 	}			
-		// ako postoji neko custom polje, onda to ovdje.
-		// npr. $detailFlds["AuthLevelName"] = $nekaDrugaDB->getAuthLevelName().' nesto';
-		$out[] = $detailFlds;    	
+		$detailFlds = $db->fieldValues();
+		$detailFlds["DriverVehicle"]=0;
+		$detailFlds["PriceRules"]=1;
+		$detailFlds["PriceRules2"]=0;
+		$result = $dbT->RunQuery("SELECT * FROM v4_Vehicles WHERE VehicleTypeID=".$key." AND OwnerID=".$_SESSION['UseDriverID']);
+			while($row = $result->fetch_array(MYSQLI_ASSOC)){
+				$detailFlds["DriverVehicle"]=1;
+				$detailFlds["PriceRules"]=$row['SurCategory'];
+				$detailFlds["PriceRules2"]=$row['SurCategory'];
+			}			
+		$out[] = $detailFlds;  
     }
 }
 # send output back

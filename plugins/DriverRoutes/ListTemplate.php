@@ -107,7 +107,7 @@
 		})	
 		$('.surcategory input').change(function(){
 			var surcategory=$(this).val();
-			var routeid=$(this).parent().parent().attr('data-id');
+			var routeid=$(this).parent().parent().parent().attr('data-id');
 			var base=window.location.origin;
 			if (window.location.host=='localhost') base=base+'/jamtransfer';		
 			var link = base+'/plugins/DriverRoutes/Update.php';

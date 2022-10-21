@@ -1,5 +1,5 @@
 <?
 	require_once 'ListTemplate.php';
-	$smarty->assign('ItemID','RouteID');
+	$smarty->assign('ItemID','VehicleTypeID');
 	$smarty->assign('pagelength',20);
 	

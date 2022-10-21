@@ -68,7 +68,7 @@ Class v4_LanguageLines {
 		$result = $this->connection->RunQuery("UPDATE v4_LanguageLines set 
 		`group` = '".$this->myreal_escape_string($this->group)."', 
 		`key` = '".$this->myreal_escape_string($this->key)."', 
-		`text` = '".$this->myreal_escape_string($this->text)."', 
+		`text` = JSON_MERGE_PATCH(`text`,'".$this->text."'), 
 		`created_at` = '".$this->myreal_escape_string($this->created_at)."', 
 		`updated_at` = '".$this->myreal_escape_string($this->updated_at)."' WHERE id = '".$this->id."'");
 	return $result; 
@@ -78,7 +78,7 @@ Class v4_LanguageLines {
      * Save the active var class as a new row on table
      */
 	public function saveAsNew(){
-		$this->connection->RunQuery("INSERT INTO v4_LanguageLines (group, key, text, created_at, updated_at) values ('".$this->myreal_escape_string($this->group)."', '".$this->myreal_escape_string($this->key)."', '".$this->myreal_escape_string($this->text)."', '".$this->myreal_escape_string($this->created_at)."', '".$this->myreal_escape_string($this->updated_at)."')");
+		$this->connection->RunQuery("INSERT INTO v4_LanguageLines (group, key, text, created_at, updated_at) values ('".$this->myreal_escape_string($this->group)."', '".$this->myreal_escape_string($this->key)."',JSON_MERGE_PATCH(`text`,'".$this->text."'), '".$this->myreal_escape_string($this->created_at)."', '".$this->myreal_escape_string($this->updated_at)."')");
 		return $this->connection->insert_id(); //return insert_id 
 	}
 

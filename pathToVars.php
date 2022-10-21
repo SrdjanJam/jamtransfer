@@ -81,8 +81,8 @@ switch ($activePage) {
 			if ($pathVars->fetchByIndex($indexStart + 1)=='route') {
 				$smarty->assign('RouteID',$pathVars->fetchByIndex($indexStart + 2));
 			}			
-			if ($pathVars->fetchByIndex($indexStart + 1)=='vehicle') {
-				$smarty->assign('VehicleID',$pathVars->fetchByIndex($indexStart + 2));
+			if ($pathVars->fetchByIndex($indexStart + 1)=='vehicleType') {
+				$smarty->assign('VehicleTypeID',$pathVars->fetchByIndex($indexStart + 2));
 			}
 		}	
 	
