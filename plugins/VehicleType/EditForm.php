@@ -36,10 +36,10 @@
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-md-3">
+					<div class="col-md-4">
 						<label for="VehicleClass"><?=VEHICLECLASS;?></label>
 					</div>
-					<div class="col-md-9">
+					<div class="col-md-8">
 						<input type="text" name="VehicleClass" id="VehicleClass" class="w100" value="{{VehicleClass}}" readonly >
 					</div>
 				</div>
