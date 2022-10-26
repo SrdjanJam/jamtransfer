@@ -7,27 +7,20 @@ $out = array();
 $db->getRow($_REQUEST['ItemID']);
 # get fields and values
 $detailFlds = $db->fieldValues();
-if (isset($_SESSION['UseDriverID']) && $_SESSION['UseDriverID']>0) $detailFlds['UseDriverID']=$_SESSION['UseDriverID'];
-else $detailFlds['UseDriverID']=0;
 
 # remove slashes 
 foreach ($detailFlds as $key=>$value) {
 	$detailFlds[$key] = stripslashes($value);
 }
-	if (isset($_SESSION['UseDriverID']) && $_SESSION['UseDriverID']>0) {
-		$detailFlds["DriverRoute"]=0;
-		$result = $dbT->RunQuery("SELECT * FROM v4_DriverRoutes WHERE RouteID=".$_REQUEST['ItemID']." AND OwnerID=".$_SESSION['UseDriverID']);
-			while($row = $result->fetch_array(MYSQLI_ASSOC)){
-				$detailFlds["DriverRoute"]=1;
-				$detailFlds["SurCategory"]=$row['SurCategory'];
-			}			
+$detailFlds["TopRoute"]=0;
+$result = $dbT->RunQuery("SELECT * FROM v4_TopRoutes WHERE TopRouteID=".$_REQUEST['ItemID']);
+	while($row = $result->fetch_array(MYSQLI_ASSOC)){
+		$detailFlds["TopRoute"]=1;
 	}	
-	else {
-		$detailFlds["TopRoute"]=0;
-		$result = $dbT->RunQuery("SELECT * FROM v4_TopRoutes WHERE TopRouteID=".$_REQUEST['ItemID']);
-			while($row = $result->fetch_array(MYSQLI_ASSOC)){
-				$detailFlds["TopRoute"]=1;
-			}	
+$detailFlds["TerminalID"]=0;	
+$result2 = $dbT->RunQuery("SELECT TerminalID from v4_RoutesTerminals WHERE RouteID=".$_REQUEST['ItemID']);
+	while($row = $result2->fetch_array(MYSQLI_ASSOC)){
+		$detailFlds["TerminalID"]=$row[TerminalID];
 	}	
 $out[] = $detailFlds;
 # send output back

@@ -11,7 +11,8 @@ foreach ($db->fieldNames() as $name) {
 	if(isset($_REQUEST[$name])) {
 		eval("\$db->set".$name."(\$content);");	
 	}	
-}	
+}
+$db->setSlug(urlize($_REQUEST['Title']));
 $upd = '';
 $newID = '';
 if ($keyName != '' and $keyValue != '') {

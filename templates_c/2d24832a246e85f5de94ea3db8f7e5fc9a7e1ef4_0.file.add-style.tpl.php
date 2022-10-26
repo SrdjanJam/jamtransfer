@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.32, created on 2022-10-14 13:12:16
+/* Smarty version 3.1.32, created on 2022-10-25 07:41:31
   from 'c:\wamp\www\jamtransfer\templates\add-style.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.32',
-  'unifunc' => 'content_63494410a0e435_59358433',
+  'unifunc' => 'content_6357770b160733_81382518',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '2d24832a246e85f5de94ea3db8f7e5fc9a7e1ef4' => 
     array (
       0 => 'c:\\wamp\\www\\jamtransfer\\templates\\add-style.tpl',
-      1 => 1665745672,
+      1 => 1666356703,
       2 => 'file',
     ),
   ),
@@ -20,10 +20,61 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_63494410a0e435_59358433 (Smarty_Internal_Template $_smarty_tpl) {
-?><style>
+function content_6357770b160733_81382518 (Smarty_Internal_Template $_smarty_tpl) {
+?>
 
-/* templates/index.tpl */
+<style type="text/css" media="print">
+
+    body {
+        font-family: 'Roboto', sans-serif;
+        font-size: 10px !important;
+    }
+    .nav, .footer { display:none; }
+    @page { margin: 0.5cm; }
+    @media print {
+        div [class*='col-'] { display: table-cell !important; }
+        div [class*='row'] { display: table-row !important; width: 100%; }
+        div [class*='grid'] { display: table-row !important; width: 100%; }
+        div [class*='w25'] { display: inline-block !important; width: 30%; }
+        div [class*='w75'] { display: inline-block !important; width: 69%; }
+        div [class*='w100'] { display: inline-block !important; width: 99%; }
+        button, .btn { display:none; }
+    }
+    .badge {
+        background-color: white;
+        color: black;
+        padding: 4px 8px;
+        text-align: center;
+        border-radius: 5px;
+    }
+
+</style>
+
+
+<style type="text/css" >
+    /* Default: */
+    .content {
+        height: 100%;
+        overflow: hidden;
+        display: grid;
+
+    }
+
+    .header {
+        grid-row: 1; 
+    }
+    .body{
+        grid-row: 2;
+        padding: 10px;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+    .footer{
+        grid-row: 3;
+    }
+/* ========================================================  */
+            
+
 .wrapper-edit{ padding:0px; }
 
 .additional-class{
@@ -36,6 +87,9 @@ function content_63494410a0e435_59358433 (Smarty_Internal_Template $_smarty_tpl)
     padding: 5px 0 5px 2px;
     background-color: #e4e4e4;
     text-align: center;
+    border: 2px solid #4c59ad;
+    box-sizing: border-box;
+    border-radius: 7px;
 }
 .nav-header-edit strong{
     color:rgb(16, 20, 83);
@@ -48,13 +102,26 @@ function content_63494410a0e435_59358433 (Smarty_Internal_Template $_smarty_tpl)
     display: inline-block;
 }
 .nav-header-edit #a-setout:hover{
-    color: rgb(71, 88, 184);
+    /* color: rgb(71, 88, 184); */
+    color: rgb(184, 71, 71);
     background: none;
 }
 
+.navbar-header .btn-primary-edit{
+    background-color: #3c72bc;
+    border-color: #3c72bc;
+    margin-left:15px;
+}
+.navbar-header .btn-primary-edit:hover{
+    background-color: #36619f;
+    border-color: #3c72bc;
+}
+
 /* ------------------------------------------ */
+
 /* DriversTransfers/templates/index.tpl and AgentsTransfers/templates/index.tpl */
 
+/* Off */
 /* .row_e{ 
     padding:0 0 3px 0; 
     font-size:18px; 
@@ -86,12 +153,6 @@ function content_63494410a0e435_59358433 (Smarty_Internal_Template $_smarty_tpl)
 
 .fa-user{ color:white; }
 /* ------------------------------------------ */
-
-.white-bg{ padding:10px 0 20px 0; }
-
-.container{ padding:10px 0 20px 0; }
-
-/* ------------------------------------------ */
 /* pageListHeader.tpl */
 
 .form-group.group-edit{
@@ -104,6 +165,12 @@ function content_63494410a0e435_59358433 (Smarty_Internal_Template $_smarty_tpl)
         width:90%;
     }
     
+}
+
+/* ------------------------------------------ */
+/* DriverRoutes - ListTemplate.php */
+.listTitleEdit{
+    cursor:auto;
 }
 
 </style><?php }

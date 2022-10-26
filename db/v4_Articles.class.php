@@ -21,6 +21,7 @@ Class v4_Articles {
 	public $HTMLAfter; //varchar(255)
 	public $Classes; //varchar(255)
 	public $Title; //varchar(255)
+	public $Slug; //varchar(255)
 	public $Article; //mediumtext
 	public $Published; //tinyint(1)
 	public $LastChange; //timestamp
@@ -37,7 +38,7 @@ Class v4_Articles {
      * New object to the class. Don´t forget to save this new object "as new" by using the function $class->saveAsNew(); 
      *
      */
-	public function New_v4_Articles($Language,$Page,$Position,$HTMLBefore,$HTMLAfter,$Classes,$Title,$Article,$Published,$LastChange,$UserID){
+	public function New_v4_Articles($Language,$Page,$Position,$HTMLBefore,$HTMLAfter,$Classes,$Title,$Slug,$Article,$Published,$LastChange,$UserID){
 		$this->Language = $Language;
 		$this->Page = $Page;
 		$this->Position = $Position;
@@ -45,6 +46,7 @@ Class v4_Articles {
 		$this->HTMLAfter = $HTMLAfter;
 		$this->Classes = $Classes;
 		$this->Title = $Title;
+		$this->Slug = $Slug;
 		$this->Article = $Article;
 		$this->Published = $Published;
 		$this->LastChange = $LastChange;
@@ -69,6 +71,7 @@ Class v4_Articles {
 			$this->HTMLAfter = $row["HTMLAfter"];
 			$this->Classes = $row["Classes"];
 			$this->Title = $row["Title"];
+			$this->Slug = $row["Slug"];
 			$this->Article = $this->connection->real_escape_string($row["Article"]);
 			$this->Published = $row["Published"];
 			$this->LastChange = $row["LastChange"];
@@ -98,6 +101,7 @@ HTMLBefore = '".$this->myreal_escape_string($this->HTMLBefore)."',
 HTMLAfter = '".$this->myreal_escape_string($this->HTMLAfter)."', 
 Classes = '".$this->myreal_escape_string($this->Classes)."', 
 Title = '".$this->myreal_escape_string($this->Title)."', 
+Slug = '".$this->myreal_escape_string($this->Slug)."', 
 Article = '".$this->myreal_escape_string($this->Article)."', 
 Published = '".$this->myreal_escape_string($this->Published)."', 
 LastChange = '".$this->myreal_escape_string($this->LastChange)."', 
@@ -109,7 +113,10 @@ UserID = '".$this->myreal_escape_string($this->UserID)."' WHERE ID = '".$this->I
      * Save the active var class as a new row on table
      */
 	public function saveAsNew(){
-		$this->connection->RunQuery("INSERT INTO v4_Articles (Language, Page, Position, HTMLBefore, HTMLAfter, Classes, Title, Article, Published, LastChange, UserID) values ('".$this->myreal_escape_string($this->Language)."', '".$this->myreal_escape_string($this->Page)."', '".$this->myreal_escape_string($this->Position)."', '".$this->myreal_escape_string($this->HTMLBefore)."', '".$this->myreal_escape_string($this->HTMLAfter)."', '".$this->myreal_escape_string($this->Classes)."', '".$this->myreal_escape_string($this->Title)."', '".$this->myreal_escape_string($this->Article)."', '".$this->myreal_escape_string($this->Published)."', '".$this->myreal_escape_string($this->LastChange)."', '".$this->myreal_escape_string($this->UserID)."')");
+		$this->connection->RunQuery("INSERT INTO v4_Articles (Language, Page, Position, HTMLBefore, HTMLAfter, Classes, Title, Slug, Article, Published, LastChange, UserID) values ('".$this->myreal_escape_string($this->Language)."', '".$this->myreal_escape_string($this->Page)."', '".$this->myreal_escape_string($this->Position)."', '".$this->myreal_escape_string($this->HTMLBefore)."', '".$this->myreal_escape_string($this->HTMLAfter)."', '".$this->myreal_escape_string($this->Classes)."',
+		'".$this->myreal_escape_string($this->Title)."',
+		'".$this->myreal_escape_string($this->Slug)."',
+		'".$this->myreal_escape_string($this->Article)."', '".$this->myreal_escape_string($this->Published)."', '".$this->myreal_escape_string($this->LastChange)."', '".$this->myreal_escape_string($this->UserID)."')");
 		return $this->connection->insert_id(); //return insert_id 
 	}
 
@@ -185,6 +192,13 @@ UserID = '".$this->myreal_escape_string($this->UserID)."' WHERE ID = '".$this->I
 		return $this->Title;
 	}
 
+	/**
+	 * @return Slug - varchar(255)
+	 */
+	public function getSlug(){
+		return $this->Slug;
+	}
+	
 	/**
 	 * @return Article - mediumtext
 	 */
@@ -268,6 +282,13 @@ UserID = '".$this->myreal_escape_string($this->UserID)."' WHERE ID = '".$this->I
 	public function setTitle($Title){
 		$this->Title = $Title;
 	}
+	
+	/**
+	 * @param Type: varchar(255)
+	 */
+	public function setSlug($Slug){
+		$this->Slug = $Slug;
+	}
 
 	/**
 	 * @param Type: mediumtext
@@ -313,6 +334,7 @@ UserID = '".$this->myreal_escape_string($this->UserID)."' WHERE ID = '".$this->I
 			'HTMLAfter' => $this->getHTMLAfter(),
 			'Classes' => $this->getClasses(),
 			'Title' => $this->getTitle(),
+			'Slug' => $this->getSlug(),
 			'Article' => $this->getArticle(),
 			'Published' => $this->getPublished(),
 			'LastChange' => $this->getLastChange(),
@@ -327,7 +349,7 @@ UserID = '".$this->myreal_escape_string($this->UserID)."' WHERE ID = '".$this->I
      */
 	public function fieldNames(){
 		$fieldNames = array(
-			'ID',			'Language',			'Page',			'Position',			'HTMLBefore',			'HTMLAfter',			'Classes',			'Title',			'Article',			'Published',			'LastChange',			'UserID'		);
+			'ID',			'Language',			'Page',			'Position',			'HTMLBefore',			'HTMLAfter',			'Classes',			'Title',			'Slug',	'Article',			'Published',			'LastChange',			'UserID'		);
 		return $fieldNames;
 	}
     /**

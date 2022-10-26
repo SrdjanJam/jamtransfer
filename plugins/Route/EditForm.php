@@ -45,7 +45,7 @@
 					</div>
 				</div>
 
-				<div class="row hidden">
+				<div class="row">
 					<div class="col-md-3">
 						<label for="FromID"><?=FROM;?></label>
 					</div>
@@ -54,7 +54,7 @@
 					</div>
 				</div>
 
-				<div class="row hidden">
+				<div class="row">
 					<div class="col-md-3">
 						<label for="ToID"><?=TO;?></label>
 					</div>
@@ -63,7 +63,6 @@
 					</div>
 				</div>
 
-				<? if ($isNew || !isset($_SESSION['UseDriverID'])) { ?>
 				<div class="row">
 					<div class="col-md-3">
 						<label for="Approved"><?=APPROVED;?></label>
@@ -79,6 +78,15 @@
 					</div>
 					<div class="col-md-9">
 						{{yesNoSliderEdit TopRoute 'TopRoute' }}
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-md-3">
+						<label for="ToID"><?=TERMINAL;?></label>
+					</div>
+					<div class="col-md-9 readonly">
+						{{placeSelect TerminalID 'TerminalID'}}
 					</div>
 				</div>
 				
@@ -107,20 +115,6 @@
 						<input type="text" name="Duration" id="Duration" class="w100" value="{{Duration}}">
 					</div>
 				</div>
-				<? } else { ?>				
-				<div class="row">
-					<div class="col-md-6">
-						Driver Route
-						{{yesNoSliderEdit DriverRoute 'DriverRoute' }}
-					</div>
-					<div class="col-md-6">
-						<label for="SurCategory"><?=SURCATEGORY;?></label>
-						{{SurCategoryRB SurCategory 'SurCategory' '3' 'routes' RouteID}}
-					</div>
-				</div>
-			
-				<? } ?>
-
 			</div>
 	    </div>
 </form>
@@ -157,6 +151,33 @@
 			$("#RouteName").val(from + ' - ' + to);
 		
 		});	
+		
+		surTerminals();
+		function surTerminals() {
+			var fID=$("#FromID option:selected").val();
+			var tID=$("#ToID option:selected").val();
+			var base=window.location.origin;
+			if (window.location.host=='localhost') base=base+'/jamtransfer';
+
+			var link = base+'/plugins/Route/SurTerminals.php?fID='+fID+'&tID='+tID;
+			var param = 'fID='+fID+'&tID='+tID;
+			var $t = $(this);
+			console.log(link+'?'+param);
+			$('#TerminalID option').hide();
+			$.ajax({
+				type: 'POST',
+				url: link,
+				data: param,
+				async: false,
+				dataType: 'jsonp',
+				success: function(data) {
+					$.each(data, function(i,val) {
+						$('#TerminalID option[value="'+val+'"]').show();
+					})		
+				}				
+			});
+		}	
+		
 	</script>
 </script>
 

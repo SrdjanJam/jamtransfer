@@ -1,11 +1,9 @@
 <?
 	$arr_row['id']=1;
-	if (isset($_SESSION['UseDriverID']) && $_SESSION['UseDriverID']>0) 	$arr_row['name']="Connected";
-	else $arr_row['name']="Top";
+	$arr_row['name']="Top";
 	$arr_all[]=$arr_row;	
 	$arr_row['id']=2;
-	if (isset($_SESSION['UseDriverID']) && $_SESSION['UseDriverID']>0) 	$arr_row['name']="Not Connected";
-	else $arr_row['name']="Not top";	
+	$arr_row['name']="Not top";	
 	$arr_all[]=$arr_row;	
 	$smarty->assign('options',$arr_all);
 	$smarty->assign('selecttype',true);
@@ -45,7 +43,6 @@
 				</div>
 			</div>
 	{{/each}}
-
 
 </script>
 	
