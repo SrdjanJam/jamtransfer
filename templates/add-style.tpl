@@ -63,22 +63,22 @@
 }
 
 .nav-header-edit{
-    padding: 5px 0 5px 2px;
+    padding: 5px;
     background-color: #e4e4e4;
     text-align: center;
     border: 2px solid #4c59ad;
     box-sizing: border-box;
-    border-radius: 7px;
+    border-radius: 10px;
 }
 .nav-header-edit strong{
-    color:rgb(16, 20, 83);
+    color:rgb(49 56 156);
     font-family: 'Times New Roman', Times, serif;
 }
 .nav-header-edit #a-setout{
     text-decoration: underline;
-    color: rgb(61, 61, 61);
+    color: rgb(116, 113, 113);
     padding: 5px 0 5px 2px;
-    display: inline-block;
+    display: block;
 }
 .nav-header-edit #a-setout:hover{
     /* color: rgb(71, 88, 184); */
@@ -95,6 +95,7 @@
     background-color: #36619f;
     border-color: #3c72bc;
 }
+
 
 /* ------------------------------------------ */
 
@@ -151,5 +152,18 @@
 .listTitleEdit{
     cursor:auto;
 }
+
+/* ------------------------------------------- */
+/* ROUTE */
+#TerminalID{
+	height:20px;
+	z-index:1;
+	width:405px;
+	}
+
+	#TerminalID option:hover{
+	background: #0088cc;
+	color: white;
+	}
 
 </style>
