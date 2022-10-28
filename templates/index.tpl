@@ -4,10 +4,10 @@
 		<base href="{$root_home}">
 		
 		<meta charset="UTF-8">
-		
-		<title>WIS {$title}</title>
-		
 
+		<title>WIS {$title}</title>
+
+		
 		<meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
 
 		<!-- STYLES -->
@@ -72,7 +72,7 @@
 
 		{* ============================================================================================================================ *}
 		<!-- jQuery -->
-		<script src="cms/js/jquery/2.0.2/jquery.min.js"></script>
+		<script src="cms/js/jquery/2.0.2/jquery.min.js"></script> 
 		<!-- jQuery UI 1.10.3 -->
 		<script src="js/jQuery/ui/1.10.3/jquery-ui.min.js" type="text/javascript"></script>
 		{* ============================================================================================================================ *}
@@ -173,6 +173,7 @@
 			<i class="lab la-accessible-icon"></i>
 
 				<div class="sidebar-collapse">
+
 					<ul class="nav metismenu" id="side-menu">
 						<li class="nav-header">
 							<div class="dropdown profile-element">
@@ -193,9 +194,10 @@
 						</li>
 						
 						{if isset($smarty.session.UseDriverName)}
+			{* nav-header nav-header-edit *}
 							<li class="nav-header nav-header-edit">
-								<h3>Set as:</h3>
-								<strong class="font-bold">{$smarty.session.UseDriverName}</strong>
+								<h3 style="color:#606294;font-size:21px;">Set as:</h3>
+								<strong>{$smarty.session.UseDriverName}</strong>
 								<a href="setout.php" id="a-setout">Setout	<i class="fas fa-sign-out-alt"></i></a>	
 							</li>
 						{/if}
@@ -203,7 +205,7 @@
 						{section name=index loop=$menu1}
 							<li class="{$menu1[index].active}">
 								<a href='{$menu1[index].link}' >
-									<i class="fa {$menu1[index].icon}"></i> 
+									<i class="fa {$menu1[index].icon}"></i>
 									<span class="nav-label" title="{$menu1[index].description}">{$menu1[index].title} <span class='badge'>{$menu1[index].activestatus}</span></span> 
 									<span class="{$menu1[index].arrow}"></span>
 								</a>
@@ -211,7 +213,7 @@
 								
 								{if $menu1[index].menu}
 									{* collapse: ul: *}
-									<ul class="nav nav-second-level collapse" >
+									<ul class="nav nav-second-level collapse">
 
 										{section name=index1 loop=$menu1[index].menu}	
 											<li class="{$menu1[index].menu[index1].active}">
@@ -240,6 +242,7 @@
 						{/section}
 
 				   </ul> {* End of nav metismenu *}
+				   
 				   
 				   {* For developing status *}
 				   <ul id="status" style="list-style-type:none;">

@@ -629,11 +629,22 @@ return new Handlebars.SafeString(yesNoSlide());
 
 Handlebars.registerHelper("yesNoSliderEdit", function(currentLevel, fieldName) {
 	function yesNoSlide() {
-		var yesNoInput = '<span style="float:left">No</span>';
-		yesNoInput+= '<input style="width: 30px;float:left;margin:2px 5px 0 5px;" type="range" max="1" class="Choice" name="'+fieldName+'" value="'+currentLevel+'"/>';
+		yesNoInput = '<span style="float:left">No</span>';
+		yesNoInput+= '<input class="primer" style="width: 30px;float:left;margin:2px 5px 0 5px;" type="range" max="1" class="Choice" name="'+fieldName+'" value="'+currentLevel+'"/>';
 		yesNoInput+= '<span style="float:left;">Yes</span>';
+
+		// yesNoInput+= document.createElement('style');
+		// style.innerHTML = `
+		// input {
+		// 		background-color: red;
+		// }
+		// `;
+		// document.head.appendChild(style);
+
 		return  yesNoInput;
 	}
+
+	// document.getElementsByTagName('primer').style.color="red";
 
 return new Handlebars.SafeString(yesNoSlide());
 
@@ -1409,7 +1420,7 @@ Handlebars.registerHelper("placeSelect", function(id,fieldName) {
 
 function createPlacesSelect(data, id, fieldName) {
 
-	var selector = "<select class=\"w100 "+fieldName+"\" name=\""+fieldName+"\" id=\""+fieldName+"\" >";
+	var selector = "<select class=\"w100 example "+fieldName+"\" name=\""+fieldName+"\" id=\""+fieldName+"\" onchange='this.size=1; this.blur();' >";
 		selector += '<option value="0"> --- </option>';
 
 		$.each(data, function(i,val) {
