@@ -2,6 +2,8 @@
 require_once '../../config.php';
 require_once ROOT . '/db/v4_Modules.class.php';
 $db = new v4_Modules();
+$dbT = new DataBaseMysql();
+
 $keyName = 'ModulID';
 $ItemName='ParentID,MenuOrder ';
 #********************************

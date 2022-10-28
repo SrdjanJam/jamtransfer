@@ -11,6 +11,13 @@ $detailFlds = $db->fieldValues();
 foreach ($detailFlds as $key=>$value) {
 	$detailFlds[$key] = stripslashes($value);
 }
+
+$result = $dbT->RunQuery("SELECT * FROM v4_ModulesLevel WHERE ModulID=".$_REQUEST['ItemID']);
+	while($row = $result->fetch_array(MYSQLI_ASSOC)){
+		$levels.=$row['AuthLevelID'].",";
+	}
+	$levels = substr($levels,0,strlen($levels)-1);
+	$detailFlds['Levels']=$levels;
 $out[] = $detailFlds;
 # send output back
 $output = json_encode($out);

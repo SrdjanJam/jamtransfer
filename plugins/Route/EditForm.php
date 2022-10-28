@@ -83,9 +83,9 @@
 				
 				<div class="row">
 					<div class="col-md-3">
-						<label for="ToID"><?=TERMINAL;?></label>
+						<label for="TerminalID"><?=TERMINAL;?></label>
 					</div>
-					<div class="col-md-9 readonly">
+					<div class="col-md-9">
 						{{placeSelect TerminalID 'TerminalID'}}
 					</div>
 				</div>

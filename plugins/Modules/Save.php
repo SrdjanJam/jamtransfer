@@ -22,6 +22,14 @@ if ($keyName != '' and $keyValue != '') {
 if ($keyName != '' and $keyValue == '') {
 	$newID = $db->saveAsNew();
 }
+$result = $dbT->RunQuery("DELETE FROM `v4_ModulesLevel` WHERE `ModulID`=".$keyValue);
+if ($_REQUEST['levels']<>'') {
+	$levels=explode(',',$_REQUEST['levels']);
+	foreach ($levels as $l)
+	{
+		$result = $dbT->RunQuery("INSERT IGNORE INTO `v4_ModulesLevel`(`ModulID`,`AuthLevelID`) VALUES (".$keyValue.",".$l.")");
+	}	
+}
 $out = array(
 	'update' => $upd,
 	'insert' => $newID

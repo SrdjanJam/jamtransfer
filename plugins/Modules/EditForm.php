@@ -26,7 +26,7 @@
 
 	<div class="box-body ">
         <div class="row">
-			<div class="col-md-12">
+			<div class="col-md-6">
 
 				<input type="hidden" name="ID" id="ID" class="w100" value="{{ID}}">
 
@@ -87,22 +87,32 @@
 						<input type="text" name="Active" id="Active" class="w100" value="{{Active}}">
 					</div>
 				</div>				
-
-
-				<div class="row">
-					<div class="col-md-3">
-						<label for="Description"><?=Description;?></label>
-					</div>
-					<div class="col-md-9">
-						<textarea name="Description" id="Description" rows="15" 
-					class="textarea" style="width:100%">{{Description}}</textarea>
-					</div>
-				</div>
-
-
-
 			</div>
-	    </div>
+			<div class="col-md-6">
+				<div class="row">
+					<div class="col-md-3 "><label><?= LEVEL ?></label></div>
+					<div class="col-md-9 checking">
+						{{userLevelCheck AuthLevelID}}
+					</div>
+				</div>				
+				<div class="row">
+					<input type="hidden" name="levels" id="levels" value='{{Levels}}'/>
+				</div>
+			</div>
+		</div>	
+		<div class="row">
+			<div class="col-md-3">
+				<label for="Description"><?=Description;?></label>
+			</div>
+			<div class="col-md-9">
+				<textarea name="Description" id="Description" rows="15" 
+			class="textarea" style="width:100%">{{Description}}</textarea>
+			</div>
+		</div>	
+
+
+
+	</div>
 		    
 
 	<!-- Statuses and messages -->
@@ -132,7 +142,21 @@
 		$("form").change(function(){
 			$("#statusMessage").html('');
 		});
-	
+		var levels = $("#levels").val().split(',');
+		$.each(levels , function(index, val) { 
+			$('*[data-id="'+val+'"]').prop('checked', true);
+		});
+		$('.level').click(function(){
+			var xl='';
+			$('.level').each (function() { 
+				if ($(this).prop('checked')) {
+					xl=xl+$(this).attr('data-id')+',';
+				}	
+			});
+			xl=xl.substring(0,xl.length - 1);
+			$("#levels").val(xl);
+		})
+		
 	</script>
 </script>
 	

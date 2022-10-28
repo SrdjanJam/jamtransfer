@@ -454,6 +454,26 @@ return new Handlebars.SafeString(userLevelsDropdown());
 
 });
 
+/*
+Prikaz AuthLevelID polja kao checkbox
+uzima podatke iz userLevels objekta u lng/en_init.js!
+*/
+
+Handlebars.registerHelper("userLevelCheck", function(currentLevel) {
+	function userLevelsChecking() {
+		var userLevelsCheck = '';
+		$.each (userLevels, function(i, val) {
+			userLevelsCheck += '<input type="checkbox" class="level" name="level" value="" data-id="'+i+'"/>';
+			userLevelsCheck += '<label for="level"> '+ val +'</label><br>';
+		});
+
+
+		return  userLevelsCheck;
+	}
+
+return new Handlebars.SafeString(userLevelsChecking());
+
+});
 
 /*
 Prikaz izbora jezika
