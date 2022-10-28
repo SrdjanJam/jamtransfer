@@ -1,3 +1,4 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/js/jquery.nice-select.min.js" integrity="sha512-NqYds8su6jivy1/WLoW8x1tZMRD7/1ZfhWG/jcRQLOzV1k1rIODCpMgoBnar5QXshKJGV7vi0LXLNXPoFsM5Zg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <script type="text/x-handlebars-template" id="ItemEditTemplate">
 <form id="ItemEditForm{{RouteID}}" class="form box box-info" enctype="multipart/form-data" method="post" onsubmit="return false;">
@@ -85,9 +86,12 @@
 					<div class="col-md-3">
 						<label for="ToID"><?=TERMINAL;?></label>
 					</div>
+
 					<div class="col-md-9 readonly">
+						<!-- Show Select: -->
 						{{placeSelect TerminalID 'TerminalID'}}
 					</div>
+
 				</div>
 				
 				<div class="row hidden">
@@ -151,8 +155,10 @@
 			$("#RouteName").val(from + ' - ' + to);
 		
 		});	
+
 		
-		surTerminals();
+		surTerminals(); // New route
+
 		function surTerminals() {
 			var fID=$("#FromID option:selected").val();
 			var tID=$("#ToID option:selected").val();
@@ -163,20 +169,45 @@
 			var param = 'fID='+fID+'&tID='+tID;
 			var $t = $(this);
 			console.log(link+'?'+param);
-			$('#TerminalID option').hide();
+
+			$('#TerminalID option').hide(); // All terminals hide
+
 			$.ajax({
 				type: 'POST',
 				url: link,
 				data: param,
 				async: false,
 				dataType: 'jsonp',
+
 				success: function(data) {
+					
 					$.each(data, function(i,val) {
 						$('#TerminalID option[value="'+val+'"]').show();
-					})		
-				}				
-			});
-		}	
+					});
+
+					if (data){
+						$("#TerminalID").focus(function () {
+							this.size=10;
+							$(this).css({"height":"auto", "position":"absolute"});
+						});
+
+						$("#TerminalID").blur(function () {
+							this.size=1;
+							$(this).css({"height":"20px", "position":"inherit"});
+						});
+
+					}else{
+						$("#TerminalID option").text("No Terminals...");
+						$("#TerminalID").css({'color':'#ff6666','font-weight':'bold'});
+					}
+					
+					
+				} // Exit success: function
+
+			}); // End of ajax request
+
+
+		} // End of surTerminals()	
 		
 	</script>
 </script>
