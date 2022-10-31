@@ -14,7 +14,7 @@ if (LOCAL) {
 }	
 else {
 	define("ROOT", $_SERVER['DOCUMENT_ROOT']);
-	define("ROOT_HOME", 'https://'.$_SERVER['HTTP_HOST']);
+	define("ROOT_HOME", 'https://'.$_SERVER['HTTP_HOST'].'/');
 }	
 define("ROOTPATH", ROOT.'/cms');
 define("SITE_CODE", '1');

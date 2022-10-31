@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.32, created on 2022-10-25 07:41:29
+/* Smarty version 3.1.32, created on 2022-10-28 12:25:24
   from 'C:\wamp\www\jamtransfer\templates\index.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.32',
-  'unifunc' => 'content_6357770968e740_33717452',
+  'unifunc' => 'content_635bca3442e524_61304760',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'a1818a92b5a2f041fd91a227dabc592dea38fac2' => 
     array (
       0 => 'C:\\wamp\\www\\jamtransfer\\templates\\index.tpl',
-      1 => 1666357256,
+      1 => 1666949778,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:pageList.tpl' => 1,
   ),
 ),false)) {
-function content_6357770968e740_33717452 (Smarty_Internal_Template $_smarty_tpl) {
+function content_635bca3442e524_61304760 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html>
 	<head>
@@ -30,11 +30,11 @@ function content_6357770968e740_33717452 (Smarty_Internal_Template $_smarty_tpl)
 ">
 		
 		<meta charset="UTF-8">
-		
+
 		<title>WIS <?php echo $_smarty_tpl->tpl_vars['title']->value;?>
 </title>
-		
 
+		
 		<meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
 
 		<!-- STYLES -->
@@ -94,7 +94,7 @@ function content_6357770968e740_33717452 (Smarty_Internal_Template $_smarty_tpl)
 				<!-- jQuery -->
 		<?php echo '<script'; ?>
  src="cms/js/jquery/2.0.2/jquery.min.js"><?php echo '</script'; ?>
->
+> 
 		<!-- jQuery UI 1.10.3 -->
 		<?php echo '<script'; ?>
  src="js/jQuery/ui/1.10.3/jquery-ui.min.js" type="text/javascript"><?php echo '</script'; ?>
@@ -257,6 +257,7 @@ _init.js"><?php echo '</script'; ?>
 			<i class="lab la-accessible-icon"></i>
 
 				<div class="sidebar-collapse">
+
 					<ul class="nav metismenu" id="side-menu">
 						<li class="nav-header">
 							<div class="dropdown profile-element">
@@ -279,9 +280,9 @@ _init.js"><?php echo '</script'; ?>
 						</li>
 						
 						<?php if (isset($_SESSION['UseDriverName'])) {?>
-							<li class="nav-header nav-header-edit">
-								<h3>Set as:</h3>
-								<strong class="font-bold"><?php echo $_SESSION['UseDriverName'];?>
+										<li class="nav-header nav-header-edit">
+								<h3 style="color:#606294;font-size:21px;">Set as:</h3>
+								<strong><?php echo $_SESSION['UseDriverName'];?>
 </strong>
 								<a href="setout.php" id="a-setout">Setout	<i class="fas fa-sign-out-alt"></i></a>	
 							</li>
@@ -299,7 +300,7 @@ for ($__section_index_0_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_
 								<a href='<?php echo $_smarty_tpl->tpl_vars['menu1']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_index']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_index']->value['index'] : null)]['link'];?>
 ' >
 									<i class="fa <?php echo $_smarty_tpl->tpl_vars['menu1']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_index']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_index']->value['index'] : null)]['icon'];?>
-"></i> 
+"></i>
 									<span class="nav-label" title="<?php echo $_smarty_tpl->tpl_vars['menu1']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_index']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_index']->value['index'] : null)]['description'];?>
 "><?php echo $_smarty_tpl->tpl_vars['menu1']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_index']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_index']->value['index'] : null)]['title'];?>
  <span class='badge'><?php echo $_smarty_tpl->tpl_vars['menu1']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_index']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_index']->value['index'] : null)]['activestatus'];?>
@@ -310,7 +311,7 @@ for ($__section_index_0_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_
 
 								
 								<?php if ($_smarty_tpl->tpl_vars['menu1']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_index']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_index']->value['index'] : null)]['menu']) {?>
-																		<ul class="nav nav-second-level collapse" >
+																		<ul class="nav nav-second-level collapse">
 
 										<?php
 $__section_index1_1_loop = (is_array(@$_loop=$_smarty_tpl->tpl_vars['menu1']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_index']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_index']->value['index'] : null)]['menu']) ? count($_loop) : max(0, (int) $_loop));
@@ -371,6 +372,7 @@ for ($__section_pom_2_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_po
 ?>
 
 				   </ul> 				   
+				   
 				   				   <ul id="status" style="list-style-type:none;">
 						<li>A - Active</li>
 						<li>T - Test</li>

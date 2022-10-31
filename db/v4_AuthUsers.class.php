@@ -393,6 +393,8 @@ Balance = '".$this->myreal_escape_string($this->Balance)."' WHERE AuthUserID = '
      */
 	public function getKeysBy($column, $order, $where = NULL){
 		$keys = array(); $i = 0;
+		//echo "SELECT AuthUserID from v4_AuthUsers $where ORDER BY $column $order";
+		//exit();
 		$result = $this->connection->RunQuery("SELECT AuthUserID from v4_AuthUsers $where ORDER BY $column $order");
 			while($row = $result->fetch_array(MYSQLI_ASSOC)){
 				$keys[$i] = $row["AuthUserID"];

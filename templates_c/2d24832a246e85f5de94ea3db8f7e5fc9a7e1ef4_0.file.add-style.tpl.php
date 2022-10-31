@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.32, created on 2022-10-25 07:41:31
+/* Smarty version 3.1.32, created on 2022-10-28 12:25:24
   from 'c:\wamp\www\jamtransfer\templates\add-style.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.32',
-  'unifunc' => 'content_6357770b160733_81382518',
+  'unifunc' => 'content_635bca34be0e09_63423229',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '2d24832a246e85f5de94ea3db8f7e5fc9a7e1ef4' => 
     array (
       0 => 'c:\\wamp\\www\\jamtransfer\\templates\\add-style.tpl',
-      1 => 1666356703,
+      1 => 1666949778,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6357770b160733_81382518 (Smarty_Internal_Template $_smarty_tpl) {
+function content_635bca34be0e09_63423229 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 
 <style type="text/css" media="print">
@@ -84,22 +84,22 @@ function content_6357770b160733_81382518 (Smarty_Internal_Template $_smarty_tpl)
 }
 
 .nav-header-edit{
-    padding: 5px 0 5px 2px;
+    padding: 5px;
     background-color: #e4e4e4;
     text-align: center;
     border: 2px solid #4c59ad;
     box-sizing: border-box;
-    border-radius: 7px;
+    border-radius: 10px;
 }
 .nav-header-edit strong{
-    color:rgb(16, 20, 83);
+    color:rgb(49 56 156);
     font-family: 'Times New Roman', Times, serif;
 }
 .nav-header-edit #a-setout{
     text-decoration: underline;
-    color: rgb(61, 61, 61);
+    color: rgb(116, 113, 113);
     padding: 5px 0 5px 2px;
-    display: inline-block;
+    display: block;
 }
 .nav-header-edit #a-setout:hover{
     /* color: rgb(71, 88, 184); */
@@ -116,6 +116,7 @@ function content_6357770b160733_81382518 (Smarty_Internal_Template $_smarty_tpl)
     background-color: #36619f;
     border-color: #3c72bc;
 }
+
 
 /* ------------------------------------------ */
 
@@ -172,6 +173,19 @@ function content_6357770b160733_81382518 (Smarty_Internal_Template $_smarty_tpl)
 .listTitleEdit{
     cursor:auto;
 }
+
+/* ------------------------------------------- */
+/* ROUTE */
+#TerminalID{
+	height:20px;
+	z-index:1;
+	width:405px;
+	}
+
+	#TerminalID option:hover{
+	background: #0088cc;
+	color: white;
+	}
 
 </style><?php }
 }

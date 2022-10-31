@@ -7,7 +7,7 @@ $out = array();
 $db->getRow($_REQUEST['ItemID']);
 # get fields and values
 $detailFlds = $db->fieldValues();
-//$detailFlds[DBImage]='';
+$detailFlds[DBImage]='';
 
 # remove slashes 
 foreach ($detailFlds as $key=>$value) {

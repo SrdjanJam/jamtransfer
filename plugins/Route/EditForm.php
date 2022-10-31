@@ -148,10 +148,10 @@
 		
 		});
 		$("#ToID").change(function(){
+			surTerminals(); // New route
 			var from = $("#FromID option:selected").text();
 			var to   = $("#ToID option:selected").text();
 			$("#RouteName").val(from + ' - ' + to);
-		
 		});	
 
 		
@@ -160,50 +160,52 @@
 		function surTerminals() {
 			var fID=$("#FromID option:selected").val();
 			var tID=$("#ToID option:selected").val();
-			var base=window.location.origin;
-			if (window.location.host=='localhost') base=base+'/jamtransfer';
+			if (fID>0 && tID>0) {
+				var base=window.location.origin;
+				if (window.location.host=='localhost') base=base+'/jamtransfer';
 
-			var link = base+'/plugins/Route/SurTerminals.php?fID='+fID+'&tID='+tID;
-			var param = 'fID='+fID+'&tID='+tID;
-			var $t = $(this);
-			console.log(link+'?'+param);
+				var link = base+'/plugins/Route/SurTerminals.php?fID='+fID+'&tID='+tID;
+				var param = 'fID='+fID+'&tID='+tID;
+				var $t = $(this);
+				console.log(link+'?'+param);
 
-			$('#TerminalID option').hide(); // All terminals hide
+				$('#TerminalID option').hide(); // All terminals hide
 
-			$.ajax({
-				type: 'POST',
-				url: link,
-				data: param,
-				async: false,
-				dataType: 'jsonp',
+				$.ajax({
+					type: 'POST',
+					url: link,
+					data: param,
+					async: false,
+					dataType: 'jsonp',
 
-				success: function(data) {
-					
-					$.each(data, function(i,val) {
-						$('#TerminalID option[value="'+val+'"]').show();
-					});
-
-					if (data){
-						$("#TerminalID").focus(function () {
-							this.size=10;
-							$(this).css({"height":"auto", "position":"absolute"});
+					success: function(data) {
+						var exist=false;
+						$.each(data, function(i,val) {
+							$('#TerminalID option[value="'+val+'"]').show();
+							exist=true;
 						});
 
-						$("#TerminalID").blur(function () {
-							this.size=1;
-							$(this).css({"height":"20px", "position":"inherit"});
-						});
+						if (exist){
+							$("#TerminalID").focus(function () {
+								this.size=10;
+								$(this).css({"height":"auto", "position":"absolute"});
+							});
 
-					}else{
-						$("#TerminalID option").text("No Terminals...");
-						$("#TerminalID").css({'color':'#ff6666','font-weight':'bold'});
-					}
-					
-					
-				} // Exit success: function
+							$("#TerminalID").blur(function () {
+								this.size=1;
+								$(this).css({"height":"20px", "position":"inherit"});
+							});
 
-			}); // End of ajax request
+						}else{
+							$("#TerminalID option").text("No Terminals...");
+							$("#TerminalID").css({'color':'#ff6666','font-weight':'bold'});
+						}
+						
+						
+					} // Exit success: function
 
+				}); // End of ajax request
+			}
 
 		} // End of surTerminals()	
 		
