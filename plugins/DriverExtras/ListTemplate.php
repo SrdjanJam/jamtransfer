@@ -13,7 +13,7 @@ if (isset($_SESSION['UseDriverID']) && $_SESSION['UseDriverID']>0) {
 
 <script type="text/x-handlebars-template" id="ItemListTemplate">
 
-	<div class="row">
+	<div class="row row-edit">
 		
 		<div class="col-md-1">
 			ID
@@ -24,7 +24,7 @@ if (isset($_SESSION['UseDriverID']) && $_SESSION['UseDriverID']>0) {
 		</div>	
 
 		<div class="col-md-4">
-			Active
+			Connected
 		</div>
 					
 	</div>
