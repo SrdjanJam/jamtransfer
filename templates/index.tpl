@@ -314,7 +314,7 @@
 				{/if}
 					
 				{* .body row white-bg *}
-				<div class="body row white-bg">
+				<div class="body row white-bg white-bg-edit">
 					{if isset($pageOLD)}
 						NOT MODEL VIEW CONTROL
 						{elseif isset($page)}
