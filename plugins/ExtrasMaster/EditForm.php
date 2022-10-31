@@ -129,7 +129,7 @@
 				<? } else { ?>				
 				<div class="row">
 					<div class="col-md-3">
-						<label for="DriverExtras">Driver Extras</label>
+						<label for="DriverExtras"><?=DRIVER_EXTRAS;?></label>
 					</div>
 					<div class="col-md-9">
 						{{yesNoSliderEdit DriverExtras 'DriverExtras' }}
