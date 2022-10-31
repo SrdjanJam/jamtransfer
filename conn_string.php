@@ -1,7 +1,7 @@
 <? 
 if(!isset($_SESSION))session_start();
 $privusers=array();
-if (in_array($_SESSION['AuthUserID'],$privusers)) define("DEVELOPMENT",false);
+if (isset($_SESSION['AuthUserID']) && in_array($_SESSION['AuthUserID'],$privusers)) define("DEVELOPMENT",false);
 else define("DEVELOPMENT",true);
 define("MONITOR", 0);
 define("ALLOW_REFRESH", 1);

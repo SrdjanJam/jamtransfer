@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.32, created on 2022-10-28 12:25:24
+/* Smarty version 3.1.32, created on 2022-10-31 12:22:16
   from 'C:\wamp\www\jamtransfer\templates\index.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.32',
-  'unifunc' => 'content_635bca3442e524_61304760',
+  'unifunc' => 'content_635fbdf889cee4_88347931',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'a1818a92b5a2f041fd91a227dabc592dea38fac2' => 
     array (
       0 => 'C:\\wamp\\www\\jamtransfer\\templates\\index.tpl',
-      1 => 1666949778,
+      1 => 1667215985,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:pageList.tpl' => 1,
   ),
 ),false)) {
-function content_635bca3442e524_61304760 (Smarty_Internal_Template $_smarty_tpl) {
+function content_635fbdf889cee4_88347931 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html>
 	<head>
@@ -437,7 +437,7 @@ for ($__section_pom_2_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_po
 						</div>
 					</div> 				<?php }?>
 					
-								<div class="body row white-bg">
+								<div class="body row white-bg white-bg-edit">
 					<?php if (isset($_smarty_tpl->tpl_vars['pageOLD']->value)) {?>
 						NOT MODEL VIEW CONTROL
 						<?php } elseif (isset($_smarty_tpl->tpl_vars['page']->value)) {?>

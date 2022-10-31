@@ -68,6 +68,7 @@ require_once('lng/' . $_SESSION['CMSLang'] . '_text.php');
 						$_SESSION['UserName'] = $row['AuthUserName'];
 						$_SESSION['UserRealName'] = $row['AuthUserRealName'];
 						$_SESSION['UserCompany'] = $row['AuthUserCompany'];
+						$_SESSION['BrandName'] = $row['BrandName'];
 						$_SESSION['UserIDD'] = $row['AuthUserCompanyMB'];
 						$_SESSION['AuthUserID'] = $row['AuthUserID'];
 

@@ -3,7 +3,7 @@
 						{include file="plugins/Dashboard/templates/smallBoxes.tpl"}
 					{/if}					
 					{if $translatorPanel} 
-						<h2>TRANSLATOR PANEL FOR </h2>
+						<h2>Translator panel for {$smarty.session.UserRealName}</h2>
 					{/if}
 					{include file="plugins/Dashboard/templates/emptyRow.tpl"} 			
 
