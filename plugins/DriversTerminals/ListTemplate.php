@@ -16,18 +16,16 @@
 		<div class="col-sm-8">
 			Terminal Name
 		</div>	
-		<div class="col-md-1">
-			Terminal
+		<div class="col-md-3">
+			connected
 		</div>				
-		<div class="col-sm-2">
-			Active
-		</div>
+		
 	</div>
 
 	{{#each Item}}
 		<div>
 		
-			<div class="row {{color}} pad1em listTile" 
+			<div class="row {{color}} pad1em listTile listTitleEdit" 
 			style="border-top:1px solid #ddd" 
 			id="t_{{PlaceID}}">
 		
@@ -44,13 +42,6 @@
 					{{yesNoSliderEdit Terminal 'Terminal' }}
 				</div>
 
-				<div class="col-sm-2">
-					{{#compare PlaceActive ">" 0}}
-						<i class="fa fa-circle text-green"></i>
-					{{else}}
-						<i class="fa fa-circle text-red"></i>
-					{{/compare}}
-				</div>
 			</div>
 		</div>
 
