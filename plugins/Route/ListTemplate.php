@@ -12,6 +12,21 @@
 
 <script type="text/x-handlebars-template" id="ItemListTemplate">
 
+	<div class="row row-edit">
+		
+		<div class="col-md-3">
+			RouteID
+		</div>
+
+		<div class="col-md-5">
+			RouteName
+		</div>	
+
+		<div class="col-md-1">
+			Active
+		</div>
+					
+	</div>
 
 	{{#each Item}}
 			<div  onclick="oneItem({{RouteID}});">		

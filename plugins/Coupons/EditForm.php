@@ -101,7 +101,7 @@
 			<div class="col-md-6">
 				<div class="row">
 					<div class="col-md-3">
-						<label for="VehicleTypeID">Vehicle class</label>
+						<label for="VehicleTypeID"><?=VEHICLECLASS;?></label>
 					</div>
 					<div class="col-md-9">
 						{{vehicleClassSelect VehicleTypeID 'VehicleTypeID'}}
@@ -110,7 +110,7 @@
 			
 				<div class="row">
 					<div class="col-md-3">
-						<label for="VehicleTypeID">DriverID</label>
+						<label for="VehicleTypeID"><?=DRIVER_ID;?></label>
 					</div>
 					<div class="col-md-9">
 						<input type="text" name="DriverID" id="DriverID" class="w100" value="{{DriverID}}">

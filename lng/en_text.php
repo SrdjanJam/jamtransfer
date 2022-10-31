@@ -808,6 +808,28 @@ define("DESCRIPTIONNL", "Description (NL)");
 define("SUBDRIVER_HISTORY", "Subdriver History");
 define("AGENT_TRANSFERS", "Agent transfers");
 define("DEPOSIT", "Deposit (EUR)");
+
+
+// Vehice types
+define("DRIVER_VEHICLE","Driver Vehicle");
+
+// Master location
+define("LONGITUDE","Longitude");
+define("LATITUDE","Latitude");
+define("ELEVATION","Elevation");
+
+// Services Routes
+define("TOP_ROUTE","Top Route");
+
+// Services Extras Services - folder ExtrasMaster
+define("DRIVER_EXTRAS","Driver Extras");
+
+// Pricing Coupons - folder Coupons
+define("DRIVER_ID","DriverID");
+
+// Services Terminals
+define("CONNECTED","connected");
+
 /*
 $smarty->assign("ACCEPTED_PAYMENT", "Accepted Payment");
 $smarty->assign("ACTIONS", "Actions");

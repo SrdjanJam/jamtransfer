@@ -12,6 +12,22 @@ if (isset($_SESSION['UseDriverID']) && $_SESSION['UseDriverID']>0) {
 ?>
 <script type="text/x-handlebars-template" id="ItemListTemplate">
 
+	<div class="row row-edit">
+		
+		<div class="col-md-1">
+			ID
+		</div>
+
+		<div class="col-md-4">
+			ServiceEN
+		</div>	
+
+		<div class="col-md-4">
+			Active
+		</div>
+					
+	</div>
+
 	{{#each Item}}
 		<div  onclick="oneItem({{ID}});">
 		

@@ -10,7 +10,7 @@
 ?>
 
 <script type="text/x-handlebars-template" id="ItemListTemplate">
-		<div class="row">
+		<div class="row row-edit">
 			<div class="col-sm-1">
 				Route ID
 			</div>							
@@ -24,21 +24,18 @@
 				Active
 			</div>
 			<!-- SURCATEGORY: -->
-			<div class="col-md-3">
+			<div class="col-md-2">
 				<?=SURCATEGORY;?>
 			</div>
 			<div class="col-md-1">
 				Prices
 			</div>				
-			<div class="col-sm-1">
-				Approved						
-			</div>
 		</div>
 
 	{{#each Item}}
-
+				
 			<div>		
-				<div class="row {{color}} pad1em listTile" 
+				<div class="row {{color}} pad1em listTile listTitleEdit" 
 				style="border-top:1px solid #ddd" 
 				id="t_{{RouteID}}">
 						<!-- RouteID: -->
@@ -58,21 +55,12 @@
 							<span class="show_hide">{{yesNoSliderEdit Active 'Active' }}</span>
 						</div>
 						<!-- Subcategory: -->
-						<div class="col-md-3 surcategory" data-status="{{PriceRules2}}" data-id="{{RouteID}}">
+						<div class="col-md-2 surcategory" data-status="{{PriceRules2}}" data-id="{{RouteID}}">
 							<span class="show_hide">{{SurCategoryRB PriceRules 'SurCategory' '3' 'routes' RouteID}}</span>
 						</div>
 						<!-- Prices: -->
 						<div class="col-md-1">
 							<span class="show_hide"><a target='_blank' href='services/route/{{RouteID}}'>Vehicles</a></span>
-						</div>
-						<!-- Approved: -->
-						<div class="col-sm-1">
-						
-							{{#compare Approved ">" 0}}
-								<i class="fa fa-check text-green"></i>
-							{{else}}
-								<i class="fa fa-close text-red"></i>
-							{{/compare}}											
 						</div>
 				</div>
 			</div>
@@ -107,7 +95,7 @@
 		})	
 		$('.surcategory input').change(function(){
 			var surcategory=$(this).val();
-			var routeid=$(this).parent().parent().parent().attr('data-id');
+			var routeid=$(this).parent().parent().attr('data-id');
 			var base=window.location.origin;
 			if (window.location.host=='localhost') base=base+'/jamtransfer';		
 			var link = base+'/plugins/DriverRoutes/Update.php';

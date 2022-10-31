@@ -1,6 +1,34 @@
 
 <script type="text/x-handlebars-template" id="ItemListTemplate">
 
+	<div class="row row-edit">
+		
+		<div class="col-md-1">
+			ID
+		</div>
+
+		<div class="col-md-2">
+			Code
+		</div>	
+
+		<div class="col-md-2">
+			Discount
+		</div>
+
+		<div class="col-md-3">
+			ValidFrom
+		</div>
+
+		<div class="col-md-3">
+			ValidTo
+		</div>
+
+		<div class="col-md-1">
+			Active
+		</div>
+					
+	</div>
+
 	{{#each Item}}
 		<div  onclick="oneItem({{ID}});">
 		

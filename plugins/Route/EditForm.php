@@ -75,7 +75,7 @@
 
 				<div class="row">
 					<div class="col-md-3">
-						<label for="TopRoute">Top Route</label>
+						<label for="TopRoute"><?=TOP_ROUTE;?></label>
 					</div>
 					<div class="col-md-9">
 						{{yesNoSliderEdit TopRoute 'TopRoute' }}

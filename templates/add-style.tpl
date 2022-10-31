@@ -157,7 +157,7 @@
 }
 
 /* ------------------------------------------- */
-/* ROUTE */
+/* Route */
 #TerminalID{
 	height:20px;
 	z-index:1;
@@ -167,6 +167,13 @@
 #TerminalID option:hover{
     background: #0088cc;
     color: white;
+}
+/* --------------------------------------------- */
+/* ListTemplate.php */
+#show_items .row-edit{
+    color:#3C8DBC;
+    font-weight:bold;
+    padding:5px 0;
 }
 
 </style>
