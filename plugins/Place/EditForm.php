@@ -118,7 +118,7 @@
 
 				<div class="row">
 					<div class="col-md-3">
-						<label for="Longitude">Longitude</label>
+						<label for="Longitude"><?=LONGITUDE;?></label>
 					</div>
 					<div class="col-md-9">
 						<input type="text" name="Longitude" id="Longitude" class="w100" value="{{Longitude}}"> 
@@ -127,7 +127,7 @@
 				
 				<div class="row">
 					<div class="col-md-3">
-						<label for="Latitude">Latitude</label>
+						<label for="Latitude"><?=LATITUDE;?></label>
 					</div>
 					<div class="col-md-9">
 						<input type="text" name="Latitude" id="Latitude" class="w100" value="{{Latitude}}"> 
@@ -136,7 +136,7 @@
 
 				<div class="row">
 					<div class="col-md-3">
-						<label for="Elevation">Elevation</label>
+						<label for="Elevation"><?=ELEVATION;?></label>
 					</div>
 					<div class="col-md-9">
 						<input type="text" name="Elevation" id="Elevation" class="w100" value="{{Elevation}}"> 
@@ -160,7 +160,7 @@
 				</div>	
 				<div class="row">
 					<div class="col-md-3">
-						<label for="Terminal">Terminal</label>
+						<label for="Terminal"><?=TERMINAL;?></label>
 					</div>
 					<div class="col-md-9">
 						{{yesNoSliderEdit Terminal 'Terminal' }}
@@ -169,7 +169,7 @@
 				
 				<div class="row">
 					<div class="col-md-3">
-						<label>Drivers:</label>
+						<label><?=DRIVERS;?>:</label>
 					</div>
 					<div class="col-md-9">
 						{{Drivers}}
