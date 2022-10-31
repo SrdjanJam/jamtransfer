@@ -56,6 +56,8 @@
 
 .wrapper-edit{ padding:0px; }
 
+.white-bg-edit{ padding-bottom:30px; }
+
 .additional-class{
     position: fixed;
     height: 100vh;
@@ -113,11 +115,12 @@
 
 /* ------------------------------------------ */
 /* Cursor pointer */
-.listTile{ cursor:pointer; }
+.listTile{ cursor:pointer;}
 
 .listTile:hover{ background: rgb(240, 240, 240); }
 
-.listTile:focus{ background: rgb(71, 42, 173); }
+/* off */
+/* .listTile:focus{ background: rgb(71, 42, 173); } */
 
 /* ------------------------------------------ */
 /* Booking/templates */
@@ -161,9 +164,9 @@
 	width:405px;
 	}
 
-	#TerminalID option:hover{
-	background: #0088cc;
-	color: white;
-	}
+#TerminalID option:hover{
+    background: #0088cc;
+    color: white;
+}
 
 </style>
