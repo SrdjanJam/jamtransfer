@@ -81,7 +81,7 @@
 				<? } else { ?>				
 				<div class="row">
 					<div class="col-md-3">
-						<label for="DriverVehicle">Driver Vehicle</label>
+						<label for="DriverVehicle"><?=DRIVER_VEHICLE;?></label>
 					</div>
 					<div class="col-md-9">
 						{{yesNoSliderEdit DriverVehicle 'DriverVehicle' }}
