@@ -17,6 +17,22 @@
 ?>
 <script type="text/x-handlebars-template" id="ItemListTemplate">
 
+	<div class="row row-edit">
+		
+		<div class="col-md-2">
+			PlaceID
+		</div>
+
+		<div class="col-md-9">
+			CountryNameEN
+		</div>	
+
+		<div class="col-md-1">
+			Active
+		</div>
+					
+	</div>
+
 	{{#each Item}}
 		<div  onclick="oneItem({{PlaceID}});">
 		
@@ -29,7 +45,7 @@
 					</div>
 
 					<div class="col-sm-9">
-						<strong>{{PlaceNameEN}}</strong><br>
+						<strong>{{PlaceNameEN}}</strong> -
 						{{CountryNameEN}}
 					</div>
 
