@@ -68,12 +68,14 @@
     padding: 5px;
     background-color: #e4e4e4;
     text-align: center;
-    border: 2px solid #4c59ad;
+    /* border: 2px solid #4c59ad; */
+    border: 2px solid #4c81ad;
     box-sizing: border-box;
     border-radius: 10px;
 }
 .nav-header-edit strong{
-    color:rgb(49 56 156);
+    /* color:rgb(49 56 156); */
+    color:rgb(30 104 166);
     font-family: 'Times New Roman', Times, serif;
 }
 .nav-header-edit #a-setout{
