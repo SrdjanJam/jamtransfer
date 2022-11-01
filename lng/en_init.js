@@ -8,19 +8,20 @@ statusDescription[5] = 'Completed';
 
 var userLevels = {};
 userLevels[2] = 'Agent';
-userLevels[3] = 'Client';
+//userLevels[3] = 'Client';
 userLevels[4] = 'Affiliate';
-userLevels[5] = 'iFrame User';
-userLevels[6] = 'API User';
-userLevels[12] = 'Taxi Site';
+//userLevels[5] = 'iFrame User';
+//userLevels[6] = 'API User';
+//userLevels[12] = 'Taxi Site';
 userLevels[31] = 'Driver';
-userLevels[32] = 'Subdriver';
+//userLevels[32] = 'Subdriver';
 userLevels[41] = 'Operator';
 userLevels[42] = 'Translator';
 userLevels[43] = 'Routes Administrator';
 userLevels[44] = 'Accountant';
 userLevels[45] = 'Dispatcher';
 userLevels[91] = 'Admin';
+userLevels[92] = 'Menager';
 userLevels[99] = 'System Administrator';
 
 var languages = {};

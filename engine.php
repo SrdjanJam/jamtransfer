@@ -15,11 +15,7 @@ else setcookie("page", $activePage, time() + (7*24*60*60));
 // kontrola pristupa
 $modules_arr='';
 if(isset($_SESSION['UseDriverID'])) $AuthLevelID=43;
-else $AuthLevelID=$_SESSION['AuthLevelID'];
-if ($AuthLevelID==31) {
-	$AuthLevelID=43;
-	$_SESSION['UseDriverID']=$_SESSION['AuthLevelID'];
-}	
+else $AuthLevelID=$_SESSION['AuthLevelID'];	
 
 $sql="SELECT ModulID FROM `v4_ModulesLevel` WHERE AuthLevelID=".$AuthLevelID;
 $result = $db->RunQuery($sql);

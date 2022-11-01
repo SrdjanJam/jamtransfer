@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.32, created on 2022-10-31 12:22:17
+/* Smarty version 3.1.32, created on 2022-11-01 08:57:10
   from 'c:\wamp\www\jamtransfer\templates\add-style.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.32',
-  'unifunc' => 'content_635fbdf907d845_62032396',
+  'unifunc' => 'content_6360df6632a532_41968570',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '2d24832a246e85f5de94ea3db8f7e5fc9a7e1ef4' => 
     array (
       0 => 'c:\\wamp\\www\\jamtransfer\\templates\\add-style.tpl',
-      1 => 1667215985,
+      1 => 1667224122,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_635fbdf907d845_62032396 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6360df6632a532_41968570 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 
 <style type="text/css" media="print">
@@ -178,7 +178,7 @@ function content_635fbdf907d845_62032396 (Smarty_Internal_Template $_smarty_tpl)
 }
 
 /* ------------------------------------------- */
-/* ROUTE */
+/* Route */
 #TerminalID{
 	height:20px;
 	z-index:1;
@@ -188,6 +188,13 @@ function content_635fbdf907d845_62032396 (Smarty_Internal_Template $_smarty_tpl)
 #TerminalID option:hover{
     background: #0088cc;
     color: white;
+}
+/* --------------------------------------------- */
+/* ListTemplate.php */
+#show_items .row-edit{
+    color:#3C8DBC;
+    font-weight:bold;
+    padding:5px 0;
 }
 
 </style><?php }

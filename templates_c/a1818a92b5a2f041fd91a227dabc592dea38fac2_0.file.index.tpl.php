@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.32, created on 2022-10-31 12:22:16
+/* Smarty version 3.1.32, created on 2022-11-01 10:36:29
   from 'C:\wamp\www\jamtransfer\templates\index.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.32',
-  'unifunc' => 'content_635fbdf889cee4_88347931',
+  'unifunc' => 'content_6360f6ad12dd58_53698597',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'a1818a92b5a2f041fd91a227dabc592dea38fac2' => 
     array (
       0 => 'C:\\wamp\\www\\jamtransfer\\templates\\index.tpl',
-      1 => 1667215985,
+      1 => 1667298943,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:pageList.tpl' => 1,
   ),
 ),false)) {
-function content_635fbdf889cee4_88347931 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6360f6ad12dd58_53698597 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html>
 	<head>
@@ -93,7 +93,7 @@ function content_635fbdf889cee4_88347931 (Smarty_Internal_Template $_smarty_tpl)
 
 				<!-- jQuery -->
 		<?php echo '<script'; ?>
- src="cms/js/jquery/2.0.2/jquery.min.js"><?php echo '</script'; ?>
+ src="js/jQuery/2.0.2/jquery.min.js"><?php echo '</script'; ?>
 > 
 		<!-- jQuery UI 1.10.3 -->
 		<?php echo '<script'; ?>

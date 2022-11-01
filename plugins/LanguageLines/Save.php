@@ -5,13 +5,20 @@ require_once 'Initial.php';
 $keyValue = $_REQUEST['id'];
 $fldList = array();
 $out = array();
-if ($keyName != '' and $keyValue != '') $db->getRow($keyValue);
-
 $text_array=array();
-$text_array['en']=$_REQUEST['text_en'];
-$text_array['de']=$_REQUEST['text_de'];
-$text_array['fr']=$_REQUEST['text_fr'];
-$text_array['ru']=$_REQUEST['text_ru'];
+if ($keyName != '' and $keyValue != '') {
+	$db->getRow($keyValue);
+	$text_array['en']=$_REQUEST['text_en'];
+	$text_array['de']=$_REQUEST['text_de'];
+	$text_array['fr']=$_REQUEST['text_fr'];
+	$text_array['ru']=$_REQUEST['text_ru'];
+} else {
+	$text_array['en']=$_REQUEST['text'];
+	$text_array['de']=$_REQUEST['text'];
+	$text_array['fr']=$_REQUEST['text'];
+	$text_array['ru']=$_REQUEST['text'];
+}	
+
 $_REQUEST['text']=json_encode($text_array);
 
 foreach ($db->fieldNames() as $name) {
@@ -20,6 +27,7 @@ foreach ($db->fieldNames() as $name) {
 		eval("\$db->set".$name."(\$content);");	
 	}	
 }	
+$db->setupdated_at(date('Y-m-d h:i:s'));
 $upd = '';
 $newID = '';
 if ($keyName != '' and $keyValue != '') {
@@ -28,6 +36,7 @@ if ($keyName != '' and $keyValue != '') {
 	if($res !== true) $upd = $res;
 }
 if ($keyName != '' and $keyValue == '') {
+	$db->setcreated_at(date('Y-m-d h:i:s'));
 	$newID = $db->saveAsNew();
 }
 $out = array(

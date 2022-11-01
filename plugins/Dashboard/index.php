@@ -1,4 +1,13 @@
 <?
+	$smarty->assign('smallBoxes',false);	
+	$smarty->assign('emptyRow',false);	
+	$smarty->assign('getOrder',false);				
+	$smarty->assign('getUnfinishedPayment',false);							
+	$smarty->assign('actualTransfers',false);										
+	$smarty->assign('todo',false);
+	$smarty->assign('quickEmail',false);	
+	$smarty->assign('translatorPanel',false);	
+
 	if (in_array($_SESSION['AuthLevelID'],array(2,31,41,43,44,45,91,99))) {
 		require_once 'smallBoxes.php'; 
 		$smarty->assign('smallBoxes',true);	

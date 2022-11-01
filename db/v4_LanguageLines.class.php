@@ -78,7 +78,7 @@ Class v4_LanguageLines {
      * Save the active var class as a new row on table
      */
 	public function saveAsNew(){
-		$this->connection->RunQuery("INSERT INTO v4_LanguageLines (group, key, text, created_at, updated_at) values ('".$this->myreal_escape_string($this->group)."', '".$this->myreal_escape_string($this->key)."',JSON_MERGE_PATCH(`text`,'".$this->text."'), '".$this->myreal_escape_string($this->created_at)."', '".$this->myreal_escape_string($this->updated_at)."')");
+		$this->connection->RunQuery("INSERT INTO v4_LanguageLines (`group`, `key`, `text`, `created_at`, `updated_at`) values ('".$this->myreal_escape_string($this->group)."', '".$this->myreal_escape_string($this->key)."',JSON_MERGE_PATCH(`text`,'".$this->text."'), '".$this->myreal_escape_string($this->created_at)."', '".$this->myreal_escape_string($this->updated_at)."')");
 		return $this->connection->insert_id(); //return insert_id 
 	}
 
@@ -141,7 +141,7 @@ Class v4_LanguageLines {
 			'id' => $this->getid(),
 			'group' => $this->getgroup(),
 			'key' => $this->getkey(),
-			'text' => $this->getText(),
+			'text' => $this->gettext(),
 			'created_at' => $this->getcreated_at(),
 			'updated_at' => $this->getupdated_at()
 		);

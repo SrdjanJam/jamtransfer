@@ -27872,7 +27872,7 @@ jquery.flot.pie.js
               "undefined" != typeof module && module.exports ? (module.exports = t(require("jquery"))) : (window.toastr = t(window.jQuery));
           }
 );
-//# sourceMappingURL=/toastr.js.map
+var sourceMappingURL=/toastr.js.map/
 
 /*! jsTree - v3.3.7 - 2018-11-06 - (MIT) */
 !(function (a) {

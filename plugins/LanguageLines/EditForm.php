@@ -47,14 +47,16 @@
 					</div>
 				</div>
 
-				<!--<div class="row">
+				<? if ($isNew) { ?>
+				<div class="row">
 					<div class="col-md-3">
 						<label for="text"><?=TEXT;?></label>
 					</div>
 					<div class="col-md-9">
-						<textarea name="text" id="text" class="w100">{{text}}</textarea>
+						<textarea name="text" id="text" class="textarea" style="width:100%">{{text}}</textarea>
 					</div>
-				</div>!-->
+				</div>			
+				<?  } else {?>
 				{{#each text_arr}}
 				<div class="row">
 					<div class="col-md-3">
@@ -66,6 +68,8 @@
 					</div>	
 				</div>	
 				{{/each}}
+				<?  } ?>
+				
 				
 			</div><!-- End of .box-body -->
 	    </div> <!-- End of .row -->
