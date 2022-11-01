@@ -20,15 +20,15 @@
 	<div class="row row-edit">
 		
 		<div class="col-md-2">
-			PlaceID
+			<?=PLACE_ID;?>
 		</div>
 
 		<div class="col-md-9">
-			CountryNameEN
+			<?=COUNTRY_NAME;?>
 		</div>	
 
 		<div class="col-md-1">
-			Active
+			<?=ACTIVE;?>
 		</div>
 					
 	</div>

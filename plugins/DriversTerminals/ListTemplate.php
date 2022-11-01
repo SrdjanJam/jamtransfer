@@ -9,15 +9,15 @@
 ?>
 <script type="text/x-handlebars-template" id="ItemListTemplate">
 
-	<div class="row">
+	<div class="row row-edit">
 		<div class="col-sm-1">
-			Terminal ID
+			<?=TERMINAL_ID;?>
 		</div>							
-		<div class="col-sm-8">
-			Terminal Name
+		<div class="col-sm-5">
+			<?=TERMINAL_NAME;?>
 		</div>	
-		<div class="col-md-3">
-			connected
+		<div class="col-md-6">
+			<?=CONNECTED;?>
 		</div>				
 		
 	</div>
@@ -33,12 +33,12 @@
 					{{PlaceID}}
 				</div>
 
-				<div class="col-sm-8">
+				<div class="col-sm-5">
 					<strong>{{PlaceNameEN}}</strong>,
 					{{CountryNameEN}}
 				</div>
 
-				<div class="col-md-1 terminal" data-id="{{PlaceID}}">
+				<div class="col-md-6 terminal" data-id="{{PlaceID}}">
 					{{yesNoSliderEdit Terminal 'Terminal' }}
 				</div>
 

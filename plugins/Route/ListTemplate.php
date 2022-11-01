@@ -15,15 +15,15 @@
 	<div class="row row-edit">
 		
 		<div class="col-md-3">
-			RouteID
+			<?=ROUTEID;?>
 		</div>
 
 		<div class="col-md-5">
-			RouteName
+			<?=ROUTENAME;?>
 		</div>	
 
 		<div class="col-md-1">
-			Active
+			<?=ACTIVE;?>
 		</div>
 					
 	</div>

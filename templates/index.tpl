@@ -196,7 +196,7 @@
 						{if isset($smarty.session.UseDriverName)}
 			{* nav-header nav-header-edit *}
 							<li class="nav-header nav-header-edit">
-								<h3 style="color:#606294;font-size:21px;">Set as:</h3>
+								<h3 style="color:#777777;font-size:21px;">Set as:</h3>
 								<strong>{$smarty.session.UseDriverName}</strong>
 								<a href="setout.php" id="a-setout">Setout	<i class="fas fa-sign-out-alt"></i></a>	
 							</li>
