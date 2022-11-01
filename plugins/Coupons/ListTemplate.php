@@ -4,27 +4,27 @@
 	<div class="row row-edit">
 		
 		<div class="col-md-1">
-			ID
+			<?=CODE_ID;?>
 		</div>
 
 		<div class="col-md-2">
-			Code
+			<?=CODE;?>
 		</div>	
 
 		<div class="col-md-2">
-			Discount
+			<?=DISCOUNT;?>
 		</div>
 
 		<div class="col-md-3">
-			ValidFrom
+			<?=VALIDFROM;?>
 		</div>
 
 		<div class="col-md-3">
-			ValidTo
+			<?=VALIDTO;?>
 		</div>
 
 		<div class="col-md-1">
-			Active
+			<?=ACTIVE;?>
 		</div>
 					
 	</div>
