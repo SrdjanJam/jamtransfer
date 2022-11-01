@@ -190,7 +190,7 @@ define("CONTRACT_DATE", "Contract date");
 define("CONTRACT_SIGNATURE", "Contract signature");
 define("COUNTRIES", "Countries");
 define("COUNTRY_CURRENCY", "Country currency");
-define("COUNTRY_NAME", "Country name");
+define("COUNTRY_NAME", "Country name(EN)");
 define("COUNTRY_NAME_RU", "Country name in Russian");
 define("COUPONS", "Coupons");
 define("COUPON_DISCOUNT", "Coupon discount");
@@ -356,7 +356,7 @@ define("PLACEACTIVE", "Active");
 define("POSITION", "Position");
 define("PICKUP_POINT", "Pickup Point");
 define("PRICE", "Price");
-define("PRICES", "All prices");
+define("PRICES", "All Prices");
 define("PRICES_EXPORT", "Export driver prices");
 define("ALL_PRICES_EXPORT", "All prices export");
 define("PRICES_IMPORT", "Import driver prices");
@@ -480,8 +480,8 @@ define("VEHICLES", "Vehicles");
 define("VEHICLECAPACITY", "Max. Pax");
 define("VEHICLEDESCRIPTION", "Veh.Description");
 define("VEHICLENAME", "Vehicle name");
-define("VEHICLETYPEID", "Vehicle type");
-define("VEHICLE_TYPE", "Vehicle Type");
+define("VEHICLETYPEID", "Vehicle type ID");
+define("VEHICLE_TYPE", "Vehicle Type Name");
 define("VEHICLE_TYPES", "Vehicle Types");
 define("VEHICLEID", "Vehicle ID");
 define("VEHICLE_IMAGES_NOTE", "Only .jpg files smaller than 200Kb are allowed. Preferred dimensions 200x150px.");
@@ -554,7 +554,8 @@ define("INVOICE", "Invoice");
 define("COUNTRY", "Country");
 define("COUNTRY_SHORT", "Country Short");
 define("CITY", "City");
-define("TERMINAL", "Terminal");
+define("TERMINAL_ID", "Terminal ID");
+define("TERMINAL_NAME", "Terminal Name");
 define("TAX_NUMBER", "Tax Number");
 define("ACCOUNT_OWNER", "Account owner");
 define("ACCOUNT_BANK", "Account Bank");
@@ -704,6 +705,7 @@ define("LIT", " (IT)");
 define("COUNTRYNAME", "Country name");
 define("COUNTRYDESC", "Country description");
 define("PLACENAME", "Location name");
+define("PLACE_ID","ID");
 
 define("DRIVER_PRICE", "Driver Price");
 define("PROVISIONPERC", "Provision %");
@@ -714,6 +716,7 @@ define("COUNTRYCODE3", "Country code 3");
 define("PHONEPREFIX", "Phone prefix");
 
 // coupons
+define("CODE_ID","Code ID");
 define("CODE", "Code");
 define("VALIDFROM", "Valid From");
 define("VALIDTO", "Valid To");
@@ -723,8 +726,10 @@ define("LIMITLOCATIONID", "Limit Location");
 define("WEEKDAYSONLY", "Weekdays Only");
 define("RETURNONLY", "Return Only");
 define("TIMESUSED", "Times Used");
-
 define("REFRESH_CACHE", "Refresh Cache");
+define("DISCOUNT","discount");
+define("ACTIVE","active");
+
 
 // reviews
 define("SURVEY", "Survey");
@@ -786,6 +791,8 @@ define("CO_YOUTUBE", "Youtube");
 define("CO_GOOGLEPLUS", "Google+");
 
 //Extra Services
+define("SERVICE_ID","ID");
+define("CONNECTED","Connected");
 define("DISPLAYORDER", "Service Display order");
 define("SERVICEEN", "Extra service (EN)");
 define("SERVICEDE", "Extra service (DE)");
@@ -829,6 +836,10 @@ define("DRIVER_ID","DriverID");
 
 // Services Terminals
 define("CONNECTED","connected");
+
+// Site content Languange lines - folder LanguangeLines
+define("ID","ID");
+define("NAME","name");
 
 /*
 $smarty->assign("ACCEPTED_PAYMENT", "Accepted Payment");
