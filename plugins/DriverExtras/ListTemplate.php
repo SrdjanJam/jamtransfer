@@ -16,15 +16,15 @@ if (isset($_SESSION['UseDriverID']) && $_SESSION['UseDriverID']>0) {
 	<div class="row row-edit">
 		
 		<div class="col-md-1">
-			ID
+			<?=SERVICE_ID;?>
 		</div>
 
 		<div class="col-md-4">
-			ServiceEN
+			<?=SERVICEEN;?>
 		</div>	
 
 		<div class="col-md-4">
-			Connected
+			<?=CONNECTED;?>
 		</div>
 					
 	</div>
