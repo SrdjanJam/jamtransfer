@@ -10,22 +10,22 @@
 ?>
 
 <script type="text/x-handlebars-template" id="ItemListTemplate">
-		<div class="row">
-			<div class="col-sm-1">
-				VehicleType ID
+		<div class="row row-edit">
+			<div class="col-sm-2">
+				<?=VEHICLETYPEID;?>
 			</div>							
-			<div class="col-sm-3">
-				VehicleType Name
+			<div class="col-sm-4">
+				<?=VEHICLE_TYPE;?>
 			</div>	
-			<div class="col-md-1">
-				Connected
+			<div class="col-md-2">
+				<?=CONNECTED;?>
 			</div>				
 			<!-- SURCATEGORY: -->
 			<div class="col-md-3">
 				<?=SURCATEGORY;?>
 			</div>
 			<div class="col-md-1">
-				Prices
+				<?=PRICES;?>
 			</div>				
 
 		</div>
@@ -33,19 +33,19 @@
 	{{#each Item}}
 
 			<div>		
-				<div class="row {{color}} pad1em listTile" 
+				<div class="row {{color}} pad1em listTile listTitleEdit" 
 				style="border-top:1px solid #ddd" 
 				id="t_{{VehicleTypeID}}">
 						<!-- VehicleTypeID: -->
-						<div class="col-sm-1">
+						<div class="col-sm-2">
 							{{VehicleTypeID}}
 						</div>
 						<!-- VehicleTypeName: -->
-						<div class="col-sm-3">
+						<div class="col-sm-4">
 							<strong>{{VehicleTypeName}}</strong>
 						</div>
 						<!-- Connected:  -->
-						<div class="col-md-1 vehicle active1" data-id="{{VehicleTypeID}}" data-change="1" data-active="{{DriverVehicle}}">
+						<div class="col-md-2 vehicle active1" data-id="{{VehicleTypeID}}" data-change="1" data-active="{{DriverVehicle}}">
 							<span>{{yesNoSliderEdit DriverVehicle 'DriverVehicle' }}</span>
 						</div>
 
