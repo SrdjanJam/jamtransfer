@@ -12,23 +12,23 @@
 <script type="text/x-handlebars-template" id="ItemListTemplate">
 		<div class="row row-edit">
 			<div class="col-sm-1">
-				Route ID
+				<?=ROUTEID;?>
 			</div>							
 			<div class="col-sm-3">
-				Route Name
+				<?=ROUTENAME;?>
 			</div>	
 			<div class="col-md-1">
-				Connected
+				<?=CONNECTED;?>
 			</div>				
 			<div class="col-md-1">
-				Active
+				<?=ACTIVE;?>
 			</div>
 			<!-- SURCATEGORY: -->
 			<div class="col-md-2">
 				<?=SURCATEGORY;?>
 			</div>
 			<div class="col-md-1">
-				Prices
+				<?=PRICE;?>
 			</div>				
 		</div>
 
