@@ -34,6 +34,7 @@ $flds = array();
 # kombinacija where i filtera
 $DB_Where = " " . $_REQUEST['where'];
 $DB_Where .= $filter;
+if (in_array($_SESSION['BrandName'],array('EN','FR','RU','DE'))) $DB_Where .= " AND `Language` = '".strtolower($_SESSION['BrandName'])."'";
 
 # dodavanje search parametra u qry
 # DB_Where sad ima sve potrebno za qry

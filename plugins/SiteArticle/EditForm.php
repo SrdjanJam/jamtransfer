@@ -40,7 +40,7 @@
 					</div>
 				</div>
 
-				<div class="row">
+				<div class="row {{hidden}}">
 					<div class="col-md-3">
 						<label for="Language"><?=LANGUAGE;?></label>
 					</div>

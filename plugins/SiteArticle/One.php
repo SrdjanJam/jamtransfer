@@ -11,6 +11,8 @@ $detailFlds = $db->fieldValues();
 foreach ($detailFlds as $key=>$value) {
 	$detailFlds[$key] = stripslashes($value);
 }
+if (in_array($_SESSION['BrandName'],array('EN','FR','RU','DE'))) $detailFlds['hidden']='hidden';
+else $detailFlds['hidden']='';
 $out[] = $detailFlds;
 # send output back
 $output = json_encode($out);

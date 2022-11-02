@@ -60,7 +60,7 @@
 				{{#each text_arr}}
 				<div class="row">
 					<div class="col-md-3">
-						<label for="text"><?=TEXT;?> {{@key}}</label>
+						<label for="text"><?=TEXT;?> {{@key}} {{language}}</label>
 					</div>	
 					<div class="col-md-9">	
 						<textarea name='text_{{@key}}' rows="15" 
