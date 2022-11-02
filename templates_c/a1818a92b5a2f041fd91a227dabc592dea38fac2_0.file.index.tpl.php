@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.32, created on 2022-11-01 10:36:29
+/* Smarty version 3.1.32, created on 2022-11-02 09:52:19
   from 'C:\wamp\www\jamtransfer\templates\index.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.32',
-  'unifunc' => 'content_6360f6ad12dd58_53698597',
+  'unifunc' => 'content_63623dd380b4c1_27097208',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'a1818a92b5a2f041fd91a227dabc592dea38fac2' => 
     array (
       0 => 'C:\\wamp\\www\\jamtransfer\\templates\\index.tpl',
-      1 => 1667298943,
+      1 => 1667382268,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:pageList.tpl' => 1,
   ),
 ),false)) {
-function content_6360f6ad12dd58_53698597 (Smarty_Internal_Template $_smarty_tpl) {
+function content_63623dd380b4c1_27097208 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html>
 	<head>
@@ -47,7 +47,8 @@ function content_6360f6ad12dd58_53698597 (Smarty_Internal_Template $_smarty_tpl)
 
 		<!-- Older: -->
 		<!-- font Awesome -->
-				<!-- Ionicons -->
+		<link href="css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+		<!-- Ionicons -->
 		
 		
 		<!-- New: -->
@@ -281,7 +282,7 @@ _init.js"><?php echo '</script'; ?>
 						
 						<?php if (isset($_SESSION['UseDriverName'])) {?>
 										<li class="nav-header nav-header-edit">
-								<h3 style="color:#606294;font-size:21px;">Set as:</h3>
+								<h3 style="color:#777777;font-size:21px;">Set as:</h3>
 								<strong><?php echo $_SESSION['UseDriverName'];?>
 </strong>
 								<a href="setout.php" id="a-setout">Setout	<i class="fas fa-sign-out-alt"></i></a>	

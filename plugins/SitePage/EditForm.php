@@ -37,29 +37,42 @@
 						<label for="Title"><?=TITLE;?></label>
 					</div>
 					<div class="col-md-9">
-						<input type="text" name="Title" id="Title" class="w100" value="{{Title}}">
+						<input type="text" name="Title" id="Title" class="w100" value="{{Title}}" {{disabled}}>
 					</div>
 				</div>				
-				<div class="row">
+				<div class="row {{noEnglish}}">
 					<div class="col-md-3">
-						<label for="Title"><?=TITLE;?> EN</label>
+						<label for="Title"><?=TITLE;?> {{Language}}</label>
 					</div>
 					<div class="col-md-9">
-						<input type="text" name="TitleEN" id="TitleEN" class="w100" value="{{TitleEN}}">
+						<input type="text" name="Title{{Language}}" id="Title{{Language}}" class="w100" value="{{TitleTR}}">
 					</div>
 				</div>
 
+
+				
 				<div class="row">
 					<div class="col-md-3">
 						<label for="Content"><?=CONTENT;?></label>
 					</div>
 					<div class="col-md-9">
-						<textarea name="ContentEN" id="ContentEN" rows="15" 
-					class="textarea" style="width:100%">{{ContentEN}}</textarea>
+						<textarea name="Content" id="Content" rows="15" 
+					class="textarea" style="width:100%">{{Content}}</textarea>
 					</div>
 				</div>
+				
 
-				<div class="row">
+				<div class="row {{noEnglish}}">
+					<div class="col-md-3">
+						<label for="Content"><?=CONTENT;?> {{Language}}</label>
+					</div>
+					<div class="col-md-9">
+						<textarea name="Content{{Language}}" id="Content{{Language}}" rows="15" 
+					class="textarea" style="width:100%">{{ContentTR}}</textarea>
+					</div>
+				</div>				
+
+				<div class="row {{onlyEnglish}}">
 					<div class="col-md-3">
 						<label for="MenuTitle"><?=MENUTITLE;?></label>
 					</div>
@@ -68,7 +81,7 @@
 					</div>
 				</div>
 
-				<div class="row">
+				<div class="row {{onlyEnglish}}">
 					<div class="col-md-3">
 						<label for="LastChange"><?=LASTCHANGE;?></label>
 					</div>

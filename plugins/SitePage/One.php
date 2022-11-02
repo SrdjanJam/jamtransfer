@@ -11,7 +11,23 @@ $detailFlds = $db->fieldValues();
 foreach ($detailFlds as $key=>$value) {
 	$detailFlds[$key] = stripslashes($value);
 }
+$detailFlds['Language']=$_SESSION['BrandName'];
+if ($_SESSION['BrandName']<>'EN') {
+	$contTrans='Content'.$_SESSION['BrandName'];
+	$detailFlds['ContentTR']=$detailFlds[$contTrans];	
+	$titleTrans='Title'.$_SESSION['BrandName'];
+	$detailFlds['TitleTR']=$detailFlds[$titleTrans];	
+	$detailFlds['disabled']='disabled';
+	$detailFlds['onlyEnglish']='hidden';
+	$detailFlds['noEnglish']='';
+}	
+else {
+	$detailFlds['disabled']='';
+	$detailFlds['onlyEnglish']='';
+	$detailFlds['noEnglish']='hidden';
+}	
 $out[] = $detailFlds;
 # send output back
+
 $output = json_encode($out);
 echo $_GET['callback'] . '(' . $output . ')';

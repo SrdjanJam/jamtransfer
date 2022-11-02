@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.32, created on 2022-10-21 12:17:20
+/* Smarty version 3.1.32, created on 2022-11-02 11:33:05
   from 'C:\wamp\www\jamtransfer\templates\pageListHeader.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.32',
-  'unifunc' => 'content_63528dd082e042_17847247',
+  'unifunc' => 'content_636255711705f1_66066801',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '7d4e13059d7eb1944e7a2452042dc0a71e7ccf69' => 
     array (
       0 => 'C:\\wamp\\www\\jamtransfer\\templates\\pageListHeader.tpl',
-      1 => 1666354500,
+      1 => 1667387564,
       2 => 'file',
     ),
   ),
@@ -20,8 +20,8 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_63528dd082e042_17847247 (Smarty_Internal_Template $_smarty_tpl) {
-if (!$_SESSION['UseDriverID'] && $_smarty_tpl->tpl_vars['title']->value != "Orders" && $_smarty_tpl->tpl_vars['title']->value != "Invoices") {?>
+function content_636255711705f1_66066801 (Smarty_Internal_Template $_smarty_tpl) {
+if ((!$_SESSION['UseDriverID'] && $_smarty_tpl->tpl_vars['title']->value != "Orders" && $_smarty_tpl->tpl_vars['title']->value != "Invoices") && ($_SESSION['AuthLevelID'] <> 42)) {?>
 	<a class="btn btn-primary btn-xs" href="<?php echo $_smarty_tpl->tpl_vars['currenturl']->value;?>
 /new"><?php echo $_smarty_tpl->tpl_vars['NNEW']->value;?>
 </a><br>
@@ -29,8 +29,6 @@ if (!$_SESSION['UseDriverID'] && $_smarty_tpl->tpl_vars['title']->value != "Orde
 <input type="hidden"  id="whereCondition" name="whereCondition" 
 value=" WHERE <?php echo $_smarty_tpl->tpl_vars['ItemID']->value;?>
  > 0">
-
-
 
 <input type="hidden"  id="orderid" name="orderid" value="<?php echo $_smarty_tpl->tpl_vars['orderid']->value;?>
 ">

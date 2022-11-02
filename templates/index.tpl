@@ -22,7 +22,7 @@
 
 		<!-- Older: -->
 		<!-- font Awesome -->
-		{* <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css"/> *}
+		<link href="css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
 		<!-- Ionicons -->
 		{* <link href="css/ionicons.min.css" rel="stylesheet" type="text/css"/> *}
 

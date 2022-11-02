@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.32, created on 2022-11-01 08:57:10
+/* Smarty version 3.1.32, created on 2022-11-02 09:45:27
   from 'c:\wamp\www\jamtransfer\templates\add-style.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.32',
-  'unifunc' => 'content_6360df6632a532_41968570',
+  'unifunc' => 'content_63622e27802b75_23967483',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '2d24832a246e85f5de94ea3db8f7e5fc9a7e1ef4' => 
     array (
       0 => 'c:\\wamp\\www\\jamtransfer\\templates\\add-style.tpl',
-      1 => 1667224122,
+      1 => 1667309118,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6360df6632a532_41968570 (Smarty_Internal_Template $_smarty_tpl) {
+function content_63622e27802b75_23967483 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 
 <style type="text/css" media="print">
@@ -47,6 +47,7 @@ function content_6360df6632a532_41968570 (Smarty_Internal_Template $_smarty_tpl)
         text-align: center;
         border-radius: 5px;
     }
+
 
 </style>
 
@@ -89,12 +90,12 @@ function content_6360df6632a532_41968570 (Smarty_Internal_Template $_smarty_tpl)
     padding: 5px;
     background-color: #e4e4e4;
     text-align: center;
-    border: 2px solid #4c59ad;
+    border: 2px solid #4c81ad;
     box-sizing: border-box;
     border-radius: 10px;
 }
 .nav-header-edit strong{
-    color:rgb(49 56 156);
+    color:rgb(30 104 166);
     font-family: 'Times New Roman', Times, serif;
 }
 .nav-header-edit #a-setout{
@@ -104,7 +105,6 @@ function content_6360df6632a532_41968570 (Smarty_Internal_Template $_smarty_tpl)
     display: block;
 }
 .nav-header-edit #a-setout:hover{
-    /* color: rgb(71, 88, 184); */
     color: rgb(184, 71, 71);
     background: none;
 }

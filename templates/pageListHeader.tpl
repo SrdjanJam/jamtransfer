@@ -1,10 +1,10 @@
-{if not $smarty.session.UseDriverID and $title ne "Orders" and $title ne "Invoices"}
+{if (not $smarty.session.UseDriverID and $title ne "Orders" and $title ne "Invoices")
+	and ($smarty.session.AuthLevelID<>42)
+}
 	<a class="btn btn-primary btn-xs" href="{$currenturl}/new">{$NNEW}</a><br>
 {/if}
 <input type="hidden"  id="whereCondition" name="whereCondition" 
 value=" WHERE {$ItemID} > 0">
-
-
 
 <input type="hidden"  id="orderid" name="orderid" value="{$orderid}">
 <input type="hidden"  id="detailid" name="detailid" value="{$detailid}">

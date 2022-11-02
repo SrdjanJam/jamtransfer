@@ -11,7 +11,10 @@ foreach ($db->fieldNames() as $name) {
 	if(isset($_REQUEST[$name])) {
 		eval("\$db->set".$name."(\$content);");	
 	}	
-}	
+}
+$db->setContentEN($_REQUEST['Content']);
+$db->setTitleEN($_REQUEST['Title']);
+
 $upd = '';
 $newID = '';
 if ($keyName != '' and $keyValue != '') {
