@@ -14,6 +14,7 @@ foreach ($detailFlds as $key=>$value) {
 $arr=json_decode($detailFlds['text']);
 $detailFlds['text_arr']= (array) $arr;	
 if (in_array($_SESSION['BrandName'],array('EN','FR','RU','DE'))) $detailFlds['language']=strtolower($_SESSION['BrandName']);
+else $detailFlds['language']=" ";
 
 $out[] = $detailFlds;
 # send output back

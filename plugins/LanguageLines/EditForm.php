@@ -11,11 +11,12 @@
 				onclick="return editCloseItem('{{id}}');">
 				<i class="fa fa-close"></i>
 				</button>
-
+				{{#compare language '==' " "}}
 				<button class="btn btn-danger" title="<?= CANCEL ?>" 
 				onclick="return deleteItem('{{id}}');">
 				<i class="fa fa-ban"></i>
 				</button>
+				{{/compare}}
 			<? } ?>	
 			<button class="btn btn-info" title="<?= SAVE_CHANGES ?>" 
 			onclick="return editSaveItem('{{id}}');">
@@ -37,38 +38,45 @@
 						{{id}}
 					</div>
 				</div>
-
 				<div class="row">
 					<div class="col-md-3">
 						<label for="key"><?=KEY;?></label>
 					</div>
 					<div class="col-md-9">
-						<input type="text" name="key" id="key" class="w100" value="{{key}}">
+						<input type="text" name="key" id="key" class="w100" value="{{key}}"
+						 {{#compare language '!=' " "}}<? if (!$isNew) { ?>disabled<? } ?>	{{/compare}}
+						>
 					</div>
 				</div>
 
-				<? if ($isNew) { ?>
+				<div class="row {{#compare language '!=' " "}}<? if (!$isNew) { ?>hidden <? } ?>{{/compare}}">
+					<div class="col-md-3">
+						<label for="Group">Group (api, api/validation, email)</label>
+					</div>
+					<div class="col-md-9">
+						<input type="text" name="group" id="group" class="w100" value="{{group}}">
+					</div>
+				</div>
+				
 				<div class="row">
 					<div class="col-md-3">
 						<label for="text"><?=TEXT;?></label>
 					</div>
 					<div class="col-md-9">
-						<textarea name="text" id="text" class="textarea" style="width:100%">{{text}}</textarea>
+						<textarea name="text"  <? if (!$isNew) { ?> readonly <? } ?> style="width:100%">{{text_arr.en}}</textarea>
 					</div>
 				</div>			
-				<?  } else {?>
 				{{#each text_arr}}
-				<div class="row">
+				<div class="row {{#compare ../language '!=' @key}}hidden{{/compare}}">
 					<div class="col-md-3">
 						<label for="text"><?=TEXT;?> {{@key}} {{language}}</label>
 					</div>	
 					<div class="col-md-9">	
-						<textarea name='text_{{@key}}' rows="15" 
-						class="textarea" style="width:100%">{{this}}</textarea>
+						<textarea name='text_{{@key}}' 
+						style="width:100%">{{this}}</textarea>
 					</div>	
 				</div>	
 				{{/each}}
-				<?  } ?>
 				
 				
 			</div><!-- End of .box-body -->
