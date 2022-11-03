@@ -16,7 +16,7 @@ require_once 'Initial.php';
 		$detailFlds[$key] = stripslashes($value);
 	}
 	$detailFlds['Language']=$_SESSION['BrandName'];
-	if ($_SESSION['BrandName']<>'EN') {
+	if (in_array($_SESSION['BrandName'],array('EN','FR','DE','RU'))) {
 		$titleTrans='Service'.$_SESSION['BrandName'];
 		$detailFlds['ServiceTR']=$detailFlds[$titleTrans];	
 		$detailFlds['disabled']='disabled';

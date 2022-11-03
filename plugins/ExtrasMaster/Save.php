@@ -12,6 +12,7 @@ foreach ($db->fieldNames() as $name) {
 		eval("\$db->set".$name."(\$content);");	
 	}	
 }	
+
 $upd = '';
 $newID = '';
 if ($keyName != '' and $keyValue != '') {

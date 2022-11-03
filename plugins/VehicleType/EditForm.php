@@ -51,7 +51,7 @@
 						<input type="text" name="VehicleTypeName" id="VehicleTypeName" class="w100" value="{{VehicleTypeName}}" {{disabled}}>
 					</div>
 				</div>				
-				<div class="row">
+				<div class="row {{noEnglish}}">
 					<div class="col-md-4">
 						<label for="VehicleTypeName"><?=VEHICLETYPENAME;?> {{Language}}</label>
 					</div>
@@ -82,10 +82,10 @@
 						<label for="DescriptionEN"><?=DESCRIPTION;?></label>
 					</div>
 					<div class="col-md-9">
-						<textarea name="DescriptionEN" id="DescriptionEN" rows="5" class="textarea" rows="10" style="width:100%" {{disabled}}>{{DescriptionEN}}</textarea>
+						<textarea name="Description" id="Description" rows="5" class="textarea" rows="10" style="width:100%" {{disabled}}>{{Description}}</textarea>
 					</div>
 				</div>	
-				<div class="row">
+				<div class="row {{noEnglish}}">
 					<div class="col-md-3">
 						<label for="DescriptionEN"><?=DESCRIPTION;?>{{Language}}</label>
 					</div>

@@ -54,7 +54,7 @@
 					</div>
 				</div>
 
-				<div class="row">
+				<div class="row {{noEnglish}}">
 					<div class="col-md-2">
 						<label for="ServiceDE"><?=SERVICE;?>{{Language}}</label>
 					</div>
