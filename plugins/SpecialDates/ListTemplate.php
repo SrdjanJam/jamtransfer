@@ -37,16 +37,6 @@
 			<input type="hidden" name="OwnerID" id="OwnerID" class="w50" value="<?=$_SESSION['OwnerID'] ?>">
 
 			<div class="col-md-12">
-
-				<!-- Example: -->
-				<!-- <div class="row">
-					<div class="col-md-3">
-						<label for="SpecialDate"><?=SPECIALDATE;?></label>
-					</div>
-					<div class="col-md-9">
-						<input type="text" name="SpecialDate" id="SpecialDate" class="w50 datepicker" value="{{SpecialDate}}">
-					</div>
-				</div> -->
 				
 				<div class="col-md-3">
 					<input type="text" name="SpecialDate" id="SpecialDate" class="w50 datepicker w-edit" value="{{SpecialDate}}">
