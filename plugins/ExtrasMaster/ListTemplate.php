@@ -21,10 +21,6 @@ if (isset($_SESSION['UseDriverID']) && $_SESSION['UseDriverID']>0) {
 		<div class="col-md-4">
 			<?=SERVICEEN;?>
 		</div>	
-
-		<div class="col-md-4">
-			<?=ACTIVE;?>
-		</div>
 					
 	</div>
 
@@ -41,11 +37,6 @@ if (isset($_SESSION['UseDriverID']) && $_SESSION['UseDriverID']>0) {
 
 					<div class="col-md-4">
 						{{ServiceEN}}
-					</div>
-					
-					<div class="col-md-4">
-						{{#if setting}} <i class="fa fa-check"></i>
-						{{/if}}
 					</div>
 
 			</div>
