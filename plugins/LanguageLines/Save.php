@@ -6,7 +6,7 @@ $keyValue = $_REQUEST['id'];
 $fldList = array();
 $out = array();
 $text_array=array();
-if ($keyName != '' and $keyValue != '') {
+if ($keyName != '' and $keyValue != '' and in_array($_SESSION['BrandName'],array('EN','FR','RU','DE'))) {
 	$db->getRow($keyValue);
 	$text_array['en']=$_REQUEST['text_en'];
 	$text_array['de']=$_REQUEST['text_de'];

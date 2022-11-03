@@ -63,7 +63,7 @@
 						<label for="text"><?=TEXT;?></label>
 					</div>
 					<div class="col-md-9">
-						<textarea name="text"  <? if (!$isNew) { ?> readonly <? } ?> style="width:100%">{{text_arr.en}}</textarea>
+						<textarea name="text"  <? if (!$isNew) { ?> {{disabled}} <? } ?> style="width:100%">{{text_arr.en}}</textarea>
 					</div>
 				</div>			
 				{{#each text_arr}}
