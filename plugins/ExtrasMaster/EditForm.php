@@ -27,7 +27,6 @@
 	<div class="box-body ">
         <div class="row">
 			<div class="col-md-12">
-				<? if ($isNew || !isset($_SESSION['UseDriverID'])) { ?>
 				<div class="row">
 					<div class="col-md-2">
 						<label for="ID"><?=ID;?></label>
@@ -42,100 +41,28 @@
 						<label for="DisplayOrder"><?=DISPLAYORDER;?></label>
 					</div>
 					<div class="col-md-10">
-						<input type="text" name="DisplayOrder" id="DisplayOrder" class="w100" value="{{DisplayOrder}}">
+						<input type="text" name="DisplayOrder" id="DisplayOrder" class="w100" value="{{DisplayOrder}}" {{disabled}}>
 					</div>
 				</div>
 
 				<div class="row">
 					<div class="col-md-2">
-						<label for="ServiceEN"><?=SERVICEEN;?></label>
+						<label for="ServiceEN"><?=SERVICE;?></label>
 					</div>
 					<div class="col-md-10">
-						<input type="text" name="ServiceEN" id="ServiceEN" class="w100" value="{{ServiceEN}}">
+						<input type="text" name="ServiceEN" id="ServiceEN" class="w100" value="{{ServiceEN}}" {{disabled}}>
 					</div>
 				</div>
 
 				<div class="row">
 					<div class="col-md-2">
-						<label for="ServiceDE"><?=SERVICEDE;?></label>
+						<label for="ServiceDE"><?=SERVICE;?>{{Language}}</label>
 					</div>
 					<div class="col-md-10">
-						<input type="text" name="ServiceDE" id="ServiceDE" class="w100" value="{{ServiceDE}}">
+						<input type="text" name="Service{{Language}}" id="Service{{Language}}" class="w100" value="{{ServiceTR}}">
 					</div>
 				</div>
 
-				<div class="row">
-					<div class="col-md-2">
-						<label for="ServiceRU"><?=SERVICERU;?></label>
-					</div>
-					<div class="col-md-10">
-						<input type="text" name="ServiceRU" id="ServiceRU" class="w100" value="{{ServiceRU}}">
-					</div>
-				</div>
-
-				<div class="row">
-					<div class="col-md-2">
-						<label for="ServiceFR"><?=SERVICEFR;?></label>
-					</div>
-					<div class="col-md-10">
-						<input type="text" name="ServiceFR" id="ServiceFR" class="w100" value="{{ServiceFR}}">
-					</div>
-				</div>
-
-				<div class="row">
-					<div class="col-md-2">
-						<label for="ServiceIT"><?=SERVICEIT;?></label>
-					</div>
-					<div class="col-md-10">
-						<input type="text" name="ServiceIT" id="ServiceIT" class="w100" value="{{ServiceIT}}">
-					</div>
-				</div>
-
-				<div class="row">
-					<div class="col-md-2">
-						<label for="ServiceSE"><?=SERVICESE;?></label>
-					</div>
-					<div class="col-md-10">
-						<input type="text" name="ServiceSE" id="ServiceSE" class="w100" value="{{ServiceSE}}">
-					</div>
-				</div>
-
-				<div class="row">
-					<div class="col-md-2">
-						<label for="ServiceNO"><?=SERVICENO;?></label>
-					</div>
-					<div class="col-md-10">
-						<input type="text" name="ServiceNO" id="ServiceNO" class="w100" value="{{ServiceNO}}">
-					</div>
-				</div>
-
-				<div class="row">
-					<div class="col-md-2">
-						<label for="ServiceES"><?=SERVICEES;?></label>
-					</div>
-					<div class="col-md-10">
-						<input type="text" name="ServiceES" id="ServiceES" class="w100" value="{{ServiceES}}">
-					</div>
-				</div>
-
-				<div class="row">
-					<div class="col-md-2">
-						<label for="ServiceNL"><?=SERVICENL;?></label>
-					</div>
-					<div class="col-md-10">
-						<input type="text" name="ServiceNL" id="ServiceNL" class="w100" value="{{ServiceNL}}">
-					</div>
-				</div>
-				<? } else { ?>				
-				<div class="row">
-					<div class="col-md-3">
-						<label for="DriverExtras"><?=DRIVER_EXTRAS;?></label>
-					</div>
-					<div class="col-md-9">
-						{{yesNoSliderEdit DriverExtras 'DriverExtras' }}
-					</div>
-				</div>
-				<? } ?>
 			</div>
 	    </div>
 		    

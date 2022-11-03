@@ -26,7 +26,6 @@
 	<div class="box-body ">
         <div class="row">
 			<div class="col-md-12">
-				<? if ($isNew || !isset($_SESSION['UseDriverID'])) { ?>
 				<div class="row">
 					<div class="col-md-4">
 						<label for="VehicleTypeID"><?=VEHICLETYPEID;?></label>
@@ -49,7 +48,15 @@
 						<label for="VehicleTypeName"><?=VEHICLETYPENAME;?></label>
 					</div>
 					<div class="col-md-8">
-						<input type="text" name="VehicleTypeName" id="VehicleTypeName" class="w100" value="{{VehicleTypeName}}">
+						<input type="text" name="VehicleTypeName" id="VehicleTypeName" class="w100" value="{{VehicleTypeName}}" {{disabled}}>
+					</div>
+				</div>				
+				<div class="row">
+					<div class="col-md-4">
+						<label for="VehicleTypeName"><?=VEHICLETYPENAME;?> {{Language}}</label>
+					</div>
+					<div class="col-md-8">
+						<input type="text" name="VehicleTypeName{{Language}}" id="VehicleTypeName{{Language}}" class="w100" value="{{VehicleTypeNameTR}}">
 					</div>
 				</div>
 
@@ -58,7 +65,7 @@
 						<label for="Min"><?=MIN;?></label>
 					</div>
 					<div class="col-md-8">
-						<input type="text" name="Min" id="Min" class="w100" value="{{Min}}">
+						<input type="text" name="Min" id="Min" class="w100" value="{{Min}}" {{disabled}}>
 					</div>
 				</div>
 
@@ -67,7 +74,7 @@
 						<label for="Max"><?=MAX;?></label>
 					</div>
 					<div class="col-md-8">
-						<input type="text" name="Max" id="Max" class="w100" value="{{Max}}">
+						<input type="text" name="Max" id="Max" class="w100" value="{{Max}}" {{disabled}}>
 					</div>
 				</div>
 				<div class="row">
@@ -75,39 +82,17 @@
 						<label for="DescriptionEN"><?=DESCRIPTION;?></label>
 					</div>
 					<div class="col-md-9">
-						<textarea name="DescriptionEN" id="DescriptionEN" rows="5" class="textarea" rows="10" style="width:100%" >{{DescriptionEN}}</textarea>
+						<textarea name="DescriptionEN" id="DescriptionEN" rows="5" class="textarea" rows="10" style="width:100%" {{disabled}}>{{DescriptionEN}}</textarea>
 					</div>
-				</div>				
-				<? } else { ?>				
+				</div>	
 				<div class="row">
 					<div class="col-md-3">
-						<label for="DriverVehicle"><?=DRIVER_VEHICLE;?></label>
+						<label for="DescriptionEN"><?=DESCRIPTION;?>{{Language}}</label>
 					</div>
 					<div class="col-md-9">
-						{{yesNoSliderEdit DriverVehicle 'DriverVehicle' }}
+						<textarea name="Description{{Language}}" id="Description{{Language}}" rows="5" class="textarea" rows="10" style="width:100%" >{{DescriptionTR}}</textarea>
 					</div>
-				</div>
-				<div class="row">
-					<div class="col-md-3">
-						<label for="SurCategory"><?=SURCATEGORY;?></label>
-					</div>
-					<div class="col-md-3">
-						<select name="SurCategory" id="SurCategory" class="w100">
-							{{#select SurCategory}}
-								<option value="1" {{#compare SurCategory "==" 1}}selected{{/compare}}><?= USE_GLOBAL ?></option>
-								<option value="2" {{#compare SurCategory "==" 3}}selected{{/compare}}><?= VEHICLE_SPECIFIC ?></option>
-								<option value="0" {{#compare SurCategory "==" 0}}selected{{/compare}}><?= NO_SURCHARGES ?></option>
-							{{/select}}								
-						</select>
-					</div>
-					<div class="col-md-2">
-						<a target='_blank' href='rules/global'>Edit Global Rules</a>
-					</div>					
-					<div class="col-md-2">
-						<a target='_blank' href='rules/vehicles/{{VehicleTypeID}}'>Edit Vehicles Rules</a>
-					</div>					
 				</div>				
-				<? } ?>
 			</div>
 	    </div>
 </form>

@@ -4,7 +4,7 @@ require_once ROOT . '/db/v4_VehicleTypes.class.php';
 $db = new v4_VehicleTypes();
 $dbT = new DataBaseMysql();
 $keyName = 'VehicleTypeID';
-$ItemName='VehicleTypeName ';
+$ItemName='VehicleTypeID ';
 #********************************
 # kolone za koje je moguc Search 
 # treba ih samo nabrojati ovdje

@@ -14,14 +14,22 @@ else $detailFlds['UseDriverID']=0;
 foreach ($detailFlds as $key=>$value) {
 	$detailFlds[$key] = stripslashes($value);
 }
-	$detailFlds["DriverVehicle"]=0;
-	if (isset($_SESSION['UseDriverID']) && $_SESSION['UseDriverID']>0) {
-		$result = $dbT->RunQuery("SELECT * FROM v4_Vehicles WHERE VehicleTypeID=".$_REQUEST['ItemID']." AND OwnerID=".$_SESSION['UseDriverID']); 
-		while($row = $result->fetch_array(MYSQLI_ASSOC)){
-			$detailFlds["DriverVehicle"]=1;
-			$detailFlds["SurCategory"]=$row['SurCategory'];
-		}
-	}	
+$detailFlds['Language']=$_SESSION['BrandName'];
+if ($_SESSION['BrandName']<>'EN') {
+	$contTrans='VehicleTypeName'.$_SESSION['BrandName'];
+	$detailFlds['VehicleTypeNameTR']=$detailFlds[$contTrans];	
+	$titleTrans='Description'.$_SESSION['BrandName'];
+	$detailFlds['DescriptionTR']=$detailFlds[$titleTrans];	
+	$detailFlds['disabled']='disabled';
+	$detailFlds['onlyEnglish']='hidden';
+	$detailFlds['noEnglish']='';
+}	
+else {
+	$detailFlds['disabled']='';
+	$detailFlds['onlyEnglish']='';
+	$detailFlds['noEnglish']='hidden';
+}	
+	
 $out[] = $detailFlds;
 # send output back
 $output = json_encode($out);

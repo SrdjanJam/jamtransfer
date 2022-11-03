@@ -15,13 +15,19 @@ require_once 'Initial.php';
 	foreach ($detailFlds as $key=>$value) {
 		$detailFlds[$key] = stripslashes($value);
 	}
-	$detailFlds["DriverExtras"]=0;
-	if (isset($_SESSION['UseDriverID']) && $_SESSION['UseDriverID']>0) {
-		$result = $dbT->RunQuery("SELECT * FROM v4_Extras WHERE ServiceID=".$_REQUEST['ItemID']." AND OwnerID=".$_SESSION['UseDriverID']); 
-		while($row = $result->fetch_array(MYSQLI_ASSOC)){
-			$detailFlds["DriverExtras"]=1;
-		}
+	$detailFlds['Language']=$_SESSION['BrandName'];
+	if ($_SESSION['BrandName']<>'EN') {
+		$titleTrans='Service'.$_SESSION['BrandName'];
+		$detailFlds['ServiceTR']=$detailFlds[$titleTrans];	
+		$detailFlds['disabled']='disabled';
+		$detailFlds['onlyEnglish']='hidden';
+		$detailFlds['noEnglish']='';
 	}	
+	else {
+		$detailFlds['disabled']='';
+		$detailFlds['onlyEnglish']='';
+		$detailFlds['noEnglish']='hidden';
+	}		
 
 	$out[] = $detailFlds;
 	# send output back
