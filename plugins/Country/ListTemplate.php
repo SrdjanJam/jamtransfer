@@ -1,4 +1,25 @@
 <script type="text/x-handlebars-template" id="ItemListTemplate">
+
+	<div class="row row-edit">
+		
+		<div class="col-md-1">
+			<?=COUNTRY_ID;?>
+		</div>
+
+		<div class="col-md-4">
+			<?=COUNTRYNAMEEN;?>
+		</div>
+
+		<div class="col-md-4">
+			<?=COUNTRYNAMERU;?>
+		</div>	
+
+		<div class="col-md-3">
+			<?=COUNTRYCODE3;?>
+		</div>
+					
+	</div>
+
 	{{#each Item}}
 		<div  onclick="oneItem({{CountryID}});">
 		
@@ -17,7 +38,7 @@
 					{{CountryNameRU}}
 				</div>
 
-				<div class="col-md-1">
+				<div class="col-md-3">
 					{{CountryCode3}}
 				</div>
 			</div>
