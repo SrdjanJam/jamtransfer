@@ -1,4 +1,17 @@
 <script type="text/x-handlebars-template" id="ItemListTemplate">
+
+	<div class="row row-edit">
+		
+		<div class="col-md-3">
+			<?=SERVICE_ID;?>
+		</div>
+
+		<div class="col-md-9">
+			<?=PLACENAMEEN;?>
+		</div>	
+
+	</div>
+
 	{{#each Item}}
 		<div  onclick="oneItem({{PlaceTypeID}});">
 		
@@ -10,15 +23,10 @@
 						<strong>{{PlaceTypeID}}</strong>
 					</div>
 
-					<div class="col-sm-2">
+					<div class="col-sm-9">
 						<strong>{{PlaceTypeEN}}</strong>
 					</div>
-
-					<div class="col-sm-2">
-					</div>
-
-					<div class="col-sm-3">
-					</div>
+					
 			</div>
 		</div>
 		<div id="ItemWrapper{{PlaceTypeID}}" class="editFrame" style="display:none">
