@@ -1,7 +1,7 @@
 <form name="exchangeRate" method="post" action="">
 	<div class="container">
 		<div class="box box-info pad1em shadowLight">
-
+			<h2>Vat rate</h2> 
 			<div class="row">
 				<div class="col-md-3">VAT rate</div>
 				<div class="col-md-3">
