@@ -11,17 +11,17 @@
 
 <script type="text/x-handlebars-template" id="ItemListTemplate">
 		<div class="row row-edit">
-			<div class="col-sm-2">
+			<div class="col-sm-1">
 				<?=VEHICLETYPEID;?>
 			</div>							
-			<div class="col-sm-4">
+			<div class="col-sm-3">
 				<?=VEHICLE_TYPE;?>
 			</div>	
 			<div class="col-md-2">
 				<?=CONNECTED;?>
 			</div>				
 			<!-- SURCATEGORY: -->
-			<div class="col-md-3">
+			<div class="col-md-4">
 				<?=SURCATEGORY;?>
 			</div>
 			<div class="col-md-1">
@@ -37,11 +37,11 @@
 				style="border-top:1px solid #ddd" 
 				id="t_{{VehicleTypeID}}">
 						<!-- VehicleTypeID: -->
-						<div class="col-sm-2">
+						<div class="col-sm-1">
 							{{VehicleTypeID}}
 						</div>
 						<!-- VehicleTypeName: -->
-						<div class="col-sm-4">
+						<div class="col-sm-3">
 							<strong>{{VehicleTypeName}}</strong>
 						</div>
 						<!-- Connected:  -->
@@ -50,7 +50,7 @@
 						</div>
 
 						<!-- Subcategory: -->
-						<div class="col-md-3 surcategory" data-status="{{PriceRules2}}" data-id="{{VehicleTypeID}}">
+						<div class="col-md-4 surcategory" data-status="{{PriceRules2}}" data-id="{{VehicleTypeID}}">
 							<span class="show_hide">{{SurCategoryRB PriceRules 'SurCategory' '2' 'vehicles' VehicleTypeID}}</span>
 						</div>
 						<!-- Prices: -->

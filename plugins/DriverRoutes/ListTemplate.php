@@ -14,7 +14,7 @@
 			<div class="col-sm-1">
 				<?=ROUTEID;?>
 			</div>							
-			<div class="col-sm-3">
+			<div class="col-sm-2">
 				<?=ROUTENAME;?>
 			</div>	
 			<div class="col-md-1">
@@ -24,7 +24,7 @@
 				<?=ACTIVE;?>
 			</div>
 			<!-- SURCATEGORY: -->
-			<div class="col-md-2">
+			<div class="col-md-3">
 				<?=SURCATEGORY;?>
 			</div>
 			<div class="col-md-1">
@@ -43,7 +43,7 @@
 							{{RouteID}}
 						</div>
 						<!-- RouteName: -->
-						<div class="col-sm-3">
+						<div class="col-sm-2">
 							<strong>{{RouteName}}</strong>
 						</div>
 						<!-- Connected:  -->
@@ -55,7 +55,7 @@
 							<span class="show_hide">{{yesNoSliderEdit Active 'Active' }}</span>
 						</div>
 						<!-- Subcategory: -->
-						<div class="col-md-2 surcategory" data-status="{{PriceRules2}}" data-id="{{RouteID}}">
+						<div class="col-md-3 surcategory" data-status="{{PriceRules2}}" data-id="{{RouteID}}">
 							<span class="show_hide">{{SurCategoryRB PriceRules 'SurCategory' '3' 'routes' RouteID}}</span>
 						</div>
 						<!-- Prices: -->
