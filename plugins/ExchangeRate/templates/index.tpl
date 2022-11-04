@@ -1,7 +1,7 @@
 <form name="exchangeRate" method="post" action="">
     <div class="container">
         <div class="box box-info pad1em shadowLight">
-
+            <h2>Exchange rate</h2>
             <div class="row">
                 <div class="col-md-3">{$EUR_TO_RSD}</div>
                 <div class="col-md-3">

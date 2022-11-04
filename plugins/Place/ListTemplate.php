@@ -23,11 +23,11 @@
 			<?=PLACE_ID;?>
 		</div>
 
-		<div class="col-md-9">
-			<?=COUNTRY_NAME;?>
+		<div class="col-md-5">
+			<?=COUNTRYNAMEEN;?>
 		</div>	
 
-		<div class="col-md-1">
+		<div class="col-md-5">
 			<?=ACTIVE;?>
 		</div>
 					
@@ -44,12 +44,12 @@
 						{{PlaceID}}
 					</div>
 
-					<div class="col-sm-9">
+					<div class="col-sm-5">
 						<strong>{{PlaceNameEN}}</strong> -
 						{{CountryNameEN}}
 					</div>
 
-					<div class="col-sm-1">
+					<div class="col-sm-5">
 						{{#compare PlaceActive ">" 0}}
 							<i class="fa fa-circle text-green"></i>
 						{{else}}

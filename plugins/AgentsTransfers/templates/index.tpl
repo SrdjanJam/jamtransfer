@@ -1,10 +1,11 @@
 {include file="{$root}/templates/add-style.tpl"}
 
 <div class="container white">
+    <h2>New Agent Invoice</h2>
 
     {if isset($smarty.request.NoShow) }
 
-        <h2>Select Agent</h2> 
+        
         {$smarty.request.$StartDate}{$smarty.request.$EndDate}<br>
         {if $smarty.request.NoShow eq 1}<i class="fa fa-plus"></i> No-show{/if}
         {if $smarty.request.DrErr eq 1}<i class="fa fa-plus"></i> Driver Error{/if}
@@ -61,7 +62,7 @@
 
                 <div class="row">
                     <div class="col-md-2">
-                        <label><b>Sistemi</b></label>
+                        <label><b>Sistems</b></label>
                     </div>
                     <div class="col-md-4">
                         Sistem <input type="checkbox" name="Sistem" class="form-control" value="1">

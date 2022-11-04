@@ -344,6 +344,7 @@ define("PICKUP_ADDRESS", "Pickup Address");
 define("PICKUP_DATE", "Pickup Date");
 define("PICKUP_NAME", "Pickup Name");
 define("PICKUP_TIME", "Pickup Time");
+define("PLACETYPE_ID", "ID");				
 define("PLACETYPEEN", "Location Type (EN)");
 define("PLACECOUNTRY", "Country");
 define("PLACENAMEEN", "Location name (EN)");
@@ -551,6 +552,7 @@ define("INVOICES", "Invoices total");
 define("INVOICE", "Invoice");
 
 // user
+define("COUNTRY_ID","ID");
 define("COUNTRY", "Country");
 define("COUNTRY_SHORT", "Country Short");
 define("CITY", "City");
@@ -807,6 +809,7 @@ define("LSE", " (SE)");
 define("LNO", " (NO)");
 define("LES", " (ES)");
 define("LNL", " (NL)");
+define("COUNTRYNAMEEN", "Country name (EN)");
 define("COUNTRYNAMERU", "Country name (RU)");
 define("DESCRIPTIONSE", "Description (SE)");
 define("DESCRIPTIONNO", "Description (NO)");
@@ -840,6 +843,14 @@ define("CONNECTED","connected");
 // Site content Languange lines - folder LanguangeLines
 define("ID","ID");
 define("NAME","name");
+
+// Masters User - folder AuthUser
+define("AUTHUSER_ID","ID");
+define("AUTHUSER_IMAGE","Image");
+define("AUTHUSER","Auth User");
+define("AUTHUSERCOMPANY","Auth User Company");
+define("AUTHUSERNOTE","Auth User Note");
+define("CONTACT","Contact");
 
 /*
 $smarty->assign("ACCEPTED_PAYMENT", "Accepted Payment");

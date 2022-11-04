@@ -14,6 +14,30 @@
 ?>	
 <script type="text/x-handlebars-template" id="ItemListTemplate">
 
+	<div class="row row-edit">
+		
+		<div class="col-md-1">
+			<?=AUTHUSER_IMAGE;?>
+		</div>
+
+		<div class="col-md-3">
+			<?=AUTHUSER;?>
+		</div>	
+
+		<div class="col-md-2">
+			<?=AUTHUSERCOMPANY;?>
+		</div>
+
+		<div class="col-md-3">
+			<?=CONTACT;?>
+		</div>
+
+		<div class="col-md-3">
+			<?=AUTHUSERNOTE;?>
+		</div>
+					
+	</div>
+
 	{{#each Item}}
 		<div  onclick="oneItem({{AuthUserID}});">
 		
@@ -26,6 +50,7 @@
 						   style="max-height:60px; max-width:60px;" 
 						   class="img-thumbnail">
 					</div>
+
 					<div class="col-sm-3 col-xs-6">
 						<strong>{{AuthUserName}}</strong>
 						<br>
@@ -38,6 +63,7 @@
 						ID: <strong>{{AuthUserID}}</strong> {{DriverID}}
 						{{displayUserLevelText AuthLevelID}} 
 					</div>
+
 					<div class="col-sm-2 col-xs-12">
 						<strong>{{AuthUserCompany}}</strong>
 						<br>
@@ -45,6 +71,7 @@
 						<br>
 						<small>{{Country}} {{Terminal}}</small>						
 					</div>
+
 					<div class="col-sm-3 col-xs-12">
 						<a href="index.php?p=quickEmail&EmailAddress={{AuthUserMail}}"  
 						class="btn btn-default btn-sm"><i class="fa fa-envelope"></i> {{AuthUserMail}}</a>
