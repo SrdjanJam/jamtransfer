@@ -10,6 +10,30 @@
 ?>
 <script type="text/x-handlebars-template" id="ItemListTemplate">
 
+	<div class="row row-edit">
+		
+		<div class="col-md-3">
+			<?=NAME;?>
+		</div>
+
+		<div class="col-md-4">
+			<?=AUTHUSERCOMPANY;?>
+		</div>	
+
+		<div class="col-md-2">
+			<?=CONNECTED;?>
+		</div>
+
+		<div class="col-md-2">
+			<?=CONNECTED;?>
+		</div>
+
+		<div class="col-md-1">
+			<?=CONNECTED;?>
+		</div>
+					
+	</div>
+
 	{{#each Item}}
 		<div  onclick="oneItem({{ID}});">
 		
