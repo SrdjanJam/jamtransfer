@@ -142,6 +142,8 @@
 
 define("ACCEPTED_PAYMENT", "Accepted Payment");
 define("ACTIONS", "Actions");
+define("ACTIONS_ID", "Actions ID");
+define("ACTIONS_TITLE", "Actions Title");
 define("ACTIVE", "Active");
 define("ADD", "Add");
 define("ADDRESS", "Address");
@@ -846,12 +848,21 @@ define("NAME","name");
 
 // Masters User - folder AuthUser
 define("AUTHUSER_ID","ID");
+define("AUTHUSER_LEVEL","Level");
 define("AUTHUSER_IMAGE","Image");
 define("AUTHUSER","Auth User");
 define("AUTHUSERCOMPANY","Auth User Company");
 define("AUTHUSERNOTE","Auth User Note");
 define("CONTACT","Contact");
 
+// Pricing Services
+define("ROUTENAME","Route Name");
+
+// Settings off duty dates
+define("OFF_DUTY_ID","ID");
+
+
+// COMMENTED:
 /*
 $smarty->assign("ACCEPTED_PAYMENT", "Accepted Payment");
 $smarty->assign("ACTIONS", "Actions");
