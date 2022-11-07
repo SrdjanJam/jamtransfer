@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 3.1.32, created on 2022-11-02 09:45:27
+/* Smarty version 3.1.32, created on 2022-11-07 11:44:33
   from 'c:\wamp\www\jamtransfer\templates\add-style.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.32',
-  'unifunc' => 'content_63622e27802b75_23967483',
+  'unifunc' => 'content_6368efa1c41904_21959918',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_63622e27802b75_23967483 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6368efa1c41904_21959918 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 
 <style type="text/css" media="print">

@@ -35,6 +35,7 @@ if (isset($type)) {
 		$filter = "  AND ".$type." = '" . $_REQUEST['Type'] . "'";
 	}
 }
+$filter .= " AND v4_Services.RouteID in (Select `RouteID` from v4_Routes)";
 if ($_REQUEST['routeID']) $filter .= " AND v4_Services.RouteID=".$_REQUEST['routeID'];
 if ($_REQUEST['vehicleTypeID']) $filter .= " AND v4_Services.VehicleTypeID=".$_REQUEST['vehicleTypeID'];
 $page 		= $_REQUEST['page'];
