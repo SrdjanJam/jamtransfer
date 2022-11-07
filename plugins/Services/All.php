@@ -104,6 +104,7 @@ if (count($sk) != 0) {
 		$dbC2->getRow($s->getVehicleTypeID());
 		$detailFlds["RouteName"]=$dbC->getRouteName();
 		$detailFlds["VehicleTypeName"]=$dbC2->getVehicleTypeName();
+		$detailFlds["PriceRules"]=$s->getSurCategory();
 		// npr. $detailFlds["AuthLevelName"] = $nekaDrugaDB->getAuthLevelName().' nesto';
 		$out[] = $detailFlds;    	
     }
