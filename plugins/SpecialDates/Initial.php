@@ -3,7 +3,7 @@ require_once '../../config.php';
 require_once ROOT . '/db/v4_SpecialDates.class.php';
 $db = new v4_SpecialDates();
 $dbT = new DataBaseMysql();
-$keyName = 'ID';
+$keyName = 'OwnerID';
 $ItemName='DisplayOrder ';
 #********************************
 # kolone za koje je moguc Search 

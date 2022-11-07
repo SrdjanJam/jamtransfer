@@ -1,4 +1,9 @@
 <form id="" class="form " method="post">	
+	<div class="pull-right">
+		<button type="submit" name="submit" class="btn btn-info" title="{$SAVE_CHANGES}" >
+			<i class="fa fa-save"></i>
+		</button>					
+	</div>
 	<div class="box-body ">
         <div class="row">
 			<div class="col-md-12">

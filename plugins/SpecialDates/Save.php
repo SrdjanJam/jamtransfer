@@ -2,7 +2,7 @@
 header('Content-Type: text/javascript; charset=UTF-8');
 require_once 'Initial.php';
 	
-$keyValue = $_REQUEST['id'];
+$keyValue = $_REQUEST['ID'];
 $fldList = array();
 $out = array();
 if ($keyName != '' and $keyValue != '') $db->getRow($keyValue);

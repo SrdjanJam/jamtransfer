@@ -305,11 +305,7 @@
 							{if $vehicleName}<span>Vehicle:<strong>{$vehicleName}</strong></span>{/if}
 
 						</div>
-						<div class="pull-right">
-							<button type="submit" class="btn btn-info" title="{$SAVE_CHANGES}" >
-								<i class="fa fa-save"></i>
-							</button>					
-						</div>
+
 					</div> {* /.header row *}
 				{/if}
 					

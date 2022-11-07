@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.32, created on 2022-05-12 07:59:53
+/* Smarty version 3.1.32, created on 2022-11-07 11:33:03
   from 'c:\wamp\www\jamtransfer\plugins\PriceRules\templates\index.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.32',
-  'unifunc' => 'content_627cbe7930de05_91063369',
+  'unifunc' => 'content_6368ecef920d23_97483849',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '7c98c528aade67e0f3e5229fe25f371f615b25fd' => 
     array (
       0 => 'c:\\wamp\\www\\jamtransfer\\plugins\\PriceRules\\templates\\index.tpl',
-      1 => 1652099525,
+      1 => 1667820779,
       2 => 'file',
     ),
   ),
@@ -20,8 +20,14 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_627cbe7930de05_91063369 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6368ecef920d23_97483849 (Smarty_Internal_Template $_smarty_tpl) {
 ?><form id="" class="form " method="post">	
+						<div class="pull-right">
+							<button type="submit" name="submit" class="btn btn-info" title="<?php echo $_smarty_tpl->tpl_vars['SAVE_CHANGES']->value;?>
+" >
+								<i class="fa fa-save"></i>
+							</button>					
+						</div>
 	<div class="box-body ">
         <div class="row">
 			<div class="col-md-12">

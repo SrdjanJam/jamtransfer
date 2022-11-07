@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.32, created on 2022-11-02 09:52:19
+/* Smarty version 3.1.32, created on 2022-11-07 11:30:53
   from 'C:\wamp\www\jamtransfer\templates\index.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.32',
-  'unifunc' => 'content_63623dd380b4c1_27097208',
+  'unifunc' => 'content_6368ec6dcb8b34_77947711',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'a1818a92b5a2f041fd91a227dabc592dea38fac2' => 
     array (
       0 => 'C:\\wamp\\www\\jamtransfer\\templates\\index.tpl',
-      1 => 1667382268,
+      1 => 1667820650,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:pageList.tpl' => 1,
   ),
 ),false)) {
-function content_63623dd380b4c1_27097208 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6368ec6dcb8b34_77947711 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html>
 	<head>
@@ -430,12 +430,7 @@ for ($__section_pom_2_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_po
 </strong></span><?php }?>
 
 						</div>
-						<div class="pull-right">
-							<button type="submit" class="btn btn-info" title="<?php echo $_smarty_tpl->tpl_vars['SAVE_CHANGES']->value;?>
-" >
-								<i class="fa fa-save"></i>
-							</button>					
-						</div>
+
 					</div> 				<?php }?>
 					
 								<div class="body row white-bg white-bg-edit">
