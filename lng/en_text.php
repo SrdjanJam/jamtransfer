@@ -853,6 +853,7 @@ define("AUTHUSER_IMAGE","Image");
 define("AUTHUSER","Auth User");
 define("AUTHUSERCOMPANY","Auth User Company");
 define("AUTHUSERNOTE","Auth User Note");
+define("SETASDRIVER","Set as driver");
 define("CONTACT","Contact");
 
 // Pricing Services
