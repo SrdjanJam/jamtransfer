@@ -70,9 +70,16 @@ if (count($dbk) != 0) {
 		// ako treba neki lookup, onda to ovdje
 		# get all fields and values
 		$detailFlds = $db->fieldValues();
-		$detailFlds[DBImage]='';
+		//$detailFlds[DBImage]='';
 		// ako postoji neko custom polje, onda to ovdje.
 		// npr. $detailFlds["AuthLevelName"] = $nekaDrugaDB->getAuthLevelName().' nesto';
+		
+		// Leave one email:
+		$email = $detailFlds["AuthUserMail"];
+		$email = explode(" ",$email);
+		$detailFlds["AuthUserMail"] = $email[0];
+		$detailFlds["AuthUserMail"] = str_replace(","," ",$detailFlds["AuthUserMail"]);
+
 		$out[] = $detailFlds;    	
     }
 }

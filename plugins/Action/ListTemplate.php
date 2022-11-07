@@ -10,6 +10,18 @@
 ?>	
 <script type="text/x-handlebars-template" id="ItemListTemplate">
 
+	<div class="row row-edit">
+		
+		<div class="col-md-1">
+			<?=ACTIONS_ID;?>
+		</div>
+
+		<div class="col-md-11">
+			<?=ACTIONS_TITLE;?>
+		</div>	
+					
+	</div>
+
 	{{#each Item}}
 		<div  onclick="oneItem({{ID}});">
 		
@@ -21,7 +33,7 @@
 						<strong>{{ID}}</strong>
 					</div>
 
-					<div class="col-md-4">
+					<div class="col-md-11">
 						{{Title}}
 					</div>
 
