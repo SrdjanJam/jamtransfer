@@ -54,6 +54,7 @@
 			if (window.location.host=='localhost') base=base+'/jamtransfer';		
 			var link = base+'/plugins/DriversTerminals/Save.php';
 			var param = "PlaceID="+placeid+"&Terminal="+terminal;
+			console.log(link+'?'+param);
 			$.ajax({
 				type: 'POST',
 				url: link,

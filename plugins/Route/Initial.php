@@ -14,5 +14,7 @@ $ItemName='RouteName ';
 #********************************
 $aColumns = array(
 	'RouteID', // dodaj ostala polja!
-	'RouteName'
+	'RouteName',
+	'FromID',
+	'ToID'
 );

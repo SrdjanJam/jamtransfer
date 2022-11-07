@@ -89,6 +89,8 @@ if (count($dbk) != 0) {
 			while($row = $result->fetch_array(MYSQLI_ASSOC)){
 				$detailFlds["DriverRoute"]=1;
 				$detailFlds["Active"]=$row['Active'];
+				$detailFlds["OneToTwo"]=$row['OneToTwo'];
+				$detailFlds["TwoToOne"]=$row['TwoToOne'];
 				$detailFlds["PriceRules"]=$row['SurCategory'];
 				$detailFlds["PriceRules2"]=$row['SurCategory'];
 			}			

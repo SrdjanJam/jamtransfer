@@ -23,6 +23,12 @@
 			<div class="col-md-1">
 				<?=ACTIVE;?>
 			</div>
+			<div class="col-md-1">
+				<?=ONETOTWO;?>
+			</div>	
+			<div class="col-md-1">
+				<?=TWOTOONE;?>
+			</div>			
 			<!-- SURCATEGORY: -->
 			<div class="col-md-3">
 				<?=SURCATEGORY;?>
@@ -54,6 +60,12 @@
 						<div class="col-md-1 route active2" data-id="{{RouteID}}" data-change="2" data-active="{{Active}}">
 							<span class="show_hide">{{yesNoSliderEdit Active 'Active' }}</span>
 						</div>
+						<div class="col-md-1 route" data-id="{{RouteID}}" data-change="3">
+							<span class="show_hide">{{yesNoSliderEdit OneToTwo 'OneToTwo' }}</span>
+						</div>
+						<div class="col-md-1 route" data-id="{{RouteID}}" data-change="4">
+							<span class="show_hide">{{yesNoSliderEdit TwoToOne 'TwoToOne' }}</span>
+						</div>
 						<!-- Subcategory: -->
 						<div class="col-md-3 surcategory" data-status="{{PriceRules2}}" data-id="{{RouteID}}">
 							<span class="show_hide">{{SurCategoryRB PriceRules 'SurCategory' '3' 'routes' RouteID}}</span>
@@ -76,13 +88,20 @@
 			var routeid=$(this).parent().parent().attr('data-id');
 			if (change==1) var driverroute=$(this).val();	
 			if (change==2) var active=$(this).val();	
+			if (change==3) var onetotwo=$(this).val();	
+			if (change==4) var twotoone=$(this).val();	
 			var base=window.location.origin;
 			if (window.location.host=='localhost') base=base+'/jamtransfer';
 			if (change==1) var link = base+'/plugins/DriverRoutes/Save.php';
 			if (change==2) var link = base+'/plugins/DriverRoutes/SaveActive.php';	
+			if (change==3) var link = base+'/plugins/DriverRoutes/SaveOneToTwo.php';	
+			if (change==4) var link = base+'/plugins/DriverRoutes/SaveTwoToOne.php';	
 			if (change==1) var param = "RouteID="+routeid+"&DriverRoute="+driverroute;
 			if (change==2) var param = "RouteID="+routeid+"&Active="+active;
+			if (change==3) var param = "RouteID="+routeid+"&OneToTwo="+onetotwo;
+			if (change==4) var param = "RouteID="+routeid+"&TwoToOne="+twotoone;
 			var $t = $(this);
+			console.log(link+'?'+param);
 			$.ajax({
 				type: 'POST',
 				url: link,

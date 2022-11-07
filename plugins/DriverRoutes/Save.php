@@ -17,11 +17,11 @@ $ReturnDiscount = $au->getReturnDiscount();
 $au->endv4_AuthUsers();
 if ($_REQUEST['DriverRoute']==0) {
 	$result = $dbT->RunQuery("DELETE FROM `v4_DriverRoutes` WHERE `RouteID`=".$_REQUEST['RouteID']." AND `OwnerID`=".$_SESSION['UseDriverID']);
-	require ("RemoveServices.php");	
+	require_once ("RemoveServices.php");	
 }	
 if ($_REQUEST['DriverRoute']==1) {
-	$result = $dbT->RunQuery("INSERT IGNORE INTO `v4_DriverRoutes`(`RouteID`,`OwnerID`,`SurCategory`) VALUES (".$_REQUEST['RouteID'].",".$_SESSION['UseDriverID'].",1)");
-	//require ("InsertServices.php");
+	$result = $dbT->RunQuery("INSERT IGNORE INTO `v4_DriverRoutes`(`RouteID`,`OwnerID`,`Active`, `Approved`,`OneToTwo`,`TwoToOne`,`SurCategory`) VALUES (".$_REQUEST['RouteID'].",".$_SESSION['UseDriverID'].",1,1,1,1,1)");
+	//require_once ("InsertServices.php");
 }
 echo $_REQUEST['DriverRoute'];
 

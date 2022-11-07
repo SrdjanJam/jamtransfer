@@ -86,7 +86,6 @@
 					</div>
 				</div>
 
-<!--
 				<div class="row">
 					<div class="col-md-3">
 						<label for="HTMLBefore"><?=HTMLBEFORE;?></label>
@@ -95,7 +94,8 @@
 						<input type="text" name="HTMLBefore" id="HTMLBefore" class="w100" value="{{HTMLBefore}}">
 					</div>
 				</div>
-
+<!--
+	
 				<div class="row">
 					<div class="col-md-3">
 						<label for="HTMLAfter"><?=HTMLAFTER;?></label>
