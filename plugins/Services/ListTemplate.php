@@ -33,11 +33,12 @@
 	<!-- dynamically content: -->
 	{{#each Item}}
 	
-		<div class="row {{color}} pad1em listTile listTitleEdit" 
+		<div class="row {{color}} pad1em listTile" 
 		style="border-top:1px solid #ddd" 
 		id="t_{{ServiceID}}">
-
 			<div class="col-md-12">
+				<input type="hidden" name="ServiceID" id="ServiceID" value="{{ServiceID}}"">
+
 				<!-- ServiceID -->
 				<div class="col-md-1">
 					{{ServiceID}}
@@ -55,7 +56,7 @@
 				
 				<!-- ServicePrice1(Active Prace): -->				
 				<div class="col-md-2">
-					<input type="text" name="ServicePrice1" id="ServicePrice1" class="w100" value="{{ServicePrice1}}" style="width:120px;">
+					<input type="text" name="ServicePrice1"  id="ServicePrice1" value="{{ServicePrice1}}" style="width:120px;">
 				</div>
 
 				<!-- Discount: -->
@@ -65,17 +66,35 @@
 				
 
 				<!-- Price rules: -->
-				<div class="col-md-5 surcategory" data-status="{{PriceRules2}}" data-id="{{ServiceID}}">
-					<span class="show_hide">{{SurCategoryRB PriceRules 'SurCategory' '4' 'services' ServiceID}}</span>
+				<div class="col-md-5 surcategory" >
+					<span>{{SurCategoryRB PriceRules 'SurCategory' '4' 'services' ServiceID}}</span>
 				</div>
-
 			</div>		
-
+			
 		</div>
 
 	
 	{{/each}}
 
 
+	<script>
+		$('input').change(function(){
+			var base=window.location.origin;
+			if (window.location.host=='localhost') base=base+'/jamtransfer';	
+			var link = base+'/plugins/Services/Save.php';			
+			var ServiceID=$('#ServiceID').val();
+			var ServicePrice1=$('#ServicePrice1').val();
+			var SurCategory = $('input[name="SurCategory"]:checked').val();
+			var param='ServiceID='+ServiceID+'&ServicePrice1='+ServicePrice1+'&SurCategory='+SurCategory;
+			console.log(link+'?'+param);
+			$.ajax({
+				type: 'POST',
+				url: link,
+				data: param,
+				success: function(data) {
+				}				
+			});			
+		})	
+	</script>
 </script>
 	

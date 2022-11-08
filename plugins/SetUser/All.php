@@ -5,22 +5,10 @@ require_once 'Initial.php';
 @session_start();
 
 # sastavi filter - posalji ga $_REQUEST-om
-if (isset($type)) {
-	if (!isset($_REQUEST['Type']) or $_REQUEST['Type'] == 0) {
-		$filter .= "  AND ".$type." != 0 ";
-	}
-	else {
-		$filter .= "  AND ".$type." = " . $_REQUEST['Type'] ;
-	}
-}
-if (isset($selectactive)) {
-	if (!isset($_REQUEST['Active']) or $_REQUEST['Active'] == 99) {
-		$filter .= "  AND ".$selectactive." > -1 ";
-	}
-	else {
-		$filter .= "  AND ".$selectactive." = " . $_REQUEST['Active'] ;
-	}
-}
+
+$filter .= "  AND ".$type." = 31" ;
+//$filter .= "  AND `AuthLevelID` > 30 AND `AuthLevelID` < 32" ;
+$filter .= "  AND ".$selectactive." = 1";
 $page 		= $_REQUEST['page'];
 $length 	= $_REQUEST['length'];
 $sortOrder 	= $_REQUEST['sortOrder'];
@@ -80,7 +68,7 @@ if (count($dbk) != 0) {
 		$detailFlds["AuthUserMail"] = $email[0];
 		$detailFlds["AuthUserMail"] = str_replace(","," ",$detailFlds["AuthUserMail"]);
 
-		$out[] = $detailFlds;    	
+		$out[] = $detailFlds;    
     }
 }
 # send output back
@@ -88,4 +76,6 @@ $output = array(
 'recordsTotal' => count($dbTotalRecords),
 'data' =>$out
 );
+//print_r($output);
+
 echo $_GET['callback'] . '(' . json_encode($output) . ')';	

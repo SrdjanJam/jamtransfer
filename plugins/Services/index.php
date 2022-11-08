@@ -1,6 +1,5 @@
 <?
-	if (!$isNew) require_once 'ListTemplate.php';
-	require_once 'EditForm.php';
+	require_once 'ListTemplate.php';
 	$smarty->assign('ItemID','ServiceID');
 	$smarty->assign('pagelength',20);
 	

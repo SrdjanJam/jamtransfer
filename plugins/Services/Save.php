@@ -2,7 +2,7 @@
 header('Content-Type: text/javascript; charset=UTF-8');
 require_once 'Initial.php';
 	
-$keyValue = $_REQUEST['id'];
+$keyValue = $_REQUEST['ServiceID'];
 
 $fldList = array();
 $out = array();
@@ -23,7 +23,6 @@ if ($keyName != '' and $keyValue != '') {
 
 $out = array(
 	'update' => $upd,
-	'insert' => $newID
 );
 	
 # send output back
