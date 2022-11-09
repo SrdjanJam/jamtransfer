@@ -25,10 +25,10 @@
 				<?=SURCATEGORY;?>
 			</div>
 			<div class="col-md-1">
-				<?=PRICES;?>
+				<?=ROUTES;?>
 			</div>				
 			<div class="col-md-1">
-				<?=OFFDUTY;?>
+				<?=DATE;?>
 			</div>				
 
 		</div>
@@ -60,7 +60,7 @@
 						<div class="col-md-1">
 							<span class="show_hide"><a target='_blank' href='services/vehicleType/{{VehicleTypeID}}'>Routes</a></span>
 						</div>
-						<!-- Prices: -->
+						<!-- Dates: -->
 						<div class="col-md-1">
 							<span class="show_hide"><a target='_blank' href='offDuty/{{VehicleID}}'>Dates</a></span>
 						</div>
