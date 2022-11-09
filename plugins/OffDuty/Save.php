@@ -19,11 +19,16 @@ if ($keyName != '' and $keyValue != '') {
 	$upd = 'Updated';
 	if($res !== true) $upd = $res;
 }
-
+if ($keyName != '' and $keyValue == '') {
+	$db->setOwnerID($_SESSION['UseDriverID']);
+	$_REQUEST['ID'] = $db->saveAsNew();
+}
 $out = array(
-	'update' => $upd
+	'update' => $upd,
+	'insert' => $newID
+	
 );
 # send output back
 $output = json_encode($out);
-echo $_REQUEST['callback'] . '(' . $output . ')';
+echo $_REQUEST['ID'];
 	

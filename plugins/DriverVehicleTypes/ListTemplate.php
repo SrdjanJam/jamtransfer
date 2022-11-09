@@ -14,7 +14,7 @@
 			<div class="col-sm-1">
 				<?=VEHICLETYPEID;?>
 			</div>							
-			<div class="col-sm-3">
+			<div class="col-sm-2">
 				<?=VEHICLE_TYPE;?>
 			</div>	
 			<div class="col-md-2">
@@ -26,6 +26,9 @@
 			</div>
 			<div class="col-md-1">
 				<?=PRICES;?>
+			</div>				
+			<div class="col-md-1">
+				<?=OFFDUTY;?>
 			</div>				
 
 		</div>
@@ -41,7 +44,7 @@
 							{{VehicleTypeID}}
 						</div>
 						<!-- VehicleTypeName: -->
-						<div class="col-sm-3">
+						<div class="col-sm-2">
 							<strong>{{VehicleTypeName}}</strong>
 						</div>
 						<!-- Connected:  -->
@@ -56,6 +59,10 @@
 						<!-- Prices: -->
 						<div class="col-md-1">
 							<span class="show_hide"><a target='_blank' href='services/vehicleType/{{VehicleTypeID}}'>Routes</a></span>
+						</div>
+						<!-- Prices: -->
+						<div class="col-md-1">
+							<span class="show_hide"><a target='_blank' href='offDuty/{{VehicleID}}'>Dates</a></span>
 						</div>
 				</div>
 			</div>

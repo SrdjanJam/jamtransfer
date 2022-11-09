@@ -5,7 +5,7 @@
 		<div class="col-md-12">
 
 			<div class="col-md-2">
-				<?=VEHICLEID;?>
+				<?=VEHICLENAME;?>
 			</div>
 
 			<div class="col-md-2">
@@ -40,13 +40,14 @@
 
 			<form>
 				<!-- ID -->
-				<input type="hidden" name="ID" id="ID" class="w100" value="{{ID}}">
+				<input type="hidden" name="ID" class="ID"  value="{{ID}}">
+				<input type="hidden" name="VehicleID"  value="{{VehicleID}}">
 
 				<div class="col-md-12">
 					
-					<!-- VEHICLEID -->
+					<!-- VEHICLENAME -->
 					<div class="col-md-2">
-						<input type="text" name="VehicleID" id="VehicleID" class="w100" value="{{VehicleID}}">
+						{{VehicleName}}
 					</div>
 
 					<!-- STARTDATE -->
@@ -100,6 +101,7 @@
 				url: link,
 				data: param,
 				success: function(data) {
+					$('#t_ .ID').val(data);
 				}				
 			});
 			

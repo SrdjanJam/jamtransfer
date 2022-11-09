@@ -11,6 +11,7 @@ value=" WHERE {$ItemID} > 0">
 <input type="hidden"  id="transfersFilter" name="transfersFilter" value="{$transfersFilter}">
 <input type="hidden"  id="routeID" name="routeID" value="{$RouteID}">
 <input type="hidden"  id="vehicleTypeID" name="vehicleTypeID" value="{$VehicleTypeID}">
+<input type="hidden"  id="vehicleID" name="vehicleID" value="{$VehicleID}">
 
 <div class="row itemsheader">
 	<div class="col-md-2 asd" id="infoShow"></div>
