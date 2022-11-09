@@ -25,7 +25,7 @@ if ($length > 0) {
 }
 else $limit = '';
 
-if(empty($sortOrder)) $sortOrder = 'DESC';
+$sortOrder = 'DESC';
 
 
 # init vars
