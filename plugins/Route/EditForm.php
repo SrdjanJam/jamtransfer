@@ -46,6 +46,7 @@
 					</div>
 				</div>
 
+				<? if ($isNew) { ?>
 				<div class="row">
 					<div class="col-md-3">
 						<label for="FromID"><?=FROM;?></label>
@@ -63,6 +64,18 @@
 						{{placeSelect ToID 'ToID'}}
 					</div>
 				</div>
+				<? } else {?>
+				<div class="row">
+					<div class="col-md-3">
+						<label for="ToID"><?=ROUTENAME;?></label>
+					</div>
+					<div class="col-md-9">
+						<input type="hidden" name="FromID" id="FromID" value="{{FromID}}">
+						<input type="hidden" name="ToID" id="ToID" value="{{ToID}}">					
+						{{RouteName}}
+					</div>
+				</div>				
+				<? }?>
 
 				<div class="row">
 					<div class="col-md-3">
@@ -148,18 +161,20 @@
 		
 		});
 		$("#ToID").change(function(){
-			surTerminals(); // New route
 			var from = $("#FromID option:selected").text();
-			var to   = $("#ToID option:selected").text();
-			$("#RouteName").val(from + ' - ' + to);
-		});	
-
-		
-		surTerminals(); // New route
-
-		function surTerminals() {
+			var to   = $("#ToID option:selected").text();	
 			var fID=$("#FromID option:selected").val();
 			var tID=$("#ToID option:selected").val();
+			surTerminals(fID,tID); // New route
+			$("#RouteName").val(from + ' - ' + to);
+		});	
+		var fID=$("#FromID").val();
+		var tID=$("#ToID").val();
+		surTerminals(fID,tID); // New route
+
+		function surTerminals(fID,tID) {
+			//var fID=$("#FromID option:selected").val();
+			//var tID=$("#ToID option:selected").val();
 			if (fID>0 && tID>0) {
 				var base=window.location.origin;
 				if (window.location.host=='localhost') base=base+'/jamtransfer';

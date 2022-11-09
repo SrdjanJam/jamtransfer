@@ -1,66 +1,65 @@
 <?
-	require_once ROOT.'/db/v4_PlaceTypes.class.php';
-	$pt = new v4_PlaceTypes();
-	$placeTypes = $pt->getKeysBy('PlaceTypeEN', 'asc');
-	$arr_row['id']=99;
-	$arr_row['name']="Terminal";
-	$arr_all[]=$arr_row;
-	
-	foreach($placeTypes as $nn => $id) {
-		$pt->getRow($id);
-		$arr_row['id']=$pt->getPlaceTypeID();
-		$arr_row['name']=$pt->getPlaceTypeEN();
-		$arr_all[]=$arr_row;
-	}
+if (isset($_SESSION['UseDriverID']) && $_SESSION['UseDriverID']>0) {	
+	$arr_row['id']=1;
+	$arr_row['name']="Connected";
+	$arr_all[]=$arr_row;	
+	$arr_row['id']=2;
+	$arr_row['name']="Not Connected";
+	$arr_all[]=$arr_row;	
 	$smarty->assign('options',$arr_all);
 	$smarty->assign('selecttype',true);
+}
 ?>
+
 <script type="text/x-handlebars-template" id="ItemListTemplate">
 
 	<div class="row row-edit">
 		
-		<div class="col-md-2">
-			<?=PLACE_ID;?>
+		<div class="col-md-1">
+			<?=VEHICLETYPEID;?>
 		</div>
 
-		<div class="col-md-5">
-			<?=COUNTRYNAMEEN;?>
+		<div class="col-md-2">
+			<?=VEHICLE_TYPE;?>
+		</div>
+
+		<div class="col-md-1">
+			<?=MAX;?>
 		</div>	
 
-		<div class="col-md-5">
-			<?=ACTIVE;?>
+		<div class="col-md-8">
+			<?=DESCRIPTION;?>
 		</div>
 					
 	</div>
 
 	{{#each Item}}
-		<div  onclick="oneItem({{PlaceID}});">
+		<div  onclick="oneItem({{VehicleTypeID}});">
 		
 			<div class="row {{color}} pad1em listTile" 
 			style="border-top:1px solid #ddd" 
-			id="t_{{PlaceID}}">
+			id="t_{{VehicleTypeID}}">
 		
-					<div class="col-sm-2">
-						{{PlaceID}}
+					<div class="col-md-1">
+						<strong>{{VehicleTypeID}}</strong>
 					</div>
 
-					<div class="col-sm-5">
-						<strong>{{PlaceNameEN}}</strong> -
-						{{CountryNameEN}}
+					<div class="col-md-2">
+						{{VehicleTypeName}}
 					</div>
 
-					<div class="col-sm-5">
-						{{#compare PlaceActive ">" 0}}
-							<i class="fa fa-circle text-green"></i>
-						{{else}}
-							<i class="fa fa-circle text-red"></i>
-						{{/compare}}
+					<div class="col-md-1">
+						<i class="fa fa-user"></i> {{Max}}
+					</div>
+
+					<div class="col-md-8">
+						{{{Description}}}
 					</div>
 			</div>
 		</div>
-		<div id="ItemWrapper{{PlaceID}}" class="editFrame" style="display:none">
-			<div id="inlineContent{{PlaceID}}" class="row">
-				<div id="one_Item{{PlaceID}}" >
+		<div id="ItemWrapper{{VehicleTypeID}}" class="editFrame" style="display:none">
+			<div id="inlineContent{{VehicleTypeID}}" class="row">
+				<div id="one_Item{{VehicleTypeID}}" >
 					<?= LOADING ?>
 				</div>
 			</div>
