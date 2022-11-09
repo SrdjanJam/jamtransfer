@@ -3,6 +3,26 @@
 ?>
 <script type="text/x-handlebars-template" id="ItemListTemplate">
 
+	<div class="row row-edit">
+		
+		<div class="col-md-3">
+			<?=DRIVER_ID;?>
+		</div>
+
+		<div class="col-md-3">
+			<?=DRIVER_NAME;?>
+		</div>	
+
+		<div class="col-md-3">
+			<?=DRIVER_EMAIL;?>
+		</div>
+
+		<div class="col-md-3">
+			<?=DRIVER_TEL;?>
+		</div>
+					
+	</div>
+
 	{{#each Item}}
 		<div  onclick="oneItem({{DriverID}});">
 		
@@ -27,6 +47,7 @@
 				</div>
 			</div>
 		</div>
+		
 		<div id="ItemWrapper{{DriverID}}" class="editFrame" style="display:none">
 			<div id="inlineContent{{DriverID}}" class="row">
 				<div id="one_Item{{DriverID}}" >
