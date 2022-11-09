@@ -3,6 +3,22 @@
 ?>
 <script type="text/x-handlebars-template" id="ItemListTemplate">
 
+	<div class="row row-edit">
+		
+		<div class="col-md-4">
+			<?=VEHICLEID;?>
+		</div>
+
+		<div class="col-md-4">
+			<?=VEHICLEDESCRIPTION;?>
+		</div>	
+
+		<div class="col-md-4">
+			<?=VEHICLECAPACITY;?>
+		</div>
+					
+	</div>
+
 	{{#each Item}}
 		<div  onclick="oneItem({{VehicleID}});">
 		
@@ -23,6 +39,7 @@
 				</div>
 			</div>
 		</div>
+
 		<div id="ItemWrapper{{VehicleID}}" class="editFrame" style="display:none">
 			<div id="inlineContent{{VehicleID}}" class="row">
 				<div id="one_Item{{VehicleID}}" >
