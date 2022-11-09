@@ -2,7 +2,7 @@
 header('Content-Type: text/javascript; charset=UTF-8');
 require_once 'Initial.php';
 	
-$keyValue = $_REQUEST['id'];
+$keyValue = $_REQUEST['ID'];
 $fldList = array();
 $out = array();
 if ($keyName != '' and $keyValue != '') $db->getRow($keyValue);
@@ -19,13 +19,9 @@ if ($keyName != '' and $keyValue != '') {
 	$upd = 'Updated';
 	if($res !== true) $upd = $res;
 }
-if ($keyName != '' and $keyValue == '') {
-	$newID = $db->saveAsNew();
-}
 
 $out = array(
-	'update' => $upd,
-	'insert' => $newID
+	'update' => $upd
 );
 # send output back
 $output = json_encode($out);

@@ -858,9 +858,11 @@ define("CONTACT","Contact");
 
 // Pricing Services
 define("ROUTENAME","Route Name");
+define("BUTTONS","Buttons");
 
 // Settings off duty dates
 define("OFF_DUTY_ID","ID");
+define("REASON","Reason");
 
 
 // COMMENTED:
