@@ -28,11 +28,11 @@
 				<?=RAPTORID;?>
 			</div>
 
-			<div class="col-md-1">
+			<div class="col-md-4">
 				<?=ACTIVE;?>
 			</div>			
 			<div class="col-md-1">
-				<a target='_blank' href='plugins/SubVehicles/getRaptorVehicles.php'><u>Raptor</u></a>
+				<a target='_blank' href='plugins/SubVehicles/getRaptorVehicles.php' style="color:blue;"><i class="fas fa-external-link"></i>&nbsp;<u>Raptor</u></a>
 			</div>
 
 		</div>
@@ -51,33 +51,32 @@
 
 				<div class="col-md-12">
 
-					
 					<div class="col-md-1">
-						<input type="text"  name="VehicleID" class="VehicleID" value="{{VehicleID}}" readonly>
+						<input type="text"  name="VehicleID" class="VehicleID form-control" value="{{VehicleID}}" readonly>
 					</div>
 
 					<!-- VEHICLEDESCRIPTION -->
 					<div class="col-md-3">
-						<input type="text" name="VehicleDescription" id="VehicleDescription" class="w100" value="{{VehicleDescription}}">
+						<input type="text" name="VehicleDescription" id="VehicleDescription" class="w100 form-control" value="{{VehicleDescription}}">
 					</div>
 
 					<!-- VEHICLETYPEID -->
 					<div class="col-md-1">
-						<input type="text" name="VehicleTypeID" id="VehicleTypeID" class="w100" value="{{VehicleTypeID}}">
+						<input type="text" name="VehicleTypeID" id="VehicleTypeID" class="w100 form-control" value="{{VehicleTypeID}}">
 					</div>					
 					
 					<!-- VEHICLECAPACITY -->
 					<div class="col-md-1">
-						<input type="text" name="VehicleCapacity" id="VehicleCapacity"  class="w100" value="{{VehicleCapacity}}">
+						<input type="text" name="VehicleCapacity" id="VehicleCapacity"  class="w100 form-control" value="{{VehicleCapacity}}">
 					</div>
 
 					<!-- RAPTORID -->
 					<div class="col-md-1">
-						<input type="text" name="RaptorID" id="RaptorID"  class="w100" value="{{RaptorID}}">				
+						<input type="text" name="RaptorID" id="RaptorID"  class="w100 form-control" value="{{RaptorID}}">				
 					</div>
 
 					<!-- ACTIVE -->
-					<div class="col-md-1">
+					<div class="col-md-5">
 						{{ yesNoSliderEdit Active 'Active'}}					
 					</div>
 
