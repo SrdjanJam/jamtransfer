@@ -94,6 +94,13 @@ switch ($activePage) {
 			$smarty->assign('VehicleID',$pathVars->fetchByIndex($indexStart + 1));
 		}	
 	
+		break;	
+		
+		case 'subVehicles':
+		if ($pathVars->fetchByIndex($indexStart + 1)) { 
+			$smarty->assign('VehicleTypeID',$pathVars->fetchByIndex($indexStart + 1));
+		}	
+	
 		break;
 	
 	case 'driversTransfers':

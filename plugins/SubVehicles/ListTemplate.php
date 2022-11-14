@@ -12,20 +12,27 @@
 				<?=VEHICLEID;?>
 			</div>
 
-			<div class="col-md-2">
+			<div class="col-md-3">
 				<?=VEHICLEDESCRIPTION;?>
 			</div>	
 
-			<div class="col-md-2">
+			<div class="col-md-1">
 				<?=VEHICLETYPEID;?>
+			</div>			
+			
+			<div class="col-md-1">
+				<?=VEHICLECAPACITY;?>
 			</div>
 
-			<div class="col-md-2">
+			<div class="col-md-1">
 				<?=RAPTORID;?>
 			</div>
 
-			<div class="col-md-5">
+			<div class="col-md-1">
 				<?=ACTIVE;?>
+			</div>			
+			<div class="col-md-1">
+				<a target='_blank' href='plugins/SubVehicles/getRaptorVehicles.php'><u>Raptor</u></a>
 			</div>
 
 		</div>
@@ -41,32 +48,36 @@
 			<form>
 
 				<!-- VehicleID hidden -->
-				<input type="hidden" name="VehicleID" id="VehicleID" class="w100" value="{{VehicleID}}">
 
 				<div class="col-md-12">
 
 					
 					<div class="col-md-1">
-						<strong>{{VehicleID}}</strong>
+						<input type="text"  name="VehicleID" class="VehicleID" value="{{VehicleID}}" readonly>
 					</div>
 
 					<!-- VEHICLEDESCRIPTION -->
-					<div class="col-md-2">
+					<div class="col-md-3">
 						<input type="text" name="VehicleDescription" id="VehicleDescription" class="w100" value="{{VehicleDescription}}">
 					</div>
 
 					<!-- VEHICLETYPEID -->
-					<div class="col-md-2">
-						<input type="text" name="VehicleCapacity" id="VehicleCapacity" class="w100" value="{{VehicleCapacity}}">
+					<div class="col-md-1">
+						<input type="text" name="VehicleTypeID" id="VehicleTypeID" class="w100" value="{{VehicleTypeID}}">
+					</div>					
+					
+					<!-- VEHICLECAPACITY -->
+					<div class="col-md-1">
+						<input type="text" name="VehicleCapacity" id="VehicleCapacity"  class="w100" value="{{VehicleCapacity}}">
 					</div>
 
 					<!-- RAPTORID -->
-					<div class="col-md-2">
-						<input type="text" name="RaptorID" id="RaptorID" class="w100" value="{{RaptorID}}">				
+					<div class="col-md-1">
+						<input type="text" name="RaptorID" id="RaptorID"  class="w100" value="{{RaptorID}}">				
 					</div>
 
 					<!-- ACTIVE -->
-					<div class="col-md-5">
+					<div class="col-md-1">
 						{{ yesNoSliderEdit Active 'Active'}}					
 					</div>
 
@@ -94,6 +105,8 @@
 				url: link,
 				data: param,
 				success: function(data) {
+					$('#t_ .VehicleID').val(data);					
+					//$('#Vehicle').val(data);
 				}				
 			});
 			

@@ -17,7 +17,7 @@
 			<div class="col-sm-2">
 				<?=VEHICLE_TYPE;?>
 			</div>	
-			<div class="col-md-2">
+			<div class="col-md-1">
 				<?=CONNECTED;?>
 			</div>				
 			<!-- SURCATEGORY: -->
@@ -29,6 +29,9 @@
 			</div>				
 			<div class="col-md-1">
 				<?=DATE;?>
+			</div>				
+			<div class="col-md-1">
+				<?=Vehicles;?>
 			</div>				
 
 		</div>
@@ -48,7 +51,7 @@
 							<strong>{{VehicleTypeName}}</strong>
 						</div>
 						<!-- Connected:  -->
-						<div class="col-md-2 vehicle active1" data-id="{{VehicleTypeID}}" data-change="1" data-active="{{DriverVehicle}}">
+						<div class="col-md-1 vehicle active1" data-id="{{VehicleTypeID}}" data-change="1" data-active="{{DriverVehicle}}">
 							<span>{{yesNoSliderEdit DriverVehicle 'DriverVehicle' }}</span>
 						</div>
 
@@ -63,6 +66,10 @@
 						<!-- Dates: -->
 						<div class="col-md-1">
 							<span class="show_hide"><a target='_blank' href='offDuty/{{VehicleID}}'>Dates</a></span>
+						</div>						
+						<!-- Vehicles: -->
+						<div class="col-md-1">
+							<span class="show_hide"><a target='_blank' href='subVehicles/{{VehicleTypeID}}'>Vehicles</a></span>
 						</div>
 				</div>
 			</div>

@@ -243,7 +243,7 @@ Active = '".$this->myreal_escape_string($this->Active)."' WHERE VehicleID = '".$
      */
 	public function fieldNames(){
 		$fieldNames = array(
-			'VehicleID',			'OwnerID',			'VehicleTypeID',			'VehicleDescription',			'VehicleCapacity',			'VehicleCapacity',		'RaptorID',  	'Active'		);
+			'VehicleID',			'OwnerID',			'VehicleTypeID',			'VehicleDescription',			'VehicleCapacity',	 	'RaptorID',		'Active'		);
 		return $fieldNames;
 	}
     /**

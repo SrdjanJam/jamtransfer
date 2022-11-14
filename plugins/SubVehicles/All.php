@@ -28,6 +28,7 @@ $flds = array();
 $DB_Where = " " . $_REQUEST['where'];
 $DB_Where .= $filter;
 
+if (isset($_REQUEST['vehicleTypeID']) && $_REQUEST['vehicleTypeID']>0) $DB_Where .= " AND VehicleTypeID=".$_REQUEST['vehicleTypeID'];
 # dodavanje search parametra u qry
 # DB_Where sad ima sve potrebno za qry
 if ( $_REQUEST['Search'] != "" )
@@ -45,6 +46,16 @@ if ( $_REQUEST['Search'] != "" )
 	$DB_Where .= ')';
 }
 $dbTotalRecords = $db->getKeysBy($ItemName . $sortOrder, '',$DB_Where);
+
+// prazan red za eventualni unos
+if (isset($_REQUEST['vehicleTypeID']) && $_REQUEST['vehicleTypeID']>0) {
+	$db->getRow(0);	
+	$detailFlds = $db->fieldValues();
+	//$v->getRow( $_REQUEST['vehicleTypeID'] );
+	$detailFlds["VehicleTypeID"] = $_REQUEST['vehicleTypeID'];	
+	$out[] = $detailFlds; 
+}
+
 # test za LIMIT - trebalo bi ga iskoristiti za pagination! 'asc' . ' LIMIT 0,50'
 $dbk = $db->getKeysBy($ItemName . $sortOrder, '' . $limit , $DB_Where);
 
