@@ -22,7 +22,11 @@
 		</div>
 
 		<div class="col-md-1">
-			<?=AUTHUSER_ID;?>
+			<?=ID;?>
+		</div>
+		
+		<div class="col-md-3">
+			<?=NAME;?>
 		</div>
 
 		<div class="col-md-1">
@@ -30,23 +34,19 @@
 		</div>		
 
 		<div class="col-md-2">
-			<?=AUTHUSERCOMPANY;?>
+			<i class="fa fa-envelope"></i>
 		</div>
 
 		<div class="col-md-2">
-			<?=EMAIL;?>
-		</div>
-
-		<div class="col-md-2">
-			<?=TELEPHONE;?>
-		</div>
-
-		<div class="col-md-2">
-			<?=AUTHUSERNOTE;?>
+			<i class="fa fa-phone"></i>
 		</div>
 
 		<div class="col-md-1">
-			<?=SETASDRIVER;?>
+			<i class="fa fa-message"></i>
+		</div>
+
+		<div class="col-md-1">
+			<?=ACTIVE;?>
 		</div>
 					
 	</div>
@@ -67,72 +67,62 @@
 				</div>
 
 				<!-- AUTHUSER_ID -->
-				<div class="col-sm-1 col-xs-6">
-					<strong>{{AuthUserName}}</strong>
-					<br>
-					{{#compare Active ">" 0}}
-						<i class="fa fa-circle text-green"></i>
-					{{else}}
-						<i class="fa fa-circle text-red"></i>
-					{{/compare}}
-					&nbsp;
-					ID: <strong>{{AuthUserID}}</strong> {{DriverID}}
+				<div class="col-sm-1 col-xs-12">
+					{{AuthUserID}}
+				</div>
+				
+				<div class="col-sm-3 col-xs-6">
+					<strong>
+						{{#compare AuthUserRealName "!==" ""}}
+							{{AuthUserRealName}}
+						{{else}}
+							{{AuthUserCompany}}
+						{{/compare}}	
+					</strong>
 				</div>
 
 				<!-- AUTHUSER_LEVEL -->
 				<div class="col-sm-1 col-xs-6">
-					{{displayUserLevelText AuthLevelID}} 
-				</div>
-
-				<!-- AUTHUSERCOMPANY -->
-				<div class="col-sm-2 col-xs-12">
-					<strong>{{AuthUserCompany}}</strong>
-					<br>
-					<small>{{AuthUserRealName}}</small>
-					<br>
-					<!-- Razmotriti: -->
-					<!-- <small>{{Country}} {{Terminal}}</small>						 -->
+					{{displayUserLevelText AuthLevelID}} 					
+					{{#compare AuthLevelID "==" '31'}}
+						<a class="btn" title="<?=SETASDRIVER;?>" 
+						href="satAsDriver/{{AuthUserID}}">
+							<i class="fas fa-external-link"></i>
+						</a>
+					{{/compare}}
 				</div>
 
 				<!-- EMAIL -->
 				<div class="col-sm-2 col-xs-12">
-					<a href="index.php?p=quickEmail&EmailAddress={{AuthUserMail}}"  
-					class="btn btn-default btn-sm"><i class="fa fa-envelope"></i> {{AuthUserMail}}</a>
+					<small>{{AuthUserMail}}</small>
 				</div>
 
 				<!-- PHONE -->
 				<div class="col-sm-2 col-xs-12">
 				<small>
-					{{#if AuthUserTel}}
-					<i class="fa fa-phone"></i> {{AuthUserTel}}<br>
-					{{/if}}
 					{{#if AuthUserMob}}
-					<i class="fa fa-phone"></i> {{AuthUserMob}}<br>
+						{{AuthUserMob}}
+					{{else}}	
+						{{EmergencyPhone}}
 					{{/if}}						
-					{{#if EmergencyPhone}}
-					<i class="fa fa-phone red-text"></i> {{EmergencyPhone}}
-					{{/if}}
-					</small>
+				</small>
 				</div>
 
 				<!-- MESSAGE: -->
-				<div class="col-sm-2">
+				<div class="col-sm-1">
 					{{#compare AuthUserNote "!==" ''}}
-						<p style="color:#d12020;font-weight:bold;">Message(Note)</p>	
+						<i class="fa fa-circle text-green"></i>
 					{{/compare}}	
 				</div>
-
 				
-				<!-- SET AS DRIVER: -->
-				<div class="col-sm-1">
-					{{#compare AuthLevelID "==" '31'}}
-						<a class="btn btn-danger btn-danger-target" title="Sat as Driver" 
-						href="satAsDriver/{{AuthUserID}}">
-							<i class="fa fa-car l"></i>
-						</a>
+				<!-- Active: -->
+				<div class="col-sm-1 col-xs-6">
+					{{#compare Active ">" 0}}
+						<i class="fa fa-circle text-green"></i>
+					{{else}}
+						<i class="fa fa-circle text-red"></i>
 					{{/compare}}
 				</div>
-
 
 			</div>
 

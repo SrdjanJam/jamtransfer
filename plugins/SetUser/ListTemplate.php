@@ -6,7 +6,7 @@
 			<?=AUTHUSER_IMAGE;?>
 		</div>
 
-		<div class="col-md-1">
+		<div class="col-md-4">
 			<?=AUTHUSER_ID;?>
 		</div>
 
@@ -35,7 +35,7 @@
 						class="img-thumbnail">
 				</div>
 				<!-- AUTHUSER_ID -->
-				<div class="col-sm-1 col-xs-6">
+				<div class="col-sm-4 col-xs-6">
 					<strong>{{AuthUserName}}</strong>
 					ID: <strong>{{AuthUserID}}</strong> {{DriverID}}
 				</div>
