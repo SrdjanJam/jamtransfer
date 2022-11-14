@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.32, created on 2022-11-07 11:44:33
+/* Smarty version 3.1.32, created on 2022-11-10 13:14:36
   from 'C:\wamp\www\jamtransfer\templates\index.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.32',
-  'unifunc' => 'content_6368efa14c91c5_68836949',
+  'unifunc' => 'content_636cf93c505af0_18724152',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'a1818a92b5a2f041fd91a227dabc592dea38fac2' => 
     array (
       0 => 'C:\\wamp\\www\\jamtransfer\\templates\\index.tpl',
-      1 => 1667820650,
+      1 => 1668086069,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:pageList.tpl' => 1,
   ),
 ),false)) {
-function content_6368efa14c91c5_68836949 (Smarty_Internal_Template $_smarty_tpl) {
+function content_636cf93c505af0_18724152 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html>
 	<head>
@@ -465,6 +465,8 @@ for ($__section_pom_2_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_po
 		</div> 
 		<input type='hidden' id='local' value='<?php echo $_smarty_tpl->tpl_vars['local']->value;?>
 ' name='local'>
+		<input type='hidden' id='success' value='<?php echo $_smarty_tpl->tpl_vars['SUCCESS']->value;?>
+' name='success'>
 
 	</body>
 </html>
@@ -496,6 +498,7 @@ for ($__section_pom_2_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_po
 >
 	// toggleClass:
 	$(document).ready(function(){
+		window.success = $("#success").val();
 		$("a.navbar-minimalize").click(function(){
 			// Full navbar:
 			$("nav.navbar-default").toggleClass("additional-class");

@@ -59,6 +59,9 @@
 				type: 'POST',
 				url: link,
 				data: param,
+				success: function(data) {
+					toastr['success'](window.success);				
+				}	
 			});
 		})	
 		

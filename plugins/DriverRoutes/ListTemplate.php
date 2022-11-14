@@ -108,22 +108,26 @@
 				data: param,
 				success: function(data) {
 					if (data==0) $t.parent().parent().parent().find('.show_hide').hide(500);
-					if (data==1) $t.parent().parent().parent().find('.show_hide').show(500);						
+					if (data==1) $t.parent().parent().parent().find('.show_hide').show(500);	
+					toastr['success'](window.success);				
 				}				
 			});
 		})	
 		$('.surcategory input').change(function(){
 			var surcategory=$(this).val();
-			var routeid=$(this).parent().parent().attr('data-id');
+			var routeid=$(this).parent().parent().parent().attr('data-id');
 			var base=window.location.origin;
 			if (window.location.host=='localhost') base=base+'/jamtransfer';		
 			var link = base+'/plugins/DriverRoutes/Update.php';
 			var param = "RouteID="+routeid+"&SurCategory="+surcategory;
+	
+			console.log(link+'?'+param);
 			$.ajax({
 				type: 'POST',
 				url: link,
 				data: param,
 				success: function(data) {
+					toastr['success'](window.success);				
 				}				
 			});
 		})	

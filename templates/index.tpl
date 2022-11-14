@@ -343,6 +343,7 @@
 		</div> {* End of wrapper *}
 
 		<input type='hidden' id='local' value='{$local}' name='local'>
+		<input type='hidden' id='success' value='{$SUCCESS}' name='success'>
 
 	</body>
 </html>
@@ -371,6 +372,7 @@
 <script>
 	// toggleClass:
 	$(document).ready(function(){
+		window.success = $("#success").val();
 		$("a.navbar-minimalize").click(function(){
 			// Full navbar:
 			$("nav.navbar-default").toggleClass("additional-class");

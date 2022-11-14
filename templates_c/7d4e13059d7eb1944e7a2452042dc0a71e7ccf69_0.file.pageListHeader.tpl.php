@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.32, created on 2022-11-07 11:44:33
+/* Smarty version 3.1.32, created on 2022-11-10 10:23:36
   from 'C:\wamp\www\jamtransfer\templates\pageListHeader.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.32',
-  'unifunc' => 'content_6368efa1e8fde4_27103154',
+  'unifunc' => 'content_636cd128446558_91637549',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '7d4e13059d7eb1944e7a2452042dc0a71e7ccf69' => 
     array (
       0 => 'C:\\wamp\\www\\jamtransfer\\templates\\pageListHeader.tpl',
-      1 => 1667387564,
+      1 => 1667995441,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6368efa1e8fde4_27103154 (Smarty_Internal_Template $_smarty_tpl) {
+function content_636cd128446558_91637549 (Smarty_Internal_Template $_smarty_tpl) {
 if ((!$_SESSION['UseDriverID'] && $_smarty_tpl->tpl_vars['title']->value != "Orders" && $_smarty_tpl->tpl_vars['title']->value != "Invoices") && ($_SESSION['AuthLevelID'] <> 42)) {?>
 	<a class="btn btn-primary btn-xs" href="<?php echo $_smarty_tpl->tpl_vars['currenturl']->value;?>
 /new"><?php echo $_smarty_tpl->tpl_vars['NNEW']->value;?>
@@ -40,6 +40,8 @@ value=" WHERE <?php echo $_smarty_tpl->tpl_vars['ItemID']->value;?>
 ">
 <input type="hidden"  id="vehicleTypeID" name="vehicleTypeID" value="<?php echo $_smarty_tpl->tpl_vars['VehicleTypeID']->value;?>
 ">
+<input type="hidden"  id="vehicleID" name="vehicleID" value="<?php echo $_smarty_tpl->tpl_vars['VehicleID']->value;?>
+">
 
 <div class="row itemsheader">
 	<div class="col-md-2 asd" id="infoShow"></div>
@@ -53,11 +55,11 @@ value=" WHERE <?php echo $_smarty_tpl->tpl_vars['ItemID']->value;?>
 				<option value="0"><?php echo $_smarty_tpl->tpl_vars['ALL']->value;?>
 </option>
 				<?php
-$__section_pom_3_loop = (is_array(@$_loop=$_smarty_tpl->tpl_vars['options']->value) ? count($_loop) : max(0, (int) $_loop));
-$__section_pom_3_total = $__section_pom_3_loop;
+$__section_pom_0_loop = (is_array(@$_loop=$_smarty_tpl->tpl_vars['options']->value) ? count($_loop) : max(0, (int) $_loop));
+$__section_pom_0_total = $__section_pom_0_loop;
 $_smarty_tpl->tpl_vars['__smarty_section_pom'] = new Smarty_Variable(array());
-if ($__section_pom_3_total !== 0) {
-for ($__section_pom_3_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_pom']->value['index'] = 0; $__section_pom_3_iteration <= $__section_pom_3_total; $__section_pom_3_iteration++, $_smarty_tpl->tpl_vars['__smarty_section_pom']->value['index']++){
+if ($__section_pom_0_total !== 0) {
+for ($__section_pom_0_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_pom']->value['index'] = 0; $__section_pom_0_iteration <= $__section_pom_0_total; $__section_pom_0_iteration++, $_smarty_tpl->tpl_vars['__smarty_section_pom']->value['index']++){
 ?>
 					<option value="<?php echo $_smarty_tpl->tpl_vars['options']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_pom']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_pom']->value['index'] : null)]['id'];?>
 "><?php echo $_smarty_tpl->tpl_vars['options']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_pom']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_pom']->value['index'] : null)]['name'];?>
