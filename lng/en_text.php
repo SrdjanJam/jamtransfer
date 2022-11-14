@@ -381,7 +381,6 @@ define("ROUTE", "Route");
 define("ROUTE_SETTINGS", "Route settings");
 define("ROUTE_SPECIFIC", "Route");
 define("ROUTES", "Routes");
-define("SUCCESS", "Success change");
 define("S1END", "Season 1 ends on");
 define("S1PERCENT", "(%)");
 define("S1START", "Season 1 starts on");
@@ -864,6 +863,9 @@ define("BUTTONS","Buttons");
 // Settings off duty dates
 define("OFF_DUTY_ID","ID");
 define("REASON","Reason");
+
+// Settings Vehicles
+define("RAPTORID","Raptor ID");
 
 
 // COMMENTED:
