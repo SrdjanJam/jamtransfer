@@ -5,7 +5,16 @@ require_once 'Initial.php';
 @session_start();
 
 # sastavi filter - posalji ga $_REQUEST-om
-
+if (isset($selectactive)) {
+	if (!isset($_REQUEST['Active']) or $_REQUEST['Active'] == 99) {
+		$filter .= "  AND ".$selectactive." > -1 ";
+	}
+	else {
+		$filter .= "  AND ".$selectactive." = " . $_REQUEST['Active'] ;
+	}
+}
+if (isset($_SESSION['UseDriverID']) && $_SESSION['UseDriverID']>0 ) 
+	$filter .= "  AND DriverID = " . $_SESSION['UseDriverID'] ." AND AuthLevelID=32 " ;
 $page 		= $_REQUEST['page'];
 $length 	= $_REQUEST['length'];
 $sortOrder 	= $_REQUEST['sortOrder'];
@@ -55,8 +64,16 @@ if (count($dbk) != 0) {
 		// ako treba neki lookup, onda to ovdje
 		# get all fields and values
 		$detailFlds = $db->fieldValues();
+		$detailFlds[DBImage]='';
 		// ako postoji neko custom polje, onda to ovdje.
 		// npr. $detailFlds["AuthLevelName"] = $nekaDrugaDB->getAuthLevelName().' nesto';
+		
+		// Leave one email:
+		$email = $detailFlds["AuthUserMail"];
+		$email = explode(" ",$email);
+		$detailFlds["AuthUserMail"] = $email[0];
+		$detailFlds["AuthUserMail"] = str_replace(","," ",$detailFlds["AuthUserMail"]);
+
 		$out[] = $detailFlds;    	
     }
 }

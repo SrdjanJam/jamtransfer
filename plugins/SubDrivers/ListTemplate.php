@@ -1,57 +1,102 @@
 <?
 	$smarty->assign('selectactive',true);
-?>
+?>	
 <script type="text/x-handlebars-template" id="ItemListTemplate">
 
 	<div class="row row-edit">
 		
-		<div class="col-md-3">
-			<?=DRIVER_ID;?>
+		<div class="col-md-1">
+			<?=AUTHUSER_IMAGE;?>
 		</div>
 
+		<div class="col-md-1">
+			<?=ID;?>
+		</div>
+		
 		<div class="col-md-3">
-			<?=DRIVER_NAME;?>
-		</div>	
-
-		<div class="col-md-3">
-			<?=DRIVER_EMAIL;?>
+			<?=NAME;?>
 		</div>
 
-		<div class="col-md-3">
-			<?=DRIVER_TEL;?>
+		<div class="col-md-2">
+			<i class="fa fa-envelope"></i>
+		</div>
+
+		<div class="col-md-2">
+			<i class="fa fa-phone"></i>
+		</div>
+
+		<div class="col-md-1">
+			<?=ACTIVE;?>
 		</div>
 					
 	</div>
 
+
 	{{#each Item}}
-		<div  onclick="oneItem({{DriverID}});">
+		<div class="one-item-class" onclick="oneItem({{AuthUserID}});">
 		
 			<div class="row {{color}} pad1em listTile" 
 			style="border-top:1px solid #ddd" 
-			id="t_{{DriverID}}">
-	
-				<div class="col-md-3">
-					<strong>{{DriverID}}</strong>
+			id="user_{{AuthUserID}}">
+
+				<!-- AUTHUSER_IMAGE: -->
+				<div class="col-sm-1 col-xs-4">
+					<img src="api/showProfileImage.php?UserID={{AuthUserID}}" 
+						style="max-height:60px; max-width:60px;" 
+						class="img-thumbnail">
 				</div>
 
-				<div class="col-md-3">
-					{{DriverName}}
+				<!-- AUTHUSER_ID -->
+				<div class="col-sm-1 col-xs-12">
+					{{AuthUserID}}
+				</div>
+				
+				<div class="col-sm-3 col-xs-6">
+					<strong>
+						{{#compare AuthUserRealName "!==" ""}}
+							{{AuthUserRealName}}
+						{{else}}
+							{{AuthUserCompany}}
+						{{/compare}}	
+					</strong>
 				</div>
 
-				<div class="col-md-3">
-					{{DriverEmail}}
+				<!-- EMAIL -->
+				<div class="col-sm-2 col-xs-12">
+					<small>{{AuthUserMail}}</small>
 				</div>
 
-				<div class="col-md-3">
-					{{DriverTel}}
+				<!-- PHONE -->
+				<div class="col-sm-2 col-xs-12">
+				<small>
+					{{#if AuthUserMob}}
+						{{AuthUserMob}}
+					{{else}}	
+						{{EmergencyPhone}}
+					{{/if}}						
+				</small>
 				</div>
+
+				
+				<!-- Active: -->
+				<div class="col-sm-1 col-xs-6">
+					{{#compare Active ">" 0}}
+						<i class="fa fa-circle text-green"></i>
+					{{else}}
+						<i class="fa fa-circle text-red"></i>
+					{{/compare}}
+				</div>
+
 			</div>
+
+
 		</div>
 		
-		<div id="ItemWrapper{{DriverID}}" class="editFrame" style="display:none">
-			<div id="inlineContent{{DriverID}}" class="row">
-				<div id="one_Item{{DriverID}}" >
-					<?= LOADING ?>
+
+		<div id="ItemWrapper{{AuthUserID}}" class="editFrame" style="display:none">
+			<div id="inlineContent{{AuthUserID}}" class="row">
+				<div id="one_Item{{AuthUserID}}" >
+					<?= THERE_ARE_NO_DATA ?>
 				</div>
 			</div>
 		</div>
@@ -59,5 +104,5 @@
 	{{/each}}
 
 
+
 </script>
-	

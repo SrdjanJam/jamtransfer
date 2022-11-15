@@ -12,6 +12,12 @@ foreach ($db->fieldNames() as $name) {
 		eval("\$db->set".$name."(\$content);");	
 	}	
 }	
+if(isset($_REQUEST['AuthUserPassNew']) and $_REQUEST['AuthUserPassNew'] != '') { 
+	$db->setAuthUserPass( md5($_REQUEST['AuthUserPassNew']) ); 
+} 
+$db->setAuthLevelID(32);
+$db->setDriverID($_SESSION['UseDriverID']);
+
 $upd = '';
 $newID = '';
 if ($keyName != '' and $keyValue != '') {
@@ -26,9 +32,6 @@ $out = array(
 	'update' => $upd,
 	'insert' => $newID
 );
-
-	
-
 # send output back
 $output = json_encode($out);
 echo $_REQUEST['callback'] . '(' . $output . ')';

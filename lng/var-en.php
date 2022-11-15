@@ -590,7 +590,7 @@ $PARTNER_LOGIN = "Partner Login";
 
 $PICKUP_NOT_POSSIBLE = "Pickup is not possible for this time and date.<br>We require you to book min. 13 hours ahead.";
 
-
+$SUCCESS = "Successful data change";
 
 
 

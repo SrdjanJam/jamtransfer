@@ -1,65 +1,66 @@
 <?
-if (isset($_SESSION['UseDriverID']) && $_SESSION['UseDriverID']>0) {	
-	$arr_row['id']=1;
-	$arr_row['name']="Connected";
-	$arr_all[]=$arr_row;	
-	$arr_row['id']=2;
-	$arr_row['name']="Not Connected";
-	$arr_all[]=$arr_row;	
+	require_once ROOT.'/db/v4_PlaceTypes.class.php';
+	$pt = new v4_PlaceTypes();
+	$placeTypes = $pt->getKeysBy('PlaceTypeEN', 'asc');
+	$arr_row['id']=99;
+	$arr_row['name']="Terminal";
+	$arr_all[]=$arr_row;
+	
+	foreach($placeTypes as $nn => $id) {
+		$pt->getRow($id);
+		$arr_row['id']=$pt->getPlaceTypeID();
+		$arr_row['name']=$pt->getPlaceTypeEN();
+		$arr_all[]=$arr_row;
+	}
 	$smarty->assign('options',$arr_all);
 	$smarty->assign('selecttype',true);
-}
 ?>
-
 <script type="text/x-handlebars-template" id="ItemListTemplate">
 
 	<div class="row row-edit">
 		
-		<div class="col-md-1">
-			<?=VEHICLETYPEID;?>
-		</div>
-
 		<div class="col-md-2">
-			<?=VEHICLE_TYPE;?>
+			<?=PLACE_ID;?>
 		</div>
 
-		<div class="col-md-1">
-			<?=MAX;?>
+		<div class="col-md-5">
+			<?=COUNTRYNAMEEN;?>
 		</div>	
 
-		<div class="col-md-8">
-			<?=DESCRIPTION;?>
+		<div class="col-md-5">
+			<?=ACTIVE;?>
 		</div>
 					
 	</div>
 
 	{{#each Item}}
-		<div  onclick="oneItem({{VehicleTypeID}});">
+		<div  onclick="oneItem({{PlaceID}});">
 		
 			<div class="row {{color}} pad1em listTile" 
 			style="border-top:1px solid #ddd" 
-			id="t_{{VehicleTypeID}}">
+			id="t_{{PlaceID}}">
 		
-					<div class="col-md-1">
-						<strong>{{VehicleTypeID}}</strong>
+					<div class="col-sm-2">
+						{{PlaceID}}
 					</div>
 
-					<div class="col-md-2">
-						{{VehicleTypeName}}
+					<div class="col-sm-5">
+						<strong>{{PlaceNameEN}}</strong> -
+						{{CountryNameEN}}
 					</div>
 
-					<div class="col-md-1">
-						<i class="fa fa-user"></i> {{Max}}
-					</div>
-
-					<div class="col-md-8">
-						{{{Description}}}
+					<div class="col-sm-5">
+						{{#compare PlaceActive ">" 0}}
+							<i class="fa fa-circle text-green"></i>
+						{{else}}
+							<i class="fa fa-circle text-red"></i>
+						{{/compare}}
 					</div>
 			</div>
 		</div>
-		<div id="ItemWrapper{{VehicleTypeID}}" class="editFrame" style="display:none">
-			<div id="inlineContent{{VehicleTypeID}}" class="row">
-				<div id="one_Item{{VehicleTypeID}}" >
+		<div id="ItemWrapper{{PlaceID}}" class="editFrame" style="display:none">
+			<div id="inlineContent{{PlaceID}}" class="row">
+				<div id="one_Item{{PlaceID}}" >
 					<?= LOADING ?>
 				</div>
 			</div>

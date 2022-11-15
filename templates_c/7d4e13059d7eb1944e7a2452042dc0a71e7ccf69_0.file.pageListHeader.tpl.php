@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.32, created on 2022-11-10 10:23:36
+/* Smarty version 3.1.32, created on 2022-11-15 11:40:16
   from 'C:\wamp\www\jamtransfer\templates\pageListHeader.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.32',
-  'unifunc' => 'content_636cd128446558_91637549',
+  'unifunc' => 'content_63737aa024bee9_26561569',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '7d4e13059d7eb1944e7a2452042dc0a71e7ccf69' => 
     array (
       0 => 'C:\\wamp\\www\\jamtransfer\\templates\\pageListHeader.tpl',
-      1 => 1667995441,
+      1 => 1668512413,
       2 => 'file',
     ),
   ),
@@ -20,8 +20,8 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_636cd128446558_91637549 (Smarty_Internal_Template $_smarty_tpl) {
-if ((!$_SESSION['UseDriverID'] && $_smarty_tpl->tpl_vars['title']->value != "Orders" && $_smarty_tpl->tpl_vars['title']->value != "Invoices") && ($_SESSION['AuthLevelID'] <> 42)) {?>
+function content_63737aa024bee9_26561569 (Smarty_Internal_Template $_smarty_tpl) {
+if ($_smarty_tpl->tpl_vars['existNew']->value) {?>
 	<a class="btn btn-primary btn-xs" href="<?php echo $_smarty_tpl->tpl_vars['currenturl']->value;?>
 /new"><?php echo $_smarty_tpl->tpl_vars['NNEW']->value;?>
 </a><br>

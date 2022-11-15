@@ -104,7 +104,17 @@ else {
 	if (count($mdk)==1) header("Location: ". ROOT_HOME . '/dashboard');
 	else exit('Page not found');
 }
- 
+
+	$existNew=true;
+	if (isset($_SESSION['UseDriverID'])) $existNew=false;
+	if ($md->getName()=="SubDrivers") $existNew=true;
+	if ($md->getName()=="Orders") $existNew=false;
+	if ($md->getName()=="Invoices") $existNew=false;
+	if ($md->getName()=="Set Driver") $existNew=false;
+	if ($_SESSION['AuthLevelID']==42) $existNew=false;
+	$smarty->assign('existNew',$existNew);
+
+	
 // display
 ?><script type="text/x-handlebars-template"></script><?
 

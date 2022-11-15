@@ -657,7 +657,7 @@
 			$.ajaxFileUpload
 			(
 				{
-					url: window.root + '/cms/api/saveProfileImage.php?UserID='+UserID,
+					url: 'saveProfileImage.php?UserID='+UserID,
 					secureuri:false,
 					fileElementId:'imageFile',
 					dataType: 'json',
@@ -674,7 +674,7 @@
 								//alert(data.msg);
 								$("#imageDiv > img").attr('src', 'upload/'+data.img);
 
-								$.get( window.root+"/cms/api/deleteTempImage.php?image="+data.img, function( data ) {
+								$.get("deleteTempImage.php?image="+data.img, function( data ) {
 								});
 							}
 						}
