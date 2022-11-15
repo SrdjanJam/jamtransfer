@@ -6,9 +6,13 @@
 			<?=ID;?>
 		</div>
 
-		<div class="col-md-10">
+		<div class="col-md-8">
 			<?=NAME;?>
 		</div>	
+		
+		<div class="col-md-2">
+			<a target='_tab' href="https://api.jamtransfer.com/api/delete-translations-cache?hash=d06161457d4c4b45e57d764c98051d86" style="color:blue;"><i class="fas fa-external-link"></i>&nbsp;<u>Delete Cache</u></a>
+		</div>		
 					
 	</div>
 
