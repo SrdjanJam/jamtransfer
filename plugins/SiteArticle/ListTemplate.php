@@ -7,6 +7,40 @@
 				</div>
 			</div>
 		</div>
+
+	<!-- Labels: -->
+	<div class="row row-edit">
+		
+		<div class="col-md-12">
+
+			<div class="col-md-1">
+				<?=ID;?>
+			</div>
+
+			<div class="col-md-1">
+				<?=LANGUAGE;?>
+			</div>	
+
+			<div class="col-md-4">
+				<?=TITLE;?>
+			</div>
+
+			<div class="col-md-2">
+				<?=PAGE;?>
+			</div>
+
+			<div class="col-md-1">
+				<?=POSITION;?>
+			</div>
+
+			<div class="col-md-1">
+				<?=PUBLISHED;?>
+			</div>
+
+		</div>
+	</div>
+
+	<!-- Main Content: -->
 	{{#each Item}}
 		<div  onclick="oneItem({{ID}});">
 		
@@ -14,6 +48,7 @@
 			style="border-top:1px solid #ddd" 
 			id="t_{{ID}}">
 		
+				<div class="col-md-12">
 					<div class="col-md-1">
 						<strong>{{ID}}</strong>
 					</div>
@@ -25,9 +60,11 @@
 					<div class="col-md-4">
 						<strong>{{Title}}</strong>
 					</div>
+
 					<div class="col-md-2">
 						<strong>{{Page}}</strong>
 					</div>
+
 					<div class="col-md-1">
 						<strong>{{Position}}</strong>
 					</div>					
@@ -39,8 +76,11 @@
 							<i class="fa fa-circle text-red"></i>
 						{{/compare}}					
 					</div>
+				</div>
+				
 			</div>
 		</div>
+
 		<div id="ItemWrapper{{ID}}" class="editFrame" style="display:none">
 			<div id="inlineContent{{ID}}" class="row">
 				<div id="one_Item{{ID}}" >
