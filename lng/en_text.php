@@ -328,6 +328,7 @@ define("ORDERS_BY_B_DATE", "by booking date");
 define("ORDERS_BY_TR_DATE", "by transfer date");
 define("OWNERID", "Owner ID");
 define("PAGE_NOT_FOUND", "Page not found!");
+define("PAGE", "Page");
 define("PAGES", "Pages");
 define("PAID_ONLINE", "Paid Online");
 define("PAID", "Paid");
