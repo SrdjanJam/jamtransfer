@@ -863,6 +863,7 @@ define("BUTTONS","Buttons");
 
 // Settings off duty dates
 define("OFF_DUTY_ID","ID");
+define("OFF_DUTY","Off duty dates");
 define("REASON","Reason");
 
 // Settings Vehicles
