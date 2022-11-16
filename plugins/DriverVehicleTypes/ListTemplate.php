@@ -31,7 +31,7 @@
 				<?=DATE;?>
 			</div>				
 			<div class="col-md-1">
-				<?=Vehicles;?>
+				<?=VEHICLES;?>
 			</div>				
 
 		</div>
@@ -96,7 +96,8 @@
 				data: param,
 				success: function(data) {
 					if (data==0) $t.parent().parent().parent().find('.show_hide').hide(500);
-					if (data==1) $t.parent().parent().parent().find('.show_hide').show(500);						
+					if (data==1) $t.parent().parent().parent().find('.show_hide').show(500);
+					toastr['success'](window.success);							
 				}				
 			});
 		})	
@@ -113,7 +114,8 @@
 				url: link,
 				data: param,
 				success: function(data) {
-				}				
+        			toastr['success'](window.success);				
+    			}			
 			});
 		})	
 	</script>
