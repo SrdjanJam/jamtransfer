@@ -64,6 +64,18 @@ if (count($dbk) != 0) {
 		$detailFlds = $db->fieldValues();
 		// ako postoji neko custom polje, onda to ovdje.
 		// npr. $detailFlds["AuthLevelName"] = $nekaDrugaDB->getAuthLevelName().' nesto';
+		$arr=json_decode($detailFlds['text']);
+		$detailFlds['english_text']=$arr->en;
+		$detailFlds['text_arr']= (array) $arr;	
+		if (in_array($_SESSION['BrandName'],array('EN','FR','RU','DE'))) {
+			$detailFlds['language']=strtolower($_SESSION['BrandName']);
+			$detailFlds['disabled']='disabled';
+		}	
+		else {
+			$detailFlds['language']=" ";
+			$detailFlds['disabled']='';
+		}	
+		
 		$out[] = $detailFlds;    	
     }
 }

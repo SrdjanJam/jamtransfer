@@ -7,7 +7,7 @@
 		</div>
 
 		<div class="col-md-8">
-			<?=NAME;?>
+			<?=KEYS;?>
 		</div>	
 		
 		<div class="col-md-2">
@@ -26,9 +26,19 @@
 					<strong>{{id}}</strong>
 				</div>
 
-				<div class="col-md-10">
+				<div class="col-md-4">
 					<strong>{{key}}</strong>
-				</div>
+				</div>				
+				
+				<div class="col-md-4">
+					{{#each text_arr}}
+					<div class="row {{#compare ../language '!=' @key}}hidden{{/compare}}">
+						<div class="col-md-9 {{#compare ../english_text "==" this}}yellow{{/compare}}"	>	
+							{{this}}
+						</div>	
+					</div>	
+					{{/each}}	
+				</div>	
 			</div>
 		</div>
 		<div id="ItemWrapper{{id}}" class="editFrame" style="display:none">
