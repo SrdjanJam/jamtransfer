@@ -48,6 +48,7 @@ $aColumns = array(
     'StartDate'
 );
 if (isset($_REQUEST['vehicleID']) && $_REQUEST['vehicleID']>0) $DB_Where .= " AND VehicleID=".$_REQUEST['vehicleID'];
+$DB_Where .= " AND OwnerID=".$_SESSION['UseDriverID'];
 # dodavanje search parametra u qry
 # DB_Where sad ima sve potrebno za qry
 if ( $_REQUEST['Search'] != "" )

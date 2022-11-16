@@ -560,6 +560,7 @@ define("COUNTRY", "Country");
 define("COUNTRY_SHORT", "Country Short");
 define("CITY", "City");
 define("TERMINAL_ID", "Terminal ID");
+define("TERMINAL", "Terminal");
 define("TERMINAL_NAME", "Terminal Name");
 define("TAX_NUMBER", "Tax Number");
 define("ACCOUNT_OWNER", "Account owner");
@@ -833,6 +834,7 @@ define("ELEVATION","Elevation");
 
 // Services Routes
 define("TOP_ROUTE","Top Route");
+define("KM","km");
 
 // Services Extras Services - folder ExtrasMaster
 define("DRIVER_EXTRAS","Driver Extras");

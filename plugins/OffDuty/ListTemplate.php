@@ -24,8 +24,12 @@
 				<?=ENDTIME;?>
 			</div>
 
-			<div class="col-md-2">
+			<div class="col-md-1">
 				<?=REASON;?>
+			</div>
+
+			<div class="col-md-1">
+				<?=DELETE;?>
 			</div>
 
 		</div>			
@@ -75,8 +79,15 @@
 					</div>
 
 					<!-- REASON -->
-					<div class="col-md-2">
-						<input type="text" name="Reason" id="Reason" class="w100" value="{{Reason}}">
+					<div class="col-md-1">
+						<input type="text" name="Reason" id="Reason" class="w100" value="{{Reason}}" style="width:120px;">
+					</div>
+
+					<!-- DELETE -->
+					<div class="col-md-1">
+						<button type="button" class="b-delete" data-id="{{ID}}" style="color:red;" title="delete">
+							<i class="fas fa-trash-alt"></i>
+						</button>
 					</div>
 
 				</div>
@@ -91,7 +102,6 @@
 			if (window.location.host=='localhost') base=base+'/jamtransfer';
 
 			var link = base+'/plugins/OffDuty/Save.php';
-
 			var param = $(this).parent().parent().parent().serialize();
 
 			console.log(link+'?'+param)
@@ -105,7 +115,36 @@
 				}				
 			});
 			
-		})	
+		})
+
+		// Hide div:
+		$(document).ready(function(){
+			$('.b-delete').click(function(){
+				if (confirm("Are you sure to delete this row?")) {
+
+					var base=window.location.origin;
+					if (window.location.host=='localhost') base=base+'/jamtransfer';
+
+					var link = base+'/plugins/OffDuty/Delete.php';
+					var param = "id="+ $(this).attr('data-id');
+
+					console.log(link+'?'+param)
+					
+					$.ajax({
+						type: 'POST',
+						url: link,
+						data: param,
+						success: function(data) {
+							$('#t_ .ID').val(data);
+							toastr['success'](window.delete);
+						}				
+					});
+					// Hide div row:
+        			$(this).parent().parent().parent().parent().hide();
+    			}
+    			return false;
+			});
+		});
 	</script>
 
 </script>
