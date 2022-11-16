@@ -7,7 +7,6 @@ require_once 'Initial.php';
 # sastavi filter - posalji ga $_REQUEST-om
 
 $filter .= "  AND ".$type." = 31" ;
-//$filter .= "  AND `AuthLevelID` > 30 AND `AuthLevelID` < 32" ;
 $filter .= "  AND ".$selectactive." = 1";
 $page 		= $_REQUEST['page'];
 $length 	= $_REQUEST['length'];

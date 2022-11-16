@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.32, created on 2022-11-15 12:22:24
+/* Smarty version 3.1.32, created on 2022-11-16 10:19:59
   from 'C:\wamp\www\jamtransfer\templates\index.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.32',
-  'unifunc' => 'content_63738480abd950_32883591',
+  'unifunc' => 'content_6374ab3fcf6334_68277648',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'a1818a92b5a2f041fd91a227dabc592dea38fac2' => 
     array (
       0 => 'C:\\wamp\\www\\jamtransfer\\templates\\index.tpl',
-      1 => 1668514783,
+      1 => 1668590391,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:pageList.tpl' => 1,
   ),
 ),false)) {
-function content_63738480abd950_32883591 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6374ab3fcf6334_68277648 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html>
 	<head>
@@ -287,6 +287,14 @@ _init.js"><?php echo '</script'; ?>
 </strong>
 								<a href="setout.php" id="a-setout">Setout	<i class="fas fa-sign-out-alt"></i></a>	
 							</li>
+						<?php } else { ?>
+							<?php if (isset($_COOKIE['UseDriverName'])) {?>	
+							<li class="nav-header nav-header-edit">							
+								<a href="satAsDriver/<?php echo $_COOKIE['UseDriverID'];?>
+" >Set as <?php echo $_COOKIE['UseDriverName'];?>
+ <i class="fas fa-sign-in-alt"></i></a>	
+							</li>
+							<?php }?>
 						<?php }?>
 
 						<?php

@@ -3,7 +3,6 @@
 // ali ako nije logiran, ne moze
 // nakon Logina vraca korisnika na spremljenu stranicu
 $_SESSION['InitialRequest'] = $_SERVER['REQUEST_URI'];
-
 require_once 'pathToVars.php';
 // LOGIN
 if(!isset($_SESSION['UserAuthorized']) or $_SESSION['UserAuthorized'] == false) {
@@ -12,6 +11,10 @@ if(!isset($_SESSION['UserAuthorized']) or $_SESSION['UserAuthorized'] == false) 
 }
 else setcookie("page", $activePage, time() + (7*24*60*60));
 
+if (isset ($_SESSION['UseDriverID'])){
+	setcookie("UseDriverID", $_SESSION['UseDriverID'],time()+24*3600);
+	setcookie("UseDriverName", $_SESSION['UseDriverName'],time()+(24*3600));
+}
 // kontrola pristupa
 $modules_arr='';
 if(isset($_SESSION['UseDriverID']) && $_SESSION['AuthLevelID']<>31) $AuthLevelID=81;

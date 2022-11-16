@@ -200,6 +200,12 @@
 								<strong>{$smarty.session.UseDriverName}</strong>
 								<a href="setout.php" id="a-setout">Setout	<i class="fas fa-sign-out-alt"></i></a>	
 							</li>
+						{else}
+							{if isset ($smarty.cookies.UseDriverName)}	
+							<li class="nav-header nav-header-edit">							
+								<a href="satAsDriver/{$smarty.cookies.UseDriverID}" >Set as {$smarty.cookies.UseDriverName} <i class="fas fa-sign-in-alt"></i></a>	
+							</li>
+							{/if}
 						{/if}
 
 						{section name=index loop=$menu1}
