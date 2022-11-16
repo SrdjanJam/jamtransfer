@@ -4,8 +4,10 @@ require_once 'Initial.php';
 
 @session_start();
 require_once ROOT . '/db/v4_Vehicles.class.php';
+require_once ROOT . '/db/v4_VehicleTypes.class.php';
 # init class
 $v = new v4_Vehicles();
+$vt = new v4_VehicleTypes();
 
 #********************************************
 # ulazni parametri su where, status i search
@@ -71,7 +73,8 @@ if (isset($_REQUEST['vehicleID']) && $_REQUEST['vehicleID']>0) {
 	$db->getRow(0);	
 	$detailFlds = $db->fieldValues();
 	$v->getRow( $_REQUEST['vehicleID'] );
-	$detailFlds["VehicleName"] = $v->getVehicleName();	
+	$vt->getRow($v->getVehicleTypeID() );
+	$detailFlds["VehicleName"] = $vt->getVehicleTypeName();
 	$detailFlds["VehicleID"] = $_REQUEST['vehicleID'];	
 	$out[] = $detailFlds; 
 }	
