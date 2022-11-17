@@ -43,6 +43,7 @@ $aColumns = array(
 	'SpecialDate'
 );
 
+$DB_Where .= " AND OwnerID=".$_SESSION['UseDriverID'];
 
 # dodavanje search parametra u qry
 # DB_Where sad ima sve potrebno za qry
