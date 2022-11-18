@@ -4,6 +4,7 @@
 		// podaci iz input polja - filtriranje
 		var where  = $("#whereCondition").val(); // glavni filter koji uvijek radi
 	 	var status = $("#Type").val(); // prikazuje po tipu	
+	 	var status2 = $("#Type2").val(); // prikazuje po tipu	
 		
 	 	var active = $("#Active").val(); // prikazuje samo aktivne	
 	 	var filter = $("#Search").val(); // filtrira prema zadanom tekstu
@@ -55,7 +56,10 @@
 
 		if(typeof page==='undefined') {page=1;}
 		if(page<=0) {page=1;}
-	 	var url = window.root+'All.php?where='+where+'&Type='+status+'&Active='+active+
+	 	var url = window.root+'All.php?where='+where+
+		'&Type='+status+
+		'&Type2='+status2+
+		'&Active='+active+
 	 	'&Search='+filter+'&page='+page+'&length='+length+'&sortOrder='+sortOrder+
 		'&transfersFilter='+transfersFilter+
 		'&orderid='+orderid+

@@ -593,6 +593,8 @@ $PICKUP_NOT_POSSIBLE = "Pickup is not possible for this time and date.<br>We req
 $SUCCESS = "Successful data change";
 $DELETE_ROW = "Successful delete data";
 
+$USERS = "Users";
+$STATUS = "Staus";
 
 
 

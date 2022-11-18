@@ -6,6 +6,20 @@
 	}
 	$smarty->assign('options',$arr_all);
 	$smarty->assign('selecttype',true);
+	
+	require_once ROOT.'/db/v4_AuthLevels.class.php';
+	$al = new v4_AuthLevels();
+	$where = " WHERE AuthLevelID in (2,3,4,5,6,12,41,91)";
+	$authLevels = $al->getKeysBy('AuthLevelName', 'asc', $where);
+	foreach($authLevels as $nn => $id) {
+		$al->getRow($id);
+		$arr_row['id']=$al->getAuthLevelID();
+		$arr_row['name']=$al->getAuthLevelName();
+		$arr_all2[]=$arr_row;
+	}
+	$smarty->assign('options2',$arr_all2);
+	$smarty->assign('selecttype2',true);
+	
 ?>
 
 <script type="text/x-handlebars-template" id="ItemListTemplate">
