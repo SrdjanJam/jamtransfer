@@ -28,11 +28,16 @@
 				<?=RAPTORID;?>
 			</div>
 
-			<div class="col-md-4">
-				<?=ACTIVE;?>
-			</div>			
 			<div class="col-md-1">
-				<a target='_blank' href='plugins/SubVehicles/getRaptorVehicles.php' style="color:blue;"><i class="fas fa-external-link"></i>&nbsp;<u>Raptor</u></a>
+				<?=ACTIVE;?>
+			</div>
+
+			<div class="col-md-1">
+				<?=DELETE;?>
+			</div>
+
+			<div class="col-md-3">
+				<a target='_blank' href='plugins/SubVehicles/getRaptorVehicles.php' style="color:blue;background:silver;"><i class="fas fa-external-link"></i>&nbsp;<u>RAPTOR</u></a>
 			</div>
 
 		</div>
@@ -76,8 +81,14 @@
 					</div>
 
 					<!-- ACTIVE -->
-					<div class="col-md-5">
+					<div class="col-md-1">
 						{{ yesNoSliderEdit Active 'Active'}}					
+					</div>
+
+					<div class="col-md-4">
+						<button type="button" class="b-delete" data-id="{{VehicleID}}" style="color:red;" title="delete">
+							<i class="fas fa-trash-alt"></i>
+						</button>
 					</div>
 
 				</div>
@@ -106,10 +117,40 @@
 				success: function(data) {
 					$('#t_ .VehicleID').val(data);					
 					//$('#Vehicle').val(data);
+					toastr['success'](window.success);
 				}				
 			});
 			
-		})	
+		})
+
+		// Hide div:
+		$(document).ready(function(){
+			$('.b-delete').click(function(){
+				if (confirm("Are you sure to delete this row?")) {
+
+					var base=window.location.origin;
+					if (window.location.host=='localhost') base=base+'/jamtransfer';
+
+					var link = base+'/plugins/SubVehicles/Delete.php';
+					var param = "id="+ $(this).attr('data-id');
+
+					console.log(link+'?'+param);
+					
+					$.ajax({
+						type: 'POST',
+						url: link,
+						data: param,
+						success: function(data) {
+							$('#t_ .ID').val(data);
+							toastr['success'](window.delete);
+						}				
+					});
+					// Hide div row:
+        			$(this).parent().parent().parent().parent().hide(500);
+    			}
+    			return false;
+			});
+		});
 	</script>
 
 </script>
