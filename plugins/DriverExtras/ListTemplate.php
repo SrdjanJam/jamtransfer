@@ -73,7 +73,9 @@ if (isset($_SESSION['UseDriverID']) && $_SESSION['UseDriverID']>0) {
 				data: param,
 				success: function(data) {
 					if (data==0) $t.parent().parent().parent().find('.show_hide').hide(500);
-					if (data==1) $t.parent().parent().parent().find('.show_hide').show(500);						
+					if (data==1) $t.parent().parent().parent().find('.show_hide').show(500);
+					
+					toastr['success'](window.success);	
 				}				
 			});
 		})	
