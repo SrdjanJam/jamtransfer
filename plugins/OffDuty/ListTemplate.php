@@ -140,7 +140,7 @@
 						}				
 					});
 					// Hide div row:
-        			$(this).parent().parent().parent().parent().hide();
+        			$(this).parent().parent().parent().parent().hide(500);
     			}
     			return false;
 			});
