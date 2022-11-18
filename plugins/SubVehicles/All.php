@@ -28,7 +28,11 @@ $flds = array();
 $DB_Where = " " . $_REQUEST['where'];
 $DB_Where .= $filter;
 
-if (isset($_REQUEST['vehicleTypeID']) && $_REQUEST['vehicleTypeID']>0) $DB_Where .= " AND VehicleTypeID=".$_REQUEST['vehicleTypeID'];
+$DB_Where .= " AND OwnerID=".$_SESSION['UseDriverID'];
+
+// Not to use:
+// if (isset($_REQUEST['vehicleTypeID']) && $_REQUEST['vehicleTypeID']>0) $DB_Where .= " AND VehicleTypeID=".$_REQUEST['vehicleTypeID'];
+
 # dodavanje search parametra u qry
 # DB_Where sad ima sve potrebno za qry
 if ( $_REQUEST['Search'] != "" )
