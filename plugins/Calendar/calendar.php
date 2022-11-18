@@ -44,7 +44,7 @@ $dayin = substr($dayin,0,strlen($dayin)-1);
 
 $active = "SELECT * FROM ".DB_PREFIX."OrderDetails
 			WHERE PickupDate IN (".$dayin.") ";
-if ($_SESSION['AuthLevelID'] == DRIVER_USER)  $active .=	"AND DriverID = '".$_SESSION['AuthUserID']."' ";
+if (isset($_SESSION['UseDriverID']))  $active .=	"AND DriverID = '".$_SESSION['UseDriverID']."' ";
 $active .=	"AND TransferStatus != '4' AND TransferStatus != '9'
 			ORDER BY PickupDate, PickupTime ASC
 			";

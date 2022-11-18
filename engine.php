@@ -115,6 +115,8 @@ else {
 	if ($md->getName()=="Invoices") $existNew=false;
 	if ($md->getName()=="Set Driver") $existNew=false;
 	if ($_SESSION['AuthLevelID']==42) $existNew=false;
+	if ($md->getName()=="Articles") $existNew=true;
+
 	$smarty->assign('existNew',$existNew);
 
 	

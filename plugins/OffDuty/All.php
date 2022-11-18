@@ -92,12 +92,14 @@ if (count($dbk) != 0) {
 		
 		// ako treba neki lookup, onda to ovdje
 		$v->getRow( $db->getVehicleID() );
+		$vt->getRow($v->getVehicleTypeID() );
+
 		
 		# get all fields and values
 		$detailFlds = $db->fieldValues();
 		
 		// ako postoji neko custom polje, onda to ovdje.
-		$detailFlds["VehicleName"] = $v->getVehicleName();
+		$detailFlds["VehicleName"] = $vt->getVehicleTypeName();
 		
 		$out[] = $detailFlds;    	
 
