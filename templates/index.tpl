@@ -60,7 +60,13 @@
 		{* ============================================================================================================================ *}
 		<!--<link rel="stylesheet" href="css/simplegrid.css" media="all">!-->
 		<link rel="stylesheet" type="text/css" href="css/JAMTimepicker.css">
-		<link rel="stylesheet" type="text/css" href="js/select/css/select2.css">		
+		<link rel="stylesheet" type="text/css" href="js/select/css/select2.css">
+
+		<!-- fg timepicker: -->
+		<script src="js/fg.timepicker/fg.timepicker.js"></script>
+		<link rel="stylesheet" href="js/fg.timepicker/fg.timepicker.css" />
+		
+
 
 		
 		<!-- SCRIPTS -->
@@ -200,12 +206,6 @@
 								<strong>{$smarty.session.UseDriverName}</strong>
 								<a href="setout.php" id="a-setout">Setout	<i class="fas fa-sign-out-alt"></i></a>	
 							</li>
-						{else}
-							{if isset ($smarty.cookies.UseDriverName)}	
-							<li class="nav-header nav-header-edit">							
-								<a href="satAsDriver/{$smarty.cookies.UseDriverID}" >Set as {$smarty.cookies.UseDriverName} <i class="fas fa-sign-in-alt"></i></a>	
-							</li>
-							{/if}
 						{/if}
 
 						{section name=index loop=$menu1}
@@ -272,6 +272,7 @@
 
 				{* .header row border-bottom *}
 				<div class="header row border-bottom">
+
 				   <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
 					  <div class="navbar-header">
 
@@ -317,6 +318,7 @@
 					
 				{* .body row white-bg *}
 				<div class="body row white-bg white-bg-edit">
+				
 					{if isset($pageOLD)}
 						NOT MODEL VIEW CONTROL
 						{elseif isset($page)}
@@ -328,7 +330,8 @@
 						{else}
 							{$page_render}
 							SEMI MODEL VIEW CONTROL via OB_GET_CONTENTS
-					{/if}				  
+					{/if}
+					
 				</div> {* / .body row white-bg *}
 
 				{* .footer row *}
@@ -350,6 +353,7 @@
 
 		<input type='hidden' id='local' value='{$local}' name='local'>
 		<input type='hidden' id='success' value='{$SUCCESS}' name='success'>
+		<input type='hidden' id='delete' value='{$DELETE_ROW}' name='delete'>
 
 	</body>
 </html>
@@ -379,6 +383,8 @@
 	// toggleClass:
 	$(document).ready(function(){
 		window.success = $("#success").val();
+		window.delete = $("#delete").val();
+		
 		$("a.navbar-minimalize").click(function(){
 			// Full navbar:
 			$("nav.navbar-default").toggleClass("additional-class");
