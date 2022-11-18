@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.32, created on 2022-11-18 08:50:37
+/* Smarty version 3.1.32, created on 2022-11-18 13:05:54
   from 'C:\wamp\www\jamtransfer\templates\index.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.32',
-  'unifunc' => 'content_6377475d7c5328_03196068',
+  'unifunc' => 'content_63777522de2648_84241068',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'a1818a92b5a2f041fd91a227dabc592dea38fac2' => 
     array (
       0 => 'C:\\wamp\\www\\jamtransfer\\templates\\index.tpl',
-      1 => 1668761434,
+      1 => 1668773134,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:pageList.tpl' => 1,
   ),
 ),false)) {
-function content_6377475d7c5328_03196068 (Smarty_Internal_Template $_smarty_tpl) {
+function content_63777522de2648_84241068 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html>
 	<head>
@@ -281,19 +281,24 @@ _init.js"><?php echo '</script'; ?>
 						</li>
 						
 						<?php if (isset($_SESSION['UseDriverName'])) {?>
-										<li class="nav-header nav-header-edit">
+
+													<li class="nav-header nav-header-edit">
 								<h3 style="color:#777777;font-size:21px;">Set as:</h3>
 								<strong><?php echo $_SESSION['UseDriverName'];?>
 </strong>
-								<a href="setout.php" id="a-setout">Setout	<i class="fas fa-sign-out-alt"></i></a>	
+								<a href="setout.php" id="a-setout">Setout<i class="fas fa-sign-out-alt"></i></a>	
 							</li>
 						<?php } else { ?>
 							<?php if (isset($_COOKIE['UseDriverName'])) {?>	
-							<li class="nav-header nav-header-edit">							
-								<a href="satAsDriver/<?php echo $_COOKIE['UseDriverID'];?>
-" >Set as <?php echo $_COOKIE['UseDriverName'];?>
- <i class="fas fa-sign-in-alt"></i></a>	
-							</li>
+								<li class="nav-header nav-header-edit">
+									<a href="satAsDriver/<?php echo $_COOKIE['UseDriverID'];?>
+" style="padding-left:0px;padding-right:0px;">
+										<i class="fas fa-sign-in-alt"></i>
+										<h3>Set as:</h3>
+										<?php echo $_COOKIE['UseDriverName'];?>
+
+									</a>
+								</li>
 							<?php }?>
 						<?php }?>
 
@@ -339,10 +344,9 @@ echo $_smarty_tpl->tpl_vars['menu1']->value[(isset($_smarty_tpl->tpl_vars['__sma
 $_prefixVariable1 = ob_get_clean();
 echo $_prefixVariable1;?>
 </span></span></a>
-												
+
 													<?php if ($_smarty_tpl->tpl_vars['menu1']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_index']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_index']->value['index'] : null)]['menu'][(isset($_smarty_tpl->tpl_vars['__smarty_section_index1']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_index1']->value['index'] : null)]['title'] == 'Orders') {?>
 																																								<?php }?>
-													
 											</li>
 										<?php
 }

@@ -232,7 +232,7 @@
 
 													{if $menu1[index].menu[index1].title eq 'Orders'}
 														{* collapse: ul second level: *}
-													<ul class="nav nav-third-level collapse" >
+													{*<ul class="nav nav-third-level collapse" >
 														<li><a href="{$menu1[index].menu[index1].link}"><span class="nav-label">All</span></a></li>
 
 														{section name=pom loop=$transfersFilters}
@@ -242,7 +242,7 @@
 														{/section}
 
 													</select>						
-													</ul>
+													</ul>*}
 													{/if}
 											</li>
 										{/section}	
