@@ -61,13 +61,7 @@
 		<!--<link rel="stylesheet" href="css/simplegrid.css" media="all">!-->
 		<link rel="stylesheet" type="text/css" href="css/JAMTimepicker.css">
 		<link rel="stylesheet" type="text/css" href="js/select/css/select2.css">
-
-		<!-- fg timepicker: -->
-		<script src="js/fg.timepicker/fg.timepicker.js"></script>
-		<link rel="stylesheet" href="js/fg.timepicker/fg.timepicker.css" />
 		
-
-
 		
 		<!-- SCRIPTS -->
 		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
