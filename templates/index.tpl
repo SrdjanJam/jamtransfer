@@ -194,17 +194,22 @@
 						</li>
 						
 						{if isset($smarty.session.UseDriverName)}
-			{* nav-header nav-header-edit *}
+
+						{* nav-header nav-header-edit *}
 							<li class="nav-header nav-header-edit">
 								<h3 style="color:#777777;font-size:21px;">Set as:</h3>
 								<strong>{$smarty.session.UseDriverName}</strong>
-								<a href="setout.php" id="a-setout">Setout	<i class="fas fa-sign-out-alt"></i></a>	
+								<a href="setout.php" id="a-setout">Setout<i class="fas fa-sign-out-alt"></i></a>	
 							</li>
 						{else}
 							{if isset ($smarty.cookies.UseDriverName)}	
-							<li class="nav-header nav-header-edit">							
-								<a href="satAsDriver/{$smarty.cookies.UseDriverID}" >Set as {$smarty.cookies.UseDriverName} <i class="fas fa-sign-in-alt"></i></a>	
-							</li>
+								<li class="nav-header nav-header-edit">
+									<a href="satAsDriver/{$smarty.cookies.UseDriverID}" style="padding-left:0px;padding-right:0px;">
+										<i class="fas fa-sign-in-alt"></i>
+										<h3>Set as:</h3>
+										{$smarty.cookies.UseDriverName}
+									</a>
+								</li>
 							{/if}
 						{/if}
 
@@ -224,10 +229,10 @@
 										{section name=index1 loop=$menu1[index].menu}	
 											<li class="{$menu1[index].menu[index1].active}">
 												<a href="{$menu1[index].menu[index1].link}"><span class="nav-label" title="{$menu1[index].menu[index1].description}">{$menu1[index].menu[index1].title} <span class='badge'>{{$menu1[index].menu[index1].activestatus}}</span></span></a>
-												
+
 													{if $menu1[index].menu[index1].title eq 'Orders'}
 														{* collapse: ul second level: *}
-													{*<ul class="nav nav-third-level collapse" >
+													<ul class="nav nav-third-level collapse" >
 														<li><a href="{$menu1[index].menu[index1].link}"><span class="nav-label">All</span></a></li>
 
 														{section name=pom loop=$transfersFilters}
@@ -237,9 +242,8 @@
 														{/section}
 
 													</select>						
-													</ul>*}
+													</ul>
 													{/if}
-													
 											</li>
 										{/section}	
 									</ul>
