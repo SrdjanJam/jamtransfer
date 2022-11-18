@@ -14,15 +14,28 @@ value=" WHERE {$ItemID} > 0">
 <div class="row itemsheader">
 	<div class="col-md-2 asd" id="infoShow"></div>
 	{if isset($selecttype)}
-	
 	<div class="col-md-2 asd">
 		<i class="fa fa-list-ul edit-fa"></i>
 		<div class="form-group group-edit">
 		
 			<select id="Type" class="w75 form-control control-edit" onchange="allItems();">
-				<option value="0">{$ALL}</option>
+				<option value="0">{$ALL} {$STATUS}</option>
 				{section name=pom loop=$options}
 					<option value="{$options[pom].id}">{$options[pom].name}</option>
+				{/section}
+			</select>
+		</div>
+	</div>
+	{/if}	
+	{if isset($selecttype2)}
+	<div class="col-md-2 asd">
+		<i class="fa fa-list-ul edit-fa"></i>
+		<div class="form-group group-edit">
+		
+			<select id="Type2" class="w75 form-control control-edit" onchange="allItems();">
+				<option value="0">{$ALL} {$USERS}</option>
+				{section name=pom2 loop=$options2}
+					<option value="{$options2[pom2].id}">{$options2[pom2].name}</option>
 				{/section}
 			</select>
 		</div>

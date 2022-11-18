@@ -13,6 +13,14 @@ if (isset($type)) {
 		$filter = "  AND ".$type." = '" . $_REQUEST['Type'] . "'";
 	}
 }
+if (isset($type2)) {
+	if (!isset($_REQUEST['Type2']) or $_REQUEST['Type2'] == 0 or $_REQUEST['Type2'] == 99) {
+		$filter = "  AND ".$type2." != 0 ";
+	}
+	else {
+		$filter = "  AND ".$type2." = '" . $_REQUEST['Type2'] . "'";
+	}
+}
 	if (isset($_REQUEST['transfersFilter'])) {
 		$today              = strtotime("today 00:00");
 		$yesterday          = strtotime("yesterday 00:00");

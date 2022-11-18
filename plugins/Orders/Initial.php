@@ -46,6 +46,7 @@ $dbT = new DataBaseMysql();
 $keyName = 'DetailsID';
 //$ItemName='PlaceNameEN ';
 $type='TransferStatus';
+$type2='UserLevelID';
 #********************************
 # kolone za koje je moguc Search
 # treba ih samo nabrojati ovdje
