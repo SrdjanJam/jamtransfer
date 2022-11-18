@@ -4,7 +4,7 @@ require_once 'Initial.php';
 
 $out = array();
 
-echo "DELETE FROM `v4_OffDuty` WHERE `ID`=".$_REQUEST['id']." AND `OwnerID`=".$_SESSION['UseDriverID'];
+"DELETE FROM `v4_OffDuty` WHERE `ID`=".$_REQUEST['id']." AND `OwnerID`=".$_SESSION['UseDriverID'];
 
 # delete row by key value
 if (isset($_SESSION['UseDriverID']) && $_SESSION['UseDriverID']>0) 
