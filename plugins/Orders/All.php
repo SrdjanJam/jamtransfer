@@ -167,7 +167,7 @@ $flds = array();
 
 $dbWhere = " " . $_REQUEST['where'];
 $dbWhere .= $filter . $userFilter;
-
+if (isset($_SESSION['UseDriverID']))  $dbWhere .=	" AND v4_OrderDetails.DriverID = '".$_SESSION['UseDriverID']."' ";
 
 $documentType=$_REQUEST['document'];
 if ($documentType>0 && $documentType<10) {	 

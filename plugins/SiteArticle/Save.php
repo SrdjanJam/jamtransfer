@@ -12,7 +12,7 @@ foreach ($db->fieldNames() as $name) {
 		eval("\$db->set".$name."(\$content);");	
 	}	
 }
-$db->setSlug(urlize($_REQUEST['Title']));
+//$db->setSlug(urlize($_REQUEST['Title']));
 $upd = '';
 $newID = '';
 if ($keyName != '' and $keyValue != '') {

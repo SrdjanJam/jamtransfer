@@ -33,7 +33,7 @@ session_start();
 </div>
 
 <?
-if($_SESSION['UserAuthorized']!=1) die('You have to Login dude :P');
+//if($_SESSION['UserAuthorized']!=1) die('You have to Login dude :P');
 
 $find = $_REQUEST['string'];
 
