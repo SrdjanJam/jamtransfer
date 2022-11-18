@@ -41,8 +41,7 @@
 		id="t_{{ID}}">
 
 			<form>
-				<input type="hidden" name="ID" id="ID" class="w50" value="{{ID}}">
-				<input type="hidden" name="OwnerID" id="OwnerID" class="w50" value="<?=$_SESSION['OwnerID'] ?>">
+				<input type="hidden" name="ID" class="ID"  value="{{ID}}">
 
 				<div class="col-md-12">
 					<div class="col-md-3">
@@ -86,6 +85,7 @@
 				url: link,
 				data: param,
 				success: function(data) {
+					$('#t_ .ID').val(data);
 				}				
 			});
 			
