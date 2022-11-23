@@ -57,30 +57,30 @@
 					<!-- STARTDATE -->
 					<div class="col-md-2">
 						<input type="text" name="StartDate" id="StartDate" 
-						class="w25 datepicker" value="{{StartDate}}">
+						class="w25 datepicker" value="{{StartDate}}" data-id="{{ID}}">
 					</div>
 
 					<!-- STARTTIME	-->
 					<div class="col-md-2">
 						<input type="text" name="StartTime" id="StartTime" 
-						class="w25 timepicker" value="{{StartTime}}">
+						class="w25 timepicker" value="{{StartTime}}" data-id="{{ID}}">
 					</div>
 
 					<!-- ENDDATE -->
 					<div class="col-md-2">
 						<input type="text" name="EndDate" id="EndDate" 
-						class="w25 datepicker" value="{{EndDate}}">
+						class="w25 datepicker" value="{{EndDate}}" data-id="{{ID}}">
 					</div>
 
 					<!-- ENDTIME -->
 					<div class="col-md-2">
 						<input type="text" name="EndTime" id="EndTime" 
-						class="w25 timepicker" value="{{EndTime}}">
+						class="w25 timepicker" value="{{EndTime}}" data-id="{{ID}}">
 					</div>
 
 					<!-- REASON -->
 					<div class="col-md-1">
-						<input type="text" name="Reason" id="Reason" class="w100" value="{{Reason}}" style="width:120px;">
+						<input type="text" name="Reason" id="Reason" class="w100" value="{{Reason}}" style="width:120px;" data-id="{{ID}}">
 					</div>
 
 					<!-- DELETE -->
@@ -102,7 +102,9 @@
 			if (window.location.host=='localhost') base=base+'/jamtransfer';
 
 			var link = base+'/plugins/OffDuty/Save.php';
-			var param = $(this).parent().parent().parent().serialize();
+			
+			var id=$(this).attr("data-id");
+			var param = $("#t_"+id).find("form").serialize();
 
 			console.log(link+'?'+param)
 
