@@ -45,19 +45,19 @@
 
 				<div class="col-md-12">
 					<div class="col-md-3">
-						<input type="text" name="SpecialDate" id="SpecialDate" class="w50 datepicker w-edit" value="{{SpecialDate}}">
+						<input type="text" name="SpecialDate" id="SpecialDate" class="w50 datepicker w-edit" value="{{SpecialDate}}" data-id="{{ID}}">
 					</div>
-				
+					<!-- time picker - strat time -->
 					<div class="col-md-3">
-						<input type="text" name="StartTime" id="StartTime" class="w50 timepicker w-edit" value="{{StartTime}}">
+						<input type="text" name="StartTime" id="StartTime" class="w50 timepicker w-edit" value="{{StartTime}}" data-id="{{ID}}">
 					</div>
-				
+					<!-- time picker - end time -->
 					<div class="col-md-3">
-						<input type="text" name="EndTime" id="EndTime" class="w50 timepicker w-edit" value="{{EndTime}}">
+						<input type="text" name="EndTime" id="EndTime" class="w50 timepicker w-edit" value="{{EndTime}}" data-id="{{ID}}">
 					</div>
 
 					<div class="col-md-2">
-						<input type="text" name="CorrectionPercent" id="CorrectionPercent" class="w25 w-edit" value="{{CorrectionPercent}}">%
+						<input type="text" name="CorrectionPercent" id="CorrectionPercent" class="w25 w-edit" value="{{CorrectionPercent}}" data-id="{{ID}}">%
 					</div>
 
 					<div class="col-md-1">
@@ -74,12 +74,16 @@
 
 	{{/each}}
 	<script>
+
 		$('input').change(function(){
 			var base=window.location.origin;
 			if (window.location.host=='localhost') base=base+'/jamtransfer';		
 			var link = base+'/plugins/SpecialDates/Save.php';
-			var param = $(this).parent().parent().parent().serialize();
-			console.log(link+'?'+param)
+
+			var id=$(this).attr("data-id");
+			var param = $("#t_"+id).find("form").serialize();
+			
+			console.log(link+'?'+param);
 			$.ajax({
 				type: 'POST',
 				url: link,
@@ -119,7 +123,6 @@
     			return false;
 			});
 		});
-	</script>
+
 
 </script>
-	
