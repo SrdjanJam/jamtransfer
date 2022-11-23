@@ -2,23 +2,25 @@
 <html>
 	<head>
 		<base href="{$root_home}">
-		
+			
 		<meta charset="UTF-8">
+		<meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
 
 		<title>WIS {$title}</title>
-
-		
-		<meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
 
 		<!-- STYLES -->
 		<!-- bootstrap 3.0.2 -->
 		<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" media="all"/>
-	
+
 		<!-- Latest compiled and minified CSS -->
 		{* <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"> *}
 
 		{* ============================================================================================================================ *}
 		<!-- ICONS: -->
+
+		<!-- New: -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+		{* ============================================================================================================================ *}
 
 		<!-- Older: -->
 		<!-- font Awesome -->
@@ -28,41 +30,44 @@
 
 		{* <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/font-awesome-line-awesome/css/all.min.css"> *}
 
-		<!-- New: -->
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 		{* ============================================================================================================================ *}
+
 
 		<!-- Morris chart -->
 		<link href="css/morris/morris.css" rel="stylesheet" type="text/css"/>
-
 		{* ============================================================================================================================ *}
+
+
 		<!-- bootstrap wysihtml5 - text editor -->
 		<link href="css/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css" rel="stylesheet" type="text/css" media="screen"/>
 		<link href="css/bootstrap-slider/slider.css" rel="stylesheet" type="text/css"/>
 		<link href="js/summernote/summernote.css" rel="stylesheet" type="text/css" media="screen"/>
 		{* ============================================================================================================================ *}
 
+
 		<!-- Theme style WORKING !!!-->
 		<link href="css/theme.css" rel="stylesheet" type="text/css" media="screen"/>
 		<!-- Preuzeto za novu administraciju -->
 		<link href="css/admin.css" rel="stylesheet">
 
-		<!-- MISC -->
-
-		{* ============================================================================================================================ *}
 		<!-- Jquery ui css: -->
 		<link rel="stylesheet" href="css/jquery-ui-1.8.9.custom.css" type="text/css" />
 
+		<!-- Jquery ui css - pickadate: -->
 		<link rel="stylesheet" href="js/pickadate/themes/default.css" type="text/css" media="screen"/>
 		<link rel="stylesheet" href="js/pickadate/themes/default.date.css" type="text/css" media="screen"/>
 		<link rel="stylesheet" href="js/pickadate/themes/default.time.css" type="text/css" media="screen"/>
 		<link rel="stylesheet" href="css/colors.css" media="all">
 		{* ============================================================================================================================ *}
-		<!--<link rel="stylesheet" href="css/simplegrid.css" media="all">!-->
-		<link rel="stylesheet" type="text/css" href="css/JAMTimepicker.css">
-		<link rel="stylesheet" type="text/css" href="js/select/css/select2.css">		
 
-		
+		<!--<link rel="stylesheet" href="css/simplegrid.css" media="all">!-->
+
+		<!-- JAMTimepicker -->
+		{* <link rel="stylesheet" type="text/css" href="css/JAMTimepicker.css">
+		<link rel="stylesheet" type="text/css" href="js/select/css/select2.css"> *}
+		{* ============================================================================================================================ *}
+
+
 		<!-- SCRIPTS -->
 		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 		<!--[if lt IE 9]>
@@ -71,8 +76,10 @@
 		<![endif]-->
 
 		{* ============================================================================================================================ *}
+		<!-- JQUERY: -->
+
 		<!-- jQuery -->
-		<script src="js/jQuery/2.0.2/jquery.min.js"></script> 
+		<script src="js/jQuery/2.0.2/jquery.min.js"></script>
 		<!-- jQuery UI 1.10.3 -->
 		<script src="js/jQuery/ui/1.10.3/jquery-ui.min.js" type="text/javascript"></script>
 		{* ============================================================================================================================ *}
@@ -106,12 +113,18 @@
 		<!-- Validation -->
 		<script src="js/jquery.validate.min.js"></script>
 
-		<!-- Date / Time Picker -->
+		{* ================================================================================== *}
+		<!-- Date Picker and time picker /  -->
+		{* <script src="js/pickadate/picker.time.js" type="text/javascript"></script>
+		<script src="js/JAMTimepicker.js"></script> *}
+		<script src="js/select/js/select2.js"></script>
 		<script src="js/pickadate/picker.js" type="text/javascript"></script>
 		<script src="js/pickadate/picker.date.js" type="text/javascript"></script>
-		<script src="js/pickadate/picker.time.js" type="text/javascript"></script>
-		<script src="js/JAMTimepicker.js"></script>
-		<script src="js/select/js/select2.js"></script>
+
+		{* Time Picker query-clock-timepicker *}
+		<script type="text/javascript" src="js/jquery-clock-timepicker/jquery-clock-timepicker.min.js"></script>
+		{* <script type="text/javascript" src="js/jquery-clock-timepicker/jquery-clock-timepicker.js"></script> *}
+		{* ================================================================================== *}
 
 		<!-- Moment -->
 		<script src="js/moment.min.js" type="text/javascript"></script>
@@ -126,6 +139,7 @@
 		<script src="js/jquery.toaster.js"></script>
 		<script src="lng/{$language}_init.js"></script>	
 		<script src="js/cms.jquery.js"></script>
+			
 
 		{if isset($pageList)}
 			<script src="js/list.js"></script>
@@ -159,21 +173,19 @@
 
 		{/if}
 
-		
 	</head>	
 
 	{* INCLUDE TPL: *}
 	{include file="{$root}/templates/add-style.tpl"}
 
 	<body class="fixed-top" style="height:100%!important;font-size:16px">
+		{* main wrapper class*}
 		<div class="wrapper wrapper-edit">
-		
 			{* Navbar *}
 			<nav class="navbar-default navbar-static-side additional-class" role="navigation">
 			<i class="lab la-accessible-icon"></i>
-
+				{* sidebar-collapse *}
 				<div class="sidebar-collapse">
-
 					<ul class="nav metismenu" id="side-menu">
 						<li class="nav-header">
 							<div class="dropdown profile-element">
@@ -194,7 +206,6 @@
 						</li>
 						
 						{if isset($smarty.session.UseDriverName)}
-
 						{* nav-header nav-header-edit *}
 							<li class="nav-header nav-header-edit">
 								<h3 style="color:#777777;font-size:21px;">Set as:</h3>
@@ -245,7 +256,8 @@
 													</ul>*}
 													{/if}
 											</li>
-										{/section}	
+										{/section}
+
 									</ul>
 								{/if}
 
@@ -277,27 +289,31 @@
 
 				{* .header row border-bottom *}
 				<div class="header row border-bottom">
-				   <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
-					  <div class="navbar-header">
-
+					{* navbar *}	
+					<nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+						<div class="navbar-header">
 						{* target***** *}
-						 <a class="navbar-minimalize minimalize-styl-2 btn btn-primary btn-primary-edit"><i class="fa fa-bars"></i> </a>
+							<a class="navbar-minimalize minimalize-styl-2 btn btn-primary btn-primary-edit"><i class="fa fa-bars"></i> </a>
+						</div>
 
-					  </div>
-					  <div class="navbar-header">
-						 <button type="button" class="minimalize-styl-2 btn btn-primary btn-primary-edit" id="cashe"><i class="fas fa-redo-alt"></i></button>
-					  </div>					  					  						
-					  <ul class="nav navbar-top-links navbar-right">
-						 <li>
-							<h2><span class="m-r-sm text-muted">{$title}</span></h2>
-						 </li>
-						 <li>
-							<a href='logout.php'>
-							<i class="fa fa-sign-out"></i>Logout
-							</a>
-						 </li>
-					  </ul>
-				   </nav>
+						<div class="navbar-header">
+							<button type="button" class="minimalize-styl-2 btn btn-primary btn-primary-edit" id="cashe"><i class="fas fa-redo-alt"></i></button>
+						</div>
+
+						<ul class="nav navbar-top-links navbar-right">
+							<li>
+								<h2><span class="m-r-sm text-muted">{$title}</span></h2>
+							</li>
+
+							<li>
+								<a href='logout.php'>
+									<i class="fa fa-sign-out"></i>Logout
+								</a>
+							</li>
+
+						</ul>
+
+					</nav>
 				</div> {* /.header row border-bottom *}
 			
 				{if not $isNew and isset($pageList)}
@@ -320,8 +336,15 @@
 					</div> {* /.header row *}
 				{/if}
 					
-				{* .body row white-bg *}
+				{* .body row white-bg - Main content *}
 				<div class="body row white-bg white-bg-edit">
+
+				{* <p class="example">
+					<strong>Standard time picker</strong><br />
+					<i>(no settings specified)</i><br />
+					<input class="timepicker standard" type="text" onchange="console.log('Time changed to: ' + this.value)" />
+			   	</p> *}
+				
 					{if isset($pageOLD)}
 						NOT MODEL VIEW CONTROL
 						{elseif isset($page)}
@@ -333,7 +356,8 @@
 						{else}
 							{$page_render}
 							SEMI MODEL VIEW CONTROL via OB_GET_CONTENTS
-					{/if}				  
+					{/if}
+					
 				</div> {* / .body row white-bg *}
 
 				{* .footer row *}
@@ -346,7 +370,9 @@
 					<div class="pull-right">
 						Powered by <strong>Jamtransfer</strong>
 					</div>
+					
 					<div class="backdrop"><div class="spiner"></div></div>
+
 				</div>{* /.footer row *}
 
 			</div> {* End of page-wrapper *}
@@ -369,7 +395,7 @@
 		})	
 		$(document).ready(function() {
 			$(".datepicker").pickadate({format{/literal}:{literal} 'yyyy-mm-dd'});
-			$(".timepicker").JAMTimepicker();
+			$('.timepicker').clockTimePicker();
 		});
 		
 		$.ajaxSetup({
