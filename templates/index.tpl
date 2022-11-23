@@ -339,12 +339,6 @@
 				{* .body row white-bg - Main content *}
 				<div class="body row white-bg white-bg-edit">
 
-				{* <p class="example">
-					<strong>Standard time picker</strong><br />
-					<i>(no settings specified)</i><br />
-					<input class="timepicker standard" type="text" onchange="console.log('Time changed to: ' + this.value)" />
-			   	</p> *}
-				
 					{if isset($pageOLD)}
 						NOT MODEL VIEW CONTROL
 						{elseif isset($page)}
