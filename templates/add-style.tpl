@@ -73,6 +73,7 @@
     border: 2px solid #4c81ad;
     box-shadow: 5px 5px 8px #888888;
     border-radius: 10px;
+    z-index:1;
 }
 .nav-header-edit strong{
     color:rgb(30 104 166);
