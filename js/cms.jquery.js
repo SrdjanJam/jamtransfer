@@ -1302,7 +1302,7 @@ Handlebars.registerHelper("routeSelect", function(id,fieldName,routes) {
 });
 
 function createRoutesSelect(data, id, fieldName) {
-	var selector = "<select class=\"w100 "+fieldName+"\" name=\""+fieldName+"\" id=\""+fieldName+"\" >";
+	var selector = "<select class=\"w100 "+fieldName+"\" name=\""+fieldName+"\" id=\""+fieldName+"\" style=\"width:100%\" >";
 		selector += '<option value="0"> --- </option>';
 
 		$.each(data, function(i,val) {

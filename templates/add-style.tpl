@@ -69,8 +69,9 @@
     padding: 5px;
     background-color: #e4e4e4;
     text-align: center;
-    border: 2px solid #4c81ad;
     box-sizing: border-box;
+    border: 2px solid #4c81ad;
+    box-shadow: 5px 5px 8px #888888;
     border-radius: 10px;
 }
 .nav-header-edit strong{
@@ -84,7 +85,7 @@
     display: block;
 }
 .nav-header-edit #a-setout:hover{
-    color: rgb(184, 71, 71);
+    color: rgb(184, 126, 71);
     background: none;
 }
 

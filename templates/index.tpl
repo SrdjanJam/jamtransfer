@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<base href="{$root_home}">
-			
+		
 		<meta charset="UTF-8">
 		<meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
 
@@ -142,8 +142,8 @@
 			
 
 		{if isset($pageList)}
-			<script src="js/list.js"></script>
 
+			<script src="js/list.js"></script>
 
 			{literal}		
 				<script type="text/javascript">
@@ -173,7 +173,7 @@
 
 		{/if}
 
-	</head>	
+	</head>
 
 	{* INCLUDE TPL: *}
 	{include file="{$root}/templates/add-style.tpl"}
@@ -210,7 +210,7 @@
 							<li class="nav-header nav-header-edit">
 								<h3 style="color:#777777;font-size:21px;">Set as:</h3>
 								<strong>{$smarty.session.UseDriverName}</strong>
-								<a href="setout.php" id="a-setout">Setout<i class="fas fa-sign-out-alt"></i></a>	
+								<a href="setout.php" id="a-setout">Setout &nbsp;<i class="fas fa-sign-out-alt"></i></a>	
 							</li>
 						{else}
 							{if isset ($smarty.cookies.UseDriverName)}	
