@@ -217,7 +217,8 @@ img {
 .bg-light-blue {
   /* Changed: */
   /* background-color: #3c8dbc !important; */
-  background-color: #2582cb !important;
+  background-color: #2a90dd !important;
+  box-shadow: 2px 2px 15px #1770b4 inset;
 }
 .bg-green {
   background-color: #00a65a !important;
