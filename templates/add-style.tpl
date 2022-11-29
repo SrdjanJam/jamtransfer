@@ -74,9 +74,10 @@
 }
 
 .nav-header-edit{
-    padding: 5px;
     background-color: #e4e4e4;
-    /* text-align: center; */
+    margin-left:5px;
+    margin-right:5px;
+    padding: 5px;
     box-sizing: border-box;
     border: 2px solid #4c81ad;
     box-shadow: 5px 5px 8px #888888;
@@ -85,7 +86,7 @@
 }
 .nav-header-edit #a-setout{
     text-decoration: underline;
-    color: rgb(116, 113, 113);
+    color: rgb(122 122 122);
     padding: 5px 0 5px 2px;
     display: block;
 }
@@ -107,6 +108,8 @@
 .cut-name{
     color:rgb(30 104 166);
     font-family: 'Times New Roman', Times, serif;
+    text-shadow: 1px 1px #3e3e42;
+    /* font-style: italic; */
 }
 .mini-navbar .nav-header-edit .cut-name{
     overflow:hidden; 
