@@ -75,8 +75,7 @@
 
 .nav-header-edit{
     background-color: #e4e4e4;
-    margin-left:5px;
-    margin-right:5px;
+    margin: 0 5px 5px 5px;
     padding: 5px;
     box-sizing: border-box;
     border: 2px solid #4c81ad;
@@ -183,6 +182,5 @@
 .listTile:hover{ background: rgb(240, 240, 240); }
 /* off */
 /* .listTile:focus{ background: rgb(71, 42, 173); } */
-
 
 </style>
