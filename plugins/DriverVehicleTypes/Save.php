@@ -5,9 +5,11 @@ require_once 'Initial.php';
 if ($_REQUEST['DriverVehicle']==0) {
 	$result = $dbT->RunQuery("DELETE FROM `v4_Vehicles` WHERE `VehicleTypeID`=".$_REQUEST['VehicleTypeID']." AND `OwnerID`=".$_SESSION['UseDriverID']);
 	$result = $dbT->RunQuery("DELETE FROM `v4_Services` WHERE `VehicleTypeID`=".$_REQUEST['VehicleTypeID']." AND `OwnerID`=".$_SESSION['UseDriverID']);
+	$VehicleID=0;
 }	
 if ($_REQUEST['DriverVehicle']==1) {
 	$result = $dbT->RunQuery("INSERT IGNORE INTO `v4_Vehicles`(`VehicleTypeID`,`OwnerID`,`SurCategory`) VALUES (".$_REQUEST['VehicleTypeID'].",".$_SESSION['UseDriverID'].",1)");
+		$VehicleID=$dbT->insert_id();
 		require_once '../../db/v4_AuthUsers.class.php';
 		$au = new v4_AuthUsers();
 
@@ -41,6 +43,6 @@ if ($_REQUEST['DriverVehicle']==1) {
 			$s->saveAsNew();		
 		}
 }	
-echo $_REQUEST['DriverVehicle'];
+echo $VehicleID;
 
 	

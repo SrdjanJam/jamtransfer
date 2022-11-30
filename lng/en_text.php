@@ -1,4 +1,4 @@
-<?
+﻿<?
 	define("B", ' ');
 	
 /*	
@@ -733,8 +733,6 @@ define("WEEKDAYSONLY", "Weekdays Only");
 define("RETURNONLY", "Return Only");
 define("TIMESUSED", "Times Used");
 define("REFRESH_CACHE", "Refresh Cache");
-define("DISCOUNT","discount");
-define("ACTIVE","active");
 
 
 // reviews
@@ -842,12 +840,7 @@ define("DRIVER_EXTRAS","Driver Extras");
 // Pricing Coupons - folder Coupons
 define("DRIVER_ID","DriverID");
 
-// Services Terminals
-define("CONNECTED","connected");
 
-// Site content Languange lines - folder LanguangeLines
-define("ID","ID");
-define("NAME","name");
 
 // Masters User - folder AuthUser
 define("AUTHUSER_ID","ID");
@@ -860,7 +853,6 @@ define("SETASDRIVER","Set as driver");
 define("CONTACT","Contact");
 
 // Pricing Services
-define("ROUTENAME","Route Name");
 define("BUTTONS","Buttons");
 
 // Settings off duty dates
