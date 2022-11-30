@@ -76,7 +76,6 @@
 				{* <script src="js/jQuery/2.0.2/jquery.min.js"></script> *}
 					<!-- CDN -->
 					<script src="https://code.jquery.com/jquery-2.0.2.js"></script>
-
 				<!-- Mainly scripts -->
 				<script src="js/main.admin.js"></script>
 
@@ -211,17 +210,17 @@
 						{if isset($smarty.session.UseDriverName)}
 						{* nav-header nav-header-edit *}
 							<li class="nav-header nav-header-edit">
-								<h3 style="color:#777777;font-size:21px;">Set as:</h3>
-								<strong>{$smarty.session.UseDriverName}</strong>
+								<h3 style="color: #545050;">Set as:</h3>
+								<h3 class="cut-name">{$smarty.session.UseDriverName}</h3>
 								<a href="setout.php" id="a-setout">Setout &nbsp;<i class="fas fa-sign-out-alt"></i></a>	
 							</li>
 						{else}
 							{if isset ($smarty.cookies.UseDriverName)}	
 								<li class="nav-header nav-header-edit">
 									<a href="satAsDriver/{$smarty.cookies.UseDriverID}" style="padding-left:0px;padding-right:0px;">
-										<i class="fas fa-sign-in-alt"></i>
-										<h3>Set as:</h3>
-										{$smarty.cookies.UseDriverName}
+										{* <i class="fas fa-sign-in-alt"></i> *}
+										<h3>Set as: <i class="fas fa-sign-in-alt"></i></h3>
+										<h3 class="cut-name-2">{$smarty.cookies.UseDriverName}</h3>
 									</a>
 								</li>
 							{/if}
