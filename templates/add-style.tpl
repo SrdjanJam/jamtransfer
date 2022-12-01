@@ -98,6 +98,7 @@
     background-color: #3c72bc;
     border-color: #3c72bc;
     margin-left:15px;
+    box-shadow: 2px 2px 5px #424181;
 }
 .navbar-header .btn-primary-edit:hover{
     background-color: #36619f;
@@ -124,7 +125,29 @@
     width:60px; 
 }
 
-{* END OF templates/index.tpl *}
+.nav-header-top-edit{
+    /* background: #525f7a; */
+    background: #476092;
+    margin: 5px 5px 10px 5px;
+    border-radius: 10px;
+    box-shadow: 5px 5px 16px #424181 inset;
+}
+
+.navbar-static-side{
+    box-shadow: 5px 5px 8px #888888;
+}
+
+.small-box, .small-box-footer{
+    border-radius: 10px;
+    box-shadow: 5px 5px 8px #616060;
+}
+
+.box-info, .box-primary{
+    box-shadow: 5px 5px 8px #616060;
+}
+
+
+{* End of templates/index.tpl *}
 
 /* pageListHeader.tpl */
 .form-group.group-edit{
@@ -182,5 +205,8 @@
 .listTile:hover{ background: rgb(240, 240, 240); }
 /* off */
 /* .listTile:focus{ background: rgb(71, 42, 173); } */
+
+
+
 
 </style>

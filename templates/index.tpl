@@ -22,7 +22,7 @@
 		<link href="css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
 
 		<!-- Ionicons -->
-		{* <link href="css/ionicons.min.css" rel="stylesheet" type="text/css"/> *}
+		<link href="css/ionicons.min.css" rel="stylesheet" type="text/css"/>
 
 		<!-- Morris chart -->
 		<link href="css/morris/morris.css" rel="stylesheet" type="text/css"/>
@@ -139,8 +139,6 @@
 				<script src="lng/{$language}_init.js"></script>	
 				<script src="js/cms.jquery.js"></script>
 
-				
-			
 
 		{if isset($pageList)}
 
@@ -189,7 +187,7 @@
 				{* sidebar-collapse *}
 				<div class="sidebar-collapse">
 					<ul class="nav metismenu" id="side-menu">
-						<li class="nav-header">
+						<li class="nav-header nav-header-top-edit">
 							<div class="dropdown profile-element">
 								<a data-toggle="dropdown" class="dropdown-toggle" href="#">
 								<span class="clear"> 
