@@ -85,13 +85,11 @@ require_once 'Initial.php';
 	}
 	//Da li je lokacija terminal?
 	$detailFlds["Terminal"]=0;
-	if (isset($_SESSION['UseDriverID']) && $_SESSION['UseDriverID']>0) 
-		$result = $dbT->RunQuery("SELECT * FROM v4_DriverTerminals WHERE TerminalID=".$_REQUEST['ItemID']." AND DriverID=".$_SESSION['UseDriverID']); 
-	else 
-		$result = $dbT->RunQuery("SELECT * FROM v4_Terminals WHERE TerminalID=".$_REQUEST['ItemID']);
-		while($row = $result->fetch_array(MYSQLI_ASSOC)){
-			$detailFlds["Terminal"]=1;
-		}	
+
+	$result = $dbT->RunQuery("SELECT * FROM v4_Terminals WHERE TerminalID=".$_REQUEST['ItemID']);
+	while($row = $result->fetch_array(MYSQLI_ASSOC)){
+		$detailFlds["Terminal"]=1;
+	}	
 	
 	$out[] = $detailFlds;
 

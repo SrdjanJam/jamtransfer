@@ -76,7 +76,7 @@ if (count($dbk) != 0) {
 		$detailFlds["DriverVehicle"]=0;
 		$detailFlds["PriceRules"]=1;
 		$detailFlds["PriceRules2"]=0;
-		$detailFlds["VehicleID"]=0;
+		$detailFlds["VehicleID"]='';
 		$result = $dbT->RunQuery("SELECT * FROM v4_Vehicles WHERE VehicleTypeID=".$key." AND OwnerID=".$_SESSION['UseDriverID']);
 			while($row = $result->fetch_array(MYSQLI_ASSOC)){
 				$detailFlds["DriverVehicle"]=1;

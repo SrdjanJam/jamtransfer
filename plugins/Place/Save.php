@@ -28,14 +28,10 @@ $out = array(
 	'update' => $upd,
 	'insert' => $newID
 );
-if (isset($_SESSION['UseDriverID']) && $_SESSION['UseDriverID']>0) {
-	if ($_REQUEST['Terminal']==1) $result = $dbT->RunQuery("INSERT IGNORE INTO `v4_DriverTerminals`(`DriverID`,`TerminalID`) VALUES (".$_SESSION['UseDriverID'].",".$terminalID.")");
-	else $result = $dbT->RunQuery("DELETE FROM `v4_DriverTerminals` WHERE `TerminalID`=".$terminalID." AND `DriverID`=".$_SESSION['UseDriverID']);	
-}	
-else {
-	if ($_REQUEST['Terminal']==1) $result = $dbT->RunQuery("INSERT IGNORE INTO `v4_Terminals`(`TerminalID`) VALUES (".$terminalID.")");
-	else $result = $dbT->RunQuery("DELETE FROM `v4_Terminals` WHERE `TerminalID`=".$terminalID);
-}	
+
+if ($_REQUEST['Terminal']==1) $result = $dbT->RunQuery("INSERT IGNORE INTO `v4_Terminals`(`TerminalID`) VALUES (".$terminalID.")");
+else $result = $dbT->RunQuery("DELETE FROM `v4_Terminals` WHERE `TerminalID`=".$terminalID);
+	
 	
 
 # send output back
