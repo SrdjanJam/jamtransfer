@@ -15846,8 +15846,9 @@ h5 {
 .nav.navbar-top-links .dropdown-alerts a {
     font-size: 12px;
 }
+/* Changed: */
 .nav-header {
-    padding: 33px 25px;
+    padding: 33px 15px;
     background-color: #2f4050;
 }
 .pace-done .nav-header {
