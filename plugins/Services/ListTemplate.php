@@ -16,7 +16,7 @@
 			</div>
 
 			<div class="col-md-2">
-				<?=SERVICEPRICE1;?>
+				<?=SERVICEPRICE1;?> --- Last Change
 			</div>
 			
 			<!-- <div class="col-md-2">
@@ -26,7 +26,7 @@
 			<div class="col-md-5">
 				<?=SURCATEGORY;?>
 			</div>
-
+			
 		</div>				
 	</div>
 
@@ -36,6 +36,7 @@
 		<div class="row {{color}} pad1em listTile" 
 		style="border-top:1px solid #ddd" 
 		id="t_{{ServiceID}}">
+
 			<div class="col-md-12">
 				<input type="hidden" name="ServiceID" id="ServiceID" value="{{ServiceID}}"">
 
@@ -56,14 +57,15 @@
 				
 				<!-- ServicePrice1(Active Prace): -->				
 				<div class="col-md-2">
-					<input type="text" name="ServicePrice1"  id="ServicePrice1" value="{{ServicePrice1}}" style="width:120px;">
+					<b><input type="text" name="ServicePrice1"  id="ServicePrice1" value="{{ServicePrice1}}" style="width:120px;"></b>
+					{{ServicePrice1}}
 				</div>
 
 				<!-- Discount: -->
 				<!-- <div class="col-md-2">
 					<input type="text" name="Discount" id="Discount" class="w100" value="{{Discount}}" style="width:120px;">
 				</div> -->
-				
+			
 
 				<!-- Price rules: -->
 				<div class="col-md-5 surcategory" >
