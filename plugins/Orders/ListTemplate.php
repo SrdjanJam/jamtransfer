@@ -33,7 +33,7 @@
 			<i id='filtersUP' class="fa fa-angle-up" onclick="filtersUP()"></i>	
 		</span>
 	</div>	
-	<div class="row itemsheader">
+	<div class="row itemsheader itemsheader-edit">
 
 		<div class="col-md-2">
 			<small class="badge blue text-black">Order</small><br>
@@ -80,7 +80,7 @@
 	{{#each Item}}
 		<div>
 		
-			<div class="row {{color}} pad1em listTile" 
+			<div class="row {{color}} pad1em listTile listTile-edit" 
 			id="t_{{DetailsID}}">
 
 					<div class="col-md-2 order"  onclick="oneItem({{DetailsID}},'order');">	
