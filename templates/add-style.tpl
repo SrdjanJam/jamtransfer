@@ -206,7 +206,10 @@
 /* off */
 /* .listTile:focus{ background: rgb(71, 42, 173); } */
 
-
+/* Bookings/Orders */
+.listTile .col-md-2{
+    height:70px;
+}
 
 
 </style>
