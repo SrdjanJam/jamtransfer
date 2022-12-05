@@ -35,7 +35,7 @@
 	</div>	
 	<div class="row itemsheader">
 
-		<div class="col-md-2 grey">
+		<div class="col-md-2">
 			<small class="badge blue text-black">Order</small><br>
 			<select id='yearsOrder' name='yearsOrder' value='0' onchange="allItems();">
 				<option value='0'>All years</option>
@@ -52,7 +52,7 @@
 			{{paymentMethodSelect PaymentMethod}}<br>
 			<input id='paymentNumber' name='paymentNumber'  placeholder="Payment / Invoice No" onchange="allItems();"/>					
 		</div>
-		<div class="col-md-2 grey"> 
+		<div class="col-md-2"> 
 			<small class="badge blue text-black">Transfer</small><br>		
 			<select id='yearsPickup' name='yearsPickup' value='0' onchange="allItems();">
 				<option value='0'>All years</option>
@@ -67,7 +67,7 @@
 			<input id='driverName' name='driverName'  placeholder="Driver Name/ID" onchange="allItems();"/><br>				
 			{{driverConfStatusSelect DriverConfStatus}}
 		</div>			
-		<div class="col-md-2 grey">
+		<div class="col-md-2">
 			<small class="badge blue text-black">Client/Agent</small><br>
 			<input id='agentName' name='agentName'  placeholder="Agent Name/ID" onchange="allItems();"/><br>				
 			<input id='agentOrder' name='agentOrder'  placeholder="Order Key / Agent Order" onchange="allItems();"/><br>				
