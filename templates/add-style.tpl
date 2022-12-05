@@ -206,9 +206,28 @@
 /* off */
 /* .listTile:focus{ background: rgb(71, 42, 173); } */
 
+
 /* Bookings/Orders */
+.row .itemsheader{
+    background: #dadbeb;
+    border: 1px solid #c5c5c5;
+}
+.row .itemsheader .col-md-2{
+    border-right: 1px solid #c5c5c5;
+}
+
+.row .listTile{
+    display: flex;
+}
 .listTile .col-md-2{
-    height:70px;
+    background: #86bbd6;
+    margin: 5px 5px 0 0;
+    border-radius: 5px;
+    box-sizing: border-box;
+    box-shadow: 5px 5px 8px #616060;
+}
+.listTile .col-md-2:hover{
+    background: #9fc7db;
 }
 
 
