@@ -7,6 +7,7 @@
     body {
         font-family: 'Roboto', sans-serif;
         font-size: 10px !important;
+        scroll-behavior: smooth;
     }
     .nav, .footer { display:none; }
     @page { margin: 0.5cm; }
@@ -208,9 +209,25 @@
 
 
 /* Bookings/Orders */
+.row-sticky{
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    background-color: white;
+    margin-left: 0px;
+    margin-right: 0px;
+    color: #0088cc;
+    background: #a1bdca;
+}
+
 .row .itemsheader-edit{
-    background: #dadbeb;
+    background: #dadbebc0;
     border: 1px solid #c5c5c5;
+    position: sticky;
+    top: 20;
+    z-index: 5;
+    margin-left: 0px;
+    margin-right: 0px;
 }
 .row .itemsheader-edit .col-md-2{
     border-right: 1px solid #c5c5c5;
@@ -218,10 +235,13 @@
 
 .row .listTile-edit{
     display: flex;
+    margin-left: 0px;
+    margin-right: 0px;
+    background:#d9d8d8;
 }
 .listTile-edit .col-md-2{
     background: #86bbd6;
-    margin: 5px 5px 0 0;
+    margin: 5px;
     border-radius: 5px;
     box-sizing: border-box;
     box-shadow: 5px 5px 8px #616060;
