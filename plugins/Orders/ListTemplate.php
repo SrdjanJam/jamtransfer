@@ -26,7 +26,9 @@
 	<input type='hidden' id='sortField' name='sortField'/>
 	<input type='hidden' id='sortDirection' name='sortDirection'/>
 	
-	<div class="row">
+
+
+	<div class="row row-sticky">
 		<span class="right">
 			<i class="fa fa-filter"></i>
 			<i id='filtersDown' class="fa fa-angle-down" onclick="filtersDown()"></i>
@@ -77,6 +79,9 @@
 			<input id='passengerData' name='passengerData'  placeholder="Passenger Data" onchange="allItems();"/>					
 		</div>			
 	</div>
+
+
+
 	{{#each Item}}
 		<div>
 		
@@ -155,6 +160,9 @@
 
 
 </script>
+
+
+
 <script>
 	async function setSort(field,direction) {
 		$('#sortField').val(field);
@@ -163,4 +171,4 @@
 	function allSort(field,direction) {
 		setSort(field,direction).then(function() {allItems();});
 	}	
-</script>	
+</script>
