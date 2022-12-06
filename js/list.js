@@ -191,7 +191,19 @@
 		// sakrij sve ostale elemente prije nego se otvori novi
 		$(".editFrame").hide('slow'); $(".editFrame form").html('');
 		// idemo po podatke
-		console.log(window.base+url);		
+		console.log(window.base+url);
+		
+		// OLD:
+		// // click na element - hide element ako je vec prikazan, nema potrebe za ajax
+		// if ( $("#ItemWrapper"+id).css('display') != 'none') {$("#ItemWrapper"+id).hide('slow'); return;}
+
+		// // ako element nije prikazan, uzmi potrebne podatke i prikazi ga
+		// var url = window.root + 'One.php?ItemID='+id;
+		// // sakrij sve ostale elemente prije nego se otvori novi
+		// $(".editFrame").hide('slow'); $(".editFrame form").html('');
+		// // idemo po podatke
+		// console.log(window.base+url);
+
 		$.ajax({
 			type: 'GET',
 			url: url,
@@ -211,10 +223,13 @@
 				$("#one_Item"+id).html(HTML);
 
 				$("#ItemWrapper"+id).show('slow');
-				$("#ItemWrapper"+id)[0].scrollIntoView({
-					behavior: "smooth", // or "auto" or "instant"
-					block: "start" // or "end"
-				});	
+
+				// Trun off:
+				// $("#ItemWrapper"+id)[0].scrollIntoView({
+				// 	behavior: "smooth", // or "auto" or "instant"
+				// 	block: "start" // or "end"
+				// });	
+
 				$('.dorder, .dpayment, .dtransfer, .dpdriver, .dagent, .dpassenger').hide();
 				$('.d'+tab).show();
 			},
