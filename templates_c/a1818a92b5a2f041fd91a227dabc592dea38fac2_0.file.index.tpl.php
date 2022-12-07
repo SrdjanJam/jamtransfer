@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.32, created on 2022-11-30 08:32:33
+/* Smarty version 3.1.32, created on 2022-12-02 11:51:17
   from 'C:\wamp\www\jamtransfer\templates\index.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.32',
-  'unifunc' => 'content_63870711010d27_00024051',
+  'unifunc' => 'content_6389d8a55fe891_23611923',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'a1818a92b5a2f041fd91a227dabc592dea38fac2' => 
     array (
       0 => 'C:\\wamp\\www\\jamtransfer\\templates\\index.tpl',
-      1 => 1669792276,
+      1 => 1669888539,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:pageList.tpl' => 1,
   ),
 ),false)) {
-function content_63870711010d27_00024051 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6389d8a55fe891_23611923 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html>
 	<head>
@@ -48,7 +48,8 @@ function content_63870711010d27_00024051 (Smarty_Internal_Template $_smarty_tpl)
 		<link href="css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
 
 		<!-- Ionicons -->
-		
+		<link href="css/ionicons.min.css" rel="stylesheet" type="text/css"/>
+
 		<!-- Morris chart -->
 		<link href="css/morris/morris.css" rel="stylesheet" type="text/css"/>
 
@@ -195,8 +196,6 @@ _init.js"><?php echo '</script'; ?>
  src="js/cms.jquery.js"><?php echo '</script'; ?>
 >
 
-				
-			
 
 		<?php if (isset($_smarty_tpl->tpl_vars['pageList']->value)) {?>
 
@@ -253,7 +252,7 @@ _init.js"><?php echo '</script'; ?>
 			<i class="lab la-accessible-icon"></i>
 								<div class="sidebar-collapse">
 					<ul class="nav metismenu" id="side-menu">
-						<li class="nav-header">
+						<li class="nav-header nav-header-top-edit">
 							<div class="dropdown profile-element">
 								<a data-toggle="dropdown" class="dropdown-toggle" href="#">
 								<span class="clear"> 

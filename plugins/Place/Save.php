@@ -11,7 +11,8 @@ foreach ($db->fieldNames() as $name) {
 	$content=$db->myreal_escape_string($_REQUEST[$name]);
 	if(isset($_REQUEST[$name])) {
 		eval("\$db->set".$name."(\$content);");	
-	}	
+	}
+	$db->setPlaceDescEN($db->getPlaceDesc());	
 }	
 $upd = '';
 $newID = '';

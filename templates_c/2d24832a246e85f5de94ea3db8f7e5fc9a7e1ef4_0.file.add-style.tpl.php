@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.32, created on 2022-11-30 08:32:33
+/* Smarty version 3.1.32, created on 2022-12-06 11:45:38
   from 'c:\wamp\www\jamtransfer\templates\add-style.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.32',
-  'unifunc' => 'content_6387071183df95_97297914',
+  'unifunc' => 'content_638f2b624118f1_82615516',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '2d24832a246e85f5de94ea3db8f7e5fc9a7e1ef4' => 
     array (
       0 => 'c:\\wamp\\www\\jamtransfer\\templates\\add-style.tpl',
-      1 => 1669792276,
+      1 => 1670326618,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6387071183df95_97297914 (Smarty_Internal_Template $_smarty_tpl) {
+function content_638f2b624118f1_82615516 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 
 <style type="text/css" media="print">
@@ -28,6 +28,7 @@ function content_6387071183df95_97297914 (Smarty_Internal_Template $_smarty_tpl)
     body {
         font-family: 'Roboto', sans-serif;
         font-size: 10px !important;
+        scroll-behavior: smooth;
     }
     .nav, .footer { display:none; }
     @page { margin: 0.5cm; }
@@ -115,6 +116,7 @@ function content_6387071183df95_97297914 (Smarty_Internal_Template $_smarty_tpl)
     background-color: #3c72bc;
     border-color: #3c72bc;
     margin-left:15px;
+    box-shadow: 2px 2px 5px #424181;
 }
 .navbar-header .btn-primary-edit:hover{
     background-color: #36619f;
@@ -140,6 +142,28 @@ function content_6387071183df95_97297914 (Smarty_Internal_Template $_smarty_tpl)
     text-overflow:ellipsis; 
     width:60px; 
 }
+
+.nav-header-top-edit{
+    /* background: #525f7a; */
+    background: #476092;
+    margin: 5px 5px 10px 5px;
+    border-radius: 10px;
+    box-shadow: 5px 5px 16px #424181 inset;
+}
+
+.navbar-static-side{
+    box-shadow: 5px 5px 8px #888888;
+}
+
+.small-box, .small-box-footer{
+    border-radius: 10px;
+    box-shadow: 5px 5px 8px #616060;
+}
+
+.box-info, .box-primary{
+    box-shadow: 5px 5px 8px #616060;
+}
+
 
 
 /* pageListHeader.tpl */
@@ -197,6 +221,50 @@ function content_6387071183df95_97297914 (Smarty_Internal_Template $_smarty_tpl)
 .listTile:hover{ background: rgb(240, 240, 240); }
 /* off */
 /* .listTile:focus{ background: rgb(71, 42, 173); } */
+
+
+/* Bookings/Orders */
+.row-sticky{
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    background-color: white;
+    margin-left: 0px;
+    margin-right: 0px;
+    color: #0088cc;
+    background: #a1bdca;
+}
+
+.row .itemsheader-edit{
+    background: #dadbebc0;
+    border: 1px solid #c5c5c5;
+    position: sticky;
+    top: 20;
+    z-index: 5;
+    margin-left: 0px;
+    margin-right: 0px;
+}
+.row .itemsheader-edit .col-md-2{
+    border-right: 1px solid #c5c5c5;
+}
+
+.row .listTile-edit{
+    display: flex;
+    margin-left: 0px;
+    margin-right: 0px;
+    background:#d9d8d8;
+}
+.listTile-edit .col-md-2{
+    background: #86bbd6;
+    margin: 5px;
+    border-radius: 5px;
+    box-sizing: border-box;
+    box-shadow: 5px 5px 8px #616060;
+}
+.listTile-edit .col-md-2:hover{
+    background: #9fc7db;
+}
+
 
 </style><?php }
 }

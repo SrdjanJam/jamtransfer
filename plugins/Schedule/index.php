@@ -44,9 +44,16 @@ $ol = new v4_OrderLog();
 $BsColumnWidth = 12 / $NoColumns;
 $smarty->assign("BsColumnWidth",$BsColumnWidth);
 
+// promjena pickup time
+$whereL = " WHERE Description LIKE '%PickupTime%'";
+$olKeys = $ol->getKeysBy('ID', 'DESC', $whereL);
+foreach ($olKeys as $olid) {
+	$ol->getRow($olid);	
+	$olKeys2[]=$ol->getDetailsID();
+	}
 
 # Pretvaranje formata datuma
-function YMD_to_DMY ($date) {
+/*function YMD_to_DMY ($date) {
 	$elementi = explode ('-', $date);
 	$new_date = $elementi[2] . '.' . $elementi[1] . '.' . $elementi[0];
 	return $new_date;
@@ -119,18 +126,20 @@ function query_to_csv($db_conn, $query, $filename, $attachment = false, $headers
 	}
 
 	fclose($fp);
-}
+}*/
 // dobavi sve transfere za odabrani datum za trenutnog vlasnika timetable-a
 $q = "
-SELECT DetailsID, SubDriver, SubDriver2, SubDriver3 
-	FROM v4_OrderDetails 
+SELECT *
+	FROM v4_OrderDetails, v4_OrdersMaster, v4_AuthUsers 
 	WHERE 
-		DriverID = " . $_SESSION['UseDriverID'] . " 
+		v4_OrderDetails.DriverID = " . $_SESSION['UseDriverID'] . " 
 		AND PickupDate >= '" . $DateFrom . "' 
 		AND PickupDate <= '" . $DateTo . "' 
 		AND TransferStatus < '6' 
 		AND TransferStatus != '4' 
 		AND DriverConfStatus != '3' 
+		AND AuthUserID=UserID
+		AND MorderID=OrderID
 	ORDER BY DetailsID ASC";
 $r = $db->RunQuery($q);
 $subDArray = array();
@@ -139,6 +148,46 @@ while ($t = $r->fetch_object()) {
 	if ($t->SubDriver2 != 0) $subDArray[] = $t->SubDriver2;
 	if ($t->SubDriver3 != 0) $subDArray[] = $t->SubDriver3;
 	$ordersArray[]=(array) $t;
+	// da li flight time u datumskom konfliktu sa pickuptime ili droptime
+	$flightTimeConflict=false;
+	$op->getRow($t->PickupID);
+	if ($op->getPlaceType()==1 && $t->SubPickupTime<$t->FlightTime) $flightTimeConflict=true;
+	$op->getRow($t->DropID);
+	if ($op->getPlaceType()==1 && $t->SubPickupTime>$t->FlightTime) $flightTimeConflict=true;
+	$ordersArray = array_merge($ordersArray, array("flightTimeConflict" => $flightTimeConflict));
+	// promjena pickup time
+	$changedIcon = '';
+	$color= '';
+	if (in_array($t->DetailsID,$olKeys2)) {
+		$changedIcon = '<i class="fa fa-circle text-red"></i>';
+		$color='red';
+	}	
+	if ($t->SubPickupTime==$t->PickupTime) $color2='';
+	else $color2='red';
+	$carColor = 'text-lightgrey';
+	$vehicleType = $t->VehicleType;
+
+	if($t->VehicleType >= 100 and $t->VehicleType < 200) {
+		$carColor = 'text-green white';
+		$vehicleType = 'P'.($t->VehicleType - 100);
+	}
+	if($t->VehicleType >= 200) {
+		$carColor = 'text-red white';
+		$vehicleType = 'FC'.($t->VehicleType - 200);
+	}
+
+								
+	echo $vehicleType;
+	
+	
+	
+	$ordersArray = array_merge($ordersArray, array("changedIcon" => $changedIcon));
+	$ordersArray = array_merge($ordersArray, array("color" => $color));
+	$ordersArray = array_merge($ordersArray, array("color2" => $color2));
+	$ordersArray = array_merge($ordersArray, array("carColor" => $carColor));
+	$ordersArray = array_merge($ordersArray, array("vehicleType" => $vehicleType));
+
+	
 }
 $subDArray = array_unique($subDArray); // ostavi samo jedinstvene subdrivere u nizu
 $sdd="";

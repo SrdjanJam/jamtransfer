@@ -68,15 +68,83 @@ hr {
 				<div class="row orange white-text">
 					<strong>{$sdArray[pom].DriverName}</strong>	
 				</div>	
-				<div class="row white shadow" style="cursor:default; padding:8px !important;background:;">
+				<div class="row white shadow border">
 					{section name=pom2 loop=$ordersArray}
-					{if ($sdArray[pom].DriverID eq $ordersArray[pom2].SubDriver) or
-					($sdArray[pom].DriverID eq $ordersArray[pom2].SubDriver2) or
-					($sdArray[pom].DriverID eq $ordersArray[pom2].SubDriver3)}
-					<div class="row"> <!-- TRANSFER -->
-						{$ordersArray[pom2].DetailsID}
-					</div>
-					{/if}
+						{if ($sdArray[pom].DriverID eq $ordersArray[pom2].SubDriver) or
+							($sdArray[pom].DriverID eq $ordersArray[pom2].SubDriver2) or
+							($sdArray[pom].DriverID eq $ordersArray[pom2].SubDriver3)}
+							<div class="row"> <!-- TRANSFER -->
+								<span>
+								{if $ordersArray[pom2].UserLevelID eq '2'}
+									<i class='fa fa-user-secret'></i>
+										{if $ordersArray[pom2].Image ne ""}
+											<img src='i/agents/{$ordersArray[pom2].Image}'>	 
+											<b>{$ordersArray[pom2].AuthUserRealName}</b>
+										{/if}
+								{/if}
+								</span>					
+								<strong>
+									<a href="orders/detail/{$ordersArray[pom2].DetailsID}" target="_blank">
+									{$ordersArray[pom2].MOrderKey}-{$ordersArray[pom2].OrderID}-{$ordersArray[pom2].TNo}
+									</a>
+								</strong>
+							</div>							
+							<div class="row">
+								<h4>{$ordersArray[pom2].PickupName} - {$ordersArray[pom2].DropName}</h4>
+								{if $ordersArray[pom2].flightTimeConflict}
+									<span class='blink'>{$FLIGHT_TIME_CONFLICT}</span>
+									{$ordersArray[pom2].FlightTime}
+								{/if}	
+							</div>
+
+							<div class="row">
+								<div class="col-md-3">
+									{$ordersArray[pom2].changedIcon}
+						
+									<input type="text" class="timepicker w100 {$ordersArray[pom2].color}" id="SubPickupTime_{$ordersArray[pom2].DetailsID}"
+										name="SubPickupTime_{$ordersArray[pom2].DetailsID}"
+										value="{$ordersArray[pom2].SubPickupTime}" onchange="saveTransfer({$ordersArray[pom2].DetailsID},0)"
+										style="font-weight:bold;text-align:center"/>
+								</div>
+								<div class="col-md-3">
+									<input type="text" class="w100 {$ordersArray[pom2].color2}"  id="PickupTimeX_{$ordersArray[pom2].DetailsID}"
+										name="PickupTimeX_{$ordersArray[pom2].DetailsID}"
+										value="{$ordersArray[pom2].PickupTime}" 
+										style="font-weight:bold;text-align:center"/>
+								</div>
+								<!-- info icons -->
+								<div class="col-md-3 small center align-middle">
+
+										<div class="">
+											<i class="fa fa-user"></i>&nbsp;&nbsp;{$ordersArray[pom2].PaxNo}
+										</div>
+
+										<div class="">
+											<i class="fa fa-car {$ordersArray[pom2].carColor} pad4px"></i> 
+											{$ordersArray[pom2].vehicleType}
+											{if $ordersArray[pom2].VehiclesNo gt 1} x {$ordersArray[pom2].VehiclesNo} {/if}
+											<br>
+										</div>
+									</div>
+
+									<div class="col-md-3">
+										<div class="">
+											<i class="fa fa-clock-o"></i>
+											<input type="text" name="TransferDuration_<?=$i?>" 
+											id="TransferDuration_<?=$i?>" size="2" value="<?= $od->getTransferDuration() ?>" 
+											title="Transfer duration"  class="timepicker w75" onchange="saveTransfer(<?=$i?>,0)">
+										</div>	
+										<div>
+											<? if($extras != '') echo '<i class="fa fa-cubes red-text"></i>'; ?>
+										</div>
+									</div>
+							</div>
+
+
+
+							
+						{/if}
+					
 					{/section}
 				</div>	
 					
