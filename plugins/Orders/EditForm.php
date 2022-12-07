@@ -8,7 +8,7 @@
 		<input type="hidden" id="UserLevelID" name="UserLevelID"   value="{{details.UserLevelID}}">
 		
 		
-		<div class="box-header">
+		<div class="box-header box-header-edit">
 			<div class="box-tools pull-right">
 				<span id="statusMessage" class="text-info xl"></span>
 				{{#compare master.MSendEmail "==" 0}}
@@ -66,13 +66,13 @@
 			</div>
 		</div>
 
-		<div class="box-body">
-			<div class="nav-tabs-custom">
+		<div class="box-body box-body-edit">
+			<div class="nav-tabs-custom nav-tabs-custom-edit">
 				<ul class="nav nav-tabs dorder">
 					<li class="active"><a href="#tab_1{{details.DetailsID}}" data-toggle="tab"><?= TRANSFER ?></a></li>
 					<li><a href="#tab_2{{details.DetailsID}}" data-toggle="tab"><?= ORDER_LOG ?></a></li>
 				</ul>
-				<div class="tab-content">
+				<div class="tab-content tab-content-edit">
 
 					<div class="tab-pane active" id="tab_1{{details.DetailsID}}">
 						<div class="row dorder">

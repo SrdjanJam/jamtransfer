@@ -56,13 +56,7 @@
 {* End of default: *}
 
 
-
-
 {* TEMPLATES FOLDER: *}
-
-{* MY SEPARATE AREA: *}
-
-{* templates/index.tpl *}
 <style>
 
 .wrapper-edit{ padding:0px; }
@@ -127,28 +121,24 @@
 }
 
 .nav-header-top-edit{
-    /* background: #525f7a; */
     background: #476092;
     margin: 5px 5px 10px 5px;
     border-radius: 10px;
     box-shadow: 5px 5px 16px #424181 inset;
 }
 
-.navbar-static-side{
-    box-shadow: 5px 5px 8px #888888;
-}
+.navbar-static-side{ box-shadow: 5px 5px 8px #888888; }
 
 .small-box, .small-box-footer{
     border-radius: 10px;
     box-shadow: 5px 5px 8px #616060;
 }
 
-.box-info, .box-primary{
-    box-shadow: 5px 5px 8px #616060;
-}
+.box-info, .box-primary{ box-shadow: 5px 5px 8px #616060; }
 
+.nav-header-edit #set-as{ color: #545050; }
+.nav-header-edit #set-as, #set-as-2{ font-family:Georgia, 'Times New Roman', Times, serif; }
 
-{* End of templates/index.tpl *}
 
 /* pageListHeader.tpl */
 .form-group.group-edit{
@@ -162,16 +152,19 @@
     
 }
 
+
 {* END OF TEMPLATES: *}
 /* ------------------------------------------ */
 
-/* PLUGINS FOLDER: */
+
+{* PLUGINS FOLDER: *}
 
 /* DriversTransfers/templates/index.tpl and AgentsTransfers/templates/index.tpl */
 .row_e:hover{ background:rgb(229, 229, 240); }
 /* Off */ /* .row_e{ padding:0 0 3px 0; font-size:18px; } */
 .col-md-4_e{ margin-bottom: 5px; }
-/* ------------------------------------------ */
+
+
 /* Booking/templates */
 .book{ color:white; }
 .book label{ color:white; }
@@ -179,10 +172,12 @@
 #selectFrom_options a { color:white; }
 .row-add{ padding:20px; }
 .fa-user{ color:white; }
-/* ------------------------------------------ */
+
+
 /* DriverRoutes - ListTemplate.php */
 .listTitleEdit{ cursor:auto; }
-/* ------------------------------------------- */
+
+
 /* Route */
 #TerminalID{
 	height:20px;
@@ -193,19 +188,14 @@
     background: #0088cc;
     color: white;
 }
-/* --------------------------------------------- */
+
+
 /* ListTemplate.php */
 #show_items .row-edit{
     color:#3C8DBC;
     font-weight:bold;
     padding:5px 0;
 }
-
-/* Cursor pointer */
-.listTile{ cursor:pointer;}
-.listTile:hover{ background: rgb(240, 240, 240); }
-/* off */
-/* .listTile:focus{ background: rgb(71, 42, 173); } */
 
 
 /* Bookings/Orders */
@@ -250,5 +240,21 @@
     background: #9fc7db;
 }
 
+{* END OF PLUGINS FOLDER: *}
+
+
+/* Cursor pointer */
+.listTile{ cursor:pointer;}
+.listTile:hover{ background: rgb(240, 240, 240); }
+/* off */
+/* .listTile:focus{ background: rgb(71, 42, 173); } */
+
+
+.box-header-edit{
+    background: #3f67b9;
+    color: white;
+}
+
+.box-body-edit{ background: #3f67b9; }
 
 </style>
