@@ -1774,9 +1774,12 @@ Component: timeline
   -moz-box-shadow: inset 0px -2px 0px 0px rgba(0, 0, 0, 0.09);
   box-shadow: inset 0px -1px 0px 0px rgba(0, 0, 0, 0.09);
 }
+/* Changed */
 .btn.btn-default {
   background-color: #fafafa;
-  color: #666;
+  /* Changed */
+  /* color: #666; */
+  color: #f4f4f4;
   border-color: #ddd;
   border-bottom-color: #ddd;
 }
