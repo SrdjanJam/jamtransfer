@@ -22,7 +22,9 @@
 	
 ?>
 
+<!-- Script: -->
 <script type="text/x-handlebars-template" id="ItemListTemplate">
+
 	<input type='hidden' id='sortField' name='sortField'/>
 	<input type='hidden' id='sortDirection' name='sortDirection'/>
 	
@@ -30,53 +32,67 @@
 
 	<div class="row row-sticky">
 		<span class="right">
-			<i class="fa fa-filter"></i>
-			<i id='filtersDown' class="fa fa-angle-down" onclick="filtersDown()"></i>
-			<i id='filtersUP' class="fa fa-angle-up" onclick="filtersUP()"></i>	
+			<a>
+				<i id='filtersDown' class="fa fa-angle-down" onclick="filtersDown()"><i class="fa fa-filter" style="font-size:22px;"></i></i>
+				<i id='filtersUP' class="fa fa-angle-up" onclick="filtersUP()"><i class="fa fa-filter" style="font-size:22px;"></i></i>
+			</a>
 		</span>
-	</div>	
-	<div class="row itemsheader itemsheader-edit">
+	</div>
 
+	<div class="row itemsheader itemsheader-edit">
+		<!-- Order: -->
 		<div class="col-md-2">
-			<small class="badge blue text-black">Order</small><br>
-			<select id='yearsOrder' name='yearsOrder' value='0' onchange="allItems();">
+			<small class="badge blue text-black badge-edit">Order</small><br>
+
+			<select id='yearsOrder' class="select-top-edit" name='yearsOrder' value='0' onchange="allItems();">
 				<option value='0'>All years</option>
 			</select>
-			<button onclick="allSort('OrderDate','ASC')"><i class="fa fa-sort-asc"></i></button>
-			<button onclick="allSort('OrderDate','DESC')"><i class="fa fa-sort-desc"></i></button>
+
+			<button onclick="allSort('OrderDate','ASC')" class="button-asc-edit"><i class="fa fa-sort-asc"></i></button>
+			<button onclick="allSort('OrderDate','DESC')" class="button-desc-edit"><i class="fa fa-sort-desc"></i></button>
 			</br>
-			<input id='orderFromID' name='orderFromID'  placeholder="From ID" size='6' onchange="allItems();"/>
-			<button onclick="allSort('OrderID','ASC')"><i class="fa fa-sort-asc"></i></button>
-			<button onclick="allSort('OrderID','DESC')"><i class="fa fa-sort-desc"></i></button>
-		</div>		
-		<div class="col-md-2"> 
-			<small class="badge blue text-black">Payment</small><br>
-			{{paymentMethodSelect PaymentMethod}}<br>
-			<input id='paymentNumber' name='paymentNumber'  placeholder="Payment / Invoice No" onchange="allItems();"/>					
+
+			<input id='orderFromID' class="input-one" name='orderFromID'  placeholder="From ID" size='6' onchange="allItems();"/>
+
+			<button onclick="allSort('OrderID','ASC')" class="button-asc-edit"><i class="fa fa-sort-asc"></i></button>
+			<button onclick="allSort('OrderID','DESC')" class="button-desc-edit"><i class="fa fa-sort-desc"></i></button>
 		</div>
+		<!-- Payment: -->
 		<div class="col-md-2"> 
-			<small class="badge blue text-black">Transfer</small><br>		
-			<select id='yearsPickup' name='yearsPickup' value='0' onchange="allItems();">
+			<small class="badge blue text-black badge-edit">Payment</small><br>
+			{{paymentMethodSelect PaymentMethod}}<br>
+			<input id='paymentNumber' class="input-one" name='paymentNumber'  placeholder="Payment / Invoice No" onchange="allItems();"/>					
+		</div>
+		<!-- Transfer: -->
+		<div class="col-md-2"> 
+			<small class="badge blue text-black badge-edit">Transfer</small><br>
+
+			<select id='yearsPickup' class="select-top-edit" name='yearsPickup' value='0' onchange="allItems();">
 				<option value='0'>All years</option>
-			</select>		
-			<button onclick="allSort('PickupDate','ASC')"><i class="fa fa-sort-asc"></i></button>
-			<button onclick="allSort('PickupDate','DESC')"><i class="fa fa-sort-desc"></i></button>			
+			</select>
+
+			<button onclick="allSort('PickupDate','ASC')" class="button-asc-edit"><i class="fa fa-sort-asc"></i></button>
+			<button onclick="allSort('PickupDate','DESC')" class="button-desc-edit"><i class="fa fa-sort-desc"></i></button>			
 			</br>
-			<input id='locationName' name='locationName'  placeholder="Location Name" onchange="allItems();"/>					
-		</div>		
+
+			<input id='locationName' class="input-one" name='locationName'  placeholder="Location Name" onchange="allItems();"/>					
+		</div>
+		<!-- Driver: -->
 		<div class="col-md-2">
-			<small class="badge blue text-black">Driver</small><br>
-			<input id='driverName' name='driverName'  placeholder="Driver Name/ID" onchange="allItems();"/><br>				
+			<small class="badge blue text-black badge-edit">Driver</small><br>
+			<input id='driverName' class="input-one" name='driverName'  placeholder="Driver Name/ID" onchange="allItems();"/><br>				
 			{{driverConfStatusSelect DriverConfStatus}}
-		</div>			
+		</div>
+		<!-- Client/Agent: -->
 		<div class="col-md-2">
-			<small class="badge blue text-black">Client/Agent</small><br>
-			<input id='agentName' name='agentName'  placeholder="Agent Name/ID" onchange="allItems();"/><br>				
-			<input id='agentOrder' name='agentOrder'  placeholder="Order Key / Agent Order" onchange="allItems();"/><br>				
-		</div>			
+			<small class="badge blue text-black badge-edit">Client/Agent</small><br>
+			<input id='agentName' class="input-one" name='agentName'  placeholder="Agent Name/ID" onchange="allItems();"/><br>				
+			<input id='agentOrder' class="input-one" name='agentOrder'  placeholder="Order Key / Agent Order" onchange="allItems();"/><br>				
+		</div>
+		<!-- Passenger: -->
 		<div class="col-md-2">
-			<small class="badge blue text-black">Passenger</small><br>
-			<input id='passengerData' name='passengerData'  placeholder="Passenger Data" onchange="allItems();"/>					
+			<small class="badge blue text-black badge-edit">Passenger</small><br>
+			<input id='passengerData' class="input-one" name='passengerData'  placeholder="Passenger Data" onchange="allItems();"/>					
 		</div>			
 	</div>
 
@@ -148,6 +164,7 @@
 			</div>
 
 		</div>
+
 		<div id="ItemWrapper{{DetailsID}}" class="editFrame" style="display:none">
 			<div id="inlineContent{{DetailsID}}" class="row">
 				<div id="one_Item{{DetailsID}}" >

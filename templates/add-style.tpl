@@ -207,7 +207,7 @@
     margin-left: 0px;
     margin-right: 0px;
     color: #0088cc;
-    background: #a1bdca;
+    /* background: #a1bdca; */
 }
 
 .row .itemsheader-edit{
@@ -218,6 +218,8 @@
     z-index: 5;
     margin-left: 0px;
     margin-right: 0px;
+    padding: 5px;
+    box-shadow: 5px 5px 8px #616060;
 }
 .row .itemsheader-edit .col-md-2{
     border-right: 1px solid #c5c5c5;
@@ -240,7 +242,52 @@
     background: #9fc7db;
 }
 
-{* END OF PLUGINS FOLDER: *}
+.box-header-edit{
+    background: #3f67b9;
+    color: white;
+}
+.box-body-edit{ background: #3f67b9; }
+
+.select-top-edit{
+    color:rgb(78 66 66);
+    padding:2px;
+    border-radius: 5px !important;
+    margin-bottom: 2px;
+    box-shadow: 2px 2px 4px #616060 inset;
+}
+.select-bottom-edit{
+    color:rgb(78 66 66);
+    padding:2px;
+    border-radius: 5px !important;
+    margin-top: 2px;
+    box-shadow: 2px 2px 4px #616060 inset;
+}
+
+.button-asc-edit, .button-desc-edit{
+    box-shadow: 2px 2px 4px #616060;
+    background: #7ec2e9;
+    border: 1px solid rgb(152, 152, 155);
+}
+
+.input-one{ border-radius: 5px !important; }
+
+.select-top-edit, .select-bottom-edit, .button-asc-edit, .button-desc-edit, .input-one{
+    outline:none;
+    border:2px solid rgb(192, 199, 241);
+    font-family: 'Times New Roman', Times, serif;
+    color:rgb(59, 59, 66) !important;
+}
+.select-top-edit:focus, .select-bottom-edit:focus, .button-asc-edit:focus, .button-desc-edit:focus, .input-one:focus{
+    outline:none;
+    border:2px solid rgb(135, 147, 218);
+}
+
+.badge-edit{
+    color: #054ff3;
+    background: #f9f9f9;
+}
+
+{* END OF PLUGINS FOLDER: =====================  *}
 
 
 /* Cursor pointer */
@@ -250,11 +297,5 @@
 /* .listTile:focus{ background: rgb(71, 42, 173); } */
 
 
-.box-header-edit{
-    background: #3f67b9;
-    color: white;
-}
-
-.box-body-edit{ background: #3f67b9; }
 
 </style>
