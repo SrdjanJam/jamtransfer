@@ -257,13 +257,4 @@
 
 .box-body-edit{ background: #3f67b9; }
 
-/* Razmotriti */
-.nav-tabs-custom-edit{
-    /* background: #d3dbe9; */
-}
-
-.tab-content-edit{
-    /* background: #d3dbe9 !important; */
-}
-
 </style>
