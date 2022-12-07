@@ -818,7 +818,7 @@ uzima podatke iz languages u lng/en_init.js
 
 Handlebars.registerHelper("paymentMethodSelect", function(currentValue) {
 	function paymentMethodDropdown() {
-		var paymentMethodSelect = '<select name="PaymentMethod" id="PaymentMethod">';
+		var paymentMethodSelect = '<select name="PaymentMethod" id="PaymentMethod" class="select-top-edit">';
 
 		$.each (paymentMethod, function(i, val) {
 			paymentMethodSelect += '<option value="'+i+'" ';
@@ -844,7 +844,7 @@ uzima podatke iz languages u lng/en_init.js
 
 Handlebars.registerHelper("driverConfStatusSelect", function(currentValue) {
 	function driverConfStatusDropdown() {
-		var driverConfStatusSelect = '<select name="driverConfStatus" id="driverConfStatus">';
+		var driverConfStatusSelect = '<select name="driverConfStatus" id="driverConfStatus" class="select-bottom-edit">';
 
 		$.each (driverConfStatus, function(i, val) {
 			driverConfStatusSelect += '<option value="'+i+'" ';
