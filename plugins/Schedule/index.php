@@ -1,17 +1,9 @@
 <?
 
 // Timetable sa prikazom transfera po vozacima za odabrani datum
-// za svakog vozaca za odabran datum su izlistani transferi u stupcima (poput kalendarskog prikaza na dashboardu)
-// POSTUPAK:
-// - dobavi sve transfere za odabrani datum
-// - dobavi sve vozace koji su vec postavljeni za te transfere (ovo bi moglo biti bez rezultata)
-// - za svakog vozaca za odabrani datum ponovno dobavi (samo njegove) transfere
-// - vozace izlistati u stupcima, njihove transfere u redovima unutar stupaca -
 
-//if (!isset($DateFrom)) $DateFrom = date("Y-m-d");
 if (!isset($DateFrom)) $DateFrom = "2022-09-04";
 else $DateFrom	= $_POST["DateFrom"];
-//if (!isset($DateTo)) $DateTo = date("Y-m-d");
 if (!isset($DateTo)) $DateTo = "2022-09-04";
 else $DateTo		= $_POST["DateTo"];
 if (!isset($NoColumns)) $NoColumns = 3;
@@ -52,81 +44,6 @@ foreach ($olKeys as $olid) {
 	$olKeys2[]=$ol->getDetailsID();
 	}
 
-# Pretvaranje formata datuma
-/*function YMD_to_DMY ($date) {
-	$elementi = explode ('-', $date);
-	$new_date = $elementi[2] . '.' . $elementi[1] . '.' . $elementi[0];
-	return $new_date;
-}
-
-function getOtherTransferID ($DetailsID) {
-	$otherDetailsID = null;
-	$d1 = new v4_OrderDetails();
-	$d2 = new v4_OrderDetails();
-	$d1->getRow($DetailsID);
-	$MOrderID = $d1->getOrderID();
-	$ArrayDetailID = $d2->getKeysBy('DetailsID', 'ASC', 'WHERE OrderID = '.$MOrderID);
-
-	if (count($ArrayDetailID) == 2) {
-		if ($DetailsID == $ArrayDetailID[0]) {
-			$otherDetailsID = $ArrayDetailID[1];
-		}
-		else if ($DetailsID == $ArrayDetailID[1]) {
-			$otherDetailsID = $ArrayDetailID[0];
-		}
-	}
-	return $otherDetailsID;
-}
-
-function getOtherTransferIDArray ($DetailsID,$details) {
-	$key = array_search($DetailsID, array_column($details, 'DetailsID'));
-	$oid=$details[$key]['OrderID'];
-	$keys = array_keys(array_column($details, 'OrderID'),$oid);
-	$otherDetailsID=null;
-	if (count($keys) == 2) {
-		if ($DetailsID == $details[$keys[0]]['DetailsID']) {
-			$otherDetailsID=$details[$keys[1]]['DetailsID'];
-		}
-		else if ($DetailsID == $details[$keys[1]]['DetailsID']) {
-			$otherDetailsID=$details[$keys[0]]['DetailsID'];
-		}		
-	}	
-	return $otherDetailsID;
-}
-
-# hidden polja
-function hiddenField($name,$value) {
-	echo '<input name="'.$name.'" id="'.$name.'" type="hidden" value="'.$value.'" />';
-}
-
-function query_to_csv($db_conn, $query, $filename, $attachment = false, $headers = true) {
-	if($attachment) {
-		// send response headers to the browser
-		header( 'Content-Type: text/csv' );
-		header( 'Content-Disposition: attachment;filename='.$filename);
-		$fp = fopen('php://output', 'w');
-	} else {
-		$fp = fopen($filename, 'w');
-	}
-
-	$result = mysql_query($query, $db_conn) or die( mysql_error( $db_conn ) );
-
-	if($headers) {
-		// output header row (if at least one row exists)
-		$row = mysql_fetch_assoc($result);
-		if($row) {
-		    fputcsv($fp, array_keys($row));
-		    // reset pointer back to beginning
-		    mysql_data_seek($result, 0);
-		}
-	}
-
-	while($row = mysql_fetch_assoc($result)) {
-		fputcsv($fp, $row);
-	}
-
-	fclose($fp);
-}*/
 // dobavi sve transfere za odabrani datum za trenutnog vlasnika timetable-a
 $q = "
 SELECT *
@@ -144,50 +61,55 @@ SELECT *
 $r = $db->RunQuery($q);
 $subDArray = array();
 while ($t = $r->fetch_object()) {
+	//niz vozaca koji imaju transfere u zadatom vremenu
 	if ($t->SubDriver != 0) $subDArray[] = $t->SubDriver;
 	if ($t->SubDriver2 != 0) $subDArray[] = $t->SubDriver2;
 	if ($t->SubDriver3 != 0) $subDArray[] = $t->SubDriver3;
-	$ordersArray[]=(array) $t;
+	
 	// da li flight time u datumskom konfliktu sa pickuptime ili droptime
-	$flightTimeConflict=false;
-	$op->getRow($t->PickupID);
-	if ($op->getPlaceType()==1 && $t->SubPickupTime<$t->FlightTime) $flightTimeConflict=true;
-	$op->getRow($t->DropID);
-	if ($op->getPlaceType()==1 && $t->SubPickupTime>$t->FlightTime) $flightTimeConflict=true;
-	$ordersArray = array_merge($ordersArray, array("flightTimeConflict" => $flightTimeConflict));
-	// promjena pickup time
+	$t->flightTimeConflict=false;
+	if (abs($t->SubPickupTime-$t->FlightTime)>12) $t->flightTimeConflict=true;
+	// da li je bilo promene pickup time
 	$changedIcon = '';
-	$color= '';
+	$t->color= '';
+	$t->color2= '';
 	if (in_array($t->DetailsID,$olKeys2)) {
-		$changedIcon = '<i class="fa fa-circle text-red"></i>';
-		$color='red';
+		$t->changedIcon = '<i class="fa fa-circle text-red"></i>';
+		$t->color='red';
 	}	
 	if ($t->SubPickupTime==$t->PickupTime) $color2='';
-	else $color2='red';
-	$carColor = 'text-lightgrey';
-	$vehicleType = $t->VehicleType;
-
+	else $t->color2='red';
+	$t->carColor = 'text-lightgrey';
+	// naziv tipa vozila	
+	$t->VehicleTypeName = $t->VehicleType;
 	if($t->VehicleType >= 100 and $t->VehicleType < 200) {
-		$carColor = 'text-green white';
-		$vehicleType = 'P'.($t->VehicleType - 100);
+		$t->carColor = 'text-green white';
+		$t->VehicleTypeName = 'P'.($t->VehicleType - 100);
 	}
 	if($t->VehicleType >= 200) {
-		$carColor = 'text-red white';
-		$vehicleType = 'FC'.($t->VehicleType - 200);
+		$t->carColor = 'text-red white';
+		$t->VehicleTypeName = 'FC'.($t->VehicleType - 200);
 	}
+	// rjesenje problema kad su SubPickupDate ili SubPickupTime prazni
+	if($t->SubPickupDate == '0000-00-00') $t->SubPickupDate=$t->PickupDate ;
+	if($t->SubPickupTime == '') $t->SubPickupTime=$t->PickupTime ;
+	if(!empty($t->RouteID) && empty($t->TransferDuration) ) {
+		$or->getRow($t->RouteID);
+		$t->TransferDuration=$or->getDuration();
+	}	
+	// dohvacanje extra usluga
+	$t->extras = '';
+	$oeArray = $oe->getKeysBy('OrderDetailsID', 'ASC', 'WHERE OrderDetailsID = '.$t->DetailsID);
 
-								
-	echo $vehicleType;
+	foreach ($oeArray as $val => $ID) {
+		$oe->getRow($ID);
+		$t->extras .= $oe->getServiceName();
+		$t->extras .= '<br>';
+	}
 	
-	
-	
-	$ordersArray = array_merge($ordersArray, array("changedIcon" => $changedIcon));
-	$ordersArray = array_merge($ordersArray, array("color" => $color));
-	$ordersArray = array_merge($ordersArray, array("color2" => $color2));
-	$ordersArray = array_merge($ordersArray, array("carColor" => $carColor));
-	$ordersArray = array_merge($ordersArray, array("vehicleType" => $vehicleType));
-
-	
+	$order_row=(array) $t;
+		
+	$ordersArray[]=$order_row;
 }
 $subDArray = array_unique($subDArray); // ostavi samo jedinstvene subdrivere u nizu
 $sdd="";
@@ -198,20 +120,31 @@ $sdd = substr($sdd,0,strlen($sdd)-1);
 
 // dobavi vozace od trenutnog vlasnika timetable-a, slozi ih u sdArray sa podacima
 $q = "SELECT * FROM v4_AuthUsers";
-$q .= " WHERE AuthUserID in (".$sdd.") ORDER BY AuthUserRealName ASC";
+$q .= "	WHERE DriverID = " . $_SESSION['UseDriverID']; 
+//$q .= " WHERE AuthUserID in (".$sdd.") ORDER BY AuthUserRealName ASC";
 $r = $db->RunQuery($q);
 $sdArray = array();
+$sddArray = array();
 while ($d = $r->fetch_object()) {
-	$row = array();
-    $row['DriverID'] = $d->AuthUserID;
-    $row['DriverName'] = $d->AuthUserRealName;
-	$row['Active'] = $d->Active;
-	$row['Mob'] = $d->AuthUserMob;
-    $sdArray[] = $row;
+	if (in_array($d->AuthUserID,$subDArray)) {
+		$row = array();
+		$row['DriverID'] = $d->AuthUserID;
+		$row['DriverName'] = $d->AuthUserRealName;
+		$row['Active'] = $d->Active;
+		$row['Mob'] = $d->AuthUserMob;
+		$sdArray[] = $row;
+	}	
+	if ($d->Active==1) {
+		$row = array();
+		$row['DriverID'] = $d->AuthUserID;
+		$row['DriverName'] = $d->AuthUserRealName;
+		$sddArray[] = $row;
+	}
 }
 
 $smarty->assign('ordersArray',$ordersArray);
 $smarty->assign('sdArray',$sdArray);
+$smarty->assign('sddArray',$sddArray);
 
 
 ?>

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.32, created on 2022-12-06 11:45:38
+/* Smarty version 3.1.32, created on 2022-12-08 09:51:44
   from 'c:\wamp\www\jamtransfer\templates\add-style.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.32',
-  'unifunc' => 'content_638f2b624118f1_82615516',
+  'unifunc' => 'content_6391a5a05d7f76_92641838',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '2d24832a246e85f5de94ea3db8f7e5fc9a7e1ef4' => 
     array (
       0 => 'c:\\wamp\\www\\jamtransfer\\templates\\add-style.tpl',
-      1 => 1670326618,
+      1 => 1670420155,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_638f2b624118f1_82615516 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6391a5a05d7f76_92641838 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 
 <style type="text/css" media="print">
@@ -74,10 +74,6 @@ function content_638f2b624118f1_82615516 (Smarty_Internal_Template $_smarty_tpl)
     }
 
 </style>
-
-
-
-
 
 
 <style>
@@ -144,26 +140,23 @@ function content_638f2b624118f1_82615516 (Smarty_Internal_Template $_smarty_tpl)
 }
 
 .nav-header-top-edit{
-    /* background: #525f7a; */
     background: #476092;
     margin: 5px 5px 10px 5px;
     border-radius: 10px;
     box-shadow: 5px 5px 16px #424181 inset;
 }
 
-.navbar-static-side{
-    box-shadow: 5px 5px 8px #888888;
-}
+.navbar-static-side{ box-shadow: 5px 5px 8px #888888; }
 
 .small-box, .small-box-footer{
     border-radius: 10px;
     box-shadow: 5px 5px 8px #616060;
 }
 
-.box-info, .box-primary{
-    box-shadow: 5px 5px 8px #616060;
-}
+.box-info, .box-primary{ box-shadow: 5px 5px 8px #616060; }
 
+.nav-header-edit #set-as{ color: #545050; }
+.nav-header-edit #set-as, #set-as-2{ font-family:Georgia, 'Times New Roman', Times, serif; }
 
 
 /* pageListHeader.tpl */
@@ -178,15 +171,17 @@ function content_638f2b624118f1_82615516 (Smarty_Internal_Template $_smarty_tpl)
     
 }
 
+
 /* ------------------------------------------ */
 
-/* PLUGINS FOLDER: */
+
 
 /* DriversTransfers/templates/index.tpl and AgentsTransfers/templates/index.tpl */
 .row_e:hover{ background:rgb(229, 229, 240); }
 /* Off */ /* .row_e{ padding:0 0 3px 0; font-size:18px; } */
 .col-md-4_e{ margin-bottom: 5px; }
-/* ------------------------------------------ */
+
+
 /* Booking/templates */
 .book{ color:white; }
 .book label{ color:white; }
@@ -194,10 +189,12 @@ function content_638f2b624118f1_82615516 (Smarty_Internal_Template $_smarty_tpl)
 #selectFrom_options a { color:white; }
 .row-add{ padding:20px; }
 .fa-user{ color:white; }
-/* ------------------------------------------ */
+
+
 /* DriverRoutes - ListTemplate.php */
 .listTitleEdit{ cursor:auto; }
-/* ------------------------------------------- */
+
+
 /* Route */
 #TerminalID{
 	height:20px;
@@ -208,19 +205,14 @@ function content_638f2b624118f1_82615516 (Smarty_Internal_Template $_smarty_tpl)
     background: #0088cc;
     color: white;
 }
-/* --------------------------------------------- */
+
+
 /* ListTemplate.php */
 #show_items .row-edit{
     color:#3C8DBC;
     font-weight:bold;
     padding:5px 0;
 }
-
-/* Cursor pointer */
-.listTile{ cursor:pointer;}
-.listTile:hover{ background: rgb(240, 240, 240); }
-/* off */
-/* .listTile:focus{ background: rgb(71, 42, 173); } */
 
 
 /* Bookings/Orders */
@@ -232,7 +224,7 @@ function content_638f2b624118f1_82615516 (Smarty_Internal_Template $_smarty_tpl)
     margin-left: 0px;
     margin-right: 0px;
     color: #0088cc;
-    background: #a1bdca;
+    /* background: #a1bdca; */
 }
 
 .row .itemsheader-edit{
@@ -243,6 +235,8 @@ function content_638f2b624118f1_82615516 (Smarty_Internal_Template $_smarty_tpl)
     z-index: 5;
     margin-left: 0px;
     margin-right: 0px;
+    padding: 5px;
+    box-shadow: 5px 5px 8px #616060;
 }
 .row .itemsheader-edit .col-md-2{
     border-right: 1px solid #c5c5c5;
@@ -264,6 +258,60 @@ function content_638f2b624118f1_82615516 (Smarty_Internal_Template $_smarty_tpl)
 .listTile-edit .col-md-2:hover{
     background: #9fc7db;
 }
+
+.box-header-edit{
+    background: #3f67b9;
+    color: white;
+}
+.box-body-edit{ background: #3f67b9; }
+
+.select-top-edit{
+    color:rgb(78 66 66);
+    padding:2px;
+    border-radius: 5px !important;
+    margin-bottom: 2px;
+    box-shadow: 2px 2px 4px #616060 inset;
+}
+.select-bottom-edit{
+    color:rgb(78 66 66);
+    padding:2px;
+    border-radius: 5px !important;
+    margin-top: 2px;
+    box-shadow: 2px 2px 4px #616060 inset;
+}
+
+.button-asc-edit, .button-desc-edit{
+    box-shadow: 2px 2px 4px #616060;
+    background: #7ec2e9;
+    border: 1px solid rgb(152, 152, 155);
+}
+
+.input-one{ border-radius: 5px !important; }
+
+.select-top-edit, .select-bottom-edit, .button-asc-edit, .button-desc-edit, .input-one{
+    outline:none;
+    border:2px solid rgb(192, 199, 241);
+    font-family: 'Times New Roman', Times, serif;
+    color:rgb(59, 59, 66) !important;
+}
+.select-top-edit:focus, .select-bottom-edit:focus, .button-asc-edit:focus, .button-desc-edit:focus, .input-one:focus{
+    outline:none;
+    border:2px solid rgb(135, 147, 218);
+}
+
+.badge-edit{
+    color: #054ff3;
+    background: #f9f9f9;
+}
+
+
+
+/* Cursor pointer */
+.listTile{ cursor:pointer;}
+.listTile:hover{ background: rgb(240, 240, 240); }
+/* off */
+/* .listTile:focus{ background: rgb(71, 42, 173); } */
+
 
 
 </style><?php }

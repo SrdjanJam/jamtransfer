@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.32, created on 2022-12-02 11:51:17
+/* Smarty version 3.1.32, created on 2022-12-08 09:51:43
   from 'C:\wamp\www\jamtransfer\templates\index.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.32',
-  'unifunc' => 'content_6389d8a55fe891_23611923',
+  'unifunc' => 'content_6391a59fd64477_12669798',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'a1818a92b5a2f041fd91a227dabc592dea38fac2' => 
     array (
       0 => 'C:\\wamp\\www\\jamtransfer\\templates\\index.tpl',
-      1 => 1669888539,
+      1 => 1670400158,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:pageList.tpl' => 1,
   ),
 ),false)) {
-function content_6389d8a55fe891_23611923 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6391a59fd64477_12669798 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html>
 	<head>
@@ -274,7 +274,7 @@ _init.js"><?php echo '</script'; ?>
 						
 						<?php if (isset($_SESSION['UseDriverName'])) {?>
 													<li class="nav-header nav-header-edit">
-								<h3 style="color: #545050;">Set as:</h3>
+								<h3 id="set-as">Set as:</h3>
 								<h3 class="cut-name"><?php echo $_SESSION['UseDriverName'];?>
 </h3>
 								<a href="setout.php" id="a-setout">Setout &nbsp;<i class="fas fa-sign-out-alt"></i></a>	
@@ -284,7 +284,7 @@ _init.js"><?php echo '</script'; ?>
 								<li class="nav-header nav-header-edit">
 									<a href="satAsDriver/<?php echo $_COOKIE['UseDriverID'];?>
 " style="padding-left:0px;padding-right:0px;">
-																				<h3>Set as: <i class="fas fa-sign-in-alt"></i></h3>
+										<h3 id="set-us-2">Set as: <i class="fas fa-sign-in-alt"></i></h3>
 										<h3 class="cut-name-2"><?php echo $_COOKIE['UseDriverName'];?>
 </h3>
 									</a>
@@ -515,5 +515,8 @@ echo $_prefixVariable1;?>
 		}); // End of click
 	}); // End of document.ready
 <?php echo '</script'; ?>
-><?php }
+>
+
+
+<?php }
 }

@@ -113,35 +113,77 @@ hr {
 										style="font-weight:bold;text-align:center"/>
 								</div>
 								<!-- info icons -->
-								<div class="col-md-3 small center align-middle">
-
-										<div class="">
-											<i class="fa fa-user"></i>&nbsp;&nbsp;{$ordersArray[pom2].PaxNo}
-										</div>
-
-										<div class="">
-											<i class="fa fa-car {$ordersArray[pom2].carColor} pad4px"></i> 
-											{$ordersArray[pom2].vehicleType}
-											{if $ordersArray[pom2].VehiclesNo gt 1} x {$ordersArray[pom2].VehiclesNo} {/if}
-											<br>
-										</div>
+								<div class="col-md-3 small align-middle">
+									<div>
+										<i class="fa fa-user"></i>&nbsp;&nbsp;{$ordersArray[pom2].PaxNo}
 									</div>
 
-									<div class="col-md-3">
-										<div class="">
-											<i class="fa fa-clock-o"></i>
-											<input type="text" name="TransferDuration_<?=$i?>" 
-											id="TransferDuration_<?=$i?>" size="2" value="<?= $od->getTransferDuration() ?>" 
-											title="Transfer duration"  class="timepicker w75" onchange="saveTransfer(<?=$i?>,0)">
-										</div>	
-										<div>
-											<? if($extras != '') echo '<i class="fa fa-cubes red-text"></i>'; ?>
-										</div>
+									<div >
+										<i class="fa fa-car {$ordersArray[pom2].carColor} pad4px"></i> 
+										{$ordersArray[pom2].VehicleTypeName}
+										{if $ordersArray[pom2].VehiclesNo gt 1} x {$ordersArray[pom2].VehiclesNo} {/if}
+										<br>
 									</div>
+								</div>
+
+								<div class="col-md-3">
+									<div>
+										<i class="fa fa-clock-o"></i>
+										<input type="text" name="TransferDuration_{$ordersArray[pom2].DetailsID}" 
+										id="TransferDuration_{$ordersArray[pom2].DetailsID}" size="2" value="{$ordersArray[pom2].TransferDuration}" 
+										title="Transfer duration"  onchange="saveTransfer({$ordersArray[pom2].DetailsID},0)">
+									</div>	
+									<div>
+										{if $ordersArray[pom2].extras ne ''}<i class="fa fa-cubes red-text"></i>{/if}
+									</div>
+								</div>
 							</div>
 
-
-
+							<div class="row" style="line-height:140%">
+								<div class="col-md-5">
+									<select style="width:100%;height:2em" class="subdriver1" data-id="{$ordersArray[pom2].DetailsID}"
+									id="SubDriver_{$ordersArray[pom2].DetailsID}" name="SubDriver_{$ordersArray[pom2].DetailsID}" onchange="saveTransfer({$ordersArray[pom2].DetailsID},0)">
+										<option value='0'> --- </option>
+										{section name=pom3 loop=$sddArray}
+											<option value="{$sddArray[pom3].DriverID}" data-mob="{$sddArray[pom3].Mob}";
+											{if $sddArray[pom3].DriverID eq $ordersArray[pom2].SubDriver}
+												selected
+											{/if}	
+											>{$sddArray[pom3].DriverName}</option>';
+										{/section}	
+									</select>
+								</div>
+							</div>							
+							<div class="row {if  $ordersArray[pom2].SubDriver2 eq 0}hidden{/if}" style="line-height:140%">
+								<div class="col-md-5">
+									<select style="width:100%;height:2em" class="subdriver1" data-id="{$ordersArray[pom2].DetailsID}"
+									id="SubDriver_{$ordersArray[pom2].DetailsID}" name="SubDriver_{$ordersArray[pom2].DetailsID}" onchange="saveTransfer({$ordersArray[pom2].DetailsID},0)">
+										<option value='0'> --- </option>
+										{section name=pom3 loop=$sddArray}
+											<option value="{$sddArray[pom3].DriverID}" data-mob="{$sddArray[pom3].Mob}";
+											{if $sddArray[pom3].DriverID eq $ordersArray[pom2].SubDriver2}
+												selected
+											{/if}	
+											>{$sddArray[pom3].DriverName}</option>';
+										{/section}	
+									</select>
+								</div>
+							</div>
+							<div class="row {if  $ordersArray[pom2].SubDriver3 eq 0}hidden{/if}" style="line-height:140%">
+								<div class="col-md-5">
+									<select style="width:100%;height:2em" class="subdriver1" data-id="{$ordersArray[pom2].DetailsID}"
+									id="SubDriver_{$ordersArray[pom2].DetailsID}" name="SubDriver_{$ordersArray[pom2].DetailsID}" onchange="saveTransfer({$ordersArray[pom2].DetailsID},0)">
+										<option value='0'> --- </option>
+										{section name=pom3 loop=$sddArray}
+											<option value="{$sddArray[pom3].DriverID}" data-mob="{$sddArray[pom3].Mob}";
+											{if $sddArray[pom3].DriverID eq $ordersArray[pom2].SubDriver3}
+												selected
+											{/if}	
+											>{$sddArray[pom3].DriverName}</option>';
+										{/section}	
+									</select>
+								</div>
+							</div>
 							
 						{/if}
 					
