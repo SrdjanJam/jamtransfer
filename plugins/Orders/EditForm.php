@@ -12,17 +12,17 @@
 			<div class="box-tools pull-right">
 				<span id="statusMessage" class="text-info xl"></span>
 				{{#compare master.MSendEmail "==" 0}}
-					<button class="btn btn-default dorder dpassenger" onclick="toggleSurvey('{{master.MOrderID}}', false, this)">
+					<button class="btn btn-default dorder dpassenger btn-default-edit" onclick="toggleSurvey('{{master.MOrderID}}', false, this)">
 						<i class="fa fa-list-alt"></i> Disable Survey
 					</button>
 				{{/compare}}
 				{{#compare master.MSendEmail "==" 2}}
-					<button class="btn btn-default dorder" onclick="toggleSurvey('{{master.MOrderID}}', true, this)">
+					<button class="btn btn-default dorder btn-default-edit" onclick="toggleSurvey('{{master.MOrderID}}', true, this)">
 						<i class="fa fa-list-alt"></i> Enable Survey
 					</button>
 				{{/compare}}	
 				{{#compare details.DriverConfStatus ">" 0}}
-					<button class="btn btn-default dorder dpdriver" onclick="return completedTransfer('{{details.DetailsID}}','');">
+					<button class="btn btn-default dorder dpdriver btn-default-edit" onclick="return completedTransfer('{{details.DetailsID}}','');">
 						<i class="fa fa-check-circle l"></i> <?= MARK_COMPLETED ?>
 					</button>
 				{{/compare}}
