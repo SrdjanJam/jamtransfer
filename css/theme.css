@@ -1777,9 +1777,7 @@ Component: timeline
 /* Changed */
 .btn.btn-default {
   background-color: #fafafa;
-  /* Changed */
-  /* color: #666; */
-  color: #f4f4f4;
+  color: #666;
   border-color: #ddd;
   border-bottom-color: #ddd;
 }
