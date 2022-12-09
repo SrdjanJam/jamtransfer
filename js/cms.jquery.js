@@ -955,7 +955,7 @@ uzima podatke iz statusDescription objekta u init.js!
 
 Handlebars.registerHelper("transferStatusSelect", function(currentStatus) {
 	function transferStatusDropdown() {
-		var statusDropdown = '<select name="TransferStatus" id="TransferStatus">';
+		var statusDropdown = '<select name="TransferStatus" id="TransferStatus" class="select-top-edit">';
 
 		$.each (statusDescription, function(i, val) {
 			var id = i;
