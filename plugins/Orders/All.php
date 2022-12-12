@@ -174,44 +174,46 @@ $out = array();
 $flds = array();
 
 $dbWhere = " " . $_REQUEST['where'];
-$dbWhere .= $filter . $userFilter;
+$dbWhere .= $filter;
 if (isset($_SESSION['UseDriverID']))  $dbWhere .=	" AND v4_OrderDetails.DriverID = '".$_SESSION['UseDriverID']."' ";
 
-$documentType=$_REQUEST['document'];
-if ($documentType>0 && $documentType<10) {	 
-	//$where = ' WHERE DocumentType = '.$documentType;
-	$where='';
-	$group = ' GROUP BY OrderID';
-	$odock = $odoc->getKeysByMax('ID', 'desc' , $where , $group );
-	$orders_arr="";
-	if (count($odock)>0) {
-		foreach ($odock as $dnn => $key)
-		{
-			# document row
-			$odoc->getRow($key); 
-			$documentOrderID=$odoc->getOrderID();
-			if ($odoc->getDocumentType()==$documentType)
-				$orders_arr.=$documentOrderID.",";
+if (isset($_REQUEST['document'])) {
+	$documentType=$_REQUEST['document'];
+	if ($documentType>0 && $documentType<10) {	 
+		//$where = ' WHERE DocumentType = '.$documentType;
+		$where='';
+		$group = ' GROUP BY OrderID';
+		$odock = $odoc->getKeysByMax('ID', 'desc' , $where , $group );
+		$orders_arr="";
+		if (count($odock)>0) {
+			foreach ($odock as $dnn => $key)
+			{
+				# document row
+				$odoc->getRow($key); 
+				$documentOrderID=$odoc->getOrderID();
+				if ($odoc->getDocumentType()==$documentType)
+					$orders_arr.=$documentOrderID.",";
+			}
+			$orders_arr = substr($orders_arr,0,strlen($orders_arr)-1);
+			$dbWhere .=" AND OrderID IN (".$orders_arr.") ";
 		}
+	}	
+
+
+	if ($documentType>9) {	
+		$cd=$documentType-10;
+		$query="SELECT * FROM `v4_VoutcherOrderRequests` WHERE ConfirmDecline=".$cd;
+		$result = $db->RunQuery($query);
+		$orders_arr="";
+		while($row = $result->fetch_array(MYSQLI_ASSOC)){ 			
+			$orders_arr.=$row['OrderID'].",";
+		}
+
 		$orders_arr = substr($orders_arr,0,strlen($orders_arr)-1);
-		$dbWhere .=" AND OrderID IN (".$orders_arr.") ";
+		$dbWhere .=" AND OrderID IN (".$orders_arr.") "; 
+
 	}
 }
-
-if ($documentType>9) {	
-	$cd=$documentType-10;
-	$query="SELECT * FROM `v4_VoutcherOrderRequests` WHERE ConfirmDecline=".$cd;
-	$result = $db->RunQuery($query);
-	$orders_arr="";
-	while($row = $result->fetch_array(MYSQLI_ASSOC)){ 			
-		$orders_arr.=$row['OrderID'].",";
-	}
-
-	$orders_arr = substr($orders_arr,0,strlen($orders_arr)-1);
-	$dbWhere .=" AND OrderID IN (".$orders_arr.") "; 
-
-}
-
 # dodavanje search parametra u qry
 # DB_Where sad ima sve potrebno za qry
 /*if ( $_REQUEST['Search'] != "" )
@@ -336,8 +338,8 @@ if (count($dbk) != 0) {
 				
 		# get fields and values
 		$masterFlds = $om->fieldValues();
-		$masterFlds['CountryPhonePrefix'] = getCountryPrefix( $om->getMCardCountry() );
-
+		if ($om->getMCardCountry()!=0) $masterFlds['CountryPhonePrefix'] = getCountryPrefix( $om->getMCardCountry() );
+		else $masterFlds['CountryPhonePrefix'] = '';
 		$out[] = array_merge($detailFlds , $masterFlds);    	  	
     }
 }

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.32, created on 2022-12-08 09:51:44
+/* Smarty version 3.1.32, created on 2022-12-12 14:20:29
   from 'c:\wamp\www\jamtransfer\templates\add-style.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.32',
-  'unifunc' => 'content_6391a5a05d7f76_92641838',
+  'unifunc' => 'content_63972a9d41ae82_47192517',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '2d24832a246e85f5de94ea3db8f7e5fc9a7e1ef4' => 
     array (
       0 => 'c:\\wamp\\www\\jamtransfer\\templates\\add-style.tpl',
-      1 => 1670420155,
+      1 => 1670850435,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6391a5a05d7f76_92641838 (Smarty_Internal_Template $_smarty_tpl) {
+function content_63972a9d41ae82_47192517 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 
 <style type="text/css" media="print">
@@ -304,6 +304,12 @@ function content_6391a5a05d7f76_92641838 (Smarty_Internal_Template $_smarty_tpl)
     background: #f9f9f9;
 }
 
+.btn-default-edit{
+    color:white !important;
+}
+.btn-default-edit:hover{
+    color:black !important;
+}
 
 
 /* Cursor pointer */
@@ -311,6 +317,8 @@ function content_6391a5a05d7f76_92641838 (Smarty_Internal_Template $_smarty_tpl)
 .listTile:hover{ background: rgb(240, 240, 240); }
 /* off */
 /* .listTile:focus{ background: rgb(71, 42, 173); } */
+
+
 
 
 

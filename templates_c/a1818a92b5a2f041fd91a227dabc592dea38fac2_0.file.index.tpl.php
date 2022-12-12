@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.32, created on 2022-12-08 09:51:43
+/* Smarty version 3.1.32, created on 2022-12-12 14:32:31
   from 'C:\wamp\www\jamtransfer\templates\index.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.32',
-  'unifunc' => 'content_6391a59fd64477_12669798',
+  'unifunc' => 'content_63972d6f895759_55961629',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'a1818a92b5a2f041fd91a227dabc592dea38fac2' => 
     array (
       0 => 'C:\\wamp\\www\\jamtransfer\\templates\\index.tpl',
-      1 => 1670400158,
+      1 => 1670851948,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:pageList.tpl' => 1,
   ),
 ),false)) {
-function content_6391a59fd64477_12669798 (Smarty_Internal_Template $_smarty_tpl) {
+function content_63972d6f895759_55961629 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html>
 	<head>
@@ -197,7 +197,7 @@ _init.js"><?php echo '</script'; ?>
 >
 
 
-		<?php if (isset($_smarty_tpl->tpl_vars['pageList']->value)) {?>
+		<?php if ($_smarty_tpl->tpl_vars['pageList']->value) {?>
 
 			<?php echo '<script'; ?>
  src="js/list.js"><?php echo '</script'; ?>
@@ -399,13 +399,13 @@ echo $_prefixVariable1;?>
 
 					</nav>
 				</div> 			
-				<?php if (!$_smarty_tpl->tpl_vars['isNew']->value && isset($_smarty_tpl->tpl_vars['pageList']->value)) {?>
+				<?php if (!$_smarty_tpl->tpl_vars['isNew']->value && $_smarty_tpl->tpl_vars['pageList']->value) {?>
 										<div class="header">  
 						<?php $_smarty_tpl->_subTemplateRender("file:pageListHeader.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?> 				   
 					</div> 				<?php }?>
 
-				<?php if ($_smarty_tpl->tpl_vars['page']->value == 'Price Rules') {?>	
+				<?php if ($_smarty_tpl->tpl_vars['pageName']->value == 'Price Rules') {?>	
 										<div class="header row"> 
 						<div class="pull-left">
 							<span>Rule: <strong><?php echo $_REQUEST['rulesType'];?>
@@ -424,11 +424,11 @@ echo $_prefixVariable1;?>
 
 					<?php if (isset($_smarty_tpl->tpl_vars['pageOLD']->value)) {?>
 						NOT MODEL VIEW CONTROL
-						<?php } elseif (isset($_smarty_tpl->tpl_vars['page']->value)) {?>
+						<?php } elseif (isset($_smarty_tpl->tpl_vars['pageName']->value) && $_smarty_tpl->tpl_vars['pageName']->value != '') {?>
 							<?php $_smarty_tpl->_subTemplateRender(((string)$_smarty_tpl->tpl_vars['root']->value)."/plugins/".((string)$_smarty_tpl->tpl_vars['base']->value)."/templates/".((string)$_smarty_tpl->tpl_vars['includeFileTpl']->value), $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, true);
 ?>
 							MODEL VIEW CONTROL SMARTY		
-						<?php } elseif (isset($_smarty_tpl->tpl_vars['pageList']->value)) {?>
+						<?php } elseif ($_smarty_tpl->tpl_vars['pageList']->value) {?>
 							<?php $_smarty_tpl->_subTemplateRender("file:pageList.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?> 
 							MODEL VIEW CONTROL HANDLEBARS
@@ -441,7 +441,7 @@ echo $_prefixVariable1;?>
 				</div> 
 								<div class="footer row">
 
-					<?php if (!$_smarty_tpl->tpl_vars['isNew']->value && isset($_smarty_tpl->tpl_vars['pageList']->value)) {?>				
+					<?php if (!$_smarty_tpl->tpl_vars['isNew']->value && $_smarty_tpl->tpl_vars['pageList']->value) {?>				
 						<div id="pageSelect" class="pull-left"></div>
 					<?php }?>
 

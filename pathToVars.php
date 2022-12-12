@@ -16,11 +16,6 @@ else {
 	if ($size>0) $activePage=$pathVars->fetchByIndex($indexStart);
 }	
 
-$help="menu";
-$isNew=false;
-$transfersFilter='';
-$includeFile='/index.php';
-$includeFileTpl='index.tpl';
 
 switch ($activePage) {
 	case 'loginAsUser':
@@ -56,11 +51,12 @@ switch ($activePage) {
 		break;
 		
 	case 'orders':
+		$isEdit=false;
+
 		if ($pathVars->fetchByIndex($indexStart + 1)) { 
-			$isEdit=false;
 			$transfersFilter=$pathVars->fetchByIndex($indexStart + 1);
-			if ($transfersFilter=='order') $smarty->assign('orderid',$pathVars->fetchByIndex($indexStart + 2));
-			if ($transfersFilter=='detail')  $smarty->assign('detailid',$pathVars->fetchByIndex($indexStart + 2));
+			if ($transfersFilter=='order') $orderid=$pathVars->fetchByIndex($indexStart + 2);
+			if ($transfersFilter=='detail') $detailid=$pathVars->fetchByIndex($indexStart + 2);
 		
 			if (is_numeric($transfersFilter)) {
 				$detailid=$pathVars->fetchByIndex($indexStart + 1);
@@ -78,27 +74,27 @@ switch ($activePage) {
 		break;	
 		
 	case 'services':
+		
 		if ($pathVars->fetchByIndex($indexStart + 1)) { 
 			if ($pathVars->fetchByIndex($indexStart + 1)=='route') {
-				$smarty->assign('RouteID',$pathVars->fetchByIndex($indexStart + 2));
+				$RouteID=$pathVars->fetchByIndex($indexStart + 2);
 			}			
 			if ($pathVars->fetchByIndex($indexStart + 1)=='vehicleType') {
-				$smarty->assign('VehicleTypeID',$pathVars->fetchByIndex($indexStart + 2));
+				$VehicleTypeID=$pathVars->fetchByIndex($indexStart + 2);
 			}
 		}	
-	
 		break;	
 		
 	case 'offDuty':
 		if ($pathVars->fetchByIndex($indexStart + 1)) { 
-			$smarty->assign('VehicleID',$pathVars->fetchByIndex($indexStart + 1));
+			$VehicleID=$pathVars->fetchByIndex($indexStart + 1);
 		}	
 	
 		break;	
 		
 		case 'subVehicles':
 		if ($pathVars->fetchByIndex($indexStart + 1)) { 
-			$smarty->assign('VehicleTypeID',$pathVars->fetchByIndex($indexStart + 1));
+			$VehicleTypeID=$pathVars->fetchByIndex($indexStart + 1);
 		}	
 	
 		break;
@@ -169,7 +165,6 @@ switch ($activePage) {
 		if ($pathVars->fetchByIndex($indexStart + 1)) { 
 			if (is_numeric($pathVars->fetchByIndex($indexStart + 1))) {
 				$item=$pathVars->fetchByIndex($indexStart + 1);
-				$smarty->assign('item',$item);
 			}
 			else if (($pathVars->fetchByIndex($indexStart + 1))=='connect') {
 				$item=$pathVars->fetchByIndex($indexStart + 2);
@@ -178,9 +173,6 @@ switch ($activePage) {
 			}			
 		}	
 }
-$smarty->assign('transfersFilter',$transfersFilter);
-$smarty->assign('includeFile',$includeFile);
-$smarty->assign('includeFileTpl',$includeFileTpl);
 
 switch ($specialpage) {
 	case 'help':
@@ -188,6 +180,10 @@ switch ($specialpage) {
 		$activePage='tutorials';	
 	case 'new':
 		$isNew=true;
-		$smarty->assign('isNew',$isNew);	
 	default:
-}	
+}
+	
+
+
+
+	

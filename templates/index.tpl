@@ -140,7 +140,7 @@
 				<script src="js/cms.jquery.js"></script>
 
 
-		{if isset($pageList)}
+		{if $pageList}
 
 			<script src="js/list.js"></script>
 
@@ -318,14 +318,14 @@
 					</nav>
 				</div> {* /.header row border-bottom *}
 			
-				{if not $isNew and isset($pageList)}
+				{if not $isNew and $pageList}
 					{* .header *}
 					<div class="header">  
 						{include file="pageListHeader.tpl"} 				   
 					</div> {* /.header *}
 				{/if}
 
-				{if $page eq 'Price Rules'}	
+				{if $pageName eq 'Price Rules'}	
 					{* .header row *}
 					<div class="header row"> 
 						<div class="pull-left">
@@ -344,10 +344,10 @@
 
 					{if isset($pageOLD)}
 						NOT MODEL VIEW CONTROL
-						{elseif isset($page)}
+						{elseif isset($pageName) and $pageName ne ''}
 							{include file="{$root}/plugins/{$base}/templates/{$includeFileTpl}"}
 							MODEL VIEW CONTROL SMARTY		
-						{elseif isset($pageList)}
+						{elseif $pageList}
 							{include file="pageList.tpl"} 
 							MODEL VIEW CONTROL HANDLEBARS
 						{else}
@@ -360,7 +360,7 @@
 				{* FOOTER ======================================================================================================================== *}
 				<div class="footer row">
 
-					{if not $isNew and isset($pageList)}				
+					{if not $isNew and $pageList}				
 						<div id="pageSelect" class="pull-left"></div>
 					{/if}
 

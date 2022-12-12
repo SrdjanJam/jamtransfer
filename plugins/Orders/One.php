@@ -35,6 +35,8 @@ require_once 'Initial.php';
 	$out = array();
 	$relatedTransfers = array();
 	$orderLog = array();
+	$oeServices=array();
+	
 	
 # filters
 $db->getRow($_REQUEST['ItemID']);

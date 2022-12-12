@@ -3,6 +3,25 @@
 // ali ako nije logiran, ne moze
 // nakon Logina vraca korisnika na spremljenu stranicu
 $_SESSION['InitialRequest'] = $_SERVER['REQUEST_URI'];
+
+$help="menu";
+$isNew=false;
+$transfersFilter='';
+$includeFile='/index.php';
+$includeFileTpl='index.tpl';
+$orderid=0;
+$detailid=0;
+$RouteID=0;
+$VehicleTypeID=0;
+$VehicleID=0;
+$item=0;
+$isNew=false;
+$active_pages=array();
+$menu1=array();
+$pageName='';
+$pageList='';
+$existNew=true;
+
 require_once 'pathToVars.php';
 // LOGIN
 if(!isset($_SESSION['UserAuthorized']) or $_SESSION['UserAuthorized'] == false) {
@@ -29,10 +48,8 @@ while($row = $result->fetch_array(MYSQLI_ASSOC)){
 $modules_arr = substr($modules_arr,0,strlen($modules_arr)-1);
 // meni
 require_once 'db/v4_Modules.class.php';
-$active_pages=array();
 $md = new v4_Modules();
 $mdk = $md->getKeysBy('MenuOrder ' ,'asc', "where ParentID=0 AND ModulID in (".$modules_arr.")");
-$menu1=array();
 foreach($mdk as $key) {
 	$md->getRow($key);
 	$row1=array();
@@ -72,7 +89,6 @@ foreach($mdk as $key) {
 	$row1['menu']=$menu2;	
 	$menu1[]=$row1;
 }	
-$smarty->assign('menu1',$menu1);
 $mdk = $md->getKeysBy('ModulID ' ,'asc', "where code='$activePage'");
 if (count($mdk)==1 && in_array($activePage,$active_pages)) {
 	$key=$mdk[0];
@@ -81,8 +97,8 @@ if (count($mdk)==1 && in_array($activePage,$active_pages)) {
 		require_once $modulesPath . '/'.$md->getBase().$includeFile;
 	
 		if (is_dir($modulesPath . '/'.$md->getBase().'/templates')) 
-			$smarty->assign('page',$md->getName());		
-		else $smarty->assign('pageList',$md->getName());
+			$pageName=$md->getName();		
+		else $pageList=$md->getName();
 	}	
 	/*$md->getRow($md->getParentID());
 	$parentFolder=$md->getBase();
@@ -96,11 +112,6 @@ if (count($mdk)==1 && in_array($activePage,$active_pages)) {
 	}	
 	$smarty->assign('parentFolder',$parentFolder);
 	*/
-	$smarty->assign('currenturl',ROOT_HOME.$activePage);
-	$smarty->assign('title',$md->getName());
-	$smarty->assign('base',$md->getBase());
-	$smarty->assign('parentID',$md->getParentID());
-
 	
 }
 else {
@@ -108,17 +119,34 @@ else {
 	else exit('Page not found');
 }
 
-	$existNew=true;
-	if (isset($_SESSION['UseDriverID'])) $existNew=false;
-	if ($md->getName()=="SubDrivers") $existNew=true;
-	if ($md->getName()=="Orders") $existNew=false;
-	if ($md->getName()=="Invoices") $existNew=false;
-	if ($md->getName()=="Set Driver") $existNew=false;
-	if ($_SESSION['AuthLevelID']==42) $existNew=false;
-	if ($_SESSION['AuthUserID']==874) $existNew=true;
-	if ($md->getName()=="Articles") $existNew=true;
+if (isset($_SESSION['UseDriverID'])) $existNew=false;
+if ($md->getName()=="SubDrivers") $existNew=true;
+if ($md->getName()=="Orders") $existNew=false;
+if ($md->getName()=="Invoices") $existNew=false;
+if ($md->getName()=="Set Driver") $existNew=false;
+if ($_SESSION['AuthLevelID']==42) $existNew=false;
+if ($_SESSION['AuthUserID']==874) $existNew=true;
+if ($md->getName()=="Articles") $existNew=true;
 
-	$smarty->assign('existNew',$existNew);
+
+$smarty->assign('transfersFilter',$transfersFilter);
+$smarty->assign('includeFile',$includeFile);
+$smarty->assign('includeFileTpl',$includeFileTpl);
+$smarty->assign('orderid',$orderid);
+$smarty->assign('detailid',$detailid);
+$smarty->assign('RouteID',$RouteID);
+$smarty->assign('VehicleTypeID',$VehicleTypeID);
+$smarty->assign('VehicleID',$VehicleID);
+$smarty->assign('item',$item);
+$smarty->assign('isNew',$isNew);
+$smarty->assign('existNew',$existNew);
+$smarty->assign('menu1',$menu1);
+$smarty->assign('pageName',$pageName);
+$smarty->assign('pageList',$pageList);
+$smarty->assign('currenturl',ROOT_HOME.$activePage);
+$smarty->assign('title',$md->getName());
+$smarty->assign('base',$md->getBase());
+$smarty->assign('parentID',$md->getParentID());
 
 	
 // display

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.32, created on 2022-11-18 09:02:29
+/* Smarty version 3.1.32, created on 2022-12-12 07:16:46
   from 'C:\wamp\www\jamtransfer\templates\pageListHeader.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.32',
-  'unifunc' => 'content_63774a255d31b9_33339873',
+  'unifunc' => 'content_6396d55e8a5c63_35309269',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '7d4e13059d7eb1944e7a2452042dc0a71e7ccf69' => 
     array (
       0 => 'C:\\wamp\\www\\jamtransfer\\templates\\pageListHeader.tpl',
-      1 => 1668762147,
+      1 => 1670829403,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_63774a255d31b9_33339873 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6396d55e8a5c63_35309269 (Smarty_Internal_Template $_smarty_tpl) {
 if ($_smarty_tpl->tpl_vars['existNew']->value) {?>
 	<a class="btn btn-primary btn-xs" href="<?php echo $_smarty_tpl->tpl_vars['currenturl']->value;?>
 /new"><?php echo $_smarty_tpl->tpl_vars['NNEW']->value;?>
@@ -117,7 +117,6 @@ $_smarty_tpl->_assignInScope('pagelength', "10");
 		</div>
 	</div>
 
-	<?php if ($_smarty_tpl->tpl_vars['title']->value != "Orders") {?>
 	<div class="col-md-2 asd">
 		<i class="fa fa-text-width edit-fa"></i>
 		<div class="form-group group-edit">
@@ -135,10 +134,7 @@ $_smarty_tpl->_assignInScope('pagelength', "10");
 			</select>
 		</div>		
 	</div>
-	<?php } else { ?>
-		<strong><?php echo $_smarty_tpl->tpl_vars['transfersFiltersName']->value;?>
-</strong>
-	<?php }?>
+
 	
 	<?php if (isset($_smarty_tpl->tpl_vars['selectactive']->value)) {?>		
 	<div class="col-md-2 asd">

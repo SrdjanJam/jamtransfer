@@ -57,7 +57,6 @@ value=" WHERE {$ItemID} > 0">
 		</div>
 	</div>
 
-	{if $title ne "Orders"}
 	<div class="col-md-2 asd">
 		<i class="fa fa-text-width edit-fa"></i>
 		<div class="form-group group-edit">
@@ -73,9 +72,7 @@ value=" WHERE {$ItemID} > 0">
 			</select>
 		</div>		
 	</div>
-	{else}
-		<strong>{$transfersFiltersName}</strong>
-	{/if}
+
 	
 	{if isset($selectactive)}		
 	<div class="col-md-2 asd">
