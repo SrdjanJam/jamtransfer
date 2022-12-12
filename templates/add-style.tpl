@@ -294,19 +294,14 @@
     color:black !important;
 }
 
-/* Shedule: */
-.row-shedule, .row-shedule .row{
-    margin:0;
-}
-
 {* END OF PLUGINS FOLDER: =====================  *}
-
 
 /* Cursor pointer */
 .listTile{ cursor:pointer;}
 .listTile:hover{ background: rgb(240, 240, 240); }
 /* off */
 /* .listTile:focus{ background: rgb(71, 42, 173); } */
+
 
 
 
