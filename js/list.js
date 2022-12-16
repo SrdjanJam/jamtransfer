@@ -152,8 +152,8 @@
 					});
 					$("#yearsPickup option[value="+yearsPickup+"]").prop("selected", true)
 			  }	
-		      if (orderid.trim() || detailid.trim()) $('.itemsheader').hide();
-		      if (orderid.trim() || detailid.trim()) $('#pageSelect').hide();
+		      if (orderid>0 || detailid>0) $('.itemsheader').hide();
+		      if (orderid>0 || detailid>0) $('#pageSelect').hide();
 			  if ($(window).width() < 760) filtersDown();
 			  else	filtersUP();	
 			  
@@ -209,7 +209,7 @@
 			url: url,
 			async: false,
 			contentType: "application/json",
-			dataType: 'jsonp',
+			dataType: 'json',
 			success: function(data) {
 				// CUSTOM STUFF
 				$('.bg-light-blue').removeClass('bg-light-blue').addClass('white');

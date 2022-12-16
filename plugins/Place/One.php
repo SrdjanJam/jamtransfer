@@ -6,7 +6,7 @@ require_once 'Initial.php';
 	require_once ROOT . '/db/v4_AuthUsers.class.php';
 	require_once ROOT . '/db/v4_DriverTerminals.class.php';
 	
-
+	$name2='';
 	# init vars
 	$out = array();
 
@@ -38,7 +38,7 @@ require_once 'Initial.php';
 		$arrey=$obj['query']['pages'];
 		$desc='';
 		foreach ($arrey as $arr) {
-			$desc=($arr['extract']);  
+			if (isset($arr['extract'])) $desc=($arr['extract']);  
 		}
 		if (empty($desc)) {
 			$url='https://en.wikipedia.org/w/api.php?action=query&prop=extracts&format=json&exintro=&titles='.$name;
@@ -95,5 +95,5 @@ require_once 'Initial.php';
 
 	# send output back
 	$output = json_encode($out);
-	echo $_GET['callback'] . '(' . $output . ')';
+	echo $output;
 	
