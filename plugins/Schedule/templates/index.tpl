@@ -1,5 +1,6 @@
 <style>
 
+/* Old: */
 /* .datepicker {
 	width: 10em;
 	text-align: center;
@@ -20,7 +21,7 @@ hr {
 .stupacWrapper {
 	margin-top: 12px;
 	padding: 0 2px;
-}	 */
+}
 
 .blink {
 	background-color:red;
@@ -33,6 +34,8 @@ hr {
 	50% { opacity: 0.5; }
 	to { opacity: 1.0; }
 }
+
+*/
 
 /* new */
 .row-header{
@@ -49,7 +52,7 @@ hr {
 }
 
 .row-white{
-	border:1px solid rgb(190, 190, 190);
+	border:1px solid rgb(223 223 223);
 	border-radius:5px;
 }
 
@@ -57,6 +60,7 @@ hr {
 	color:#474542;
 	padding:5px;
 	font-size:18px;
+	font-family:Georgia, 'Times New Roman', Times, serif;
 }
 
 .col-md-edit{
@@ -64,10 +68,13 @@ hr {
 }
 
 .sub-card{
-	background:#e0f1f8;
+	background:#e8eef1;
 	margin:10px;
 	padding:10px;
 	border-radius:5px;
+}
+.sub-card .row{
+	font-family: Tahoma, Verdana, Geneva, sans-serif;
 }
 
 .col-md-3 input{
@@ -83,6 +90,30 @@ hr {
 
 .red{
 	color: white;
+}
+
+.blink {
+	background-color:red;
+	color:white;
+	animation: blinker 2s ease 0s infinite normal forwards;
+}
+
+@keyframes blinker {
+	0% {
+		opacity: 1;
+	}
+
+	50% {
+		opacity: 0.2;
+	}
+
+	100% {
+		opacity: 1;
+	}
+}
+
+.fa-user{
+	color:#2a2a2a;
 }
 
 </style>

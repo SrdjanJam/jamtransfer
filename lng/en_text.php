@@ -202,6 +202,7 @@ define("CURRENCYTYPE", 'Currency');
 define("CURRENT_PRICE", "Active Price");
 define("CUSTOM", "Custom");
 define("CUSTOMER", "Customer");
+define("COUNTRYID", "Country ID");
 define("DASHBOARD", "Dashboard");
 define("DATE", "Date");
 define("DATE_ADDED", "Date added");
