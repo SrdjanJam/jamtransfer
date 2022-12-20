@@ -16,4 +16,4 @@ foreach ($detailFlds as $key=>$value) {
 $out[] = $detailFlds;
 # send output back
 $output = json_encode($out);
-echo $_GET['callback'] . '(' . $output . ')';
+echo  $output;
