@@ -172,7 +172,6 @@ define("BRAND_NAME", "Brand name");
 define("BY_BOOKING_DATE", "by booking date");
 define("BY_TRANSFER_DATE", "by transfer date");
 define("CALENDAR", "Calendar");
-define("CANCEL", "Cancel");
 define("CANCELED_ORDERS", "Cancelled orders");
 define("CANCELLED", "Cancelled");
 define("CANCEL_TRANSFER", "Cancel transfer");
@@ -385,7 +384,6 @@ define("ROUTE", "Route");
 define("ROUTE_SETTINGS", "Route settings");
 define("ROUTE_SPECIFIC", "Route");
 define("ROUTES", "Routes");
-define("SAVE_CHANGES", "Save changes");
 define("S1END", "Season 1 ends on");
 define("S1PERCENT", "(%)");
 define("S1START", "Season 1 starts on");
@@ -582,6 +580,8 @@ define("FCLASS_PRICE_RANGE1", "First Class price range");
 define("FCLASS_PRICE_RANGE2", "First Class price range");
 define("FCLASS_PRICE_RANGE3", "First Class price range");
 define("OUR_COMMISION", "Our commission");
+define("READ_ONLY_FLD","READ ONLY FLD");
+define("ZIP","ZIP");
 
 // timetable
 define("TIMETABLE", "Timetable");
