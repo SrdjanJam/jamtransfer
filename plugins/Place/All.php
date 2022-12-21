@@ -13,7 +13,9 @@ if (isset($type)) {
 		$filter = "  AND ".$type." = '" . $_REQUEST['Type'] . "'";
 	}
 }
-$page 		= $_REQUEST['page'];
+
+
+$page 		= (int) $_REQUEST['page'];
 $length 	= $_REQUEST['length'];
 $sortOrder 	= $_REQUEST['sortOrder'];
 
