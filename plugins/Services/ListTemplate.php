@@ -33,7 +33,7 @@
 	<!-- dynamically content: -->
 	{{#each Item}}
 	
-		<div class="row {{color}} pad1em listTile" 
+		<div class="row {{color}} pad1em listTile listTitleEdit" 
 		style="border-top:1px solid #ddd" 
 		id="t_{{ServiceID}}">
 
