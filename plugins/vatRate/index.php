@@ -1,5 +1,7 @@
 <?
 	$filename = ROOT . '/plugins/vatRate/vatRate.inc';
+
+	$message = "";
 	
 	if(isset($_POST['setRate']) and $_POST['setRate'] == 1){
 

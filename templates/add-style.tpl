@@ -136,7 +136,7 @@
 
 .box-info, .box-primary{ box-shadow: 5px 5px 8px #616060; }
 
-.nav-header-edit #set-as{ color: #545050; }
+.nav-header-edit #set-as{ color: #545050;}
 .nav-header-edit #set-as, #set-as-2{ font-family:Georgia, 'Times New Roman', Times, serif; }
 
 
@@ -174,8 +174,7 @@
 .fa-user{ color:white; }
 
 
-/* DriverRoutes - ListTemplate.php */
-.listTitleEdit{ cursor:auto; }
+
 
 
 /* Route */
@@ -301,6 +300,9 @@
 .listTile:hover{ background: rgb(240, 240, 240); }
 /* off */
 /* .listTile:focus{ background: rgb(71, 42, 173); } */
+
+/* DriverRoutes - ListTemplate.php */
+.listTitleEdit{ cursor:auto !important; }
 
 
 

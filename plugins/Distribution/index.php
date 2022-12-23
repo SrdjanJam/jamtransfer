@@ -72,6 +72,8 @@
 				AND DriverConfStatus != '3' ";
 
 	$odArray = $od->getKeysBy($column, $order, $where);
+
+	$transfers = "";
 	
 	// red u tablici
 	foreach($odArray as $val => $ID) {

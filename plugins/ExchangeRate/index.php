@@ -12,10 +12,13 @@
 
 //==============================================================================
  $filename = ROOT . '/plugins/ExchangeRate/exchangeRate.inc';
+ 
+ 		$message = "";
 	
 		if(isset($_POST['setRate']) and $_POST['setRate'] == 1){
 
 		$tecaj = $_POST['exchangeRate'];
+		
 
 		// Let's make sure the file exists and is writable first.
 		if (is_writable($filename)) {

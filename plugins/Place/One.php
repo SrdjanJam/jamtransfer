@@ -27,6 +27,7 @@ require_once 'Initial.php';
     }
 
 	$name=$db->getPlaceNameEN();
+	$name = str_replace(" ","_",$name);
 	$name2.=$name.",_".$db->getCountryNameEN();
 	
 	$url='https://en.wikipedia.org/w/api.php?action=query&prop=extracts&format=json&exintro=&titles='.$name2;
