@@ -12,10 +12,12 @@ require_once '../config.php';
 	# init vars
 	$out = array();
 
-
 	# init class
 	$au = new v4_AuthUsers();
 	$al = new v4_AuthLevels();
+
+	// initialized array
+	// $au = array();
 
 	# filters
 
@@ -30,8 +32,8 @@ require_once '../config.php';
 	# levels row
 	$al->getRow($AuthLevelID);
 
-	# Details  red
-	$au->getRow($auk[0]);
+	# Details row, don't exists in system
+	// $au->getRow($auk[0]);
 
 	# get fields and values
 	$detailFlds = $au->fieldValues();
