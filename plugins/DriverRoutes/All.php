@@ -37,6 +37,8 @@ $flds = array();
 $DB_Where = " " . $_REQUEST['where'];
 $DB_Where .= $filter;
 
+$routes_arr = "";
+
 	$sql="SELECT RouteID FROM `v4_DriverTerminals`,v4_RoutesTerminals WHERE `DriverID`=".$_SESSION['UseDriverID']." and v4_DriverTerminals.TerminalID=v4_RoutesTerminals.TerminalID";		
 	$result = $dbT->RunQuery($sql);
 	if ($_REQUEST['Type']>0) {
