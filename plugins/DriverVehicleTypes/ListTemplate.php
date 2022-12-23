@@ -39,7 +39,7 @@
 	{{#each Item}}
 
 			<div>		
-				<div class="row {{color}} pad1em listTile listTitleEdit" 
+				<div class="row {{color}} pad1em" 
 				style="border-top:1px solid #ddd" 
 				id="t_{{VehicleTypeID}}">
 						<!-- VehicleTypeID: -->
@@ -65,7 +65,7 @@
 						</div>
 						<!-- Dates: -->
 						<div class="col-md-1">
-							<span class="show_hide"><a class='offduty' target='_blank' href='offDuty/{{VehicleID}}'>Dates</a></span>
+							<span class="show_hide"><a target='_blank' href='offDuty/{{VehicleID}}'>Dates</a></span>
 						</div>						
 						<!-- Vehicles: -->
 						<div class="col-md-1">
@@ -96,10 +96,7 @@
 				data: param,
 				success: function(data) {
 					if (data==0) $t.parent().parent().parent().find('.show_hide').hide(500);
-					if (data>0) {
-						$t.parent().parent().parent().find('.show_hide').show(500);
-						$t.parent().parent().parent().find('.offduty').attr('href','offDuty//'+data);		
-					}
+					if (data==1) $t.parent().parent().parent().find('.show_hide').show(500);
 					toastr['success'](window.success);							
 				}				
 			});
