@@ -37,6 +37,8 @@ $flds = array();
 $DB_Where = " " . $_REQUEST['where'];
 $DB_Where .= $filter;
 
+$terminals_arr = "";
+
 if ((isset($_SESSION['UseDriverID']) && $_SESSION['UseDriverID']>0) || $_REQUEST['Type']==99) {
 	if ((isset($_SESSION['UseDriverID']) && $_SESSION['UseDriverID']>0) && $_REQUEST['Type']==99)	
 		$sql="SELECT TerminalID FROM `v4_DriverTerminals` WHERE DriverID=".$_SESSION['UseDriverID'];	
