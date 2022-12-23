@@ -16,4 +16,4 @@ else $detailFlds['hidden']='';
 $out[] = $detailFlds;
 # send output back
 $output = json_encode($out);
-echo $_GET['callback'] . '(' . $output . ')';
+echo $output;
