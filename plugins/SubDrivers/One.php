@@ -7,7 +7,7 @@ $out = array();
 $db->getRow($_REQUEST['ItemID']);
 # get fields and values
 $detailFlds = $db->fieldValues();
-$detailFlds[DBImage]='';
+$detailFlds["DBImage"]='';
 
 # remove slashes 
 foreach ($detailFlds as $key=>$value) {
@@ -16,4 +16,4 @@ foreach ($detailFlds as $key=>$value) {
 $out[] = $detailFlds;
 # send output back
 $output = json_encode($out);
-echo $_GET['callback'] . '(' . $output . ')';
+echo $output;
