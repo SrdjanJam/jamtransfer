@@ -25,7 +25,7 @@
 	{{#each Item}}
 		<div>
 		
-			<div class="row {{color}} pad1em listTile listTitleEdit" 
+			<div class="row {{color}} pad1em" 
 			style="border-top:1px solid #ddd" 
 			id="t_{{PlaceID}}">
 		
