@@ -73,7 +73,7 @@
 
 	$odArray = $od->getKeysBy($column, $order, $where);
 
-	$transfers = "";
+	$transfers = array();
 	
 	// red u tablici
 	foreach($odArray as $val => $ID) {
