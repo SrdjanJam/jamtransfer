@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.32, created on 2022-12-12 14:20:29
+/* Smarty version 3.1.32, created on 2022-12-26 07:46:30
   from 'c:\wamp\www\jamtransfer\templates\add-style.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.32',
-  'unifunc' => 'content_63972a9d41ae82_47192517',
+  'unifunc' => 'content_63a94346919577_82023706',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '2d24832a246e85f5de94ea3db8f7e5fc9a7e1ef4' => 
     array (
       0 => 'c:\\wamp\\www\\jamtransfer\\templates\\add-style.tpl',
-      1 => 1670850435,
+      1 => 1671794207,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_63972a9d41ae82_47192517 (Smarty_Internal_Template $_smarty_tpl) {
+function content_63a94346919577_82023706 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 
 <style type="text/css" media="print">
@@ -155,7 +155,7 @@ function content_63972a9d41ae82_47192517 (Smarty_Internal_Template $_smarty_tpl)
 
 .box-info, .box-primary{ box-shadow: 5px 5px 8px #616060; }
 
-.nav-header-edit #set-as{ color: #545050; }
+.nav-header-edit #set-as{ color: #545050;}
 .nav-header-edit #set-as, #set-as-2{ font-family:Georgia, 'Times New Roman', Times, serif; }
 
 
@@ -191,8 +191,7 @@ function content_63972a9d41ae82_47192517 (Smarty_Internal_Template $_smarty_tpl)
 .fa-user{ color:white; }
 
 
-/* DriverRoutes - ListTemplate.php */
-.listTitleEdit{ cursor:auto; }
+
 
 
 /* Route */
@@ -317,6 +316,9 @@ function content_63972a9d41ae82_47192517 (Smarty_Internal_Template $_smarty_tpl)
 .listTile:hover{ background: rgb(240, 240, 240); }
 /* off */
 /* .listTile:focus{ background: rgb(71, 42, 173); } */
+
+/* DriverRoutes - ListTemplate.php */
+.listTitleEdit{ cursor:auto !important; }
 
 
 

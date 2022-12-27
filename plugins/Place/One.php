@@ -26,7 +26,7 @@ require_once 'Initial.php';
         $detailFlds[$key] = stripslashes($value);
     }
 
-	$name=$db->getPlaceNameEN();
+	/*$name=$db->getPlaceNameEN();
 	$name = str_replace(" ","_",$name);
 	$name2.=$name.",_".$db->getCountryNameEN();
 	
@@ -56,7 +56,7 @@ require_once 'Initial.php';
 	}
 	else $desc="";
 	
-	$detailFlds['WikiDesc']=strip_tags($desc);
+	$detailFlds['WikiDesc']=strip_tags($desc);*/
 	
 	class v4_TerminalsJoin extends v4_DriverTerminals {
 		public function getKeysBy($column, $order, $where = NULL){
