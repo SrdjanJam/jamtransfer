@@ -42,6 +42,8 @@
 					</button>&nbsp;&nbsp;&nbsp;
 				{{/compare}}
 
+				<? $inList = "" ?>
+
 				<? if ($inList=='true') { ?>
 					<button class="btn " title="<?= CLOSE ?>"
 					onclick="return editClose('{{details.DetailsID}}');">
