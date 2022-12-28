@@ -10,5 +10,5 @@ $ItemName='`key` ';
 # Search ce ih sam pretraziti
 #********************************
 $aColumns = array(
-	'text'
+	'`text`','`key`'
 );
