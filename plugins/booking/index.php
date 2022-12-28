@@ -14,9 +14,42 @@ echo "<hr>";
 echo "</pre>"; */
 
 
-
 require_once ROOT . '/db/v4_Places.class.php';
 $pl = new v4_Places();
+
+$weby_key = "";
+$fromID = "";
+$fromName = "";
+$toID = "";
+$toName = "";
+$transferDate = "";
+$transferTime = "";
+$returnDate = "";
+$returnTime = "";
+$VehicleCapacity = "";
+$price = "";
+$Currency = "";
+$VehicleImage = "";
+$SERVICES_DES = "";
+$offset = "";
+$box = "";
+$toName = "";
+$PaxFirstName = "";
+$MPaxLastName = "";
+$PaxTel = "";
+$FlightNo = "";
+$FlightTime = "";
+$RFlightTime = "";
+$DFlightNo = "";
+$DFlightTime = "";
+$RFlightNo = "";
+$RDFlightNo = "";
+$RDFlightTime = "";
+$PickupAddress = "";
+$DropAddress = "";
+$RPickupAddress = "";
+$RDropAddress = "";
+
 
 if (isset($_SESSION['AgentID']) && $_SESSION['AgentID'] > 0) $AgentID = $_SESSION['AgentID'];
 else $AgentID = 0;
@@ -186,6 +219,39 @@ foreach($car as $VehicleCapacity => $price) {
 
 //require_once ROOT . '/m/getRoutePrices.php';
 
-if ($_POST['VehicleID' != 0]) {
+if (isset($_POST['VehicleID' != 0]) and $_POST['VehicleID' != 0]) {
     echo "yes";
 }
+
+$smarty->assign('weby_key',$weby_key);
+$smarty->assign('fromID',$fromID);
+$smarty->assign('fromName',$fromName);
+$smarty->assign('toID',$toID);
+$smarty->assign('toName',$toName);
+$smarty->assign('transferDate',$transferDate);
+$smarty->assign('transferTime',$transferTime);
+$smarty->assign('returnDate',$returnDate);
+$smarty->assign('returnTime',$returnTime);
+$smarty->assign('VehicleCapacity',$VehicleCapacity);
+$smarty->assign('price',$price);
+$smarty->assign('Currency',$Currency);
+$smarty->assign('VehicleImage',$VehicleImage);
+$smarty->assign('SERVICES_DES',$SERVICES_DES);
+$smarty->assign('offset',$offset);
+$smarty->assign('box',$box);
+$smarty->assign('toName',$toName);
+$smarty->assign('PaxFirstName',$PaxFirstName);
+$smarty->assign('MPaxLastName',$MPaxLastName);
+$smarty->assign('PaxTel',$PaxTel);
+$smarty->assign('FlightNo',$FlightNo);
+$smarty->assign('FlightTime',$FlightTime);
+$smarty->assign('RFlightTime',$RFlightTime);
+$smarty->assign('DFlightNo',$DFlightNo);
+$smarty->assign('DFlightTime',$DFlightTime);
+$smarty->assign('RFlightNo',$RFlightNo);
+$smarty->assign('RDFlightNo',$RDFlightNo);
+$smarty->assign('RDFlightTime',$RDFlightTime);
+$smarty->assign('PickupAddress',$PickupAddress);
+$smarty->assign('DropAddress',$DropAddress);
+$smarty->assign('RPickupAddress',$RPickupAddress);
+$smarty->assign('RDropAddress',$RDropAddress);
