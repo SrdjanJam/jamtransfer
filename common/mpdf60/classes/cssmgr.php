@@ -1125,6 +1125,7 @@ function _mergeBorders(&$b, &$a) {	// Merges $a['BORDER-TOP-STYLE'] to $b['BORDE
 }
 
 
+
 function MergeCSS($inherit,$tag,$attr) {
 	$p = array();
 	$zp = array(); 
@@ -1133,6 +1134,9 @@ function MergeCSS($inherit,$tag,$attr) {
 	if (isset($attr['CLASS'])) {
 		$classes = preg_split('/\s+/',$attr['CLASS']);
 	}
+
+	$attr = array();
+	
 	if (!isset($attr['ID'])) { $attr['ID']=''; }
 	// mPDF 6
 	$shortlang = '';
