@@ -60,7 +60,7 @@
 <style>
 
 .wrapper-edit{ padding:0px; }
-.white-bg-edit{ padding-bottom:30px; }
+.white-bg-edit{ padding-bottom:30px;  background-image: linear-gradient(#f6f7f9, #dee6ed);}
 
 .additional-class{
     position: fixed;
@@ -297,13 +297,29 @@
 
 /* Cursor pointer */
 .listTile{ cursor:pointer;}
-.listTile:hover{ background: rgb(240, 240, 240); }
+.listTile:hover{ background: rgb(229 229 231); }
 /* off */
 /* .listTile:focus{ background: rgb(71, 42, 173); } */
 
 /* DriverRoutes - ListTemplate.php */
 .listTitleEdit{ cursor:auto !important; }
 
+/* Navbar Side */
+.navbar-default-edit{ 
+    background-image: linear-gradient(#333a42, #3e576e); 
+}
+
+/* navbar top fixed */
+.navbar-static-top-edit{
+    background-image: linear-gradient(to bottom right, silver, #cceeff);
+}
+
+/* Footer */
+.footer-edit{
+    background-image: linear-gradient(to bottom right, silver, #cceeff);
+}
+.pull-left-edit{ margin-left:10px; }
+.pull-right-edit{ margin-right:20px; }
 
 
 
