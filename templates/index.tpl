@@ -140,7 +140,7 @@
 				<script src="js/cms.jquery.js"></script>
 
 
-		{if $pageList ne ''}
+		{if $pageList}
 
 			<script src="js/list.js"></script>
 
@@ -182,7 +182,7 @@
 		<div class="wrapper wrapper-edit">
 
 			{* SIDEBAR ====================================================================================================================================== *}
-			<nav class="navbar-default navbar-static-side additional-class" role="navigation">
+			<nav class="navbar-default navbar-default-edit navbar-static-side additional-class" role="navigation">
 			<i class="lab la-accessible-icon"></i>
 				{* sidebar-collapse *}
 				<div class="sidebar-collapse">
@@ -292,7 +292,7 @@
 				{* .header row border-bottom *}
 				<div class="header row border-bottom">
 					{* navbar *}	
-					<nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+					<nav class="navbar navbar-static-top navbar-static-top-edit" role="navigation" style="margin-bottom: 0">
 						<div class="navbar-header">
 						{* target***** *}
 							<a class="navbar-minimalize minimalize-styl-2 btn btn-primary btn-primary-edit"><i class="fa fa-bars"></i> </a>
@@ -318,9 +318,9 @@
 					</nav>
 				</div> {* /.header row border-bottom *}
 			
-				{if not $isNew and $pageList ne ''}
+				{if not $isNew and $pageList}
 					{* .header *}
-					<div class="header">  
+					<div class="header header-edit">  
 						{include file="pageListHeader.tpl"} 				   
 					</div> {* /.header *}
 				{/if}
@@ -347,7 +347,7 @@
 						{elseif isset($pageName) and $pageName ne ''}
 							{include file="{$root}/plugins/{$base}/templates/{$includeFileTpl}"}
 							MODEL VIEW CONTROL SMARTY		
-						{elseif $pageList ne ''}
+						{elseif $pageList}
 							{include file="pageList.tpl"} 
 							MODEL VIEW CONTROL HANDLEBARS
 						{else}
@@ -358,13 +358,13 @@
 				</div> {* / .body row white-bg *}
 
 				{* FOOTER ======================================================================================================================== *}
-				<div class="footer row">
+				<div class="footer row footer-edit">
 
-					{if $pageList ne ''}				
-						<div id="pageSelect" class="pull-left"></div>
+					{if not $isNew and $pageList}				
+						<div id="pageSelect" class="pull-left pull-left-edit"></div>
 					{/if}
 
-					<div class="pull-right">
+					<div class="pull-right pull-right-edit">
 						Powered by <strong>Jamtransfer</strong>
 					</div>
 					
