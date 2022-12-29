@@ -139,6 +139,23 @@ if (isset($type2)) {
 				break;			
 		}		
 	}	
+
+if(!isset($_REQUEST['page'])) $_REQUEST['page']="";
+if(!isset($_REQUEST['length'])) $_REQUEST['length']="";
+if(!isset($_REQUEST['orderFromID'])) $_REQUEST['orderFromID']="";
+if(!isset($_REQUEST['paymentNumber'])) $_REQUEST['paymentNumber']="";
+if(!isset($_REQUEST['locationName'])) $_REQUEST['locationName']="";
+if(!isset($_REQUEST['driverName'])) $_REQUEST['driverName']="";
+if(!isset($_REQUEST['agentName'])) $_REQUEST['agentName']="";
+if(!isset($_REQUEST['agentOrder'])) $_REQUEST['agentOrder']="";
+if(!isset($_REQUEST['passengerData'])) $_REQUEST['passengerData']="";
+if(!isset($_REQUEST['paymentMethod'])) $_REQUEST['paymentMethod']="";
+if(!isset($_REQUEST['driverConfStatus'])) $_REQUEST['driverConfStatus']="";
+if(!isset($_REQUEST['yearsOrder'])) $_REQUEST['yearsOrder']="";
+if(!isset($_REQUEST['yearsPickup'])) $_REQUEST['yearsPickup']="";
+if(!isset($_REQUEST['sortField'])) $_REQUEST['sortField']="";
+if(!isset($_REQUEST['sortDirection'])) $_REQUEST['sortDirection']="";
+
 $page 		= $_REQUEST['page'];
 $length 	= $_REQUEST['length'];
 //$sortOrder 	= $_REQUEST['sortOrder'];
@@ -157,7 +174,10 @@ $sortField 	= $_REQUEST['sortField'];
 $sortDirection 	= $_REQUEST['sortDirection'];
 
 
-$start = ($page * $length) - $length;
+
+
+$start = ((int)$page * (int)$length) - (int)$length;
+// var_dump($start);
 
 if ($length > 0) {
 	$limit = ' LIMIT ' .$start . ','. $length;

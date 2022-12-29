@@ -1,5 +1,8 @@
 <?
-	$smarty->assign('page',$md->getName());	
+	$smarty->assign('page',$md->getName());
+	
+	$route_name = "";
+	$vehicle_name = "";
 	
 	if	($_REQUEST['rulesType']=='') $_REQUEST['rulesType']='global';
 	switch ($_REQUEST['rulesType']) {
@@ -52,13 +55,13 @@
 		require_once ROOT . '/db/v4_Routes.class.php';	
 		$rt = new v4_Routes();
 		$rt->getRow($rid);
-		$smarty->assign('routeName',$rt->getRouteName());
+		$route_name = $rt->getRouteName();
 	}	
 	if ($vehicle_name) {
 		require_once ROOT . '/db/v4_VehicleTypes.class.php';	
 		$vh = new v4_VehicleTypes();
 		$vh->getRow($vid);
-		$smarty->assign('vehicleName',$vh->getVehicleTypeName());
+		$vehicle_name = $vh->getVehicleTypeName();
 	}		
 	if (isset($_REQUEST['submit'])) {
 		foreach ($db->fieldNames() as $name) {
@@ -80,3 +83,6 @@
 		$smarty->assign($key,$data);	
 	}	
 	
+
+	$smarty->assign('routeName',$route_name);
+	$smarty->assign('vehicleName',$vehicle_name);

@@ -3,6 +3,9 @@
 	AJAX Script !!!!
 */
 require_once "../../config.php";
+
+
+
 if (!isset($_REQUEST["cal_month"])) {
     if (!isset($_SESSION["cal_month"])) $cMonth = date("m");
     else $cMonth = $_SESSION["cal_month"]; 
@@ -73,10 +76,14 @@ function monthTransfers($date,$rec,$count,$startday)
 
 	$data = '';
 	$noOfTransfers = 0;
+	$arr = array();
 	foreach ($rec as $row) { 
+		// print_r($row);
 		if ($row['PickupDate']==$date) {
 			if ($row['TransferStatus'] != '3') $noOfTransfers += 1;
 			$arr[]= $row;
+			
+			// print_r($arr);
 		}
 	}
 	$dayofweek=($count % 7);
@@ -88,3 +95,5 @@ function monthTransfers($date,$rec,$count,$startday)
 	$dayTransfers['noOfTransfers']=$noOfTransfers;
     return $dayTransfers;
 }
+
+// print_r($arr); Empty array
