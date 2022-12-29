@@ -60,7 +60,7 @@
 <style>
 
 .wrapper-edit{ padding:0px; }
-.white-bg-edit{ padding-bottom:30px;  background-image: linear-gradient(#f6f7f9, #dee6ed);}
+.white-bg-edit{ padding-bottom:30px;}
 
 .additional-class{
     position: fixed;
