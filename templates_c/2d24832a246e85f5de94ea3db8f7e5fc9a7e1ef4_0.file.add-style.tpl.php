@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.32, created on 2022-12-26 07:46:30
+/* Smarty version 3.1.32, created on 2022-12-30 10:23:49
   from 'c:\wamp\www\jamtransfer\templates\add-style.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.32',
-  'unifunc' => 'content_63a94346919577_82023706',
+  'unifunc' => 'content_63aeae25de8600_52901564',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '2d24832a246e85f5de94ea3db8f7e5fc9a7e1ef4' => 
     array (
       0 => 'c:\\wamp\\www\\jamtransfer\\templates\\add-style.tpl',
-      1 => 1671794207,
+      1 => 1672299701,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_63a94346919577_82023706 (Smarty_Internal_Template $_smarty_tpl) {
+function content_63aeae25de8600_52901564 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 
 <style type="text/css" media="print">
@@ -79,7 +79,7 @@ function content_63a94346919577_82023706 (Smarty_Internal_Template $_smarty_tpl)
 <style>
 
 .wrapper-edit{ padding:0px; }
-.white-bg-edit{ padding-bottom:30px; }
+.white-bg-edit{ padding-bottom:30px;}
 
 .additional-class{
     position: fixed;
@@ -313,13 +313,29 @@ function content_63a94346919577_82023706 (Smarty_Internal_Template $_smarty_tpl)
 
 /* Cursor pointer */
 .listTile{ cursor:pointer;}
-.listTile:hover{ background: rgb(240, 240, 240); }
+.listTile:hover{ background: rgb(229 229 231); }
 /* off */
 /* .listTile:focus{ background: rgb(71, 42, 173); } */
 
 /* DriverRoutes - ListTemplate.php */
 .listTitleEdit{ cursor:auto !important; }
 
+/* Navbar Side */
+.navbar-default-edit{ 
+    background-image: linear-gradient(#333a42, #3e576e); 
+}
+
+/* navbar top fixed */
+.navbar-static-top-edit{
+    background-image: linear-gradient(to bottom right, silver, #cceeff);
+}
+
+/* Footer */
+.footer-edit{
+    background-image: linear-gradient(to bottom right, silver, #cceeff);
+}
+.pull-left-edit{ margin-left:10px; }
+.pull-right-edit{ margin-right:20px; }
 
 
 

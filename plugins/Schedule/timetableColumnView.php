@@ -10,10 +10,12 @@ session_start();
 $DateFrom	= $_POST["DateFrom"];
 $DateTo		= $_POST["DateTo"];
 $NoColumns	= $_POST["NoColumns"];
+$DriverStatus	= $_POST["DriverStatus"];
 
 if (!isset($DateFrom)) $DateFrom = date("Y-m-d");
 if (!isset($DateTo)) $DateTo = date("Y-m-d");
 if (!isset($NoColumns)) $NoColumns = 3;
+if (!isset($DriverStatus)) $DriverStatus = 0;
 
 require_once $_SERVER['DOCUMENT_ROOT'] . '/db/v4_AuthUsers.class.php';
 $au = new v4_AuthUsers();
@@ -114,7 +116,7 @@ function query_to_csv($db_conn, $query, $filename, $attachment = false, $headers
 }
 
 // dobavi sve transfere za odabrani datum za trenutnog vlasnika timetable-a
-$q = "SELECT DetailsID, SubDriver, SubDriver2, SubDriver3 FROM v4_OrderDetails WHERE DriverID = " . $_SESSION['OwnerID'] . " AND PickupDate >= '" . $DateFrom . "' AND PickupDate <= '" . $DateTo . "' AND TransferStatus < '6' AND TransferStatus != '4' AND DriverConfStatus != '3' ORDER BY DetailsID ASC";
+$q = "SELECT DetailsID, SubDriver, SubDriver2, SubDriver3 FROM v4_OrderDetails WHERE DriverID = " . $_SESSION['OwnerID'] . " AND PickupDate >= '" . $DateFrom . "' AND PickupDate <= '" . $DateTo . "' AND TransferStatus < '6' AND TransferStatus != '4' ORDER BY DetailsID ASC";
 $r = $db->RunQuery($q);
 $subDArray = array();
 while ($t = $r->fetch_object()) {
@@ -202,27 +204,29 @@ hr {
 
 <div class="container-fluid">
 	<div class="row" >
-		<div style="float:left; display:inline-block; width:30%">	
+		<div class="col-sm-4">	
 			<h3>Timetable - Column View</h3>
-			<button class="btn" onclick="hideChecked()"><?= DISPLAY_NOT_CHECKED ?></button>
-			<button class="btn" onclick="displayAll()"><?= DISPLAY_ALL ?></button>
+			<!--<button class="btn" onclick="hideChecked()">NOT <?= READY ?></button>
+			<button class="btn" onclick="hideNotChecked()"><?= READY ?></button>
+			<button class="btn" onclick="displayAll()"><?= DISPLAY_ALL ?></button>!-->
 		</div>		
-		<div style="float:left; display:inline-block; width:69%">
+		<div class="col-sm-8">
 		<form class="ttForm" action="index.php?p=timetableColumnView" method="post" onsubmit="return validate()">
-			From
-			<input id="DateFrom" class="datepicker" name="DateFrom" value="<?=$DateFrom?>">
-			to
-			<input id="DateTo" class="datepicker" name="DateTo" value="<?=$DateTo?>">
-			with
+			<input id="DateFrom" class="w100 datepicker" name="DateFrom" value="<?=$DateFrom?>">
+			<input id="DateTo" class="w100 datepicker" name="DateTo" value="<?=$DateTo?>">
 			<select name="NoColumns">
-				<option value="1" <?if($NoColumns==1)echo'selected'?>>1</option>
-				<option value="2" <?if($NoColumns==2)echo'selected'?>>2</option>
-				<option value="3" <?if($NoColumns==3)echo'selected'?>>3</option>
-				<option value="4" <?if($NoColumns==4)echo'selected'?>>4</option>
-				<option value="6" <?if($NoColumns==6)echo'selected'?>>6</option>
-				<option value="12" <?if($NoColumns==12)echo'selected'?>>12</option>
+				<option value="1" <?if($NoColumns==1)echo'selected'?>>1 column</option>
+				<option value="2" <?if($NoColumns==2)echo'selected'?>>2 columns</option>
+				<option value="3" <?if($NoColumns==3)echo'selected'?>>3 columns</option>
+				<option value="4" <?if($NoColumns==4)echo'selected'?>>4 columns</option>
+				<option value="6" <?if($NoColumns==6)echo'selected'?>>6 columns</option>
+				<option value="12" <?if($NoColumns==12)echo'selected'?>>12 columns</option>
 			</select>
-			columns
+			<select name="DriverStatus">
+				<option value="0" <?if($DriverStatus==0)echo'selected'?>><?= DISPLAY_ALL ?></option>
+				<option value="1" <?if($DriverStatus==1)echo'selected'?>>Not <?= READY ?></option>
+				<option value="2" <?if($DriverStatus==2)echo'selected'?>><?= READY ?> and Finished</option>
+			</select>			
 			<button type="submit" class="btn btn-primary">Go</button>
 		</form>
 
@@ -250,12 +254,14 @@ hr {
 	$q = "SELECT DetailsID,SubDriver,SubDriver2,SubDriver3 FROM v4_OrderDetails 
 		  WHERE DriverID = '". $_SESSION['OwnerID']."' 
 		  AND PickupDate >= '" . $DateFrom . "' 
-		  AND PickupDate <= '" . $DateTo . "' 
-		  AND TransferStatus < '6' 
-		  AND TransferStatus != '4' 
-		  AND DriverConfStatus != '3' 
-		  AND NOT (TransferStatus = '3' AND SubDriver='0')
-		  ORDER BY PickupDate, SubPickupTime, PickupTime ASC"; 
+		  AND PickupDate <= '" . $DateTo . "' ";
+	$q .= "	AND TransferStatus < '6' ";
+	$q .= "	AND TransferStatus != '4' ";
+	$q .= "	AND TransferStatus != '4' ";
+	$q .= " AND NOT (TransferStatus = '3' AND SubDriver='0') ";
+	if ($DriverStatus==2) $q .= "	AND DriverConfStatus > 2 ";		  
+	if ($DriverStatus==1) $q .= "	AND DriverConfStatus < 3 ";		  
+	$q .= "ORDER BY PickupDate, SubPickupTime, PickupTime ASC"; 
 	$r = $db->RunQuery($q);
 	$row=array();
 	while ($t = $r->fetch_object()) {
@@ -293,7 +299,6 @@ hr {
 		      AND PickupDate <= '" . $DateTo . "' 
 		      AND TransferStatus < '6' 
 		      AND TransferStatus != '4' 
-		      AND DriverConfStatus != '3' 
 		      AND ((SubDriver = " . $SubDriver . ") OR (SubDriver2 = " . $SubDriver . ") OR (SubDriver3 = " . $SubDriver . ")) 
 		      ORDER BY PickupDate, SubPickupTime, PickupTime ASC"; 
 		
@@ -429,8 +434,9 @@ hr {
 
 					// oznacavanje zavrsenih transfera
 					$bgColor = "#caefff";
+					if($od->getTransferStatus() == "3") $bgColor = "#ffa07a";					
+					if($od->getDriverConfStatus() >2) $bgColor = "#ffe599";										
 					if($od->getTransferStatus() == "5") $bgColor = "#fefefe";
-					if($od->getTransferStatus() == "3") $bgColor = "#ffa07a";
 
 					?>
 
@@ -452,7 +458,7 @@ hr {
 						?></span>
 						<strong>
 							<? if ($_SESSION['inter'])  { ?>
-							<a href="https://www.jamtransfer.com/cms/printTransfer.php?OrderID=
+							<a href="https://cms.jamtransfer.com/cms/printTransfer.php?OrderID=
 								<?= $od->getOrderID() ?>" target="_blank">
 							<? } ?>		
 							<?= $om->getMOrderKey();?>-<?= $od->getOrderID(); ?>-<?= $od->getTNo() ?>
@@ -460,13 +466,17 @@ hr {
 							</a>
 							<? } ?>	
 						</strong>
+						<strong><input style='float:right;' class='check' onchange="saveTransfer('<?= $i ?>',1);" id="checkdata_<?=$i?>" type="checkbox" name="checkeddata" value="<?= $od->getCustomerID();?>" 
+							<? if ($od->DriverConfStatus>2) echo "checked disabled"; ?>>
+						<input type="hidden" id="DriverConfStatus_<?= $i ?>" name="DriverConfStatus" value="<?= $od->DriverConfStatus?>">	
+						<label style='float:right;' for="checkeddata"><?= READY ?> </label>	</strong>								
 					</div>
 
 					<div class="row">
 						<h4><?= $PickupName ?> - <?= $DropName ?></h4>
 						<? if ($flightTimeConflict) { ?>
 							<span class='blink'>FLIGHT TIME CONFLICT</span>
-						<? echo $od->getFlightTime(); }?>
+						<? echo $od->getFlightTime(); }?>						
 					</div>
 
 					<div class="row">
@@ -537,7 +547,7 @@ hr {
 						<div class="row" style="line-height:140%">
 							<div class="col-md-5">
 								<select style="width:100%;height:2em" class="subdriver1" data-id="<?=$i?>"
-								id="SubDriver_<?=$i?>" name="SubDriver_<?=$i?>" onchange="saveTransfer(<?=$i?>,0)">
+								id="SubDriver_<?=$i?>" name="SubDriver_<?=$i?>" onchange="saveTransfer(<?=$i?>,1)">
 									<option value='0'> --- </option>
 									<? foreach ($sdArray as $Driver) {
 										echo '<option value="'.$Driver['DriverID'].'" data-mob="'.$Driver['Mob'].'"';
@@ -611,7 +621,7 @@ hr {
 						<? if (($od->getSubDriver3() == 0) && ($od->getCar3() == 0)) echo ' style="display:none"'; ?> >
 							<div class="col-md-5">
 								<select style="width:100%;height:2em"
-								id="SubDriver3_<?=$i?>" name="SubDriver3_<?=$i?>" onchange="saveTransfer(<?=$i?>)">
+								id="SubDriver3_<?=$i?>" name="SubDriver3_<?=$i?>" onchange="saveTransfer(<?=$i?>,0)">
 									<option value='0'> --- </option>
 									<? foreach ($sdArray as $Driver) {
 										echo '<option value="'.$Driver['DriverID'].'"';
@@ -643,9 +653,6 @@ hr {
 					</div>
 					<div class="row">
 						<a href='mobile' id='mob<?= $i ?>'>Mobile</a>			
-						<input style='float:right;' class='check' onchange="saveTransfer('<?= $i ?>',1);" id="checkdata_<?=$i?>" type="checkbox" name="checkeddata" value="<?= $od->getCustomerID();?>" 
-							<? if ($od->getCustomerID()==1) echo "checked"; ?>>
-						<label style='float:right;' for="checkeddata"><?= DATA_CHECKED ?> </label>			
 					</div>
 					<div class="row">
 						<button class="btn-xs btn-primary btn-block" onclick="ShowShow(<?= $i?>);toggleChevron(this);">
@@ -782,7 +789,7 @@ hr {
 						<? } ?>	
 
 						<div class="col-md-6">
-							<button class="btn btn-primary btn-block" onclick="saveTransfer(<?= $i?>,0)">
+							<button class="btn btn-primary btn-block" onclick="saveTransfer(<?= $i?>,1)">
 								<i class="fa fa-save"></i> Save
 							</button>
 						</div>
@@ -874,7 +881,15 @@ function toggleChevron (button) {
 
 	function hideChecked() {
 		$('.white'). each(function(){
+			$(this).show();			
 			if ($(this).find('.check').prop('checked')) $(this).hide(400);
+		})
+	}		
+	
+	function hideNotChecked() {
+		$('.white'). each(function(){
+			$(this).show();
+			if (!$(this).find('.check').prop('checked')) $(this).hide(400);
 		})
 	}	
 	
@@ -900,13 +915,18 @@ function toggleChevron (button) {
 		if (checked) {
 			checked=1;
 			$('#checkdata'+i).prop('checked',true);
+			$('#checkdata'+i).prop('disabled',true);
+
+			var driverconfirmationstatus=3;
 			if (mail == 1) console.log('Sending message to client');
 		}	
 		else {
 			checked=0;
+			var driverconfirmationstatus=$("#DriverConfStatus_" + i).val();			
 			$('#checkdata'+i).prop('checked',false);
+			$('#checkdata'+i).prop('disabled',false);
 			mail=0;
-		}				
+		}
 		var fn	= $("#SubFlightNo_" + i).val();
 		var ft	= $("#SubFlightTime_" + i).val();
 		var pt	= $("#SubPickupTime_" + i).val();
@@ -924,12 +944,15 @@ function toggleChevron (button) {
 
 		msg.innerHTML = "Saving...";
 		var url= "p/modules/timetable/ajax_updateNotes.php";
+		var param = 'ID='+id+'&OrderID='+oid+'&DriverConfStatus='+driverconfirmationstatus+'&CustomerID='+checked+'&SubFlightNo='+fn+'&SubFlightTime='+ft+'&SubPickupTime='+pt+'&SubDriver='+sd+'&SubDriver2='+sd2+'&SubDriver3='+sd3+'&Car='+c+'&Car2='+c2+'&Car3='+c3+'&StaffNote='+ sn+'&Notes='+n+'&CashIn='+g+'&TransferDuration='+ td+'&Mail='+ mail;
+		console.log(url+'?'+param);
 		$.ajax({
 			url: url,
 			type: "POST",
 			data: {
 				ID: id,
 				OrderID: oid,
+				DriverConfStatus: driverconfirmationstatus,
 				CustomerID: checked,								
 				SubFlightNo: fn,
 				SubFlightTime: ft,

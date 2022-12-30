@@ -2,15 +2,18 @@
 
 // Timetable sa prikazom transfera po vozacima za odabrani datum
 
-if (!isset($DateFrom)) $DateFrom = "2022-09-04";
+if (!isset($_POST["DateFrom"])) $DateFrom = "2022-09-04";
 else $DateFrom	= $_POST["DateFrom"];
-if (!isset($DateTo)) $DateTo = "2022-09-04";
+if (!isset($_POST["DateTo"])) $DateTo = "2022-09-04";
 else $DateTo		= $_POST["DateTo"];
-if (!isset($NoColumns)) $NoColumns = 3;
+if (!isset($_POST["NoColumns"])) $NoColumns = 3;
 else $NoColumns	= $_POST["NoColumns"];
+if (!isset($_POST["DriverStatus"])) $DriverStatus = 0;
+else $DriverStatus	= $_POST["DriverStatus"];
 $smarty->assign("DateFrom",$DateFrom);
 $smarty->assign("DateTo",$DateTo);
 $smarty->assign("NoColumns",$NoColumns);
+$smarty->assign("DriverStatus",$DriverStatus);
 
 require_once ROOT . '/db/v4_AuthUsers.class.php';
 
@@ -49,67 +52,20 @@ $q = "
 SELECT *
 	FROM v4_OrderDetails, v4_OrdersMaster, v4_AuthUsers 
 	WHERE 
-		v4_OrderDetails.DriverID = " . $_SESSION['UseDriverID'] . " 
-		AND PickupDate >= '" . $DateFrom . "' 
-		AND PickupDate <= '" . $DateTo . "' 
-		AND TransferStatus < '6' 
-		AND TransferStatus != '4' 
-		AND DriverConfStatus != '3' 
-		AND AuthUserID=UserID
-		AND MorderID=OrderID
-	ORDER BY DetailsID ASC";
+		v4_OrderDetails.DriverID = " . $_SESSION['UseDriverID'] ; 
+$q .= " AND PickupDate >= '" . $DateFrom . "'"; 
+$q .= " AND PickupDate <= '" . $DateTo . "'";
+$q .= " AND TransferStatus < '6'";
+$q .= " AND TransferStatus != '4'"; 
+if ($DriverStatus==2) $q .= "	AND DriverConfStatus > 2 ";		  
+if ($DriverStatus==1) $q .= "	AND DriverConfStatus < 3 ";	
+$q .= " AND AuthUserID=UserID ";
+$q .= " AND MorderID=OrderID ";
+$q .= " ORDER BY DetailsID ASC";
 $r = $db->RunQuery($q);
 $subDArray = array();
 while ($t = $r->fetch_object()) {
-	//niz vozaca koji imaju transfere u zadatom vremenu
-	if ($t->SubDriver != 0) $subDArray[] = $t->SubDriver;
-	if ($t->SubDriver2 != 0) $subDArray[] = $t->SubDriver2;
-	if ($t->SubDriver3 != 0) $subDArray[] = $t->SubDriver3;
-	
-	// da li flight time u datumskom konfliktu sa pickuptime ili droptime
-	$t->flightTimeConflict=false;
-	if (abs($t->SubPickupTime-$t->FlightTime)>12) $t->flightTimeConflict=true;
-	// da li je bilo promene pickup time
-	$changedIcon = '';
-	$t->color= '';
-	$t->color2= '';
-	if (in_array($t->DetailsID,$olKeys2)) {
-		$t->changedIcon = '<i class="fa fa-circle text-red"></i>';
-		$t->color='red';
-	}	
-	if ($t->SubPickupTime==$t->PickupTime) $color2='';
-	else $t->color2='red';
-	$t->carColor = 'text-lightgrey';
-	// naziv tipa vozila	
-	$t->VehicleTypeName = $t->VehicleType;
-	if($t->VehicleType >= 100 and $t->VehicleType < 200) {
-		$t->carColor = 'text-green white';
-		$t->VehicleTypeName = 'P'.($t->VehicleType - 100);
-	}
-	if($t->VehicleType >= 200) {
-		$t->carColor = 'text-red white';
-		$t->VehicleTypeName = 'FC'.($t->VehicleType - 200);
-	}
-	// rjesenje problema kad su SubPickupDate ili SubPickupTime prazni
-	if($t->SubPickupDate == '0000-00-00') $t->SubPickupDate=$t->PickupDate ;
-	if($t->SubPickupTime == '') $t->SubPickupTime=$t->PickupTime ;
-	if(!empty($t->RouteID) && empty($t->TransferDuration) ) {
-		$or->getRow($t->RouteID);
-		$t->TransferDuration=$or->getDuration();
-	}	
-	// dohvacanje extra usluga
-	$t->extras = '';
-	$oeArray = $oe->getKeysBy('OrderDetailsID', 'ASC', 'WHERE OrderDetailsID = '.$t->DetailsID);
-
-	foreach ($oeArray as $val => $ID) {
-		$oe->getRow($ID);
-		$t->extras .= $oe->getServiceName();
-		$t->extras .= '<br>';
-	}
-	
-	$order_row=(array) $t;
-		
-	$ordersArray[]=$order_row;
+	require("oneTransfer.php");
 }
 $subDArray = array_unique($subDArray); // ostavi samo jedinstvene subdrivere u nizu
 $sdd="";
@@ -138,6 +94,8 @@ while ($d = $r->fetch_object()) {
 		$row = array();
 		$row['DriverID'] = $d->AuthUserID;
 		$row['DriverName'] = $d->AuthUserRealName;
+		//ovde izvuci vozcevo vozilo
+		$row['DriverCar'] = "assosVehicle";
 		$sddArray[] = $row;
 	}
 }

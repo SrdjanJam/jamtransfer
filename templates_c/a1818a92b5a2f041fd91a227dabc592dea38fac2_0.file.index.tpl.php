@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.32, created on 2022-12-12 15:06:41
+/* Smarty version 3.1.32, created on 2022-12-30 10:23:49
   from 'C:\wamp\www\jamtransfer\templates\index.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.32',
-  'unifunc' => 'content_639735719c2ef7_26029949',
+  'unifunc' => 'content_63aeae255a7a79_30748238',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'a1818a92b5a2f041fd91a227dabc592dea38fac2' => 
     array (
       0 => 'C:\\wamp\\www\\jamtransfer\\templates\\index.tpl',
-      1 => 1670853990,
+      1 => 1672299701,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:pageList.tpl' => 1,
   ),
 ),false)) {
-function content_639735719c2ef7_26029949 (Smarty_Internal_Template $_smarty_tpl) {
+function content_63aeae255a7a79_30748238 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html>
 	<head>
@@ -197,7 +197,7 @@ _init.js"><?php echo '</script'; ?>
 >
 
 
-		<?php if ($_smarty_tpl->tpl_vars['pageList']->value != '') {?>
+		<?php if ($_smarty_tpl->tpl_vars['pageList']->value) {?>
 
 			<?php echo '<script'; ?>
  src="js/list.js"><?php echo '</script'; ?>
@@ -248,7 +248,7 @@ _init.js"><?php echo '</script'; ?>
 	<body class="fixed-top" style="height:100%!important;font-size:16px">
 				<div class="wrapper wrapper-edit">
 
-						<nav class="navbar-default navbar-static-side additional-class" role="navigation">
+						<nav class="navbar-default navbar-default-edit navbar-static-side additional-class" role="navigation">
 			<i class="lab la-accessible-icon"></i>
 								<div class="sidebar-collapse">
 					<ul class="nav metismenu" id="side-menu">
@@ -374,7 +374,7 @@ echo $_prefixVariable1;?>
 
 								<div class="header row border-bottom">
 						
-					<nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+					<nav class="navbar navbar-static-top navbar-static-top-edit" role="navigation" style="margin-bottom: 0">
 						<div class="navbar-header">
 													<a class="navbar-minimalize minimalize-styl-2 btn btn-primary btn-primary-edit"><i class="fa fa-bars"></i> </a>
 						</div>
@@ -399,8 +399,8 @@ echo $_prefixVariable1;?>
 
 					</nav>
 				</div> 			
-				<?php if (!$_smarty_tpl->tpl_vars['isNew']->value && $_smarty_tpl->tpl_vars['pageList']->value != '') {?>
-										<div class="header">  
+				<?php if (!$_smarty_tpl->tpl_vars['isNew']->value && $_smarty_tpl->tpl_vars['pageList']->value) {?>
+										<div class="header header-edit">  
 						<?php $_smarty_tpl->_subTemplateRender("file:pageListHeader.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?> 				   
 					</div> 				<?php }?>
@@ -428,7 +428,7 @@ echo $_prefixVariable1;?>
 							<?php $_smarty_tpl->_subTemplateRender(((string)$_smarty_tpl->tpl_vars['root']->value)."/plugins/".((string)$_smarty_tpl->tpl_vars['base']->value)."/templates/".((string)$_smarty_tpl->tpl_vars['includeFileTpl']->value), $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, true);
 ?>
 							MODEL VIEW CONTROL SMARTY		
-						<?php } elseif ($_smarty_tpl->tpl_vars['pageList']->value != '') {?>
+						<?php } elseif ($_smarty_tpl->tpl_vars['pageList']->value) {?>
 							<?php $_smarty_tpl->_subTemplateRender("file:pageList.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?> 
 							MODEL VIEW CONTROL HANDLEBARS
@@ -439,13 +439,13 @@ echo $_prefixVariable1;?>
 					<?php }?>
 					
 				</div> 
-								<div class="footer row">
+								<div class="footer row footer-edit">
 
-					<?php if ($_smarty_tpl->tpl_vars['pageList']->value != '') {?>				
-						<div id="pageSelect" class="pull-left"></div>
+					<?php if (!$_smarty_tpl->tpl_vars['isNew']->value && $_smarty_tpl->tpl_vars['pageList']->value) {?>				
+						<div id="pageSelect" class="pull-left pull-left-edit"></div>
 					<?php }?>
 
-					<div class="pull-right">
+					<div class="pull-right pull-right-edit">
 						Powered by <strong>Jamtransfer</strong>
 					</div>
 					
