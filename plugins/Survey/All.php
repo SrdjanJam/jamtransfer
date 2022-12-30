@@ -13,11 +13,18 @@ if (isset($type)) {
 		$filter = "  AND ".$type." = '" . $_REQUEST['Type'] . "'";
 	}
 }
+
+if(!isset($_REQUEST['page'])) $_REQUEST['page'] = 0;
+if(!isset($_REQUEST['length'])) $_REQUEST['length'] = 0;
+if(!isset($_REQUEST['sortOrder'])) $_REQUEST['sortOrder'] = 0;
+if(!isset($_REQUEST['Search'])) $_REQUEST['Search'] = "";
+
 $page 		= $_REQUEST['page'];
 $length 	= $_REQUEST['length'];
 $sortOrder 	= $_REQUEST['sortOrder'];
 
 $start = ($page * $length) - $length;
+
 
 if ($length > 0) {
 	$limit = ' LIMIT '. $start . ','. $length;
@@ -71,8 +78,17 @@ if (count($dbk) != 0) {
 		else {
 			$where2= "Where OrderID=".$db->OrderID." AND TNo=1";
 			$odk = $od->getKeysBy('DetailsID ', '' , $where2);
+			// print_r($odk);
+			// exit();
+
+			if(isset($odk[0])) $odk[0];
+			else $odk[0] = "";
+
 			$od->getRow($odk[0]);			
 			$routeName=$od->PickupName."-".$od->DropName;
+
+			// print_r($od);
+			// exit();
 		}	
 		$detailFlds["RouteNameEN"] = $routeName;		
 		$out[] = $detailFlds;    	
