@@ -2,6 +2,7 @@
 header('Content-Type: text/javascript; charset=UTF-8');
 require_once 'Initial.php';
 
+$levels = "";
 $out = array();
 # Details  red
 $db->getRow($_REQUEST['ItemID']);
