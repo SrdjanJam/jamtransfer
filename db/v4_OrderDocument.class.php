@@ -26,9 +26,11 @@ Class v4_OrderDocument {
 	public $IssueDate; //time
 	public $connection;
 
-	public function v4_OrderDocument(){
+
+	public function __construct(){
 		$this->connection = new DataBaseMysql();
-	}	public function myreal_escape_string($string){
+	}	
+		public function myreal_escape_string($string){
 		return $this->connection->real_escape_string($string);
 	}
 
