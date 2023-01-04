@@ -39,10 +39,10 @@
 						{* <span style="color:rgb(180, 52, 52)">{$driversBalance[index]}</span> *}
 						<span style="color:rgb(51, 180, 100)">{$driversBalance[index]}</span>
 						{elseif $driversBalance[index] == 0}
-							<span style="color:rgb(39, 37, 29)">{$driversBalance[index]}</span>
+							<span style="color:rgb(56, 58, 165)">{$driversBalance[index]}</span>
 							{* {$driversBalance[index]} *}
 						{else}
-							<span style="color:rgb(180, 52, 52)">{$driversBalance[index]}</span>
+							{$driversBalance[index]}
 							{* {$driversBalance[index]} *}
 					{/if}
 				</div>
@@ -128,16 +128,16 @@
 	// Listen for click on toggle checkbox
 	$(document).ready(function(){
 		$('#select-all').click(function(event) {   
-		if(this.checked) {
-			// Iterate each checkbox
-			$(':checkbox').each(function() {
-				this.checked = true;                        
-			});
-		} else {
-			$(':checkbox').each(function() {
-				this.checked = false;                       
-			});
-		}
-	});
+			if(this.checked) {
+				// Iterate each checkbox
+				$(':checkbox').each(function() {
+					this.checked = true;                        
+				});
+			} else {
+				$(':checkbox').each(function() {
+					this.checked = false;                       
+				});
+			}
+		});
 	});
 </script>
