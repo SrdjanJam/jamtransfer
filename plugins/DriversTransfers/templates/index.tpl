@@ -28,7 +28,9 @@
 
 				<a href="{$root_home}driversTransfers/driversBalance/{$user[index].AuthUserID}/{$smarty.request.StartDate}/{$smarty.request.EndDate}/{$includePaymentMethod}">
 					<div class="col-md-8">
-						{$user[index].Country} - {$user[index].Terminal} - {$user[index].AuthUserCompany} - {$user[index].AuthUserTel} - {$connectedUserNamePlus[index]}
+						{* {$user[index].Country} - {$user[index].Terminal} - {$user[index].AuthUserCompany} - {$user[index].AuthUserTel} - {$connectedUserNamePlus[index]} *}
+
+						{$user[index].Country} - {$user[index].Terminal} - {$user[index].AuthUserCompany} - {$user[index].AuthUserTel}
 					</div>
 				</a>
 
@@ -79,11 +81,13 @@
 						<input type="text" name="EndDate" class="form-control datepicker">
 					</div>
 				</div>
+
 				{* Checkbox: *}
 				<div class="row">
-					<div class="col-md-2">
+					<div class="col-md-1">
 						<label><b>Include</b></label>
 					</div>
+
 					<div class="col-md-2">
 						Online<input type="checkbox" name="Online" class="form-control" value="1">
 					</div>
@@ -98,7 +102,13 @@
 					</div>
 					<div class="col-md-2">
 						Invoice 2 <input type="checkbox" name="Invoice2" class="form-control" value="1">
-					</div>				
+					</div>
+
+					<!-- select all boxes -->
+					<div class="col-md-1">
+						<span style="color:rgb(21 85 229);">Check All</span><input type="checkbox" name="select-all" class="form-control" id="select-all" />
+					</div>	
+
 				</div>
 
 				<div class="row">
@@ -114,4 +124,20 @@
 
 </div> {* End of container white *}
 
-
+<script>
+	// Listen for click on toggle checkbox
+	$(document).ready(function(){
+		$('#select-all').click(function(event) {   
+		if(this.checked) {
+			// Iterate each checkbox
+			$(':checkbox').each(function() {
+				this.checked = true;                        
+			});
+		} else {
+			$(':checkbox').each(function() {
+				this.checked = false;                       
+			});
+		}
+	});
+	});
+</script>
