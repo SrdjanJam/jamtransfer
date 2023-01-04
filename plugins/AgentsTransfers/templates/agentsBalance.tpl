@@ -32,7 +32,7 @@
 
                     <td>
                         <b>{$transfers[index].PickupName}<br>{$transfers[index].DropName}</b><br/>
-                        Driver: <br/>{$transfers[index].DriverID} {$drivers[index]}<br/><br/>
+                        Driver: <br/>{$transfers[index].DriverID}<br/><br/>
                     </td>
                     
                     <td>
@@ -56,8 +56,8 @@
 
         <div align="left">
 
-            {if $smarty.request.pm eq 4}{$proc=agentsWTransfers}{/if}
-            {if $smarty.request.pm eq 6}{$proc=agentsWTransfers2}{/if}
+            {* {if $smarty.request.pm eq 4}{$proc=agentsWTransfers}{/if}
+            {if $smarty.request.pm eq 6}{$proc=agentsWTransfers2}{/if} *}
 
 
             <a href="{$root_home}agentsTransfers/{$smarty.request.StartDate}/{$smarty.request.EndDate}/{$smarty.request.NoShow}/{$smarty.request.DrErr}/{$smarty.request.CompletedTransfers}/{$smarty.request.Sistem}"

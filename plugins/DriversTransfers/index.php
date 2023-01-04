@@ -1,14 +1,35 @@
 <?
-
-$StartDate 	= $_REQUEST['StartDate'];
-$EndDate	= $_REQUEST['EndDate'];
-
-if(!isset($_REQUEST['includePaymentMethod'])){
+if(isset(
+		$_REQUEST['StartDate'],
+		$_REQUEST['EndDate'],
+		$_REQUEST['Online'],
+		$_REQUEST['Cash'],
+		$_REQUEST['OnlineCash'],
+		$_REQUEST['Invoice'],
+		$_REQUEST['Invoice2']
+	)
+){
+	$StartDate 	= $_REQUEST['StartDate'];
+	$EndDate	= $_REQUEST['EndDate'];
 	$Online    = $_REQUEST['Online'];
 	$Cash    = $_REQUEST['Cash'];
 	$OnlineCash      = $_REQUEST['OnlineCash'];
 	$Invoice     = $_REQUEST['Invoice'];
 	$Invoice2     = $_REQUEST['Invoice2'];
+}else{
+	$StartDate='';
+	$EndDate='';
+	$Online='';
+	$Cash='';
+	$OnlineCash='';
+	$Invoice='';
+	$Invoice2='';
+}
+
+$totalPrice = 0;
+
+
+if(!isset($_REQUEST['includePaymentMethod'])){
 
 	$includePaymentMethod = "";
 	if($Online == 1) $includePaymentMethod .= "1,";
@@ -27,7 +48,8 @@ if(!isset($_REQUEST['includePaymentMethod'])){
 			 AND PickupDate <= '{$EndDate}' 
 			 AND TransferStatus != '3' 
 			 AND TransferStatus != '4' 
-			 AND TransferStatus != '9'";
+			 AND TransferStatus != '9'
+			 AND DriverID > 0";
 	if(!empty($includePaymentMethod)) $q.=" AND PaymentMethod in (".$includePaymentMethod.")"; 
 	$q .=	 " GROUP BY DriverID";
 	$q .=	 " ORDER BY DriverID ASC";

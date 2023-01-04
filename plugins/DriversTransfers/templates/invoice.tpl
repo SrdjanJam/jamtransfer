@@ -179,7 +179,7 @@
 								<td></td> <!-- Empty -->
 
 								<td style="min-width:6em !important;text-align:right" class="pad4px">
-									{$sum * $smarty.session.TecajRSD}
+									{$sum}
 									<input type="hidden" name="SumPrice" value="{$sum}">
 								</td>
 
@@ -195,7 +195,7 @@
 								<td></td> <!-- Empty -->
 
 								<td style="min-width:6em !important;text-align:right" class="pad4px">
-									{$sum * $smarty.session.TecajRSD}
+									{$sum}
 									<input type="hidden" name="TotalPriceEUR" value="{$sum}">
 								</td>
 
@@ -211,7 +211,7 @@
 								<td class="pad4px"></td>
 
 								<td style="min-width:6em !important;text-align:right" class="pad4px">
-									{$sum * $smarty.session.TecajRSD}
+									{$sum}
 									<input type="hidden" name="VATBaseTotal" value="{$sum}">
 								</td>
 
@@ -223,11 +223,14 @@
 
 							<tr>
 								<td class="pad4px"></td>
-								<td class="ucase pad4px" style="text-align:right"><small>{$smarty.request.vat}% VAT total</small></td>
+
+								{* Don't exists *}
+								{* <td class="ucase pad4px" style="text-align:right"><small>{$smarty.request.vat}% VAT total</small></td> *}
+
 								<td class="pad4px"></td>
 
 								<td style="min-width:6em !important;text-align:right" class="pad4px">
-									{$VATtotal * $smarty.session.TecajRSD}
+									{$VATtotal}
 									<input type="hidden" name="VATtotal" value="{$VATtotal}">
 								</td>		
 
@@ -243,7 +246,7 @@
 								<td class="pad4px"></td>
 
 								<td style="min-width:6em !important;text-align:right" class="pad4px">
-									{$sum * $smarty.session.TecajRSD}
+									{$sum}
 									<input type="hidden" name="GrandTotal" value="{$sum}">
 								</td>		
 

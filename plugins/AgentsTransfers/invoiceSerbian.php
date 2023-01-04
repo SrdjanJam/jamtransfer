@@ -9,7 +9,17 @@
 	$totalEur = 0;
 	$VATbase = 0;
 	$VATtotal = 0;
+	$vat = 0;
 
+	$transfersSum = 0;
+	$extrasSum	= 0;
+	$driversExtrasSum = 0;
+	$provisionSum = 0;
+	$VATbaseTemp = 0;
+	$TecajRSD = 0;
+
+	if(isset($_REQUEST['InvoiceNumber'])) $_REQUEST['InvoiceNumber'];
+	else $_REQUEST['InvoiceNumber'] = 0;
 				
 	foreach($kd as $nn => $id) {
 						
@@ -128,6 +138,7 @@ $smarty->assign('commissionAmt', $commissionAmt);
 $smarty->assign('totalEur', $totalEur);
 $smarty->assign('VATbase', $VATbase);
 $smarty->assign('VATtotal', $VATtotal);
+$smarty->assign('vat', $vat);
 
 $smarty->assign('Date', $Date);
 $smarty->assign('dueDate', $dueDate);

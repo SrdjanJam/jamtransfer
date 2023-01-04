@@ -6,6 +6,7 @@
 	$csv = new ExportCSV;
 	$csv->File = 'DriverBalance';
 	$csv->totalOnCols = array('7', '8', '9');
+	$csv->totals = array(0,0,0);
 	
 	// Za brisanje vrednosti u formi:
 	if (isset($_REQUEST['reset']) and $_REQUEST['reset'] != 0) $_REQUEST = array();
@@ -20,6 +21,8 @@
 		$totNetto = 0;
 		$toPay = 0;
 		$weOwe = 0;
+
+		$balance = 0;
 		
 		#++++++++++++++++++++++++++++++++++++++++++++++++++
 		# Svi transferi
@@ -36,7 +39,7 @@
 		// Visak:
 		// $q .= " AND PayLater > DriversPrice ";	// kes transferi
 
-		if (!empty($_REQUEST['driverid'])) 
+		// if (!empty($_REQUEST['driverid'])) 
 
 		if (!empty($_REQUEST['driverid'])) { 
 			if (getConnectedUser($_REQUEST['driverid'])>0) $q .= ' AND (DriverID = ' . $_REQUEST['driverid'] . '  OR DriverID =  '.getConnectedUser($_REQUEST['driverid']). ') '; 
@@ -75,7 +78,6 @@
 
 
 		while( $o = $e->fetch_object() ){
-
 			// Transfers:
 			$transfers_row = array();
 
@@ -111,18 +113,17 @@
 
 			# CSV rows
 			$csv->addRow(array(
-				$o->OrderID.'-'.$o->TNo ,
+				$o->OrderID.'-'.$o->TNo,
 				$o->PaxName,
 				$o->PaxNo,
 				$o->VehicleType,
 				$o->PickupName. '-' . $o->DropName,
-
 				Driver($o->DriverID),
-
 				number_format($o->PayLater,2),
 				number_format(($o->DriversPrice + $o->DriverExtraCharge),2),
 				number_format($balanceShow_row,2)
 				)
+
 
 			);	
 

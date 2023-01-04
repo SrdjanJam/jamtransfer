@@ -181,7 +181,7 @@
 		{* main wrapper class*}
 		<div class="wrapper wrapper-edit">
 
-			{* SIDEBAR ====================================================================================================================================== *}
+{* SIDEBAR ====================================================================================================================================== *}
 			<nav class="navbar-default navbar-default-edit navbar-static-side additional-class" role="navigation">
 			<i class="lab la-accessible-icon"></i>
 				{* sidebar-collapse *}
@@ -279,7 +279,7 @@
 			</nav> {* End of navbar-default navbar-static-side *}
 
 						
-			{* HEADER ====================================================================================================================================== *}
+{* HEADER ====================================================================================================================================== *}
 			
 			{* #page-wrapper *}
 			<div id="page-wrapper" class="content gray-bg dashbard-1" style="height: 100%;
@@ -301,6 +301,8 @@
 						<div class="navbar-header">
 							<button type="button" class="minimalize-styl-2 btn btn-primary btn-primary-edit" id="cashe"><i class="fas fa-redo-alt"></i></button>
 						</div>
+						
+						<span style="color:cornflowerblue;margin:10px 0 0 70px;font-size:25px;display: inline-block; font-style:italic;text-shadow: 1px 2px #2e2e30;">Srećni Praznici</span>
 
 						<ul class="nav navbar-top-links navbar-right">
 							<li>
@@ -339,7 +341,7 @@
 				{/if}
 				
 				
-				{* MAIN CONTENT ================================================================================================================= *}
+{* MAIN CONTENT ================================================================================================================= *}
 				<div class="body row white-bg white-bg-edit">
 
 					{if isset($pageOLD)}
@@ -357,7 +359,7 @@
 					
 				</div> {* / .body row white-bg *}
 
-				{* FOOTER ======================================================================================================================== *}
+{* FOOTER ======================================================================================================================== *}
 				<div class="footer row footer-edit">
 
 					{if not $isNew and $pageList}				

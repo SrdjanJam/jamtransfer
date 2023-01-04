@@ -11,23 +11,46 @@
 	$in = new v4_Invoices();
 	$id = new v4_InvoiceDetails();
 
+	$saved = "";
+
 // Nepotrebno:
 // if(isset($_REQUEST['Submit']) and $_REQUEST['Submit'] == '1') {
 	
 	//$details = array();
-	
-	// $_REQUEST:
-	// Assigned:
-	$d	 	= $_REQUEST['driverid']; // DriverID
-	$start 	= $_REQUEST['StartDate']; // start date
-	$end	= $_REQUEST['EndDate']; // end date
-	$p 		= $_REQUEST['p'];
-	$DriverInvoiceNumber = $_REQUEST['DriverInvoiceNumber'];
-	$DriverInvoiceDate = $_REQUEST['DriverInvoiceDate'];
-	$Description = $_REQUEST['Description'];
 
-	$si	    = $_REQUEST['si']; // sistem
-	$ct	    = $_REQUEST['ct']; // realizirani transferi
+	if(isset($_REQUEST['driverid'])) $d = $_REQUEST['driverid'];
+	else $d = $_REQUEST['driverid'] = 0;
+
+	
+	if(isset($_REQUEST['StartDate'],$_REQUEST['EndDate'],$_REQUEST['includePaymentMethod'])){
+		$start = $_REQUEST['StartDate']; // start date
+		$end = $_REQUEST['EndDate']; // end date
+		$_REQUEST['includePaymentMethod'];
+	}else{
+		$start = $_REQUEST['StartDate'] = ""; // start date
+		$end = $_REQUEST['EndDate'] = ""; // end date
+		$_REQUEST['includePaymentMethod'] = 0;
+	}
+
+	if(isset($_REQUEST['p'])) $p = $_REQUEST['p'];
+	else $p = $_REQUEST['p'] = "";
+
+	if(isset($_REQUEST['DriverInvoiceNumber'])) $DriverInvoiceNumber = $_REQUEST['DriverInvoiceNumber'];
+	else $DriverInvoiceNumber = $_REQUEST['DriverInvoiceNumber'] = 0;
+
+	if(isset($_REQUEST['DriverInvoiceDate'])) $DriverInvoiceDate = $_REQUEST['DriverInvoiceDate'];
+	else $DriverInvoiceDate = $_REQUEST['DriverInvoiceDate'] = 0;
+
+	if(isset($_REQUEST['Description'])) $Description = $_REQUEST['Description'];
+	else $Description = $_REQUEST['Description'] = "";
+
+	if(isset($_REQUEST['si'])) $si = $_REQUEST['si'];
+	else $si = $_REQUEST['si'] = "";
+
+	if(isset($_REQUEST['ct'])) $ct = $_REQUEST['ct'];
+	else $ct = $_REQUEST['ct'] =  "";
+	
+
 
 	$taxPercent = 0;
 	$taxAmt 	= 0;
@@ -58,10 +81,13 @@
  
 	$u = (array)getUser($d); // User Object
 	
+	
 	if( isset($_REQUEST['Save']) and 
 		$_REQUEST['Save'] == '1' and 
 		isset($_REQUEST['DriverInvoiceNumber']) and 
 		!empty($_REQUEST['DriverInvoiceNumber']) ) {
+
+				$invoiceExists = "";
 
 		// Provjera postoji li vec racun sa ovim brojem
 		$inKey = $in->getKeysBy('ID', 'ASC', " WHERE InvoiceNumber='" . 
@@ -105,11 +131,11 @@
 			$in->setDueDate( $_REQUEST['DueDate'] );
 			$in->setSumPrice( $_REQUEST['SumPrice'] );
 			$in->setSumSubtotal( $_REQUEST['SumSubTotal'] );
-			$in->setCommPrice( $_REQUEST['CommPrice'] );
-			$in->setCommSubtotal( $_REQUEST['CommSubtotal'] );
+			// $in->setCommPrice( $_REQUEST['CommPrice'] ); // Undefined index
+			// $in->setCommSubtotal( $_REQUEST['CommSubtotal'] ); // Undefined index
 			$in->setTotalPriceEUR( $_REQUEST['TotalPriceEUR'] );
 			$in->setTotalSubTotalEUR( $_REQUEST['TotalSubTotalEUR'] );
-			$in->setVATNotApp( $_REQUEST['VATNotApp'] );
+			// $in->setVATNotApp( $_REQUEST['VATNotApp'] ); // Undefined index
 			$in->setVATBaseTotal( $_REQUEST['VATBaseTotal'] );
 			$in->setVATtotal( $_REQUEST['VATtotal'] );
 			$in->setGrandTotal( $_REQUEST['GrandTotal'] );
@@ -118,6 +144,8 @@
 			$in->setStatus( '0' );
 					
 			$result = $in->saveAsNew(); // vraca ID novog racuna
+
+			
 	
 			if( $result > 0 ) {
 		 		// OBRADA ZAVRSENA, MOZE SE PRIKAZATI PDF
@@ -137,17 +165,31 @@
 			$_SESSION['detailsID'] = array();
 		}
 		// Request:
-		$Submit = $_REQUEST['Submit'];
-		$Save = $_REQUEST['Save'];
-		$GrandTotal = $_REQUEST['GrandTotal'];
+		if(isset($_REQUEST['Submit'],$_REQUEST['Save'],$_REQUEST['GrandTotal'])){
+			$Submit = $_REQUEST['Submit'];
+			$Save = $_REQUEST['Save'];
+			$GrandTotal = $_REQUEST['GrandTotal'];
+		}else{
+			$Submit = $_REQUEST['Submit'] = "";
+			$Save = $_REQUEST['Save'] = "";
+			$GrandTotal = $_REQUEST['GrandTotal'] = 0;
+		}
+		
 		
 	} // End of - if $_REQUEST['Save']
 		
 	$replaceChars = array('/','\\');
 	$PDFfile = 	'pdf/RD_'. str_replace($replaceChars,'-',$_REQUEST['DriverInvoiceNumber']).'.pdf';
+	
 
 	$countries = array();
 	$transfersInSerbia = 0;
+
+	$transfersSum = 0;
+	$driversPriceSum = 0;
+	$cashTotal = 0;
+	$driverExtraChargeTotal = 0;
+	$paidOnline = 0;
 							
 	foreach($kd as $nn => $id) {
 		// Orderditails i klasa v4_OrderDetails.class.php
@@ -172,9 +214,13 @@
 
 		$transfersCount += 1;
 		
+
+		// These lines
 		$pickupCountry 	= getPlaceCountry ($od->getPickupID());
 		$dropCountry 	= getPlaceCountry ($od->getDropID());
 		
+		
+
 		if(!in_array($pickupCountry, $countries ) and $pickupCountry > 0) {
 			$countries[] = $pickupCountry; 
 		}
@@ -199,43 +245,16 @@
 					}
 				
 					$cList = substr( str_replace('++','+',$cList), 0, -1) ;
-					if($cList == '') $cList = $u->CountryName;
+					if($cList == '') $cList = $u['CountryName'];
 				
 					$Description .= $cList;
 					$Description .= ' / ';
-					$Description .= $u->Terminal;
+					$Description .= $u['Terminal'];
 					$Description .= " (according to specification) 
 					";  
 					$Description = trim(strip_tags($Description));
 
-	// Smarty assign
-	$smarty->assign('`DriverId`',$d);
-	$smarty->assign('StartDate',$start);
-	$smarty->assign('EndDate',$end);
-
-	$smarty->assign('p',$p);
-
-	$smarty->assign('Date',$Date);
-	$smarty->assign('dueDate',$dueDate);
-
-	$smarty->assign('toDay',date("Y-m-d"));
-	$smarty->assign('saved',$saved);
-	$smarty->assign('DriverInvoiceNumber', $DriverInvoiceNumber);
-	$smarty->assign('DriverInvoiceDate', $DriverInvoiceDate);
-
-	$smarty->assign('u',$u);
-
-	$smarty->assign('Submit', $submit);
-	$smarty->assign('Save',$save);
-	$smarty->assign('GrandTotal',$GrandTotal);
-
-	$smarty->assign('sum',$sum);
-
-	$smarty->assign('Description',$Description);
 	
-	$smarty->assign('VATtotal',$VATtotal);
-
-	$smarty->assign('PDFfile',$PDFfile);
 
 	if($saved) {
 		ob_start(); // 
@@ -277,7 +296,6 @@
 	} // End of - if saved
 
 
-	
 // FUNCTIONS: ================================================
 	function InSerbia($RouteID,$PickupID,$DropID) {
 
@@ -308,7 +326,7 @@
 			$w3 = $db->RunQuery($q3);
 			
 			$p = $w3->fetch_object();
-			if(count($p)==1) return true;
+			if(is_countable($p)==1) return true;
 			else return false;
 		}
 		else{
@@ -331,3 +349,44 @@
 <script>
 	$(".jqdatepicker").datepicker({ dateFormat: 'yy-mm-dd' });
 </script>
+
+
+<?php
+// Smarty assign
+	$smarty->assign('DriverId',$d);
+	$smarty->assign('StartDate',$start);
+	$smarty->assign('EndDate',$end);
+
+	$smarty->assign('p',$p);
+
+	$smarty->assign('Date',$Date);
+	$smarty->assign('dueDate',$dueDate);
+
+	$smarty->assign('toDay',date("Y-m-d"));
+
+	
+	$smarty->assign('saved',$saved);
+
+	$smarty->assign('DriverInvoiceNumber', $DriverInvoiceNumber);
+	$smarty->assign('DriverInvoiceDate', $DriverInvoiceDate);
+
+	$smarty->assign('u',$u);
+
+	$submit = "";
+	$smarty->assign('Submit', $submit);
+
+	$save = "";
+	$smarty->assign('Save',$save);
+
+	$GrandTotal = 0;
+	$smarty->assign('GrandTotal',$GrandTotal);
+
+	$smarty->assign('sum',$sum);
+
+	$smarty->assign('Description',$Description);
+	
+	$smarty->assign('VATtotal',$VATtotal);
+
+	$smarty->assign('PDFfile',$PDFfile);
+
+?>

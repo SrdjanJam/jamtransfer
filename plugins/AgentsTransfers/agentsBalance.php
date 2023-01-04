@@ -120,7 +120,11 @@ if (isset($_REQUEST['StartDate']) and isset($_REQUEST['EndDate'])){
 		$totInv += $o->InvoiceAmount;
 		$totNetto += $o->DriversPrice * $o->VehiclesNo;
 
+		
+			// echo $o->VehicleType;
+			// echo $o->PaxNo;
 			# CSV rows
+
 			$csv->addRow(array(
 					$o->MConfirmFile,
 					$o->OrderID.'-'.$o->TNo ,
@@ -128,13 +132,18 @@ if (isset($_REQUEST['StartDate']) and isset($_REQUEST['EndDate'])){
 					$o->PaxName,
 					$o->PaxNo,
 					$o->VehicleType,
-					$o->PickupName. '-' . $o->DropName,
-					Agent($o->UserID),
+					$o->PickupName. '-' . $o->DropName, // error
+					Agent($o->UserID), // error
 					number_format($o->InvoiceAmount,2),
 					$o->DriversPrice
 					));	
 		
 	} # end polazni transferi
+	
+
+		// echo $o->PickupName;
+		// echo $o->DropName;
+		// echo Agent($o->UserID);
 
 	// print_r($transfers);
 
