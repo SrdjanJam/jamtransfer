@@ -8,23 +8,38 @@
 	$od = new v4_OrderDetails();
 	$in = new v4_Invoices();
 	$id = new v4_InvoiceDetails();
+
+	if(isset($_REQUEST['agentid'])) $a = $_REQUEST['agentid'];
+	else $a	= $_REQUEST['agentid'] = 0; // AgentID
+
+	if(isset($_REQUEST['StartDate'])) $start = $_REQUEST['StartDate'];
+	else $start	= $_REQUEST['StartDate'] = 0; // start date
+
+	if(isset($_REQUEST['EndDate'])) $end = $_REQUEST['EndDate'];
+	else $end	= $_REQUEST['EndDate'] = 0; // end date
+
+	if(isset($_REQUEST['NoShow'])) $ns = $_REQUEST['NoShow'];
+	else $ns = $_REQUEST['NoShow'] = 0; // noshow
+
+	if(isset($_REQUEST['DrErr'])) $de = $_REQUEST['DrErr'];
+	else $de	= $_REQUEST['DrErr'] = 0; // driverError
+
+	if(isset($_REQUEST['CompletedTransfers'])) $ct = $_REQUEST['CompletedTransfers'];
+	else $ct	= $_REQUEST['CompletedTransfers'] = 0; // Completed Transfers Only
+
+	if(isset($_REQUEST['Sistem'])) $si = $_REQUEST['Sistem'];
+	else $si	= $_REQUEST['Sistem'] = 0; // Sistem
+
+	if(isset($_REQUEST['k'])) $knjigovodstvo = $_REQUEST['k'];
+	else $knjigovodstvo	= $_REQUEST['k'] = 0; // 1 = racun za knjigovodstvo
 	
-	$a	 	= $_REQUEST['agentid']; // AgentID
-	$start 	= $_REQUEST['StartDate']; // start date
-	$end	= $_REQUEST['EndDate']; // end date 
-	$ns		= $_REQUEST['NoShow']; // noshow
-	$de 	= $_REQUEST['DrErr']; // driverError
-	$ct 	= $_REQUEST['CompletedTransfers']; // Completed Transfers Only
-	$si 	= $_REQUEST['Sistem']; // Sistem
-
-
 
 
 	$detailsID = array();
 	$invoiceExists = false;
 	
-	$knjigovodstvo = 0;
-	$knjigovodstvo = $_REQUEST['k']; // 1 = racun za knjigovodstvo
+	// $knjigovodstvo = 0;
+	
 	
 	$taxPercent = 0;
 	$taxAmt 	= 0;
@@ -33,7 +48,7 @@
 	$saved = false;
 	
 	// uzmi podatke o tecaju RSD iz file-a
-	$filename = ROOT . '/cms/exchangeRate.inc';
+	// $filename = ROOT . '/cms/exchangeRate.inc'; // Ova putanja definisana u index.php fajlu
 	$tecaj = file_get_contents($filename);
 	$_SESSION['TecajRSD'] = $tecaj;
 	
@@ -141,8 +156,13 @@
 			$in->setStartDate( $start );
 			$in->setEndDate( $end );
 			$in->setUserID( $a );
+
 			$in->setDueDate( $_REQUEST['DueDate'] );
-			$in->setSumPrice( $_REQUEST['SumPrice'] );
+	
+			
+			if(isset($_REQUEST['SumPrice'])) $in->setSumPrice( $_REQUEST['SumPrice'] );
+			else $_REQUEST['SumPrice'] = 0;
+
 			$in->setSumSubtotal( $_REQUEST['SumSubTotal'] );
 			$in->setCommPrice( $_REQUEST['CommPrice'] );
 			$in->setCommSubtotal( $_REQUEST['CommSubtotal'] );
