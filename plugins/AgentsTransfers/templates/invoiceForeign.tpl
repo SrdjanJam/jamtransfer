@@ -180,6 +180,8 @@
 
 								</tr>
 
+								{$extrasPrice = ""}
+								
 								{if $extrasPrice gt 0.00}
 
 									<tr>
