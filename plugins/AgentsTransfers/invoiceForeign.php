@@ -11,7 +11,16 @@ $VATbase = 0;
 $VATtotal = 0;
 $counter = 0;
 $pagecount = 1;
+$transfersSum = 0;
+$extrasSum = 0;
+$provisionSum = 0;
+$noVAT = 0;
+$driversPriceTotal = 0;
+$TecajRSD = 0;
+$vat = 0;
 
+if(isset($_REQUEST['InvoiceNumber'])) $_REQUEST['InvoiceNumber'];
+else $_REQUEST['InvoiceNumber'] = 0;
 
 // ako je InvoiceDate ispunjen u prvom koraku
 if(isset($_REQUEST['InvoiceDate'])) {
@@ -155,7 +164,7 @@ foreach ($kd as $nn => $id) {
 	$smarty->assign('subTotal_TecajRSD',$subTotal_TecajRSD);
 
 	$commissionAmt_TecajRSD = $commissionAmt * $TecajRSD;
-	$smarty->assign('$commissionAmt_TecajRSD',$commissionAmt_TecajRSD);
+	$smarty->assign('commissionAmt_TecajRSD',$commissionAmt_TecajRSD);
 
 	$totalEur_TecajRSD = $totalEur * $TecajRSD;
 	$smarty->assign('totalEur_TecajRSD',$totalEur_TecajRSD);
@@ -206,6 +215,8 @@ foreach ($kd as $nn => $id) {
 
 	$smarty->assign('knjigovodstvo', $knjigovodstvo);
 	$smarty->assign('saved', $saved);
+
+	$smarty->assign('vat', $vat);
 
 ?>
 
