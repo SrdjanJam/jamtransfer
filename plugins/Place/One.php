@@ -8,6 +8,9 @@ require_once 'Initial.php';
 	
 	$name2='';
 	# init vars
+
+	$drivers = "";
+
 	$out = array();
 
 	# init class
@@ -26,7 +29,7 @@ require_once 'Initial.php';
         $detailFlds[$key] = stripslashes($value);
     }
 
-	/*$name=$db->getPlaceNameEN();
+	$name=$db->getPlaceNameEN();
 	$name = str_replace(" ","_",$name);
 	$name2.=$name.",_".$db->getCountryNameEN();
 	
@@ -39,7 +42,8 @@ require_once 'Initial.php';
 		$arrey=$obj['query']['pages'];
 		$desc='';
 		foreach ($arrey as $arr) {
-			if (isset($arr['extract'])) $desc=($arr['extract']);  
+			if (!isset($arr['extract'])) $arr['extract']=""; 
+			else $desc=($arr['extract']);   
 		}
 		if (empty($desc)) {
 			$url='https://en.wikipedia.org/w/api.php?action=query&prop=extracts&format=json&exintro=&titles='.$name;
@@ -49,14 +53,15 @@ require_once 'Initial.php';
 				$arrey=$obj['query']['pages'];
 				$desc='';
 				foreach ($arrey as $arr) {
-					$desc=($arr['extract']);  
+					if (!isset($arr['extract'])) $arr['extract']=""; 
+					else $desc=($arr['extract']);    
 				}
 			}
 		}
 	}
 	else $desc="";
 	
-	$detailFlds['WikiDesc']=strip_tags($desc);*/
+	$detailFlds['WikiDesc']=strip_tags($desc);
 	
 	class v4_TerminalsJoin extends v4_DriverTerminals {
 		public function getKeysBy($column, $order, $where = NULL){
@@ -76,6 +81,7 @@ require_once 'Initial.php';
 	
 	$dt = new v4_TerminalsJoin();
 	$dtk = $dt->getKeysBy('DriverID ASC ', '', '');
+	
 	if (count($dtk) != 0) {
 		foreach ($dtk as $nn => $key)
 		{

@@ -165,6 +165,7 @@ define("ASCENDING", "Ascending");
 define("ASSIGNED_TO_ANOTHER_DRIVER", "This Transfer is assigned to another driver and removed from Your transfers list.");
 define("BALANCE", "Balance");
 define("BASE_PRICE", "Base Price");
+define("BASE","Base");
 define("BOOKED_BY", "Booked by");
 define("BOOKING", "Booking");
 define("BOOKINGS", "Bookings");
@@ -173,7 +174,6 @@ define("BY_BOOKING_DATE", "by booking date");
 define("BY_TRANSFER_DATE", "by transfer date");
 define("CALENDAR", "Calendar");
 define("CANCELED_ORDERS", "Cancelled orders");
-define("CANCEL", "Cancel");
 define("CANCELLED", "Cancelled");
 define("CANCEL_TRANSFER", "Cancel transfer");
 define("CASH", "Cash");
@@ -292,6 +292,7 @@ define("MONAMOUNT", "Mon (amt)");
 define("MONPERCENT", "Mon (%)");
 define("MY_DRIVERS", "My Drivers");
 define("MY_VEHICLES", "My Vehicles");
+define("MENUORDER", "Menu Order");
 define("NAME", "Name");
 define("NET_INCOME", "Commision");
 define("NETTO_PRICE", "Netto Price");
@@ -332,6 +333,7 @@ define("ORDERS", "Orders");
 define("ORDERS_BY_B_DATE", "by booking date");
 define("ORDERS_BY_TR_DATE", "by transfer date");
 define("OWNERID", "Owner ID");
+define("PARENT_ID", "Parent ID");
 define("PAGE_NOT_FOUND", "Page not found!");
 define("PAGE", "Page");
 define("PAGES", "Pages");
@@ -427,7 +429,6 @@ define("SALES", "Sales");
 define("SATAMOUNT", "Sat (amt)");
 define("SATPERCENT", "Sat (%)");
 define("SAVE", "Save");
-define("SAVE_CHANGES", "Save changes");
 define("SEND_EMAIL_TO_DRIVER", "Send e-mail to Driver");
 define("SEND", "Send");
 define("SERVICE", "Service");
@@ -803,7 +804,7 @@ define("CO_LINKEDIN", "LinkedIn");
 define("CO_YOUTUBE", "Youtube");
 define("CO_GOOGLEPLUS", "Google+");
 
-//Extra Services
+// Services - Extra Services
 define("SERVICE_ID","ID");
 define("CONNECTED","Connected");
 define("DISPLAYORDER", "Service Display order");
@@ -834,21 +835,20 @@ define("DEPOSIT", "Deposit (EUR)");
 // Vehice types
 define("DRIVER_VEHICLE","Driver Vehicle");
 
-// Master location
+// Master - location
 define("LONGITUDE","Longitude");
 define("LATITUDE","Latitude");
 define("ELEVATION","Elevation");
 
-// Services Routes
+// Services - Routes
 define("TOP_ROUTE","Top Route");
 define("KM","km");
 
-// Services Extras Services - folder ExtrasMaster
+// Services - Extras Services - (folder ExtrasMaster)
 define("DRIVER_EXTRAS","Driver Extras");
 
-// Pricing Coupons - folder Coupons
+// Pricing - Coupons - (folder Coupons)
 define("DRIVER_ID","DriverID");
-
 
 
 // Masters User - folder AuthUser
@@ -861,17 +861,23 @@ define("AUTHUSERNOTE","Auth User Note");
 define("SETASDRIVER","Set as driver");
 define("CONTACT","Contact");
 
-// Pricing Services
+// Pricing - Services
 define("BUTTONS","Buttons");
 
-// Settings off duty dates
+// Settings - off duty dates
 define("OFF_DUTY_ID","ID");
 define("OFF_DUTY","Off duty dates");
 define("REASON","Reason");
 
-// Settings Vehicles
+// Settings - Vehicles
 define("RAPTORID","Raptor ID");
 
+// Site Content - Modules
+define("ICON","ICON");
+define("KEYS","Keys");
+
+// Site Content - Language Lines
+define("TEXT","Text");
 
 // COMMENTED:
 /*

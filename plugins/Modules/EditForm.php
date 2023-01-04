@@ -49,7 +49,7 @@
 				</div>				
 				<div class="row">
 					<div class="col-md-3">
-						<label for="Base"><?=Base;?></label>
+						<label for="Base"><?=BASE;?></label>
 					</div>
 					<div class="col-md-9">
 						<input type="text" name="Base" id="Base" class="w100" value="{{Base}}">
@@ -57,7 +57,7 @@
 				</div>					
 				<div class="row">
 					<div class="col-md-3">
-						<label for="Parent"><?=ParentID;?></label>
+						<label for="Parent"><?=PARENT_ID;?></label>
 					</div>
 					<div class="col-md-9">
 						<input type="text" name="ParentID" id="ParentID" class="w100" value="{{ParentID}}">
@@ -65,7 +65,7 @@
 				</div>					
 				<div class="row">
 					<div class="col-md-3">
-						<label for="Parent"><?=MenuOrder;?></label>
+						<label for="Parent"><?=MENUORDER;?></label>
 					</div>
 					<div class="col-md-9">
 						<input type="text" name="MenuOrder" id="MenuOrder" class="w100" value="{{MenuOrder}}">
@@ -73,7 +73,7 @@
 				</div>					
 				<div class="row">
 					<div class="col-md-3">
-						<label for="Parent"><?=Icon;?></label>
+						<label for="Parent"><?=ICON;?></label>
 					</div>
 					<div class="col-md-9">
 						<input type="text" name="Icon" id="Icon" class="w100" value="{{Icon}}">
@@ -81,7 +81,7 @@
 				</div>					
 				<div class="row">
 					<div class="col-md-3">
-						<label for="Parent"><?=Active;?></label>
+						<label for="Parent"><?=ACTIVE;?></label>
 					</div>
 					<div class="col-md-9">
 						<input type="text" name="Active" id="Active" class="w100" value="{{Active}}">
@@ -102,7 +102,7 @@
 		</div>	
 		<div class="row">
 			<div class="col-md-3">
-				<label for="Description"><?=Description;?></label>
+				<label for="Description"><?=DESCRIPTION;?></label>
 			</div>
 			<div class="col-md-9">
 				<textarea name="Description" id="Description" rows="15" 
