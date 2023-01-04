@@ -3,10 +3,11 @@
 <div class="container white">
     <h2>New Agent Invoice</h2>
 
-    {if isset($smarty.request.NoShow) }
+    {if isset($smarty.request.StartDate) && isset($smarty.request.EndDate) }
+        
 
         
-        {$smarty.request.$StartDate}{$smarty.request.$EndDate}<br>
+        {$smarty.request.StartDate}{$smarty.request.EndDate}<br>
         {if $smarty.request.NoShow eq 1}<i class="fa fa-plus"></i> No-show{/if}
         {if $smarty.request.DrErr eq 1}<i class="fa fa-plus"></i> Driver Error{/if}
         {if $smarty.request.CompletedTransfers eq 1}<i class="fa fa-plus"></i> Completed Transfers Only{/if}
@@ -64,7 +65,7 @@
                     <div class="col-md-2">
                         <label><b>Sistems</b></label>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-2">
                         Sistem <input type="checkbox" name="Sistem" class="form-control" value="1">
                     </div>
                 </div>
@@ -75,15 +76,21 @@
                     <div class="col-md-2">
                         <label><b>Include</b></label>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-2">
                         No-show <input type="checkbox" name="NoShow" class="form-control" value="1">
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-2">
                         Driver error <input type="checkbox" name="DrErr" class="form-control" value="1">
                     </div>
                     <div class="col-md-4">
                         Completed transfers only <input type="checkbox" name="CompletedTransfers" class="form-control" value="1">
                     </div>
+
+                    <!-- select all boxes -->
+					<div class="col-md-2">
+                        <span style="color:rgb(21 85 229);">Check All</span><input type="checkbox" name="select-all" class="form-control" id="select-all" />
+                    </div>	
+
                 </div>
 
                 <div class="row">
@@ -101,4 +108,20 @@
 
 </div>
 
-
+<script>
+	// Listen for click on toggle checkbox
+	$(document).ready(function(){
+		$('#select-all').click(function(event) {   
+			if(this.checked) {
+				// Iterate each checkbox
+				$(':checkbox').each(function() {
+					this.checked = true;                        
+				});
+			} else {
+				$(':checkbox').each(function() {
+					this.checked = false;                       
+				});
+			}
+		});
+	});
+</script>
