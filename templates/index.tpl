@@ -303,10 +303,9 @@
 						</div>
 						
 						<span style="color:cornflowerblue;margin:10px 0 0 70px;font-size:25px;display: inline-block; font-style:italic;text-shadow: 1px 2px #2e2e30;">Srećni Praznici</span>
-
 						<ul class="nav navbar-top-links navbar-right">
 							<li>
-								<h2><span class="m-r-sm text-muted">{$title}</span></h2>
+								<h2><span class="m-r-sm text-muted">{$title} - {if $DEVELOPMENT}Test{/if}</span></h2>
 							</li>
 
 							<li>

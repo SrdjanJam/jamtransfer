@@ -178,7 +178,7 @@ define("CANCELLED", "Cancelled");
 define("CANCEL_TRANSFER", "Cancel transfer");
 define("CASH", "Cash");
 define("CLOSE", "Close");
-define("CANCEL", "Close");
+define("CANCEL", "Cancel");
 define("SAVE_CHANGES", "Save Changes");
 define("COMPANY_ADDRESS", "Company address");
 define("COMPANY_DESC", "Company description");

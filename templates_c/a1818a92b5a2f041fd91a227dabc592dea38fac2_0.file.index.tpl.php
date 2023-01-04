@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.32, created on 2022-12-30 10:23:49
+/* Smarty version 3.1.32, created on 2023-01-04 12:39:41
   from 'C:\wamp\www\jamtransfer\templates\index.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.32',
-  'unifunc' => 'content_63aeae255a7a79_30748238',
+  'unifunc' => 'content_63b5657dd85c10_97850268',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'a1818a92b5a2f041fd91a227dabc592dea38fac2' => 
     array (
       0 => 'C:\\wamp\\www\\jamtransfer\\templates\\index.tpl',
-      1 => 1672299701,
+      1 => 1672830244,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:pageList.tpl' => 1,
   ),
 ),false)) {
-function content_63aeae255a7a79_30748238 (Smarty_Internal_Template $_smarty_tpl) {
+function content_63b5657dd85c10_97850268 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html>
 	<head>
@@ -248,7 +248,7 @@ _init.js"><?php echo '</script'; ?>
 	<body class="fixed-top" style="height:100%!important;font-size:16px">
 				<div class="wrapper wrapper-edit">
 
-						<nav class="navbar-default navbar-default-edit navbar-static-side additional-class" role="navigation">
+			<nav class="navbar-default navbar-default-edit navbar-static-side additional-class" role="navigation">
 			<i class="lab la-accessible-icon"></i>
 								<div class="sidebar-collapse">
 					<ul class="nav metismenu" id="side-menu">
@@ -364,7 +364,7 @@ echo $_prefixVariable1;?>
 				</div> 				
 			</nav> 
 						
-						
+			
 						<div id="page-wrapper" class="content gray-bg dashbard-1" style="height: 100%;
 					display: flex;
 					flex-direction: column;
@@ -382,6 +382,8 @@ echo $_prefixVariable1;?>
 						<div class="navbar-header">
 							<button type="button" class="minimalize-styl-2 btn btn-primary btn-primary-edit" id="cashe"><i class="fas fa-redo-alt"></i></button>
 						</div>
+						
+						<span style="color:cornflowerblue;margin:10px 0 0 70px;font-size:25px;display: inline-block; font-style:italic;text-shadow: 1px 2px #2e2e30;">Srećni Praznici</span>
 
 						<ul class="nav navbar-top-links navbar-right">
 							<li>
@@ -420,7 +422,7 @@ echo $_prefixVariable1;?>
 					</div> 				<?php }?>
 				
 				
-								<div class="body row white-bg white-bg-edit">
+				<div class="body row white-bg white-bg-edit">
 
 					<?php if (isset($_smarty_tpl->tpl_vars['pageOLD']->value)) {?>
 						NOT MODEL VIEW CONTROL
@@ -439,7 +441,7 @@ echo $_prefixVariable1;?>
 					<?php }?>
 					
 				</div> 
-								<div class="footer row footer-edit">
+				<div class="footer row footer-edit">
 
 					<?php if (!$_smarty_tpl->tpl_vars['isNew']->value && $_smarty_tpl->tpl_vars['pageList']->value) {?>				
 						<div id="pageSelect" class="pull-left pull-left-edit"></div>
