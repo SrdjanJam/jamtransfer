@@ -1,6 +1,9 @@
 <?
 
-if(isset($_REQUEST['NoShow'])) {
+if(isset($_REQUEST['StartDate']) && isset($_REQUEST['EndDate'])) {
+	
+	if(!isset($_REQUEST['StartDate'])) $_REQUEST['StartDate'] = 0;
+	if(!isset($_REQUEST['EndDate'])) $_REQUEST['EndDate'] = 0;
 	
 	$StartDate 	= $_REQUEST['StartDate'];
 	$EndDate	= $_REQUEST['EndDate'];
@@ -14,6 +17,8 @@ if(isset($_REQUEST['NoShow'])) {
 	$driverError = $_REQUEST['DrErr'];
 	$Sistem = $_REQUEST['Sistem'];
 	$CompletedTransfers = $_REQUEST['CompletedTransfers'];
+
+	
 
 
 	$q = "SELECT DISTINCT(UserID) FROM v4_OrderDetails ";
