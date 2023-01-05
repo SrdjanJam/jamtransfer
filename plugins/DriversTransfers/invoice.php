@@ -326,7 +326,7 @@
 			$w3 = $db->RunQuery($q3);
 			
 			$p = $w3->fetch_object();
-			if(is_countable($p)==1) return true;
+			if(count($p)==1) return true;
 			else return false;
 		}
 		else{

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.32, created on 2023-01-04 12:39:41
+/* Smarty version 3.1.32, created on 2023-01-05 08:28:55
   from 'C:\wamp\www\jamtransfer\templates\index.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.32',
-  'unifunc' => 'content_63b5657dd85c10_97850268',
+  'unifunc' => 'content_63b67c37280f43_71698324',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'a1818a92b5a2f041fd91a227dabc592dea38fac2' => 
     array (
       0 => 'C:\\wamp\\www\\jamtransfer\\templates\\index.tpl',
-      1 => 1672830244,
+      1 => 1672834791,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:pageList.tpl' => 1,
   ),
 ),false)) {
-function content_63b5657dd85c10_97850268 (Smarty_Internal_Template $_smarty_tpl) {
+function content_63b67c37280f43_71698324 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html>
 	<head>
@@ -384,11 +384,10 @@ echo $_prefixVariable1;?>
 						</div>
 						
 						<span style="color:cornflowerblue;margin:10px 0 0 70px;font-size:25px;display: inline-block; font-style:italic;text-shadow: 1px 2px #2e2e30;">Srećni Praznici</span>
-
 						<ul class="nav navbar-top-links navbar-right">
 							<li>
 								<h2><span class="m-r-sm text-muted"><?php echo $_smarty_tpl->tpl_vars['title']->value;?>
-</span></h2>
+ - <?php if ($_smarty_tpl->tpl_vars['DEVELOPMENT']->value) {?>Test<?php }?></span></h2>
 							</li>
 
 							<li>

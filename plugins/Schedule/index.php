@@ -94,6 +94,7 @@ while ($d = $r->fetch_object()) {
 		$row = array();
 		$row['DriverID'] = $d->AuthUserID;
 		$row['DriverName'] = $d->AuthUserRealName;
+		$row['Mob'] = $d->AuthUserMob;		
 		//ovde izvuci vozcevo vozilo
 		$row['DriverCar'] = "assosVehicle";
 		$sddArray[] = $row;

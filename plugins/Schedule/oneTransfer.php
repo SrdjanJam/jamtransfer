@@ -12,10 +12,17 @@
 	
 					
 	// da li flight time u datumskom konfliktu sa pickuptime ili droptime
-	$t->flightTimeConflict=false;
-	if (abs($t->SubPickupTime-$t->FlightTime)>12) $t->flightTimeConflict=true;
+	$t->flightTimeConflict=false;	
+	if ($t->FlightTime>0) {
+		$ft=explode(':',$t->FlightTime);
+		$ft=$ft[0]*60+$ft[1];
+		$spt=explode(':',$t->SubPickupTime);
+		$spt=$spt[0]*60+$spt[1];
+		$rt=abs($spt-$ft)/60;
+		if ($rt>12) $t->flightTimeConflict=true;
+	}
 	// da li je bilo promene pickup time
-	$changedIcon = '';
+	$t->changedIcon = '';
 	$t->color= '';
 	$t->color2= '';
 	if (in_array($t->DetailsID,$olKeys2)) {
