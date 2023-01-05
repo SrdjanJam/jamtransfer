@@ -1,14 +1,14 @@
 <?
-if(isset(
-		$_REQUEST['StartDate'],
-		$_REQUEST['EndDate'],
-		$_REQUEST['Online'],
-		$_REQUEST['Cash'],
-		$_REQUEST['OnlineCash'],
-		$_REQUEST['Invoice'],
-		$_REQUEST['Invoice2']
-	)
-){
+
+	if(!isset($_REQUEST['StartDate'])) $_REQUEST['StartDate'] = "";
+	if(!isset($_REQUEST['EndDate'])) $_REQUEST['EndDate'] = "";
+	if(!isset($_REQUEST['Online'])) $_REQUEST['Online'] = "";
+	if(!isset($_REQUEST['Cash'])) $_REQUEST['Cash'] = "";
+	if(!isset($_REQUEST['OnlineCash'])) $_REQUEST['OnlineCash'] = "";
+	if(!isset($_REQUEST['Invoice'])) $_REQUEST['Invoice'] = "";
+	if(!isset($_REQUEST['Invoice2'])) $_REQUEST['Invoice2'] = "";
+
+
 	$StartDate 	= $_REQUEST['StartDate'];
 	$EndDate	= $_REQUEST['EndDate'];
 	$Online    = $_REQUEST['Online'];
@@ -16,32 +16,24 @@ if(isset(
 	$OnlineCash      = $_REQUEST['OnlineCash'];
 	$Invoice     = $_REQUEST['Invoice'];
 	$Invoice2     = $_REQUEST['Invoice2'];
-}else{
-	$StartDate='';
-	$EndDate='';
-	$Online='';
-	$Cash='';
-	$OnlineCash='';
-	$Invoice='';
-	$Invoice2='';
-}
-
-$totalPrice = 0;
 
 
-if(!isset($_REQUEST['includePaymentMethod'])){
+	$totalPrice = 0;
 
-	$includePaymentMethod = "";
-	if($Online == 1) $includePaymentMethod .= "1,";
-	if($Cash == 1) $includePaymentMethod .= "2,";
-	if($OnlineCash == 1) $includePaymentMethod .= "3,";
-	if($Invoice == 1) $includePaymentMethod .= "4,";
-	if($Invoice2 == 1) $includePaymentMethod .= "6,";
 
-	$includePaymentMethod = substr_replace($includePaymentMethod,"",strlen($includePaymentMethod)-1,1); // Replace the words of a text in a string
-}else{
-	$includePaymentMethod = $_REQUEST['includePaymentMethod'];
-}
+	if(!isset($_REQUEST['includePaymentMethod'])){
+
+		$includePaymentMethod = "";
+		if($Online == 1) $includePaymentMethod .= "1,";
+		if($Cash == 1) $includePaymentMethod .= "2,";
+		if($OnlineCash == 1) $includePaymentMethod .= "3,";
+		if($Invoice == 1) $includePaymentMethod .= "4,";
+		if($Invoice2 == 1) $includePaymentMethod .= "6,";
+
+		$includePaymentMethod = substr_replace($includePaymentMethod,"",strlen($includePaymentMethod)-1,1); // Replace the words of a text in a string
+	}else{
+		$includePaymentMethod = $_REQUEST['includePaymentMethod'];
+	}
 	// SQL: ====================================================
 	$q = 	"SELECT DriverID, sum(DriversPrice) AS DriversPriceTotal, sum(DriverExtraCharge) AS DriverExtraChargeTotal, sum(PayLater) AS PayLaterTotal FROM v4_OrderDetails 
 			 WHERE PickupDate >= '{$StartDate}'  
@@ -53,7 +45,8 @@ if(!isset($_REQUEST['includePaymentMethod'])){
 	if(!empty($includePaymentMethod)) $q.=" AND PaymentMethod in (".$includePaymentMethod.")"; 
 	$q .=	 " GROUP BY DriverID";
 	$q .=	 " ORDER BY DriverID ASC";
-			 
+	
+
 	$w = $db->RunQuery($q);
 	// End of SQL ===============================================
 
