@@ -32,6 +32,12 @@
 
 	if(isset($_REQUEST['k'])) $knjigovodstvo = $_REQUEST['k'];
 	else $knjigovodstvo	= $_REQUEST['k'] = 0; // 1 = racun za knjigovodstvo
+
+	if(isset($_REQUEST['SumSubTotal'])) $_REQUEST['SumSubTotal'];
+	else $_REQUEST['SumSubTotal'] = 0;
+
+	if(isset($_REQUEST['VATNotApp'])) $_REQUEST['VATNotApp'];
+	else $_REQUEST['VATNotApp'] = 0;
 	
 
 
@@ -212,6 +218,7 @@
 		else require_once ROOT . '/plugins/AgentsTransfers/invoiceSerbian.php';
 
 		if($saved) {
+			
 			ob_start();	
 			if($u['CountryName'] == 'Serbia') $smarty->display("plugins/AgentsTransfers/templates/invoiceSerbian.tpl");			
 			else $smarty->display("plugins/AgentsTransfers/templates/invoiceForeign.tpl");			
@@ -224,6 +231,9 @@
 			//****************
 			
 			require_once ROOT ."/common/mpdf60/mpdf.php";
+			// $path1 = ROOT ."\common\mpdf60\mpdf.php";
+			// echo $path1;
+			// exit();
 
 				$mpdf=new mPDF();
 				$mpdf->SetDisplayMode('fullpage');
@@ -245,6 +255,7 @@
 			// The parameter 1 tells that this is css/style only and no body/html/text
 			$mpdf->WriteHTML($stylesheet,1);
 			$mpdf->WriteHTML($html); 
+		
 
 			$content = $mpdf->Output('', 'S');
 			$content = chunk_split(base64_encode($content));
