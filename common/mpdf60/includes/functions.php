@@ -149,7 +149,7 @@ if(!function_exists('code2utf')){
   function code2utf($num,$lo=true){
 	//Returns the utf string corresponding to the unicode value
 	if ($num<128) {
-		if ($lo) return chr((int)$num);
+		if ($lo) return chr($num);
 		else return '&#'.$num.';';
 	}
 	if ($num<2048) return chr(($num>>6)+192).chr(($num&63)+128);
