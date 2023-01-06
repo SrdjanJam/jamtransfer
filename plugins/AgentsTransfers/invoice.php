@@ -33,12 +33,26 @@
 	if(isset($_REQUEST['k'])) $knjigovodstvo = $_REQUEST['k'];
 	else $knjigovodstvo	= $_REQUEST['k'] = 0; // 1 = racun za knjigovodstvo
 
+	
 	if(isset($_REQUEST['SumSubTotal'])) $_REQUEST['SumSubTotal'];
 	else $_REQUEST['SumSubTotal'] = 0;
-
+	if(isset($_REQUEST['CommSubtotal'])) $_REQUEST['CommSubtotal'];
+	else $_REQUEST['CommSubtotal'] = 0;
+	if(isset($_REQUEST['CommPrice'])) $_REQUEST['CommPrice'];
+	else $_REQUEST['CommPrice'] = 0;
+	if(isset($_REQUEST['TotalPriceEUR'])) $_REQUEST['TotalPriceEUR'];
+	else $_REQUEST['TotalPriceEUR'] = 0;
+	if(isset($_REQUEST['TotalSubTotalEUR'])) $_REQUEST['TotalSubTotalEUR'];
+	else $_REQUEST['TotalSubTotalEUR'] = 0;
 	if(isset($_REQUEST['VATNotApp'])) $_REQUEST['VATNotApp'];
 	else $_REQUEST['VATNotApp'] = 0;
-	
+	if(isset($_REQUEST['VATBaseTotal'])) $_REQUEST['VATBaseTotal'];
+	else $_REQUEST['VATBaseTotal'] = 0;
+	if(isset($_REQUEST['VATtotal'])) $_REQUEST['VATtotal'];
+	else $_REQUEST['VATtotal'] = 0;
+	if(isset($_REQUEST['GrandTotal'])) $_REQUEST['GrandTotal'];
+	else $_REQUEST['GrandTotal'] = 0;
+
 
 
 	$detailsID = array();
@@ -166,8 +180,8 @@
 			$in->setDueDate( $_REQUEST['DueDate'] );
 	
 			
-			if(isset($_REQUEST['SumPrice'])) $in->setSumPrice( $_REQUEST['SumPrice'] );
-			else $_REQUEST['SumPrice'] = 0;
+			
+			
 
 			$in->setSumSubtotal( $_REQUEST['SumSubTotal'] );
 			$in->setCommPrice( $_REQUEST['CommPrice'] );
