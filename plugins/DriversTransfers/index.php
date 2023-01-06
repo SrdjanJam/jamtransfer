@@ -1,21 +1,26 @@
 <?
 
-	if(!isset($_REQUEST['StartDate'])) $_REQUEST['StartDate'] = "";
-	if(!isset($_REQUEST['EndDate'])) $_REQUEST['EndDate'] = "";
-	if(!isset($_REQUEST['Online'])) $_REQUEST['Online'] = "";
-	if(!isset($_REQUEST['Cash'])) $_REQUEST['Cash'] = "";
-	if(!isset($_REQUEST['OnlineCash'])) $_REQUEST['OnlineCash'] = "";
-	if(!isset($_REQUEST['Invoice'])) $_REQUEST['Invoice'] = "";
-	if(!isset($_REQUEST['Invoice2'])) $_REQUEST['Invoice2'] = "";
 
+	if(isset($_REQUEST['StartDate'])) $StartDate = $_REQUEST['StartDate'];
+	else $StartDate = $_REQUEST['StartDate'] = null;
 
-	$StartDate 	= $_REQUEST['StartDate'];
-	$EndDate	= $_REQUEST['EndDate'];
-	$Online    = $_REQUEST['Online'];
-	$Cash    = $_REQUEST['Cash'];
-	$OnlineCash      = $_REQUEST['OnlineCash'];
-	$Invoice     = $_REQUEST['Invoice'];
-	$Invoice2     = $_REQUEST['Invoice2'];
+	if(isset($_REQUEST['EndDate'])) $EndDate = $_REQUEST['EndDate'];
+	else $EndDate = $_REQUEST['EndDate'] = null;
+
+	if(isset($_REQUEST['Online'])) $Online = $_REQUEST['Online'];
+	else $Online = $_REQUEST['Online'] = "";
+
+	if(isset($_REQUEST['Cash'])) $Cash = $_REQUEST['Cash'];
+	else $Cash = $_REQUEST['Cash'] = "";
+
+	if(isset($_REQUEST['OnlineCash'])) $OnlineCash = $_REQUEST['OnlineCash'];
+	else $OnlineCash = $_REQUEST['OnlineCash'] = "";
+
+	if(isset($_REQUEST['Invoice'])) $Invoice = $_REQUEST['Invoice'];
+	else $Invoice = $_REQUEST['Invoice'] = "";
+
+	if(isset($_REQUEST['Invoice2'])) $Invoice2 = $_REQUEST['Invoice2'];
+	else $Invoice2 = $_REQUEST['Invoice2'] = "";
 
 
 	$totalPrice = 0;
@@ -71,6 +76,7 @@
 		$totalBalance +=  $cashTotal - $driversPriceSum;
 	
 	}
+
 	// SMARTY ASSIGN: ===================================================================
 	$smarty->assign('user',$user);
 	$smarty->assign('driverId',$driverId);
@@ -79,10 +85,11 @@
 	$smarty->assign('totalBalance',$totalBalance);
 	$smarty->assign('includePaymentMethod',$includePaymentMethod);
 
-// Functions: ===========================================================
-function GetDriverNameNew($driver) {
-	$q = "SELECT * FROM Drivers WHERE DriverID = '" . $driver ."'";
-	$w = mysql_query($q) or die( mysql_error() . ' GetDriverName');
-	$d = mysql_fetch_object($w);
-	return trim($d->Country).' - '.trim($d->Terminal).' - '.trim($d->Prezime).' - '.trim($d->Tel);
-}
+
+	// Function: ===========================================================
+	function GetDriverNameNew($driver) {
+		$q = "SELECT * FROM Drivers WHERE DriverID = '" . $driver ."'";
+		$w = mysql_query($q) or die( mysql_error() . ' GetDriverName');
+		$d = mysql_fetch_object($w);
+		return trim($d->Country).' - '.trim($d->Terminal).' - '.trim($d->Prezime).' - '.trim($d->Tel);
+	}
