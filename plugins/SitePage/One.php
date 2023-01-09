@@ -7,16 +7,22 @@ $out = array();
 $db->getRow($_REQUEST['ItemID']);
 # get fields and values
 $detailFlds = $db->fieldValues();
+
+
+
 # remove slashes 
 foreach ($detailFlds as $key=>$value) {
 	$detailFlds[$key] = stripslashes($value);
 }
+
 $detailFlds['Language']=$_SESSION['BrandName'];
 if ($_SESSION['BrandName']<>'EN') {
 	$contTrans='Content'.$_SESSION['BrandName'];
-	$detailFlds['ContentTR']=$detailFlds[$contTrans];	
+	if(isset($detailFlds['ContentTR'])) $detailFlds['ContentTR']=$detailFlds[$contTrans];
+	else $detailFlds['ContentTR'] = "";
 	$titleTrans='Title'.$_SESSION['BrandName'];
-	$detailFlds['TitleTR']=$detailFlds[$titleTrans];	
+	if(isset($detailFlds['TitleTR'])) $detailFlds['TitleTR']=$detailFlds[$titleTrans];
+	else $detailFlds['TitleTR']=""; 
 	$detailFlds['disabled']='disabled';
 	$detailFlds['onlyEnglish']='hidden';
 	$detailFlds['noEnglish']='';
@@ -30,4 +36,4 @@ $out[] = $detailFlds;
 # send output back
 
 $output = json_encode($out);
-echo $_GET['callback'] . '(' . $output . ')';
+echo $output;
