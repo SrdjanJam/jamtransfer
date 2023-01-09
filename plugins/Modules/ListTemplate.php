@@ -22,7 +22,7 @@
 		
 			<div class="row {{color}} pad1em listTile" 
 			style="border-top:1px solid #ddd" 
-			id="t_{{ID}}">
+			id="t_{{ModulID}}">
 
 				<div class="col-md-12">
 		
