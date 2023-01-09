@@ -86,7 +86,7 @@
 	<div class="box-footer">
 		<? if (!$isNew) { ?>
 		<div>
-    	<button class="btn btn-default" onclick="return deletev4_Actions('{{ID}}', '<?= $inList ?>');">
+    	<button class="btn btn-danger" onclick="return deletev4_Actions('{{ID}}', '<?= $inList ?>');">
     		<i class="ic-cancel-circle"></i> <?= DELETE ?>
     	</button>
     	</div>
