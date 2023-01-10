@@ -1,18 +1,32 @@
 <link rel="stylesheet" href="css/progress.css">
 <br><br>
 <div class="container"> 
-	<div class="row">
+
+<div class="upload-edit">
+	<div class="row btn blue fileinput-button"  style="height:200px;padding-top:50px;display: block;border:none;">
 		<!-- Button to select & upload files -->
-		<span class="btn blue fileinput-button">
-			<span class="btn"><i class="fa fa-cloud-upload xl"></i> {$UPLOAD_IMAGES }</span>
+		{* <span class="btn blue fileinput-button"> *}
+			<div style="font-size:30px;color:#2d84f1;"><i class="fa fa-cloud-upload xl" ></i><b> Select or {$UPLOAD_IMAGES }</b></div>
 			<!-- The file input field used as target for the file upload widget -->
-			<input class="btn" id="fileupload" type="file" name="files[]" multiple>
-		</span>
+			<input id="fileupload" type="file" name="files[]" multiple > 
+		{* </span> *}
+		
 	</div>
+</div>
+
+	<style>
+		.upload-edit{
+			background:rgb(227 231 241);
+		}
+		.upload-edit:hover{
+			background:rgb(191 202 231);
+		}
+	</style>
+
 	<div class="row">
 		<!-- The global progress bar -->
 		<br>
-		<p>Upload progress</p>
+		<p style="color:rgb(51, 157, 219);font-weight:bold;font-style:italic;">Upload progress</p>
 		<div id="progress" class="progress progress-info progress-striped">
 			<div class="bar"></div>
 		</div>
