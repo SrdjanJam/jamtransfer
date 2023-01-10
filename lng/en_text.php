@@ -876,12 +876,19 @@ define("REASON","Reason");
 // Settings - Vehicles
 define("RAPTORID","Raptor ID");
 
-// Site Content - Modules
+// ================================================
+// SITE CONTENT
+
+// Modules
 define("ICON","ICON");
 define("KEYS","Keys");
 
-// Site Content - Language Lines
+// Language Lines
 define("TEXT","Text");
+
+// Articles
+define("HTMLBEFORE"," HTML Before");
+// =================================================
 
 // COMMENTED:
 /*

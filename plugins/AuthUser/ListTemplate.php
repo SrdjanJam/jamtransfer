@@ -53,11 +53,11 @@
 
 
 	{{#each Item}}
-		<div class="one-item-class" onclick="oneItem({{AuthUserID}});">
+		<div onclick="oneItem({{AuthUserID}});">
 		
 			<div class="row {{color}} pad1em listTile" 
 			style="border-top:1px solid #ddd" 
-			id="user_{{AuthUserID}}">
+			id="t_{{AuthUserID}}">
 
 				<!-- AUTHUSER_IMAGE: -->
 				<div class="col-sm-1 col-xs-4">
