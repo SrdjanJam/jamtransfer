@@ -174,19 +174,25 @@
 
 	</head>
 
-	{* INCLUDE TPL: *}
-	{include file="{$root}/templates/add-style.tpl"}
+{* INCLUDE TPL: *}
+{include file="{$root}/templates/add-style.tpl"}
+
+
+{* BODY ============================================================================================= *}
 
 	<body class="fixed-top" style="height:100%!important;font-size:16px">
 		{* main wrapper class*}
 		<div class="wrapper wrapper-edit">
 
 {* SIDEBAR ====================================================================================================================================== *}
+			{* Start with navbar *}
 			<nav class="navbar-default navbar-default-edit navbar-static-side additional-class" role="navigation">
 			<i class="lab la-accessible-icon"></i>
 				{* sidebar-collapse *}
 				<div class="sidebar-collapse">
 					<ul class="nav metismenu" id="side-menu">
+
+						{* PROFILE =================================================================== *}
 						<li class="nav-header nav-header-top-edit">
 							<div class="dropdown profile-element">
 								<a data-toggle="dropdown" class="dropdown-toggle" href="#">
@@ -205,6 +211,7 @@
 							</div>
 						</li>
 						
+						{* SET US: ======================================================================== *}
 						{if isset($smarty.session.UseDriverName)}
 						{* nav-header nav-header-edit *}
 							<li class="nav-header nav-header-edit">
@@ -214,6 +221,7 @@
 							</li>
 						{else}
 							{if isset ($smarty.cookies.UseDriverName)}	
+								{* Set as with cookie *}
 								<li class="nav-header nav-header-edit">
 									<a href="satAsDriver/{$smarty.cookies.UseDriverID}" style="padding-left:0px;padding-right:0px;">
 										<h3 id="set-us-2">Set as: <i class="fas fa-sign-in-alt"></i></h3>
@@ -223,6 +231,7 @@
 							{/if}
 						{/if}
 
+						{* Items of sidebar *}
 						{section name=index loop=$menu1}
 							<li class="{$menu1[index].active}">
 								<a href='{$menu1[index].link}' >
@@ -293,19 +302,20 @@
 				<div class="header row border-bottom">
 					{* navbar *}	
 					<nav class="navbar navbar-static-top navbar-static-top-edit" role="navigation" style="margin-bottom: 0">
+						
+						{* Minimalize *}
 						<div class="navbar-header">
-						{* target***** *}
 							<a class="navbar-minimalize minimalize-styl-2 btn btn-primary btn-primary-edit"><i class="fa fa-bars"></i> </a>
 						</div>
 
+						{* Refresh *}
 						<div class="navbar-header">
 							<button type="button" class="minimalize-styl-2 btn btn-primary btn-primary-edit" id="cashe"><i class="fas fa-redo-alt"></i></button>
 						</div>
 						
-						<span style="color:cornflowerblue;margin:10px 0 0 70px;font-size:25px;display: inline-block; font-style:italic;text-shadow: 1px 2px #2e2e30;">Srećni Praznici</span>
 						<ul class="nav navbar-top-links navbar-right">
 							<li>
-								<h2><span class="m-r-sm text-muted">{$title} - {if $DEVELOPMENT}Test{/if}</span></h2>
+								<h2><span class="m-r-sm text-muted">{$title}</span></h2>
 							</li>
 
 							<li>
@@ -388,6 +398,8 @@
 	</body>
 </html>
 
+
+{* SCRIPT =========================================================================================================================== *}
 
 {literal}
 	<script>
