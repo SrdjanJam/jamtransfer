@@ -1,4 +1,7 @@
 <?
+
+	
+
 	//niz vozaca koji imaju transfere u zadatom vremenu
 	if ($t->SubDriver != 0) $subDArray[] = $t->SubDriver;
 	if ($t->SubDriver2 != 0) $subDArray[] = $t->SubDriver2;
@@ -12,15 +15,48 @@
 	
 					
 	// da li flight time u datumskom konfliktu sa pickuptime ili droptime
-	$t->flightTimeConflict=false;	
+	$t->flightTimeConflict=false;
+
+	
+	// MY LOGIC:
+	
+	// if ($t->FlightTime>0) {
+	// 	$ft=explode(':',(int)$t->FlightTime);
+	// 	if(array_key_exists(1, $ft)){
+	// 		$ft=$ft[0]*60+$ft[1];
+	// 	}else{
+	// 		$ft = 0;
+	// 	}
+
+	// 	$spt=explode(':',(int)$t->SubPickupTime);
+	// 	if(array_key_exists(1, $spt)){
+	// 		$spt=$spt[0]*60+$spt[1]; // This line make problem
+	// 	}else{
+	// 		$spt = 0;
+	// 	}
+
+	// 	$rt=abs((int)$spt-(int)$ft)/60;
+
+	// 	if ($rt>12) $t->flightTimeConflict=true;
+	// }else{
+	// 	$t->FlightTime = "";
+	// 	$t->SubPickupTime = "";
+	// }
+
 	if ($t->FlightTime>0) {
 		$ft=explode(':',$t->FlightTime);
-		$ft=$ft[0]*60+$ft[1];
+		if(count($ft) == 2) $ft=$ft[0]*60+$ft[1];
+		else $ft = 0;
+		
 		$spt=explode(':',$t->SubPickupTime);
-		$spt=$spt[0]*60+$spt[1];
+		if(count($spt) == 2) $spt=$spt[0]*60+$spt[1];
+		else $spt = 0;
+
 		$rt=abs($spt-$ft)/60;
 		if ($rt>12) $t->flightTimeConflict=true;
 	}
+
+
 	// da li je bilo promene pickup time
 	$t->changedIcon = '';
 	$t->color= '';
@@ -58,7 +94,23 @@
 		$t->extras .= $oe->getServiceName();
 		$t->extras .= '<br>';
 	}
+
+	// Other Transfer:
+	$otherTransfer = getOtherTransferIDArray($t->DetailsID,$details);
+	if ($otherTransfer != null) {
+		$d2->getRow($otherTransfer);
+		$t->returnTtansfer =  'R: '.YMD_to_DMY($d2->getPickupDate()).' '.$d2->getPickupTime();
+	}else{
+		$t->returnTtansfer = "";
+	}
 	
+	// Inter driver
+	if($t->ContractFile == 'inter') $t->Inter = true;
+	else $t->Inter = false;
+	
+
 	$order_row=(array) $t;
 		
 	$ordersArray[]=$order_row;
+
+
