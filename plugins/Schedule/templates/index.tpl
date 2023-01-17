@@ -39,7 +39,8 @@ hr {
 
 /* new */
 .row-header{
-	background: rgb(205 216 243);
+	/* background: rgb(205 216 243);  */ /* Old */
+	background-image: linear-gradient(#88b7ed, #d0dff1);
 	padding: 10px;
 }
 
@@ -52,11 +53,13 @@ hr {
 }
 
 .row-white{
-	border:1px solid rgb(223 223 223);
+	/* border:1px solid rgb(223 223 223); Old */
+	border: 1px solid rgb(136 177 217);
 	border-radius:5px;
 }
 
 .row .orange{
+	background-image: linear-gradient(#88b7ed, #d0dff1);
 	color:#474542;
 	padding:5px;
 	font-size:18px;
@@ -68,13 +71,16 @@ hr {
 }
 
 .sub-card{
-	background:#e8eef1;
+	/* background:#e8eef1; old */
+	/* background-image: linear-gradient(#d6e6e7, #e6e7e0); old */
+	background:#d6e6e7;
 	margin:10px;
 	padding:10px;
 	border-radius:5px;
 }
 .sub-card .row{
 	font-family: Tahoma, Verdana, Geneva, sans-serif;
+	padding:5px;
 }
 
 .col-md-3 input{
@@ -116,6 +122,20 @@ hr {
 	color:#2a2a2a;
 }
 
+.add-hiddenInfo{
+	padding:10px;
+	background: #e4e2e2;
+}
+
+.sub-card textarea{
+	width:100%;
+}
+
+.sub-card .row button{
+	padding:5px;
+	border-radius: 5px;
+}
+
 </style>
 
 	<!-- HEADER: -->
@@ -129,7 +149,7 @@ hr {
 				<input id="DateTo" class="datepicker" name="DateTo" value="{$DateTo}">
 			</div>	
 			<div class="col-sm-2">
-				<select name="NoColumns">
+				<select name="NoColumns" class="form-control">
 					<option value="1" {if $NoColumns eq 1}selected{/if}>1 {$COLUMN}</option>
 					<option value="2" {if $NoColumns eq 2}selected{/if}>2 {$COLUMN}</option>
 					<option value="3" {if $NoColumns eq 3}selected{/if}>3 {$COLUMN}</option>
@@ -139,7 +159,7 @@ hr {
 				</select>		
 			</div>			
 			<div class="col-sm-2">
-				<select name="DriverStatus">
+				<select name="DriverStatus" class="form-control">
 					<option value="0" {if $DriverStatus eq 0}selected{/if}>{$DISPLAY_ALL}</option>
 					<option value="1" {if $DriverStatus eq 1}selected{/if}>{$NOT_READY}</option>
 					<option value="2" {if $DriverStatus eq 2}selected{/if}>{$READY_FINISHED}</option>
@@ -166,17 +186,23 @@ hr {
 						<strong>{$sdArray[pom].DriverName}</strong>	
 					</div>
 
-					{section name=pom2 loop=$ordersArray}
+					{if count($ordersArray)}
+						{section name=pom2 loop=$ordersArray}
 
-						{if ($sdArray[pom].DriverID eq $ordersArray[pom2].SubDriver) or
-							($sdArray[pom].DriverID eq $ordersArray[pom2].SubDriver2) or
-							($sdArray[pom].DriverID eq $ordersArray[pom2].SubDriver3)}
+							{if ($sdArray[pom].DriverID eq $ordersArray[pom2].SubDriver) or
+								($sdArray[pom].DriverID eq $ordersArray[pom2].SubDriver2) or
+								($sdArray[pom].DriverID eq $ordersArray[pom2].SubDriver3)}
 
-							{include file='plugins/Schedule/templates/oneTransfer.tpl'}
+								{include file='plugins/Schedule/templates/oneTransfer.tpl'}
 
-						{/if}
-					
-					{/section}
+							{/if}
+						
+						{/section}
+
+						{else}
+							No Choosen Schedule.
+
+					{/if}
 
 				</div>	<!-- /.row white shadow border (One card) -->
 					
