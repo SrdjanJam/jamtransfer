@@ -14,15 +14,16 @@ $detailFlds = $db->fieldValues();
 foreach ($detailFlds as $key=>$value) {
 	$detailFlds[$key] = stripslashes($value);
 }
-
 $detailFlds['Language']=$_SESSION['BrandName'];
 if ($_SESSION['BrandName']<>'EN') {
 	$contTrans='Content'.$_SESSION['BrandName'];
-	if(isset($detailFlds['ContentTR'])) $detailFlds['ContentTR']=$detailFlds[$contTrans];
-	else $detailFlds['ContentTR'] = "";
+	//if(isset($detailFlds['ContentTR'])) 
+	$detailFlds['ContentTR']=$detailFlds[$contTrans];
+	//else $detailFlds['ContentTR'] = "";
 	$titleTrans='Title'.$_SESSION['BrandName'];
-	if(isset($detailFlds['TitleTR'])) $detailFlds['TitleTR']=$detailFlds[$titleTrans];
-	else $detailFlds['TitleTR']=""; 
+	//if(isset($detailFlds['TitleTR'])) 
+	$detailFlds['TitleTR']=$detailFlds[$titleTrans];
+	//else $detailFlds['TitleTR']=""; 
 	$detailFlds['disabled']='disabled';
 	$detailFlds['onlyEnglish']='hidden';
 	$detailFlds['noEnglish']='';

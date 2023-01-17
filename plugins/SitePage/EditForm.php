@@ -37,7 +37,7 @@
 						<label for="Title"><?=TITLE;?></label>
 					</div>
 					<div class="col-md-9">
-						<input type="text" name="Title" id="Title" class="w100" value="{{Title}}" {{disabled}}>
+						<input type="text" name="Title" id="Title" class="w100" value="{{TitleEN}}">
 					</div>
 				</div>				
 				<div class="row {{noEnglish}}">
@@ -57,7 +57,7 @@
 					</div>
 					<div class="col-md-9">
 						<textarea name="Content" id="Content" rows="15" 
-					class="textarea" style="width:100%">{{Content}}</textarea>
+					class="textarea" style="width:100%">{{ContentEN}}</textarea>
 					</div>
 				</div>
 				

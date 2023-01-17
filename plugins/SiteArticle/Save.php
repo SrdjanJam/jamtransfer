@@ -8,6 +8,7 @@ $out = array();
 if ($keyName != '' and $keyValue != '') $db->getRow($keyValue);
 foreach ($db->fieldNames() as $name) {
 	$content=$db->myreal_escape_string($_REQUEST[$name]);
+	$content=str_replace("'","`",$content);
 	if(isset($_REQUEST[$name])) {
 		eval("\$db->set".$name."(\$content);");	
 	}	

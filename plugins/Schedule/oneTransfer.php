@@ -51,13 +51,13 @@
 	}	
 	// dohvacanje extra usluga
 	$t->extras = '';
-	$oeArray = $oe->getKeysBy('OrderDetailsID', 'ASC', 'WHERE OrderDetailsID = '.$t->DetailsID);
+	/*$oeArray = $oe->getKeysBy('OrderDetailsID', 'ASC', 'WHERE OrderDetailsID = '.$t->DetailsID);
 
 	foreach ($oeArray as $val => $ID) {
 		$oe->getRow($ID);
 		$t->extras .= $oe->getServiceName();
 		$t->extras .= '<br>';
-	}
+	}*/
 	
 	$order_row=(array) $t;
 		

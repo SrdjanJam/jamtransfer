@@ -7,13 +7,16 @@ $fldList = array();
 $out = array();
 if ($keyName != '' and $keyValue != '') $db->getRow($keyValue);
 foreach ($db->fieldNames() as $name) {
-	$content=$db->myreal_escape_string($_REQUEST[$name]);
 	if(isset($_REQUEST[$name])) {
+		$content=$db->myreal_escape_string($_REQUEST[$name]);
+		$content=str_replace("'","`",$content);
 		eval("\$db->set".$name."(\$content);");	
 	}	
 }
 $db->setContentEN($_REQUEST['Content']);
 $db->setTitleEN($_REQUEST['Title']);
+$db->setContent($_REQUEST['Content']);
+$db->setTitle($_REQUEST['Title']);
 
 $upd = '';
 $newID = '';

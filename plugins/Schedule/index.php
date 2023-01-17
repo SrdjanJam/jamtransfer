@@ -46,7 +46,6 @@ foreach ($olKeys as $olid) {
 	$ol->getRow($olid);	
 	$olKeys2[]=$ol->getDetailsID();
 	}
-
 // dobavi sve transfere za odabrani datum za trenutnog vlasnika timetable-a
 $q = "
 SELECT *
@@ -63,7 +62,9 @@ $q .= " AND AuthUserID=UserID ";
 $q .= " AND MorderID=OrderID ";
 $q .= " ORDER BY DetailsID ASC";
 $r = $db->RunQuery($q);
+
 $subDArray = array();
+$ordersArray = array();
 while ($t = $r->fetch_object()) {
 	require("oneTransfer.php");
 }
@@ -79,6 +80,7 @@ $q = "SELECT * FROM v4_AuthUsers";
 $q .= "	WHERE DriverID = " . $_SESSION['UseDriverID']; 
 //$q .= " WHERE AuthUserID in (".$sdd.") ORDER BY AuthUserRealName ASC";
 $r = $db->RunQuery($q);
+
 $sdArray = array();
 $sddArray = array();
 while ($d = $r->fetch_object()) {
@@ -90,7 +92,7 @@ while ($d = $r->fetch_object()) {
 		$row['Mob'] = $d->AuthUserMob;
 		$sdArray[] = $row;
 	}	
-	if ($d->Active==1) {
+	if ($d->Active>0) {
 		$row = array();
 		$row['DriverID'] = $d->AuthUserID;
 		$row['DriverName'] = $d->AuthUserRealName;
