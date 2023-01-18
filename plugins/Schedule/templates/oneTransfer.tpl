@@ -1,11 +1,11 @@
 
-<!-- Sub card: -->
+
 {assign var="ID" value="{$ordersArray[pom2].DetailsID}"}
 
-
+<!-- Sub card: -->
 <div class="sub-card">
 	<div class="bgColor" style="background:{$ordersArray[pom2].bgColor};padding:10px;">
-		{* row first *}
+		<!-- row first -->
 		<div class="row"> <!-- TRANSFER -->
 			<span>
 				{if $ordersArray[pom2].UserLevelID eq '2'}
@@ -29,8 +29,7 @@
 			</strong>	
 		</div>
 
-		{* row second *}
-
+		<!-- row second -->
 		<div class="row">
 			<h4>{$ordersArray[pom2].PickupName} - {$ordersArray[pom2].DropName}</h4>
 
@@ -43,7 +42,7 @@
 			
 		</div>
 
-		{* row third *}	
+		<!-- row third -->
 		<div class="row">
 
 			<div class="col-md-3">
@@ -51,7 +50,7 @@
 					name="SubPickupTime_{$ordersArray[pom2].DetailsID}"
 					value="{$ordersArray[pom2].SubPickupTime}" onchange="saveTransfer({$ordersArray[pom2].DetailsID},0)">
 			</div>
-		
+			
 			<div class="col-md-3">
 				<input type="text" class="w100 form-control {$ordersArray[pom2].color2}"  id="PickupTimeX_{$ordersArray[pom2].DetailsID}"
 					name="PickupTimeX_{$ordersArray[pom2].DetailsID}"
@@ -84,7 +83,7 @@
 
 		</div> 
 
-		{* row forth *}
+		<!-- row forth -->
 		<div class="row" style="line-height:140%">
 			<div class="col-md-10">
 				<select class="subdriver1" data-id="{$ordersArray[pom2].DetailsID}"
@@ -106,7 +105,7 @@
 			</div>		
 		</div>
 		
-		{* Hidden or not: *}
+		<!-- Hidden or not: -->
 		<div id="subDriver2{$ordersArray[pom2].DetailsID}" class="row {if  $ordersArray[pom2].SubDriver2 eq 0}hidden{/if}" style="line-height:140%">
 			<div class="col-md-10">
 				<select class="subdriver1" data-id="{$ordersArray[pom2].DetailsID}"
@@ -128,7 +127,7 @@
 			</div>			
 		</div>
 
-		{* Hidden or not: *}
+		<!-- Hidden or not: -->
 		<div id="subDriver3{$ordersArray[pom2].DetailsID}"  class="row {if  $ordersArray[pom2].SubDriver3 eq 0}hidden{/if}" style="line-height:140%">
 			<div class="col-md-10">
 				<select class="subdriver1" data-id="{$ordersArray[pom2].DetailsID}"
@@ -153,7 +152,7 @@
 
 		<!-- hiddenInfo -->
 		<div class="row lighten-4 pad1em shadow add-hiddenInfo" id="show{$ordersArray[pom2].DetailsID}" style="display:none;margin:0">
-			Detalji transfera
+			{* Detalji transfera *}
 			<div class="row">
 				<div class="row-one">
 
