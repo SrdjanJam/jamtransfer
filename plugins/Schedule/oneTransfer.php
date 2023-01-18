@@ -17,32 +17,6 @@
 	// da li flight time u datumskom konfliktu sa pickuptime ili droptime
 	$t->flightTimeConflict=false;
 
-	
-	// MY LOGIC:
-	
-	// if ($t->FlightTime>0) {
-	// 	$ft=explode(':',(int)$t->FlightTime);
-	// 	if(array_key_exists(1, $ft)){
-	// 		$ft=$ft[0]*60+$ft[1];
-	// 	}else{
-	// 		$ft = 0;
-	// 	}
-
-	// 	$spt=explode(':',(int)$t->SubPickupTime);
-	// 	if(array_key_exists(1, $spt)){
-	// 		$spt=$spt[0]*60+$spt[1]; // This line make problem
-	// 	}else{
-	// 		$spt = 0;
-	// 	}
-
-	// 	$rt=abs((int)$spt-(int)$ft)/60;
-
-	// 	if ($rt>12) $t->flightTimeConflict=true;
-	// }else{
-	// 	$t->FlightTime = "";
-	// 	$t->SubPickupTime = "";
-	// }
-
 	if ($t->FlightTime>0) {
 		$ft=explode(':',$t->FlightTime);
 		if(count($ft) == 2) $ft=$ft[0]*60+$ft[1];
