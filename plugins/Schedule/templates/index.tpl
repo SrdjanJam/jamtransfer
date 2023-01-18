@@ -52,7 +52,7 @@ hr {
     margin:0;
 }
 
-.row-white{
+.row .white{
 	/* border:1px solid rgb(223 223 223); Old */
 	border: 1px solid rgb(136 177 217);
 	border-radius:5px;
@@ -80,7 +80,7 @@ hr {
 }
 .sub-card .row{
 	font-family: Tahoma, Verdana, Geneva, sans-serif;
-	padding:5px;
+	padding-top:5px;
 }
 
 .col-md-3 input{
@@ -180,7 +180,7 @@ hr {
 			<div class="col-md-{$BsColumnWidth} col-md-edit">
 
 				<!-- One card: -->
-				<div class="row-white shadow border">
+				<div class="row white shadow border">
 
 					<div class="row orange white-text">
 						<strong>{$sdArray[pom].DriverName}</strong>	
