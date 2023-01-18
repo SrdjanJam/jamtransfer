@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.32, created on 2023-01-05 08:28:55
+/* Smarty version 3.1.32, created on 2023-01-17 14:07:02
   from 'C:\wamp\www\jamtransfer\templates\index.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.32',
-  'unifunc' => 'content_63b67c37280f43_71698324',
+  'unifunc' => 'content_63c69d764086e4_89165809',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'a1818a92b5a2f041fd91a227dabc592dea38fac2' => 
     array (
       0 => 'C:\\wamp\\www\\jamtransfer\\templates\\index.tpl',
-      1 => 1672834791,
+      1 => 1673960387,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:pageList.tpl' => 1,
   ),
 ),false)) {
-function content_63b67c37280f43_71698324 (Smarty_Internal_Template $_smarty_tpl) {
+function content_63c69d764086e4_89165809 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html>
 	<head>
@@ -242,17 +242,20 @@ _init.js"><?php echo '</script'; ?>
 
 	</head>
 
-		<?php $_smarty_tpl->_subTemplateRender(((string)$_smarty_tpl->tpl_vars['root']->value)."/templates/add-style.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, true);
+<?php $_smarty_tpl->_subTemplateRender(((string)$_smarty_tpl->tpl_vars['root']->value)."/templates/add-style.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, true);
 ?>
+
+
 
 	<body class="fixed-top" style="height:100%!important;font-size:16px">
 				<div class="wrapper wrapper-edit">
 
-			<nav class="navbar-default navbar-default-edit navbar-static-side additional-class" role="navigation">
+						<nav class="navbar-default navbar-default-edit navbar-static-side additional-class" role="navigation">
 			<i class="lab la-accessible-icon"></i>
 								<div class="sidebar-collapse">
 					<ul class="nav metismenu" id="side-menu">
-						<li class="nav-header nav-header-top-edit">
+
+												<li class="nav-header nav-header-top-edit">
 							<div class="dropdown profile-element">
 								<a data-toggle="dropdown" class="dropdown-toggle" href="#">
 								<span class="clear"> 
@@ -272,7 +275,7 @@ _init.js"><?php echo '</script'; ?>
 							</div>
 						</li>
 						
-						<?php if (isset($_SESSION['UseDriverName'])) {?>
+												<?php if (isset($_SESSION['UseDriverName'])) {?>
 													<li class="nav-header nav-header-edit">
 								<h3 id="set-as">Set as:</h3>
 								<h3 class="cut-name"><?php echo $_SESSION['UseDriverName'];?>
@@ -281,7 +284,7 @@ _init.js"><?php echo '</script'; ?>
 							</li>
 						<?php } else { ?>
 							<?php if (isset($_COOKIE['UseDriverName'])) {?>	
-								<li class="nav-header nav-header-edit">
+																<li class="nav-header nav-header-edit">
 									<a href="satAsDriver/<?php echo $_COOKIE['UseDriverID'];?>
 " style="padding-left:0px;padding-right:0px;">
 										<h3 id="set-us-2">Set as: <i class="fas fa-sign-in-alt"></i></h3>
@@ -292,7 +295,7 @@ _init.js"><?php echo '</script'; ?>
 							<?php }?>
 						<?php }?>
 
-						<?php
+												<?php
 $__section_index_0_loop = (is_array(@$_loop=$_smarty_tpl->tpl_vars['menu1']->value) ? count($_loop) : max(0, (int) $_loop));
 $__section_index_0_total = $__section_index_0_loop;
 $_smarty_tpl->tpl_vars['__smarty_section_index'] = new Smarty_Variable(array());
@@ -375,19 +378,19 @@ echo $_prefixVariable1;?>
 								<div class="header row border-bottom">
 						
 					<nav class="navbar navbar-static-top navbar-static-top-edit" role="navigation" style="margin-bottom: 0">
-						<div class="navbar-header">
-													<a class="navbar-minimalize minimalize-styl-2 btn btn-primary btn-primary-edit"><i class="fa fa-bars"></i> </a>
+						
+												<div class="navbar-header">
+							<a class="navbar-minimalize minimalize-styl-2 btn btn-primary btn-primary-edit"><i class="fa fa-bars"></i> </a>
 						</div>
 
-						<div class="navbar-header">
+												<div class="navbar-header">
 							<button type="button" class="minimalize-styl-2 btn btn-primary btn-primary-edit" id="cashe"><i class="fas fa-redo-alt"></i></button>
 						</div>
 						
-						<span style="color:cornflowerblue;margin:10px 0 0 70px;font-size:25px;display: inline-block; font-style:italic;text-shadow: 1px 2px #2e2e30;">Srećni Praznici</span>
 						<ul class="nav navbar-top-links navbar-right">
 							<li>
 								<h2><span class="m-r-sm text-muted"><?php echo $_smarty_tpl->tpl_vars['title']->value;?>
- - <?php if ($_smarty_tpl->tpl_vars['DEVELOPMENT']->value) {?>Test<?php }?></span></h2>
+</span></h2>
 							</li>
 
 							<li>
@@ -468,6 +471,7 @@ echo $_prefixVariable1;?>
 
 	</body>
 </html>
+
 
 
 
