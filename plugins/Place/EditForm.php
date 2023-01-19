@@ -109,6 +109,18 @@
 
 				<div class="row">
 					<div class="col-md-3">
+						<label for="Image"><?=IMAGE;?></label>
+					</div>
+					<div class="col-md-6">
+						<input type="text" name="Image" id="Image" class="w100" value="{{Image}}">
+					</div>
+					<div class="col-md-3">					
+						<img height="100px" src="{{Image}}" alt="{{PlaceCity}}">					
+					</div>	
+				</div>
+				
+				<div class="row">
+					<div class="col-md-3">
 						<label for="Island"><?=ISLAND;?></label>
 					</div>
 					<div class="col-md-9">
