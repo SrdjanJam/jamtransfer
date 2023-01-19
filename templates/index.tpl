@@ -175,7 +175,10 @@
 	</head>
 
 {* INCLUDE TPL: *}
+{include file="{$root}/templates/default-style.tpl"}
+
 {include file="{$root}/templates/add-style.tpl"}
+
 
 
 {* BODY ============================================================================================= *}
@@ -185,6 +188,7 @@
 		<div class="wrapper wrapper-edit">
 
 {* SIDEBAR ====================================================================================================================================== *}
+			
 			{* Start with navbar *}
 			<nav class="navbar-default navbar-default-edit navbar-static-side additional-class" role="navigation">
 			<i class="lab la-accessible-icon"></i>
@@ -223,7 +227,7 @@
 							{if isset ($smarty.cookies.UseDriverName)}	
 								{* Set as with cookie *}
 								<li class="nav-header nav-header-edit">
-									<a href="satAsDriver/{$smarty.cookies.UseDriverID}" style="padding-left:0px;padding-right:0px;">
+									<a href="satAsDriver/{$smarty.cookies.UseDriverID}" style="padding-left:5px;padding-right:0px;">
 										<h3 id="set-us-2">Set as: <i class="fas fa-sign-in-alt"></i></h3>
 										<h3 class="cut-name-2">{$smarty.cookies.UseDriverName}</h3>
 									</a>

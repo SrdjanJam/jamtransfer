@@ -54,7 +54,7 @@ hr {
 
 .row .white{
 	/* border:1px solid rgb(223 223 223); Old */
-	border: 1px solid rgb(136 177 217);
+	border: 3px solid rgb(136 177 217);
 	border-radius:5px;
 }
 
@@ -75,7 +75,7 @@ hr {
 	/* background-image: linear-gradient(#d6e6e7, #e6e7e0); old */
 	background:#d6e6e7;
 	margin:10px;
-	padding:10px;
+	padding:5px;
 	border-radius:5px;
 }
 .sub-card .row{
@@ -123,8 +123,9 @@ hr {
 }
 
 .add-hiddenInfo{
+	/* background: #F5F5F5; */ /* Old */
+	background: #eef8f4;
 	padding:10px;
-	background: #e4e2e2;
 }
 
 .sub-card textarea{
