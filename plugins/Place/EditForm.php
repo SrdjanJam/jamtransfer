@@ -35,7 +35,7 @@
 			<div class="col-md-12">
 				<div class="row hidden">
 					<div class="col-md-3">
-						<label for="PlaceID"><?=PLACEID;?></label>
+						<label for="PlaceID"><?=PLACE_ID;?></label>
 					</div>
 					<div class="col-md-9">
 						{{PlaceID}}

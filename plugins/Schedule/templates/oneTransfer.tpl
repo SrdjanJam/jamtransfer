@@ -1,11 +1,11 @@
 
-<!-- Sub card: -->
+
 {assign var="ID" value="{$ordersArray[pom2].DetailsID}"}
 
-
+<!-- Sub card: -->
 <div class="sub-card">
 	<div class="bgColor" style="background:{$ordersArray[pom2].bgColor};padding:10px;">
-		{* row first *}
+		<!-- row first -->
 		<div class="row"> <!-- TRANSFER -->
 			<span>
 				{if $ordersArray[pom2].UserLevelID eq '2'}
@@ -29,8 +29,7 @@
 			</strong>	
 		</div>
 
-		{* row second *}
-
+		<!-- row second -->
 		<div class="row">
 			<h4>{$ordersArray[pom2].PickupName} - {$ordersArray[pom2].DropName}</h4>
 
@@ -43,7 +42,7 @@
 			
 		</div>
 
-		{* row third *}	
+		<!-- row third -->
 		<div class="row">
 
 			<div class="col-md-3">
@@ -51,7 +50,7 @@
 					name="SubPickupTime_{{$ID}}"
 					value="{$ordersArray[pom2].SubPickupTime}" onchange="saveTransfer({{$ID}},0)">
 			</div>
-		
+			
 			<div class="col-md-3">
 				<input type="text" class="w100 form-control {$ordersArray[pom2].color2}"  id="PickupTimeX_{{$ID}}"
 					name="PickupTimeX_{{$ID}}"
@@ -84,7 +83,7 @@
 
 		</div> 
 
-		{* row forth *}
+		<!-- row forth -->
 		<div class="row" style="line-height:140%">
 			<div class="col-md-10">
 				<select class="subdriver1" data-id="{{$ID}}"

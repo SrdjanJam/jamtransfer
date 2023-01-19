@@ -14,7 +14,6 @@
 	// da li flight time u datumskom konfliktu sa pickuptime ili droptime
 	$t->flightTimeConflict=false;
 
-	
 
 	if ($t->FlightTime>0) {
 		$ft=explode(':',$t->FlightTime);
