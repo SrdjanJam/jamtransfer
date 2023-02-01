@@ -41,7 +41,17 @@ hr {
 .row-header{
 	/* background: rgb(205 216 243);  */ /* Old */
 	background-image: linear-gradient(#88b7ed, #d0dff1);
+	/* background-image: linear-gradient(#bcc3cb, #d0dff1); Expriment */
+	box-shadow: 5px 5px 8px #616060;
 	padding: 10px;
+	position: sticky;
+	top: 0;
+    z-index: 5;
+    /* margin-left: 0px; 
+    margin-right: 0px; */
+}
+.row-header input{
+	margin-bottom: 5px;
 }
 
 .row-shedule{
@@ -131,7 +141,6 @@ hr {
 .sub-card textarea{
 	width:100%;
 }
-
 .sub-card .row button{
 	padding:5px;
 	border-radius: 5px;
@@ -144,10 +153,10 @@ hr {
 
 		<form  action="" method="post" onsubmit="return validate()">
 			<div class="col-sm-2">
-				<input id="DateFrom" class="datepicker" name="DateFrom" value="{$DateFrom}">
+				<input id="DateFrom" class="datepicker form-control" name="DateFrom" value="{$DateFrom}" style="border:2px solid black;">
 			</div>
 			<div class="col-sm-2">
-				<input id="DateTo" class="datepicker" name="DateTo" value="{$DateTo}">
+				<input id="DateTo" class="datepicker form-control" name="DateTo" value="{$DateTo}" style="border:2px solid black;">
 			</div>	
 			<div class="col-sm-2">
 				<select name="NoColumns" class="form-control">
