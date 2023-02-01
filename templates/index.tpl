@@ -8,38 +8,47 @@
 
 		<title>WIS {$title}</title>
 
-		<!-- LINK TAGS -->
+		<!-- 
+		
+		NOTES:
 
-		<!-- bootstrap local 3.0.2 -->
-		{* <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" media="all"/> *}
+		- Bootstrap and Jquery links are moved inside rows.
+	
+		-->
 
-			<!-- Bootstrpa 3.3.2 cdn: -->
-			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
-			<!-- font-awesome cdn: -->
-			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-		<!-- font Awesome Older: -->
+		<!-- LINKS TAGS -->
+
+		<!-- ======================================================================================== -->
+				<!-- bootstrap local 3.0.2 -->
+				{* <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" media="all"/> *}
+				<!-- Bootstrpa 3.3.2 cdn: -->
+				<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+		<!-- ======================================================================================== -->
+		<!-- font-awesome cdn: -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+		<!-- font Awesome Older local: -->
 		<link href="css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
-
+		<!-- ======================================================================================== -->
 		<!-- Ionicons -->
 		<link href="css/ionicons.min.css" rel="stylesheet" type="text/css"/>
-
+		<!-- ======================================================================================== -->
 		<!-- Morris chart -->
 		<link href="css/morris/morris.css" rel="stylesheet" type="text/css"/>
-
-		<!-- bootstrap wysihtml5 - text editor -->
-		<link href="css/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css" rel="stylesheet" type="text/css" media="screen"/>
-		<link href="css/bootstrap-slider/slider.css" rel="stylesheet" type="text/css"/>
+		<!-- ======================================================================================== -->
+				<!-- bootstrap wysihtml5 - text editor -->
+				<link href="css/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css" rel="stylesheet" type="text/css" media="screen"/>
+				<link href="css/bootstrap-slider/slider.css" rel="stylesheet" type="text/css"/>
+		<!-- ======================================================================================== -->
+		<!-- summernote -->	
 		<link href="js/summernote/summernote.css" rel="stylesheet" type="text/css" media="screen"/>
-
+		<!-- ======================================================================================== -->
 		<!-- Theme style WORKING !!!-->
 		<link href="css/theme.css" rel="stylesheet" type="text/css" media="screen"/>
 		<!-- Preuzeto za novu administraciju -->
 		<link href="css/admin.css" rel="stylesheet">
-
-		<!-- Misc -->
-		<!-- Jquery ui css: -->
-		<link rel="stylesheet" href="css/jquery-ui-1.8.9.custom.css" type="text/css" />
+		<!-- ======================================================================================== -->
+		
 		{* P ************************************************************************************ *}
 		<!-- pickadate old: -->
 		{* <link rel="stylesheet" href="js/pickadate/themes/default.css" type="text/css" media="screen"/>
@@ -47,12 +56,14 @@
 		<link rel="stylesheet" href="js/pickadate/themes/default.time.css" type="text/css" media="screen"/> *}
 		{* P ************************************************************************************ *}
 
+		<!-- ======================================================================================== -->
 		<!-- colors.css -->
 		<link rel="stylesheet" href="css/colors.css" media="all">
 		<!-- Select 2 -->
 		<link rel="stylesheet" type="text/css" href="js/select/css/select2.css">
 
 		<!--<link rel="stylesheet" href="css/simplegrid.css" media="all">!-->
+		<!-- ======================================================================================== -->
 
 		{* P ************************************************************************************ *}
 		<!-- JAMTimepicker old -->
@@ -60,57 +71,69 @@
 		{* P ************************************************************************************ *}
 		
 
-		{* ============================================================================================================================ *}
-		{* ============================================================================================================================ *}
+		{* ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// *}
+		{* ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// *}
 
-				<!-- SCRIPT TAGS: -->
+			<!-- SCRIPT AND LINKS TAGS: -->
 
-				<!-- SCRIPTS -->
-				<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-				<!--[if lt IE 9]>
-				<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-				<script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-				<![endif]-->
+			<!-- SCRIPTS -->
+			<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+			<!--[if lt IE 9]>
+			<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+			<script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+			<![endif]-->
 
-				<!-- jQuery -->
-				{* <script src="js/jQuery/2.0.2/jquery.min.js"></script> *}
+			<!-- ======================================================================================== -->
+					<!-- jQuery -->
+					<script src="js/jQuery/2.0.2/jquery.min.js"></script>
 					<!-- CDN -->
-					<script src="https://code.jquery.com/jquery-2.0.2.js"></script>
-				<!-- Mainly scripts -->
-				<script src="js/main.admin.js"></script>
-
-				{* P ************************************************************************************ *}
-
-				{* Datetimepicker new *}
-				<script src="js/datetimepicker/build/jquery.datetimepicker.full.min.js"></script>
-
-				{* P ************************************************************************************ *}
-
-				<!-- jQuery UI 1.10.3 -->
-				<script src="js/jQuery/ui/1.10.3/jquery-ui.min.js" type="text/javascript"></script>
-
-				<!-- Bootstrap -->
-				{* <script src="js/bootstrap.js" type="text/javascript"></script> *}
+					{* <script src="https://code.jquery.com/jquery-2.0.2.js"></script> *}
+					{* <script src="https://code.jquery.com/jquery-3.6.0.js"></script> *}
+			<!-- ======================================================================================== -->
+			<!-- Mainly scripts -->
+			<script src="js/main.admin.js"></script>
+			<!-- ======================================================================================== -->
+					{* Datetimepicker new *}
+					<script src="js/datetimepicker/build/jquery.datetimepicker.full.min.js"></script>
+			<!-- ======================================================================================== -->
+					<!-- jQuery UI 1.10.3 -->
+					<script src="js/jQuery/ui/1.10.3/jquery-ui.min.js" type="text/javascript"></script>
+					{* cdn: *}
+					{* <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script> *}
+			<!-- ======================================================================================== -->
+					<!-- Bootstrap -->
+					{* <script src="js/bootstrap.js" type="text/javascript"></script> *}
 					<!-- cdn: -->
-					<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>    
-
-				<!-- Morris.js charts -->
-				<script src="js/plugins/raphael/2.1.0/raphael-min.js"></script>
-				<script src="js/plugins/morris/morris.min.js" type="text/javascript"></script>
-				<!-- Sparkline -->
-				<script src="js/plugins/sparkline/jquery.sparkline.min.js" type="text/javascript"></script>
-				<!-- jQuery Knob Chart -->
-				<script src="js/plugins/jqueryKnob/jquery.knob.js" type="text/javascript"></script>
-				<!-- Bootstrap WYSIHTML5 -->
-				<script src="js/plugins/bootstrap-wysihtml5/wysihtml5-0.3.0.js" type="text/javascript"></script>
-				<script src="js/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js" type="text/javascript"></script>
-				<script src="js/plugins/bootstrap-slider/bootstrap-slider.js" type="text/javascript"></script>
-				<!-- iCheck -->
-				<script xsrc="js/plugins/iCheck/icheck.min.js" type="text/javascript"></script>
-				<!-- Validation -->
-				<script src="js/jquery.validate.min.js"></script>
-				
-				{* P ************************************************************************************ *}
+					<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+			<!-- ======================================================================================== -->
+					<!-- Jquery ui css: -->
+					{* <link rel="stylesheet" href="css/jquery-ui-1.8.9.custom.css" type="text/css" /> *}
+					<!-- cdn: -->
+					{* <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css"> *}
+					<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+					<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+			<!-- ======================================================================================== -->
+			<!-- Morris.js charts -->
+			<script src="js/plugins/raphael/2.1.0/raphael-min.js"></script>
+			<script src="js/plugins/morris/morris.min.js" type="text/javascript"></script>
+			<!-- ======================================================================================== -->
+			<!-- Sparkline -->
+			<script src="js/plugins/sparkline/jquery.sparkline.min.js" type="text/javascript"></script>
+			<!-- ======================================================================================== -->
+					<!-- jQuery Knob Chart -->
+					<script src="js/plugins/jqueryKnob/jquery.knob.js" type="text/javascript"></script>
+			<!-- ======================================================================================== -->
+					<!-- Bootstrap WYSIHTML5 -->
+					<script src="js/plugins/bootstrap-wysihtml5/wysihtml5-0.3.0.js" type="text/javascript"></script>
+					<script src="js/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js" type="text/javascript"></script>
+					<script src="js/plugins/bootstrap-slider/bootstrap-slider.js" type="text/javascript"></script>
+			<!-- ======================================================================================== -->
+			<!-- iCheck -->
+			<script xsrc="js/plugins/iCheck/icheck.min.js" type="text/javascript"></script>
+			<!-- ======================================================================================== -->
+					<!-- Validation -->
+					<script src="js/jquery.validate.min.js"></script>
+			<!-- ======================================================================================== -->
 					{* Time Picker query-clock-timepicker *}
 					<script type="text/javascript" src="js/jquery-clock-timepicker/jquery-clock-timepicker.min.js"></script>
 
@@ -121,23 +144,23 @@
 					<!-- Pick date old -->
 					{* <script src="js/pickadate/picker.js" type="text/javascript"></script>
 					<script src="js/pickadate/picker.date.js" type="text/javascript"></script> *}
-				{* P ************************************************************************************ *}
-
-				<!-- select 2 -->
-				<script src="js/select/js/select2.js"></script>
-
-				<!-- Moment -->
-				<script src="js/moment.min.js" type="text/javascript"></script>
-				<!-- App -->
-				<script src="js/theme/app.js" type="text/javascript"></script>
-
-				<!-- Misc -->
-				<script src="js/handlebars-v1.3.0.js"></script>
-				<script src="js/jquery.slugify.js"></script>
-				<script src="js/summernote/summernote.js"></script>
-				<script src="js/jquery.toaster.js"></script>
-				<script src="lng/{$language}_init.js"></script>	
-				<script src="js/cms.jquery.js"></script>
+			<!-- ======================================================================================== -->
+			<!-- select 2 -->
+			<script src="js/select/js/select2.js"></script>
+			<!-- ======================================================================================== -->
+			<!-- Moment -->
+			<script src="js/moment.min.js" type="text/javascript"></script>
+			<!-- ======================================================================================== -->
+			<!-- App -->
+			<script src="js/theme/app.js" type="text/javascript"></script>
+			<!-- ======================================================================================== -->
+			<!-- Misc -->
+			<script src="js/handlebars-v1.3.0.js"></script>
+					<script src="js/jquery.slugify.js"></script><!-- jquery local -->
+			<script src="js/summernote/summernote.js"></script>
+					<script src="js/jquery.toaster.js"></script><!-- jquery local -->
+			<script src="lng/{$language}_init.js"></script>	
+					<script src="js/cms.jquery.js"></script><!-- jquery local -->
 
 
 		{if $pageList}
@@ -171,10 +194,11 @@
 			{/if}
 
 		{/if}
+		
 
 	</head>
 
-{* INCLUDE TPL: *}
+{* TPL INCLUDE: *}
 {include file="{$root}/templates/default-style.tpl"}
 
 {include file="{$root}/templates/add-style.tpl"}
@@ -302,7 +326,8 @@
 					overflow: hidden;
 					">
 
-				{* .header row border-bottom *}
+				<!-- ******************************************************************************** -->
+				<!-- Header Top -->
 				<div class="header row border-bottom">
 					{* navbar *}	
 					<nav class="navbar navbar-static-top navbar-static-top-edit" role="navigation" style="margin-bottom: 0">
@@ -316,8 +341,11 @@
 						<div class="navbar-header">
 							<button type="button" class="minimalize-styl-2 btn btn-primary btn-primary-edit" id="cashe"><i class="fas fa-redo-alt"></i></button>
 						</div>
-						
+
 						<ul class="nav navbar-top-links navbar-right">
+							<!-- Dialog button: -->
+							<li><button id="opener">Help Dialog</button></li>
+
 							<li>
 								<h2><span class="m-r-sm text-muted">{$title}</span></h2>
 							</li>
@@ -329,9 +357,15 @@
 							</li>
 
 						</ul>
-
+						<!-- Dialog Message: -->
+						<div class="dialog-m" title="Basic dialog">
+							{* <p>This is an animated dialog which is useful for displaying information. The dialog window can be moved, resized and closed with the &apos;x&apos; icon.</p> *}
+						</div>
+						
 					</nav>
 				</div> {* /.header row border-bottom *}
+				<!-- ******************************************************************************** -->		
+
 			
 				{if not $isNew and $pageList}
 					{* .header *}
@@ -434,9 +468,11 @@
 {/literal}
 
 
+{literal}
 <script>
 	// toggleClass:
 	$(document).ready(function(){
+
 		window.success = $("#success").val();
 		window.delete = $("#delete").val();
 		
@@ -446,7 +482,45 @@
 			// Hide and show status on toggle:
 			$("#status").toggle(100,function(){ });
 		}); // End of click
+
+
+		// Dialog Box:
+		$( ".dialog-m" ).dialog({
+			autoOpen: false,
+			show: {
+				effect: "blind",
+				duration: 1000
+			},
+			hide: {
+				effect: "explode",
+				duration: 1000
+			}
+		});
+	
+		$( "#opener" ).on( "click", function() {
+			var link = 'plugins/getHelp.php';
+    		var param = 'ModuleID=' + {/literal}{$ModuleID}{literal}
+
+			// Ajax:
+			$.ajax({
+				type: 'POST',
+				url: link,
+				data: param,
+				async: false,
+				success: function (data) {
+					$( ".dialog-m" ).text(data).dialog( "open" );
+				}
+			});
+		});
+		
+		
 	}); // End of document.ready
+
+
+	
+
+
+
 </script>
 
-
+{/literal}
