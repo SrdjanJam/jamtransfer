@@ -17,9 +17,10 @@
 		-->
 
 
-		<!-- LINKS TAGS -->
+		<!-- LINKS TAGS: -->
 
 		<!-- ======================================================================================== -->
+		<!-- Bootstrap: -->
 				<!-- bootstrap local 3.0.2 -->
 				{* <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" media="all"/> *}
 				<!-- Bootstrpa 3.3.2 cdn: -->
@@ -30,51 +31,47 @@
 		<!-- font Awesome Older local: -->
 		<link href="css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
 		<!-- ======================================================================================== -->
-		<!-- Ionicons -->
+		<!-- Ionicons: -->
 		<link href="css/ionicons.min.css" rel="stylesheet" type="text/css"/>
 		<!-- ======================================================================================== -->
-		<!-- Morris chart -->
+		<!-- Morris chart: -->
 		<link href="css/morris/morris.css" rel="stylesheet" type="text/css"/>
 		<!-- ======================================================================================== -->
 				<!-- bootstrap wysihtml5 - text editor -->
 				<link href="css/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css" rel="stylesheet" type="text/css" media="screen"/>
 				<link href="css/bootstrap-slider/slider.css" rel="stylesheet" type="text/css"/>
 		<!-- ======================================================================================== -->
-		<!-- summernote -->	
+		<!-- summernote: -->	
 		<link href="js/summernote/summernote.css" rel="stylesheet" type="text/css" media="screen"/>
 		<!-- ======================================================================================== -->
 		<!-- Theme style WORKING !!!-->
 		<link href="css/theme.css" rel="stylesheet" type="text/css" media="screen"/>
-		<!-- Preuzeto za novu administraciju -->
+		<!-- Preuzeto za novu administraciju: -->
 		<link href="css/admin.css" rel="stylesheet">
 		<!-- ======================================================================================== -->
-		
-		{* P ************************************************************************************ *}
 		<!-- pickadate old: -->
 		{* <link rel="stylesheet" href="js/pickadate/themes/default.css" type="text/css" media="screen"/>
 		<link rel="stylesheet" href="js/pickadate/themes/default.date.css" type="text/css" media="screen"/>
 		<link rel="stylesheet" href="js/pickadate/themes/default.time.css" type="text/css" media="screen"/> *}
-		{* P ************************************************************************************ *}
-
 		<!-- ======================================================================================== -->
-		<!-- colors.css -->
+		<!-- colors.css: -->
 		<link rel="stylesheet" href="css/colors.css" media="all">
-		<!-- Select 2 -->
-		<link rel="stylesheet" type="text/css" href="js/select/css/select2.css">
-
-		<!--<link rel="stylesheet" href="css/simplegrid.css" media="all">!-->
 		<!-- ======================================================================================== -->
-
-		{* P ************************************************************************************ *}
+		<!-- Select 2: -->
+		<link rel="stylesheet" type="text/css" href="js/select/css/select2.css">
+		<!-- ======================================================================================== -->
+		<!-- simplegrid -->
+		<!-- <link rel="stylesheet" href="css/simplegrid.css" media="all"> -->
+		<!-- ======================================================================================== -->
 		<!-- JAMTimepicker old -->
 		{* <link rel="stylesheet" type="text/css" href="css/JAMTimepicker.css"> *}
-		{* P ************************************************************************************ *}
+		<!-- ======================================================================================== -->
 		
 
 		{* ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// *}
 		{* ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// *}
 
-			<!-- SCRIPT AND LINKS TAGS: -->
+			<!-- SCRIPT AND LINK TAGS: -->
 
 			<!-- SCRIPTS -->
 			<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -84,24 +81,24 @@
 			<![endif]-->
 
 			<!-- ======================================================================================== -->
-					<!-- jQuery -->
+					<!-- jQuery: -->
 					<script src="js/jQuery/2.0.2/jquery.min.js"></script>
-					<!-- CDN -->
+					<!-- cdn: -->
 					{* <script src="https://code.jquery.com/jquery-2.0.2.js"></script> *}
 					{* <script src="https://code.jquery.com/jquery-3.6.0.js"></script> *}
 			<!-- ======================================================================================== -->
-			<!-- Mainly scripts -->
+			<!-- Mainly scripts: -->
 			<script src="js/main.admin.js"></script>
 			<!-- ======================================================================================== -->
-					{* Datetimepicker new *}
+					<!-- Datetimepicker new: -->
 					<script src="js/datetimepicker/build/jquery.datetimepicker.full.min.js"></script>
 			<!-- ======================================================================================== -->
-					<!-- jQuery UI 1.10.3 -->
+					<!-- jQuery UI 1.10.3: -->
 					<script src="js/jQuery/ui/1.10.3/jquery-ui.min.js" type="text/javascript"></script>
 					{* cdn: *}
 					{* <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script> *}
 			<!-- ======================================================================================== -->
-					<!-- Bootstrap -->
+					<!-- Bootstrap: -->
 					{* <script src="js/bootstrap.js" type="text/javascript"></script> *}
 					<!-- cdn: -->
 					<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
@@ -113,55 +110,53 @@
 					<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
 					<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 			<!-- ======================================================================================== -->
-			<!-- Morris.js charts -->
+			<!-- Morris.js charts: -->
 			<script src="js/plugins/raphael/2.1.0/raphael-min.js"></script>
 			<script src="js/plugins/morris/morris.min.js" type="text/javascript"></script>
 			<!-- ======================================================================================== -->
-			<!-- Sparkline -->
+			<!-- Sparkline: -->
 			<script src="js/plugins/sparkline/jquery.sparkline.min.js" type="text/javascript"></script>
 			<!-- ======================================================================================== -->
-					<!-- jQuery Knob Chart -->
+					<!-- jQuery Knob Chart: -->
 					<script src="js/plugins/jqueryKnob/jquery.knob.js" type="text/javascript"></script>
 			<!-- ======================================================================================== -->
-					<!-- Bootstrap WYSIHTML5 -->
+					<!-- Bootstrap WYSIHTML5: -->
 					<script src="js/plugins/bootstrap-wysihtml5/wysihtml5-0.3.0.js" type="text/javascript"></script>
 					<script src="js/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js" type="text/javascript"></script>
 					<script src="js/plugins/bootstrap-slider/bootstrap-slider.js" type="text/javascript"></script>
 			<!-- ======================================================================================== -->
-			<!-- iCheck -->
+			<!-- iCheck: -->
 			<script xsrc="js/plugins/iCheck/icheck.min.js" type="text/javascript"></script>
 			<!-- ======================================================================================== -->
-					<!-- Validation -->
+					<!-- Validation: -->
 					<script src="js/jquery.validate.min.js"></script>
 			<!-- ======================================================================================== -->
-					{* Time Picker query-clock-timepicker *}
+					<!-- Time Picker query-clock-timepicker: -->
 					<script type="text/javascript" src="js/jquery-clock-timepicker/jquery-clock-timepicker.min.js"></script>
 
 					<!-- Date Picker and time picker old /  -->
 					{* <script src="js/pickadate/picker.time.js" type="text/javascript"></script>
 					<script src="js/JAMTimepicker.js"></script> *}
-
 					<!-- Pick date old -->
 					{* <script src="js/pickadate/picker.js" type="text/javascript"></script>
 					<script src="js/pickadate/picker.date.js" type="text/javascript"></script> *}
 			<!-- ======================================================================================== -->
-			<!-- select 2 -->
+			<!-- select 2: -->
 			<script src="js/select/js/select2.js"></script>
 			<!-- ======================================================================================== -->
-			<!-- Moment -->
+			<!-- Moment: -->
 			<script src="js/moment.min.js" type="text/javascript"></script>
 			<!-- ======================================================================================== -->
-			<!-- App -->
+			<!-- App: -->
 			<script src="js/theme/app.js" type="text/javascript"></script>
 			<!-- ======================================================================================== -->
-			<!-- Misc -->
+			<!-- Misc: -->
 			<script src="js/handlebars-v1.3.0.js"></script>
 					<script src="js/jquery.slugify.js"></script><!-- jquery local -->
 			<script src="js/summernote/summernote.js"></script>
 					<script src="js/jquery.toaster.js"></script><!-- jquery local -->
 			<script src="lng/{$language}_init.js"></script>	
 					<script src="js/cms.jquery.js"></script><!-- jquery local -->
-
 
 		{if $pageList}
 
@@ -239,9 +234,9 @@
 							</div>
 						</li>
 						
-						{* SET US: ======================================================================== *}
+						{* SETTING DRIVER ======================================================================== *}
 						{if isset($smarty.session.UseDriverName)}
-						{* nav-header nav-header-edit *}
+						<!-- nav-header nav-header-edit -->
 							<li class="nav-header nav-header-edit">
 								<h3 id="set-as">Set as:</h3>
 								<h3 class="cut-name">{$smarty.session.UseDriverName}</h3>
@@ -249,7 +244,7 @@
 							</li>
 						{else}
 							{if isset ($smarty.cookies.UseDriverName)}	
-								{* Set as with cookie *}
+								<!-- Set as with cookie -->
 								<li class="nav-header nav-header-edit">
 									<a href="satAsDriver/{$smarty.cookies.UseDriverID}" style="padding-left:5px;padding-right:0px;">
 										<h3 id="set-us-2">Set as: <i class="fas fa-sign-in-alt"></i></h3>
@@ -258,6 +253,7 @@
 								</li>
 							{/if}
 						{/if}
+						{* ====================================================================================== *}
 
 						{* Items of sidebar *}
 						{section name=index loop=$menu1}
@@ -278,7 +274,7 @@
 												<a href="{$menu1[index].menu[index1].link}"><span class="nav-label" title="{$menu1[index].menu[index1].description}">{$menu1[index].menu[index1].title} <span class='badge'>{{$menu1[index].menu[index1].activestatus}}</span></span></a>
 
 													{if $menu1[index].menu[index1].title eq 'Orders'}
-														{* collapse: ul second level: *}
+														<!-- collapse: ul second level: -->
 													{*<ul class="nav nav-third-level collapse" >
 														<li><a href="{$menu1[index].menu[index1].link}"><span class="nav-label">All</span></a></li>
 
@@ -303,7 +299,7 @@
 				   </ul> {* End of nav metismenu *}
 				   
 				   
-				   {* For developing status *}
+				   <!-- developing status -->
 				   <ul id="status" style="list-style-type:none;">
 						<li>A - Active</li>
 						<li>T - Test</li>
@@ -344,7 +340,7 @@
 
 						<ul class="nav navbar-top-links navbar-right">
 							<!-- Dialog button: -->
-							<li><button id="opener">Help Dialog</button></li>
+							<li><button type="button" id="opener" class="button-3">Help Dialog</button></li>
 
 							<li>
 								<h2><span class="m-r-sm text-muted">{$title}</span></h2>
@@ -358,9 +354,7 @@
 
 						</ul>
 						<!-- Dialog Message: -->
-						<div class="dialog-m" title="Basic dialog">
-							{* <p>This is an animated dialog which is useful for displaying information. The dialog window can be moved, resized and closed with the &apos;x&apos; icon.</p> *}
-						</div>
+						<div class="dialog-m"><!-- printed results here --></div>
 						
 					</nav>
 				</div> {* /.header row border-bottom *}
@@ -420,8 +414,7 @@
 					<div class="backdrop"><div class="spiner"></div></div>
 
 				</div>{* /.footer row *}
-
-
+				
 
 			</div> {* End of page-wrapper *}
 
@@ -464,6 +457,7 @@
 				return settings;
 			}
 		});
+
 	</script>
 {/literal}
 
@@ -486,22 +480,24 @@
 
 		// Dialog Box:
 		$( ".dialog-m" ).dialog({
+			title: 'Basic dialog',
 			autoOpen: false,
+			
 			show: {
 				effect: "blind",
-				duration: 1000
+				duration: 500
 			},
 			hide: {
 				effect: "explode",
-				duration: 1000
+				duration: 500
 			}
 		});
 	
+		// Ajax preparation:
 		$( "#opener" ).on( "click", function() {
 			var link = 'plugins/getHelp.php';
     		var param = 'ModuleID=' + {/literal}{$ModuleID}{literal}
 
-			// Ajax:
 			$.ajax({
 				type: 'POST',
 				url: link,
