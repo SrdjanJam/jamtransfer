@@ -1,6 +1,3 @@
-{* Jquery *}
-<script src="https://code.jquery.com/jquery-2.0.2.js"></script>
-
 <script>
 
 function resize(){

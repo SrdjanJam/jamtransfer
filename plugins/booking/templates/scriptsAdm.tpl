@@ -1,4 +1,4 @@
-<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+{* <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 <link rel="stylesheet" type="text/css" href="./css/admin.css" media="screen">
 <link rel="stylesheet" type="text/css" href="./js/jQuery/jquery-ui-1.8.9.custom.css">
 <link rel="stylesheet" type="text/css" href="./js/jQuery/jquery.ui.datepicker.css">
@@ -8,7 +8,7 @@
 
 
 <script src="./js/jQuery/jquery.ui.core.js"></script>
-<script src="./js/jQuery/jquery.ui.timepicker.js"></script>
+<script src="./js/jQuery/jquery.ui.timepicker.js"></script> *}
 
 <script type="text/javascript">
 
