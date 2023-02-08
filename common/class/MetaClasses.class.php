@@ -26,7 +26,7 @@ class MetaClasses
 			{
 				foreach ($xmlClass["ATTR"][0]["ATTRS"] as $xmlAttributes)
 				{
-					$Attribute = new Attribute();
+					$Attribute = new Attributes();
 					
 					$Attribute->setName($xmlAttributes["VALUE"]);
 					$Attribute->setType($xmlAttributes["ATTRIBUTES"]["TYPE"]);
@@ -151,7 +151,7 @@ class MetaClass
 	}
 }
 
-class Attribute 
+class Attributes 
 {
 	var $Name;
 	var $Type;

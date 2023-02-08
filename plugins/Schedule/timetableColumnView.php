@@ -129,6 +129,10 @@ $subDArray = array_unique($subDArray); // ostavi samo jedinstvene subdrivere u n
 // dobavi vozace od trenutnog vlasnika timetable-a, slozi ih u sdArray sa podacima
 $q = "SELECT * FROM v4_AuthUsers";
 $q .= " WHERE DriverID = ".$_SESSION['OwnerID']." ORDER BY AuthUserRealName ASC";
+
+/*$q = "SELECT * FROM `v4_AuthUsers`,`v4_SubVehicles`,`v4_SubVehiclesSubDrivers` ";
+$q .= " WHERE ".$_SESSION['OwnerID']." and `AuthUserID`=v4_SubVehiclesSubDrivers.SubDriverID and v4_SubVehiclesSubDrivers.SubVehicleID=v4_SubVehicles.VehicleID ";
+$q .= "ORDER BY AuthUserRealName ASC";*/
 $r = $db->RunQuery($q);
 $sdArray = array();
 while ($d = $r->fetch_object()) {

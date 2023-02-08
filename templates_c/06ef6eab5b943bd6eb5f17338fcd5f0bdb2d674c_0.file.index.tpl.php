@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.32, created on 2023-01-17 13:07:19
+/* Smarty version 3.1.32, created on 2023-02-07 07:52:22
   from 'c:\wamp\www\jamtransfer\plugins\Schedule\templates\index.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.32',
-  'unifunc' => 'content_63c69d87a625a8_26670598',
+  'unifunc' => 'content_63e203363f9ed7_41334364',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '06ef6eab5b943bd6eb5f17338fcd5f0bdb2d674c' => 
     array (
       0 => 'c:\\wamp\\www\\jamtransfer\\plugins\\Schedule\\templates\\index.tpl',
-      1 => 1673960387,
+      1 => 1675672930,
       2 => 'file',
     ),
   ),
@@ -21,7 +21,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:plugins/Schedule/templates/oneTransfer.tpl' => 1,
   ),
 ),false)) {
-function content_63c69d87a625a8_26670598 (Smarty_Internal_Template $_smarty_tpl) {
+function content_63e203363f9ed7_41334364 (Smarty_Internal_Template $_smarty_tpl) {
 ?><style>
 
 /* Old: */
@@ -65,7 +65,17 @@ hr {
 .row-header{
 	/* background: rgb(205 216 243);  */ /* Old */
 	background-image: linear-gradient(#88b7ed, #d0dff1);
+	/* background-image: linear-gradient(#bcc3cb, #d0dff1); Expriment */
+	box-shadow: 5px 5px 8px #616060;
 	padding: 10px;
+	position: sticky;
+	top: 0;
+    z-index: 5;
+    /* margin-left: 0px; 
+    margin-right: 0px; */
+}
+.row-header input{
+	margin-bottom: 5px;
 }
 
 .row-shedule{
@@ -76,9 +86,9 @@ hr {
     margin:0;
 }
 
-.row-white{
+.row .white{
 	/* border:1px solid rgb(223 223 223); Old */
-	border: 1px solid rgb(136 177 217);
+	border: 3px solid rgb(136 177 217);
 	border-radius:5px;
 }
 
@@ -99,12 +109,12 @@ hr {
 	/* background-image: linear-gradient(#d6e6e7, #e6e7e0); old */
 	background:#d6e6e7;
 	margin:10px;
-	padding:10px;
+	padding:5px;
 	border-radius:5px;
 }
 .sub-card .row{
 	font-family: Tahoma, Verdana, Geneva, sans-serif;
-	padding:5px;
+	padding-top:5px;
 }
 
 .col-md-3 input{
@@ -147,14 +157,14 @@ hr {
 }
 
 .add-hiddenInfo{
+	/* background: #F5F5F5; */ /* Old */
+	background: #eef8f4;
 	padding:10px;
-	background: #e4e2e2;
 }
 
 .sub-card textarea{
 	width:100%;
 }
-
 .sub-card .row button{
 	padding:5px;
 	border-radius: 5px;
@@ -167,12 +177,12 @@ hr {
 
 		<form  action="" method="post" onsubmit="return validate()">
 			<div class="col-sm-2">
-				<input id="DateFrom" class="datepicker" name="DateFrom" value="<?php echo $_smarty_tpl->tpl_vars['DateFrom']->value;?>
-">
+				<input id="DateFrom" class="datepicker form-control" name="DateFrom" value="<?php echo $_smarty_tpl->tpl_vars['DateFrom']->value;?>
+" style="border:2px solid black;">
 			</div>
 			<div class="col-sm-2">
-				<input id="DateTo" class="datepicker" name="DateTo" value="<?php echo $_smarty_tpl->tpl_vars['DateTo']->value;?>
-">
+				<input id="DateTo" class="datepicker form-control" name="DateTo" value="<?php echo $_smarty_tpl->tpl_vars['DateTo']->value;?>
+" style="border:2px solid black;">
 			</div>	
 			<div class="col-sm-2">
 				<select name="NoColumns" class="form-control">
@@ -222,7 +232,7 @@ for ($__section_pom_0_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_po
  col-md-edit">
 
 				<!-- One card: -->
-				<div class="row-white shadow border">
+				<div class="row white shadow border">
 
 					<div class="row orange white-text">
 						<strong><?php echo $_smarty_tpl->tpl_vars['sdArray']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_pom']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_pom']->value['index'] : null)]['DriverName'];?>

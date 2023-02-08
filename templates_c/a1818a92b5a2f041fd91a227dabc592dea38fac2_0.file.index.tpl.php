@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.32, created on 2023-01-17 14:07:02
+/* Smarty version 3.1.32, created on 2023-02-07 08:43:29
   from 'C:\wamp\www\jamtransfer\templates\index.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.32',
-  'unifunc' => 'content_63c69d764086e4_89165809',
+  'unifunc' => 'content_63e20121bec646_17619756',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'a1818a92b5a2f041fd91a227dabc592dea38fac2' => 
     array (
       0 => 'C:\\wamp\\www\\jamtransfer\\templates\\index.tpl',
-      1 => 1673960387,
+      1 => 1675672930,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:pageList.tpl' => 1,
   ),
 ),false)) {
-function content_63c69d764086e4_89165809 (Smarty_Internal_Template $_smarty_tpl) {
+function content_63e20121bec646_17619756 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html>
 	<head>
@@ -35,167 +35,192 @@ function content_63c69d764086e4_89165809 (Smarty_Internal_Template $_smarty_tpl)
 		<title>WIS <?php echo $_smarty_tpl->tpl_vars['title']->value;?>
 </title>
 
-		<!-- LINK TAGS -->
-
-		<!-- bootstrap local 3.0.2 -->
+		<!-- 
 		
-			<!-- Bootstrpa 3.3.2 cdn: -->
-			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+		NOTES:
 
-			<!-- font-awesome cdn: -->
-			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-		<!-- font Awesome Older: -->
+		- Bootstrap and Jquery links are moved inside rows.
+	
+		-->
+
+
+		<!-- LINKS TAGS: -->
+
+		<!-- ======================================================================================== -->
+		<!-- Bootstrap: -->
+				<!-- bootstrap local 3.0.2 -->
+								<!-- Bootstrpa 3.3.2 cdn: -->
+				<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+		<!-- ======================================================================================== -->
+		<!-- font-awesome cdn: -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+		<!-- font Awesome Older local: -->
 		<link href="css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
-
-		<!-- Ionicons -->
+		<!-- ======================================================================================== -->
+		<!-- Ionicons: -->
 		<link href="css/ionicons.min.css" rel="stylesheet" type="text/css"/>
-
-		<!-- Morris chart -->
+		<!-- ======================================================================================== -->
+		<!-- Morris chart: -->
 		<link href="css/morris/morris.css" rel="stylesheet" type="text/css"/>
-
-		<!-- bootstrap wysihtml5 - text editor -->
-		<link href="css/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css" rel="stylesheet" type="text/css" media="screen"/>
-		<link href="css/bootstrap-slider/slider.css" rel="stylesheet" type="text/css"/>
+		<!-- ======================================================================================== -->
+				<!-- bootstrap wysihtml5 - text editor -->
+				<link href="css/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css" rel="stylesheet" type="text/css" media="screen"/>
+				<link href="css/bootstrap-slider/slider.css" rel="stylesheet" type="text/css"/>
+		<!-- ======================================================================================== -->
+		<!-- summernote: -->	
 		<link href="js/summernote/summernote.css" rel="stylesheet" type="text/css" media="screen"/>
-
+		<!-- ======================================================================================== -->
 		<!-- Theme style WORKING !!!-->
 		<link href="css/theme.css" rel="stylesheet" type="text/css" media="screen"/>
-		<!-- Preuzeto za novu administraciju -->
+		<!-- Preuzeto za novu administraciju: -->
 		<link href="css/admin.css" rel="stylesheet">
-
-		<!-- Misc -->
-		<!-- Jquery ui css: -->
-		<link rel="stylesheet" href="css/jquery-ui-1.8.9.custom.css" type="text/css" />
-				<!-- pickadate old: -->
-				
-		<!-- colors.css -->
+		<!-- ======================================================================================== -->
+		<!-- pickadate old: -->
+				<!-- ======================================================================================== -->
+		<!-- colors.css: -->
 		<link rel="stylesheet" href="css/colors.css" media="all">
-		<!-- Select 2 -->
+		<!-- ======================================================================================== -->
+		<!-- Select 2: -->
 		<link rel="stylesheet" type="text/css" href="js/select/css/select2.css">
-
-		<!--<link rel="stylesheet" href="css/simplegrid.css" media="all">!-->
-
-				<!-- JAMTimepicker old -->
-						
+		<!-- ======================================================================================== -->
+		<!-- simplegrid -->
+		<!-- <link rel="stylesheet" href="css/simplegrid.css" media="all"> -->
+		<!-- ======================================================================================== -->
+		<!-- JAMTimepicker old -->
+				<!-- ======================================================================================== -->
+		
 
 				
-				<!-- SCRIPT TAGS: -->
+			<!-- SCRIPT AND LINK TAGS: -->
 
-				<!-- SCRIPTS -->
-				<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-				<!--[if lt IE 9]>
-				<?php echo '<script'; ?>
+			<!-- SCRIPTS -->
+			<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+			<!--[if lt IE 9]>
+			<?php echo '<script'; ?>
  src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"><?php echo '</script'; ?>
 >
-				<?php echo '<script'; ?>
+			<?php echo '<script'; ?>
  src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"><?php echo '</script'; ?>
 >
-				<![endif]-->
+			<![endif]-->
 
-				<!-- jQuery -->
-									<!-- CDN -->
+			<!-- ======================================================================================== -->
+					<!-- jQuery: -->
 					<?php echo '<script'; ?>
- src="https://code.jquery.com/jquery-2.0.2.js"><?php echo '</script'; ?>
+ src="js/jQuery/2.0.2/jquery.min.js"><?php echo '</script'; ?>
 >
-				<!-- Mainly scripts -->
-				<?php echo '<script'; ?>
+					<!-- cdn: -->
+													<!-- ======================================================================================== -->
+			<!-- Mainly scripts: -->
+			<?php echo '<script'; ?>
  src="js/main.admin.js"><?php echo '</script'; ?>
 >
-
-				
-								<?php echo '<script'; ?>
+			<!-- ======================================================================================== -->
+					<!-- Datetimepicker new: -->
+					<?php echo '<script'; ?>
  src="js/datetimepicker/build/jquery.datetimepicker.full.min.js"><?php echo '</script'; ?>
 >
-
-				
-				<!-- jQuery UI 1.10.3 -->
-				<?php echo '<script'; ?>
+			<!-- ======================================================================================== -->
+					<!-- jQuery UI 1.10.3: -->
+					<?php echo '<script'; ?>
  src="js/jQuery/ui/1.10.3/jquery-ui.min.js" type="text/javascript"><?php echo '</script'; ?>
 >
-
-				<!-- Bootstrap -->
-									<!-- cdn: -->
+													<!-- ======================================================================================== -->
+					<!-- Bootstrap: -->
+										<!-- cdn: -->
 					<?php echo '<script'; ?>
  src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"><?php echo '</script'; ?>
->    
-
-				<!-- Morris.js charts -->
-				<?php echo '<script'; ?>
+>
+			<!-- ======================================================================================== -->
+					<!-- Jquery ui css: -->
+										<!-- cdn: -->
+										<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+					<?php echo '<script'; ?>
+ src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"><?php echo '</script'; ?>
+>
+			<!-- ======================================================================================== -->
+			<!-- Morris.js charts: -->
+			<?php echo '<script'; ?>
  src="js/plugins/raphael/2.1.0/raphael-min.js"><?php echo '</script'; ?>
 >
-				<?php echo '<script'; ?>
+			<?php echo '<script'; ?>
  src="js/plugins/morris/morris.min.js" type="text/javascript"><?php echo '</script'; ?>
 >
-				<!-- Sparkline -->
-				<?php echo '<script'; ?>
+			<!-- ======================================================================================== -->
+			<!-- Sparkline: -->
+			<?php echo '<script'; ?>
  src="js/plugins/sparkline/jquery.sparkline.min.js" type="text/javascript"><?php echo '</script'; ?>
 >
-				<!-- jQuery Knob Chart -->
-				<?php echo '<script'; ?>
+			<!-- ======================================================================================== -->
+					<!-- jQuery Knob Chart: -->
+					<?php echo '<script'; ?>
  src="js/plugins/jqueryKnob/jquery.knob.js" type="text/javascript"><?php echo '</script'; ?>
 >
-				<!-- Bootstrap WYSIHTML5 -->
-				<?php echo '<script'; ?>
+			<!-- ======================================================================================== -->
+					<!-- Bootstrap WYSIHTML5: -->
+					<?php echo '<script'; ?>
  src="js/plugins/bootstrap-wysihtml5/wysihtml5-0.3.0.js" type="text/javascript"><?php echo '</script'; ?>
 >
-				<?php echo '<script'; ?>
+					<?php echo '<script'; ?>
  src="js/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js" type="text/javascript"><?php echo '</script'; ?>
 >
-				<?php echo '<script'; ?>
+					<?php echo '<script'; ?>
  src="js/plugins/bootstrap-slider/bootstrap-slider.js" type="text/javascript"><?php echo '</script'; ?>
 >
-				<!-- iCheck -->
-				<?php echo '<script'; ?>
+			<!-- ======================================================================================== -->
+			<!-- iCheck: -->
+			<?php echo '<script'; ?>
  xsrc="js/plugins/iCheck/icheck.min.js" type="text/javascript"><?php echo '</script'; ?>
 >
-				<!-- Validation -->
-				<?php echo '<script'; ?>
+			<!-- ======================================================================================== -->
+					<!-- Validation: -->
+					<?php echo '<script'; ?>
  src="js/jquery.validate.min.js"><?php echo '</script'; ?>
 >
-				
-														<?php echo '<script'; ?>
+			<!-- ======================================================================================== -->
+					<!-- Time Picker query-clock-timepicker: -->
+					<?php echo '<script'; ?>
  type="text/javascript" src="js/jquery-clock-timepicker/jquery-clock-timepicker.min.js"><?php echo '</script'; ?>
 >
 
 					<!-- Date Picker and time picker old /  -->
-					
-					<!-- Pick date old -->
-									
-				<!-- select 2 -->
-				<?php echo '<script'; ?>
+										<!-- Pick date old -->
+								<!-- ======================================================================================== -->
+			<!-- select 2: -->
+			<?php echo '<script'; ?>
  src="js/select/js/select2.js"><?php echo '</script'; ?>
 >
-
-				<!-- Moment -->
-				<?php echo '<script'; ?>
+			<!-- ======================================================================================== -->
+			<!-- Moment: -->
+			<?php echo '<script'; ?>
  src="js/moment.min.js" type="text/javascript"><?php echo '</script'; ?>
 >
-				<!-- App -->
-				<?php echo '<script'; ?>
+			<!-- ======================================================================================== -->
+			<!-- App: -->
+			<?php echo '<script'; ?>
  src="js/theme/app.js" type="text/javascript"><?php echo '</script'; ?>
 >
-
-				<!-- Misc -->
-				<?php echo '<script'; ?>
+			<!-- ======================================================================================== -->
+			<!-- Misc: -->
+			<?php echo '<script'; ?>
  src="js/handlebars-v1.3.0.js"><?php echo '</script'; ?>
 >
-				<?php echo '<script'; ?>
+					<?php echo '<script'; ?>
  src="js/jquery.slugify.js"><?php echo '</script'; ?>
->
-				<?php echo '<script'; ?>
+><!-- jquery local -->
+			<?php echo '<script'; ?>
  src="js/summernote/summernote.js"><?php echo '</script'; ?>
 >
-				<?php echo '<script'; ?>
+					<?php echo '<script'; ?>
  src="js/jquery.toaster.js"><?php echo '</script'; ?>
->
-				<?php echo '<script'; ?>
+><!-- jquery local -->
+			<?php echo '<script'; ?>
  src="lng/<?php echo $_smarty_tpl->tpl_vars['language']->value;?>
 _init.js"><?php echo '</script'; ?>
 >	
-				<?php echo '<script'; ?>
+					<?php echo '<script'; ?>
  src="js/cms.jquery.js"><?php echo '</script'; ?>
->
-
+><!-- jquery local -->
 
 		<?php if ($_smarty_tpl->tpl_vars['pageList']->value) {?>
 
@@ -239,17 +264,23 @@ _init.js"><?php echo '</script'; ?>
 			<?php }?>
 
 		<?php }?>
+		
 
 	</head>
+
+<?php $_smarty_tpl->_subTemplateRender(((string)$_smarty_tpl->tpl_vars['root']->value)."/templates/default-style.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, true);
+?>
 
 <?php $_smarty_tpl->_subTemplateRender(((string)$_smarty_tpl->tpl_vars['root']->value)."/templates/add-style.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, true);
 ?>
 
 
 
+
 	<body class="fixed-top" style="height:100%!important;font-size:16px">
 				<div class="wrapper wrapper-edit">
 
+			
 						<nav class="navbar-default navbar-default-edit navbar-static-side additional-class" role="navigation">
 			<i class="lab la-accessible-icon"></i>
 								<div class="sidebar-collapse">
@@ -276,7 +307,8 @@ _init.js"><?php echo '</script'; ?>
 						</li>
 						
 												<?php if (isset($_SESSION['UseDriverName'])) {?>
-													<li class="nav-header nav-header-edit">
+						<!-- nav-header nav-header-edit -->
+							<li class="nav-header nav-header-edit">
 								<h3 id="set-as">Set as:</h3>
 								<h3 class="cut-name"><?php echo $_SESSION['UseDriverName'];?>
 </h3>
@@ -284,9 +316,10 @@ _init.js"><?php echo '</script'; ?>
 							</li>
 						<?php } else { ?>
 							<?php if (isset($_COOKIE['UseDriverName'])) {?>	
-																<li class="nav-header nav-header-edit">
+								<!-- Set as with cookie -->
+								<li class="nav-header nav-header-edit">
 									<a href="satAsDriver/<?php echo $_COOKIE['UseDriverID'];?>
-" style="padding-left:0px;padding-right:0px;">
+" style="padding-left:5px;padding-right:0px;">
 										<h3 id="set-us-2">Set as: <i class="fas fa-sign-in-alt"></i></h3>
 										<h3 class="cut-name-2"><?php echo $_COOKIE['UseDriverName'];?>
 </h3>
@@ -294,7 +327,7 @@ _init.js"><?php echo '</script'; ?>
 								</li>
 							<?php }?>
 						<?php }?>
-
+						
 												<?php
 $__section_index_0_loop = (is_array(@$_loop=$_smarty_tpl->tpl_vars['menu1']->value) ? count($_loop) : max(0, (int) $_loop));
 $__section_index_0_total = $__section_index_0_loop;
@@ -339,7 +372,8 @@ echo $_prefixVariable1;?>
 </span></span></a>
 
 													<?php if ($_smarty_tpl->tpl_vars['menu1']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_index']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_index']->value['index'] : null)]['menu'][(isset($_smarty_tpl->tpl_vars['__smarty_section_index1']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_index1']->value['index'] : null)]['title'] == 'Orders') {?>
-																																								<?php }?>
+														<!-- collapse: ul second level: -->
+																										<?php }?>
 											</li>
 										<?php
 }
@@ -357,7 +391,8 @@ echo $_prefixVariable1;?>
 
 				   </ul> 				   
 				   
-				   				   <ul id="status" style="list-style-type:none;">
+				   <!-- developing status -->
+				   <ul id="status" style="list-style-type:none;">
 						<li>A - Active</li>
 						<li>T - Test</li>
 						<li>D - Development</li>
@@ -375,7 +410,9 @@ echo $_prefixVariable1;?>
 					overflow: hidden;
 					">
 
-								<div class="header row border-bottom">
+				<!-- ******************************************************************************** -->
+				<!-- Header Top -->
+				<div class="header row border-bottom">
 						
 					<nav class="navbar navbar-static-top navbar-static-top-edit" role="navigation" style="margin-bottom: 0">
 						
@@ -386,8 +423,11 @@ echo $_prefixVariable1;?>
 												<div class="navbar-header">
 							<button type="button" class="minimalize-styl-2 btn btn-primary btn-primary-edit" id="cashe"><i class="fas fa-redo-alt"></i></button>
 						</div>
-						
+
 						<ul class="nav navbar-top-links navbar-right">
+							<!-- Dialog button: -->
+							<li><button type="button" id="opener" class="button-3">Help Dialog</button></li>
+
 							<li>
 								<h2><span class="m-r-sm text-muted"><?php echo $_smarty_tpl->tpl_vars['title']->value;?>
 </span></h2>
@@ -400,9 +440,13 @@ echo $_prefixVariable1;?>
 							</li>
 
 						</ul>
-
+						<!-- Dialog Message: -->
+						<div class="dialog-m"><!-- printed results here --></div>
+						
 					</nav>
-				</div> 			
+				</div> 				<!-- ******************************************************************************** -->		
+
+			
 				<?php if (!$_smarty_tpl->tpl_vars['isNew']->value && $_smarty_tpl->tpl_vars['pageList']->value) {?>
 										<div class="header header-edit">  
 						<?php $_smarty_tpl->_subTemplateRender("file:pageListHeader.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
@@ -455,8 +499,7 @@ echo $_prefixVariable1;?>
 					
 					<div class="backdrop"><div class="spiner"></div></div>
 
-				</div>
-
+				</div>				
 
 			</div> 
 		</div> 
@@ -500,8 +543,10 @@ echo $_prefixVariable1;?>
 				return settings;
 			}
 		});
+
 	<?php echo '</script'; ?>
 >
+
 
 
 
@@ -509,6 +554,7 @@ echo $_prefixVariable1;?>
 >
 	// toggleClass:
 	$(document).ready(function(){
+
 		window.success = $("#success").val();
 		window.delete = $("#delete").val();
 		
@@ -518,7 +564,48 @@ echo $_prefixVariable1;?>
 			// Hide and show status on toggle:
 			$("#status").toggle(100,function(){ });
 		}); // End of click
+
+
+		// Dialog Box:
+		$( ".dialog-m" ).dialog({
+			title: 'Basic dialog',
+			autoOpen: false,
+			
+			show: {
+				effect: "blind",
+				duration: 500
+			},
+			hide: {
+				effect: "explode",
+				duration: 500
+			}
+		});
+	
+		// Ajax preparation:
+		$( "#opener" ).on( "click", function() {
+			var link = 'plugins/getHelp.php';
+    		var param = 'ModuleID=' + <?php echo $_smarty_tpl->tpl_vars['ModuleID']->value;?>
+
+
+			$.ajax({
+				type: 'POST',
+				url: link,
+				data: param,
+				async: false,
+				success: function (data) {
+					$( ".dialog-m" ).text(data).dialog( "open" );
+				}
+			});
+		});
+		
+		
 	}); // End of document.ready
+
+
+	
+
+
+
 <?php echo '</script'; ?>
 >
 

@@ -2,11 +2,11 @@
 
 // Timetable sa prikazom transfera po vozacima za odabrani datum
 
-//if (!isset($_POST["DateFrom"])) $DateFrom = "2022-09-04";
-if (!isset($_POST["DateFrom"])) $DateFrom = date_format(time(), 'Y-m-d');
+if (!isset($_POST["DateFrom"])) $DateFrom = "2022-09-04";
+//if (!isset($_POST["DateFrom"])) $DateFrom = date('Y-m-d');
 else $DateFrom	= $_POST["DateFrom"];
-//if (!isset($_POST["DateTo"])) $DateTo = "2022-09-04";
-if (!isset($_POST["DateTo"])) $DateTo = date_format(time(), 'Y-m-d');
+if (!isset($_POST["DateTo"])) $DateTo = "2022-09-04";
+//if (!isset($_POST["DateTo"])) $DateTo = date('Y-m-d');
 else $DateTo		= $_POST["DateTo"];
 if (!isset($_POST["NoColumns"])) $NoColumns = 3;
 else $NoColumns	= $_POST["NoColumns"];

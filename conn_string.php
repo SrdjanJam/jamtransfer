@@ -1,9 +1,9 @@
 <? 
 if(!isset($_SESSION)) session_start();
 //ovde ubaciti userid-ije za user-e koji ce koristiti glavnu bazu a ne testnu
-$privusers=array(874,3012,3011,3013);
-//$privusers=array(874,3012,3011,3013,2322);
-if (in_array($_SESSION['AuthUserID'],$privusers)) define("DEVELOPMENT",false);
+//$privusers=array(874,3012,3011,3013);
+$privusers=array(874,3012,3011,3013,2322);
+if (isset($_SESSION['AuthUserID']) && in_array($_SESSION['AuthUserID'],$privusers)) define("DEVELOPMENT",false);
 else define("DEVELOPMENT",true);
 define("MONITOR", 0);
 define("ALLOW_REFRESH", 1);
@@ -35,6 +35,6 @@ else {
 	if (DEVELOPMENT) define("DB_NAME", "jamtrans_test");
 	else define("DB_NAME", "jamtrans_touradria");
 }	
-//error_reporting(E_ALL & ~E_NOTICE & ~E_WARNING);
-error_reporting(E_ALL);
+error_reporting(E_ALL & ~E_NOTICE & ~E_WARNING);
+//error_reporting(E_ALL);
 ?>

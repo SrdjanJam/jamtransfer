@@ -13,7 +13,8 @@ require_once('lng/' . $_SESSION['CMSLang'] . '_text.php');
 	require_once ROOT . '/db/db.class.php';
 	$db = new DataBaseMysql();
 	$showLoginForm = true;
-
+	$message='';
+	$error='';
 		if(isset($_REQUEST['Login']))
 		{
 			if($_REQUEST['username']!='' && $_REQUEST['password']!='')

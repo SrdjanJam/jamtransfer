@@ -287,39 +287,8 @@
 
 			<hr style="border-color:gray">
 
-			<!-- PDF Receipt -->
-			{if $inter}
-
-				<div class="col-md-6">
-
-					{if $ordersArray[pom2].PDFFile}
-						<div id="existingPDF{$ordersArray[pom2].DetailsID}" style="display: inline">
-							<a href="https://www.jamtransfer.com/cms/raspored/PDF/{$ordersArray[pom2].PDFFile}" target="_blank"
-							class="btn btn-small btn-primary">
-								{DOWNLOAD_RECEIPT} {$ordersArray[pom2].PDFFile}
-							</a>&nbsp;&nbsp;
-							<button onclick="return deletePDF('{$ordersArray[pom2].PDFFile}','{$ordersArray[pom2].DetailsID}','{$ordersArray[pom2].DetailsID}');" 
-							class="btn btn-small btn-danger" >
-								{DELETE_RECEIPT} {$ordersArray[pom2].PDFFile}
-							</button>&nbsp;&nbsp; 
-						</div>
-					{/if}
-
-					<form name="form" action="" method="POST" enctype="multipart/form-data" style="display:inline">
-						<input type="file" name="PDFFile_{$ordersArray[pom2].DetailsID}" id="PDFFile_{$ordersArray[pom2].DetailsID}" 
-						onchange="return ajaxFileUpload('{$ordersArray[pom2].DetailsID}');" style="display:none">
-						<input type="hidden" name="ID_{$ordersArray[pom2].DetailsID}" id="ID_{$ordersArray[pom2].DetailsID}" value="{$ordersArray[pom2].DetailsID}">
-						<button id="imgUpload" class="btn btn-small btn-default" 
-							onclick="$('#PDFFile_{$ordersArray[pom2].DetailsID}').click();return false;">
-							{UPLOAD_PDF_RECEIPT}
-						</button>
-					</form>
-
-					<div style="display:inline-block;color:#900;" id="PDFUploaded_{$ordersArray[pom2].DetailsID}"></div>
-				</div>
+			<input type="hidden" name="OrderID_{$ordersArray[pom2].DetailsID}" id="OrderID_{$ordersArray[pom2].DetailsID}" value="{$ordersArray[pom2].OrderID}">
 			
-			{/if}
-
 			<div class="col-md-6">
 				<button class="btn btn-primary btn-block" onclick="saveTransfer({$ordersArray[pom2].DetailsID},1)">
 					<i class="fa fa-save"></i> Save
@@ -338,9 +307,102 @@
 
 <script>
 
-	function saveTransfer (i,mail) {
-		alert (i);
+	function displayMob() {
+		$( ".subdriver1" ).each(function() {
+			var id = $(this).attr('data-id');
+			var mob = $('option:selected',this).attr('data-mob');
+			var mobid='#'+'mob'+id;
+			$(mobid).text(mob);
+			$(mobid).attr('href',('tel:'+mob));
+		});	
 	}
+	function saveTransfer (i,mail) {
+		//displayMob();
+		//var id	= $("#ID_" + i).val();
+		var oid	= $("#OrderID_" + i).val();
+		var checked = $('#checkdata_'+i).prop('checked');
+		if (checked) {
+			checked=1;
+			$('#checkdata'+i).prop('checked',true);
+			$('#checkdata'+i).prop('disabled',true);
+
+			var driverconfirmationstatus=3;
+			if (mail == 1) console.log('Sending message to client');
+		}	
+		else {
+			checked=0;
+			var driverconfirmationstatus=$("#DriverConfStatus_" + i).val();			
+			$('#checkdata'+i).prop('checked',false);
+			$('#checkdata'+i).prop('disabled',false);
+			mail=0;
+		}
+		var fn	= $("#SubFlightNo_" + i).val();
+		var ft	= $("#SubFlightTime_" + i).val();
+		var pt	= $("#SubPickupTime_" + i).val();
+		var sd	= $("select#SubDriver_" + i).val();
+		var sd2	= $("select#SubDriver2_" + i).val();
+		var sd3	= $("select#SubDriver3_" + i).val();
+		var c	= $("select#Car_" + i).val();
+		var c2	= $("select#Car2_" + i).val();
+		var c3	= $("select#Car3_" + i).val();
+		var sn	= $("#StaffNote_" + i).val();
+		var n	= $("#SubDriverNote_" + i).val();
+		var g	= $("#CashIn_" + i).val();
+		var td	= $("#TransferDuration_" + i).val();
+		var msg = $("#save-button-msg-" + i);
+
+		msg.innerHTML = "Saving...";
+		var url= "plugins/Schedule/ajax_updateNotes.php";
+		var param = 'ID='+i+'&OrderID='+oid+'&DriverConfStatus='+driverconfirmationstatus+'&CustomerID='+checked+'&SubFlightNo='+fn+'&SubFlightTime='+ft+'&SubPickupTime='+pt+'&SubDriver='+sd+'&SubDriver2='+sd2+'&SubDriver3='+sd3+'&Car='+c+'&Car2='+c2+'&Car3='+c3+'&StaffNote='+ sn+'&Notes='+n+'&CashIn='+g+'&TransferDuration='+ td+'&Mail='+ mail;
+		console.log(url+'?'+param);
+		$.ajax({
+			url: url,
+			type: "POST",
+			data: {
+				ID: i,
+				OrderID: oid,
+				DriverConfStatus: driverconfirmationstatus,
+				CustomerID: checked,								
+				SubFlightNo: fn,
+				SubFlightTime: ft,
+				SubPickupTime: pt,
+				SubDriver: sd,
+				SubDriver2: sd2,
+				SubDriver3: sd3,
+				Car: c,
+				Car2: c2,
+				Car3: c3,
+				StaffNote: sn,
+				Notes: n,
+				CashIn: g,
+				TransferDuration: td,
+				Mail: mail
+			},
+			success: function (result) {
+				msg.innerHTML = "Saved";
+
+				$("#upd"+i).html(result);
+				var res = $.trim(result);
+				
+				if(res != '<small>Saved.</small>') {
+					$.toaster(result, 'Oops', 'success red-2');
+				}
+				if ((sd == '0') || (c == '0')) {
+					$("#indicator_"+i).css("borderLeftColor","red");
+				}
+				else {
+					$("#indicator_"+i).css("borderLeftColor","green");
+				}
+			},
+			error: function (e) {
+				msg.innerHTML = "Error";
+				// console.log("Error:");
+				// console.log(e);
+			}
+		});
+	}
+
+
 	
 	function ShowShow(i) {
 		$("#show"+i).toggle('slow');
