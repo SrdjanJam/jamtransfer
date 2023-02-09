@@ -10,9 +10,16 @@ Class v4_Modules {
 	public $ParentID; //int(11)
 	public $MenuOrder; //int(11)
 	public $Icon; //int(11)
-	public $Description; 
+	public $Description;
+
+	// Help and message 
+	public $Help;
+	public $Message; 
+
 	public $Active; 
 	public $connection;
+
+	
 
 	function __construct(){
 		$this->connection = new DataBaseMysql();
@@ -31,12 +38,14 @@ Class v4_Modules {
 			'MenuOrder' => $this->getMenuOrder(),
 			'Icon' => $this->getIcon(),
 			'Description' => $this->getDescription(),
+			'Help' => $this->getHelp(),
+			'Message' => $this->getMessage(),
 			'Active' => $this->getActive()
 			);
 		return $fieldValues;
 	}
 	public function fieldNames(){
-		$fieldNames = array('ModulID','Name','Code','Base','ParentID','MenuOrder','Icon','Description','Active');
+		$fieldNames = array('ModulID','Name','Code','Base','ParentID','MenuOrder','Icon','Description','Help','Message','Active');
 		return $fieldNames;
 	}
 	
@@ -52,6 +61,8 @@ Class v4_Modules {
 			$this->MenuOrder = $row["MenuOrder"];
 			$this->Icon = $row["Icon"];
 			$this->Description = $row["Description"];
+			$this->Help = $row["Help"];
+			$this->Message = $row["Message"];
 			$this->Active = $row["Active"];
 		}
 	}
@@ -70,12 +81,14 @@ ParentID = '".$this->myreal_escape_string($this->ParentID)."',
 MenuOrder = '".$this->myreal_escape_string($this->MenuOrder)."', 
 Icon = '".$this->myreal_escape_string($this->Icon)."', 
 Description = '".$this->myreal_escape_string($this->Description)."',
+Help = '".$this->myreal_escape_string($this->Help)."',
+Message = '".$this->myreal_escape_string($this->Message)."',
 Active = '".$this->myreal_escape_string($this->Active)."' WHERE ModulID = '".$this->ModulID."'");
 	return $result; 
 }
 
 	public function saveAsNew(){
-		$this->connection->RunQuery("INSERT INTO v4_Modules (ModulID, Name, Code, Base, ParentID, MenuOrder, Icon, Description, Active) values ('".$this->myreal_escape_string($this->ModulID)."', '".$this->myreal_escape_string($this->Name)."', '".$this->myreal_escape_string($this->Code)."', '".$this->myreal_escape_string($this->Base)."', '".$this->myreal_escape_string($this->ParentID)."', '".$this->myreal_escape_string($this->MenuOrder)."','".$this->myreal_escape_string($this->Icon)."','".$this->myreal_escape_string($this->Description)."','".$this->myreal_escape_string($this->Active)."')");
+		$this->connection->RunQuery("INSERT INTO v4_Modules (ModulID, Name, Code, Base, ParentID, MenuOrder, Icon, Description, Help, Message, Active) values ('".$this->myreal_escape_string($this->ModulID)."', '".$this->myreal_escape_string($this->Name)."', '".$this->myreal_escape_string($this->Code)."', '".$this->myreal_escape_string($this->Base)."', '".$this->myreal_escape_string($this->ParentID)."', '".$this->myreal_escape_string($this->MenuOrder)."','".$this->myreal_escape_string($this->Icon)."','".$this->myreal_escape_string($this->Description)."','".$this->myreal_escape_string($this->Help)."','".$this->myreal_escape_string($this->Message)."','".$this->myreal_escape_string($this->Active)."')");
 		return $this->connection->insert_id(); //return insert_id 
 	}
 	public function getKeysBy($column, $order, $where = NULL){
@@ -111,11 +124,17 @@ Active = '".$this->myreal_escape_string($this->Active)."' WHERE ModulID = '".$th
 	}	
 	public function getDescription(){
 		return $this->Description;
-	}	
+	}
+	public function getHelp(){
+		return $this->Help;
+	}
+	public function getMessage(){
+		return $this->Message;
+	}
 	public function getActive(){
 		return $this->Active;
 	}
-
+	
 	public function setModulID($ModulID){
 		$this->ModulID = $ModulID;
 	}	
@@ -139,6 +158,12 @@ Active = '".$this->myreal_escape_string($this->Active)."' WHERE ModulID = '".$th
 	}	
 	public function setDescription($Description){
 		$this->Description = $Description;
+	}	
+	public function setHelp($Help){
+		$this->Help = $Help;
+	}	
+	public function setMessage($Message){
+		$this->Message = $Message;
 	}	
 	public function setActive($Active){
 		$this->Active = $Active;
