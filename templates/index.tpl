@@ -339,8 +339,10 @@
 						</div>
 
 						<ul class="nav navbar-top-links navbar-right">
-							<!-- Dialog button: -->
-							<li><button type="button" id="opener" class="button-3">Help Dialog</button></li>
+							<!-- Opener dialog button: -->
+							{* Moved to other place: *}
+							<li><button type="button" id="opener-help" class="button-3">Help</button></li>
+							<li><button type="button" id="opener-message" class="button-3">Message</button></li>
 
 							<li>
 								<h2><span class="m-r-sm text-muted">{$title}</span></h2>
@@ -353,10 +355,13 @@
 							</li>
 
 						</ul>
-						<!-- Dialog Message: -->
-						<div class="dialog-m"><!-- printed results here --></div>
+						
+						<!-- Dialog printed results here: -->
+						<div class="dialog-help"></div>
+						<textarea data-id="{$ModulID}" class="dialog-message"></textarea>
 						
 					</nav>
+					
 				</div> {* /.header row border-bottom *}
 				<!-- ******************************************************************************** -->		
 
@@ -384,6 +389,7 @@
 				
 {* MAIN CONTENT ================================================================================================================= *}
 				<div class="body row white-bg white-bg-edit">
+				
 
 					{if isset($pageOLD)}
 						NOT MODEL VIEW CONTROL
@@ -397,6 +403,11 @@
 							{$page_render}
 							SEMI MODEL VIEW CONTROL via OB_GET_CONTENTS
 					{/if}
+
+				
+
+					
+
 					
 				</div> {* / .body row white-bg *}
 
@@ -478,11 +489,15 @@
 		}); // End of click
 
 
-		// Dialog Box:
-		$( ".dialog-m" ).dialog({
-			title: 'Basic dialog',
+
+		$( ".dialog-help" ).dialog({
+
+			title: 'Help Dialog',
 			autoOpen: false,
-			
+			// resizable: false,
+			modal: true,
+			width: "60%",
+
 			show: {
 				effect: "blind",
 				duration: 500
@@ -490,13 +505,50 @@
 			hide: {
 				effect: "explode",
 				duration: 500
-			}
+			},
+
 		});
-	
-		// Ajax preparation:
-		$( "#opener" ).on( "click", function() {
+		
+
+		$( ".dialog-message" ).dialog({
+
+			title: 'Message Dialog',
+			autoOpen: false,
+			// resizable: false,
+			modal: true,
+			width: "60%",
+
+			show: {
+				effect: "blind",
+				duration: 500
+			},
+			hide: {
+				effect: "explode",
+				duration: 500
+			},
+			
+			buttons :  [{ 
+     		text: "Save",
+     		id: "saved-message",
+				click: function(){
+					$(this).dialog("close");
+				}
+
+   			}],
+
+			// Testing:
+			//    open: function() {
+			// 	var markup = data;
+			// 	$(this).html(markup);
+			// },
+
+		});
+
+		// Ajax preparation for help:
+		$( "#opener-help" ).on( "click", function() {
 			var link = 'plugins/getHelp.php';
-    		var param = 'ModuleID=' + {/literal}{$ModuleID}{literal}
+    		var param = 'ModulID=' + {/literal}{$ModulID}{literal}
+
 
 			$.ajax({
 				type: 'POST',
@@ -504,10 +556,62 @@
 				data: param,
 				async: false,
 				success: function (data) {
-					$( ".dialog-m" ).text(data).dialog( "open" );
+					$( ".dialog-help" ).text(data).dialog( "open" );
 				}
 			});
+
+
 		});
+		
+
+		// Ajax preparation for message:
+		$( "#opener-message" ).on( "click", function() {
+			var link = 'plugins/getMessage.php';
+    		var param = 'ModulID=' + {/literal}{$ModulID}{literal}
+
+
+			$.ajax({
+				type: 'POST',
+				url: link,
+				data: param,
+				async: false,
+				success: function (data) {
+					$( ".dialog-message" ).text(data).dialog( "open" );
+				}
+			});
+
+
+		});
+
+
+		$("#saved-message").on("click", function(){
+			var base=window.location.origin;
+			var link = base+'/jamtransfer/plugins/Save.php';
+
+			var messageID = $('.dialog-message').attr("data-id");
+			var messageContent = $(".dialog-message").val();
+
+			var textarea = $(".dialog-message").text(messageContent);
+
+			// alert($(".dialog-message").text());
+			alert(messageContent);
+
+			var param='ModulID='+messageID+'&Message='+messageContent;
+
+			// console.log(link+'?'+param);
+			
+			$.ajax({
+			type: 'POST',
+			url: link,
+			data: param,
+			success: function(data) {
+			}
+
+			});	
+
+
+		});
+
 		
 		
 	}); // End of document.ready
