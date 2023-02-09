@@ -147,6 +147,8 @@ $smarty->assign('currenturl',ROOT_HOME.$activePage);
 $smarty->assign('title',$md->getName());
 $smarty->assign('base',$md->getBase());
 $smarty->assign('parentID',$md->getParentID());
+$smarty->assign('ModulID',$key);
+
 
 	
 // display
