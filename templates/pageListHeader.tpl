@@ -81,6 +81,7 @@ value=" WHERE {$ItemID} > 0">
 			<select name="Active" id="Active" onchange="allItems();" class="form-control control-edit">
 				<option value="99" selected="selected">{$ALL}</option>			
 				<option value="1"> Active </option>
+				{if isset($selectactive2)}<option value="2"> Semi Active </option>{/if}
 				<option value="0"> Not Active </option>
 			</select>
 		</div>

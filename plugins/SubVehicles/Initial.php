@@ -6,6 +6,8 @@ $dbT = new DataBaseMysql();
 
 $keyName = 'VehicleID';
 $ItemName='VehicleDescription ';
+$selectactive='Active';
+
 #********************************
 # kolone za koje je moguc Search
 # treba ih samo nabrojati ovdje

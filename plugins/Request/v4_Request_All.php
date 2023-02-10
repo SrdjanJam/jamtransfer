@@ -1,20 +1,37 @@
 <?
 header('Content-Type: text/javascript; charset=UTF-8');
-require_once 'Initial.php';
+error_reporting(E_PARSE);
 
 @session_start();
+# init libs
+require_once '../../../../db/db.class.php';
+require_once '../../../../db/v4_Request.class.php';
+
+
+# init class
+$db = new v4_Request();
+
+#********************************************
+# ulazni parametri su where, status i search
+#********************************************
 
 # sastavi filter - posalji ga $_REQUEST-om
-# sastavi filter - posalji ga $_REQUEST-om
-if (isset($selectactive)) {
-	if (!isset($_REQUEST['Active']) or $_REQUEST['Active'] == 99) {
-		$filter .= "  AND ".$selectactive." > -1 ";
-	}
-	else {
-		$filter .= "  AND ".$selectactive." = " . $_REQUEST['Active'] ;
-	}
+# sastavi filter prema Active
+if (isset($_REQUEST['active']) and $_REQUEST['active'] == 1) {
+	$filter .= "  AND Active = '1' "; 
 }
-
+else if (isset($_REQUEST['active']) and $_REQUEST['active'] == 0) {
+	$filter .= "  AND Active = '0' "; 
+}
+else if (isset($_REQUEST['active']) and $_REQUEST['active'] == 2) {
+	$filter .= "  AND Active = '2' "; 
+}
+else if (isset($_REQUEST['active']) and $_REQUEST['active'] == 3) {
+	$filter .= "  AND Active = '3' "; 
+}
+else if (isset($_REQUEST['active']) and $_REQUEST['active'] == '99') {
+	$filter .= "  AND ( Active > '0') "; 
+}
 
 $page 		= $_REQUEST['page'];
 $length 	= $_REQUEST['length'];
@@ -38,9 +55,14 @@ $flds = array();
 $DB_Where = " " . $_REQUEST['where'];
 $DB_Where .= $filter;
 
-$DB_Where .= " AND OwnerID=".$_SESSION['UseDriverID'];
-
- if (isset($_REQUEST['vehicleTypeID']) && $_REQUEST['vehicleTypeID']>0) $DB_Where .= " AND VehicleTypeID=".$_REQUEST['vehicleTypeID'];
+#********************************
+# kolone za koje je moguc Search 
+# treba ih samo nabrojati ovdje
+# Search ce ih sam pretraziti
+#********************************
+$aColumns = array(
+	'Title' // dodaj ostala polja!
+);
 
 # dodavanje search parametra u qry
 # DB_Where sad ima sve potrebno za qry
@@ -58,35 +80,40 @@ if ( $_REQUEST['Search'] != "" )
 	$DB_Where = substr_replace( $DB_Where, "", -3 );
 	$DB_Where .= ')';
 }
-$dbTotalRecords = $db->getKeysBy($ItemName . $sortOrder, '',$DB_Where);
 
-// prazan red za eventualni unos
-if (isset($_REQUEST['vehicleTypeID']) && $_REQUEST['vehicleTypeID']>0) {
-	$db->getRow(0);	
-	$detailFlds = $db->fieldValues();
-	//$v->getRow( $_REQUEST['vehicleTypeID'] );
-	$detailFlds["VehicleTypeID"] = $_REQUEST['vehicleTypeID'];	
-	$out[] = $detailFlds; 
-}
+
+
+$dbTotalRecords = $db->getKeysBy('ID ASC', '',$DB_Where);
 
 # test za LIMIT - trebalo bi ga iskoristiti za pagination! 'asc' . ' LIMIT 0,50'
-$dbk = $db->getKeysBy($ItemName . $sortOrder, '' . $limit , $DB_Where);
+$dbk = $db->getKeysBy('DisplayOrder ' . $sortOrder, '' . $limit , $DB_Where);
 
 if (count($dbk) != 0) {
     foreach ($dbk as $nn => $key)
     {
+    	
     	$db->getRow($key);
+		
 		// ako treba neki lookup, onda to ovdje
+		
 		# get all fields and values
 		$detailFlds = $db->fieldValues();
+		
 		// ako postoji neko custom polje, onda to ovdje.
 		// npr. $detailFlds["AuthLevelName"] = $nekaDrugaDB->getAuthLevelName().' nesto';
+		
 		$out[] = $detailFlds;    	
+
+		
     }
 }
+
+
 # send output back
 $output = array(
 'recordsTotal' => count($dbTotalRecords),
 'data' =>$out
 );
-echo $_GET['callback'] . '(' . json_encode($output) . ')';	
+
+echo $_GET['callback'] . '(' . json_encode($output) . ')';
+	

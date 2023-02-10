@@ -194,6 +194,7 @@ hr {
 
 					<div class="row orange white-text">
 						<strong>{$sdArray[pom].DriverName}</strong>	
+						<a href="tel:{$sdArray[pom].Mob}">{$sdArray[pom].Mob}</a>
 					</div>
 
 					{if count($ordersArray)}
@@ -201,7 +202,9 @@ hr {
 
 							{if ($sdArray[pom].DriverID eq $ordersArray[pom2].SubDriver) or
 								($sdArray[pom].DriverID eq $ordersArray[pom2].SubDriver2) or
-								($sdArray[pom].DriverID eq $ordersArray[pom2].SubDriver3)}
+								($sdArray[pom].DriverID eq $ordersArray[pom2].SubDriver3) or
+								($ordersArray[pom2].SubDriver eq 0 and $sdArray[pom].DriverID eq $smarty.session.UseDriverID)
+							}
 
 								{include file='plugins/Schedule/templates/oneTransfer.tpl'}
 

@@ -49,13 +49,16 @@
 	$svArray = array();
 
 	while ($d = $r->fetch_object()) {
-		$row = array();
-		$row['VehicleID'] = $d->VehicleID;
-		$row['VehicleTypeID'] = $d->VehicleTypeID;
-		$row['VehicleDescription'] = $d->VehicleDescription;
-		$row['VehicleCapacity'] = $d->VehicleCapacity;
-		$row['Active'] = $d->Active;
-		$svArray[] = $row;
+		$key = array_search($d->VehicleID, array_column($subvehicles, 'SubVehicleID'));
+		if ($key==0) {
+			$row = array();
+			$row['VehicleID'] = $d->VehicleID;
+			$row['VehicleTypeID'] = $d->VehicleTypeID;
+			$row['VehicleDescription'] = $d->VehicleDescription;
+			$row['VehicleCapacity'] = $d->VehicleCapacity;
+			$row['Active'] = $d->Active;
+			$svArray[] = $row;
+		}
 	}
 	
 	$smarty->assign('vehicles',$svArray);

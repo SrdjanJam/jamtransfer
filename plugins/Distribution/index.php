@@ -17,7 +17,7 @@
 	$ol = new v4_OrderLog();
 	
 	$q = "SELECT * FROM v4_AuthUsers";
-	$q .= " WHERE DriverID = ".$_SESSION['UseDriverID']." AND Active=1 ORDER BY AuthUserRealName ASC";
+	$q .= " WHERE DriverID = ".$_SESSION['UseDriverID']." AND Active>0 ORDER BY AuthUserRealName ASC";
 	$r = $db->RunQuery($q);	
 	
 	$q2 = "SELECT * FROM v4_SubVehiclesSubDrivers,v4_SubVehicles";
@@ -32,7 +32,6 @@
 		$row['SubVehicleCapacity'] = $d->VehicleCapacity;		
 		$subvehicles[] = $row;
 	}	
-	// print_r($subvehicles);
 
 
 	$sdArray = array();
@@ -54,7 +53,6 @@
 		$sdArray[] = $row;
 
 	}
-	// print_r($sdArray);
 	
 	$smarty->assign('drivers',$sdArray);
 	
@@ -69,7 +67,7 @@
 	
 	$where .= " AND PickupDate = '".$_REQUEST['Date']."' "; 
 	$where .= " AND TransferStatus < '6' AND TransferStatus != '3' AND TransferStatus != '4'
-				AND DriverConfStatus != '3' ";
+				AND DriverConfStatus > '1' ";
 
 	$odArray = $od->getKeysBy($column, $order, $where);
 

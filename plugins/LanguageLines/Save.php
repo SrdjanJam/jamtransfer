@@ -8,15 +8,15 @@ $out = array();
 $text_array=array();
 if ($keyName != '' and $keyValue != '' and in_array($_SESSION['BrandName'],array('EN','FR','RU','DE'))) {
 	$db->getRow($keyValue);
-	$text_array['en']=$_REQUEST['text_en'];
-	$text_array['de']=$_REQUEST['text_de'];
-	$text_array['fr']=$_REQUEST['text_fr'];
-	$text_array['ru']=$_REQUEST['text_ru'];
+	$text_array['en']=str_replace("'","`",$_REQUEST['text_en']);
+	$text_array['de']=str_replace("'","`",$_REQUEST['text_de']);
+	$text_array['fr']=str_replace("'","`",$_REQUEST['text_fr']);
+	$text_array['ru']=str_replace("'","`",$_REQUEST['text_ru']);
 } else {
-	$text_array['en']=$_REQUEST['text'];
-	$text_array['de']=$_REQUEST['text'];
-	$text_array['fr']=$_REQUEST['text'];
-	$text_array['ru']=$_REQUEST['text'];
+	$text_array['en']=str_replace("'","`",$_REQUEST['text']);
+	$text_array['de']=str_replace("'","`",$_REQUEST['text']);
+	$text_array['fr']=str_replace("'","`",$_REQUEST['text']);
+	$text_array['ru']=str_replace("'","`",$_REQUEST['text']);
 }	
 
 $_REQUEST['text']=json_encode($text_array);

@@ -1,5 +1,6 @@
 <?
 	$smarty->assign('selectactive',true);
+	$smarty->assign('selectactive2',true);
 ?>	
 <script type="text/x-handlebars-template" id="ItemListTemplate">
 
@@ -80,10 +81,14 @@
 				
 				<!-- Active: -->
 				<div class="col-sm-1 col-xs-6">
-					{{#compare Active ">" 0}}
+					{{#compare Active "==" 1}}
 						<i class="fa fa-circle text-green"></i>
-					{{else}}
-						<i class="fa fa-circle text-red"></i>
+					{{/compare}}
+					{{#compare Active "==" 2}}
+						<i class="fa fa-circle text-yellow"></i>
+					{{/compare}}						
+					{{#compare Active "==" 0}}
+						<i class="fa fa-circle text-red"></i>					
 					{{/compare}}
 				</div>
 

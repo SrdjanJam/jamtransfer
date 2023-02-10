@@ -10,10 +10,28 @@
 	if($t->DriverConfStatus >2) $t->bgColor = "#ffe599";										
 	if($t->TransferStatus == "5") $t->bgColor = "#fefefe";
 	
-					
+	// drugi transfer		
+	$otherTransfer=getOtherTransferIDArray($t->DetailsID,$details);
+	if ($otherTransfer) {
+		$od->getRow($otherTransfer);
+		$t->OtherTransfer = 'R: '.YMD_to_DMY($od->getPickupDate()).' '.$od->getPickupTime();
+	} else 	$t->OtherTransfer = '';
+	
+	// da li ima notes-a
+	if  (empty($t->PickupNotes) 
+			and empty($t->StaffNote) 
+			/*and empty($t->SubDriverNote)*/
+			and empty($t->FinalNote) 
+			and empty($t->SubFinalNote)
+		) {
+		$t->Notes=false;
+	}	
+	else $t->Notes=true;
+	
+	
+	
 	// da li flight time u datumskom konfliktu sa pickuptime ili droptime
 	$t->flightTimeConflict=false;
-
 
 	if ($t->FlightTime>0) {
 		$ft=explode(':',$t->FlightTime);

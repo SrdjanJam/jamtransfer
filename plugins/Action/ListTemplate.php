@@ -3,7 +3,7 @@
 	$arr_row['name']="Expence";
 	$arr_all[]=$arr_row;		
 	$arr_row['id']=2;
-	$arr_row['name']="Activity";
+	$arr_row['name']="Tasks";
 	$arr_all[]=$arr_row;
 	$smarty->assign('options',$arr_all);
 	$smarty->assign('selecttype',true);

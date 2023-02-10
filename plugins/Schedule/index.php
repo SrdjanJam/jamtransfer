@@ -2,11 +2,11 @@
 
 // Timetable sa prikazom transfera po vozacima za odabrani datum
 
-if (!isset($_POST["DateFrom"])) $DateFrom = "2022-09-04";
-//if (!isset($_POST["DateFrom"])) $DateFrom = date('Y-m-d');
+//if (!isset($_POST["DateFrom"])) $DateFrom = "2022-09-04";
+if (!isset($_POST["DateFrom"])) $DateFrom = date('Y-m-d');
 else $DateFrom	= $_POST["DateFrom"];
-if (!isset($_POST["DateTo"])) $DateTo = "2022-09-04";
-//if (!isset($_POST["DateTo"])) $DateTo = date('Y-m-d');
+//if (!isset($_POST["DateTo"])) $DateTo = "2022-09-04";
+if (!isset($_POST["DateTo"])) $DateTo = date('Y-m-d');
 else $DateTo		= $_POST["DateTo"];
 if (!isset($_POST["NoColumns"])) $NoColumns = 3;
 else $NoColumns	= $_POST["NoColumns"];
@@ -28,6 +28,7 @@ require_once ROOT . '/db/v4_OrderExtras.class.php';
 require_once ROOT . '/db/v4_Places.class.php';
 require_once ROOT . '/db/v4_Routes.class.php';
 require_once ROOT . '/db/v4_OrderLog.class.php';
+require_once ROOT . '/db/v4_SubVehicles.class.php';
 
 $db = new DataBaseMysql();
 $om = new v4_OrdersMaster();
@@ -37,6 +38,7 @@ $oe = new v4_OrderExtras();
 $op = new v4_Places();
 $or = new v4_Routes();
 $ol = new v4_OrderLog();
+$sv = new v4_SubVehicles();
 
 
 $ordersArray = array();
@@ -90,11 +92,24 @@ if ($DriverStatus==2) $q .= "	AND DriverConfStatus > 2 ";
 if ($DriverStatus==1) $q .= "	AND DriverConfStatus < 3 ";	
 $q .= " AND AuthUserID=UserID ";
 $q .= " AND MorderID=OrderID ";
-$q .= " ORDER BY DetailsID ASC";
+$q .= " ORDER BY PickupDate ASC, PickupTime ASC";
 $r = $db->RunQuery($q);
 
 $subDArray = array();
+$subDArray[] = $_SESSION['UseDriverID'];
 $ordersArray = array();
+
+// za proveru return transfer-a
+$details=array();
+$q2 = "SELECT DetailsID,OrderID FROM v4_OrderDetails ORDER BY DetailsID DESC" ;
+$r2 = $db->RunQuery($q2);
+while ($t2 = $r2->fetch_object()) {
+	$row_array=array();
+	$row_array['DetailsID']=$t2->DetailsID; 
+	$row_array['OrderID']=$t2->OrderID; 
+	$details[]=$row_array;
+}
+
 
 // $t
 while ($t = $r->fetch_object()) {
@@ -107,10 +122,22 @@ foreach ($subDArray as $sd) {
 }
 $sdd = substr($sdd,0,strlen($sdd)-1);
 
+// dobavi sve parove vozaca i vozila za driver-a
+$q = "SELECT * FROM v4_SubVehiclesSubDrivers";
+$q .= "	WHERE OwnerID = " . $_SESSION['UseDriverID']; 
+$r = $db->RunQuery($q);
+while ($d = $r->fetch_object()) {
+		$row = array();
+		//$row['SubVehicleID'] = $d->SubVehicleID;
+		$sv->getRow($d->SubVehicleID);
+		$row['SubVehicleName']=$sv->getVehicleDescription();
+		$vehicles[$d->SubDriverID]=$row;
+}
+
 // dobavi vozace od trenutnog vlasnika timetable-a, slozi ih u sdArray sa podacima
 $q = "SELECT * FROM v4_AuthUsers";
-$q .= "	WHERE DriverID = " . $_SESSION['UseDriverID']; 
-//$q .= " WHERE AuthUserID in (".$sdd.") ORDER BY AuthUserRealName ASC";
+//$q .= "	WHERE DriverID = " . $_SESSION['UseDriverID']; 
+$q .= " WHERE AuthUserID in (".$sdd.") ORDER BY AuthUserRealName ASC";
 $r = $db->RunQuery($q);
 
 while ($d = $r->fetch_object()) {
@@ -128,14 +155,16 @@ while ($d = $r->fetch_object()) {
 		$row['DriverName'] = $d->AuthUserRealName;
 		$row['Mob'] = $d->AuthUserMob;		
 		//ovde izvuci vozcevo vozilo
-		$row['DriverCar'] = "assosVehicle";
+		$row['DriverCar'] = $vehicles[$row['DriverID']]['SubVehicleName'];
 		$sddArray[] = $row;
 	}
 }
 
+
 $smarty->assign('ordersArray',$ordersArray);
 $smarty->assign('sdArray',$sdArray);
 $smarty->assign('sddArray',$sddArray);
+$smarty->assign('vehicles',$vehicles);
 
 
 
