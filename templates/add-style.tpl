@@ -306,7 +306,7 @@
     height: 50% !important;
 }
 
-textarea{
+.textarea-dalog{
     width: 100% !important;
     height:70% !important;
 	resize: none;

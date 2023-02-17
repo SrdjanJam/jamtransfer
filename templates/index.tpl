@@ -158,6 +158,8 @@
 			<script src="lng/{$language}_init.js"></script>	
 					<script src="js/cms.jquery.js"></script><!-- jquery local -->
 
+
+		{* MIXED WITH PHP CODE: *}
 		{if $pageList}
 
 			<script src="js/list.js"></script>
@@ -197,7 +199,6 @@
 {include file="{$root}/templates/default-style.tpl"}
 
 {include file="{$root}/templates/add-style.tpl"}
-
 
 
 {* BODY ============================================================================================= *}
@@ -340,7 +341,6 @@
 
 						<ul class="nav navbar-top-links navbar-right">
 							<!-- Opener dialog button: -->
-							{* Moved to other place: *}
 							<li><button type="button" id="opener-help" class="button-3">Help</button></li>
 							<li><button type="button" id="opener-message" class="button-3">Message</button></li>
 
@@ -358,13 +358,11 @@
 						
 						<!-- Dialog printed results here: -->
 						<div style="display:none;" class="dialog-help"></div>
-						<textarea style="display:none;" data-id="{$ModulID}" class="dialog-message"></textarea>
-						
+						<textarea style="display:none;" data-id="{$ModulID}" class="dialog-message textarea-dalog"></textarea>
 					</nav>
 					
 				</div> {* /.header row border-bottom *}
 				<!-- ******************************************************************************** -->		
-
 			
 				{if not $isNew and $pageList}
 					{* .header *}
@@ -386,10 +384,8 @@
 					</div> {* /.header row *}
 				{/if}
 				
-				
 {* MAIN CONTENT ================================================================================================================= *}
 				<div class="body row white-bg white-bg-edit">
-				
 
 					{if isset($pageOLD)}
 						NOT MODEL VIEW CONTROL
@@ -404,11 +400,6 @@
 							SEMI MODEL VIEW CONTROL via OB_GET_CONTENTS
 					{/if}
 
-				
-
-					
-
-					
 				</div> {* / .body row white-bg *}
 
 {* FOOTER ======================================================================================================================== *}
@@ -441,7 +432,7 @@
 </html>
 
 
-{* SCRIPT =========================================================================================================================== *}
+{* SCRIPTS =========================================================================================================================== *}
 
 {literal}
 	<script>
@@ -475,17 +466,16 @@
 
 {literal}
 <script>
-	// toggleClass:
+	
 	$(document).ready(function(){
 
 		window.success = $("#success").val();
 		window.delete = $("#delete").val();
 		
+		// toggleClass:
 		$("a.navbar-minimalize").click(function(){
-			// Full navbar:
-			$("nav.navbar-default").toggleClass("additional-class");
-			// Hide and show status on toggle:
-			$("#status").toggle(100,function(){ });
+			$("nav.navbar-default").toggleClass("additional-class"); // Full navbar
+			$("#status").toggle(100,function(){ }); // Hide and show status on toggle
 		}); // End of click
 
 
@@ -498,6 +488,7 @@
 			modal: true,
 			width: "60%",
 
+			// Effects:
 			show: {
 				effect: "blind",
 				duration: 500
@@ -517,7 +508,8 @@
 			// resizable: false,
 			modal: true,
 			width: "60%",
-
+			
+			// Effects:
 			show: {
 				effect: "blind",
 				duration: 500
@@ -562,12 +554,10 @@
 
 		});
 		
-
 		// Ajax preparation for message:
 		$( "#opener-message" ).on( "click", function() {
 			var link = 'plugins/getMessage.php';
     		var param = 'ModulID=' + {/literal}{$ModulID}{literal}
-
 
 			$.ajax({
 				type: 'POST',
@@ -582,7 +572,7 @@
 
 		});
 
-
+		// Button Save:
 		$("#saved-message").on("click", function(){
 			var base=window.location.origin;
 			var link = base+'/jamtransfer/plugins/Save.php';
@@ -592,19 +582,21 @@
 
 			var textarea = $(".dialog-message").text(messageContent);
 
+			// Testing:
 			// alert($(".dialog-message").text());
-			alert(messageContent);
+			// alert(messageContent);
 
 			var param='ModulID='+messageID+'&Message='+messageContent;
 
+			// Testing:
 			// console.log(link+'?'+param);
 			
 			$.ajax({
-			type: 'POST',
-			url: link,
-			data: param,
-			success: function(data) {
-			}
+				type: 'POST',
+				url: link,
+				data: param,
+				success: function(data) {
+				}
 
 			});	
 

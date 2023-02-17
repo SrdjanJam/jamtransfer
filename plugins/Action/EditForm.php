@@ -3,21 +3,21 @@
 <form id="ItemEditForm{{ID}}" class="form box box-info" enctype="multipart/form-data" method="post" onsubmit="return false;">
 	<div class="box-header">
 		<div class="box-tools pull-right">
-			
+
 			<span id="statusMessage" class="text-info xl"></span>
-			
+
 			<? if (!$isNew) { ?>
-				<button class="btn btn-warning" title="<?= CLOSE?>" 
+				<button class="btn btn-warning" title="<?= CLOSE?>"
 				onclick="return editCloseItem('{{ID}}');">
 				<i class="fa fa-close"></i>
 				</button>
 
-				<button class="btn btn-danger" title="<?= CANCEL ?>" 
+				<button class="btn btn-danger" title="<?= CANCEL ?>"
 				onclick="return deleteItem('{{ID}}');">
 				<i class="fa fa-ban"></i>
 				</button>
-			<? } ?>	
-			<button class="btn btn-info" title="<?= SAVE_CHANGES ?>" 
+			<? } ?>
+			<button class="btn btn-info" title="<?= SAVE_CHANGES ?>"
 			onclick="return editSaveItem('{{ID}}');">
 			<i class="fa fa-save"></i>
 			</button>
@@ -44,7 +44,7 @@
 						<input type="text" name="DisplayOrder" id="DisplayOrder" class="w100" value="{{DisplayOrder}}">
 					</div>
 				</div>
-				
+
 				<div class="row">
 					<div class="col-md-2">
 						<label for="Active">Active</label>
@@ -54,12 +54,12 @@
 							<option value="0" {{#compare Active "==" 0}} selected {{/compare}}>Not Active</option>
 							<option value="1" {{#compare Active "==" 1}} selected {{/compare}}>Expense</option>
 							<option value="2" {{#compare Active "==" 2}} selected {{/compare}}>Activity</option>
-						</select>					
+						</select>
 					</div>
-				</div>				
+				</div>
 
 
-						
+
 				<div class="row">
 					<div class="col-md-2">
 						<label for="Title">Title</label>
@@ -81,18 +81,6 @@
 			</div>
 	    </div>
 		    
-
-	<!-- Statuses and messages -->
-	<div class="box-footer">
-		<? if (!$isNew) { ?>
-		<div>
-    	<button class="btn btn-danger" onclick="return deletev4_Actions('{{ID}}', '<?= $inList ?>');">
-    		<i class="ic-cancel-circle"></i> <?= DELETE ?>
-    	</button>
-    	</div>
-    	<? } ?>
-
-	</div>
 </form>
 
 
@@ -106,15 +94,14 @@
 				"html": true, //Button which allows you to edit the generated HTML. Default false
 				"link": true, //Button to insert a link. Default true
 				"image": true, //Button to insert an image. Default true,
-				"color": true //Button to change color of font 
-				
+				"color": true //Button to change color of font
+
 		});
-		
+
 		// uklanja ikonu Saved - statusMessage sa ekrana
 		$("form").change(function(){
 			$("#statusMessage").html('');
 		});
-	
+
 	</script>
 </script>
-	

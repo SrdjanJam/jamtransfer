@@ -393,6 +393,8 @@ define("ROUTE", "Route");
 define("ROUTE_SETTINGS", "Route settings");
 define("ROUTE_SPECIFIC", "Route");
 define("ROUTES", "Routes");
+define("REQUEST_ID", "Request ID");
+define("REQUEST_TITLE", "Request Title");
 define("S1END", "Season 1 ends on");
 define("S1PERCENT", "(%)");
 define("S1START", "Season 1 starts on");
