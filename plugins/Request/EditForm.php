@@ -1,43 +1,30 @@
 
-<script type="text/x-handlebars-template" id="v4_RequestEditTemplate">
-<form id="v4_RequestEditForm{{ID}}" class="form box box-info" enctype="multipart/form-data" method="post" onsubmit="return false;">
+<script type="text/x-handlebars-template" id="ItemEditTemplate">
+<form id="ItemEditForm{{ID}}" class="form box box-info" enctype="multipart/form-data" method="post" onsubmit="return false;">
 	<div class="box-header">
-		<div class="box-title">
-			<? if ($isNew) { ?>
-				<h3><?= NNEW ?></h3>
-			<? } else { ?>
-				<h3><?= EDIT ?> - {{Title}}</h3>
-			<? } ?>
-		</div>
 		<div class="box-tools pull-right">
 			
 			<span id="statusMessage" class="text-info xl"></span>
 			
 			<? if (!$isNew) { ?>
-				<? if ($inList=='true') { ?>
-					<button class="btn" title="<?= CLOSE?>" 
-					onclick="return editClosev4_Request('{{ID}}', '<?= $inList ?>');">
-					<i class="fa fa-arrow-up"></i>
-					</button>
-				<? } else { ?>
-					<button class="btn btn-danger" title="<?= CANCEL ?>" 
-					onclick="return deletev4_Request('{{ID}}', '<?= $inList ?>');">
-					<i class="fa fa-ban"></i>
-					</button>
-				<? } ?>	
+
+				<button class="btn btn-warning" title="<?= CLOSE?>" 
+				onclick="return editCloseItem('{{ID}}');">
+				<i class="fa fa-close"></i>
+				</button>
+
+				<button class="btn btn-danger" title="<?= CANCEL ?>" 
+				onclick="return deleteItem('{{ID}}');">
+				<i class="fa fa-ban"></i>
+				</button>
+
 			<? } ?>	
+			
 			<button class="btn btn-info" title="<?= SAVE_CHANGES ?>" 
-			onclick="return editSavev4_Request('{{ID}}', '<?= $inList ?>');">
-			<i class="ic-disk"></i>
+			onclick="return editSaveItem('{{ID}}');">
+			<i class="fa fa-save"></i>
 			</button>
-			<!--
-				<? if (!$isNew) { ?>
-					<button class="btn btn-danger" title="<?= PRINTIT ?>" 
-					onclick="return editPrintv4_Request('{{ID}}', '<?= $inList ?>');">
-					<i class="ic-print"></i>
-					</button>
-				<? } ?>	
-			-->
+			
 		</div>
 	</div>
 
@@ -61,8 +48,8 @@
 						<input type="text" name="DisplayOrder" id="DisplayOrder" class="w100" value="{{DisplayOrder}}">
 					</div>
 				</div>
-				
-				<div class="row">
+
+				<div class="row" style="margin-top:5px;">
 					<div class="col-md-2">
 						<label for="Active">Active</label>
 					</div>
@@ -90,18 +77,6 @@
 			</div>
 	    </div>
 		    
-
-	<!-- Statuses and messages -->
-	<div class="box-footer">
-		<? if (!$isNew) { ?>
-		<div>
-    	<button class="btn btn-default" onclick="return deletev4_Request('{{ID}}', '<?= $inList ?>');">
-    		<i class="ic-cancel-circle"></i> <?= DELETE ?>
-    	</button>
-    	</div>
-    	<? } ?>
-
-	</div>
 </form>
 
 
