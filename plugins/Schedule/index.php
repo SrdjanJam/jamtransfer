@@ -64,7 +64,6 @@ foreach ($olKeys as $olid) {
 	$olKeys2[]=$ol->getDetailsID();
 	}
 
-
 // Svi transferi za hvatanje other transfer
 $details=array();
 // za proveru return transfer-a
@@ -95,8 +94,6 @@ $q .= " AND MorderID=OrderID ";
 $q .= " ORDER BY PickupDate ASC, PickupTime ASC";
 $r = $db->RunQuery($q);
 
-$subDArray = array();
-$subDArray[] = $_SESSION['UseDriverID'];
 $ordersArray = array();
 
 // za proveru return transfer-a
@@ -110,11 +107,43 @@ while ($t2 = $r2->fetch_object()) {
 	$details[]=$row_array;
 }
 
-
-// $t
+$tx=array();
+$nonconect=false;
 while ($t = $r->fetch_object()) {
-	require("oneTransfer.php"); // oneTransfer.php ===========================================================================
+	if ($t->SubDriver==0) $nonconect=true;
+	$tx[] = $t;	
 }
+
+$subDArray = array();
+if ($nonconect) $subDArray[] = $_SESSION['UseDriverID'];
+$tx=(object) $tx;
+// extrasi
+$ordersdetail="";
+foreach ($tx as $t) {
+	$ordersdetail.=$t->DetailsID.",";
+}
+$ordersdetail = substr($ordersdetail,0,strlen($ordersdetail)-1);
+$extras=array();
+$q3 = "SELECT *
+	FROM v4_OrderExtras
+	WHERE OrderDetailsID in (" . $ordersdetail . ")"; 
+$r3 = $db->RunQuery($q3);
+while ($t3 = $r3->fetch_object()) {
+	$extras_row=array();
+	$extras_row['DetailID']=$t3->OrderDetailsID;
+	$extras_row['ServiceName']=$t3->ServiceName;
+	$extras_row['Qty']=$t3->Qty;
+	$extras[]=$extras_row;
+}
+// $t
+foreach ($tx as $t) {
+	//niz vozaca koji imaju transfere u zadatom vremenu
+	if ($t->SubDriver != 0) $subDArray[] = $t->SubDriver;
+	if ($t->SubDriver2 != 0) $subDArray[] = $t->SubDriver2;
+	if ($t->SubDriver3 != 0) $subDArray[] = $t->SubDriver3;	
+}
+
+
 $subDArray = array_unique($subDArray); // ostavi samo jedinstvene subdrivere u nizu
 $sdd="";
 foreach ($subDArray as $sd) {
@@ -134,10 +163,11 @@ while ($d = $r->fetch_object()) {
 		$vehicles[$d->SubDriverID]=$row;
 }
 
+date_default_timezone_set("Europe/Paris");		
 // dobavi vozace od trenutnog vlasnika timetable-a, slozi ih u sdArray sa podacima
 $q = "SELECT * FROM v4_AuthUsers";
 //$q .= "	WHERE DriverID = " . $_SESSION['UseDriverID']; 
-$q .= " WHERE AuthUserID in (".$sdd.") ORDER BY AuthUserRealName ASC";
+$q .= " WHERE AuthUserID in (".$sdd.") ORDER BY DriverID,AuthUserID ASC";
 $r = $db->RunQuery($q);
 
 while ($d = $r->fetch_object()) {
@@ -147,6 +177,43 @@ while ($d = $r->fetch_object()) {
 		$row['DriverName'] = $d->AuthUserRealName;
 		$row['Active'] = $d->Active;
 		$row['Mob'] = $d->AuthUserMob;
+		$op->getRow($d->IBAN);
+		$row['Accomodation']=$op->getPlaceNameEN();		
+		
+		// hvatanje trenutne lokacije
+		$lng=0;
+		$lat=0;				
+		$time1=time()-1200;
+		$time2=time()-60;	
+		// lokacija i vreme iz UserLocation
+		$timestart=time()-12*3600;
+		$q = "SELECT * FROM `v4_UserLocations` WHERE 
+			`UserID`=".$d->AuthUserID." and
+			`Time` > ".$timestart."
+			order by time desc"; 
+		$rL = $db->RunQuery($q);
+		$loc=array(); 
+		$foundlocation=false;
+		while ($tL = $rL->fetch_object()) {
+			$loc[] = $tL;
+			$foundlocation=true;
+		}
+		$row['ForTransferBreak']=true;
+		if ($foundlocation) {
+			$lc=$loc[0];
+			$row['Lat']=$lc->Lat;
+			$row['Lng']=$lc->Lng;			
+			$row['Location']=$lc->Label;
+			$row['Device']=$lc->Device.' at '.date('H:i:s',$lc->Time);
+			$row['DeviceTime']=$lc->Time;
+			$row['ForTransferBreak']=false;
+			/*$distACC=vincentyGreatCircleDistance($lat, $lng, $op->Latitude, $op->Longitude, $earthRadius = 6371000)/1000;
+			if ($distACC<5) $acc=true;
+			else $acc=false;*/
+		}
+		
+		
+		
 		$sdArray[] = $row;
 	}	
 	if ($d->Active>0) {
@@ -154,12 +221,16 @@ while ($d = $r->fetch_object()) {
 		$row['DriverID'] = $d->AuthUserID;
 		$row['DriverName'] = $d->AuthUserRealName;
 		$row['Mob'] = $d->AuthUserMob;		
-		//ovde izvuci vozcevo vozilo
-		$row['DriverCar'] = $vehicles[$row['DriverID']]['SubVehicleName'];
+		//ovde izvuci vozacevo vozilo
+		$row['DriverCar'] = $vehicles[$row['DriverID']]['SubVehicleName'];		
 		$sddArray[] = $row;
 	}
 }
 
+// $t
+foreach ($tx as $t) {
+	require("oneTransfer.php"); // oneTransfer.php ===========================================================================
+}
 
 $smarty->assign('ordersArray',$ordersArray);
 $smarty->assign('sdArray',$sdArray);

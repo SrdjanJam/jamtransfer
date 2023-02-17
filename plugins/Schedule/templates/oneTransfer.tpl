@@ -32,14 +32,6 @@
 		<!-- row second -->
 		<div class="row">
 			<h4>{$ordersArray[pom2].PickupName} - {$ordersArray[pom2].DropName}</h4>
-
-			{if $ordersArray[pom2].flightTimeConflict}
-				<span class='blink'>{$FLIGHT_TIME_CONFLICT}</span>
-				{$ordersArray[pom2].FlightTime}
-			{/if}
-
-			{$ordersArray[pom2].changedIcon}
-			
 		</div>
 
 		<style>
@@ -107,13 +99,26 @@
 					title="Transfer duration"  onchange="saveTransfer({$ordersArray[pom2].DetailsID},0)">
 				</div>	
 				<div>
-					{if $ordersArray[pom2].extras ne ''}<i class="fa fa-cubes red-text"></i>{/if}
+					{if $ordersArray[pom2].Extras|count gt 0}<i class="fa fa-cubes red-text"></i>{/if}
 				</div>
 			</div>
 
 		</div> 
-
+		
 		<!-- row forth -->
+		<div class="row">
+			<i class="fa fa-plane" aria-hidden="true"></i>
+			<input type="text" name="FlightNo_{$ordersArray[pom2].DetailsID}" id="FlightNo_{$ordersArray[pom2].DetailsID}"
+			value="{$ordersArray[pom2].FlightNo}" onchange="saveTransfer({$ordersArray[pom2].DetailsID},0)">
+			<input type="text" name="FlightTime_{$ordersArray[pom2].DetailsID}" class="timepicker" id="FlightTime_{$ordersArray[pom2].DetailsID}"
+			value="{$ordersArray[pom2].FlightTime}" onchange="saveTransfer({$ordersArray[pom2].DetailsID},0)">
+			{if $ordersArray[pom2].flightTimeConflict}
+				<span class='blink'>{$FLIGHT_TIME_CONFLICT}</span>
+				{$ordersArray[pom2].FlightTime}
+			{/if}			
+		</div>
+				
+		<!-- row fifth -->
 		<div class="row" style="line-height:140%">
 			<div class="col-md-10">
 				<select class="subdriver1" data-id="{$ordersArray[pom2].DetailsID}"
@@ -176,6 +181,7 @@
 
 		<div class="row">
 			<button class="btn-xs btn-primary btn-block" onclick="ShowShow({$ordersArray[pom2].DetailsID});toggleChevron(this);">
+			{if $ordersArray[pom2].Notes}<span class='blink'><i class="fa fa-envelope" aria-hidden="true"></i></span>&nbsp;{/if}
 				<i class="fa fa-chevron-down"></i>
 			</button>
 		</div> 
@@ -193,51 +199,39 @@
 						Emergency: <b> {$ordersArray[pom2].EmergencyPhone} </b>
 					{/if}
 
-					<br>
-					{* {$SingleReturn} fix it *}
-					
-					PAX: {$ordersArray[pom2].PaxNo}
-					<br>
-						{$ordersArray[pom2].PickupDate} {$ordersArray[pom2].PickupTime}
-					<br>
-					{$ordersArray[pom2].PaxName} 
-					{$ordersArray[pom2].MPaxTel}
+					<br>					
+					<strong>{$ordersArray[pom2].PaxName}</strong> 
+					<a href="tel:{$ordersArray[pom2].MPaxTel}">{$ordersArray[pom2].MPaxTel}</a>
 				</div>
 
 				<div class="row-two">
-					{$ordersArray[pom2].PickupName} - {$ordersArray[pom2].DropName}
+					<strong>{$ordersArray[pom2].PickupName}</strong> {$ordersArray[pom2].PickupAddress}
 					<br> 
-						{$ordersArray[pom2].PickupAddress}
-						<br>
-						{$ordersArray[pom2].PickupNotes}
-						<br>
-						{$ordersArray[pom2].DropAddress}
-
+					<strong>{$ordersArray[pom2].DropName}</strong> {$ordersArray[pom2].DropAddress}
 				</div>
 
 				<div class="row-third">
-					{$ordersArray[pom2].PayNow}
-					{$ordersArray[pom2].PayLater}
-					EUR:
-					{if $ordersArray[pom2].PayNow > 0 and $ordersArray[pom2].PayLater > 0}<b style='color:red'>IZDATI RAČUN !</b>{/if}
+					{if $ordersArray[pom2].PayNow gt 0}
+						{$PAID_ONLINE} {$ordersArray[pom2].PayNow}
+					{/if}	
+					{if $ordersArray[pom2].PayLater gt 0}
+						{$CASH} {$ordersArray[pom2].PayLater}
+						<small class="bold">{$RECIVE_CASH}</small>
+						<input type="text" name="CashIn_{$ordersArray[pom2].DetailsID}" id="CashIn_{$ordersArray[pom2].DetailsID}" value="{$ordersArray[pom2].CashIn}">
+					{/if}
+
+					{if $ordersArray[pom2].PayNow > 0 and $ordersArray[pom2].PayLater > 0}<b style='color:red'>{$MAKE_BILL}</b>{/if}
 					<br>
-					{* {$otherTransfer = getOtherTransferIDArray($ordersArray[pom2].DetailsID,$details)}
-					*}
+					{$ordersArray[pom2].OtherTransfer }
+					{section name=pom3 loop=$ordersArray[pom2].Extras}
+						<div class="row">
+							{$ordersArray[pom2].Extras[pom3].Name}
+							{if $ordersArray[pom2].Extras[pom3].Qty gt 1}x{$ordersArray[pom2].Extras[pom3].Qty}{/if}
+						</div>	
 
-					{* {$ordersArray[pom2].otherTransfer}
-					{if $otherTransfer != null}
-					
-					{/if} *}
-
-					{if !empty($returnTransfer)} {$returnTransfer} {/if}
+					{/section}
 					
 				</div>
-
-				<div class="row-forth">
-					{FLIGHT_NO} {$ordersArray[pom2].FlightNo}
-					{FLIGHT_TIME} {$ordersArray[pom2].FlightTime}
-				</div>
-
 
 			</div> {* /.row *}
 
@@ -246,17 +240,13 @@
 
 			<div class="row">
 
+				{if $ordersArray[pom2].PickupNotes}
 				<div class="row-one">
-					<small class="bold">{FLIGHT_NO} / {TIME}</small><br>
-					<input type="text" name="SubFlightNo_{$ordersArray[pom2].DetailsID}" id="SubFlightNo_{$ordersArray[pom2].DetailsID}"
-					value="{if $ordersArray[pom2].SubFlightNo != null} {$ordersArray[pom2].SubFlightNo} 
-					{else} {$ordersArray[pom2].FlightNo} {/if}" >
-						
-					<input type="text" name="SubFlightNo_{$ordersArray[pom2].DetailsID}" class="timepicker" id="SubFlightNo_{$ordersArray[pom2].DetailsID}"
-					value="{if $ordersArray[pom2].SubFlightNo != null} {$ordersArray[pom2].SubFlightNo} 
-					{else} {$ordersArray[pom2].FlightNo} {/if}" >
+					<small class="bold">{PICKUP_NOTE}</small></br>
+					{$ordersArray[pom2].PickupNotes}
 				</div>
-				
+				{/if}
+
 				<div class="row-two">
 					<small class="bold">{STAFF_NOTE}</small></br>
 					<textarea name="StaffNote_{$ordersArray[pom2].DetailsID}" id="StaffNote_{$ordersArray[pom2].DetailsID}"
@@ -270,17 +260,13 @@
 					{$ordersArray[pom2].SubDriverNote|stripslashes}</textarea>
 				</div>
 
+				{if $ordersArray[pom2].FinalNote or $ordersArray[pom2].SubFinalNote}
 				<div class="row-forth">
 					<small class="bold">{FINAL_NOTE}</small><br>
 					{$ordersArray[pom2].SubFinalNote}<br>
-					{$ordersArray[pom2].FinalNote} {* privremeno *}
+					{$ordersArray[pom2].FinalNote}
 				</div>
-
-				<div class="row-fifth">
-					<small class="bold">{RAZDUZENO_CASH} € </small><br>
-					<input type="text" name="CashIn_{$ordersArray[pom2].DetailsID}" id="CashIn_{$ordersArray[pom2].DetailsID}" value="{$ordersArray[pom2].CashIn}"><br>
-					<div style="display:inline-block;color:#900;" id="upd{$ordersArray[pom2].DetailsID}"></div>
-				</div>
+				{/if}
 			
 			</div> {* ./row *}
 

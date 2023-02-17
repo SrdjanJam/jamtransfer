@@ -1,14 +1,43 @@
 <?
-	//niz vozaca koji imaju transfere u zadatom vremenu
-	if ($t->SubDriver != 0) $subDArray[] = $t->SubDriver;
-	if ($t->SubDriver2 != 0) $subDArray[] = $t->SubDriver2;
-	if ($t->SubDriver3 != 0) $subDArray[] = $t->SubDriver3;
+	// pozicija i vreme vozaca transfera
+	$key = array_search($t->SubDriver, array_column($sdArray, 'DriverID'));
+	$t->Lat=$sdArray[$key]['Lat'];
+	$t->Lng=$sdArray[$key]['Lng'];
+	$t->Location=$sdArray[$key]['Location'];
+	$t->Device=$sdArray[$key]['Device'];
+	$t->DeviceTime=$sdArray[$key]['DeviceTime'];
+	
+	// da li je vozac u transferu
+	
+	if (!$sdArray[$key]['ForTransferBreak']) {
+		$start_time=strtotime($t->PickupDate.' '.$t->SubPickupTime);
+		$finish_time=strtotime($t->PickupDate.' '.$t->SubPickupTime)+$t->TransferDuration*60;	
+		if ($start_time>$t->DeviceTime)	$ForTransfer=true;
+			
+		if ($finish_time>$t->DeviceTime && $start_time<$t->DeviceTime)	{
+			$t->TransferIn=true;
+			$sdArray[$key]['ForTransferBreak']=true;
+			$ForTransfer=false;			
+		}	else $t->TransferIn=false;
+		
+		if ($finish_time<$t->DeviceTime) $ForTransfer=false;
+		
+		if ($ForTransfer) {
+			$t->ForTransfer=true;
+			$sdArray[$key]['ForTransferBreak']=true;
+		}	
+		else $t->ForTransfer=false;
+	} else $t->ForTransfer=false;
+	
+	
+	
 	
 	// bojenje transfera
 	$t->bgColor = "#caefff";
 	if($t->TransferStatus == "3") $t->bgColor = "#ffa07a";					
 	if($t->DriverConfStatus >2) $t->bgColor = "#ffe599";										
 	if($t->TransferStatus == "5") $t->bgColor = "#fefefe";
+	if($t->TransferIn) $t->bgColor = "#b6d7a8";	
 	
 	// drugi transfer		
 	$otherTransfer=getOtherTransferIDArray($t->DetailsID,$details);
@@ -90,6 +119,17 @@
 	if($t->ContractFile == 'inter') $t->Inter = true;
 	else $t->Inter = false;
 	
+	// Extras
+	$extras2=array();
+	foreach ($extras as $ex) {
+		$ex_row=array();
+		if ($ex['DetailID']==$t->DetailsID) {
+			$ex_row['Name']=$ex['ServiceName'];
+			$ex_row['Qty']=$ex['Qty'];
+			$extras2[]=$ex_row;
+		}		
+	}
+	$t->Extras=$extras2;
 	$order_row=(array) $t;
 		
 	$ordersArray[]=$order_row;

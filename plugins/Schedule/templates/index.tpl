@@ -183,18 +183,23 @@ hr {
 
 	<!-- MAIN CONTENT: -->
 	<div class="row row-shedule">
-
+		{assign var=counter value=1}
 		{section name=pom loop=$sdArray}
+			{if $counter eq 1}
+			<div class="row">	
+			{/if}
+			
 			
 			<!-- Column one: -->
-			<div class="col-md-{$BsColumnWidth} col-md-edit">
-
+			
+			<div class="col-md-{$BsColumnWidth} col-md-edit">				
 				<!-- One card: -->
 				<div class="row white shadow border">
 
 					<div class="row orange white-text">
 						<strong>{$sdArray[pom].DriverName}</strong>	
 						<a href="tel:{$sdArray[pom].Mob}">{$sdArray[pom].Mob}</a>
+						<small>{$sdArray[pom].Accomodation}</small>
 					</div>
 
 					{if count($ordersArray)}
@@ -221,7 +226,12 @@ hr {
 					
 			</div> {* col-md-{$BsColumnWidth} *}
 
-			
+			{if $counter eq $NoColumns}
+				{assign var=counter value=0}
+			</div>
+			{/if}
+			<span style="display:none;">{$counter++}</span>
+
 		
 		{/section}
 

@@ -357,8 +357,8 @@
 						</ul>
 						
 						<!-- Dialog printed results here: -->
-						<div class="dialog-help"></div>
-						<textarea data-id="{$ModulID}" class="dialog-message"></textarea>
+						<div style="display:none;" class="dialog-help"></div>
+						<textarea style="display:none;" data-id="{$ModulID}" class="dialog-message"></textarea>
 						
 					</nav>
 					
@@ -548,7 +548,6 @@
 		$( "#opener-help" ).on( "click", function() {
 			var link = 'plugins/getHelp.php';
     		var param = 'ModulID=' + {/literal}{$ModulID}{literal}
-
 
 			$.ajax({
 				type: 'POST',
