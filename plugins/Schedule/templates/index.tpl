@@ -199,25 +199,16 @@ hr {
 					<div class="row orange white-text">
 						<strong>{$sdArray[pom].DriverName}</strong>	
 						<a href="tel:{$sdArray[pom].Mob}">{$sdArray[pom].Mob}</a>
-						<small>{$sdArray[pom].Accomodation}</small>
+						<small>{$sdArray[pom].Accomodation}</small><br>
+						<small>{$sdArray[pom].Device} {$sdArray[pom].Location}</small>
 					</div>
-
-					{if count($ordersArray)}
-						{section name=pom2 loop=$ordersArray}
-
-							{if ($sdArray[pom].DriverID eq $ordersArray[pom2].SubDriver) or
-								($sdArray[pom].DriverID eq $ordersArray[pom2].SubDriver2) or
-								($sdArray[pom].DriverID eq $ordersArray[pom2].SubDriver3) or
-								($ordersArray[pom2].SubDriver eq 0 and $sdArray[pom].DriverID eq $smarty.session.UseDriverID)
-							}
-
-								{include file='plugins/Schedule/templates/oneTransfer.tpl'}
-
-							{/if}
-						
+ 
+					{if count($sdArray[pom].Transfers)}
+						{section name=pom2 loop=$sdArray[pom].Transfers}
+							{include file='plugins/Schedule/templates/oneTransfer.tpl'}						
 						{/section}
 
-						{else}
+					{else}
 							No Choosen Schedule.
 
 					{/if}

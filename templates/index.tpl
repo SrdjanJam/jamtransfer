@@ -234,28 +234,28 @@
 								</ul>
 							</div>
 						</li>
-						
-						{* SETTING DRIVER ======================================================================== *}
-						{if isset($smarty.session.UseDriverName)}
-						<!-- nav-header nav-header-edit -->
-							<li class="nav-header nav-header-edit">
-								<h3 id="set-as">Set as:</h3>
-								<h3 class="cut-name">{$smarty.session.UseDriverName}</h3>
-								<a href="setout.php" id="a-setout">Setout &nbsp;<i class="fas fa-sign-out-alt"></i></a>	
-							</li>
-						{else}
-							{if isset ($smarty.cookies.UseDriverName)}	
-								<!-- Set as with cookie -->
+						{if $setasdriver}
+							{* SETTING DRIVER ======================================================================== *}
+							{if isset($smarty.session.UseDriverName)}
+							<!-- nav-header nav-header-edit -->
 								<li class="nav-header nav-header-edit">
-									<a href="satAsDriver/{$smarty.cookies.UseDriverID}" style="padding-left:5px;padding-right:0px;">
-										<h3 id="set-us-2">Set as: <i class="fas fa-sign-in-alt"></i></h3>
-										<h3 class="cut-name-2">{$smarty.cookies.UseDriverName}</h3>
-									</a>
+									<h3 id="set-as">Set as:</h3>
+									<h3 class="cut-name">{$smarty.session.UseDriverName}</h3>
+									<a href="setout.php" id="a-setout">Setout &nbsp;<i class="fas fa-sign-out-alt"></i></a>	
 								</li>
+							{else}
+								{if isset ($smarty.cookies.UseDriverName)}	
+									<!-- Set as with cookie -->
+									<li class="nav-header nav-header-edit">
+										<a href="satAsDriver/{$smarty.cookies.UseDriverID}" style="padding-left:5px;padding-right:0px;">
+											<h3 id="set-us-2">Set as: <i class="fas fa-sign-in-alt"></i></h3>
+											<h3 class="cut-name-2">{$smarty.cookies.UseDriverName}</h3>
+										</a>
+									</li>
+								{/if}
 							{/if}
+							{* ====================================================================================== *}
 						{/if}
-						{* ====================================================================================== *}
-
 						{* Items of sidebar *}
 						{section name=index loop=$menu1}
 							<li class="{$menu1[index].active}">
@@ -338,7 +338,7 @@
 						<div class="navbar-header">
 							<button type="button" class="minimalize-styl-2 btn btn-primary btn-primary-edit" id="cashe"><i class="fas fa-redo-alt"></i></button>
 						</div>
-
+						{if $DEVELOPMENT}<span>TEST</span>{/if}
 						<ul class="nav navbar-top-links navbar-right">
 							<!-- Opener dialog button: -->
 							<li><button type="button" id="opener-help" class="button-3">Help</button></li>

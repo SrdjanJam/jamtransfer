@@ -29,7 +29,10 @@
 		<div class="col-md-1">
 			<?=ACTIVE;?>
 		</div>
-					
+				
+		<div class="col-md-1">
+			<a target='_blank' href='plugins/SubDrivers/getRaptorDrivers.php' style="color:blue;background:silver;"><i class="fas fa-external-link"></i>&nbsp;<u>RAPTOR</u></a>
+		</div>				
 	</div>
 
 

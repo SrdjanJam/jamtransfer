@@ -1,17 +1,18 @@
 <?
 	// pozicija i vreme vozaca transfera
-	$key = array_search($t->SubDriver, array_column($sdArray, 'DriverID'));
 	$t->Lat=$sdArray[$key]['Lat'];
 	$t->Lng=$sdArray[$key]['Lng'];
 	$t->Location=$sdArray[$key]['Location'];
 	$t->Device=$sdArray[$key]['Device'];
 	$t->DeviceTime=$sdArray[$key]['DeviceTime'];
 	
+	
 	// da li je vozac u transferu
 	
 	if (!$sdArray[$key]['ForTransferBreak']) {
+		
 		$start_time=strtotime($t->PickupDate.' '.$t->SubPickupTime);
-		$finish_time=strtotime($t->PickupDate.' '.$t->SubPickupTime)+$t->TransferDuration*60;	
+		$finish_time=strtotime($t->PickupDate.' '.$t->SubPickupTime)+$t->TransferDuration*60;
 		if ($start_time>$t->DeviceTime)	$ForTransfer=true;
 			
 		if ($finish_time>$t->DeviceTime && $start_time<$t->DeviceTime)	{
@@ -29,9 +30,42 @@
 		else $t->ForTransfer=false;
 	} else $t->ForTransfer=false;
 	
+	if ($t->ForTransfer) {
+		$op->getRow($t->PickupID);
+		$Direction_time=$start_time;
+	} else {
+		$op->getRow($t->DropID);		
+		$Direction_time=$finish_time;			
+	}	
+	$Directon=$op->getPlaceNameEN();
+	$Latitude=$op->Latitude;
+	$Longitude=$op->Longitude;		
 	
+	// kasnjenje na transferu
 	
-	
+	if (($t->Lat>0 && $t->Lng>0) && ($t->ForTransfer || $t->TransferIn) ){
+		$api_key='5b3ce3597851110001cf6248ec7fafd8eca44e0ca5590caf093aa7cb';
+		$url='https://api.openrouteservice.org/v2/directions/driving-car?api_key='.$api_key.'&start='.$t->Lng.','.$t->Lat.'&end='.$Longitude.','.$Latitude;
+		$json = file_get_contents($url);   
+		$obj=array();
+		$obj = json_decode($json,true);
+		$t->Distance2=0;
+		$t->Duration2=0;
+		if ($json) {
+			$t->Distance2=number_format(($obj['features'][0]['properties']['segments'][0]['distance'])/1000,0);
+			$t->Duration2=number_format(($obj['features'][0]['properties']['segments'][0]['duration'])/60);
+			if ($t->DeviceTime+$t->Duration2*60<$Direction_time) $t->Shedule="<span style='color:green'>ON TIME</span>";
+			else {
+				$late=number_format(($t->DeviceTime+$t->Duration2*60-$Direction_time)/60,0);
+				$t->Shedule="<span style='color:red'>LATE ".$late."min.</span>";
+			}	
+		}	
+		else {
+			if ($Longitude==0 || $Latitude==0) $t->Shedule='NO DATA';
+			else $t->Shedule='NO ROUTABLE';
+		}
+		
+	}
 	// bojenje transfera
 	$t->bgColor = "#caefff";
 	if($t->TransferStatus == "3") $t->bgColor = "#ffa07a";					

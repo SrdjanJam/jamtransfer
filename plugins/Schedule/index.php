@@ -211,9 +211,6 @@ while ($d = $r->fetch_object()) {
 			if ($distACC<5) $acc=true;
 			else $acc=false;*/
 		}
-		
-		
-		
 		$sdArray[] = $row;
 	}	
 	if ($d->Active>0) {
@@ -228,12 +225,34 @@ while ($d = $r->fetch_object()) {
 }
 
 // $t
-foreach ($tx as $t) {
+/*foreach ($tx as $t) {	
 	require("oneTransfer.php"); // oneTransfer.php ===========================================================================
+}*/
+$sdArrayExt=array();
+foreach ($sdArray as $sd) {
+	$ordersArray=array();	
+	foreach($tx as $t) {						
+		if ($sd['DriverID']==$t->SubDriver) {
+			$key = array_search($t->SubDriver, array_column($sdArray, 'DriverID'));
+			require("oneTransfer.php"); // oneTransfer.php ===========================================================================
+		}		
+		if ($sd['DriverID']==$t->SubDriver2) {
+			$key = array_search($t->SubDriver2, array_column($sdArray, 'DriverID'));
+			require("oneTransfer.php"); // oneTransfer.php ===========================================================================
+		}			
+		if ($sd['DriverID']==$t->SubDriver3) {
+			$key = array_search($t->SubDriver3, array_column($sdArray, 'DriverID'));
+			require("oneTransfer.php"); // oneTransfer.php ===========================================================================
+		}			
+		if (($sd['DriverID']==$_SESSION['UseDriverID']) && $t->SubDriver==0) {
+			$key=0;
+			require("oneTransfer.php"); // oneTransfer.php ===========================================================================
+		}	
+	}	
+	$sd['Transfers']=$ordersArray;
+	$sdArrayExt[]=$sd;
 }
-
-$smarty->assign('ordersArray',$ordersArray);
-$smarty->assign('sdArray',$sdArray);
+$smarty->assign('sdArray',$sdArrayExt);
 $smarty->assign('sddArray',$sddArray);
 $smarty->assign('vehicles',$vehicles);
 

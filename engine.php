@@ -50,6 +50,7 @@ $modules_arr = substr($modules_arr,0,strlen($modules_arr)-1);
 require_once 'db/v4_Modules.class.php';
 $md = new v4_Modules();
 $mdk = $md->getKeysBy('MenuOrder ' ,'asc', "where ParentID=0 AND ModulID in (".$modules_arr.")");
+$setasdriver=false;
 foreach($mdk as $key) {
 	$md->getRow($key);
 	$row1=array();
@@ -68,6 +69,7 @@ foreach($mdk as $key) {
 		$row1['arrow']='fa arrow';
 		foreach($mdk2 as $key2) {
 			$md->getRow($key2);
+			if ($md->getCode()=='setDriver') $setasdriver=true;
 			$row2=array();
 			$row2['title']=$md->getName();
 			$row2['link']=$md->getCode();	
@@ -148,6 +150,7 @@ $smarty->assign('title',$md->getName());
 $smarty->assign('base',$md->getBase());
 $smarty->assign('parentID',$md->getParentID());
 $smarty->assign('ModulID',$key);
+$smarty->assign('setasdriver',$setasdriver);
 
 
 	
