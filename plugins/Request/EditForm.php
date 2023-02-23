@@ -49,7 +49,7 @@
 					</div>
 				</div>
 
-				<div class="row" style="margin-top:5px;">
+				<div class="row row-edit-2">
 					<div class="col-md-2">
 						<label for="Active">Active</label>
 					</div>
