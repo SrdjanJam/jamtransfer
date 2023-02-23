@@ -1,10 +1,8 @@
 <?
 require_once ROOTPATH.'/f/f.php';
-require_once '../db/db.class.php';
 
-//akcije-troskovi
-require_once '../db/v4_Actions.class.php';
-$ac = new v4_Actions();
+require_once 'Initial.php';
+
 $ack = $ac->getKeysBy('DisplayOrder ', '','WHERE Active=1');
 foreach ($ack as $nn => $key)
 {

@@ -2,15 +2,10 @@
 header('Content-Type: text/javascript; charset=UTF-8');
 error_reporting(E_PARSE);
 
+require_once 'Initial.php';
+
 @session_start();
-# init libs
-require_once '../../../../db/db.class.php';
-require_once '../../../../db/v4_SubExpenses.class.php';
-require_once '../../../../db/v4_AuthUsers.class.php';
-require_once '../../../../db/v4_Actions.class.php';
-# init class
-$db = new v4_SubExpenses();
-$ac = new v4_Actions();
+
 
 class v4_SubExpensesJoin extends v4_SubExpenses {
 	public function getKeysBy($column, $order, $where = NULL){

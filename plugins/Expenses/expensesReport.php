@@ -1,10 +1,16 @@
 <?
+require_once 'Initial.php';
+
 require_once $_SERVER['DOCUMENT_ROOT'] .'/f/f.php';
-require_once $_SERVER['DOCUMENT_ROOT'] .'/db/db.class.php';
-//akcije-troskovi
-require_once $_SERVER['DOCUMENT_ROOT'] .'/db/v4_Actions.class.php';
-$db = new DataBaseMySql();
-$ac = new v4_Actions();
+
+// Visak:
+// require_once $_SERVER['DOCUMENT_ROOT'] .'/db/db.class.php';
+// //akcije-troskovi
+// require_once $_SERVER['DOCUMENT_ROOT'] .'/db/v4_Actions.class.php';
+// $db = new DataBaseMySql();
+// $ac = new v4_Actions();
+
+
 $ack = $ac->getKeysBy('DisplayOrder ', '','WHERE Active=1');
 foreach ($ack as $nn => $key)
 {

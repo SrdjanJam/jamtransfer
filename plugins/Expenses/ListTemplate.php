@@ -1,16 +1,49 @@
 <?
 
+
 ?>
 
-<script type="text/x-handlebars-template" id="v4_SubExpensesListTemplate">
+<script type="text/x-handlebars-template" id="ItemListTemplate">
 
-	{{#each v4_SubExpenses}}
-		<div  onclick="one_v4_SubExpenses({{ID}});">
-		
-			<div class="row {{color}} pad1em listTile" 
-			style="border-top:1px solid #ddd" 
+
+	<div class="row row-edit">
+
+		<div class="col-md-1">
+			<?=ID;?>
+		</div>
+
+		<div class="col-md-2">
+			<?=DATUM;?>
+		</div>
+
+		<div class="col-md-3">
+			<?=AUTH_USER_REAL_NAME;?>
+		</div>
+
+		<div class="col-md-2">
+			<?=EXPANCE_TITLE;?>
+		</div>
+
+		<div class="col-md-2">
+			<?=EXPANCE_AMOUNT;?>
+		</div>
+
+		<div class="col-md-1">
+			<?=EXPANCE_APPROVED;?>
+		</div>
+
+		<div class="col-md-1">
+			<?=NOTE;?>
+		</div>
+
+	</div>
+
+	{{#each Item}}
+		<div  onclick="oneItem({{ID}});">
+			<div class="row {{color}} pad1em listTile"
+			style="border-top:1px solid #ddd"
 			id="t_{{ID}}">
-		
+
 					<div class="col-md-1">
 						<strong>{{ID}}</strong>
 					</div>
@@ -23,7 +56,7 @@
 						{{AuthUserRealName}}
 					</div>
 
-					<div class="col-md-3">
+					<div class="col-md-2">
 						{{ExpanceTitle}}
 					</div>
 
@@ -43,15 +76,19 @@
 						{{#compare Approved "==" 1}} <i class="fa fa-circle xgreen-text"></i>
 						{{else}} <i class="fa fa-circle red-text"></i>
 						{{/compare}}
-					</div>	
-									<span class="red">{{Note}}	</span>				
+					</div>
+					
+					<div class="col-md-1">
+						<span class="red">{{Note}}	</span>
+					</div>
+
 
 			</div>
 
 		</div>
-		<div id="v4_SubExpensesWrapper{{ID}}" class="editFrame" style="display:none">
+		<div id="ItemWrapper{{ID}}" class="editFrame" style="display:none">
 			<div id="inlineContent{{ID}}" class="row">
-				<div id="one_v4_SubExpenses{{ID}}" >
+				<div id="one_Item{{ID}}" >
 					<?= LOADING ?>
 				</div>
 			</div>
@@ -61,9 +98,3 @@
 
 
 </script>
-
-						<script>	
-							var actionid=$('#actionsid').val();
-							var id='#ac'+actionid;
-							$(id).show();		
-						</script>	
