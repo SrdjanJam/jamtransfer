@@ -2,28 +2,25 @@
 header('Content-Type: text/javascript; charset=UTF-8');
 error_reporting(E_PARSE);
 
+require_once 'Initial.php';
+
 session_start();
 
-	# init libs
-	require_once '../../../../db/db.class.php';
-	require_once '../../../../db/v4_SubActivity.class.php';
-
-
-	# init class
-	$db = new v4_SubActivity();
-	$dbf = new DataBaseMySql();
-	
+// OLDER:	
 # init vars
-$keyName = '';
-$keyValue = '';
+// $keyName = '';
+// $keyValue = '';
 
-if (isset($_REQUEST['keyName']) and $_REQUEST['keyName'] != '') 	$keyName = $_REQUEST['keyName'];
-if (isset($_REQUEST['keyValue']) and $_REQUEST['keyValue'] != '') 	$keyValue = $_REQUEST['keyValue'];
+// if (isset($_REQUEST['keyName']) and $_REQUEST['keyName'] != '') 	$keyName = $_REQUEST['keyName'];
+// if (isset($_REQUEST['keyValue']) and $_REQUEST['keyValue'] != '') 	$keyValue = $_REQUEST['keyValue'];
+
+
+$keyValue = $_REQUEST['id'];
 
 $fldList = array();
 $out = array();
 
-require_once $_SERVER['DOCUMENT_ROOT'] . '/cms/fixDriverID.php';
+
 foreach($fakeDrivers as $key => $fakeDriverID) {
     if($_REQUEST['OwnerID'] == $fakeDriverID) $_REQUEST['OwnerID'] = $realDrivers[$key];    
 }

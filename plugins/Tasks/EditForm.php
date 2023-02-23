@@ -22,8 +22,9 @@
 }
   </style>
 
-<script type="text/x-handlebars-template" id="v4_SubActivityEditTemplate">
-<form id="v4_SubActivityEditForm{{ID}}" class="form box box-info" enctype="multipart/form-data" method="post" onsubmit="return false;">
+<script type="text/x-handlebars-template" id="ItemEditTemplate">
+
+<form id="ItemEditForm{{ID}}" class="form box box-info" enctype="multipart/form-data" method="post" onsubmit="return false;">
 	<div class="box-header">
 		<div class="box-title">
 			<? if ($isNew) { ?>
@@ -37,22 +38,24 @@
 			<span id="statusMessage" class="text-info xl"></span>
 			
 			<? if (!$isNew) { ?>
-				<? if ($inList=='true') { ?>
-					<button class="btn" title="<?= CLOSE?>" 
-					onclick="return editClosev4_SubActivity('{{ID}}', '<?= $inList ?>');">
-					<i class="fa fa-arrow-up"></i>
-					</button>
-				<? } else { ?>
-					<button class="btn btn-danger" title="<?= CANCEL ?>" 
-					onclick="return deletev4_SubActivity('{{ID}}', '<?= $inList ?>');">
-					<i class="fa fa-ban"></i>
-					</button>
-				<? } ?>	
+				
+				<button class="btn btn-warning" title="<?= CLOSE?>" 
+				onclick="return editCloseItem('{{ID}}');">
+				<i class="fa fa-close"></i>
+				</button>
+			
+				<button class="btn btn-danger" title="<?= CANCEL ?>" 
+				onclick="return deleteItem('{{ID}}');">
+				<i class="fa fa-ban"></i>
+				</button>
+				
 			<? } ?>	
+
 			<button class="btn btn-info" title="<?= SAVE_CHANGES ?>" 
-			onclick="return editSavev4_SubActivity('{{ID}}', '');">
-			<i class="ic-disk"></i>
+				onclick="return editSaveItem('{{ID}}');">
+				<i class="fa fa-save"></i>
 			</button>
+
 		</div>
 	</div>
 
@@ -197,24 +200,9 @@
 
 	    </div>
 	
-
-		
-		
 		<input type="hidden" name='OwnerID' value='{{OwnerID}}'/>
 	</form>				
-		    
-		
-	<!-- Statuses and messages -->
-	<div class="box-footer">
-		<? if (!$isNew) { ?>
-		<div>
-    	<button class="btn btn-default" onclick="return deletev4_SubActivity('{{ID}}', '<?= $inList ?>');">
-    		<i class="ic-cancel-circle"></i> <?= DELETE ?>
-    	</button>
-    	</div>
-    	<? } ?>
 
-	</div>
 
 
 	<script>	
@@ -245,6 +233,7 @@
 			$(this).addClass('rotate');
 
 		})	
+
 		var docimage=$('#docimage').val();
 		if (docimage !='' && docimage !='null') {
 			$('#docimage2').attr('src',docimage);
@@ -268,7 +257,8 @@
 			$("#statusMessage").html('');
 		});
 
-		$(".datepicker").pickadate({format: "yyyy-mm-dd"});
+		// CHECK:
+		// $(".datepicker").pickadate({format: "yyyy-mm-dd"});
 
 		function selectExpense (expenseID, li) {
 			document.getElementById("Expense").value = expenseID;

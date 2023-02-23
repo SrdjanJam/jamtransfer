@@ -2,17 +2,9 @@
 header('Content-Type: text/javascript; charset=UTF-8');
 error_reporting(E_PARSE);
 
-@session_start();
-# init libs
-require_once '../../../../db/db.class.php';
-require_once '../../../../db/v4_SubActivity.class.php';
-require_once '../../../../db/v4_AuthUsers.class.php';
-require_once '../../../../db/v4_Actions.class.php';
-# init class
-$db = new v4_SubActivity();
-$ac = new v4_Actions();
-$dbf = new DataBaseMySql();
+require_once 'Initial.php';
 
+@session_start();
 
 class v4_SubActivityJoin extends v4_SubActivity {
 	public function getKeysBy($column, $order, $where = NULL){
@@ -103,6 +95,9 @@ $dbk = $db->getKeysBy('ID ' . $sortOrder, '' . $limit , $DB_Where);
 
 //select za nazive vozila
 $sql="SELECT * FROM `v4_SubVehicles` WHERE `OwnerID`=".$_SESSION["OwnerID"]." and `Active`=1";
+
+
+
 $query=mysqli_query($dbf->conn, $sql) or die('Error in RequestCheckList query' . mysqli_connect_error());
 while($list = mysqli_fetch_object($query) ) {
 	$vehiclesnames[$list->VehicleID]=$list->VehicleDescription;	
@@ -122,6 +117,7 @@ if (count($dbk) != 0) {
 		
 		// ako postoji neko custom polje, onda to ovdje.
 		// npr. $detailFlds["AuthLevelName"] = $nekaDrugaDB->getAuthLevelName().' nesto';
+
 		$detailFlds["AuthUserRealName"] = $au->getAuthUserRealName();
 		$ac->getRow($db->getExpense());
 		$detailFlds["ExpanceTitle"] = $ac->getTitle();
