@@ -1,14 +1,77 @@
 <?
-	//niz vozaca koji imaju transfere u zadatom vremenu
-	if ($t->SubDriver != 0) $subDArray[] = $t->SubDriver;
-	if ($t->SubDriver2 != 0) $subDArray[] = $t->SubDriver2;
-	if ($t->SubDriver3 != 0) $subDArray[] = $t->SubDriver3;
+	// pozicija i vreme vozaca transfera
+	$t->Lat=$sdArray[$key]['Lat'];
+	$t->Lng=$sdArray[$key]['Lng'];
+	$t->Location=$sdArray[$key]['Location'];
+	$t->Device=$sdArray[$key]['Device'];
+	$t->DeviceTime=$sdArray[$key]['DeviceTime'];
 	
+	
+	// da li je vozac u transferu
+	
+	if (!$sdArray[$key]['ForTransferBreak']) {
+		
+		$start_time=strtotime($t->PickupDate.' '.$t->SubPickupTime);
+		$finish_time=strtotime($t->PickupDate.' '.$t->SubPickupTime)+$t->TransferDuration*60;
+		if ($start_time>$t->DeviceTime)	$ForTransfer=true;
+			
+		if ($finish_time>$t->DeviceTime && $start_time<$t->DeviceTime)	{
+			$t->TransferIn=true;
+			$sdArray[$key]['ForTransferBreak']=true;
+			$ForTransfer=false;			
+		}	else $t->TransferIn=false;
+		
+		if ($finish_time<$t->DeviceTime) $ForTransfer=false;
+		
+		if ($ForTransfer) {
+			$t->ForTransfer=true;
+			$sdArray[$key]['ForTransferBreak']=true;
+		}	
+		else $t->ForTransfer=false;
+	} else $t->ForTransfer=false;
+	
+	if ($t->ForTransfer) {
+		$op->getRow($t->PickupID);
+		$Direction_time=$start_time;
+	} else {
+		$op->getRow($t->DropID);		
+		$Direction_time=$finish_time;			
+	}	
+	$Directon=$op->getPlaceNameEN();
+	$Latitude=$op->Latitude;
+	$Longitude=$op->Longitude;		
+	
+	// kasnjenje na transferu
+	
+	if (($t->Lat>0 && $t->Lng>0) && ($t->ForTransfer || $t->TransferIn) ){
+		$api_key='5b3ce3597851110001cf6248ec7fafd8eca44e0ca5590caf093aa7cb';
+		$url='https://api.openrouteservice.org/v2/directions/driving-car?api_key='.$api_key.'&start='.$t->Lng.','.$t->Lat.'&end='.$Longitude.','.$Latitude;
+		$json = file_get_contents($url);   
+		$obj=array();
+		$obj = json_decode($json,true);
+		$t->Distance2=0;
+		$t->Duration2=0;
+		if ($json) {
+			$t->Distance2=number_format(($obj['features'][0]['properties']['segments'][0]['distance'])/1000,0);
+			$t->Duration2=number_format(($obj['features'][0]['properties']['segments'][0]['duration'])/60);
+			if ($t->DeviceTime+$t->Duration2*60<$Direction_time) $t->Shedule="<span style='color:green'>ON TIME</span>";
+			else {
+				$late=number_format(($t->DeviceTime+$t->Duration2*60-$Direction_time)/60,0);
+				$t->Shedule="<span style='color:red'>LATE ".$late."min.</span>";
+			}	
+		}	
+		else {
+			if ($Longitude==0 || $Latitude==0) $t->Shedule='NO DATA';
+			else $t->Shedule='NO ROUTABLE';
+		}
+		
+	}
 	// bojenje transfera
 	$t->bgColor = "#caefff";
 	if($t->TransferStatus == "3") $t->bgColor = "#ffa07a";					
 	if($t->DriverConfStatus >2) $t->bgColor = "#ffe599";										
 	if($t->TransferStatus == "5") $t->bgColor = "#fefefe";
+	if($t->TransferIn) $t->bgColor = "#b6d7a8";	
 	
 	// drugi transfer		
 	$otherTransfer=getOtherTransferIDArray($t->DetailsID,$details);
@@ -90,6 +153,17 @@
 	if($t->ContractFile == 'inter') $t->Inter = true;
 	else $t->Inter = false;
 	
+	// Extras
+	$extras2=array();
+	foreach ($extras as $ex) {
+		$ex_row=array();
+		if ($ex['DetailID']==$t->DetailsID) {
+			$ex_row['Name']=$ex['ServiceName'];
+			$ex_row['Qty']=$ex['Qty'];
+			$extras2[]=$ex_row;
+		}		
+	}
+	$t->Extras=$extras2;
 	$order_row=(array) $t;
 		
 	$ordersArray[]=$order_row;

@@ -1,5 +1,5 @@
 <?
-	require_once('../../../cronJobs/getSubDriverRaptor.php');
+	//require_once('../../../cronJobs/getSubDriverRaptor.php');
 	$link='https://api.giscloud.com/rest/1/drivers.json?api_key=4a27e4227a88de0508aa9fa2e4c57144&app_instance_id=107495';
 	$json = file_get_contents($link); 
 	$obj = json_decode($json,true);	
