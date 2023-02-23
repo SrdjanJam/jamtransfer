@@ -1,4 +1,3 @@
-
 <script type="text/x-handlebars-template" id="ItemEditTemplate">
 <form id="ItemEditForm{{ID}}" class="form box box-info" enctype="multipart/form-data" method="post" onsubmit="return false;">
 	<div class="box-header">
@@ -45,7 +44,7 @@
 					</div>
 				</div>
 
-				<div class="row">
+				<div class="row row-edit-2">
 					<div class="col-md-2">
 						<label for="Active">Active</label>
 					</div>
@@ -69,7 +68,7 @@
 					</div>
 				</div>
 
-				<div class="row">
+				<div class="row row-edit-2">
 					<div class="col-md-2">
 						<label for="Title">Reciver ID</label>
 					</div>
