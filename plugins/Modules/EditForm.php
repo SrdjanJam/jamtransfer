@@ -108,7 +108,16 @@
 				<textarea name="Description" id="Description" rows="15" 
 			class="textarea" style="width:100%">{{Description}}</textarea>
 			</div>
-		</div>	
+		</div>
+		<div class="row">
+			<div class="col-md-3">
+				<label for="Help" style="color:green;"><?=HELP;?></label>
+			</div>
+			<div class="col-md-9">
+				<textarea name="Help" id="Help" rows="15" 
+			class="textarea" style="width:100%;background:#ecf5ec;">{{Help}}</textarea>
+			</div>
+		</div>		
 
 
 
