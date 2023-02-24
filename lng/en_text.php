@@ -263,6 +263,7 @@ define("GOOGLE_PLUS", "Google+");
 define("GRAPH", "Graph");
 define("HEADER_IMAGES", "Header Images");
 define("HELLO", "Hello");
+define("HELP", "Help");
 define("ID", "ID");
 define("IMAGE", "Image");
 define("IMAGE_MANAGER", "Image manager");
