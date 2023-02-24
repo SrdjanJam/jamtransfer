@@ -151,6 +151,7 @@ $smarty->assign('base',$md->getBase());
 $smarty->assign('parentID',$md->getParentID());
 $smarty->assign('ModulID',$key);
 $smarty->assign('setasdriver',$setasdriver);
+$smarty->assign('database',$database);
 
 
 	

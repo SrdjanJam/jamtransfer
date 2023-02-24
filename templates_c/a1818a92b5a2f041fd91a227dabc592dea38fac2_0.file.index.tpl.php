@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.32, created on 2023-02-07 08:43:29
+/* Smarty version 3.1.32, created on 2023-02-23 08:55:18
   from 'C:\wamp\www\jamtransfer\templates\index.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.32',
-  'unifunc' => 'content_63e20121bec646_17619756',
+  'unifunc' => 'content_63f71be60a4ff9_74286479',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'a1818a92b5a2f041fd91a227dabc592dea38fac2' => 
     array (
       0 => 'C:\\wamp\\www\\jamtransfer\\templates\\index.tpl',
-      1 => 1675672930,
+      1 => 1677069242,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:pageList.tpl' => 1,
   ),
 ),false)) {
-function content_63e20121bec646_17619756 (Smarty_Internal_Template $_smarty_tpl) {
+function content_63f71be60a4ff9_74286479 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html>
 	<head>
@@ -222,7 +222,8 @@ _init.js"><?php echo '</script'; ?>
  src="js/cms.jquery.js"><?php echo '</script'; ?>
 ><!-- jquery local -->
 
-		<?php if ($_smarty_tpl->tpl_vars['pageList']->value) {?>
+
+				<?php if ($_smarty_tpl->tpl_vars['pageList']->value) {?>
 
 			<?php echo '<script'; ?>
  src="js/list.js"><?php echo '</script'; ?>
@@ -276,7 +277,6 @@ _init.js"><?php echo '</script'; ?>
 
 
 
-
 	<body class="fixed-top" style="height:100%!important;font-size:16px">
 				<div class="wrapper wrapper-edit">
 
@@ -305,29 +305,29 @@ _init.js"><?php echo '</script'; ?>
 								</ul>
 							</div>
 						</li>
-						
-												<?php if (isset($_SESSION['UseDriverName'])) {?>
-						<!-- nav-header nav-header-edit -->
-							<li class="nav-header nav-header-edit">
-								<h3 id="set-as">Set as:</h3>
-								<h3 class="cut-name"><?php echo $_SESSION['UseDriverName'];?>
-</h3>
-								<a href="setout.php" id="a-setout">Setout &nbsp;<i class="fas fa-sign-out-alt"></i></a>	
-							</li>
-						<?php } else { ?>
-							<?php if (isset($_COOKIE['UseDriverName'])) {?>	
-								<!-- Set as with cookie -->
+						<?php if ($_smarty_tpl->tpl_vars['setasdriver']->value) {?>
+														<?php if (isset($_SESSION['UseDriverName'])) {?>
+							<!-- nav-header nav-header-edit -->
 								<li class="nav-header nav-header-edit">
-									<a href="satAsDriver/<?php echo $_COOKIE['UseDriverID'];?>
-" style="padding-left:5px;padding-right:0px;">
-										<h3 id="set-us-2">Set as: <i class="fas fa-sign-in-alt"></i></h3>
-										<h3 class="cut-name-2"><?php echo $_COOKIE['UseDriverName'];?>
+									<h3 id="set-as">Set as:</h3>
+									<h3 class="cut-name"><?php echo $_SESSION['UseDriverName'];?>
 </h3>
-									</a>
+									<a href="setout.php" id="a-setout">Setout &nbsp;<i class="fas fa-sign-out-alt"></i></a>	
 								</li>
+							<?php } else { ?>
+								<?php if (isset($_COOKIE['UseDriverName'])) {?>	
+									<!-- Set as with cookie -->
+									<li class="nav-header nav-header-edit">
+										<a href="satAsDriver/<?php echo $_COOKIE['UseDriverID'];?>
+" style="padding-left:5px;padding-right:0px;">
+											<h3 id="set-us-2">Set as: <i class="fas fa-sign-in-alt"></i></h3>
+											<h3 class="cut-name-2"><?php echo $_COOKIE['UseDriverName'];?>
+</h3>
+										</a>
+									</li>
+								<?php }?>
 							<?php }?>
-						<?php }?>
-						
+													<?php }?>
 												<?php
 $__section_index_0_loop = (is_array(@$_loop=$_smarty_tpl->tpl_vars['menu1']->value) ? count($_loop) : max(0, (int) $_loop));
 $__section_index_0_total = $__section_index_0_loop;
@@ -423,10 +423,11 @@ echo $_prefixVariable1;?>
 												<div class="navbar-header">
 							<button type="button" class="minimalize-styl-2 btn btn-primary btn-primary-edit" id="cashe"><i class="fas fa-redo-alt"></i></button>
 						</div>
-
+						<?php if ($_smarty_tpl->tpl_vars['DEVELOPMENT']->value) {?><span>TEST</span><?php }?>
 						<ul class="nav navbar-top-links navbar-right">
-							<!-- Dialog button: -->
-							<li><button type="button" id="opener" class="button-3">Help Dialog</button></li>
+							<!-- Opener dialog button: -->
+							<li><button type="button" id="opener-help" class="button-3">Help</button></li>
+							<li><button type="button" id="opener-message" class="button-3">Message</button></li>
 
 							<li>
 								<h2><span class="m-r-sm text-muted"><?php echo $_smarty_tpl->tpl_vars['title']->value;?>
@@ -440,12 +441,14 @@ echo $_prefixVariable1;?>
 							</li>
 
 						</ul>
-						<!-- Dialog Message: -->
-						<div class="dialog-m"><!-- printed results here --></div>
 						
+						<!-- Dialog printed results here: -->
+						<div style="display:none;" class="dialog-help"></div>
+						<textarea style="display:none;" data-id="<?php echo $_smarty_tpl->tpl_vars['ModulID']->value;?>
+" class="dialog-message textarea-dalog"></textarea>
 					</nav>
+					
 				</div> 				<!-- ******************************************************************************** -->		
-
 			
 				<?php if (!$_smarty_tpl->tpl_vars['isNew']->value && $_smarty_tpl->tpl_vars['pageList']->value) {?>
 										<div class="header header-edit">  
@@ -467,7 +470,6 @@ echo $_prefixVariable1;?>
 
 					</div> 				<?php }?>
 				
-				
 				<div class="body row white-bg white-bg-edit">
 
 					<?php if (isset($_smarty_tpl->tpl_vars['pageOLD']->value)) {?>
@@ -485,7 +487,7 @@ echo $_prefixVariable1;?>
 
 							SEMI MODEL VIEW CONTROL via OB_GET_CONTENTS
 					<?php }?>
-					
+
 				</div> 
 				<div class="footer row footer-edit">
 
@@ -552,25 +554,29 @@ echo $_prefixVariable1;?>
 
 <?php echo '<script'; ?>
 >
-	// toggleClass:
+	
 	$(document).ready(function(){
 
 		window.success = $("#success").val();
 		window.delete = $("#delete").val();
 		
+		// toggleClass:
 		$("a.navbar-minimalize").click(function(){
-			// Full navbar:
-			$("nav.navbar-default").toggleClass("additional-class");
-			// Hide and show status on toggle:
-			$("#status").toggle(100,function(){ });
+			$("nav.navbar-default").toggleClass("additional-class"); // Full navbar
+			$("#status").toggle(100,function(){ }); // Hide and show status on toggle
 		}); // End of click
 
 
-		// Dialog Box:
-		$( ".dialog-m" ).dialog({
-			title: 'Basic dialog',
+
+		$( ".dialog-help" ).dialog({
+
+			title: 'Help Dialog',
 			autoOpen: false,
-			
+			// resizable: false,
+			modal: true,
+			width: "60%",
+
+			// Effects:
 			show: {
 				effect: "blind",
 				duration: 500
@@ -578,13 +584,50 @@ echo $_prefixVariable1;?>
 			hide: {
 				effect: "explode",
 				duration: 500
-			}
+			},
+
 		});
-	
-		// Ajax preparation:
-		$( "#opener" ).on( "click", function() {
+		
+
+		$( ".dialog-message" ).dialog({
+
+			title: 'Message Dialog',
+			autoOpen: false,
+			// resizable: false,
+			modal: true,
+			width: "60%",
+			
+			// Effects:
+			show: {
+				effect: "blind",
+				duration: 500
+			},
+			hide: {
+				effect: "explode",
+				duration: 500
+			},
+			
+			buttons :  [{ 
+     		text: "Save",
+     		id: "saved-message",
+				click: function(){
+					$(this).dialog("close");
+				}
+
+   			}],
+
+			// Testing:
+			//    open: function() {
+			// 	var markup = data;
+			// 	$(this).html(markup);
+			// },
+
+		});
+
+		// Ajax preparation for help:
+		$( "#opener-help" ).on( "click", function() {
 			var link = 'plugins/getHelp.php';
-    		var param = 'ModuleID=' + <?php echo $_smarty_tpl->tpl_vars['ModuleID']->value;?>
+    		var param = 'ModulID=' + <?php echo $_smarty_tpl->tpl_vars['ModulID']->value;?>
 
 
 			$.ajax({
@@ -593,10 +636,63 @@ echo $_prefixVariable1;?>
 				data: param,
 				async: false,
 				success: function (data) {
-					$( ".dialog-m" ).text(data).dialog( "open" );
+					$( ".dialog-help" ).text(data).dialog( "open" );
 				}
 			});
+
+
 		});
+		
+		// Ajax preparation for message:
+		$( "#opener-message" ).on( "click", function() {
+			var link = 'plugins/getMessage.php';
+    		var param = 'ModulID=' + <?php echo $_smarty_tpl->tpl_vars['ModulID']->value;?>
+
+
+			$.ajax({
+				type: 'POST',
+				url: link,
+				data: param,
+				async: false,
+				success: function (data) {
+					$( ".dialog-message" ).text(data).dialog( "open" );
+				}
+			});
+
+
+		});
+
+		// Button Save:
+		$("#saved-message").on("click", function(){
+			var base=window.location.origin;
+			var link = base+'/jamtransfer/plugins/Save.php';
+
+			var messageID = $('.dialog-message').attr("data-id");
+			var messageContent = $(".dialog-message").val();
+
+			var textarea = $(".dialog-message").text(messageContent);
+
+			// Testing:
+			// alert($(".dialog-message").text());
+			// alert(messageContent);
+
+			var param='ModulID='+messageID+'&Message='+messageContent;
+
+			// Testing:
+			// console.log(link+'?'+param);
+			
+			$.ajax({
+				type: 'POST',
+				url: link,
+				data: param,
+				success: function(data) {
+				}
+
+			});	
+
+
+		});
+
 		
 		
 	}); // End of document.ready

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.32, created on 2022-12-12 07:16:46
+/* Smarty version 3.1.32, created on 2023-02-23 07:55:54
   from 'C:\wamp\www\jamtransfer\templates\pageListHeader.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.32',
-  'unifunc' => 'content_6396d55e8a5c63_35309269',
+  'unifunc' => 'content_63f71c0ab23fe4_26128345',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '7d4e13059d7eb1944e7a2452042dc0a71e7ccf69' => 
     array (
       0 => 'C:\\wamp\\www\\jamtransfer\\templates\\pageListHeader.tpl',
-      1 => 1670829403,
+      1 => 1675854239,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6396d55e8a5c63_35309269 (Smarty_Internal_Template $_smarty_tpl) {
+function content_63f71c0ab23fe4_26128345 (Smarty_Internal_Template $_smarty_tpl) {
 if ($_smarty_tpl->tpl_vars['existNew']->value) {?>
 	<a class="btn btn-primary btn-xs" href="<?php echo $_smarty_tpl->tpl_vars['currenturl']->value;?>
 /new"><?php echo $_smarty_tpl->tpl_vars['NNEW']->value;?>
@@ -144,6 +144,7 @@ $_smarty_tpl->_assignInScope('pagelength', "10");
 				<option value="99" selected="selected"><?php echo $_smarty_tpl->tpl_vars['ALL']->value;?>
 </option>			
 				<option value="1"> Active </option>
+				<?php if (isset($_smarty_tpl->tpl_vars['selectactive2']->value)) {?><option value="2"> Semi Active </option><?php }?>
 				<option value="0"> Not Active </option>
 			</select>
 		</div>
