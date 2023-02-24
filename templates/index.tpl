@@ -338,7 +338,8 @@
 						<div class="navbar-header">
 							<button type="button" class="minimalize-styl-2 btn btn-primary btn-primary-edit" id="cashe"><i class="fas fa-redo-alt"></i></button>
 						</div>
-						{if $DEVELOPMENT}<span>TEST</span>{/if}
+						{if $database eq 'TEST'}<span>TEST</span>{/if}
+						{if $database eq 'NEW_TEST'}<span>New database TEST</span>{/if}
 						<ul class="nav navbar-top-links navbar-right">
 							<!-- Opener dialog button: -->
 							<li><button type="button" id="opener-help" class="button-3">Help</button></li>

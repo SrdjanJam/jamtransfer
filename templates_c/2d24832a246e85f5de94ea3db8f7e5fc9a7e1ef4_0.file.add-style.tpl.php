@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.32, created on 2023-01-25 09:11:15
+/* Smarty version 3.1.32, created on 2023-02-23 08:55:18
   from 'c:\wamp\www\jamtransfer\templates\add-style.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.32',
-  'unifunc' => 'content_63d0e42317c6b3_78967668',
+  'unifunc' => 'content_63f71be6a98160_05996443',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '2d24832a246e85f5de94ea3db8f7e5fc9a7e1ef4' => 
     array (
       0 => 'c:\\wamp\\www\\jamtransfer\\templates\\add-style.tpl',
-      1 => 1674115575,
+      1 => 1676623996,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_63d0e42317c6b3_78967668 (Smarty_Internal_Template $_smarty_tpl) {
+function content_63f71be6a98160_05996443 (Smarty_Internal_Template $_smarty_tpl) {
 ?><style>
 
 
@@ -283,6 +283,54 @@ function content_63d0e42317c6b3_78967668 (Smarty_Internal_Template $_smarty_tpl)
 /* .listTile:focus{ background: rgb(71, 42, 173); } */
 
 
+
+/* Button */
+.button-3 {
+  appearance: none;
+  /* background-color: #2ea44f; old */
+  background-color: #2e8ba4;
+  /* background: linear-gradient(177deg, #2ea44f 0%, #58ce79 100%); */
+  border: 1px solid rgba(27, 31, 35, .15);
+  border-radius: 6px;
+  /* box-shadow: rgba(27, 31, 35, .1) 0 1px 0; Old */ 
+  box-shadow: 2px 2px 5px #424181;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-family: -apple-system,system-ui,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
+  font-size: 14px;
+  font-weight: 600;
+  /* line-height: 20px; */
+  padding: 6px 16px;
+  margin-top: -5px;
+  margin-right:5px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.button-3:hover {
+  /* background-color: #2c974b; old */
+  background-color: #45afcc;
+  
+}
+
+.ui-dialog{
+    height: 50% !important;
+}
+
+.textarea-dalog{
+    width: 100% !important;
+    height:70% !important;
+	resize: none;
+    box-sizing: border-box !important;
+}
 
 
 
