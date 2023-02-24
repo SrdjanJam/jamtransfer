@@ -30,8 +30,8 @@ $currency = array(
 }
   </style>
 
-<script type="text/x-handlebars-template" id="v4_SubExpensesEditTemplate">
-<form id="v4_SubExpensesEditForm{{ID}}" class="form box box-info" enctype="multipart/form-data" method="post" onsubmit="return false;">
+<script type="text/x-handlebars-template" id="ItemEditTemplate">
+<form id= "ItemEditForm{{ID}}" class="form box box-info" enctype="multipart/form-data" method="post" onsubmit="return false;">
 	<div class="box-header">
 		<div class="box-title">
 			<? if ($isNew) { ?>
@@ -41,26 +41,28 @@ $currency = array(
 			<? } ?>
 		</div>
 		<div class="box-tools pull-right">
-			
+
 			<span id="statusMessage" class="text-info xl"></span>
-			
-			<? if (!$isNew) { ?>
-				<? if ($inList=='true') { ?>
-					<button class="btn" title="<?= CLOSE?>" 
-					onclick="return editClosev4_SubExpenses('{{ID}}', '<?= $inList ?>');">
-					<i class="fa fa-arrow-up"></i>
-					</button>
-				<? } else { ?>
-					<button class="btn btn-danger" title="<?= CANCEL ?>" 
-					onclick="return deletev4_SubExpenses('{{ID}}', '<?= $inList ?>');">
-					<i class="fa fa-ban"></i>
-					</button>
-				<? } ?>	
-			<? } ?>	
-			<button class="btn btn-info" title="<?= SAVE_CHANGES ?>" 
-			onclick="return editSavev4_SubExpenses('{{ID}}', '<?= $inList ?>');">
-			<i class="ic-disk"></i>
-			</button>
+
+      <? if (!$isNew) { ?>
+
+				<button class="btn btn-warning" title="<?= CLOSE?>"
+				onclick="return editCloseItem('{{ID}}');">
+				<i class="fa fa-close"></i>
+				</button>
+
+				<button class="btn btn-danger" title="<?= CANCEL ?>"
+				onclick="return deleteItem('{{ID}}');">
+				<i class="fa fa-ban"></i>
+				</button>
+
+  		<? } ?>	
+
+  			<button class="btn btn-info" title="<?= SAVE_CHANGES ?>"
+  				onclick="return editSaveItem('{{ID}}');">
+  				<i class="fa fa-save"></i>
+  			</button>
+
 		</div>
 	</div>
 
@@ -108,8 +110,8 @@ $currency = array(
 							?>
 						</select>
 					</div>
-					
-					
+
+
 				</div>
 
 				<div class="row">
@@ -134,12 +136,12 @@ $currency = array(
 					<div class="col-md-3">
 						<label for="Approved">Approved</label>
                     </div>
-					<div class="col-md-9">				
+					<div class="col-md-9">
 						<input type="hidden" name="Approved" id="a{{ID}}" value="{{Approved}}">
 						<input type="checkbox" id="{{ID}}" {{#compare Approved "==" 1}} checked {{/compare}} onclick="checkApproved({{ID}})">
 					</div>
 				</div>
-				
+
 			</div>
 
 			<div class="col-md-6">
@@ -208,7 +210,7 @@ $currency = array(
 					</div>
 				</div>
 
-				
+
 				<div class="row">
 					<div class="col-md-3">
 						<label for="DocumentImage">Document Image</label>
@@ -217,12 +219,12 @@ $currency = array(
 						<input name='DocumentImage' type="hidden" id='docimage' value='{{DocumentImage}}'/>
 						<img id='docimage2' class="small" src="" alt="" height="50" width="50">
 						<button id="image_delete" class="btn btn-default" >
-							<i class="ic-cancel-circle"></i>
+							<i class="fa fa-remove"></i>
 						</button>
-						<input id='DocumentImageX' type="file"  name="DocumentImageX" onchange="editSaveIMGv4_SubExpenses()">						
+						<input id='DocumentImageX' type="file"  name="DocumentImageX" onchange="editSaveIMGv4_SubExpenses()">
 					</div>
 				</div>
-				
+
 				{{#compare ApprovedFuelPrice ">" 0}}
 				<div class="row">
 					<div class="col-md-3">
@@ -235,58 +237,46 @@ $currency = array(
 				{{/compare}}
 			</div>
 	    </div>
-		    
-
-	<!-- Statuses and messages -->
-	<div class="box-footer">
-		<? if (!$isNew) { ?>
-		<div>
-    	<button class="btn btn-default" onclick="return deletev4_SubExpenses('{{ID}}', '<?= $inList ?>');">
-    		<i class="ic-cancel-circle"></i> <?= DELETE ?>
-    	</button>
-    	</div>
-    	<? } ?>
-
-	</div>
 
 </form>
 
 
-	<script>	
+	<script>
 		var actionid=$('#actionsid').val();
-		$("#actionsselect option[value="+actionid+"]").attr("selected", "selected");		 
-		
-		$('img').click(function() {
-			$(this).attr('class','large');	   
+		$("#actionsselect option[value="+actionid+"]").attr("selected", "selected");
 
-		})	
+		$('img').click(function() {
+			$(this).attr('class','large');
+
+		})
 		$('#image_delete').click(function() {
-			$("#docimage").val('');	   
-			$("#docimage2").hide();	
-			$('#image_delete').hide();	
-		})			
-			
+			$("#docimage").val('');
+			$("#docimage2").hide();
+			$('#image_delete').hide();
+		})
+
 		$('img').mouseout(function() {
 			$(this).attr('class','small');
-		})	
+		})
 		$('img').dblclick(function() {
 			$(this).addClass('rotate');
 
-		})	
+		})
+
 		var docimage=$('#docimage').val();
 		if (docimage !='' && docimage !='null') {
 			$('#docimage2').attr('src',docimage);
-		}	
-	
-		var actimage=$('#actimage').val(); 
+		}
+
+		var actimage=$('#actimage').val();
 		if (actimage !='' && actimage !='null') {
-			$('#actimage2').attr('src',actimage); 
+			$('#actimage2').attr('src',actimage);
 		}
 		else {
-			$("#docimage2").hide();	
-			$('#image_delete').hide();	
-		}	
-		
+			$("#docimage2").hide();
+			$('#image_delete').hide();
+		}
+
 		// uklanja ikonu Saved - statusMessage sa ekrana
 		$("form").change(function(){
 			$("#statusMessage").html('');
@@ -307,14 +297,13 @@ $currency = array(
 		{
 		  var checkbox = document.getElementById(id);
 		  var Approved = document.getElementById('a'+id);
-		  
+
 		  if (checkbox.checked != true)
 		  {
 			Approved.value = '0';
 		  } else Approved.value = '1';
-		  
+
 		console.log(Approved.value);
-}		
+}
 	</script>
 </script>
-	

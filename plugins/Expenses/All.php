@@ -2,25 +2,18 @@
 header('Content-Type: text/javascript; charset=UTF-8');
 error_reporting(E_PARSE);
 
+require_once 'Initial.php';
+
 @session_start();
-# init libs
-require_once '../../../../db/db.class.php';
-require_once '../../../../db/v4_SubActivity.class.php';
-require_once '../../../../db/v4_AuthUsers.class.php';
-require_once '../../../../db/v4_Actions.class.php';
-# init class
-$db = new v4_SubActivity();
-$ac = new v4_Actions();
-$dbf = new DataBaseMySql();
 
 
-class v4_SubActivityJoin extends v4_SubActivity {
+class v4_SubExpensesJoin extends v4_SubExpenses {
 	public function getKeysBy($column, $order, $where = NULL){
 		$keys = array(); $i = 0;
 		$result = $this->connection->RunQuery("
-			SELECT v4_SubActivity.ID, v4_AuthUsers.AuthUserRealName FROM v4_SubActivity 
-			LEFT JOIN v4_AuthUsers ON v4_SubActivity.DriverID = v4_AuthUsers.AuthUserID 
-			$where AND v4_SubActivity.Approved<9 ORDER BY $column $order");
+			SELECT v4_SubExpenses.ID, v4_AuthUsers.AuthUserRealName FROM v4_SubExpenses 
+			LEFT JOIN v4_AuthUsers ON v4_SubExpenses.DriverID = v4_AuthUsers.AuthUserID 
+			$where AND v4_SubExpenses.Approved<9 ORDER BY $column $order");
 		while($row = $result->fetch_array(MYSQLI_ASSOC)){
 			$keys[$i] = $row["ID"];
 			$i++;
@@ -28,8 +21,9 @@ class v4_SubActivityJoin extends v4_SubActivity {
 	return $keys;
 	}
 }
+
 # init class
-$se = new v4_SubActivityJoin();
+$se = new v4_SubExpensesJoin();
 $au = new v4_AuthUsers();
 
 #********************************************
@@ -59,7 +53,7 @@ $flds = array();
 
 # kombinacija where i filtera
 $DB_Where = " " . $_REQUEST['where'];
-//$DB_Where .= $filter;
+$DB_Where .= $filter;
 
 #********************************
 # kolone za koje je moguc Search 
@@ -94,20 +88,12 @@ if ( $_REQUEST['Search'] != "" )
 
 
 // 2017-02-13 za pretrazivanje po imenu vozaca potrebno je napraviti join -R
-$DB_Where = "LEFT JOIN v4_AuthUsers ON v4_SubActivity.DriverID = v4_AuthUsers.AuthUserID" . $DB_Where;
+$DB_Where = "LEFT JOIN v4_AuthUsers ON v4_SubExpenses.DriverID = v4_AuthUsers.AuthUserID" . $DB_Where;
 
 $dbTotalRecords = $db->getKeysBy('ID ASC', '',$DB_Where);
 
 # test za LIMIT - trebalo bi ga iskoristiti za pagination! 'asc' . ' LIMIT 0,50'
 $dbk = $db->getKeysBy('ID ' . $sortOrder, '' . $limit , $DB_Where);
-
-//select za nazive vozila
-$sql="SELECT * FROM `v4_SubVehicles` WHERE `OwnerID`=".$_SESSION["OwnerID"]." and `Active`=1";
-$query=mysqli_query($dbf->conn, $sql) or die('Error in RequestCheckList query' . mysqli_connect_error());
-while($list = mysqli_fetch_object($query) ) {
-	$vehiclesnames[$list->VehicleID]=$list->VehicleDescription;	
-}	
-
 
 if (count($dbk) != 0) {
     foreach ($dbk as $nn => $key)  
@@ -125,8 +111,7 @@ if (count($dbk) != 0) {
 		$detailFlds["AuthUserRealName"] = $au->getAuthUserRealName();
 		$ac->getRow($db->getExpense());
 		$detailFlds["ExpanceTitle"] = $ac->getTitle();
-		$detailFlds["VehicleDescription"] = $vehiclesnames[$db->VehicleID];
-
+		
 		$out[] = $detailFlds;
     }
 }

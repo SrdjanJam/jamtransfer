@@ -1,11 +1,11 @@
 <?
+
+require_once 'Initial.php';
+
 session_start();
 require_once '../../../lng/en_text.php';
-require_once '../../../../db/db.class.php';
-//akcije-troskovi
-require_once '../../../../db/v4_Actions.class.php';
-$db = new DataBaseMySql();
-$ac = new v4_Actions();
+
+
 $ack = $ac->getKeysBy('DisplayOrder ', '');
 foreach ($ack as $nn => $key)
 {

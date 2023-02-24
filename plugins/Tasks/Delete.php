@@ -1,10 +1,7 @@
 <?
 header('Content-Type: text/javascript; charset=UTF-8');
-error_reporting(E_PARSE);
  
-	# init libs
-	require_once '../../../../db/db.class.php';
-	require_once '../../../../db/v4_SubExpenses.class.php';
+require_once 'Initial.php';
 
 
 	# init vars
@@ -12,7 +9,7 @@ error_reporting(E_PARSE);
 
 
 	# init class
-	$db = new v4_SubExpenses();
+	$db = new v4_SubActivity();
 
 	# delete row by key value
 	$db->deleteRow($_REQUEST['ID']);

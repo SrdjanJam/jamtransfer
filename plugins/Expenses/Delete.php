@@ -1,17 +1,11 @@
 <?
 header('Content-Type: text/javascript; charset=UTF-8');
- 
-	# init libs
-	require_once '../../../../db/db.class.php';
-	require_once '../../../../db/v4_SubActivity.class.php';
+error_reporting(E_PARSE);
+require_once 'Initial.php';
 
 
 	# init vars
 	$out = array();
-
-
-	# init class
-	$db = new v4_SubActivity();
 
 	# delete row by key value
 	$db->deleteRow($_REQUEST['ID']);
