@@ -227,7 +227,7 @@
 .nav-header-edit #set-as, #set-as-2{ font-family:Georgia, 'Times New Roman', Times, serif; }
 
 
-/* pageListHeader.tpl */
+/* pageListHeader.tpl -------------------------------------------------------- */
 
 .form-group.group-edit{
     display: inline-block;
@@ -239,6 +239,21 @@
     }
     
 }
+
+.itemsheader-edit{
+    background: #def6fe;
+    padding-top: 10px;
+}
+
+.col-md-2-infoShow{
+    font-weight: 900;
+}
+
+.btn-xs-edit{
+    margin-left: 20px;
+    margin-bottom: 10px;
+}
+/* ------------------------------------------------------------------------------- */
 
 /* Navbar Side */
 .navbar-default-edit{
@@ -296,6 +311,8 @@
   background-color: #45afcc;
   
 }
+
+
 /* ------------------------------------------ */
 /* Dialog */
 .ui-dialog{
@@ -328,18 +345,16 @@
 /* .listTile:focus{ background: rgb(71, 42, 173); } */
 
 
-.itemsheader-edit{
-    background: #def6fe;
-    padding-top: 10px;
+
+
+.nav-label-edit{
+    font-style: italic;
+    text-shadow: 3px 3px 2px #494949;
+
 }
 
-.col-md-2-infoShow{
-    font-weight: 900;
-}
-
-.btn-xs-edit{
-    margin-left: 20px;
-    margin-bottom: 10px;
+#side-menu .edit-fa{
+    text-shadow: 3px 3px 2px #494949;
 }
 
 </style>
