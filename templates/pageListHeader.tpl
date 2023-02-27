@@ -1,6 +1,4 @@
-{if $existNew}
-	<a class="btn btn-primary btn-xs" href="{$currenturl}/new">{$NNEW}</a><br>
-{/if}
+
 <input type="hidden"  id="whereCondition" name="whereCondition" 
 value=" WHERE {$ItemID} > 0">
 
@@ -11,8 +9,11 @@ value=" WHERE {$ItemID} > 0">
 <input type="hidden"  id="vehicleTypeID" name="vehicleTypeID" value="{$VehicleTypeID}">
 <input type="hidden"  id="vehicleID" name="vehicleID" value="{$VehicleID}">
 
-<div class="row itemsheader">
-	<div class="col-md-2 asd" id="infoShow"></div>
+<div class="row itemsheader itemsheader-edit">
+{if $existNew}
+	<a class="btn btn-primary btn-xs btn-xs-edit" href="{$currenturl}/new">{$NNEW}</a><br>
+{/if}
+	<div class="col-md-2 col-md-2-infoShow" id="infoShow"></div>
 	{if isset($selecttype)}
 	<div class="col-md-2 asd">
 		<i class="fa fa-list-ul edit-fa"></i>
