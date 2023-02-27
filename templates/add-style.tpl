@@ -1,6 +1,6 @@
 <style>
 
-{* PLUGINS FOLDER: *}
+{* PLUGINS FOLDER: ===============================================================  *}
 
 /* DriversTransfers/templates/index.tpl and AgentsTransfers/templates/index.tpl */
 .row_e:hover{ background:rgb(229, 229, 240); }
@@ -29,7 +29,8 @@
 
 /* ListTemplate.php */
 #show_items .row-edit{
-    color:#3C8DBC;
+    color:#179ae6;
+    /* color:#3C8DBC; older */
     font-weight:bold;
     padding:5px 0;
 }
@@ -132,8 +133,13 @@
 /* End of Bookings/Orders */
 
 
-{* END OF PLUGINS FOLDER: =====================  *}
+.box-body .row-edit-2{
+	margin-top:5px;
+}
 
+
+{* END OF PLUGINS FOLDER: ===============================================================  *}
+{* ======================================================================================  *}
 
 
 {* TEMPLATES FOLDER: *}
@@ -148,12 +154,13 @@
 }
 
 .nav-header-edit{
-    background-color: #e4e4e4;
+    background-color: #dbd6ca;
+    /* background-color: #e4e4e4; older */
     margin: 0 5px 5px 5px;
     padding: 5px;
     box-sizing: border-box;
     border: 2px solid #4c81ad;
-    box-shadow: 5px 5px 8px #888888;
+    box-shadow: 5px 5px 8px #888888 inset;
     border-radius: 10px;
     z-index:1;
 }
@@ -200,7 +207,8 @@
 }
 
 .nav-header-top-edit{
-    background: #476092;
+    background: #175a89;
+    /* background: #476092; older */
     margin: 5px 5px 10px 5px;
     border-radius: 10px;
     box-shadow: 5px 5px 16px #424181 inset;
@@ -234,13 +242,14 @@
 
 /* Navbar Side */
 .navbar-default-edit{
-    background-image: linear-gradient(#333a42, #3e576e);
-    /* background-image: linear-gradient(#3e576e,#333a425d); spare */
+    background-image: linear-gradient(#050505, #42536B);
+    /* background-image: linear-gradient(#333a42, #3e576e); older */
 }
 
 /* navbar top fixed */
 .navbar-static-top-edit{
-    background-image: linear-gradient(to bottom right, silver, #cceeff);
+    background-image: linear-gradient(to bottom right, #76889f, #cceeff);
+    /* background-image: linear-gradient(to bottom right, silver, #cceeff); older */
 }
 
 /* Footer */
@@ -249,20 +258,6 @@
 }
 .pull-left-edit{ margin-left:10px; }
 .pull-right-edit{ margin-right:20px; }
-
-
-{* END OF TEMPLATES: *}
-/* ------------------------------------------ */
-
-
-
-/* Cursor pointer */
-.listTile{ cursor:pointer;}
-.listTile:hover{ background: rgb(229 229 231); }
-.listTitleEdit{ cursor:auto !important; }
-/* off */
-/* .listTile:focus{ background: rgb(71, 42, 173); } */
-
 
 
 /* Button */
@@ -301,9 +296,11 @@
   background-color: #45afcc;
   
 }
-
+/* ------------------------------------------ */
+/* Dialog */
 .ui-dialog{
     height: 50% !important;
+    overflow-y: auto;
 }
 
 .textarea-dalog{
@@ -312,8 +309,37 @@
 	resize: none;
     box-sizing: border-box !important;
 }
+/* ------------------------------------------ */
 
 
 
+{* END OF TEMPLATES: ======================================================================================  *}
+{* ========================================================================================================  *}
+/* ------------------------------------------ */
+
+
+/* Cursor pointer */
+.listTile{ cursor:pointer;}
+.listTile:hover{ background: rgb(229 229 231); }
+.listTitleEdit{ cursor:auto !important; }
+.listTitleEdit:nth-of-type(2n){ background: #f1f1f1 !important; }
+.listTitleEdit:nth-of-type(2n):hover{ background: rgb(229 229 231) !important; }
+/* off */
+/* .listTile:focus{ background: rgb(71, 42, 173); } */
+
+
+.itemsheader-edit{
+    background: #def6fe;
+    padding-top: 10px;
+}
+
+.col-md-2-infoShow{
+    font-weight: 900;
+}
+
+.btn-xs-edit{
+    margin-left: 20px;
+    margin-bottom: 10px;
+}
 
 </style>
