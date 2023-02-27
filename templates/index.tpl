@@ -260,8 +260,8 @@
 						{section name=index loop=$menu1}
 							<li class="{$menu1[index].active}">
 								<a href='{$menu1[index].link}' >
-									<i class="fa {$menu1[index].icon}"></i>
-									<span class="nav-label" title="{$menu1[index].description}">{$menu1[index].title} <span class='badge'>{$menu1[index].activestatus}</span></span> 
+									<i class="fa {$menu1[index].icon} edit-fa"></i>
+									<span class="nav-label nav-label-edit" title="{$menu1[index].description}">{$menu1[index].title} <span class='badge'>{$menu1[index].activestatus}</span></span> 
 									<span class="{$menu1[index].arrow}"></span>
 								</a>
 
@@ -272,7 +272,7 @@
 
 										{section name=index1 loop=$menu1[index].menu}	
 											<li class="{$menu1[index].menu[index1].active}">
-												<a href="{$menu1[index].menu[index1].link}"><span class="nav-label" title="{$menu1[index].menu[index1].description}">{$menu1[index].menu[index1].title} <span class='badge'>{{$menu1[index].menu[index1].activestatus}}</span></span></a>
+												<a href="{$menu1[index].menu[index1].link}"><span class="nav-label nav-label-edit" title="{$menu1[index].menu[index1].description}">{$menu1[index].menu[index1].title} <span class='badge'>{{$menu1[index].menu[index1].activestatus}}</span></span></a>
 
 													{if $menu1[index].menu[index1].title eq 'Orders'}
 														<!-- collapse: ul second level: -->
@@ -338,8 +338,7 @@
 						<div class="navbar-header">
 							<button type="button" class="minimalize-styl-2 btn btn-primary btn-primary-edit" id="cashe"><i class="fas fa-redo-alt"></i></button>
 						</div>
-						{if $database eq 'TEST'}<span>TEST</span>{/if}
-						{if $database eq 'NEW_TEST'}<span>New database TEST</span>{/if}
+						{if $DEVELOPMENT}<span>TEST</span>{/if}
 						<ul class="nav navbar-top-links navbar-right">
 							<!-- Opener dialog button: -->
 							<li><button type="button" id="opener-help" class="button-3">Help</button></li>
@@ -485,7 +484,8 @@
 
 			title: 'Help Dialog',
 			autoOpen: false,
-			// resizable: false,
+			resizable: false,
+			draggable: false,
 			modal: true,
 			width: "60%",
 
@@ -506,7 +506,8 @@
 
 			title: 'Message Dialog',
 			autoOpen: false,
-			// resizable: false,
+			resizable: false,
+			draggable: false,
 			modal: true,
 			width: "60%",
 			
@@ -548,7 +549,7 @@
 				data: param,
 				async: false,
 				success: function (data) {
-					$( ".dialog-help" ).text(data).dialog( "open" );
+					$( ".dialog-help" ).html(data).dialog( "open" );
 				}
 			});
 
@@ -566,7 +567,7 @@
 				data: param,
 				async: false,
 				success: function (data) {
-					$( ".dialog-message" ).text(data).dialog( "open" );
+					$( ".dialog-message" ).html(data).dialog( "open" );
 				}
 			});
 
@@ -581,7 +582,7 @@
 			var messageID = $('.dialog-message').attr("data-id");
 			var messageContent = $(".dialog-message").val();
 
-			var textarea = $(".dialog-message").text(messageContent);
+			var textarea = $(".dialog-message").html(messageContent);
 
 			// Testing:
 			// alert($(".dialog-message").text());
