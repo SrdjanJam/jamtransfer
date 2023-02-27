@@ -548,7 +548,7 @@
 				data: param,
 				async: false,
 				success: function (data) {
-					$( ".dialog-help" ).text(data).dialog( "open" );
+					$( ".dialog-help" ).html(data).dialog( "open" );
 				}
 			});
 
@@ -566,7 +566,7 @@
 				data: param,
 				async: false,
 				success: function (data) {
-					$( ".dialog-message" ).text(data).dialog( "open" );
+					$( ".dialog-message" ).html(data).dialog( "open" );
 				}
 			});
 

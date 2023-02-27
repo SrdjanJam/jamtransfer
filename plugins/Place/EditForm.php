@@ -35,7 +35,7 @@
 			<div class="col-md-12">
 				<div class="row hidden">
 					<div class="col-md-3">
-						<label for="PlaceID"><?=PLACE_ID;?></label>
+						<label for="PlaceID"><?=PLACEID;?></label>
 					</div>
 					<div class="col-md-9">
 						{{PlaceID}}
@@ -97,7 +97,7 @@
 					</div>
 				</div>
 
-				<div class="row">
+				<!--<div class="row">
 					<div class="col-md-3">
 						<label for="PlaceDesc"><?=PLACEDESC;?></label>
 					</div>
@@ -117,7 +117,7 @@
 					<div class="col-md-3">					
 						<img height="100px" src="{{Image}}" alt="{{PlaceCity}}">					
 					</div>	
-				</div>
+				</div>!--->
 				
 				<div class="row">
 					<div class="col-md-3">
