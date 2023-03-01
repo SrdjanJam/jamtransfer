@@ -6,6 +6,16 @@ require_once 'Initial.php';
 
 @session_start();
 
+if (isset($selectapproved)) {
+	if (!isset($_REQUEST['Approved']) or $_REQUEST['Approved'] == 99) {
+		$filter .= "  AND ".$selectapproved." > -1 ";
+	}
+	else {
+		$filter .= "  AND ".$selectapproved." = " . $_REQUEST['Approved'] ;
+	}
+}
+
+
 class v4_SubActivityJoin extends v4_SubActivity {
 	public function getKeysBy($column, $order, $where = NULL){
 		$keys = array(); $i = 0;
@@ -51,7 +61,7 @@ $flds = array();
 
 # kombinacija where i filtera
 $DB_Where = " " . $_REQUEST['where'];
-//$DB_Where .= $filter;
+$DB_Where .= $filter;
 
 #********************************
 # kolone za koje je moguc Search 

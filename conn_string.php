@@ -1,14 +1,13 @@
 <? 
 if(!isset($_SESSION)) session_start();
 //ovde ubaciti userid-ije za user-e koji ce koristiti glavnu bazu a ne testnu
-//$privusers=array(874,3012,3011,3013);
-//$privusers=array(874,3012,3011,3013,2322,58);
-$privusers=array(874,3012,3011,3013,3064,3066);
-$testusers=array(3068,3069);
-$database="TEST";
-if (in_array($_SESSION['AuthUserID'],$privusers)) $database="REAL";
-if (in_array($_SESSION['AuthUserID'],$testusers)) $database="NEW_TEST";
-	
+if (isset($_SESSION['AuthUserID'])) {
+	$privusers=array(874,3012,3011,3013,3064,3066);
+	$testusers=array(3068,3069);
+	$database="TEST";
+	if (in_array($_SESSION['AuthUserID'],$privusers)) $database="REAL";
+	if (in_array($_SESSION['AuthUserID'],$testusers)) $database="NEW_TEST";
+}	
 define("MONITOR", 0);
 define("ALLOW_REFRESH", 1);
 define("CMS_ONLY", true); 

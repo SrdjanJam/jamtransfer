@@ -87,5 +87,18 @@ value=" WHERE {$ItemID} > 0">
 			</select>
 		</div>
 	</div>
+	{/if}	
+	
+	{if isset($selectapproved)}		
+	<div class="col-md-2 asd">
+		<i class="fa fa-filter edit-fa"></i> 
+		<div class="form-group group-edit">
+			<select name="Approved" id="Approved" onchange="allItems();" class="form-control control-edit">
+				<option value="99" selected="selected">{$ALL}</option>			
+				<option value="1"> Approved </option>
+				<option value="0"> Not Approved </option>
+			</select>
+		</div>
+	</div>
 	{/if}
 </div>

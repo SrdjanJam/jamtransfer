@@ -8,8 +8,9 @@ $db = new v4_SubExpenses();
 $ac = new v4_Actions();
 
 $keyName = 'ID';
-$ItemName='DisplayOrder ';
-$type='Active'; 
+$ItemName='Datum ';
+$selectapproved='Approved';
+
 
 #********************************
 # kolone za koje je moguc Search 

@@ -28,9 +28,10 @@ Class v4_SubActivity {
 	public $Approved; //tinyint(1)
 	public $connection;
 
-	public function v4_SubActivity(){
+	function __construct(){
 		$this->connection = new DataBaseMysql();
-	}	
+	}
+	
 	public function myreal_escape_string($string){
 		return $this->connection->real_escape_string($string);
 	}

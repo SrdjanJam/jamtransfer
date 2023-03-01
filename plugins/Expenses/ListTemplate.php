@@ -1,6 +1,5 @@
 <?
-
-
+$smarty->assign('selectapproved',true);
 ?>
 
 <script type="text/x-handlebars-template" id="ItemListTemplate">

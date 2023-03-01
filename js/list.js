@@ -7,6 +7,7 @@
 	 	var status2 = $("#Type2").val(); // prikazuje po tipu	
 		
 	 	var active = $("#Active").val(); // prikazuje samo aktivne	
+	 	var approved = $("#Approved").val(); // prikazuje samo aktivne	
 	 	var filter = $("#Search").val(); // filtrira prema zadanom tekstu
 	 	var length = $("#length").val(); // dropdown za broj prikazanih usera na stranici
 	 	var transfersFilter = $("#transfersFilter").val(); // filter za transfere
@@ -60,6 +61,7 @@
 		'&Type='+status+
 		'&Type2='+status2+
 		'&Active='+active+
+		'&Approved='+approved+
 	 	'&Search='+filter+'&page='+page+'&length='+length+'&sortOrder='+sortOrder+
 		'&transfersFilter='+transfersFilter+
 		'&orderid='+orderid+

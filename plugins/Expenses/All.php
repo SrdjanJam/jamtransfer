@@ -6,6 +6,15 @@ require_once 'Initial.php';
 
 @session_start();
 
+if (isset($selectapproved)) {
+	if (!isset($_REQUEST['Approved']) or $_REQUEST['Approved'] == 99) {
+		$filter .= "  AND ".$selectapproved." > -1 ";
+	}
+	else {
+		$filter .= "  AND ".$selectapproved." = " . $_REQUEST['Approved'] ;
+	}
+}
+
 
 class v4_SubExpensesJoin extends v4_SubExpenses {
 	public function getKeysBy($column, $order, $where = NULL){
@@ -44,7 +53,7 @@ if ($length > 0) {
 }
 else $limit = '';
 
-if(empty($sortOrder)) $sortOrder = 'ASC';
+if(empty($sortOrder)) $sortOrder = 'DESC';
 
 
 # init vars

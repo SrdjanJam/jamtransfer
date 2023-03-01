@@ -14,6 +14,8 @@ $dbf = new DataBaseMysql(); // Check
 $keyName = 'ID';
 $ItemName='DisplayOrder ';
 $type='Active'; 
+$selectapproved='Approved';
+
 
 #********************************
 # kolone za koje je moguc Search 

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.32, created on 2023-02-23 08:55:18
+/* Smarty version 3.1.32, created on 2023-02-27 10:35:47
   from 'C:\wamp\www\jamtransfer\templates\index.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.32',
-  'unifunc' => 'content_63f71be60a4ff9_74286479',
+  'unifunc' => 'content_63fc8783753c38_66139905',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'a1818a92b5a2f041fd91a227dabc592dea38fac2' => 
     array (
       0 => 'C:\\wamp\\www\\jamtransfer\\templates\\index.tpl',
-      1 => 1677069242,
+      1 => 1677493176,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:pageList.tpl' => 1,
   ),
 ),false)) {
-function content_63f71be60a4ff9_74286479 (Smarty_Internal_Template $_smarty_tpl) {
+function content_63fc8783753c38_66139905 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html>
 	<head>
@@ -340,8 +340,8 @@ for ($__section_index_0_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_
 								<a href='<?php echo $_smarty_tpl->tpl_vars['menu1']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_index']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_index']->value['index'] : null)]['link'];?>
 ' >
 									<i class="fa <?php echo $_smarty_tpl->tpl_vars['menu1']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_index']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_index']->value['index'] : null)]['icon'];?>
-"></i>
-									<span class="nav-label" title="<?php echo $_smarty_tpl->tpl_vars['menu1']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_index']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_index']->value['index'] : null)]['description'];?>
+ edit-fa"></i>
+									<span class="nav-label nav-label-edit" title="<?php echo $_smarty_tpl->tpl_vars['menu1']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_index']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_index']->value['index'] : null)]['description'];?>
 "><?php echo $_smarty_tpl->tpl_vars['menu1']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_index']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_index']->value['index'] : null)]['title'];?>
  <span class='badge'><?php echo $_smarty_tpl->tpl_vars['menu1']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_index']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_index']->value['index'] : null)]['activestatus'];?>
 </span></span> 
@@ -363,7 +363,7 @@ for ($__section_index1_1_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section
 											<li class="<?php echo $_smarty_tpl->tpl_vars['menu1']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_index']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_index']->value['index'] : null)]['menu'][(isset($_smarty_tpl->tpl_vars['__smarty_section_index1']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_index1']->value['index'] : null)]['active'];?>
 ">
 												<a href="<?php echo $_smarty_tpl->tpl_vars['menu1']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_index']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_index']->value['index'] : null)]['menu'][(isset($_smarty_tpl->tpl_vars['__smarty_section_index1']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_index1']->value['index'] : null)]['link'];?>
-"><span class="nav-label" title="<?php echo $_smarty_tpl->tpl_vars['menu1']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_index']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_index']->value['index'] : null)]['menu'][(isset($_smarty_tpl->tpl_vars['__smarty_section_index1']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_index1']->value['index'] : null)]['description'];?>
+"><span class="nav-label nav-label-edit" title="<?php echo $_smarty_tpl->tpl_vars['menu1']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_index']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_index']->value['index'] : null)]['menu'][(isset($_smarty_tpl->tpl_vars['__smarty_section_index1']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_index1']->value['index'] : null)]['description'];?>
 "><?php echo $_smarty_tpl->tpl_vars['menu1']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_index']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_index']->value['index'] : null)]['menu'][(isset($_smarty_tpl->tpl_vars['__smarty_section_index1']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_index1']->value['index'] : null)]['title'];?>
  <span class='badge'><?php ob_start();
 echo $_smarty_tpl->tpl_vars['menu1']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_index']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_index']->value['index'] : null)]['menu'][(isset($_smarty_tpl->tpl_vars['__smarty_section_index1']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_index1']->value['index'] : null)]['activestatus'];
@@ -572,7 +572,8 @@ echo $_prefixVariable1;?>
 
 			title: 'Help Dialog',
 			autoOpen: false,
-			// resizable: false,
+			resizable: false,
+			draggable: false,
 			modal: true,
 			width: "60%",
 
@@ -593,7 +594,8 @@ echo $_prefixVariable1;?>
 
 			title: 'Message Dialog',
 			autoOpen: false,
-			// resizable: false,
+			resizable: false,
+			draggable: false,
 			modal: true,
 			width: "60%",
 			
@@ -636,7 +638,7 @@ echo $_prefixVariable1;?>
 				data: param,
 				async: false,
 				success: function (data) {
-					$( ".dialog-help" ).text(data).dialog( "open" );
+					$( ".dialog-help" ).html(data).dialog( "open" );
 				}
 			});
 
@@ -655,7 +657,7 @@ echo $_prefixVariable1;?>
 				data: param,
 				async: false,
 				success: function (data) {
-					$( ".dialog-message" ).text(data).dialog( "open" );
+					$( ".dialog-message" ).html(data).dialog( "open" );
 				}
 			});
 
@@ -670,7 +672,7 @@ echo $_prefixVariable1;?>
 			var messageID = $('.dialog-message').attr("data-id");
 			var messageContent = $(".dialog-message").val();
 
-			var textarea = $(".dialog-message").text(messageContent);
+			var textarea = $(".dialog-message").html(messageContent);
 
 			// Testing:
 			// alert($(".dialog-message").text());

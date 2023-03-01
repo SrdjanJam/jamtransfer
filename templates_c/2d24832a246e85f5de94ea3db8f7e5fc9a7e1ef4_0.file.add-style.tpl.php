@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.32, created on 2023-02-23 08:55:18
+/* Smarty version 3.1.32, created on 2023-02-27 10:35:48
   from 'c:\wamp\www\jamtransfer\templates\add-style.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.32',
-  'unifunc' => 'content_63f71be6a98160_05996443',
+  'unifunc' => 'content_63fc87841acfc5_55937928',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '2d24832a246e85f5de94ea3db8f7e5fc9a7e1ef4' => 
     array (
       0 => 'c:\\wamp\\www\\jamtransfer\\templates\\add-style.tpl',
-      1 => 1676623996,
+      1 => 1677493176,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_63f71be6a98160_05996443 (Smarty_Internal_Template $_smarty_tpl) {
+function content_63fc87841acfc5_55937928 (Smarty_Internal_Template $_smarty_tpl) {
 ?><style>
 
 
@@ -51,7 +51,8 @@ function content_63f71be6a98160_05996443 (Smarty_Internal_Template $_smarty_tpl)
 
 /* ListTemplate.php */
 #show_items .row-edit{
-    color:#3C8DBC;
+    color:#179ae6;
+    /* color:#3C8DBC; older */
     font-weight:bold;
     padding:5px 0;
 }
@@ -154,6 +155,10 @@ function content_63f71be6a98160_05996443 (Smarty_Internal_Template $_smarty_tpl)
 /* End of Bookings/Orders */
 
 
+.box-body .row-edit-2{
+	margin-top:5px;
+}
+
 
 
 
@@ -168,12 +173,13 @@ function content_63f71be6a98160_05996443 (Smarty_Internal_Template $_smarty_tpl)
 }
 
 .nav-header-edit{
-    background-color: #e4e4e4;
+    background-color: #dbd6ca;
+    /* background-color: #e4e4e4; older */
     margin: 0 5px 5px 5px;
     padding: 5px;
     box-sizing: border-box;
     border: 2px solid #4c81ad;
-    box-shadow: 5px 5px 8px #888888;
+    box-shadow: 5px 5px 8px #888888 inset;
     border-radius: 10px;
     z-index:1;
 }
@@ -220,7 +226,8 @@ function content_63f71be6a98160_05996443 (Smarty_Internal_Template $_smarty_tpl)
 }
 
 .nav-header-top-edit{
-    background: #476092;
+    background: #175a89;
+    /* background: #476092; older */
     margin: 5px 5px 10px 5px;
     border-radius: 10px;
     box-shadow: 5px 5px 16px #424181 inset;
@@ -239,7 +246,7 @@ function content_63f71be6a98160_05996443 (Smarty_Internal_Template $_smarty_tpl)
 .nav-header-edit #set-as, #set-as-2{ font-family:Georgia, 'Times New Roman', Times, serif; }
 
 
-/* pageListHeader.tpl */
+/* pageListHeader.tpl -------------------------------------------------------- */
 
 .form-group.group-edit{
     display: inline-block;
@@ -252,15 +259,31 @@ function content_63f71be6a98160_05996443 (Smarty_Internal_Template $_smarty_tpl)
     
 }
 
+.itemsheader-edit{
+    background: #def6fe;
+    padding-top: 10px;
+}
+
+.col-md-2-infoShow{
+    font-weight: 900;
+}
+
+.btn-xs-edit{
+    margin-left: 20px;
+    margin-bottom: 10px;
+}
+/* ------------------------------------------------------------------------------- */
+
 /* Navbar Side */
 .navbar-default-edit{
-    background-image: linear-gradient(#333a42, #3e576e);
-    /* background-image: linear-gradient(#3e576e,#333a425d); spare */
+    background-image: linear-gradient(#050505, #42536B);
+    /* background-image: linear-gradient(#333a42, #3e576e); older */
 }
 
 /* navbar top fixed */
 .navbar-static-top-edit{
-    background-image: linear-gradient(to bottom right, silver, #cceeff);
+    background-image: linear-gradient(to bottom right, #76889f, #cceeff);
+    /* background-image: linear-gradient(to bottom right, silver, #cceeff); older */
 }
 
 /* Footer */
@@ -269,19 +292,6 @@ function content_63f71be6a98160_05996443 (Smarty_Internal_Template $_smarty_tpl)
 }
 .pull-left-edit{ margin-left:10px; }
 .pull-right-edit{ margin-right:20px; }
-
-
-/* ------------------------------------------ */
-
-
-
-/* Cursor pointer */
-.listTile{ cursor:pointer;}
-.listTile:hover{ background: rgb(229 229 231); }
-.listTitleEdit{ cursor:auto !important; }
-/* off */
-/* .listTile:focus{ background: rgb(71, 42, 173); } */
-
 
 
 /* Button */
@@ -321,8 +331,12 @@ function content_63f71be6a98160_05996443 (Smarty_Internal_Template $_smarty_tpl)
   
 }
 
+
+/* ------------------------------------------ */
+/* Dialog */
 .ui-dialog{
     height: 50% !important;
+    overflow-y: auto;
 }
 
 .textarea-dalog{
@@ -331,9 +345,34 @@ function content_63f71be6a98160_05996443 (Smarty_Internal_Template $_smarty_tpl)
 	resize: none;
     box-sizing: border-box !important;
 }
+/* ------------------------------------------ */
 
 
 
+/* ------------------------------------------ */
+
+
+/* Cursor pointer */
+.listTile{ cursor:pointer;}
+.listTile:hover{ background: rgb(229 229 231); }
+.listTitleEdit{ cursor:auto !important; }
+.listTitleEdit:nth-of-type(2n){ background: #f1f1f1 !important; }
+.listTitleEdit:nth-of-type(2n):hover{ background: rgb(229 229 231) !important; }
+/* off */
+/* .listTile:focus{ background: rgb(71, 42, 173); } */
+
+
+
+
+.nav-label-edit{
+    font-style: italic;
+    text-shadow: 3px 3px 2px #494949;
+
+}
+
+#side-menu .edit-fa{
+    text-shadow: 3px 3px 2px #494949;
+}
 
 </style><?php }
 }
