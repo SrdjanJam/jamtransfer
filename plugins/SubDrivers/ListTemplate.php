@@ -22,12 +22,20 @@
 			<i class="fa fa-envelope"></i>
 		</div>
 
-		<div class="col-md-2">
+		<div class="col-md-1">
 			<i class="fa fa-phone"></i>
 		</div>
 
 		<div class="col-md-1">
 			<?=ACTIVE;?>
+		</div>
+		
+		<div class="col-md-1">
+			<?=EXPENSES;?>
+		</div>		
+		
+		<div class="col-md-1">
+			<?=TASKS;?>
 		</div>
 				
 		<div class="col-md-1">
@@ -71,7 +79,7 @@
 				</div>
 
 				<!-- PHONE -->
-				<div class="col-sm-2 col-xs-12">
+				<div class="col-sm-1 col-xs-12">
 				<small>
 					{{#if AuthUserMob}}
 						{{AuthUserMob}}
@@ -94,6 +102,17 @@
 						<i class="fa fa-circle text-red"></i>					
 					{{/compare}}
 				</div>
+				
+				<!-- Expenses: -->
+				<div class="col-md-1 col-xs-6">
+					<span><a target='_blank' href='expenses/subdrivers/{{AuthUserID}}'><?=EXPENSES;?></a></span>
+				</div>				
+				
+				<!-- Tasks: -->
+				<div class="col-md-1 col-xs-6">
+					<span><a target='_blank' href='tasks/subdrivers/{{AuthUserID}}'><?=TASKS;?></a></span>
+				</div>
+				
 
 			</div>
 

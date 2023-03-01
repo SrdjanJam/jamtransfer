@@ -35,8 +35,16 @@
 			<div class="col-md-1">
 				<?=DELETE;?>
 			</div>
+			
+			<div class="col-md-1">
+				<?=EXPENSES;?>
+			</div>		
+			
+			<div class="col-md-1">
+				<?=TASKS;?>
+			</div>			
 
-			<div class="col-md-3">
+			<div class="col-md-1">
 				<a target='_blank' href='plugins/SubVehicles/getRaptorVehicles.php' style="color:blue;background:silver;"><i class="fas fa-external-link"></i>&nbsp;<u>RAPTOR</u></a>
 			</div>
 
@@ -85,11 +93,21 @@
 						{{ yesNoSliderEdit Active 'Active'}}					
 					</div>
 
-					<div class="col-md-4">
+					<div class="col-md-1">
 						<button type="button" class="b-delete" data-id="{{VehicleID}}" style="color:red;" title="delete">
 							<i class="fas fa-trash-alt"></i>
 						</button>
 					</div>
+					
+						<!-- Expenses: -->
+					<div class="col-md-1 col-xs-6">
+						<span><a target='_blank' href='expenses/vehicles/{{VehicleID}}'><?=EXPENSES;?></a></span>
+					</div>				
+					
+					<!-- Tasks: -->
+					<div class="col-md-1 col-xs-6">
+						<span><a target='_blank' href='tasks/vehicles/{{VehicleID}}'><?=TASKS;?></a></span>
+					</div>				
 
 				</div>
 			</form>

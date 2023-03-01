@@ -48,6 +48,10 @@
 		if (typeof vehicleTypeID=='undefined') vehicleTypeID=0;	
 		var vehicleID = $("#vehicleID").val();
 		if (typeof vehicleID=='undefined') vehicleID=0;	
+		var subdriverID = $("#subdriverID").val();
+		if (typeof subdriverID=='undefined') subdriverID=0;	
+		var actionID = $("#actionID").val();
+		if (typeof actionID=='undefined') actionID=0;	
 		
 		var callFunction = 'allItems()'; // funkcija koju paginator poziva kod promjene stranice
 	
@@ -82,6 +86,8 @@
 		'&routeID='+routeID+
 		'&vehicleTypeID='+vehicleTypeID+
 		'&vehicleID='+vehicleID+
+		'&subdriverID='+subdriverID+
+		'&actionID='+actionID+
 		'&callback=?';
 		console.log(window.base+url);
 		$.ajax({

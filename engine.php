@@ -139,6 +139,8 @@ $smarty->assign('detailid',$detailid);
 $smarty->assign('RouteID',$RouteID);
 $smarty->assign('VehicleTypeID',$VehicleTypeID);
 $smarty->assign('VehicleID',$VehicleID);
+$smarty->assign('SubDriverID',$SubDriverID);
+$smarty->assign('ActionID',$ActionID);
 $smarty->assign('item',$item);
 $smarty->assign('isNew',$isNew);
 $smarty->assign('existNew',$existNew);

@@ -92,12 +92,28 @@ switch ($activePage) {
 	
 		break;	
 		
-		case 'subVehicles':
+	case 'subVehicles':
 		if ($pathVars->fetchByIndex($indexStart + 1)) { 
 			$VehicleTypeID=$pathVars->fetchByIndex($indexStart + 1);
 		}	
 	
 		break;
+		
+	case 'expenses':
+		
+		if ($pathVars->fetchByIndex($indexStart + 1)) { 
+			if ($pathVars->fetchByIndex($indexStart + 1)=='vehicles') {
+				$VehicleID=$pathVars->fetchByIndex($indexStart + 2);
+			}			
+			if ($pathVars->fetchByIndex($indexStart + 1)=='subdrivers') {
+				$SubDriverID=$pathVars->fetchByIndex($indexStart + 2);
+			}			
+			
+			if ($pathVars->fetchByIndex($indexStart + 1)=='actions') {
+				$ActionID=$pathVars->fetchByIndex($indexStart + 2);
+			}
+		}	
+		break;			
 	
 	case 'driversTransfers':
 		if ($pathVars->fetchByIndex($indexStart + 1)){

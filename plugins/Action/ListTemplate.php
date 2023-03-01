@@ -16,10 +16,14 @@
 			<?=ACTIONS_ID;?>
 		</div>
 
-		<div class="col-md-11">
+		<div class="col-md-3">
 			<?=ACTIONS_TITLE;?>
 		</div>	
-					
+		
+		<div class="col-md-2">
+			<?=EXPENSES;?> / <?=TASKS;?>
+		</div>		
+				
 	</div>
 
 	{{#each Item}}
@@ -33,10 +37,19 @@
 						<strong>{{ID}}</strong>
 					</div>
 
-					<div class="col-md-11">
+					<div class="col-md-3">
 						{{Title}}
 					</div>
-
+					<!-- Expenses: -->
+					<div class="col-md-2 col-xs-6">
+						{{#compare Active "==" 1}} 
+							<span><a target='_blank' href='expenses/actions/{{ID}}'><?=EXPENSES;?></a></span>
+						{{/compare}}						
+						{{#compare Active "==" 2}} 
+							<span><a target='_blank' href='tasks/actions/{{ID}}'><?=TASKS;?></a></span>
+						{{/compare}}
+					</div>				
+					
 			</div>
 		</div>
 		<div id="ItemWrapper{{ID}}" class="editFrame" style="display:none">

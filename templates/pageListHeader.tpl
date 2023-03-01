@@ -8,6 +8,8 @@ value=" WHERE {$ItemID} > 0">
 <input type="hidden"  id="routeID" name="routeID" value="{$RouteID}">
 <input type="hidden"  id="vehicleTypeID" name="vehicleTypeID" value="{$VehicleTypeID}">
 <input type="hidden"  id="vehicleID" name="vehicleID" value="{$VehicleID}">
+<input type="hidden"  id="subdriverID" name="subdriverID" value="{$SubDriverID}">
+<input type="hidden"  id="actionID" name="actionID" value="{$ActionID}">
 
 <div class="row itemsheader itemsheader-edit">
 {if $existNew}
