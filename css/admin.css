@@ -15865,15 +15865,15 @@ h5 {
 }
 /* Changed: */
 ul.nav-second-level {
-    background: #293846;
-    background-image: linear-gradient(#284668, #3e576e);
+    background-image: linear-gradient(#524646, #1c1919);
+    /* background-image: linear-gradient(#284668, #3e576e); older */
 }
 /* Changed: */
 .nav > li.active {
     border-left: 4px solid #19aa8d;
-    /* background: #293846; */
+    background: #524646;
     border-radius:10px;
-    background-image: linear-gradient(#284668, #3e576e);
+    /* background-image: linear-gradient(#284668, #3e576e); */
 }
 .nav.nav-second-level > li.active {
     border: none;
