@@ -1,12 +1,12 @@
 <?
 	define("B", ' ');
-	
-/*	
+
+/*
 	# TransferStatus taxido - trenutni
 	$StatusDescription = array(
 		'1' =>    'New',	// brise se
-		'2' =>    'Active', 
-		'3' =>    'Canceled', 
+		'2' =>    'Active',
+		'3' =>    'Canceled',
 		'4' =>    'Refunded', // u PaymentStatus
 		'5' =>    'No-Show', // u DriverConfStatus
 		'6' =>    'DriverError', // u DriverConfStatus
@@ -52,7 +52,7 @@
 		'4'	=>	'Pickup Date',
 		'5'	=>	'Pickup Time',
 		'6'	=>	'Flight Time',
-		'7'	=>	'Flight Number',		
+		'7'	=>	'Flight Number',
 		'8'	=>	'Pickup Address',
 		'9'	=>	'Drop-Off Address',
 		'10'	=>	'Pax Number',
@@ -71,10 +71,10 @@
 		'3'	=>	'Combined',
 		'4'	=>	'Bank transfer',
 		'5'	=>	'Compensation',
-		'6'	=>	'Bank transfer 2', 
+		'6'	=>	'Bank transfer 2',
 		'9'	=>  'Other'
 	);
-	
+
 	# Payment Method
 	$AcceptedPayment = array(
 		'0'		=>	'Not selected',
@@ -86,7 +86,7 @@
 		'12'	=>	'Invoice 2',
 		'13'	=>	'Cash'
 	);
-	
+
 	$PaymentStatus = array(
 		'0'	=>	'Not Paid',
 		'1'	=>	'Warning sent',
@@ -95,8 +95,8 @@
 		'10'=>	'Lost - will not be paid',
 		'91'=>	'Compensated',
 		'99'=>	'Paid'
-	);	
-	
+	);
+
 	# DriverConfStatus
 	$DriverConfStatus = array(
 		'0'	=> 'No Driver',
@@ -106,12 +106,12 @@
 		'4'	=> 'Driver Declined',
 		'5'	=> 'No-Show',
 		'6' => 'Driver Error',
-		'7' => 'Transfer Completed',		
-		'8' => 'Operator Error',	
-		'9' => 'Dispatcher Error',	
-		'10' => 'Agent Error',			
-	); 
-	
+		'7' => 'Transfer Completed',
+		'8' => 'Operator Error',
+		'9' => 'Dispatcher Error',
+		'10' => 'Agent Error',
+	);
+
 	# Driver Payment
 	$DriverPayment = array(
 		'0' => 'Not Paid',
@@ -119,22 +119,22 @@
 		'2'	=> 'Paid',
 		'3' => 'Compensated'
 	);
-	
+
 	# Transfers Filters
 	$transfersFilters = array(
-		array ("id" => "noDriver", "name" => "No Driver"), 
-		array ("id" => "notConfirmed", "name" => "Not Confirmed"), 
-		array ("id" => "confirmed", "name" => "Confirmed"), 
-		array ("id" => "declined", "name" => "Declined"), 
-		array ("id" => "canceled", "name" => "Canceled"), 
-		array ("id" => "noShow", "name" => "No Show"), 
-		array ("id" => "driverError", "name" => "Driver Error"), 
-		array ("id" => "agent", "name" => "Agent transfers"), 
-		array ("id" => "notConfirmedAgent", "name" => "Agent transfers Not Confirmed"), 
-		array ("id" => "notCompleted", "name" => "Not Completed"), 
-		array ("id" => "invoice2", "name" => "Invoice 2"), 
-	) ;	
-	
+		array ("id" => "noDriver", "name" => "No Driver"),
+		array ("id" => "notConfirmed", "name" => "Not Confirmed"),
+		array ("id" => "confirmed", "name" => "Confirmed"),
+		array ("id" => "declined", "name" => "Declined"),
+		array ("id" => "canceled", "name" => "Canceled"),
+		array ("id" => "noShow", "name" => "No Show"),
+		array ("id" => "driverError", "name" => "Driver Error"),
+		array ("id" => "agent", "name" => "Agent transfers"),
+		array ("id" => "notConfirmedAgent", "name" => "Agent transfers Not Confirmed"),
+		array ("id" => "notCompleted", "name" => "Not Completed"),
+		array ("id" => "invoice2", "name" => "Invoice 2"),
+	) ;
+
 	$monthNames = array("January", "February", "March", "April", "May", "June", "July",
 	"August", "September", "October", "November", "December");
 
@@ -268,6 +268,8 @@ define("ID", "ID");
 define("IMAGE", "Image");
 define("IMAGE_MANAGER", "Image manager");
 define("ISLAND", "On island");
+define("IMAGE_MP","Image Most Popular");
+define("IMAGE_BG","Beckground Image");
 define("KEY", "Key");
 define("LANGUAGE", "Language");
 define("LASTCHANGE", "Last Change");
@@ -300,6 +302,8 @@ define("MONPERCENT", "Mon (%)");
 define("MY_DRIVERS", "My Drivers");
 define("MY_VEHICLES", "My Vehicles");
 define("MENUORDER", "Menu Order");
+define("MP", "Most Popular");
+define("MP_ORDER", "Most Popular Order");
 define("NAME", "Name");
 define("NET_INCOME", "Commision");
 define("NETTO_PRICE", "Netto Price");
@@ -361,7 +365,7 @@ define("PICKUP_ADDRESS", "Pickup Address");
 define("PICKUP_DATE", "Pickup Date");
 define("PICKUP_NAME", "Pickup Name");
 define("PICKUP_TIME", "Pickup Time");
-define("PLACETYPE_ID", "ID");				
+define("PLACETYPE_ID", "ID");
 define("PLACETYPEEN", "Location Type (EN)");
 define("PLACECOUNTRY", "Country");
 define("PLACENAMEEN", "Location name (EN)");
@@ -478,7 +482,7 @@ define("TRANSFER_FOR_YOU","
 		Please Confirm or Decline these transfers immediately using the link(s) below:<br><br>
 ");
 define("THIS_INFO_WILL_BE_SENT_TO_CUSTOMER", "Please fill-in the following data.<br>
-												If you Confirm this transfer, 
+												If you Confirm this transfer,
 												this info will be sent to customer.");
 define("TRANSFER_STATUS", "Status");
 define("TRANSFERS", "Transfers");
@@ -687,35 +691,35 @@ define("AGENT_REPORT", "Agent Report");
 	define("SERVICES_DESC2", "
 		Prices are per vehicle, not per person
 	");
-	
+
 	define("SERVICES_DESC5", "
 		One piece of medium luggage and one piece of hand luggage per passenger are free of charge
 	");
-	
+
 	define("SERVICES_DESC6", "
 		We will send you driver`s contact information by email
 	");
-	
+
 	define("SERVICES_DESC7", "
 			Your driver will meet you with the nameplate at the pick up point. Keep your phone turned on
 	");
-	
+
 	define("SERVICES_DESC3", "
-			Waiting at the airports up to one hour after landing time is free 
+			Waiting at the airports up to one hour after landing time is free
 	");
 
 	define("SERVICES_DESC4", "
 			 Flight delays are monitored
 	");
-	
+
 	define("SERVICES_DESC8", "
-			 In case of delay, cancellation or other unforeseen circumstances, 
-			 you are obligated to inform your driver (local operator) or in case 
+			 In case of delay, cancellation or other unforeseen circumstances,
+			 you are obligated to inform your driver (local operator) or in case
 			 of emergency our Call Centre +381646597200
 	");
-	
+
 	define("SERVICES_DESC9", "
-			In case that you have not received driver's contact 
+			In case that you have not received driver's contact
 			information by e-mail 24 hours before the transfer, please contact us.
 	");
 
@@ -1218,7 +1222,7 @@ $smarty->assign("TRANSFER_FOR_YOU","
 		Please Confirm or Decline these transfers immediately using the link(s) below:<br><br>
 ");
 $smarty->assign("THIS_INFO_WILL_BE_SENT_TO_CUSTOMER", "Please fill-in the following data.<br>
-												If you Confirm this transfer, 
+												If you Confirm this transfer,
 												this info will be sent to customer.");
 $smarty->assign("TRANSFER_STATUS", "Status");
 $smarty->assign("TRANSFERS", "Transfers");
@@ -1421,35 +1425,35 @@ $smarty->assign("APPROVED", "Approved");
 	$smarty->assign("SERVICES_DESC2", "
 		Prices are per vehicle, not per person
 	");
-	
+
 	$smarty->assign("SERVICES_DESC5", "
 		One piece of medium luggage and one piece of hand luggage per passenger are free of charge
 	");
-	
+
 	$smarty->assign("SERVICES_DESC6", "
 		We will send you driver`s contact information by email
 	");
-	
+
 	$smarty->assign("SERVICES_DESC7", "
 			Your driver will meet you with the nameplate at the pick up point. Keep your phone turned on
 	");
-	
+
 	$smarty->assign("SERVICES_DESC3", "
-			Waiting at the airports up to one hour after landing time is free 
+			Waiting at the airports up to one hour after landing time is free
 	");
 
 	$smarty->assign("SERVICES_DESC4", "
 			 Flight delays are monitored
 	");
-	
+
 	$smarty->assign("SERVICES_DESC8", "
-			 In case of delay, cancellation or other unforeseen circumstances, 
-			 you are obligated to inform your driver (local operator) or in case 
+			 In case of delay, cancellation or other unforeseen circumstances,
+			 you are obligated to inform your driver (local operator) or in case
 			 of emergency our Call Centre +381646597200
 	");
-	
+
 	$smarty->assign("SERVICES_DESC9", "
-			In case that you have not received driver's contact 
+			In case that you have not received driver's contact
 			information by e-mail 24 hours before the transfer, please contact us.
 	");
 
