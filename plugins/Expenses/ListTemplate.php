@@ -1,5 +1,7 @@
 <?
 $smarty->assign('selectapproved',true);
+
+
 ?>
 
 <script type="text/x-handlebars-template" id="ItemListTemplate">
@@ -11,11 +13,11 @@ $smarty->assign('selectapproved',true);
 			<?=ID;?>
 		</div>
 
-		<div class="col-md-2">
+		<div class="col-md-1">
 			<?=DATUM;?>
 		</div>
 
-		<div class="col-md-3">
+		<div class="col-md-2">
 			<?=AUTH_USER_REAL_NAME;?>
 		</div>
 
@@ -28,11 +30,15 @@ $smarty->assign('selectapproved',true);
 		</div>
 
 		<div class="col-md-1">
-			<?=EXPANCE_APPROVED;?>
+			Displayed km
 		</div>
 
 		<div class="col-md-1">
 			<?=NOTE;?>
+		</div>
+		
+		<div class="col-md-1">
+			<?=EXPANCE_APPROVED;?>
 		</div>
 
 	</div>
@@ -47,11 +53,11 @@ $smarty->assign('selectapproved',true);
 						<strong>{{ID}}</strong>
 					</div>
 
-					<div class="col-md-2">
+					<div class="col-md-1">
 						{{Datum}}
 					</div>
 
-					<div class="col-md-3">
+					<div class="col-md-2">
 						{{AuthUserRealName}}
 					</div>
 
@@ -72,16 +78,20 @@ $smarty->assign('selectapproved',true);
 					</div>
 
 					<div class="col-md-1">
+						{{Description}}
+					</div>
+					
+					<div class="col-md-1">
+						{{#if Note}}
+							<i class="fa fa-envelope" aria-hidden="true"></i>
+						{{/if}}
+					</div>
+					
+					<div class="col-md-1">
 						{{#compare Approved "==" 1}} <i class="fa fa-circle xgreen-text"></i>
 						{{else}} <i class="fa fa-circle red-text"></i>
 						{{/compare}}
 					</div>
-					
-					<div class="col-md-1">
-						<span class="red">{{Note}}	</span>
-					</div>
-
-
 			</div>
 
 		</div>

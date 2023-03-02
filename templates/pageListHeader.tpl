@@ -70,13 +70,12 @@ value=" WHERE {$ItemID} > 0">
 		<i class="fa fa-sort-amount-asc edit-fa"></i>
 		<div class="form-group group-edit">
 			<select name="sortOrder" id="sortOrder" onchange="allItems();" class="form-control control-edit">
-				<option value="ASC" selected="selected"> {$ASCENDING} </option>
-				<option value="DESC"> {$DESCENDING} </option>
+				<option value="ASC"> {$ASCENDING} </option>
+				<option value="DESC" {if isset($selectapproved)}SELECTED{/if}> {$DESCENDING} </option>
 			</select>
 		</div>		
 	</div>
 
-	
 	{if isset($selectactive)}		
 	<div class="col-md-2 asd">
 		<i class="fa fa-filter edit-fa"></i> 

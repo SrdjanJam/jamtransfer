@@ -123,6 +123,10 @@ else {
 
 if (isset($_SESSION['UseDriverID'])) $existNew=false;
 if ($md->getName()=="SubDrivers") $existNew=true;
+if ($md->getName()=="Vehicles") $existNew=true;
+if ($md->getName()=="Actions") $existNew=true;
+if ($md->getName()=="Request") $existNew=true;
+if ($md->getName()=="Tasks") $existNew=true;
 if ($md->getName()=="Orders") $existNew=false;
 if ($md->getName()=="Invoices") $existNew=false;
 if ($md->getName()=="Set Driver") $existNew=false;

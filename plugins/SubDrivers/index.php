@@ -3,4 +3,3 @@
 	require_once 'EditForm.php';
 	$smarty->assign('ItemID','AuthUserID');
 	$smarty->assign('pagelength',10);
-	$smarty->assign('existNew',true);
