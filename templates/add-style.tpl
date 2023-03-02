@@ -154,24 +154,26 @@
 }
 
 .nav-header-edit{
-    background-color: #dbd6ca;
+    background-image: linear-gradient(#c9a859, #786d4f);
+    /* background-color: #dbd6ca; */
     /* background-color: #e4e4e4; older */
     margin: 0 5px 5px 5px;
     padding: 5px;
     box-sizing: border-box;
-    border: 2px solid #4c81ad;
-    box-shadow: 5px 5px 8px #888888 inset;
+    /* border: 2px solid #4c81ad; */
+    box-shadow: 5px 5px 8px #888888;
     border-radius: 10px;
     z-index:1;
 }
 .nav-header-edit #a-setout{
     text-decoration: underline;
-    color: rgb(122 122 122);
+    color: rgb(54 54 54);
     padding: 5px 0 5px 2px;
     display: block;
 }
 .nav-header-edit #a-setout:hover{
-    color: rgb(184, 126, 71);
+    color: rgb(233 183 136);
+    /* color: rgb(184, 126, 71); old */
     background: none;
 }
 
@@ -207,11 +209,12 @@
 }
 
 .nav-header-top-edit{
-    background: #175a89;
+    background-image: linear-gradient(#8b4444, #212628) !important;
+    /* background: #175a89; */
     /* background: #476092; older */
     margin: 5px 5px 10px 5px;
     border-radius: 10px;
-    box-shadow: 5px 5px 16px #424181 inset;
+    /* box-shadow: 5px 5px 16px #424181 inset; */
 }
 
 .navbar-static-side{ box-shadow: 5px 5px 8px #888888; }
@@ -223,7 +226,7 @@
 
 .box-info, .box-primary{ box-shadow: 5px 5px 8px #616060; }
 
-.nav-header-edit #set-as{ color: #545050;}
+.nav-header-edit #set-as{ color: #3e3e3e;}
 .nav-header-edit #set-as, #set-as-2{ font-family:Georgia, 'Times New Roman', Times, serif; }
 
 
@@ -257,7 +260,8 @@
 
 /* Navbar Side */
 .navbar-default-edit{
-    background-image: linear-gradient(#050505, #42536B);
+    /* background-image: linear-gradient(#050505, #42536B); */
+    background-image: linear-gradient(#050505, #282222);
     /* background-image: linear-gradient(#333a42, #3e576e); older */
 }
 
@@ -349,12 +353,20 @@
 
 .nav-label-edit{
     font-style: italic;
-    text-shadow: 3px 3px 2px #494949;
+    text-shadow: 2px 2px 1px #494949;
 
 }
 
 #side-menu .edit-fa{
     text-shadow: 3px 3px 2px #494949;
 }
+
+
+.nav.nav-second-level > li.active a{
+    background-image: linear-gradient(#006edd, #3a6382) !important;
+}
+
+
+
 
 </style>
