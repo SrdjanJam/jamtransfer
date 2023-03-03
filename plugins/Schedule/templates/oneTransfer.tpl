@@ -118,7 +118,11 @@
 		
 		<!-- row forth -->
 		<div class="row">
-			<i class="fa fa-plane" aria-hidden="true"></i>
+			{if $sdArray[pom].Transfers[pom2].FsLink ne ''}
+				<big><a target="_blank" href="{$sdArray[pom].Transfers[pom2].FsLink}"><i class="fa fa-plane" aria-hidden="true"></i></a></big>
+			{else}
+				<i class="fa fa-plane" aria-hidden="true"></i>
+			{/if}	
 			<input type="text" name="FlightNo_{$sdArray[pom].Transfers[pom2].DetailsID}" id="FlightNo_{$sdArray[pom].Transfers[pom2].DetailsID}"
 			value="{$sdArray[pom].Transfers[pom2].FlightNo}" onchange="saveTransfer({$sdArray[pom].Transfers[pom2].DetailsID},0)">
 			<input type="text" name="FlightTime_{$sdArray[pom].Transfers[pom2].DetailsID}" class="timepicker" id="FlightTime_{$sdArray[pom].Transfers[pom2].DetailsID}"

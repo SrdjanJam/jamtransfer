@@ -181,35 +181,35 @@ while ($d = $r->fetch_object()) {
 		$row['Accomodation']=$op->getPlaceNameEN();		
 		
 		// hvatanje trenutne lokacije
-		$lng=0;
-		$lat=0;				
-		$time1=time()-1200;
-		$time2=time()-60;	
-		// lokacija i vreme iz UserLocation
-		$timestart=time()-12*3600;
-		$q = "SELECT * FROM `v4_UserLocations` WHERE 
-			`UserID`=".$d->AuthUserID." and
-			`Time` > ".$timestart."
-			order by time desc"; 
-		$rL = $db->RunQuery($q);
-		$loc=array(); 
-		$foundlocation=false;
-		while ($tL = $rL->fetch_object()) {
-			$loc[] = $tL;
-			$foundlocation=true;
-		}
-		$row['ForTransferBreak']=true;
-		if ($foundlocation) {
-			$lc=$loc[0];
-			$row['Lat']=$lc->Lat;
-			$row['Lng']=$lc->Lng;			
-			$row['Location']=$lc->Label;
-			$row['Device']=$lc->Device.' at '.date('H:i:s',$lc->Time);
-			$row['DeviceTime']=$lc->Time;
-			$row['ForTransferBreak']=false;
-			/*$distACC=vincentyGreatCircleDistance($lat, $lng, $op->Latitude, $op->Longitude, $earthRadius = 6371000)/1000;
-			if ($distACC<5) $acc=true;
-			else $acc=false;*/
+		if ($DateFrom<=date('Y-m-d') && $DateTo>=date('Y-m-d')) {
+			$lng=0;
+			$lat=0;				
+			$time1=time()-1200;
+			$time2=time()-60;	
+			// lokacija i vreme iz UserLocation
+			$timestart=time()-12*3600;
+			$q = "SELECT * FROM `v4_UserLocations` WHERE 
+				`UserID`=".$d->AuthUserID." and
+				`Time` > ".$timestart."
+				order by time desc"; 
+			$rL = $db->RunQuery($q);
+			$loc=array(); 
+			$foundlocation=false;
+			while ($tL = $rL->fetch_object()) {
+				$loc[] = $tL;
+				$foundlocation=true;
+			}
+			$row['ForTransferBreak']=true;
+			if ($foundlocation) {
+				$lc=$loc[0];
+				$row['Lat']=$lc->Lat;
+				$row['Lng']=$lc->Lng;			
+				$row['Location']=$lc->Label;
+				$row['Device']=$lc->Device.' at '.date('H:i:s',$lc->Time);
+				$row['DeviceTime']=$lc->Time;
+				$distACC=vincentyGreatCircleDistance($row['Lat'], $row['Lng'], $op->Latitude, $op->Longitude, $earthRadius = 6371000)/1000;
+				if ($distACC>5) $row['ForTransferBreak']=false;
+			}
 		}
 		$sdArray[] = $row;
 	}	
@@ -280,6 +280,24 @@ function YMD_to_DMY ($date) {
 	$elementi = explode ('-', $date);
 	$new_date = $elementi[2] . '.' . $elementi[1] . '.' . $elementi[0];
 	return $new_date;
+}
+
+function vincentyGreatCircleDistance(
+  $latitudeFrom, $longitudeFrom, $latitudeTo, $longitudeTo, $earthRadius = 6371000)
+{
+  // convert from degrees to radians
+  $latFrom = deg2rad($latitudeFrom);
+  $lonFrom = deg2rad($longitudeFrom);
+  $latTo = deg2rad($latitudeTo);
+  $lonTo = deg2rad($longitudeTo);
+
+  $lonDelta = $lonTo - $lonFrom;
+  $a = pow(cos($latTo) * sin($lonDelta), 2) +
+    pow(cos($latFrom) * sin($latTo) - sin($latFrom) * cos($latTo) * cos($lonDelta), 2);
+  $b = sin($latFrom) * sin($latTo) + cos($latFrom) * cos($latTo) * cos($lonDelta);
+
+  $angle = atan2(sqrt($a), $b);
+  return $angle * $earthRadius;
 }
 
 
