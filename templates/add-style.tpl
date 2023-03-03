@@ -363,7 +363,8 @@
 
 
 .nav.nav-second-level > li.active a{
-    background-image: linear-gradient(#006edd, #3a6382) !important;
+    background-image: linear-gradient(#705d5d, #1c1919) !important;
+    /* background-image: linear-gradient(#794e4e, #1c1919) !important; */
 }
 
 
