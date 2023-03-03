@@ -15737,7 +15737,7 @@ h5 {
 .navbar-default .nav > li > a:hover {
     /* background-color: #293846; old */
     /* background-color: #364561; old-2 */
-    background-color: #333946;
+    background-color: #1e1b1b;
     box-shadow: 2px 2px 4px #090a0a;
     color: #fff;
     border-radius: 10px;
@@ -15870,7 +15870,8 @@ ul.nav-second-level {
 }
 /* Changed: */
 .nav > li.active {
-    border-left: 4px solid #19aa8d;
+    border-left: 4px solid #a37878;
+    /* border-left: 4px solid #19aa8d; old */
     background: #524646;
     border-radius:10px;
     /* background-image: linear-gradient(#284668, #3e576e); */
@@ -19146,9 +19147,11 @@ body.tour-open .animated {
     padding: 15px 20px;
     border-bottom: 1px solid #e7eaec;
 }
+/* Changed: */
 body {
     font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    background-color: #2f4050;
+    background-color: #493232;
+    /* background-color: #2f4050; old */
     font-size: 13px;
     color: #676a6c;
     overflow-x: hidden;
@@ -23867,16 +23870,18 @@ body.md-skin {
     position: fixed;
     display: none;
 }
+/* Changed: */
 @media (min-width: 768px) {
     #page-wrapper {
         position: inherit;
-        margin: 0 0 0 220px;
+        margin: 0 0 0 250px;
         min-height: 100vh;
     }
+    /* Changed: */
     .navbar-static-side {
         z-index: 2001;
         position: absolute;
-        width: 220px;
+        width: 250px;
     }
     .navbar-top-links .dropdown-alerts,
     .navbar-top-links .dropdown-messages,
