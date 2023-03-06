@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.32, created on 2023-02-27 10:35:48
+/* Smarty version 3.1.32, created on 2023-03-03 12:09:06
   from 'C:\wamp\www\jamtransfer\templates\pageListHeader.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.32',
-  'unifunc' => 'content_63fc8784444f87_96711360',
+  'unifunc' => 'content_6401e362a35231_47473380',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '7d4e13059d7eb1944e7a2452042dc0a71e7ccf69' => 
     array (
       0 => 'C:\\wamp\\www\\jamtransfer\\templates\\pageListHeader.tpl',
-      1 => 1677493176,
+      1 => 1677750667,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_63fc8784444f87_96711360 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6401e362a35231_47473380 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <input type="hidden"  id="whereCondition" name="whereCondition" 
 value=" WHERE <?php echo $_smarty_tpl->tpl_vars['ItemID']->value;?>
@@ -37,6 +37,10 @@ value=" WHERE <?php echo $_smarty_tpl->tpl_vars['ItemID']->value;?>
 <input type="hidden"  id="vehicleTypeID" name="vehicleTypeID" value="<?php echo $_smarty_tpl->tpl_vars['VehicleTypeID']->value;?>
 ">
 <input type="hidden"  id="vehicleID" name="vehicleID" value="<?php echo $_smarty_tpl->tpl_vars['VehicleID']->value;?>
+">
+<input type="hidden"  id="subdriverID" name="subdriverID" value="<?php echo $_smarty_tpl->tpl_vars['SubDriverID']->value;?>
+">
+<input type="hidden"  id="actionID" name="actionID" value="<?php echo $_smarty_tpl->tpl_vars['ActionID']->value;?>
 ">
 
 <div class="row itemsheader itemsheader-edit">
@@ -128,15 +132,14 @@ $_smarty_tpl->_assignInScope('pagelength', "10");
 		<i class="fa fa-sort-amount-asc edit-fa"></i>
 		<div class="form-group group-edit">
 			<select name="sortOrder" id="sortOrder" onchange="allItems();" class="form-control control-edit">
-				<option value="ASC" selected="selected"> <?php echo $_smarty_tpl->tpl_vars['ASCENDING']->value;?>
+				<option value="ASC"> <?php echo $_smarty_tpl->tpl_vars['ASCENDING']->value;?>
  </option>
-				<option value="DESC"> <?php echo $_smarty_tpl->tpl_vars['DESCENDING']->value;?>
+				<option value="DESC" <?php if (isset($_smarty_tpl->tpl_vars['selectapproved']->value)) {?>SELECTED<?php }?>> <?php echo $_smarty_tpl->tpl_vars['DESCENDING']->value;?>
  </option>
 			</select>
 		</div>		
 	</div>
 
-	
 	<?php if (isset($_smarty_tpl->tpl_vars['selectactive']->value)) {?>		
 	<div class="col-md-2 asd">
 		<i class="fa fa-filter edit-fa"></i> 
@@ -147,6 +150,20 @@ $_smarty_tpl->_assignInScope('pagelength', "10");
 				<option value="1"> Active </option>
 				<?php if (isset($_smarty_tpl->tpl_vars['selectactive2']->value)) {?><option value="2"> Semi Active </option><?php }?>
 				<option value="0"> Not Active </option>
+			</select>
+		</div>
+	</div>
+	<?php }?>	
+	
+	<?php if (isset($_smarty_tpl->tpl_vars['selectapproved']->value)) {?>		
+	<div class="col-md-2 asd">
+		<i class="fa fa-filter edit-fa"></i> 
+		<div class="form-group group-edit">
+			<select name="Approved" id="Approved" onchange="allItems();" class="form-control control-edit">
+				<option value="99" selected="selected"><?php echo $_smarty_tpl->tpl_vars['ALL']->value;?>
+</option>			
+				<option value="1"> Approved </option>
+				<option value="0"> Not Approved </option>
 			</select>
 		</div>
 	</div>

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.32, created on 2023-02-27 10:35:48
+/* Smarty version 3.1.32, created on 2023-03-03 12:09:06
   from 'c:\wamp\www\jamtransfer\templates\add-style.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.32',
-  'unifunc' => 'content_63fc87841acfc5_55937928',
+  'unifunc' => 'content_6401e36271ddc3_22057136',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '2d24832a246e85f5de94ea3db8f7e5fc9a7e1ef4' => 
     array (
       0 => 'c:\\wamp\\www\\jamtransfer\\templates\\add-style.tpl',
-      1 => 1677493176,
+      1 => 1677837881,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_63fc87841acfc5_55937928 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6401e36271ddc3_22057136 (Smarty_Internal_Template $_smarty_tpl) {
 ?><style>
 
 
@@ -173,24 +173,26 @@ function content_63fc87841acfc5_55937928 (Smarty_Internal_Template $_smarty_tpl)
 }
 
 .nav-header-edit{
-    background-color: #dbd6ca;
+    background-image: linear-gradient(#c9a859, #786d4f);
+    /* background-color: #dbd6ca; */
     /* background-color: #e4e4e4; older */
     margin: 0 5px 5px 5px;
     padding: 5px;
     box-sizing: border-box;
-    border: 2px solid #4c81ad;
-    box-shadow: 5px 5px 8px #888888 inset;
+    /* border: 2px solid #4c81ad; */
+    box-shadow: 5px 5px 8px #888888;
     border-radius: 10px;
     z-index:1;
 }
 .nav-header-edit #a-setout{
     text-decoration: underline;
-    color: rgb(122 122 122);
+    color: rgb(54 54 54);
     padding: 5px 0 5px 2px;
     display: block;
 }
 .nav-header-edit #a-setout:hover{
-    color: rgb(184, 126, 71);
+    color: rgb(233 183 136);
+    /* color: rgb(184, 126, 71); old */
     background: none;
 }
 
@@ -226,11 +228,12 @@ function content_63fc87841acfc5_55937928 (Smarty_Internal_Template $_smarty_tpl)
 }
 
 .nav-header-top-edit{
-    background: #175a89;
+    background-image: linear-gradient(#8b4444, #212628) !important;
+    /* background: #175a89; */
     /* background: #476092; older */
     margin: 5px 5px 10px 5px;
     border-radius: 10px;
-    box-shadow: 5px 5px 16px #424181 inset;
+    /* box-shadow: 5px 5px 16px #424181 inset; */
 }
 
 .navbar-static-side{ box-shadow: 5px 5px 8px #888888; }
@@ -242,7 +245,7 @@ function content_63fc87841acfc5_55937928 (Smarty_Internal_Template $_smarty_tpl)
 
 .box-info, .box-primary{ box-shadow: 5px 5px 8px #616060; }
 
-.nav-header-edit #set-as{ color: #545050;}
+.nav-header-edit #set-as{ color: #3e3e3e;}
 .nav-header-edit #set-as, #set-as-2{ font-family:Georgia, 'Times New Roman', Times, serif; }
 
 
@@ -276,7 +279,8 @@ function content_63fc87841acfc5_55937928 (Smarty_Internal_Template $_smarty_tpl)
 
 /* Navbar Side */
 .navbar-default-edit{
-    background-image: linear-gradient(#050505, #42536B);
+    /* background-image: linear-gradient(#050505, #42536B); */
+    background-image: linear-gradient(#050505, #282222);
     /* background-image: linear-gradient(#333a42, #3e576e); older */
 }
 
@@ -366,13 +370,22 @@ function content_63fc87841acfc5_55937928 (Smarty_Internal_Template $_smarty_tpl)
 
 .nav-label-edit{
     font-style: italic;
-    text-shadow: 3px 3px 2px #494949;
+    text-shadow: 2px 2px 1px #494949;
 
 }
 
 #side-menu .edit-fa{
     text-shadow: 3px 3px 2px #494949;
 }
+
+
+.nav.nav-second-level > li.active a{
+    background-image: linear-gradient(#705d5d, #1c1919) !important;
+    /* background-image: linear-gradient(#794e4e, #1c1919) !important; */
+}
+
+
+
 
 </style><?php }
 }

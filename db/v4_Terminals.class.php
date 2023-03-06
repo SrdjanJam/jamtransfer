@@ -80,8 +80,7 @@ Class v4_Terminals {
 		ImageMP = '".$this->myreal_escape_string($this->ImageMP)."', 
 		ImageBG = '".$this->myreal_escape_string($this->ImageBG)."', 
 		MPOrder = '".$this->myreal_escape_string($this->MPOrder)."', 
-		Description = '".$this->myreal_escape_string($this->Description)."' WHERE TerminalID = '".$this->TerminalID."'");
-		
+		Description = JSON_MERGE_PATCH(`Description`,'".$this->Description."') WHERE TerminalID = '".$this->TerminalID."'");
 		return $result; 
 	}
 
@@ -94,7 +93,7 @@ Class v4_Terminals {
      */
 	public function getKeysBy($column, $order, $where = NULL){
 		$keys = array(); $i = 0;
-		$result = $this->connection->RunQuery("SELECT TerminalID from v4_Terminals $where ORDER BY $column $order");
+		$result = $this->connection->RunQuery("SELECT TerminalID from v4_Terminals,v4_Places $where and TerminalID=PlaceID ORDER BY $column $order");
 			while($row = $result->fetch_array(MYSQLI_ASSOC)){
 				$keys[$i] = $row["TerminalID"];
 				$i++;

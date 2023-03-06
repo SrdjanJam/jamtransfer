@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.32, created on 2023-02-27 10:35:47
+/* Smarty version 3.1.32, created on 2023-03-03 12:09:05
   from 'C:\wamp\www\jamtransfer\templates\index.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.32',
-  'unifunc' => 'content_63fc8783753c38_66139905',
+  'unifunc' => 'content_6401e361c9b407_70896577',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'a1818a92b5a2f041fd91a227dabc592dea38fac2' => 
     array (
       0 => 'C:\\wamp\\www\\jamtransfer\\templates\\index.tpl',
-      1 => 1677493176,
+      1 => 1677759447,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:pageList.tpl' => 1,
   ),
 ),false)) {
-function content_63fc8783753c38_66139905 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6401e361c9b407_70896577 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html>
 	<head>
@@ -309,7 +309,7 @@ _init.js"><?php echo '</script'; ?>
 														<?php if (isset($_SESSION['UseDriverName'])) {?>
 							<!-- nav-header nav-header-edit -->
 								<li class="nav-header nav-header-edit">
-									<h3 id="set-as">Set as:</h3>
+									<h3 id="set-as">Seted as:</h3>
 									<h3 class="cut-name"><?php echo $_SESSION['UseDriverName'];?>
 </h3>
 									<a href="setout.php" id="a-setout">Setout &nbsp;<i class="fas fa-sign-out-alt"></i></a>	

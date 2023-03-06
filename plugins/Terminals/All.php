@@ -6,12 +6,10 @@ require_once 'Initial.php';
 
 # sastavi filter - posalji ga $_REQUEST-om
 if (isset($type)) {
-	if (!isset($_REQUEST['Type']) or $_REQUEST['Type'] == 0 or $_REQUEST['Type'] == 99) {
-		$filter = "  AND ".$type." != 0 ";
+	if (isset($_REQUEST['Type']) && $_REQUEST['Type'] == 1) {
+		$filter = "  AND ".$type." =1 ";
 	}
-	else {
-		$filter = "  AND ".$type." = '" . $_REQUEST['Type'] . "'";
-	}
+
 }
 
 
@@ -37,16 +35,7 @@ $flds = array();
 $DB_Where = " " . $_REQUEST['where'];
 $DB_Where .= $filter;
 
-// Nepotreban deo:
-// if ($_REQUEST['Type']==99) {
-// 	$sql="SELECT TerminalID FROM `v4_Terminals`";	
-// 	$result = $dbT->RunQuery($sql);
-// 	while($row = $result->fetch_array(MYSQLI_ASSOC)){
-// 		$terminals_arr.=$row['TerminalID'].",";
-// 	}
-// 	$terminals_arr = substr($terminals_arr,0,strlen($terminals_arr)-1);	
-// 	$DB_Where .= " AND TerminalID in (".$terminals_arr.")";
-// }
+
 
 # dodavanje search parametra u qry
 # DB_Where sad ima sve potrebno za qry

@@ -9,9 +9,7 @@ $dbP = new v4_Places;
 
 $keyName = 'TerminalID';
 $ItemName='TerminalID ';
-// Check:
-// $ItemName='PlaceNameEN ';
-// $type='PlaceType';
+$type='MP';
 #********************************
 # kolone za koje je moguc Search
 # treba ih samo nabrojati ovdje
@@ -19,6 +17,6 @@ $ItemName='TerminalID ';
 #********************************
 $aColumns = array(
 	'TerminalID', // dodaj ostala polja!
-	'TerminalName' // dodaj ostala polja!
+	'PlaceNameEN' // dodaj ostala polja!
 );
 

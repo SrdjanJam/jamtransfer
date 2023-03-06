@@ -1,4 +1,12 @@
 <?
+	$arr_row['id']=0;
+	$arr_row['name']="All";
+	$arr_row['id']=1;
+	$arr_row['name']="Most Popular";
+	$arr_all[]=$arr_row;
+	
+	$smarty->assign('options',$arr_all);
+	$smarty->assign('selecttype',true);
 	
 ?>
 <script type="text/x-handlebars-template" id="ItemListTemplate">
