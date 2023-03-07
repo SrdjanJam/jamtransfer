@@ -217,6 +217,7 @@
 					<ul class="nav metismenu" id="side-menu">
 
 						{* PROFILE =================================================================== *}
+						<!--nav-header-top-edit -->
 						<li class="nav-header nav-header-top-edit">
 							<div class="dropdown profile-element">
 								<a data-toggle="dropdown" class="dropdown-toggle" href="#">
@@ -234,8 +235,11 @@
 								</ul>
 							</div>
 						</li>
+						{* END OF PROFILE ======================================================================== *}
+
+						{* SETTING DRIVER ======================================================================== *}
 						{if $setasdriver}
-							{* SETTING DRIVER ======================================================================== *}
+							
 							{if isset($smarty.session.UseDriverName)}
 							<!-- nav-header nav-header-edit -->
 								<li class="nav-header nav-header-edit">
@@ -254,8 +258,10 @@
 									</li>
 								{/if}
 							{/if}
-							{* ====================================================================================== *}
+							
 						{/if}
+						{* END OF SETTING DRIVER ====================================================================================== *}
+
 						{* Items of sidebar *}
 						{section name=index loop=$menu1}
 							<li class="{$menu1[index].active}">
