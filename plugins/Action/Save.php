@@ -21,7 +21,25 @@ if ($keyName != '' and $keyValue != '') {
 }
 if ($keyName != '' and $keyValue == '') {
 	$newID = $db->saveAsNew();
+	$keyValue=$newID;
 }
+
+$rqk = $rq->getKeysBy('ID ' , '' , 'Where Active>0');
+$sql="DELETE FROM `v4_ActionRequestItem` WHERE `ActionID`=".$keyValue;
+$dbc->RunQuery($sql);
+if (count($rqk) != 0) {
+	foreach ($rqk as $nn => $key)  
+	{	
+		$rq->getRow($key);
+		$index='check'.$key;
+		if (isset($_REQUEST[$index])) {
+			$sql="INSERT INTO `v4_ActionRequestItem`(`ActionID`,`RequestID`) VALUES (".$keyValue.",".$key.")";
+			$dbc->RunQuery($sql);	
+		}	
+	}
+}
+
+
 $out = array(
 	'update' => $upd,
 	'insert' => $newID
