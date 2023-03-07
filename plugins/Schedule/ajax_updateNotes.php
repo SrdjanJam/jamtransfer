@@ -8,10 +8,9 @@ $SOwnerID = $_SESSION['OwnerID'];
 
 // preko timetable se samo sljedeca polja mogu mijenjati
 $data = array(
-		'CustomerID'	=> $_REQUEST['CustomerID'],
         'SubPickupTime' => $_REQUEST['SubPickupTime'],
-        'SubFlightNo'   => $_REQUEST['SubFlightNo'],
-        'SubFlightTime' => $_REQUEST['SubFlightTime'],
+        'FlightNo'   => $_REQUEST['FlightNo'],
+        'FlightTime' => $_REQUEST['FlightTime'],
         'SubDriver'     => $_REQUEST['SubDriver'],
         'SubDriver2'    => $_REQUEST['SubDriver2'],
         'SubDriver3'    => $_REQUEST['SubDriver3'],
@@ -89,8 +88,8 @@ if (isset($_REQUEST['Mail']) && $_REQUEST['Mail']==1) {
 	//$mailto = $m->MPaxEmail;
 	$mailto = 'jam.bgprogrameri@gmail.com';
 	$subject = 'Important Update for Transfer: '. ' ' . $m->MOrderKey.'-'.$m->MOrderID . '-' . $d->TNo;
-	mail_html($mailto, 'driver-info@jamtransfer.com', 'JamTransfer.com', 'info@jamtransfer.com',
-	$subject , $mailMessage);
+	/*mail_html($mailto, 'driver-info@jamtransfer.com', 'JamTransfer.com', 'info@jamtransfer.com',
+	$subject , $mailMessage);*/
 	
 }	
 

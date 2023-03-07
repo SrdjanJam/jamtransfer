@@ -3,18 +3,20 @@
 {if $sdArray[pom].Transfers[pom2].ForTransfer}
 <div class="sub-card">
 	<div class="row" style="background:#b6d7a8; padding:10px;"> 
-		<small><b>Connection transfer</b> {$sdArray[pom].Transfers[pom2].Device}</small><br>
-		{$sdArray[pom].Transfers[pom2].Location} - {$sdArray[pom].Transfers[pom2].PickupName}
-		<br>{$sdArray[pom].Transfers[pom2].Distance2}km / {$sdArray[pom].Transfers[pom2].Duration2}min / {$sdArray[pom].Transfers[pom2].Shedule}
+		<small><b>Connection transfer</b> {$sdArray[pom].Transfers[pom2].Device}</small>
+		<div>{$sdArray[pom].Transfers[pom2].Location} - {$sdArray[pom].Transfers[pom2].PickupName}
+		<br>{$sdArray[pom].Transfers[pom2].Distance2}km / {$sdArray[pom].Transfers[pom2].Duration2}min / {$sdArray[pom].Transfers[pom2].Shedule}</div>
+		<small><iframe src="https://maps.google.com/maps?q={$sdArray[pom].Lat},{$sdArray[pom].Lng} &z=8&output=embed"  frameborder="0" style="border:0"></iframe></small>
 	</div>
 </div>	
 {/if}
 <div class="sub-card">
 	<div class="bgColor" style="background:{$sdArray[pom].Transfers[pom2].bgColor};padding:10px;">
 		{if $sdArray[pom].Transfers[pom2].TransferIn}
-			<small><b>On transfer</b> {$sdArray[pom].Transfers[pom2].Device}</small><br>
-			{$sdArray[pom].Transfers[pom2].Location} - {$sdArray[pom].Transfers[pom2].DropName}
-			<br>{$sdArray[pom].Transfers[pom2].Distance2}km / {$sdArray[pom].Transfers[pom2].Duration2}min / {$sdArray[pom].Transfers[pom2].Shedule}
+			<small><b>On transfer</b> {$sdArray[pom].Transfers[pom2].Device}</small>
+			<div>{$sdArray[pom].Transfers[pom2].Location} - {$sdArray[pom].Transfers[pom2].DropName}</div>
+			<div>{$sdArray[pom].Transfers[pom2].Distance2}km / {$sdArray[pom].Transfers[pom2].Duration2}min / {$sdArray[pom].Transfers[pom2].Shedule}</div>
+			<small><iframe src="https://maps.google.com/maps?q={$sdArray[pom].Lat},{$sdArray[pom].Lng} &z=8&output=embed"  frameborder="0" style="border:0"></iframe></small>
 		{/if}
 		<!-- row first -->
 		<div class="row"> <!-- TRANSFER -->
@@ -137,7 +139,7 @@
 		<div class="row" style="line-height:140%">
 			<div class="col-md-10">
 				<select class="subdriver1" data-id="{$sdArray[pom].Transfers[pom2].DetailsID}"
-				id="SubDriver_{$sdArray[pom].Transfers[pom2].DetailsID}" name="SubDriver_{$sdArray[pom].Transfers[pom2].DetailsID}" onchange="saveTransfer({$sdArray[pom].Transfers[pom2].DetailsID},0)">
+				id="SubDriver1_{$sdArray[pom].Transfers[pom2].DetailsID}" name="SubDriver_{$sdArray[pom].Transfers[pom2].DetailsID}" onchange="saveTransfer({$sdArray[pom].Transfers[pom2].DetailsID},0)">
 					<option value='0'> --- </option>
 					{section name=pom3 loop=$sddArray}
 						<option value="{$sddArray[pom3].DriverID}" data-mob="{$sddArray[pom3].Mob}";
@@ -149,17 +151,17 @@
 				</select>
 			</div>
 			<div class="col-md-2">
-				<a href="#" class="btn btn-default" onclick="return ShowSubdriver2('{$sdArray[pom].Transfers[pom2].DetailsID}');">
+				<button class="btn btn-default" onclick="return ShowSubdriver2('{$sdArray[pom].Transfers[pom2].DetailsID}');">
 					<i class="fa fa-plus"></i>
-				</a>
+				</button>
 			</div>		
 		</div>
 		
 		<!-- Hidden or not: -->
 		<div id="subDriver2{$sdArray[pom].Transfers[pom2].DetailsID}" class="row {if  $sdArray[pom].Transfers[pom2].SubDriver2 eq 0}hidden{/if}" style="line-height:140%">
 			<div class="col-md-10">
-				<select class="subdriver1" data-id="{$sdArray[pom].Transfers[pom2].DetailsID}"
-				id="SubDriver_{$sdArray[pom].Transfers[pom2].DetailsID}" name="SubDriver_{$sdArray[pom].Transfers[pom2].DetailsID}" onchange="saveTransfer({$sdArray[pom].Transfers[pom2].DetailsID},0)">
+				<select class="subdriver2" data-id="{$sdArray[pom].Transfers[pom2].DetailsID}"
+				id="SubDriver2_{$sdArray[pom].Transfers[pom2].DetailsID}" name="SubDriver_{$sdArray[pom].Transfers[pom2].DetailsID}" onchange="saveTransfer({$sdArray[pom].Transfers[pom2].DetailsID},0)">
 					<option value='0'> --- </option>
 					{section name=pom3 loop=$sddArray}
 						<option value="{$sddArray[pom3].DriverID}" data-mob="{$sddArray[pom3].Mob}";
@@ -171,17 +173,17 @@
 				</select>
 			</div>
 			<div class="col-md-2">
-				<a href="#" class="btn btn-default" onclick="return ShowSubdriver3('{$sdArray[pom].Transfers[pom2].DetailsID}');">
+				<button class="btn btn-default" onclick="return ShowSubdriver3('{$sdArray[pom].Transfers[pom2].DetailsID}');">
 					<i class="fa fa-plus"></i>
-				</a>
+				</button>
 			</div>			
 		</div>
 
 		<!-- Hidden or not: -->
 		<div id="subDriver3{$sdArray[pom].Transfers[pom2].DetailsID}"  class="row {if  $sdArray[pom].Transfers[pom2].SubDriver3 eq 0}hidden{/if}" style="line-height:140%">
 			<div class="col-md-10">
-				<select class="subdriver1" data-id="{$sdArray[pom].Transfers[pom2].DetailsID}"
-				id="SubDriver_{$sdArray[pom].Transfers[pom2].DetailsID}" name="SubDriver_{$sdArray[pom].Transfers[pom2].DetailsID}" onchange="saveTransfer({$sdArray[pom].Transfers[pom2].DetailsID},0)">
+				<select class="subdriver3" data-id="{$sdArray[pom].Transfers[pom2].DetailsID}"
+				id="SubDriver3_{$sdArray[pom].Transfers[pom2].DetailsID}" name="SubDriver_{$sdArray[pom].Transfers[pom2].DetailsID}" onchange="saveTransfer({$sdArray[pom].Transfers[pom2].DetailsID},0)">
 					<option value='0'> --- </option>
 					{section name=pom3 loop=$sddArray}
 						<option value="{$sddArray[pom3].DriverID}" data-mob="{$sddArray[pom3].Mob}";
@@ -307,19 +309,9 @@
 
 
 <script>
-
-	function displayMob() {
-		$( ".subdriver1" ).each(function() {
-			var id = $(this).attr('data-id');
-			var mob = $('option:selected',this).attr('data-mob');
-			var mobid='#'+'mob'+id;
-			$(mobid).text(mob);
-			$(mobid).attr('href',('tel:'+mob));
-		});	
-	}
 	function saveTransfer (i,mail) {
-		//displayMob();
 		//var id	= $("#ID_" + i).val();
+		var id=i;
 		var oid	= $("#OrderID_" + i).val();
 		var checked = $('#checkdata_'+i).prop('checked');
 		if (checked) {
@@ -337,10 +329,10 @@
 			$('#checkdata'+i).prop('disabled',false);
 			mail=0;
 		}
-		var fn	= $("#SubFlightNo_" + i).val();
-		var ft	= $("#SubFlightTime_" + i).val();
+		var fn	= $("#FlightNo_" + i).val();
+		var ft	= $("#FlightTime_" + i).val();
 		var pt	= $("#SubPickupTime_" + i).val();
-		var sd	= $("select#SubDriver_" + i).val();
+		var sd	= $("select#SubDriver1_" + i).val();
 		var sd2	= $("select#SubDriver2_" + i).val();
 		var sd3	= $("select#SubDriver3_" + i).val();
 		var c	= $("select#Car_" + i).val();
@@ -354,18 +346,17 @@
 
 		msg.innerHTML = "Saving...";
 		var url= "plugins/Schedule/ajax_updateNotes.php";
-		var param = 'ID='+i+'&OrderID='+oid+'&DriverConfStatus='+driverconfirmationstatus+'&CustomerID='+checked+'&SubFlightNo='+fn+'&SubFlightTime='+ft+'&SubPickupTime='+pt+'&SubDriver='+sd+'&SubDriver2='+sd2+'&SubDriver3='+sd3+'&Car='+c+'&Car2='+c2+'&Car3='+c3+'&StaffNote='+ sn+'&Notes='+n+'&CashIn='+g+'&TransferDuration='+ td+'&Mail='+ mail;
+		var param = 'ID='+id+'&OrderID='+oid+'&DriverConfStatus='+driverconfirmationstatus+'&FlightNo='+fn+'&FlightTime='+ft+'&SubPickupTime='+pt+'&SubDriver='+sd+'&SubDriver2='+sd2+'&SubDriver3='+sd3+'&Car='+c+'&Car2='+c2+'&Car3='+c3+'&StaffNote='+ sn+'&Notes='+n+'&CashIn='+g+'&TransferDuration='+ td+'&Mail='+ mail;
 		console.log(url+'?'+param);
 		$.ajax({
 			url: url,
 			type: "POST",
 			data: {
-				ID: i,
+				ID: id,
 				OrderID: oid,
 				DriverConfStatus: driverconfirmationstatus,
-				CustomerID: checked,								
-				SubFlightNo: fn,
-				SubFlightTime: ft,
+				FlightNo: fn,
+				FlightTime: ft,
 				SubPickupTime: pt,
 				SubDriver: sd,
 				SubDriver2: sd2,
@@ -404,6 +395,12 @@
 	}
 
 
+
+
+
+
+
+
 	
 	function ShowShow(i) {
 		$("#show"+i).toggle('slow');
@@ -417,13 +414,13 @@
 	
 	function ShowSubdriver2(i)
 	{
-	    $("#subDriver2"+i).toggle('slow');
+	    $("#subDriver2"+i).toggleClass('hidden');
 	    return false;
 	}
 
 	function ShowSubdriver3(i)
 	{
-	    $("#subDriver3"+i).toggle('slow');
+	    $("#subDriver3"+i).toggleClass('hidden');
 	    return false;
 	}
 </script>	

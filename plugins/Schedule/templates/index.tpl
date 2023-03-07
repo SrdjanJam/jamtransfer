@@ -200,7 +200,7 @@ hr {
 						<strong>{$sdArray[pom].DriverName}</strong>	
 						<a href="tel:{$sdArray[pom].Mob}">{$sdArray[pom].Mob}</a>
 						<small>{$sdArray[pom].Accomodation}</small><br>
-						<small>{$sdArray[pom].Device} {$sdArray[pom].Location}</small>
+						<small class='hide'>{$sdArray[pom].Device} {$sdArray[pom].Location}</small>
 					</div>
  
 					{if count($sdArray[pom].Transfers)}

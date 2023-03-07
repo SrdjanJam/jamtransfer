@@ -207,8 +207,10 @@ while ($d = $r->fetch_object()) {
 				$row['Location']=$lc->Label;
 				$row['Device']=$lc->Device.' at '.date('H:i:s',$lc->Time);
 				$row['DeviceTime']=$lc->Time;
+				if ((time()-$lc->Time)/3600<4 && (time()-$lc->Time)/3600>0) $inTime=true;
+				else $inTime=false;
 				$distACC=vincentyGreatCircleDistance($row['Lat'], $row['Lng'], $op->Latitude, $op->Longitude, $earthRadius = 6371000)/1000;
-				if ($distACC>5) $row['ForTransferBreak']=false;
+				if ($distACC>5 && $inTime) $row['ForTransferBreak']=false;
 			}
 		}
 		$sdArray[] = $row;
