@@ -26,13 +26,6 @@
 
 <form id="ItemEditForm{{ID}}" class="form box box-info" enctype="multipart/form-data" method="post" onsubmit="return false;">
 	<div class="box-header">
-		<div class="box-title">
-			<? if ($isNew) { ?>
-				<h3>New tasks</h3>
-			<? } else { ?>
-				<h3><?= EDIT ?> - {{ID}}</h3>
-			<? } ?>
-		</div>
 		<div class="box-tools pull-right">
 			
 			<span id="statusMessage" class="text-info xl"></span>
@@ -51,7 +44,7 @@
 				
 			<? } ?>	
 
-			<button class="btn btn-info" title="<?= SAVE_CHANGES ?>" 
+			<button id="save_button" class="btn btn-info" title="<?= SAVE_CHANGES ?>" 
 				onclick="return editSaveItem('{{ID}}');">
 				<i class="fa fa-save"></i>
 			</button>
@@ -66,14 +59,14 @@
 					<div class="col-md-3">
 						<label for="Datum">Vreme</label>
 					</div>
-					<div class="col-md-6">
+					<div class="col-md-3">
 						<input type="text" name="Datum1" id="Datum1" class="w100 datepicker" value="{{Datum1}}">
 					</div>
 					<div class="col-md-3">
 						<input type="text" name="Vreme1" id="Vreme1" class="w100 timepicker" value="{{Vreme1}}">
 					</div>
 				</div>
-
+				<? if ($isNew) { ?>
 				<div class="row">
 					<div class="col-md-3">
 						<label for="Task">Task</label>
@@ -121,6 +114,8 @@
 						</select>
 					</div>
 				</div>
+				<? } ?>	
+				
 				<div class="row">
 					<div class="col-md-3">
 						<label for="Description"><?= DESCRIPTION ?></label>
@@ -129,9 +124,6 @@
 						<textarea name="Description" id="Description" class="w100" style="resize:none">{{Description}}</textarea>
 					</div>
 				</div>			
-			</div>
-			<? if (!$isNew) { ?>
-			<div class="col-md-6">
 				<div class="row">
 					<div class="col-md-3">
 						<label for="Vreme">Finished</label>
@@ -147,53 +139,41 @@
 					<div class="col-md-9">
 						{{Note}}
 					</div>
-				</div>
-				<!--<div class="row">
-					<div class="col-md-3">
-						<label for="DocumentImage">Document Image</label>
-                    </div>
-					<div class="col-md-9">
-						<img  class="small" src="{{DocumentImage}}" alt="" height="50" width="50">		
-					</div>
-				</div>
+				</div>	
+				<? if (!$isNew) { ?>
 				<div class="row">
 					<div class="col-md-3">
-						<label for="ActionImage">Action Image</label>
-                    </div>
-					<div class="col-md-9">
-						<video width="50" height="50" controls>
-							<source src="{{ActionImage}}" type="video/mp4">
-						</video>					
+						<label for="Approved">Approved</label>
 					</div>
-				</div>	!--->					
+					<div class="col-md-9 approved">
+						<large>{{yesNoSliderEdit Approved 'Approved' }}</large>
+					</div>
+				</div>				
+				<? } else { ?>
+				<input type="text" name="approved" value="0"/>
+				<? } ?>
+
+			</div>
+			<? if (!$isNew) { ?>
+			<div class="col-md-6">
 				{{#each checklist}}
-				<div class="row">
-					<div class="col-md-6">
-						<label for="Description">{{title}}</label>
-					</div>	
+				<div class="row">	
 					{{#compare active "==" '1'}}
-						<div class="col-md-1">
+						<div class="col-md-6">
 							<input type="checkbox" name="check" style="height: 0.8em" value="1" 
 							{{#compare check "==" 1 }} checked {{/compare}} disabled> 
 						</div>	
 					{{/compare}}		
 					{{#compare active "==" '2'}}			
-						<div class="col-md-1">
-							<img src="{{photo}}" height="50" width="50"/>
+						<div class="col-md-2">
+							<img src="{{photo}}" height="50" width="50" style="margin:2px"/>
 						</div>
 					{{/compare}}		
-
+					<div class="col-md-2">
+						<label for="Description">{{title}}</label>
+					</div>
 				</div>	
 				{{/each}}				
-				<div class="row">
-					<div class="col-md-3">
-						<label for="Approved">Approved</label>
-					</div>
-					<div class="col-md-9">				
-						<input type="hidden" name="Approved" id="a{{ID}}" value="{{Approved}}">
-						<input type="checkbox" id="{{ID}}" {{#compare Approved "==" 1}} checked {{/compare}} onclick="checkApproved({{ID}})">
-					</div>
-				</div>					
 			</div>
 
 			<? } ?>	
@@ -202,85 +182,17 @@
 	
 		<input type="hidden" name='OwnerID' value='{{OwnerID}}'/>
 	</form>				
-
-
-
-	<script>	
-		var actionid=$('#actionsid').val();
-		$("#actionsselect option[value="+actionid+"]").attr("selected", "selected");		 
-		
+	<script>
 		$('img').click(function() {
-			$(this).attr('class','large');	   
-
-		})	
-		$('#image_delete').click(function() {
-			$("#docimage").val('');	   
-			$("#docimage2").hide();	
-			$('#image_delete').hide();	
-		})			
-		
-
-		$('#action_delete').click(function() {
-			$("#actimage").val('');	   
-			$("#actimage3").hide();	
-			$('#action_delete').hide();	
+			$(this).toggleClass("large");
 		})
-		
-		$('img').mouseout(function() {
-			$(this).attr('class','small');
-		})	
 		$('img').dblclick(function() {
-			$(this).addClass('rotate');
-
-		})	
-
-		var docimage=$('#docimage').val();
-		if (docimage !='' && docimage !='null') {
-			$('#docimage2').attr('src',docimage);
-		}
-		else {
-			$("#docimage2").hide();	
-			$('#image_delete').hide();	
-		}			
+			$(this).toggleClass("rotate");
+		})
+		$('.approved input').change(function() {
+			$('#save_button').trigger('click');
+		})
 	
-		var actimage=$('#actimage').val(); 
-		if (actimage !='' && actimage !='null') {
-			$('#actimage2').attr('src',actimage); 
-		}
-		else {
-			$("#actimage3").hide();	
-			$('#action_delete').hide();	
-		}	
-		
-		// uklanja ikonu Saved - statusMessage sa ekrana
-		$("form").change(function(){
-			$("#statusMessage").html('');
-		});
-
-		// CHECK:
-		// $(".datepicker").pickadate({format: "yyyy-mm-dd"});
-
-		function selectExpense (expenseID, li) {
-			document.getElementById("Expense").value = expenseID;
-			document.getElementById("ExpenseText").value = li.innerHTML;
-		}
-
-		function selectCurrency (currencyID) {
-			document.getElementById("CurrencyID").value = currencyID;
-		}
-
-		function checkApproved(id)
-		{
-		  var checkbox = document.getElementById(id);
-		  var Approved = document.getElementById('a'+id);
-		  
-		  if (checkbox.checked != true)
-		  {
-			Approved.value = '0';
-		  } else Approved.value = '1';
-		  
-		console.log(Approved.value);
-		}		
 	</script>
 </script>
 	

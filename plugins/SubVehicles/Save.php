@@ -32,4 +32,6 @@ $out = array(
 
 # send output back
 $output = json_encode($out);
-echo $_REQUEST['VehicleID'];
+if ($keyName != '' and $keyValue != '') echo $_REQUEST['VehicleID'];
+if ($keyName != '' and $keyValue == '') echo $_REQUEST['callback'] . '(' . $output . ')';
+

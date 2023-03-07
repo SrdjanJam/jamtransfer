@@ -151,7 +151,6 @@
 
 					var link = base+'/plugins/SubVehicles/Delete.php';
 					var param = "id="+ $(this).attr('data-id');
-
 					console.log(link+'?'+param);
 					
 					$.ajax({

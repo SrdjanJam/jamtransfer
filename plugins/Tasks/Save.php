@@ -1,45 +1,28 @@
 <?
 header('Content-Type: text/javascript; charset=UTF-8');
 error_reporting(E_PARSE);
-
 require_once 'Initial.php';
-
 session_start();
-
-// OLDER:	
-# init vars
-// $keyName = '';
-// $keyValue = '';
-
-// if (isset($_REQUEST['keyName']) and $_REQUEST['keyName'] != '') 	$keyName = $_REQUEST['keyName'];
-// if (isset($_REQUEST['keyValue']) and $_REQUEST['keyValue'] != '') 	$keyValue = $_REQUEST['keyValue'];
-
-
 $keyValue = $_REQUEST['id'];
 
 $fldList = array();
 $out = array();
 
-
 foreach($fakeDrivers as $key => $fakeDriverID) {
     if($_REQUEST['OwnerID'] == $fakeDriverID) $_REQUEST['OwnerID'] = $realDrivers[$key];    
 }
 
-# if Update - get the row by keyValue
 if ($keyName != '' and $keyValue != '') $db->getRow($keyValue);
+foreach ($db->fieldNames() as $name) {
+	$content=$db->myreal_escape_string($_REQUEST[$name]);
+	if(isset($_REQUEST[$name])) {
+		eval("\$db->set".$name."(\$content);");	
+	}
+}
+if(isset($_REQUEST['Datum1']) && isset($_REQUEST['Vreme1'])) { 
 	$vreme=$_REQUEST['Datum1'].' '.$_REQUEST['Vreme1']; 
-	if(isset($_REQUEST['ID'])) { $db->setID($db->myreal_escape_string($_REQUEST['ID']) ); } 
-	if(isset($_REQUEST['OwnerID'])) { $db->setOwnerID($db->myreal_escape_string($_REQUEST['OwnerID']) ); } 
-	if(isset($_REQUEST['DriverID'])) { $db->setDriverID($db->myreal_escape_string($_REQUEST['DriverID']) ); } 
-	if(isset($_REQUEST['VehicleID'])) { $db->setVehicleID($db->myreal_escape_string($_REQUEST['VehicleID']) ); } 
-	if(isset($_REQUEST['Datum1']) && isset($_REQUEST['Vreme1'])) { $db->setDatum($db->myreal_escape_string($vreme) ); } 
-	if(isset($_REQUEST['Expense'])) { $db->setExpense($db->myreal_escape_string($_REQUEST['Expense']) ); } 
-	if(isset($_REQUEST['Description'])) { $db->setDescription($db->myreal_escape_string($_REQUEST['Description']) ); } 
-	if(isset($_REQUEST['DocumentImage'])) { $db->setDocumentImage($db->myreal_escape_string($_REQUEST['DocumentImage']) ); } 
-	if(isset($_REQUEST['ActionImage'])) { $db->setActionImage($db->myreal_escape_string($_REQUEST['ActionImage']) ); } 	
-	if(isset($_REQUEST['Approved'])) { $db->setApproved($db->myreal_escape_string($_REQUEST['Approved']) ); } 
-	if(isset($_REQUEST['Note'])) { $db->setNote($db->myreal_escape_string($_REQUEST['Note']) ); } 
-
+	$db->setDatum($db->myreal_escape_string($vreme) ); 
+} 
 
 $upd = '';
 $newID = '';
@@ -55,7 +38,7 @@ if ($keyName != '' and $keyValue != '') {
 
 // inace dodaj novi slog	
 if ($keyName != '' and $keyValue == '') {
-	$db->setOwnerID($_SESSION['OwnerID']);
+	$db->setOwnerID($_SESSION['UseDriverID']);
 	$newID = $db->saveAsNew();
 }
 // zaprimanje - razduzivanje vozila
