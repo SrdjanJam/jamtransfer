@@ -30,6 +30,7 @@ Class v4_Customers {
 	public $CustActive; //tinyint(1)
 	public $CustImage; //blob
 	public $CustImageType; //varchar(255)
+	
 	public $connection;
 
 	function __construct(){

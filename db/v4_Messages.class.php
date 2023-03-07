@@ -3,11 +3,11 @@
  * Author: Rafael Rocha
  *
  * Changes: Bogo Soic-Mirilovic bogo.split@gmail.com
- * 
+ *
  * Version of MYSQL_to_PHP: 1.1.1
- * 
- * License: LGPL 
- * 
+ *
+ * License: LGPL
+ *
  */
 require_once 'db.class.php';
 
@@ -22,6 +22,7 @@ Class v4_Messages {
 	public $DateTime; //datetime
 	public $UserLevel; //tinyint(4) unsigned
 	public $Status; //tinyint(1)
+	
 	public $connection;
 
 	function __construct(){
@@ -31,7 +32,7 @@ Class v4_Messages {
 	}
 
     /**
-     * New object to the class. Don´t forget to save this new object "as new" by using the function $class->saveAsNew(); 
+     * New object to the class. Don´t forget to save this new object "as new" by using the function $class->saveAsNew();
      *
      */
 	public function New_v4_Messages($MsgFrom,$FromName,$Msg,$Body,$UserID,$DateTime,$UserLevel,$Status){
@@ -46,10 +47,10 @@ Class v4_Messages {
 	}
 
     /**
-     * Load one row into var_class. To use the vars use for exemple echo $class->getVar_name; 
+     * Load one row into var_class. To use the vars use for exemple echo $class->getVar_name;
      *
      * @param key_table_type $key_row
-     * 
+     *
      */
 	public function getRow($key_row){
 		$result = $this->connection->RunQuery("Select * from v4_Messages where ID = \"$key_row\" ");
@@ -81,16 +82,16 @@ Class v4_Messages {
      * Update the active row table on table
      */
 	public function saveRow(){
-		$result = $this->connection->RunQuery("UPDATE v4_Messages set 
-MsgFrom = '".$this->myreal_escape_string($this->MsgFrom)."', 
-FromName = '".$this->myreal_escape_string($this->FromName)."', 
-Msg = '".$this->myreal_escape_string($this->Msg)."', 
-Body = '".$this->myreal_escape_string($this->Body)."', 
-UserID = '".$this->myreal_escape_string($this->UserID)."', 
-DateTime = '".$this->myreal_escape_string($this->DateTime)."', 
-UserLevel = '".$this->myreal_escape_string($this->UserLevel)."', 
+		$result = $this->connection->RunQuery("UPDATE v4_Messages set
+MsgFrom = '".$this->myreal_escape_string($this->MsgFrom)."',
+FromName = '".$this->myreal_escape_string($this->FromName)."',
+Msg = '".$this->myreal_escape_string($this->Msg)."',
+Body = '".$this->myreal_escape_string($this->Body)."',
+UserID = '".$this->myreal_escape_string($this->UserID)."',
+DateTime = '".$this->myreal_escape_string($this->DateTime)."',
+UserLevel = '".$this->myreal_escape_string($this->UserLevel)."',
 Status = '".$this->myreal_escape_string($this->Status)."' WHERE ID = '".$this->ID."'");
-	return $result; 
+	return $result;
 }
 
     /**
@@ -98,7 +99,7 @@ Status = '".$this->myreal_escape_string($this->Status)."' WHERE ID = '".$this->I
      */
 	public function saveAsNew(){
 		$this->connection->RunQuery("INSERT INTO v4_Messages (MsgFrom, FromName, Msg, Body, UserID, DateTime, UserLevel, Status) values ('".$this->myreal_escape_string($this->MsgFrom)."', '".$this->myreal_escape_string($this->FromName)."', '".$this->myreal_escape_string($this->Msg)."', '".$this->myreal_escape_string($this->Body)."', '".$this->myreal_escape_string($this->UserID)."', '".$this->myreal_escape_string($this->DateTime)."', '".$this->myreal_escape_string($this->UserLevel)."', '".$this->myreal_escape_string($this->Status)."')");
-		return $this->connection->insert_id(); //return insert_id 
+		return $this->connection->insert_id(); //return insert_id
 	}
 
     /**
@@ -244,10 +245,10 @@ Status = '".$this->myreal_escape_string($this->Status)."' WHERE ID = '".$this->I
 	}
 
     /**
-     * fieldValues - Load all fieldNames and fieldValues into Array. 
+     * fieldValues - Load all fieldNames and fieldValues into Array.
      *
-     * @param 
-     * 
+     * @param
+     *
      */
 	public function fieldValues(){
 		$fieldValues = array(
@@ -263,10 +264,10 @@ Status = '".$this->myreal_escape_string($this->Status)."' WHERE ID = '".$this->I
 		return $fieldValues;
 	}
     /**
-     * fieldNames - returns array of fieldNames 
+     * fieldNames - returns array of fieldNames
      *
-     * @param 
-     * 
+     * @param
+     *
      */
 	public function fieldNames(){
 		$fieldNames = array(
