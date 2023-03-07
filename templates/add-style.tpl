@@ -258,6 +258,8 @@
 }
 /* ------------------------------------------------------------------------------- */
 
+/* NAVBAR: */
+
 /* Navbar Side */
 .navbar-default-edit{
     /* background-image: linear-gradient(#050505, #42536B); */
@@ -270,6 +272,23 @@
     background-image: linear-gradient(to bottom right, #76889f, #cceeff);
     /* background-image: linear-gradient(to bottom right, silver, #cceeff); older */
 }
+
+.nav-label-edit{
+    font-style: italic;
+    text-shadow: 2px 2px 1px #494949;
+
+}
+
+#side-menu .edit-fa{
+    text-shadow: 3px 3px 2px #494949;
+}
+
+
+.nav.nav-second-level > li.active a{
+    background-image: linear-gradient(#705d5d, #1c1919) !important;
+    /* background-image: linear-gradient(#794e4e, #1c1919) !important; */
+}
+/* ------------------------------------------------------------------------------- */
 
 /* Footer */
 .footer-edit{
@@ -316,7 +335,6 @@
   
 }
 
-
 /* ------------------------------------------ */
 /* Dialog */
 .ui-dialog{
@@ -332,7 +350,10 @@
 }
 /* ------------------------------------------ */
 
-
+/* EditForm: */
+.box-body .row{
+	margin-bottom: 10px;
+}
 
 {* END OF TEMPLATES: ======================================================================================  *}
 {* ========================================================================================================  *}
@@ -351,21 +372,7 @@
 
 
 
-.nav-label-edit{
-    font-style: italic;
-    text-shadow: 2px 2px 1px #494949;
 
-}
-
-#side-menu .edit-fa{
-    text-shadow: 3px 3px 2px #494949;
-}
-
-
-.nav.nav-second-level > li.active a{
-    background-image: linear-gradient(#705d5d, #1c1919) !important;
-    /* background-image: linear-gradient(#794e4e, #1c1919) !important; */
-}
 
 
 
