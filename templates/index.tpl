@@ -344,7 +344,7 @@
 						<div class="navbar-header">
 							<button type="button" class="minimalize-styl-2 btn btn-primary btn-primary-edit" id="cashe"><i class="fas fa-redo-alt"></i></button>
 						</div>
-						{if $DEVELOPMENT}<span>TEST</span>{/if}
+						<strong>{$database}</strong>
 						<ul class="nav navbar-top-links navbar-right">
 							<!-- Opener dialog button: -->
 							<li><button type="button" id="opener-help" class="button-3">Help</button></li>
@@ -364,7 +364,10 @@
 						
 						<!-- Dialog printed results here: -->
 						<div style="display:none;" class="dialog-help"></div>
-						<textarea style="display:none;" data-id="{$ModulID}" class="dialog-message textarea-dalog"></textarea>
+						<div style="display:none;" class="dialog-message">
+							<div id='prev_mess'></div>
+							<textarea data-id="{$ModulID}" class="textarea-dalog" placeholder="Input new message" ></textarea>
+						</div>
 					</nav>
 					
 				</div> {* /.header row border-bottom *}
@@ -548,6 +551,8 @@
 		$( "#opener-help" ).on( "click", function() {
 			var link = 'plugins/getHelp.php';
     		var param = 'ModulID=' + {/literal}{$ModulID}{literal}
+			console.log(link+'?'+param);
+			
 
 			$.ajax({
 				type: 'POST',
@@ -566,38 +571,30 @@
 		$( "#opener-message" ).on( "click", function() {
 			var link = 'plugins/getMessage.php';
     		var param = 'ModulID=' + {/literal}{$ModulID}{literal}
-
+			console.log(link+'?'+param);
 			$.ajax({
 				type: 'POST',
 				url: link,
 				data: param,
 				async: false,
 				success: function (data) {
-					$( ".dialog-message" ).html(data).dialog( "open" );
+					$( "#prev_mess" ).html(data);
+					$( ".dialog-message" ).dialog( "open" );
 				}
 			});
-
-
 		});
 
 		// Button Save:
 		$("#saved-message").on("click", function(){
 			var base=window.location.origin;
-			var link = base+'/jamtransfer/plugins/Save.php';
+			var link = 'plugins/Save.php';
 
-			var messageID = $('.dialog-message').attr("data-id");
-			var messageContent = $(".dialog-message").val();
-
-			var textarea = $(".dialog-message").html(messageContent);
-
-			// Testing:
-			// alert($(".dialog-message").text());
-			// alert(messageContent);
-
+			var messageID = $('.textarea-dalog').attr("data-id");
+			var messageContent = $(".textarea-dalog").val();
 			var param='ModulID='+messageID+'&Message='+messageContent;
 
 			// Testing:
-			// console.log(link+'?'+param);
+			console.log(link+'?'+param);
 			
 			$.ajax({
 				type: 'POST',

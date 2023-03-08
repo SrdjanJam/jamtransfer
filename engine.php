@@ -21,6 +21,8 @@ $menu1=array();
 $pageName='';
 $pageList='';
 $existNew=true;
+$SubDriverID=0;
+$ActionID=0;
 
 require_once 'pathToVars.php';
 // LOGIN

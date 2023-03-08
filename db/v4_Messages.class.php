@@ -14,9 +14,9 @@ require_once 'db.class.php';
 Class v4_Messages {
 
 	public $ID; //int(10) unsigned
-	public $MsgFrom; //int(10) unsigned
+	public $PageID; //int(10) unsigned
 	public $FromName; //varchar(255)
-	public $Msg; //varchar(255)
+	public $PageLink; //varchar(255)
 	public $Body; //text
 	public $UserID; //int(10) unsigned
 	public $DateTime; //datetime
@@ -35,10 +35,10 @@ Class v4_Messages {
      * New object to the class. Don´t forget to save this new object "as new" by using the function $class->saveAsNew();
      *
      */
-	public function New_v4_Messages($MsgFrom,$FromName,$Msg,$Body,$UserID,$DateTime,$UserLevel,$Status){
-		$this->MsgFrom = $MsgFrom;
+	public function New_v4_Messages($PageID,$FromName,$PageLink,$Body,$UserID,$DateTime,$UserLevel,$Status){
+		$this->PageID = $PageID;
 		$this->FromName = $FromName;
-		$this->Msg = $Msg;
+		$this->PageLink = $PageLink;
 		$this->Body = $Body;
 		$this->UserID = $UserID;
 		$this->DateTime = $DateTime;
@@ -57,9 +57,9 @@ Class v4_Messages {
 		if($result->num_rows < 1) return false;
 		while($row = $result->fetch_array(MYSQLI_ASSOC)){
 			$this->ID = $row["ID"];
-			$this->MsgFrom = $row["MsgFrom"];
+			$this->PageID = $row["PageID"];
 			$this->FromName = $row["FromName"];
-			$this->Msg = $row["Msg"];
+			$this->PageLink = $row["PageLink"];
 			$this->Body = $row["Body"];
 			$this->UserID = $row["UserID"];
 			$this->DateTime = $row["DateTime"];
@@ -83,9 +83,9 @@ Class v4_Messages {
      */
 	public function saveRow(){
 		$result = $this->connection->RunQuery("UPDATE v4_Messages set
-MsgFrom = '".$this->myreal_escape_string($this->MsgFrom)."',
+PageID = '".$this->myreal_escape_string($this->PageID)."',
 FromName = '".$this->myreal_escape_string($this->FromName)."',
-Msg = '".$this->myreal_escape_string($this->Msg)."',
+PageLink = '".$this->myreal_escape_string($this->PageLink)."',
 Body = '".$this->myreal_escape_string($this->Body)."',
 UserID = '".$this->myreal_escape_string($this->UserID)."',
 DateTime = '".$this->myreal_escape_string($this->DateTime)."',
@@ -98,7 +98,7 @@ Status = '".$this->myreal_escape_string($this->Status)."' WHERE ID = '".$this->I
      * Save the active var class as a new row on table
      */
 	public function saveAsNew(){
-		$this->connection->RunQuery("INSERT INTO v4_Messages (MsgFrom, FromName, Msg, Body, UserID, DateTime, UserLevel, Status) values ('".$this->myreal_escape_string($this->MsgFrom)."', '".$this->myreal_escape_string($this->FromName)."', '".$this->myreal_escape_string($this->Msg)."', '".$this->myreal_escape_string($this->Body)."', '".$this->myreal_escape_string($this->UserID)."', '".$this->myreal_escape_string($this->DateTime)."', '".$this->myreal_escape_string($this->UserLevel)."', '".$this->myreal_escape_string($this->Status)."')");
+		$this->connection->RunQuery("INSERT INTO v4_Messages (PageID, FromName, PageLink, Body, UserID, DateTime, UserLevel, Status) values ('".$this->myreal_escape_string($this->PageID)."', '".$this->myreal_escape_string($this->FromName)."', '".$this->myreal_escape_string($this->PageLink)."', '".$this->myreal_escape_string($this->Body)."', '".$this->myreal_escape_string($this->UserID)."', '".$this->myreal_escape_string($this->DateTime)."', '".$this->myreal_escape_string($this->UserLevel)."', '".$this->myreal_escape_string($this->Status)."')");
 		return $this->connection->insert_id(); //return insert_id
 	}
 
@@ -126,10 +126,10 @@ Status = '".$this->myreal_escape_string($this->Status)."' WHERE ID = '".$this->I
 	}
 
 	/**
-	 * @return MsgFrom - int(10) unsigned
+	 * @return PageID - int(10) unsigned
 	 */
-	public function getMsgFrom(){
-		return $this->MsgFrom;
+	public function getPageID(){
+		return $this->PageID;
 	}
 
 	/**
@@ -140,10 +140,10 @@ Status = '".$this->myreal_escape_string($this->Status)."' WHERE ID = '".$this->I
 	}
 
 	/**
-	 * @return Msg - varchar(255)
+	 * @return PageLink - varchar(255)
 	 */
-	public function getMsg(){
-		return $this->Msg;
+	public function getPageLink(){
+		return $this->PageLink;
 	}
 
 	/**
@@ -191,8 +191,8 @@ Status = '".$this->myreal_escape_string($this->Status)."' WHERE ID = '".$this->I
 	/**
 	 * @param Type: int(10) unsigned
 	 */
-	public function setMsgFrom($MsgFrom){
-		$this->MsgFrom = $MsgFrom;
+	public function setPageID($PageID){
+		$this->PageID = $PageID;
 	}
 
 	/**
@@ -205,8 +205,8 @@ Status = '".$this->myreal_escape_string($this->Status)."' WHERE ID = '".$this->I
 	/**
 	 * @param Type: varchar(255)
 	 */
-	public function setMsg($Msg){
-		$this->Msg = $Msg;
+	public function setPageLink($PageLink){
+		$this->PageLink = $PageLink;
 	}
 
 	/**
@@ -253,9 +253,9 @@ Status = '".$this->myreal_escape_string($this->Status)."' WHERE ID = '".$this->I
 	public function fieldValues(){
 		$fieldValues = array(
 			'ID' => $this->getID(),
-			'MsgFrom' => $this->getMsgFrom(),
+			'PageID' => $this->getPageID(),
 			'FromName' => $this->getFromName(),
-			'Msg' => $this->getMsg(),
+			'PageLink' => $this->getPageLink(),
 			'Body' => $this->getBody(),
 			'UserID' => $this->getUserID(),
 			'DateTime' => $this->getDateTime(),
@@ -271,7 +271,7 @@ Status = '".$this->myreal_escape_string($this->Status)."' WHERE ID = '".$this->I
      */
 	public function fieldNames(){
 		$fieldNames = array(
-			'ID',			'MsgFrom',			'FromName',			'Msg',			'Body',			'UserID',			'DateTime',			'UserLevel',			'Status'		);
+			'ID',			'PageID',			'FromName',			'PageLink',			'Body',			'UserID',			'DateTime',			'UserLevel',			'Status'		);
 		return $fieldNames;
 	}
     /**

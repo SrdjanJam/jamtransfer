@@ -71,7 +71,7 @@ value=" WHERE {$ItemID} > 0">
 		<div class="form-group group-edit">
 			<select name="sortOrder" id="sortOrder" onchange="allItems();" class="form-control control-edit">
 				<option value="ASC"> {$ASCENDING} </option>
-				<option value="DESC" {if isset($selectapproved)}SELECTED{/if}> {$DESCENDING} </option>
+				<option value="DESC" {if isset($selectapproved) or isset($selectsolved)}SELECTED{/if}> {$DESCENDING} </option>
 			</select>
 		</div>		
 	</div>
@@ -98,6 +98,19 @@ value=" WHERE {$ItemID} > 0">
 				<option value="99" selected="selected">{$ALL}</option>			
 				<option value="1"> Approved </option>
 				<option value="0"> Not Approved </option>
+			</select>
+		</div>
+	</div>
+	{/if}
+	
+	{if isset($selectsolved)}		
+	<div class="col-md-2 asd">
+		<i class="fa fa-filter edit-fa"></i> 
+		<div class="form-group group-edit">
+			<select name="Approved" id="Approved" onchange="allItems();" class="form-control control-edit">
+				<option value="99" selected="selected">{$ALL}</option>			
+				<option value="1"> Solved </option>
+				<option value="0"> Not Solved </option>
 			</select>
 		</div>
 	</div>

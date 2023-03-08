@@ -1,5 +1,5 @@
 <?
-	
+	$smarty->assign('selectsolved',true);
 ?>
 <script type="text/x-handlebars-template" id="ItemListTemplate">
 
@@ -11,27 +11,19 @@
 		</div>
 
 		<div class="col-md-2">
+			<?=PAGE;?>
+		</div>
+		
+		<div class="col-md-2">
 			<?=FROM_NAME;?>
-		</div>
-
-		<div class="col-md-2">
-			<?=MSG;?>
-		</div>
-
-		<div class="col-md-2">
-			<?=USER_ID;?>
-		</div>
-
+		</div>		
+		
 		<div class="col-md-2">
 			<?=DATE_TIME;?>
 		</div>
 
-		<div class="col-md-2">
-			<?=USER_LEVEL;?>
-		</div>
-
 		<div class="col-md-1">
-			<?=STATUS;?>
+			Solved
 		</div>
 					
 	</div>
@@ -50,27 +42,23 @@
 				</div>
 
 				<div class="col-sm-2">
+					{{PageName}}
+				</div>				
+				
+				<div class="col-sm-2">
 					{{FromName}}
-				</div>
-
-				<div class="col-sm-2">
-					{{Msg}}
-				</div>
-
-				<div class="col-sm-2">
-					{{UserID}}
 				</div>
 
 				<div class="col-sm-2">
 					{{DateTime}}
 				</div>
-
-				<div class="col-sm-2">
-					{{UserLevel}}
-				</div>
 				
 				<div class="col-sm-1">
-					{{Status}}
+					{{#compare Status ">" 0}}
+						<i class="fa fa-check text-green"></i>
+					{{else}}
+						<i class="fa fa-close text-red"></i>
+					{{/compare}}				
 				</div>
 
 			</div>

@@ -15,7 +15,6 @@ foreach ($db->fieldNames() as $name) {
 	if(isset($_REQUEST[$name])) {
 		eval("\$db->set".$name."(\$content);");	
 	}
-	// $db->setPlaceDescEN($db->getPlaceDesc()); //Check
 }
 
 

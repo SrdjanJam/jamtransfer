@@ -14,6 +14,15 @@ if (isset($type)) {
 	}
 }
 
+if (isset($selectapproved)) {
+	if (!isset($_REQUEST['Approved']) or $_REQUEST['Approved'] == 99) {
+		$filter .= "  AND ".$selectapproved." > -1 ";
+	}
+	else {
+		$filter .= "  AND ".$selectapproved." = " . $_REQUEST['Approved'] ;
+	}
+}
+
 
 $page 		= (int) $_REQUEST['page'];
 $length 	= $_REQUEST['length'];
@@ -37,16 +46,6 @@ $flds = array();
 $DB_Where = " " . $_REQUEST['where'];
 $DB_Where .= $filter;
 
-// Nepotreban deo:
-// if ($_REQUEST['Type']==99) {
-// 	$sql="SELECT TerminalID FROM `v4_Terminals`";	
-// 	$result = $dbT->RunQuery($sql);
-// 	while($row = $result->fetch_array(MYSQLI_ASSOC)){
-// 		$terminals_arr.=$row['TerminalID'].",";
-// 	}
-// 	$terminals_arr = substr($terminals_arr,0,strlen($terminals_arr)-1);	
-// 	$DB_Where .= " AND TerminalID in (".$terminals_arr.")";
-// }
 
 # dodavanje search parametra u qry
 # DB_Where sad ima sve potrebno za qry
@@ -79,10 +78,9 @@ if (count($dbk) != 0) {
 		$detailFlds = $db->fieldValues();
 
 		// ako postoji neko custom polje, onda to ovdje.
-		// npr. $detailFlds["AuthLevelName"] = $nekaDrugaDB->getAuthLevelName().' nesto';
-
-		
-
+		// npr. $detaiAuthLevelName"]lFlds[" = $nekaDrugaDB->getAuthLevelName().' nesto';
+		$md->getRow($db->getPageID());
+		$detailFlds['PageName']=$md->getName();
 		$out[] = $detailFlds;    	
     }
 }
