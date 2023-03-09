@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.32, created on 2023-03-03 12:09:06
+/* Smarty version 3.1.32, created on 2023-03-09 11:35:18
   from 'c:\wamp\www\jamtransfer\templates\add-style.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.32',
-  'unifunc' => 'content_6401e36271ddc3_22057136',
+  'unifunc' => 'content_6409c476811ce1_64383323',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '2d24832a246e85f5de94ea3db8f7e5fc9a7e1ef4' => 
     array (
       0 => 'c:\\wamp\\www\\jamtransfer\\templates\\add-style.tpl',
-      1 => 1677837881,
+      1 => 1678188740,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6401e36271ddc3_22057136 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6409c476811ce1_64383323 (Smarty_Internal_Template $_smarty_tpl) {
 ?><style>
 
 
@@ -277,6 +277,8 @@ function content_6401e36271ddc3_22057136 (Smarty_Internal_Template $_smarty_tpl)
 }
 /* ------------------------------------------------------------------------------- */
 
+/* NAVBAR: */
+
 /* Navbar Side */
 .navbar-default-edit{
     /* background-image: linear-gradient(#050505, #42536B); */
@@ -289,6 +291,23 @@ function content_6401e36271ddc3_22057136 (Smarty_Internal_Template $_smarty_tpl)
     background-image: linear-gradient(to bottom right, #76889f, #cceeff);
     /* background-image: linear-gradient(to bottom right, silver, #cceeff); older */
 }
+
+.nav-label-edit{
+    font-style: italic;
+    text-shadow: 2px 2px 1px #494949;
+
+}
+
+#side-menu .edit-fa{
+    text-shadow: 3px 3px 2px #494949;
+}
+
+
+.nav.nav-second-level > li.active a{
+    background-image: linear-gradient(#705d5d, #1c1919) !important;
+    /* background-image: linear-gradient(#794e4e, #1c1919) !important; */
+}
+/* ------------------------------------------------------------------------------- */
 
 /* Footer */
 .footer-edit{
@@ -335,7 +354,6 @@ function content_6401e36271ddc3_22057136 (Smarty_Internal_Template $_smarty_tpl)
   
 }
 
-
 /* ------------------------------------------ */
 /* Dialog */
 .ui-dialog{
@@ -351,7 +369,10 @@ function content_6401e36271ddc3_22057136 (Smarty_Internal_Template $_smarty_tpl)
 }
 /* ------------------------------------------ */
 
-
+/* EditForm: */
+.box-body .row{
+	margin-bottom: 10px;
+}
 
 /* ------------------------------------------ */
 
@@ -368,21 +389,7 @@ function content_6401e36271ddc3_22057136 (Smarty_Internal_Template $_smarty_tpl)
 
 
 
-.nav-label-edit{
-    font-style: italic;
-    text-shadow: 2px 2px 1px #494949;
 
-}
-
-#side-menu .edit-fa{
-    text-shadow: 3px 3px 2px #494949;
-}
-
-
-.nav.nav-second-level > li.active a{
-    background-image: linear-gradient(#705d5d, #1c1919) !important;
-    /* background-image: linear-gradient(#794e4e, #1c1919) !important; */
-}
 
 
 

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.32, created on 2023-03-03 12:09:06
+/* Smarty version 3.1.32, created on 2023-03-09 11:35:18
   from 'C:\wamp\www\jamtransfer\templates\pageListHeader.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.32',
-  'unifunc' => 'content_6401e362a35231_47473380',
+  'unifunc' => 'content_6409c476ab8071_91789801',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '7d4e13059d7eb1944e7a2452042dc0a71e7ccf69' => 
     array (
       0 => 'C:\\wamp\\www\\jamtransfer\\templates\\pageListHeader.tpl',
-      1 => 1677750667,
+      1 => 1678266277,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6401e362a35231_47473380 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6409c476ab8071_91789801 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <input type="hidden"  id="whereCondition" name="whereCondition" 
 value=" WHERE <?php echo $_smarty_tpl->tpl_vars['ItemID']->value;?>
@@ -134,7 +134,7 @@ $_smarty_tpl->_assignInScope('pagelength', "10");
 			<select name="sortOrder" id="sortOrder" onchange="allItems();" class="form-control control-edit">
 				<option value="ASC"> <?php echo $_smarty_tpl->tpl_vars['ASCENDING']->value;?>
  </option>
-				<option value="DESC" <?php if (isset($_smarty_tpl->tpl_vars['selectapproved']->value)) {?>SELECTED<?php }?>> <?php echo $_smarty_tpl->tpl_vars['DESCENDING']->value;?>
+				<option value="DESC" <?php if (isset($_smarty_tpl->tpl_vars['selectapproved']->value) || isset($_smarty_tpl->tpl_vars['selectsolved']->value)) {?>SELECTED<?php }?>> <?php echo $_smarty_tpl->tpl_vars['DESCENDING']->value;?>
  </option>
 			</select>
 		</div>		
@@ -164,6 +164,20 @@ $_smarty_tpl->_assignInScope('pagelength', "10");
 </option>			
 				<option value="1"> Approved </option>
 				<option value="0"> Not Approved </option>
+			</select>
+		</div>
+	</div>
+	<?php }?>
+	
+	<?php if (isset($_smarty_tpl->tpl_vars['selectsolved']->value)) {?>		
+	<div class="col-md-2 asd">
+		<i class="fa fa-filter edit-fa"></i> 
+		<div class="form-group group-edit">
+			<select name="Approved" id="Approved" onchange="allItems();" class="form-control control-edit">
+				<option value="99" selected="selected"><?php echo $_smarty_tpl->tpl_vars['ALL']->value;?>
+</option>			
+				<option value="1"> Solved </option>
+				<option value="0"> Not Solved </option>
 			</select>
 		</div>
 	</div>

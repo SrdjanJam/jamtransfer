@@ -3,9 +3,13 @@ Class DataBaseMysql {
 
     public $conn;
 
-    function __construct(){
+	
+    function __construct() {
+		global $DB_USER;
+		global $DB_PASSWORD;
+		global $DB_NAME;			
         //$this->conn = new mysqli("127.0.0.1", "jamtrans_cezar", "3WLRAFu;E_!F", "jamtrans_touradria"); 
-        $this->conn = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);   
+        $this->conn = new mysqli(DB_HOST, $DB_USER, $DB_PASSWORD, $DB_NAME);   
         //$this->conn->set_charset('utf8mb4');
         if($this->conn->connect_error){
             echo "Error connect to mysql";die;

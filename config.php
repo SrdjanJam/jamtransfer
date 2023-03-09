@@ -2,9 +2,39 @@
 
 require_once 'conn_string.php';
 require_once ROOT. '/definitions.php';
-require_once ROOT . '/db/db.class.php';	
-$db = new DataBaseMysql();
 
+global $DB_USER;
+global $DB_PASSWORD;
+global $DB_NAME;
+
+if (LOCAL) {
+	define("DB_HOST", "localhost");
+	$DB_USER="root";
+	$DB_PASSWORD="";
+	$DB_NAME="jamtrans_touradria";
+}
+else {	
+	define("DB_HOST", "127.0.0.1");
+	$DB_USER="jamtrans_cms";
+	$DB_PASSWORD="~5%OuH{etSL)";
+	$DB_NAME="jamtrans_touradria";
+
+}	
+require_once ROOT . '/db/db.class.php';	
+$db = new DataBaseMysql();	
+
+if (isset($_SESSION['log_db']) && !LOCAL) {	
+	$result = $db->RunQuery("SELECT * FROM ".DB_PREFIX."LogDB WHERE ID = ".$_SESSION['log_db']); 
+	if($result->num_rows == 1)
+	{
+		$row = $result->fetch_assoc();				
+		$DB_USER=$row['User'];
+		$DB_PASSWORD=$row['Password'];
+		$DB_NAME=$row['Name'];
+		$db = new DataBaseMysql();	
+		$_SESSION['log_db']=$row['ID'];	
+	}
+}
 
 // AUTOLOAD FUNCTION
 spl_autoload_register(
@@ -89,4 +119,5 @@ if (isset($_SESSION['AuthUserID'])) {
 $smarty->assign('isNew',false);
 //inicijalizacija promenljivih
 $filter='';
+
 ?>

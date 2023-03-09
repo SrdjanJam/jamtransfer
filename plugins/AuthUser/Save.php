@@ -12,6 +12,8 @@ foreach ($db->fieldNames() as $name) {
 		eval("\$db->set".$name."(\$content);");	
 	}	
 }	
+$db->setAuthUserPass( md5($_REQUEST['AuthUserPassNew']) ); 
+
 $upd = '';
 $newID = '';
 if ($keyName != '' and $keyValue != '') {

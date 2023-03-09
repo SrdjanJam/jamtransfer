@@ -344,14 +344,13 @@
 						<div class="navbar-header">
 							<button type="button" class="minimalize-styl-2 btn btn-primary btn-primary-edit" id="cashe"><i class="fas fa-redo-alt"></i></button>
 						</div>
-						<strong>{$database}</strong>
 						<ul class="nav navbar-top-links navbar-right">
 							<!-- Opener dialog button: -->
 							<li><button type="button" id="opener-help" class="button-3">Help</button></li>
 							<li><button type="button" id="opener-message" class="button-3">Message</button></li>
 
 							<li>
-								<h2><span class="m-r-sm text-muted">{$title}</span></h2>
+								<h2><span class="m-r-sm text-muted">{$title} - {$smarty.session.log_title}</span></h2>
 							</li>
 
 							<li>

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.32, created on 2022-11-14 12:58:43
+/* Smarty version 3.1.32, created on 2023-03-09 12:53:56
   from 'C:\wamp\www\jamtransfer\templates\login.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.32',
-  'unifunc' => 'content_63723b83408d73_16691125',
+  'unifunc' => 'content_6409d6e4015cd9_19232016',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'f3c6e8389f5a98f6613aafe5269a28f0651b59de' => 
     array (
       0 => 'C:\\wamp\\www\\jamtransfer\\templates\\login.tpl',
-      1 => 1663667425,
+      1 => 1678366376,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_63723b83408d73_16691125 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6409d6e4015cd9_19232016 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 	<html style="background: transparent  url('i/header/121.jpg') center fixed;background-size:cover;">
 	<head>
@@ -110,11 +110,18 @@ function content_63723b83408d73_16691125 (Smarty_Internal_Template $_smarty_tpl)
           
           <label for="inputPassword" class="sr-only">Password</label>
           <input type="password" name="password" id="password" class="form-control" placeholder="Password" required>
-
+          
+		  <?php if (!$_smarty_tpl->tpl_vars['LOCAL']->value) {?>
+		  <label for="inputPasswordT" class="sr-only">Password for test</label>
+          <input type="password" name="passwordT" id="passwordT" class="form-control" placeholder="Password for test" required>
+		  <?php }?>
+		  
+			<!--
           <select name="language" id="language" class="form-control">
             <option value='en'>English</option>
             <option value='hr'>Hrvatski</option>
           </select>
+		  !-->
 
           <button class="btn btn-lg btn-primary btn-block" name="Login" type="submit">Sign in</button>
 

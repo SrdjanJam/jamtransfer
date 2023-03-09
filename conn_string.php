@@ -23,24 +23,7 @@ else {
 }	
 define("ROOTPATH", ROOT.'/cms');
 define("SITE_CODE", '1');
-if (LOCAL) {
-	define("DB_HOST", "localhost");
-	define("DB_USER", "root");
-	define("DB_PASSWORD", "");
-	define("DB_NAME", "jamtrans_touradria");
-}
-else {
-	define("DB_HOST", "127.0.0.1");
-	if ($database=="TEST") define("DB_USER", "jamtrans_api");
-	else if ($database=="NEW_TEST") define("DB_USER", "jamtrans_new");
-	else define("DB_USER", "jamtrans_cms");
-	if ($database=="TEST") define("DB_PASSWORD", "i97zo5X&ftt4");
-	else if ($database=="NEW_TEST") define("DB_PASSWORD", "Dw@~6(aQ%;;s");
-	else define("DB_PASSWORD", "~5%OuH{etSL)");
-	if ($database=="TEST") define("DB_NAME", "jamtrans_test");
-	else if ($database=="NEW_TEST") define("DB_NAME", "jamtrans_newTest");
-	else define("DB_NAME", "jamtrans_touradria");
-}	
+	
  
 error_reporting(E_ALL & ~E_NOTICE & ~E_WARNING);
 //error_reporting(E_ALL);

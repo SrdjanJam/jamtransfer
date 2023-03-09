@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.32, created on 2023-03-03 12:09:05
+/* Smarty version 3.1.32, created on 2023-03-09 12:53:58
   from 'C:\wamp\www\jamtransfer\templates\index.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.32',
-  'unifunc' => 'content_6401e361c9b407_70896577',
+  'unifunc' => 'content_6409d6e6b6bf54_65569601',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'a1818a92b5a2f041fd91a227dabc592dea38fac2' => 
     array (
       0 => 'C:\\wamp\\www\\jamtransfer\\templates\\index.tpl',
-      1 => 1677759447,
+      1 => 1678366372,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:pageList.tpl' => 1,
   ),
 ),false)) {
-function content_6401e361c9b407_70896577 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6409d6e6b6bf54_65569601 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html>
 	<head>
@@ -286,7 +286,8 @@ _init.js"><?php echo '</script'; ?>
 								<div class="sidebar-collapse">
 					<ul class="nav metismenu" id="side-menu">
 
-												<li class="nav-header nav-header-top-edit">
+												<!--nav-header-top-edit -->
+						<li class="nav-header nav-header-top-edit">
 							<div class="dropdown profile-element">
 								<a data-toggle="dropdown" class="dropdown-toggle" href="#">
 								<span class="clear"> 
@@ -305,8 +306,10 @@ _init.js"><?php echo '</script'; ?>
 								</ul>
 							</div>
 						</li>
-						<?php if ($_smarty_tpl->tpl_vars['setasdriver']->value) {?>
-														<?php if (isset($_SESSION['UseDriverName'])) {?>
+						
+												<?php if ($_smarty_tpl->tpl_vars['setasdriver']->value) {?>
+							
+							<?php if (isset($_SESSION['UseDriverName'])) {?>
 							<!-- nav-header nav-header-edit -->
 								<li class="nav-header nav-header-edit">
 									<h3 id="set-as">Seted as:</h3>
@@ -327,7 +330,9 @@ _init.js"><?php echo '</script'; ?>
 									</li>
 								<?php }?>
 							<?php }?>
-													<?php }?>
+							
+						<?php }?>
+						
 												<?php
 $__section_index_0_loop = (is_array(@$_loop=$_smarty_tpl->tpl_vars['menu1']->value) ? count($_loop) : max(0, (int) $_loop));
 $__section_index_0_total = $__section_index_0_loop;
@@ -423,7 +428,8 @@ echo $_prefixVariable1;?>
 												<div class="navbar-header">
 							<button type="button" class="minimalize-styl-2 btn btn-primary btn-primary-edit" id="cashe"><i class="fas fa-redo-alt"></i></button>
 						</div>
-						<?php if ($_smarty_tpl->tpl_vars['DEVELOPMENT']->value) {?><span>TEST</span><?php }?>
+						<strong><?php echo $_SESSION['log_title'];?>
+</strong>
 						<ul class="nav navbar-top-links navbar-right">
 							<!-- Opener dialog button: -->
 							<li><button type="button" id="opener-help" class="button-3">Help</button></li>
@@ -444,8 +450,11 @@ echo $_prefixVariable1;?>
 						
 						<!-- Dialog printed results here: -->
 						<div style="display:none;" class="dialog-help"></div>
-						<textarea style="display:none;" data-id="<?php echo $_smarty_tpl->tpl_vars['ModulID']->value;?>
-" class="dialog-message textarea-dalog"></textarea>
+						<div style="display:none;" class="dialog-message">
+							<div id='prev_mess'></div>
+							<textarea data-id="<?php echo $_smarty_tpl->tpl_vars['ModulID']->value;?>
+" class="textarea-dalog" placeholder="Input new message" ></textarea>
+						</div>
 					</nav>
 					
 				</div> 				<!-- ******************************************************************************** -->		
@@ -631,6 +640,8 @@ echo $_prefixVariable1;?>
 			var link = 'plugins/getHelp.php';
     		var param = 'ModulID=' + <?php echo $_smarty_tpl->tpl_vars['ModulID']->value;?>
 
+			console.log(link+'?'+param);
+			
 
 			$.ajax({
 				type: 'POST',
@@ -650,38 +661,30 @@ echo $_prefixVariable1;?>
 			var link = 'plugins/getMessage.php';
     		var param = 'ModulID=' + <?php echo $_smarty_tpl->tpl_vars['ModulID']->value;?>
 
-
+			console.log(link+'?'+param);
 			$.ajax({
 				type: 'POST',
 				url: link,
 				data: param,
 				async: false,
 				success: function (data) {
-					$( ".dialog-message" ).html(data).dialog( "open" );
+					$( "#prev_mess" ).html(data);
+					$( ".dialog-message" ).dialog( "open" );
 				}
 			});
-
-
 		});
 
 		// Button Save:
 		$("#saved-message").on("click", function(){
 			var base=window.location.origin;
-			var link = base+'/jamtransfer/plugins/Save.php';
+			var link = 'plugins/Save.php';
 
-			var messageID = $('.dialog-message').attr("data-id");
-			var messageContent = $(".dialog-message").val();
-
-			var textarea = $(".dialog-message").html(messageContent);
-
-			// Testing:
-			// alert($(".dialog-message").text());
-			// alert(messageContent);
-
+			var messageID = $('.textarea-dalog').attr("data-id");
+			var messageContent = $(".textarea-dalog").val();
 			var param='ModulID='+messageID+'&Message='+messageContent;
 
 			// Testing:
-			// console.log(link+'?'+param);
+			console.log(link+'?'+param);
 			
 			$.ajax({
 				type: 'POST',

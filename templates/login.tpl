@@ -87,11 +87,18 @@
           
           <label for="inputPassword" class="sr-only">Password</label>
           <input type="password" name="password" id="password" class="form-control" placeholder="Password" required>
-
+          
+		  {if not $LOCAL}
+		  <label for="inputPasswordT" class="sr-only">Password for test</label>
+          <input type="password" name="passwordT" id="passwordT" class="form-control" placeholder="Password for test" required>
+		  {/if}
+		  
+			<!--
           <select name="language" id="language" class="form-control">
             <option value='en'>English</option>
             <option value='hr'>Hrvatski</option>
           </select>
+		  !-->
 
           <button class="btn btn-lg btn-primary btn-block" name="Login" type="submit">Sign in</button>
 
