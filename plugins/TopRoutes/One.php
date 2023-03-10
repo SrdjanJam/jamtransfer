@@ -9,15 +9,6 @@ require_once 'Initial.php';
 
 	# filters
 
-	// Old:
-	// $ID = $_REQUEST['ID'];
-
-	// # Details  red
-	// $db->getRow($ID);
-
-	// # Details  red
-	// $db->getRow($dbk[0]);
-
 	$db->getRow($_REQUEST['ItemID']);
 
 	# get fields and values
@@ -28,6 +19,17 @@ require_once 'Initial.php';
 		$detailFlds[$key] = stripslashes($value);
 	}
 
+	$arr=json_decode($detailFlds['Description']);
+	$detailFlds['des_arr']= (array) $arr;	
+	if (in_array($_SESSION['BrandName'],array('EN','FR','RU','DE'))) {
+		$detailFlds['language']=strtolower($_SESSION['BrandName']);
+		$detailFlds['disabled']='disabled';
+	}	
+	else {
+		$detailFlds['language']=" ";
+		$detailFlds['disabled']='';
+	}	
+	
 	$out[] = $detailFlds;
 
 	# send output back

@@ -68,7 +68,7 @@ Class v4_TopRoutes {
 		$result = $this->connection->RunQuery("UPDATE v4_TopRoutes set 
 		TopRouteID = '".$this->myreal_escape_string($this->TopRouteID)."', 
 		Main = '".$this->myreal_escape_string($this->Main)."', 
-		Description = '".$this->myreal_escape_string($this->Description)."' WHERE TopRouteID = '".$this->TopRouteID."'");
+		Description = JSON_MERGE_PATCH(`Description`,'".$this->Description."') WHERE TopRouteID = '".$this->TopRouteID."'");
 		
 		return $result; 
 	}

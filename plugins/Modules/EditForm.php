@@ -81,10 +81,26 @@
 				</div>					
 				<div class="row">
 					<div class="col-md-3">
+						<label for="IsNew">Is New entry</label>
+					</div>
+					<div class="col-md-9">
+						{{yesNoSliderEdit IsNew 'IsNew' }}
+					</div>
+				</div>				
+				<div class="row">
+					<div class="col-md-3">
+						<label for="Phase">Phase</label>
+					</div>
+					<div class="col-md-9">
+						<input type="number" name="Phase" id="Phase" class="w1" value="{{Phase}}">
+					</div>
+				</div>					
+				<div class="row">
+					<div class="col-md-3">
 						<label for="Parent"><?=ACTIVE;?></label>
 					</div>
 					<div class="col-md-9">
-						<input type="text" name="Active" id="Active" class="w100" value="{{Active}}">
+						{{yesNoSliderEdit Active 'Active' }}
 					</div>
 				</div>				
 			</div>

@@ -1,13 +1,6 @@
 <script type="text/x-handlebars-template" id="ItemEditTemplate">
 <form id="ItemEditForm{{TopRouteID}}" class="form box box-info" enctype="multipart/form-data" method="post" onsubmit="return false;">
 	<div class="box-header">
-		<div class="box-title">
-			<? if ($isNew) { ?>
-				<h3><?= NNEW.' '.EXPENSE ?></h3>
-			<? } else { ?>
-				<h3><?= EDIT ?> - {{ID}}</h3>
-			<? } ?>
-		</div>
 
 		<div class="box-tools pull-right">
 			
@@ -52,14 +45,26 @@
 					</div>
 				</div>
 				<!-- DESCRIPTION: -->
+
 				<div class="row">
 					<div class="col-md-3">
-						<label for="Description"><?=DESCRIPTION;?></label>
+						<label for="text"><?=DESCRIPTION;?></label>
 					</div>
 					<div class="col-md-9">
-						<textarea name="Description" id="Description" style="resize:none;width:100%;min-height:200px;">{{Description}}</textarea>
+						{{des_arr.en}}
+						<!--<textarea name="des"  style="resize:none;width:100%;min-height:200px;">{{des_arr.en}}</textarea>!-->
 					</div>
-				</div>
+				</div>					
+				{{#each des_arr}}
+				<div class="row {{#compare ../language '!=' @key}}hidden{{/compare}}">
+					<div class="col-md-3">
+						<label for="text"><?=DESCRIPTION;?> {{@key}} {{language}}</label>
+					</div>	
+					<div class="col-md-9">	
+						<textarea name='des_{{@key}}' style="resize:none;width:100%;min-height:200px;" >{{this}}</textarea>
+					</div>	
+				</div>	
+				{{/each}}
 
 				
 			</div>

@@ -20,7 +20,7 @@ $active_pages=array();
 $menu1=array();
 $pageName='';
 $pageList='';
-$existNew=true;
+$existNew=false;
 $SubDriverID=0;
 $ActionID=0;
 
@@ -51,7 +51,7 @@ $modules_arr = substr($modules_arr,0,strlen($modules_arr)-1);
 // meni
 require_once 'db/v4_Modules.class.php';
 $md = new v4_Modules();
-$mdk = $md->getKeysBy('MenuOrder ' ,'asc', "where ParentID=0 AND ModulID in (".$modules_arr.")");
+$mdk = $md->getKeysBy('MenuOrder ' ,'asc', "where Active=1 AND ParentID=0 AND ModulID in (".$modules_arr.")");
 $setasdriver=false;
 foreach($mdk as $key) {
 	$md->getRow($key);
@@ -61,9 +61,9 @@ foreach($mdk as $key) {
 	$active_pages[]=$md->getCode();			
 	$row1['icon']=$md->getIcon();
 	$row1['description']=$md->getDescription();
-	$row1['activestatus']=activeStatus($md->getActive());
+	$row1['phasestatus']=phaseStatus($md->getPhase());
 	
-	$mdk2 = $md->getKeysBy('MenuOrder ' ,'asc', "where ParentID=".$md->getModulID()." AND ModulID in (".$modules_arr.")");
+	$mdk2 = $md->getKeysBy('MenuOrder ' ,'asc', "where Active=1 AND ParentID=".$md->getModulID()." AND ModulID in (".$modules_arr.")");
 	$menu2=array();
 	if ($md->getCode()==$activePage) $active_parent=true;		
 	else $active_parent=false;
@@ -76,7 +76,7 @@ foreach($mdk as $key) {
 			$row2['title']=$md->getName();
 			$row2['link']=$md->getCode();	
 			$row2['description']=$md->getDescription();	
-			$row2['activestatus']=activeStatus($md->getActive());
+			$row2['phasestatus']=phaseStatus($md->getPhase());
 			$active_pages[]=$md->getCode();			
 			//$row2['icon']=$md->getIcon();
 			if ($md->getCode()==$activePage) {
@@ -116,14 +116,14 @@ if (count($mdk)==1 && in_array($activePage,$active_pages)) {
 	}	
 	$smarty->assign('parentFolder',$parentFolder);
 	*/
-	
+	if ($md->getIsNew()==1) $existNew=true;
 }
 else {
 	if (count($mdk)==1) header("Location: ". ROOT_HOME . '/dashboard');
 	else exit('Page not found');
 }
 
-if (isset($_SESSION['UseDriverID'])) $existNew=false;
+/*if (isset($_SESSION['UseDriverID'])) $existNew=false;
 if ($md->getName()=="SubDrivers") $existNew=true;
 if ($md->getName()=="Vehicles") $existNew=true;
 if ($md->getName()=="Actions") $existNew=true;
@@ -134,7 +134,7 @@ if ($md->getName()=="Invoices") $existNew=false;
 if ($md->getName()=="Set Driver") $existNew=false;
 if ($_SESSION['AuthLevelID']==42) $existNew=false;
 if ($_SESSION['AuthUserID']==874) $existNew=true;
-if ($md->getName()=="Articles") $existNew=true;
+if ($md->getName()=="Articles") $existNew=true;*/
 
 
 $smarty->assign('transfersFilter',$transfersFilter);
@@ -167,7 +167,7 @@ $smarty->assign('setasdriver',$setasdriver);
 
 $smarty->display("index.tpl");	
 
-function activeStatus($status) {
+function phaseStatus($status) {
 	switch ($status) {
 		case 0:
 			return "";

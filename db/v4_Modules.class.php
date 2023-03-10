@@ -11,11 +11,9 @@ Class v4_Modules {
 	public $MenuOrder; //int(11)
 	public $Icon; //int(11)
 	public $Description;
-
-	// Help and message 
 	public $Help;
-	public $Message; 
-
+	public $IsNew; 
+	public $Phase; 
 	public $Active; 
 	public $connection;
 
@@ -39,13 +37,14 @@ Class v4_Modules {
 			'Icon' => $this->getIcon(),
 			'Description' => $this->getDescription(),
 			'Help' => $this->getHelp(),
-			'Message' => $this->getMessage(),
+			'IsNew' => $this->getIsNew(),
+			'Phase' => $this->getPhase(),
 			'Active' => $this->getActive()
 			);
 		return $fieldValues;
 	}
 	public function fieldNames(){
-		$fieldNames = array('ModulID','Name','Code','Base','ParentID','MenuOrder','Icon','Description','Help','Message','Active');
+		$fieldNames = array('ModulID','Name','Code','Base','ParentID','MenuOrder','Icon','Description','Help','IsNew','Phase','Active');
 		return $fieldNames;
 	}
 	
@@ -62,7 +61,8 @@ Class v4_Modules {
 			$this->Icon = $row["Icon"];
 			$this->Description = $row["Description"];
 			$this->Help = $row["Help"];
-			$this->Message = $row["Message"];
+			$this->IsNew = $row["IsNew"];
+			$this->Phase = $row["Phase"];
 			$this->Active = $row["Active"];
 		}
 	}
@@ -82,13 +82,14 @@ MenuOrder = '".$this->myreal_escape_string($this->MenuOrder)."',
 Icon = '".$this->myreal_escape_string($this->Icon)."', 
 Description = '".$this->myreal_escape_string($this->Description)."',
 Help = '".$this->myreal_escape_string($this->Help)."',
-Message = '".$this->myreal_escape_string($this->Message)."',
+IsNew = '".$this->myreal_escape_string($this->IsNew)."',
+Phase = '".$this->myreal_escape_string($this->Phase)."',
 Active = '".$this->myreal_escape_string($this->Active)."' WHERE ModulID = '".$this->ModulID."'");
 	return $result; 
 }
 
 	public function saveAsNew(){
-		$this->connection->RunQuery("INSERT INTO v4_Modules (ModulID, Name, Code, Base, ParentID, MenuOrder, Icon, Description, Help, Message, Active) values ('".$this->myreal_escape_string($this->ModulID)."', '".$this->myreal_escape_string($this->Name)."', '".$this->myreal_escape_string($this->Code)."', '".$this->myreal_escape_string($this->Base)."', '".$this->myreal_escape_string($this->ParentID)."', '".$this->myreal_escape_string($this->MenuOrder)."','".$this->myreal_escape_string($this->Icon)."','".$this->myreal_escape_string($this->Description)."','".$this->myreal_escape_string($this->Help)."','".$this->myreal_escape_string($this->Message)."','".$this->myreal_escape_string($this->Active)."')");
+		$this->connection->RunQuery("INSERT INTO v4_Modules (ModulID, Name, Code, Base, ParentID, MenuOrder, Icon, Description, Help, IsNew, Phase, Active) values ('".$this->myreal_escape_string($this->ModulID)."', '".$this->myreal_escape_string($this->Name)."', '".$this->myreal_escape_string($this->Code)."', '".$this->myreal_escape_string($this->Base)."', '".$this->myreal_escape_string($this->ParentID)."', '".$this->myreal_escape_string($this->MenuOrder)."','".$this->myreal_escape_string($this->Icon)."','".$this->myreal_escape_string($this->Description)."','".$this->myreal_escape_string($this->Help)."','".$this->myreal_escape_string($this->IsNew)."','".$this->myreal_escape_string($this->Phase)."','".$this->myreal_escape_string($this->Active)."')");
 		return $this->connection->insert_id(); //return insert_id 
 	}
 	public function getKeysBy($column, $order, $where = NULL){
@@ -128,8 +129,12 @@ Active = '".$this->myreal_escape_string($this->Active)."' WHERE ModulID = '".$th
 	public function getHelp(){
 		return $this->Help;
 	}
-	public function getMessage(){
-		return $this->Message;
+	public function getIsNew(){
+		return $this->IsNew;
+	}	
+	
+	public function getPhase(){
+		return $this->Phase;
 	}
 	public function getActive(){
 		return $this->Active;
@@ -162,8 +167,11 @@ Active = '".$this->myreal_escape_string($this->Active)."' WHERE ModulID = '".$th
 	public function setHelp($Help){
 		$this->Help = $Help;
 	}	
-	public function setMessage($Message){
-		$this->Message = $Message;
+	public function setIsNew($IsNew){
+		$this->IsNew = $IsNew;
+	}	
+	public function setPhase($Phase){
+		$this->Phase = $Phase;
 	}	
 	public function setActive($Active){
 		$this->Active = $Active;

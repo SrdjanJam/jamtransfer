@@ -9,6 +9,8 @@ $dbR = new v4_Routes();
 
 $keyName = 'TopRouteID';
 $ItemName='TopRouteID ';
+$type='Main';
+
 // Check:
 // $ItemName='PlaceNameEN ';
 // $type='PlaceType';
@@ -19,6 +21,5 @@ $ItemName='TopRouteID ';
 #********************************
 $aColumns = array(
 	'TopRouteID', // dodaj ostala polja!
-	'Main' // dodaj ostala polja!
 );
 

@@ -6,12 +6,10 @@ require_once 'Initial.php';
 
 # sastavi filter - posalji ga $_REQUEST-om
 if (isset($type)) {
-	if (!isset($_REQUEST['Type']) or $_REQUEST['Type'] == 0 or $_REQUEST['Type'] == 99) {
-		$filter = "  AND ".$type." != 0 ";
+	if (isset($_REQUEST['Type']) && $_REQUEST['Type'] == 1) {
+		$filter = "  AND ".$type." =1 ";
 	}
-	else {
-		$filter = "  AND ".$type." = '" . $_REQUEST['Type'] . "'";
-	}
+
 }
 
 

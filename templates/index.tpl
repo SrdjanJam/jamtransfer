@@ -267,7 +267,7 @@
 							<li class="{$menu1[index].active}">
 								<a href='{$menu1[index].link}' >
 									<i class="fa {$menu1[index].icon} edit-fa"></i>
-									<span class="nav-label nav-label-edit" title="{$menu1[index].description}">{$menu1[index].title} <span class='badge'>{$menu1[index].activestatus}</span></span> 
+									<span class="nav-label nav-label-edit" title="{$menu1[index].description}">{$menu1[index].title} <span class='badge'>{$menu1[index].phasestatus}</span></span> 
 									<span class="{$menu1[index].arrow}"></span>
 								</a>
 
@@ -278,7 +278,7 @@
 
 										{section name=index1 loop=$menu1[index].menu}	
 											<li class="{$menu1[index].menu[index1].active}">
-												<a href="{$menu1[index].menu[index1].link}"><span class="nav-label nav-label-edit" title="{$menu1[index].menu[index1].description}">{$menu1[index].menu[index1].title} <span class='badge'>{{$menu1[index].menu[index1].activestatus}}</span></span></a>
+												<a href="{$menu1[index].menu[index1].link}"><span class="nav-label nav-label-edit" title="{$menu1[index].menu[index1].description}">{$menu1[index].menu[index1].title} <span class='badge'>{{$menu1[index].menu[index1].phasestatus}}</span></span></a>
 
 													{if $menu1[index].menu[index1].title eq 'Orders'}
 														<!-- collapse: ul second level: -->
