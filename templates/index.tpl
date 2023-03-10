@@ -344,13 +344,14 @@
 						<div class="navbar-header">
 							<button type="button" class="minimalize-styl-2 btn btn-primary btn-primary-edit" id="cashe"><i class="fas fa-redo-alt"></i></button>
 						</div>
+						{if $DEVELOPMENT}<span>TEST</span>{/if}
 						<ul class="nav navbar-top-links navbar-right">
 							<!-- Opener dialog button: -->
 							<li><button type="button" id="opener-help" class="button-3">Help</button></li>
 							<li><button type="button" id="opener-message" class="button-3">Message</button></li>
 
 							<li>
-								<h2><span class="m-r-sm text-muted">{$title} - {$smarty.session.log_title}</span></h2>
+								<h2><span class="m-r-sm text-muted">{$title}</span></h2>
 							</li>
 
 							<li>
@@ -363,10 +364,7 @@
 						
 						<!-- Dialog printed results here: -->
 						<div style="display:none;" class="dialog-help"></div>
-						<div style="display:none;" class="dialog-message">
-							<div id='prev_mess'></div>
-							<textarea data-id="{$ModulID}" class="textarea-dalog" placeholder="Input new message" ></textarea>
-						</div>
+						<textarea style="display:none;" data-id="{$ModulID}" class="dialog-message textarea-dialog"></textarea>
 					</nav>
 					
 				</div> {* /.header row border-bottom *}
@@ -517,7 +515,7 @@
 			resizable: false,
 			draggable: false,
 			modal: true,
-			width: "60%",
+			width: "70%",
 			
 			// Effects:
 			show: {
@@ -531,6 +529,7 @@
 			
 			buttons :  [{ 
      		text: "Save",
+			class: "saved-button",
      		id: "saved-message",
 				click: function(){
 					$(this).dialog("close");
@@ -550,8 +549,6 @@
 		$( "#opener-help" ).on( "click", function() {
 			var link = 'plugins/getHelp.php';
     		var param = 'ModulID=' + {/literal}{$ModulID}{literal}
-			console.log(link+'?'+param);
-			
 
 			$.ajax({
 				type: 'POST',
@@ -570,30 +567,38 @@
 		$( "#opener-message" ).on( "click", function() {
 			var link = 'plugins/getMessage.php';
     		var param = 'ModulID=' + {/literal}{$ModulID}{literal}
-			console.log(link+'?'+param);
+
 			$.ajax({
 				type: 'POST',
 				url: link,
 				data: param,
 				async: false,
 				success: function (data) {
-					$( "#prev_mess" ).html(data);
-					$( ".dialog-message" ).dialog( "open" );
+					$( ".dialog-message" ).html(data).dialog( "open" );
 				}
 			});
+
+
 		});
 
 		// Button Save:
 		$("#saved-message").on("click", function(){
 			var base=window.location.origin;
-			var link = 'plugins/Save.php';
+			var link = base+'/jamtransfer/plugins/Save.php';
 
-			var messageID = $('.textarea-dalog').attr("data-id");
-			var messageContent = $(".textarea-dalog").val();
+			var messageID = $('.dialog-message').attr("data-id");
+			var messageContent = $(".dialog-message").val();
+
+			var textarea = $(".dialog-message").html(messageContent);
+
+			// Testing:
+			// alert($(".dialog-message").text());
+			// alert(messageContent);
+
 			var param='ModulID='+messageID+'&Message='+messageContent;
 
 			// Testing:
-			console.log(link+'?'+param);
+			// console.log(link+'?'+param);
 			
 			$.ajax({
 				type: 'POST',

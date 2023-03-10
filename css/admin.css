@@ -15736,8 +15736,8 @@ h5 {
 .navbar-default .nav > li > a:focus,
 .navbar-default .nav > li > a:hover {
     /* background-color: #293846; old */
-    /* background-color: #364561; old-2 */
-    background-color: #1e1b1b;
+    /* background-color: #1e1b1b; old-2 */
+    background-color: #303030;
     box-shadow: 2px 2px 4px #090a0a;
     color: #fff;
     border-radius: 10px;
