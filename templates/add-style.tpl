@@ -14,7 +14,7 @@
 #selectTo_options a{ color:white; }
 #selectFrom_options a { color:white; }
 .row-add{ padding:20px; }
-.fa-user{ color:white; }
+.fa-user{ color:#b28c8c; }
 
 /* Route */
 #TerminalID{
@@ -145,7 +145,17 @@
 {* TEMPLATES FOLDER: *}
 
 .wrapper-edit{ padding:0px; }
-.white-bg-edit{ padding-bottom:30px;}
+
+.white-bg-edit{ 
+    padding-bottom:30px; 
+    /* background-image: url(./i/groovepaper.png) !important; */
+        background-image: url(./i/m-assets/white-bg/light_noise_diagonal.png) !important;
+    /* background-image: url(./i/45degreee_fabric.webp) !important; */
+    /* background-image: url(./i/funky-lines.png) !important; */
+    /* background-image: url(./i/rough_diagonal.webp) !important; */
+    /* background-image: url(./i/white_wall_hash.webp) !important; */
+    /* background-image: url(./i/stripes-light.webp) !important; */
+}
 
 .additional-class{
     position: fixed;
@@ -161,7 +171,7 @@
     padding: 5px;
     box-sizing: border-box;
     /* border: 2px solid #4c81ad; */
-    box-shadow: 5px 5px 8px #888888;
+    /* box-shadow: 5px 5px 8px #888888; */
     border-radius: 10px;
     z-index:1;
 }
@@ -214,7 +224,7 @@
     /* background: #476092; older */
     margin: 5px 5px 10px 5px;
     border-radius: 10px;
-    /* box-shadow: 5px 5px 16px #424181 inset; */
+    box-shadow: 5px 5px 16px #232328 inset;
 }
 
 .navbar-static-side{ box-shadow: 5px 5px 8px #888888; }
@@ -263,20 +273,28 @@
 /* Navbar Side */
 .navbar-default-edit{
     /* background-image: linear-gradient(#050505, #42536B); */
-    background-image: linear-gradient(#050505, #282222);
+    /* background-image: linear-gradient(#050505, #282222); */
+        background-image: url(./i/m-assets/sidebar/dark-honeycomb.png);
+
     /* background-image: linear-gradient(#333a42, #3e576e); older */
 }
 
 /* navbar top fixed */
 .navbar-static-top-edit{
-    background-image: linear-gradient(to bottom right, #76889f, #cceeff);
-    /* background-image: linear-gradient(to bottom right, silver, #cceeff); older */
+    /* background-image: url(./i/header/wild_oliva.png); */
+    /* background-image: url(./i/header/low_contrast_linen.png); */
+    /* background-image: url(./i/header/tex2res4.png); */
+    /* background-image: url(./i/header/vertical_cloth.png); */
+    /* background-image: url(./i/header/denim.webp); */
+    /* background-image: linear-gradient(to bottom right, #76889f, #cceeff); */
+    background-image: linear-gradient(to bottom right, silver, #cceeff);
 }
 
 .nav-label-edit{
+    font-size: 18px;
     font-style: italic;
-    text-shadow: 2px 2px 1px #494949;
-
+    text-shadow: 2px 2px 1px #101010;
+    /* text-shadow: 2px 2px 1px #494949; Old */
 }
 
 #side-menu .edit-fa{
@@ -285,8 +303,11 @@
 
 
 .nav.nav-second-level > li.active a{
-    background-image: linear-gradient(#705d5d, #1c1919) !important;
-    /* background-image: linear-gradient(#794e4e, #1c1919) !important; */
+    background: #634242;
+    /* background: #624e4e; old */
+    /* border-bottom: 1px solid white; */
+    /* background-image: linear-gradient(#705d5d, #1c1919) !important; Old */
+    /* background-image: linear-gradient(#794e4e, #1c1919) !important; Older */
 }
 /* ------------------------------------------------------------------------------- */
 
@@ -342,7 +363,7 @@
     overflow-y: auto;
 }
 
-.textarea-dalog{
+.textarea-dialog{
     width: 100% !important;
     height:70% !important;
 	resize: none;
@@ -351,6 +372,10 @@
 /* ------------------------------------------ */
 
 /* EditForm: */
+.box-info{
+    background-image: url(./i/m-assets/white-bg/stripes-light.webp) !important;
+}
+
 .box-body .row{
 	margin-bottom: 10px;
 }
@@ -361,8 +386,8 @@
 
 
 /* Cursor pointer */
-.listTile{ cursor:pointer;}
-.listTile:hover{ background: rgb(229 229 231); }
+.listTile{ cursor:pointer; border-top:1px solid rgb(179, 179, 179) !important;}
+.listTile:hover{ background: rgba(204, 204, 204, 0.432); }
 .listTitleEdit{ cursor:auto !important; }
 .listTitleEdit:nth-of-type(2n){ background: #f1f1f1 !important; }
 .listTitleEdit:nth-of-type(2n):hover{ background: rgb(229 229 231) !important; }
@@ -370,8 +395,11 @@
 /* .listTile:focus{ background: rgb(71, 42, 173); } */
 
 
-
-
+/* Check: */
+/* .ui-dialog-buttonpane{
+    position: absolute;
+    top:35px;
+} */
 
 
 
