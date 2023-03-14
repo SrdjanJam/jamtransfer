@@ -14,7 +14,7 @@
 #selectTo_options a{ color:white; }
 #selectFrom_options a { color:white; }
 .row-add{ padding:20px; }
-.fa-user{ color:#b28c8c; }
+.listTile .fa-user{ color:#797373; }
 
 /* Route */
 #TerminalID{
@@ -79,12 +79,6 @@
     background: #9fc7db;
 }
 
-.box-header-edit{
-    background: #3f67b9;
-    color: white;
-}
-.box-body-edit{ background: #3f67b9; }
-
 .select-top-edit{
     color:rgb(78 66 66);
     padding:2px;
@@ -133,9 +127,7 @@
 /* End of Bookings/Orders */
 
 
-.box-body .row-edit-2{
-	margin-top:5px;
-}
+
 
 
 {* END OF PLUGINS FOLDER: ===============================================================  *}
@@ -155,18 +147,19 @@
     /* background-image: url(./i/rough_diagonal.webp) !important; */
     /* background-image: url(./i/white_wall_hash.webp) !important; */
     /* background-image: url(./i/stripes-light.webp) !important; */
+    height: 100%;
 }
 
 .additional-class{
     position: fixed;
     height: 100vh;
-    overflow-y: auto;
+    overflow-y: auto; 
 }
 
 .nav-header-edit{
-    background-image: linear-gradient(#c9a859, #786d4f);
-    /* background-color: #dbd6ca; */
-    /* background-color: #e4e4e4; older */
+    background-image: linear-gradient(#ffdc7eab, #fab80654);
+    /* background-image: linear-gradient(#c9a859, #786d4f); Old 1 */
+    /* background-color: #dbd6ca; Old 2 */
     margin: 0 5px 5px 5px;
     padding: 5px;
     box-sizing: border-box;
@@ -219,12 +212,12 @@
 }
 
 .nav-header-top-edit{
-    background-image: linear-gradient(#8b4444, #212628) !important;
-    /* background: #175a89; */
-    /* background: #476092; older */
+    background-image: linear-gradient(#ff00002b, #04040461) !important;
+    /* background-image: linear-gradient(#8b4444, #212628) !important; Old 1 */
+    /* background-image: linear-gradient(#eb12123d, #212628) !important; Old 2 */
     margin: 5px 5px 10px 5px;
     border-radius: 10px;
-    box-shadow: 5px 5px 16px #232328 inset;
+    /* box-shadow: 5px 5px 16px #232328 inset; */
 }
 
 .navbar-static-side{ box-shadow: 5px 5px 8px #888888; }
@@ -234,7 +227,6 @@
     box-shadow: 5px 5px 8px #616060;
 }
 
-.box-info, .box-primary{ box-shadow: 5px 5px 8px #616060; }
 
 .nav-header-edit #set-as{ color: #3e3e3e;}
 .nav-header-edit #set-as, #set-as-2{ font-family:Georgia, 'Times New Roman', Times, serif; }
@@ -254,7 +246,10 @@
 }
 
 .itemsheader-edit{
-    background: #def6fe;
+   
+    background: #0eb9f221;
+    /* background: #def6fe; Old 1 */
+     /* background-image: linear-gradient(#C5D5DC,#CBEAFA); Old 2 */
     padding-top: 10px;
 }
 
@@ -281,13 +276,8 @@
 
 /* navbar top fixed */
 .navbar-static-top-edit{
-    /* background-image: url(./i/header/wild_oliva.png); */
-    /* background-image: url(./i/header/low_contrast_linen.png); */
-    /* background-image: url(./i/header/tex2res4.png); */
-    /* background-image: url(./i/header/vertical_cloth.png); */
-    /* background-image: url(./i/header/denim.webp); */
-    /* background-image: linear-gradient(to bottom right, #76889f, #cceeff); */
-    background-image: linear-gradient(to bottom right, silver, #cceeff);
+    background-image: linear-gradient(to bottom right, #c0c0c036, #00aaff3d);
+    /* background-image: linear-gradient(to bottom right, silver, #cceeff); Old */
 }
 
 .nav-label-edit{
@@ -303,22 +293,24 @@
 
 
 .nav.nav-second-level > li.active a{
-    background: #634242;
-    /* background: #624e4e; old */
+    background: #6e6e6e28;
+    /* background: #634242; old */
+    /* background: #624e4e; old 2 */
     /* border-bottom: 1px solid white; */
     /* background-image: linear-gradient(#705d5d, #1c1919) !important; Old */
     /* background-image: linear-gradient(#794e4e, #1c1919) !important; Older */
 }
 /* ------------------------------------------------------------------------------- */
-
 /* Footer */
 .footer-edit{
-    background-image: linear-gradient(to bottom right, silver, #cceeff);
+    background-image: linear-gradient(to bottom right, #a6d0ed, #cceeff);
+    /* background-image: linear-gradient(to bottom right, silver, #cceeff); Old 1 */
+    /* background-image: linear-gradient(to bottom right, #c0c0c036, #00aaff42); Old 2 */
 }
 .pull-left-edit{ margin-left:10px; }
 .pull-right-edit{ margin-right:20px; }
 
-
+/* ------------------------------------------------------------------------------- */
 /* Button */
 .button-3 {
   appearance: none;
@@ -370,15 +362,27 @@
     box-sizing: border-box !important;
 }
 /* ------------------------------------------ */
-
 /* EditForm: */
-.box-info{
+.box-info, .box-primary{
     background-image: url(./i/m-assets/white-bg/stripes-light.webp) !important;
+    box-shadow: 5px 5px 8px #616060;
 }
 
 .box-body .row{
 	margin-bottom: 10px;
 }
+
+.box-body .row-edit-2{
+	margin-top:5px;
+}
+
+.box-body-edit{ background: #3f67b9; }
+
+.box-header-edit{
+    background: #3f67b9;
+    color: white;
+}
+
 
 {* END OF TEMPLATES: ======================================================================================  *}
 {* ========================================================================================================  *}
@@ -401,8 +405,34 @@
     top:35px;
 } */
 
+/* SCROLL BAR: */
+/* width */
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    margin-right: 5px;
+    
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #aaa;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #646363;
+    
+}
 
 
+.page-wrapper-edit{
+    background-image: url(./i/m-assets/white-bg/light_noise_diagonal.png) !important;
+}
 
 
 </style>
