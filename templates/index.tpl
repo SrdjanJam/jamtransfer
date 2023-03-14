@@ -267,7 +267,7 @@
 							<li class="{$menu1[index].active}">
 								<a href='{$menu1[index].link}' >
 									<i class="fa {$menu1[index].icon} edit-fa"></i>
-									<span class="nav-label nav-label-edit" title="{$menu1[index].description}">{$menu1[index].title} <span class='badge'>{$menu1[index].phasestatus}</span></span> 
+									<span class="nav-label nav-label-edit" title="{$menu1[index].description}">{$menu1[index].title} <span class='badge'>{$menu1[index].activestatus}</span></span> 
 									<span class="{$menu1[index].arrow}"></span>
 								</a>
 
@@ -278,7 +278,7 @@
 
 										{section name=index1 loop=$menu1[index].menu}	
 											<li class="{$menu1[index].menu[index1].active}">
-												<a href="{$menu1[index].menu[index1].link}"><span class="nav-label nav-label-edit" title="{$menu1[index].menu[index1].description}">{$menu1[index].menu[index1].title} <span class='badge'>{{$menu1[index].menu[index1].phasestatus}}</span></span></a>
+												<a href="{$menu1[index].menu[index1].link}"><span class="nav-label nav-label-edit" title="{$menu1[index].menu[index1].description}">{$menu1[index].menu[index1].title} <span class='badge'>{{$menu1[index].menu[index1].activestatus}}</span></span></a>
 
 													{if $menu1[index].menu[index1].title eq 'Orders'}
 														<!-- collapse: ul second level: -->
@@ -322,7 +322,7 @@
 {* HEADER ====================================================================================================================================== *}
 			
 			{* #page-wrapper *}
-			<div id="page-wrapper" class="content gray-bg dashbard-1" style="height: 100%;
+			<div id="page-wrapper" class="content gray-bg dashbard-1 page-wrapper-edit" style="height: 100%;
 					display: flex;
 					flex-direction: column;
 					flex-wrap: nowrap;
@@ -330,7 +330,7 @@
 					">
 
 				<!-- ******************************************************************************** -->
-				<!-- Header Top -->
+				<!-- Header Main: -->
 				<div class="header row border-bottom">
 					{* navbar *}	
 					<nav class="navbar navbar-static-top navbar-static-top-edit" role="navigation" style="margin-bottom: 0">
@@ -365,8 +365,9 @@
 						<!-- Dialog printed results here: -->
 						<div style="display:none;" class="dialog-help"></div>
 						<textarea style="display:none;" data-id="{$ModulID}" class="dialog-message textarea-dialog"></textarea>
-					</nav>
 					
+					
+					</nav>
 				</div> {* /.header row border-bottom *}
 				<!-- ******************************************************************************** -->		
 			
@@ -389,6 +390,8 @@
 
 					</div> {* /.header row *}
 				{/if}
+
+				
 				
 {* MAIN CONTENT ================================================================================================================= *}
 				<div class="body row white-bg white-bg-edit">
