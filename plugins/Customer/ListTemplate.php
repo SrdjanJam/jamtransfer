@@ -1,5 +1,6 @@
 <?
-	
+	$smarty->assign('selecttype',true);
+	$smarty->assign('selectactive',true);
 ?>
 <script type="text/x-handlebars-template" id="ItemListTemplate">
 

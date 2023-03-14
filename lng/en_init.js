@@ -36,6 +36,13 @@ languages['no'] = 'Norsk';
 languages['es'] = 'Español';
 languages['nl'] = 'Nederlands';
 
+var customers = {};
+customers[0] = 'Normal';
+customers[1] = 'Platinum';
+customers[2] = 'Gold';
+customers[3] = 'Silver';
+customers[4] = 'Premium';
+
 var yesNo = {};
 yesNo[0] = 'No';
 yesNo[1] = 'Yes';

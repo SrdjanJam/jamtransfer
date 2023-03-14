@@ -28,6 +28,7 @@ Class v4_Customers {
 	public $CustPass; //varchar(255)
 	public $CustSubscribed; //tinyint(1)
 	public $CustActive; //tinyint(1)
+	public $Discount; //tinyint(1)
 	public $CustImage; //blob
 	public $CustImageType; //varchar(255)
 	
@@ -43,7 +44,7 @@ Class v4_Customers {
      * New object to the class. Don´t forget to save this new object "as new" by using the function $class->saveAsNew(); 
      *
      */
-	public function New_v4_Customers($Site,$CustType,$CustFirstName,$CustLastName,$CustCountry,$CustLanguage,$CustEmail,$CustAddress,$CustCity,$CustZip,$CustMobile,$CustPass,$CustSubscribed,$CustActive,$CustImage,$CustImageType){
+	public function New_v4_Customers($Site,$CustType,$CustFirstName,$CustLastName,$CustCountry,$CustLanguage,$CustEmail,$CustAddress,$CustCity,$CustZip,$CustMobile,$CustPass,$CustSubscribed,$CustActive,$Discount,$CustImage,$CustImageType){
 		$this->Site = $Site;
 		$this->CustType = $CustType;
 		$this->CustFirstName = $CustFirstName;
@@ -58,6 +59,7 @@ Class v4_Customers {
 		$this->CustPass = $CustPass;
 		$this->CustSubscribed = $CustSubscribed;
 		$this->CustActive = $CustActive;
+		$this->Discount = $Discount;
 		$this->CustImage = $CustImage;
 		$this->CustImageType = $CustImageType;
 	}
@@ -87,6 +89,7 @@ Class v4_Customers {
 			$this->CustPass = $row["CustPass"];
 			$this->CustSubscribed = $row["CustSubscribed"];
 			$this->CustActive = $row["CustActive"];
+			$this->Discount = $row["Discount"];
 			$this->CustImage = $row["CustImage"];
 			$this->CustImageType = $row["CustImageType"];
 		}
@@ -121,6 +124,7 @@ CustMobile = '".$this->myreal_escape_string($this->CustMobile)."',
 CustPass = '".$this->myreal_escape_string($this->CustPass)."', 
 CustSubscribed = '".$this->myreal_escape_string($this->CustSubscribed)."', 
 CustActive = '".$this->myreal_escape_string($this->CustActive)."', 
+Discount = '".$this->myreal_escape_string($this->Discount)."', 
 CustImage = '".$this->myreal_escape_string($this->CustImage)."', 
 CustImageType = '".$this->myreal_escape_string($this->CustImageType)."' WHERE CustID = '".$this->CustID."'");
 	return $result; 
@@ -130,7 +134,10 @@ CustImageType = '".$this->myreal_escape_string($this->CustImageType)."' WHERE Cu
      * Save the active var class as a new row on table
      */
 	public function saveAsNew(){
-		$this->connection->RunQuery("INSERT INTO v4_Customers (Site, CustType, CustFirstName, CustLastName, CustCountry, CustLanguage, CustEmail, CustAddress, CustCity, CustZip, CustMobile, CustPass, CustSubscribed, CustActive, CustImage, CustImageType) values ('".$this->myreal_escape_string($this->Site)."', '".$this->myreal_escape_string($this->CustType)."', '".$this->myreal_escape_string($this->CustFirstName)."', '".$this->myreal_escape_string($this->CustLastName)."', '".$this->myreal_escape_string($this->CustCountry)."', '".$this->myreal_escape_string($this->CustLanguage)."', '".$this->myreal_escape_string($this->CustEmail)."', '".$this->myreal_escape_string($this->CustAddress)."', '".$this->myreal_escape_string($this->CustCity)."', '".$this->myreal_escape_string($this->CustZip)."', '".$this->myreal_escape_string($this->CustMobile)."', '".$this->myreal_escape_string($this->CustPass)."', '".$this->myreal_escape_string($this->CustSubscribed)."', '".$this->myreal_escape_string($this->CustActive)."', '".$this->myreal_escape_string($this->CustImage)."', '".$this->myreal_escape_string($this->CustImageType)."')");
+		$this->connection->RunQuery("INSERT INTO v4_Customers (Site, CustType, CustFirstName, CustLastName, CustCountry, CustLanguage, CustEmail, CustAddress, CustCity, CustZip, CustMobile, CustPass, CustSubscribed, CustActive, Discount, CustImage, CustImageType) values ('".$this->myreal_escape_string($this->Site)."', '".$this->myreal_escape_string($this->CustType)."', '".$this->myreal_escape_string($this->CustFirstName)."', '".$this->myreal_escape_string($this->CustLastName)."', '".$this->myreal_escape_string($this->CustCountry)."', '".$this->myreal_escape_string($this->CustLanguage)."', '".$this->myreal_escape_string($this->CustEmail)."', '".$this->myreal_escape_string($this->CustAddress)."', '".$this->myreal_escape_string($this->CustCity)."', '".$this->myreal_escape_string($this->CustZip)."', '".$this->myreal_escape_string($this->CustMobile)."', '".$this->myreal_escape_string($this->CustPass)."', '".$this->myreal_escape_string($this->CustSubscribed)."',
+		'".$this->myreal_escape_string($this->CustActive)."',
+		'".$this->myreal_escape_string($this->Discount)."',
+		'".$this->myreal_escape_string($this->CustImage)."', '".$this->myreal_escape_string($this->CustImageType)."')");
 		return $this->connection->insert_id(); //return insert_id 
 	}
 
@@ -253,6 +260,13 @@ CustImageType = '".$this->myreal_escape_string($this->CustImageType)."' WHERE Cu
 	 */
 	public function getCustActive(){
 		return $this->CustActive;
+	}	
+	
+	/**
+	 * @return Discount - tinyint(1)
+	 */
+	public function getDiscount(){
+		return $this->Discount;
 	}
 
 	/**
@@ -372,6 +386,13 @@ CustImageType = '".$this->myreal_escape_string($this->CustImageType)."' WHERE Cu
 	 */
 	public function setCustActive($CustActive){
 		$this->CustActive = $CustActive;
+	}	
+	
+	/**
+	 * @param Type: tinyint(1)
+	 */
+	public function setDiscount($Discount){
+		$this->Discount = $Discount;
 	}
 
 	/**
@@ -411,6 +432,7 @@ CustImageType = '".$this->myreal_escape_string($this->CustImageType)."' WHERE Cu
 			'CustPass' => $this->getCustPass(),
 			'CustSubscribed' => $this->getCustSubscribed(),
 			'CustActive' => $this->getCustActive(),
+			'Discount' => $this->getDiscount(),
 			'CustImage' => $this->getCustImage(),
 			'CustImageType' => $this->getCustImageType()		);
 		return $fieldValues;
@@ -423,7 +445,7 @@ CustImageType = '".$this->myreal_escape_string($this->CustImageType)."' WHERE Cu
      */
 	public function fieldNames(){
 		$fieldNames = array(
-			'Site',			'CustID',			'CustType',			'CustFirstName',			'CustLastName',			'CustCountry',			'CustLanguage',			'CustEmail',			'CustAddress',			'CustCity',			'CustZip',			'CustMobile',			'CustPass',			'CustSubscribed',			'CustActive',			'CustImage',			'CustImageType'		);
+			'Site',			'CustID',			'CustType',			'CustFirstName',			'CustLastName',			'CustCountry',			'CustLanguage',			'CustEmail',			'CustAddress',			'CustCity',			'CustZip',			'CustMobile',			'CustPass',			'CustSubscribed',			'CustActive',			'Discount',			'CustImage',			'CustImageType'		);
 		return $fieldNames;
 	}
     /**

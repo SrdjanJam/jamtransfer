@@ -1,14 +1,6 @@
 <script type="text/x-handlebars-template" id="ItemEditTemplate">
 <form id="ItemEditForm{{CustID}}" class="form box box-info" enctype="multipart/form-data" method="post" onsubmit="return false;">
 	<div class="box-header">
-		<div class="box-title">
-			<? if ($isNew) { ?>
-				<h3><?= NNEW.' '.EXPENSE ?></h3>
-			<? } else { ?>
-				<h3><?= EDIT ?> - {{ID}}</h3>
-			<? } ?>
-		</div>
-
 		<div class="box-tools pull-right">
 			
 			<span id="statusMessage" class="text-info xl"></span>
@@ -32,7 +24,7 @@
 	
 	<div class="box-body ">
         <div class="row">
-			<div class="col-md-12">
+			<div class="col-md-6">
 				<!-- CUSTOMER_ID: -->
 				<div class="row">
 					<div class="col-md-3">
@@ -41,25 +33,25 @@
 					<div class="col-md-9">
 						{{CustID}}
 					</div>
+				</div>				
+				<div class="row">
+					<div class="col-md-3">
+						<label for="CustID">Personal code:</label>
+					</div>
+					<div class="col-md-9">
+						<strong>{{PersonalCode}}</strong>
+					</div>
 				</div>
 				<!-- SITE: -->
-				<div class="row">
+				<!--<div class="row">
 					<div class="col-md-3">
 						<label for="Site"><?=SITE;?></label>
 					</div>
 					<div class="col-md-9">
 						<input type="text" name="Site" id="Site" class="w100" value="{{Site}}">
 					</div>
-				</div>
-				<!-- CUSTOMER_TYPE: -->
-				<div class="row">
-					<div class="col-md-3">
-						<label for="CustType"><?=CUSTOMER_TYPE;?></label>
-					</div>
-					<div class="col-md-9">
-						<input type="text" name="CustType" id="CustType" class="w100" value="{{CustType}}">
-					</div>
-				</div>
+				</div>!-->
+
 				<!-- CUSTOMER_FIRST_NAME: -->
 				<div class="row">
 					<div class="col-md-3">
@@ -84,7 +76,7 @@
 						<label for="CustCountry"><?=CUSTOMER_COUNTRY;?></label>
 					</div>
 					<div class="col-md-9">
-						<input type="text" name="CustCountry" id="CustCountry" class="w100" value="{{CustCountry}}">
+						{{countrySelect CustCountry 'CustCountry' 'ID'}}
 					</div>
 				</div>
 				<!-- CUSTOMER_LANGUAGE: -->
@@ -93,7 +85,7 @@
 						<label for="CustLanguage"><?=CUSTOMER_LANGUAGE;?></label>
 					</div>
 					<div class="col-md-9">
-						<input type="text" name="CustLanguage" id="CustLanguage" class="w100" value="{{CustLanguage}}">
+						{{languageSelect Language 'Language'}}
 					</div>
 				</div>
 				<!-- CUSTOMER_EMAIL: -->
@@ -142,7 +134,7 @@
 					</div>
 				</div>
 				<!-- CUSTOMER_PASS: -->
-				<div class="row">
+				<!--<div class="row">
 					<div class="col-md-3">
 						<label for="CustPass"><?=CUSTOMER_PASS;?></label>
 					</div>
@@ -150,7 +142,6 @@
 						<input type="text" name="CustPass" id="CustPass" class="w100" value="{{CustPass}}">
 					</div>
 				</div>
-				<!-- CUSTOMER_SUBSCRIBED: -->
 				<div class="row">
 					<div class="col-md-3">
 						<label for="CustSubscibed"><?=CUSTOMER_SUBSCRIBED;?></label>
@@ -158,36 +149,71 @@
 					<div class="col-md-9">
 						<input type="text" name="CustSubscibed" id="CustSubscibed" class="w100" value="{{CustSubscibed}}">
 					</div>
-				</div>
+				</div>!-->
 				<!-- CUSTOMER_ACTIVE: -->
 				<div class="row">
 					<div class="col-md-3">
 						<label for="CustActive"><?=CUSTOMER_ACTIVE;?></label>
 					</div>
 					<div class="col-md-9">
-						<input type="text" name="CustActive" id="CustActive" class="w100" value="{{CustActive}}">
+						{{yesNoSliderEdit CustActive 'CustActive' }}
 					</div>
-				</div>
+				</div>			
 				<!-- CUSTOMER_IMAGE: -->
-				<div class="row">
+				<!--<div class="row">
 					<div class="col-md-3">
 						<label for="CustImage"><?=CUSTOMER_IMAGE;?></label>
 					</div>
 					<div class="col-md-9">
 						<input type="text" name="CustImage" id="CustImage" class="w100" value="{{CustImage}}">
 					</div>
-				</div>
+				</div>!-->
 				<!-- CUSTOMER_IMAGE_TYPE: -->
-				<div class="row">
+				<!--<div class="row">
 					<div class="col-md-3">
 						<label for="CustImageType"><?=CUSTOMER_IMAGE_TYPE;?></label>
 					</div>
 					<div class="col-md-9">
 						<input type="text" name="CustImageType" id="CustImageType" class="w100" value="{{CustImageType}}">
 					</div>
-				</div>
+				</div>!-->
 
-				
+			</div>
+			<div class="col-md-6">
+				<div class="row">
+					<div class="col-md-3">
+						<label for="ReservationNumber">Number of reservations</label>
+					</div>
+					<div class="col-md-9">
+						{{ReservationNumber}}
+					</div>
+				</div>				
+				<div class="row">
+					<div class="col-md-3">
+						<label for="ReservationNumber">Value of reservations</label>
+					</div>
+					<div class="col-md-9">
+						{{ReservationValue}}
+					</div>
+				</div>	
+				<!-- CUSTOMER_TYPE: -->
+				<div class="row">
+					<div class="col-md-3">
+						<label for="CustType"><?=CUSTOMER_TYPE;?></label>
+					</div>
+					<div class="col-md-9">
+						{{customerSelect CustType 'CustType'}}
+					</div>
+				</div>	
+				<!-- DISCOUNT: -->
+				<div class="row">
+					<div class="col-md-3">
+						<label for="Discount"><?=DISCOUNT;?></label>
+					</div>
+					<div class="col-md-9">
+						<input type="text" name="Discount" id="Discount" class="w100" value="{{Discount}}">
+					</div>
+				</div>					
 			</div>
 	    </div>
 		   

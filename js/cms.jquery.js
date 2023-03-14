@@ -501,6 +501,32 @@ return new Handlebars.SafeString(languagesDropdown());
 
 });
 
+/*
+Prikaz izbora tipa kupca
+uzima podatke iz customers u lng/en_init.js
+*/
+
+Handlebars.registerHelper("customerSelect", function(currentLevel) {
+	function customersDropdown() {
+		var customerSelect = '<select name="CustType" id="CustType">';
+
+		$.each (customers, function(i, val) {
+			customerSelect += '<option value="'+i+'" ';
+			if (i == currentLevel) {
+				customerSelect += 'selected="selected" ';
+			}
+			customerSelect += '>' + val + '</option>';
+		});
+
+		customerSelect += '</select>';
+
+		return  customerSelect;
+	}
+
+return new Handlebars.SafeString(customersDropdown());
+
+});
+
 
 /*
 za survey

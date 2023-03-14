@@ -5,15 +5,23 @@ require_once 'Initial.php';
 @session_start();
 
 # sastavi filter - posalji ga $_REQUEST-om
-if (isset($type)) {
+/*if (isset($type)) {
 	if (!isset($_REQUEST['Type']) or $_REQUEST['Type'] == 0 or $_REQUEST['Type'] == 99) {
 		$filter = "  AND ".$type." != 0 ";
 	}
 	else {
 		$filter = "  AND ".$type." = '" . $_REQUEST['Type'] . "'";
 	}
-}
+}*/
 
+if (isset($selectactive)) {
+	if (!isset($_REQUEST['Active']) or $_REQUEST['Active'] == 99) {
+		$filter .= "  AND ".$selectactive." > -1 ";
+	}
+	else {
+		$filter .= "  AND ".$selectactive." = " . $_REQUEST['Active'] ;
+	}
+}
 
 $page 		= (int) $_REQUEST['page'];
 $length 	= $_REQUEST['length'];
@@ -37,16 +45,6 @@ $flds = array();
 $DB_Where = " " . $_REQUEST['where'];
 $DB_Where .= $filter;
 
-// Nepotreban deo:
-// if ($_REQUEST['Type']==99) {
-// 	$sql="SELECT TerminalID FROM `v4_Terminals`";	
-// 	$result = $dbT->RunQuery($sql);
-// 	while($row = $result->fetch_array(MYSQLI_ASSOC)){
-// 		$terminals_arr.=$row['TerminalID'].",";
-// 	}
-// 	$terminals_arr = substr($terminals_arr,0,strlen($terminals_arr)-1);	
-// 	$DB_Where .= " AND TerminalID in (".$terminals_arr.")";
-// }
 
 # dodavanje search parametra u qry
 # DB_Where sad ima sve potrebno za qry
@@ -64,7 +62,6 @@ if ( $_REQUEST['Search'] != "" )
 	$DB_Where = substr_replace( $DB_Where, "", -3 );
 	$DB_Where .= ')';
 }
-
 
 $dbTotalRecords = $db->getKeysBy($ItemName . $sortOrder, '',$DB_Where);
 # test za LIMIT - trebalo bi ga iskoristiti za pagination! 'asc' . ' LIMIT 0,50'
@@ -86,7 +83,6 @@ if (count($dbk) != 0) {
 		$out[] = $detailFlds;    	
     }
 }
-
 # send output back
 $output = array(
 'recordsTotal' => count($dbTotalRecords),
