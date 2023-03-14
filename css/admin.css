@@ -15728,16 +15728,18 @@ h5 {
 /* Changed: */
 .nav > li.active > a {
     color: #fff;
-    /* background-image: linear-gradient(to bottom right, #293846, #686868); older */
-    background-image: linear-gradient(to bottom right, #484f58, #050505);
+    background-image: linear-gradient(to bottom right, #40495475, #0505055c);
+    /* background-image: linear-gradient(to bottom right, #484f58, #050505); old 1 */
+    /* background-image: linear-gradient(to bottom right, #293846, #686868); old 2 */
+    
     border-radius: 10px;
 }
 /* Changed: */
 .navbar-default .nav > li > a:focus,
 .navbar-default .nav > li > a:hover {
+    background-color: #30303085;
     /* background-color: #293846; old */
-    /* background-color: #1e1b1b; old-2 */
-    background-color: #303030;
+    /* background-color: #303030; old 2 */
     box-shadow: 2px 2px 4px #090a0a;
     color: #fff;
     border-radius: 10px;
@@ -15858,21 +15860,22 @@ h5 {
 /* Changed: */
 .nav-header {
     padding: 33px 15px;
-    background-color: #2f4050;
+    /* background-color: #2f4050; */
 }
 .pace-done .nav-header {
     transition: all 0.4s;
 }
 /* Changed: */
 ul.nav-second-level {
-    background-image: linear-gradient(#524646, #1c1919);
-    /* background-image: linear-gradient(#284668, #3e576e); older */
+    background-image: linear-gradient(#b9646414, #3b39398f);
+    /* background-image: linear-gradient(#52464614, #3b39398f); old 1 */
+    /* background-image: linear-gradient(#524646, #1c1919); old 2 */
 }
 /* Changed: */
 .nav > li.active {
     border-left: 4px solid #a37878;
     /* border-left: 4px solid #19aa8d; old */
-    background: #524646;
+    /* background: #524646; */
     border-radius:10px;
     /* background-image: linear-gradient(#284668, #3e576e); */
 }
@@ -16025,9 +16028,10 @@ body.mini-navbar .navbar-default .nav > li > .nav-second-level li a {
     border-bottom: 1px solid #e7eaec !important;
     z-index: 2030;
 }
+/* Changed: */
 .navbar-fixed-top,
 .navbar-static-top {
-    background: #f3f3f4;
+    /* background: #f3f3f4; not using */
 }
 .fixed-nav #wrapper {
     margin-top: 0;
@@ -16097,8 +16101,10 @@ body.mini-navbar .nav-second-level .nav-label {
 body.canvas-menu .profile-element {
     display: block;
 }
+/* Changed: mini nav collapse in width */
 body:not(.fixed-sidebar):not(.canvas-menu).mini-navbar .nav-second-level {
     display: none;
+    width: max-content; /* Added */
 }
 body.mini-navbar .navbar-default .nav > li > a {
     font-size: 16px;
