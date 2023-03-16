@@ -123,7 +123,8 @@
 					<div class="col-md-9">
 						<textarea name="Description" id="Description" class="w100" style="resize:none">{{Description}}</textarea>
 					</div>
-				</div>			
+				</div>	
+				<? if (!$isNew) { ?>				
 				<div class="row">
 					<div class="col-md-3">
 						<label for="Vreme">Finished</label>
@@ -139,8 +140,18 @@
 					<div class="col-md-9">
 						{{Note}}
 					</div>
-				</div>	
-				<? if (!$isNew) { ?>
+				</div>
+				<div class="row">
+					<div class="col-md-3">
+						<label for="Mark">Mark</label>
+					</div>
+					<div class="col-md-1">
+						<span id="MarkDisplay">{{Mark}}</span> 
+					</div>	
+					<div class="col-md-3">
+						<input id="Mark" type="range" min="1" max="5" name="Mark" value="{{Mark}}"/>
+					</div>
+				</div>					
 				<div class="row">
 					<div class="col-md-3">
 						<label for="Approved">Approved</label>
@@ -148,9 +159,9 @@
 					<div class="col-md-9 approved">
 						<large>{{yesNoSliderEdit Approved 'Approved' }}</large>
 					</div>
-				</div>				
+				</div>								
 				<? } else { ?>
-				<input type="text" name="approved" value="0"/>
+				<input type="hidden" name="approved" value="0"/>
 				<? } ?>
 
 			</div>
@@ -191,6 +202,9 @@
 		})
 		$('.approved input').change(function() {
 			$('#save_button').trigger('click');
+		})		
+		$('#Mark').change(function() {
+			$('#MarkDisplay').html($(this).val());
 		})
 	
 	</script>

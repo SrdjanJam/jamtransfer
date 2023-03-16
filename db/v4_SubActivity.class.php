@@ -26,6 +26,7 @@ Class v4_SubActivity {
 	public $ActionImage; //varchar(255)	
 	public $ListID; //varchar(255)		
 	public $Approved; //tinyint(1)
+	public $Mark; //tinyint(1)
 	public $connection;
 
 	function __construct(){
@@ -40,7 +41,7 @@ Class v4_SubActivity {
      * New object to the class. Don´t forget to save this new object "as new" by using the function $class->saveAsNew(); 
      *
      */
-	public function New_v4_SubActivity($ID,$OwnerID,$DriverID,$Datum,$Vreme,$Expense,$VehicleID,$Description,$Note,$DocumentImage,$ActionImage,$ListID,$Approved){
+	public function New_v4_SubActivity($ID,$OwnerID,$DriverID,$Datum,$Vreme,$Expense,$VehicleID,$Description,$Note,$DocumentImage,$ActionImage,$ListID,$Approved,$Mark){
 		$this->ID = $ID;
 		$this->OwnerID = $OwnerID;
 		$this->DriverID = $DriverID;
@@ -54,6 +55,7 @@ Class v4_SubActivity {
 		$this->ActionImage = $ActionImage;
 		$this->ListID = $ListID;		
 		$this->Approved = $Approved;
+		$this->Mark = $Mark;
 	}
 
     /**
@@ -79,6 +81,7 @@ Class v4_SubActivity {
 			$this->ActionImage = $row["ActionImage"];
 			$this->ListID = $row["ListID"];			
 			$this->Approved = $row["Approved"];
+			$this->Mark = $row["Mark"];
 		}
 	}
 
@@ -109,7 +112,9 @@ Note = '".$this->myreal_escape_string($this->Note)."',
 DocumentImage = '".$this->myreal_escape_string($this->DocumentImage)."', 
 ActionImage = '".$this->myreal_escape_string($this->ActionImage)."', 
 ListID = '".$this->myreal_escape_string($this->ListID)."', 
-Approved = '".$this->myreal_escape_string($this->Approved)."' WHERE ID = '".$this->ID."'");
+Approved = '".$this->myreal_escape_string($this->Approved)."', 
+Mark = '".$this->myreal_escape_string($this->Mark)."' 
+WHERE ID = '".$this->ID."'");
 	return $result; 
 }
 
@@ -132,6 +137,7 @@ Approved = '".$this->myreal_escape_string($this->Approved)."' WHERE ID = '".$thi
 		ActionImage,
 		ListID,		
 		Approved
+		Mark
 		) values ('
 		".$this->myreal_escape_string($this->ID)."',
 		'".$this->myreal_escape_string($this->OwnerID)."',
@@ -146,6 +152,7 @@ Approved = '".$this->myreal_escape_string($this->Approved)."' WHERE ID = '".$thi
 		'".$this->myreal_escape_string($this->ActionImage)."',	
 		'".$this->myreal_escape_string($this->ListID)."',				
 		'".$this->myreal_escape_string($this->Approved)."'
+		'".$this->myreal_escape_string($this->Mark)."'
 		)");
 		return $this->connection->insert_id(); //return insert_id 
 	}
@@ -255,6 +262,13 @@ Approved = '".$this->myreal_escape_string($this->Approved)."' WHERE ID = '".$thi
 	 */
 	public function getApproved(){
 		return $this->Approved;
+	}	
+	
+	/**
+	 * @return Mark - tinyint(1)
+	 */
+	public function getMark(){
+		return $this->Mark;
 	}
 
 	/**
@@ -346,6 +360,13 @@ Approved = '".$this->myreal_escape_string($this->Approved)."' WHERE ID = '".$thi
 	 */
 	public function setApproved($Approved){
 		$this->Approved = $Approved;
+	}	
+	
+	/**
+	 * @param Type: tinyint(1)
+	 */
+	public function setMark($Mark){
+		$this->Mark = $Mark;
 	}
 
     /**
@@ -368,7 +389,8 @@ Approved = '".$this->myreal_escape_string($this->Approved)."' WHERE ID = '".$thi
 			'DocumentImage' => $this->getDocumentImage(),
 			'ActionImage' => $this->getActionImage(),	
 			'ListID' => $this->getListID(),						
-			'Approved' => $this->getApproved()		);
+			'Approved' => $this->getApproved(),
+			'Mark' => $this->getMark()		);
 		return $fieldValues;
 	}
     /**
@@ -379,7 +401,7 @@ Approved = '".$this->myreal_escape_string($this->Approved)."' WHERE ID = '".$thi
      */
 	public function fieldNames(){
 		$fieldNames = array(
-			'ID',			'OwnerID',			'DriverID',			'Datum',			'Vreme',		'Expense',			'VehicleID',			'Description',			'Note',			'DocumentImage',			'ActionImage',			'ListID',			'Approved'		);
+			'ID',			'OwnerID',			'DriverID',			'Datum',			'Vreme',		'Expense',			'VehicleID',			'Description',			'Note',			'DocumentImage',			'ActionImage',			'ListID',			'Approved',		'Mark');
 		return $fieldNames;
 	}
     /**
