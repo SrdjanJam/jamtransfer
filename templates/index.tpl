@@ -228,6 +228,9 @@
 										<strong class="font-bold" style="margin:0 0 0 10px;">{$smarty.session.UserRealName}</strong>
 									</a>
 								</span>
+
+								<div style="margin-top:12px;text-decoration:underline;"><a href='logout.php'>Logout <i class="fa fa-sign-out"></i></a></div>
+
 								<ul class="dropdown-menu animated fadeInRight m-t-xs">
 									<li><a href="profile" data-param="">Profile</a></li>
 									<li class="divider"></li>
@@ -319,7 +322,7 @@
 			</nav> {* End of navbar-default navbar-static-side *}
 
 						
-{* HEADER ====================================================================================================================================== *}
+
 			
 			{* #page-wrapper *}
 			<div id="page-wrapper" class="content gray-bg dashbard-1 page-wrapper-edit" style="height: 100%;
@@ -329,9 +332,11 @@
 					overflow: hidden;
 					">
 
+{* HEADER ====================================================================================================================================== *}
+
 				<!-- ******************************************************************************** -->
 				<!-- Header Main: -->
-				<div class="header row border-bottom">
+				<div class="header row border-bottom border-bottom-edit">
 					{* navbar *}	
 					<nav class="navbar navbar-static-top navbar-static-top-edit" role="navigation" style="margin-bottom: 0">
 						
@@ -344,15 +349,20 @@
 						<div class="navbar-header">
 							<button type="button" class="minimalize-styl-2 btn btn-primary btn-primary-edit" id="cashe"><i class="fas fa-redo-alt"></i></button>
 						</div>
+
 						{if $DEVELOPMENT}<span>TEST</span>{/if}
+
+						<h2 style="display:inline-block;margin: 15px 0 0 55px;"><span class="m-r-sm text-muted">{$title}(page) - {$smarty.session.log_title}</span></h2>
+
 						<ul class="nav navbar-top-links navbar-right">
 							<!-- Opener dialog button: -->
 							<li><button type="button" id="opener-help" class="button-3">Help</button></li>
 							<li><button type="button" id="opener-message" class="button-3">Message</button></li>
 
-							<li>
-								<h2><span class="m-r-sm text-muted">{$title}</span></h2>
-							</li>
+							{* Old *}
+							{* <li>
+								<h2><span class="m-r-sm text-muted">{$title} - {$smarty.session.log_title}</span></h2>
+							</li> *}
 
 							<li>
 								<a href='logout.php'>
@@ -592,7 +602,9 @@
 		// Button Save:
 		$("#saved-message").on("click", function(){
 			var base=window.location.origin;
-			var link = base+'/plugins/Save.php';
+			var link = 'plugins/Save.php';
+
+			alert(base);
 
 			var messageID = $('.textarea-dialog').attr("data-id");
 			var messageContent = $(".textarea-dialog").val();
