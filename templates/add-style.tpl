@@ -32,7 +32,7 @@
     color:#179ae6;
     /* color:#3C8DBC; older */
     font-weight:bold;
-    padding:5px 0;
+    padding:10px 0;
 }
 
 /* Bookings/Orders */
@@ -140,14 +140,9 @@
 
 .white-bg-edit{ 
     padding-bottom:30px; 
-    /* background-image: url(./i/groovepaper.png) !important; */
-        background-image: url(./i/m-assets/white-bg/light_noise_diagonal.png) !important;
-    /* background-image: url(./i/45degreee_fabric.webp) !important; */
-    /* background-image: url(./i/funky-lines.png) !important; */
-    /* background-image: url(./i/rough_diagonal.webp) !important; */
-    /* background-image: url(./i/white_wall_hash.webp) !important; */
-    /* background-image: url(./i/stripes-light.webp) !important; */
+    background-image: url(./i/m-assets/white-bg/light_noise_diagonal.png) !important;
     height: 100%;
+    padding: 30px;
 }
 
 .additional-class{
@@ -267,11 +262,10 @@
 
 /* Navbar Side */
 .navbar-default-edit{
-    /* background-image: linear-gradient(#050505, #42536B); */
-    /* background-image: linear-gradient(#050505, #282222); */
-        background-image: url(./i/m-assets/sidebar/dark-honeycomb.png);
-
-    /* background-image: linear-gradient(#333a42, #3e576e); older */
+    background-image: url(./i/m-assets/sidebar/dark-honeycomb.png);
+    /* background-image: linear-gradient(#050505, #42536B); old 1 */
+    /* background-image: linear-gradient(#050505, #282222); old 2 */
+    /* background-image: linear-gradient(#333a42, #3e576e); old 3 */
 }
 
 /* navbar top fixed */
@@ -314,8 +308,8 @@
 /* Button */
 .button-3 {
   appearance: none;
-  /* background-color: #2ea44f; old */
-  background-color: #2e8ba4;
+  background-color: #37b1d2;
+  /* background-color: #2e8ba4; old */
   /* background: linear-gradient(177deg, #2ea44f 0%, #58ce79 100%); */
   border: 1px solid rgba(27, 31, 35, .15);
   border-radius: 6px;
@@ -343,8 +337,8 @@
 }
 
 .button-3:hover {
-  /* background-color: #2c974b; old */
-  background-color: #45afcc;
+  background-color: #6cc9e3;
+  /* background-color: #45afcc; old */
   
 }
 
@@ -391,10 +385,13 @@
 
 /* Cursor pointer */
 .listTile{ cursor:pointer; border-top:1px solid rgb(179, 179, 179) !important;}
-.listTile:hover{ background: rgba(204, 204, 204, 0.432); }
+.listTile:hover{ background: rgba(204 204 204 / 82%); }
 .listTitleEdit{ cursor:auto !important; }
-.listTitleEdit:nth-of-type(2n){ background: #f1f1f1 !important; }
-.listTitleEdit:nth-of-type(2n):hover{ background: rgb(229 229 231) !important; }
+.listTile:nth-of-type(2n){ 
+    background: #e0e0e0 !important; 
+    /* background: #f1f1f1 !important; old  */
+}
+.listTile:nth-of-type(2n):hover{ background: rgb(204 204 204 / 82%) !important; }
 /* off */
 /* .listTile:focus{ background: rgb(71, 42, 173); } */
 
@@ -405,6 +402,7 @@
     top:35px;
 } */
 
+/* ============================================================================== */
 /* SCROLL BAR: */
 /* width */
 ::-webkit-scrollbar {
@@ -428,11 +426,41 @@
     background: #646363;
     
 }
-
+/* ============================================================================== */
 
 .page-wrapper-edit{
     background-image: url(./i/m-assets/white-bg/light_noise_diagonal.png) !important;
 }
+
+.border-bottom-edit{ padding: 12px 12px 10px 12px; }
+
+.header-edit{ padding: 0 14px 0 14px; }
+
+#show_items{
+    border: 1px solid #00000026;
+    padding: 15px;
+    background: #c0c0c026;
+}
+
+
+.row-edit div{
+    border-right:1px solid rgb(105, 131, 170);
+}
+.row-edit div:last-child{
+    border-right:none;
+}
+
+.pad1em{
+    padding: 2px 0;
+}
+.pad1em div{
+    border-right:1px solid rgb(187, 187, 187);
+}
+.pad1em div:last-child{
+    border-right:none;
+}
+
+
 
 
 </style>
