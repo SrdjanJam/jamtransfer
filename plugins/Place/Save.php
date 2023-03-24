@@ -1,7 +1,6 @@
 <?
 header('Content-Type: text/javascript; charset=UTF-8');
 require_once 'Initial.php';
-	
 $keyValue = $_REQUEST['id'];
 $terminalID=$_REQUEST['id'];
 $fldList = array();
@@ -14,6 +13,8 @@ foreach ($db->fieldNames() as $name) {
 	}
 	$db->setPlaceDescEN($db->getPlaceDesc());	
 }	
+$ct->getRow($db->getPlaceCountry());
+$db->setCountryNameEN($ct->getCountryNameEN());
 $upd = '';
 $newID = '';
 if ($keyName != '' and $keyValue != '') {

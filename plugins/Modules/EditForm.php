@@ -81,10 +81,26 @@
 				</div>					
 				<div class="row">
 					<div class="col-md-3">
+						<label for="IsNew">Is New entry</label>
+					</div>
+					<div class="col-md-9">
+						{{yesNoSliderEdit IsNew 'IsNew' }}
+					</div>
+				</div>				
+				<div class="row">
+					<div class="col-md-3">
+						<label for="Phase">Phase</label>
+					</div>
+					<div class="col-md-9">
+						<input type="number" name="Phase" id="Phase" class="w1" value="{{Phase}}">
+					</div>
+				</div>					
+				<div class="row">
+					<div class="col-md-3">
 						<label for="Parent"><?=ACTIVE;?></label>
 					</div>
 					<div class="col-md-9">
-						<input type="text" name="Active" id="Active" class="w100" value="{{Active}}">
+						{{yesNoSliderEdit Active 'Active' }}
 					</div>
 				</div>				
 			</div>
@@ -101,23 +117,19 @@
 			</div>
 		</div>	
 		<div class="row">
-			<!-- Old: -->
-			<!-- <div class="col-md-3">
+			<div class="col-md-3">
 				<label for="Description"><?=DESCRIPTION;?></label>
-			</div> -->
-			<div class="col-md-12" style="padding:0 40px 0 40px;">
-				<h1><?=DESCRIPTION;?></h1>
+			</div>
+			<div class="col-md-9">
 				<textarea name="Description" id="Description" rows="15" 
 			class="textarea" style="width:100%">{{Description}}</textarea>
 			</div>
 		</div>
 		<div class="row">
-			<!-- Old: -->
-			<!-- <div class="col-md-3">
+			<div class="col-md-3">
 				<label for="Help" style="color:green;"><?=HELP;?></label>
-			</div> -->
-			<div class="col-md-12" style="padding:0 40px 0 40px;">
-				<h1 style="color:green;"><?=HELP;?></h1>
+			</div>
+			<div class="col-md-9">
 				<textarea name="Help" id="Help" rows="15" 
 			class="textarea" style="width:100%;background:#ecf5ec;">{{Help}}</textarea>
 			</div>

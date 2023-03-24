@@ -8,6 +8,7 @@ require_once ROOT . '/db/v4_OrderDocument.class.php';
 require_once ROOT . '/db/v4_OrderLog.class.php';
 require_once ROOT . '/db/v4_VehicleTypes.class.php';
 require_once ROOT . '/db/v4_OrderExtras.class.php';
+require_once ROOT . '/db/v4_Extras.class.php';
 require_once ROOT . '/db/v4_Invoices.class.php';
 require_once ROOT . '/db/v4_InvoiceDetails.class.php';
 require_once ROOT . '/db/v4_AuthUsers.class.php';
@@ -40,6 +41,7 @@ $vt = new v4_VehicleTypes();
 $in = new v4_Invoices();
 $ind = new v4_InvoiceDetails();
 $oe = new v4_OrderExtras();
+$ex = new v4_Extras();
 $au = new v4_AuthUsers();
 $dbT = new DataBaseMysql();
 
@@ -53,5 +55,5 @@ $type2='UserLevelID';
 # Search ce ih sam pretraziti
 #********************************
 $aColumns = array(
-
+	'OrderID'
 );

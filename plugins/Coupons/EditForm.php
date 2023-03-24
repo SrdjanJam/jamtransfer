@@ -1,13 +1,6 @@
 <script type="text/x-handlebars-template" id="ItemEditTemplate">
 <form id="ItemEditForm{{ID}}" class="form box box-info" enctype="multipart/form-data" method="post" onsubmit="return false;">
 	<div class="box-header">
-		<div class="box-title">
-			<? if ($isNew) { ?>
-				<h3><?= NEWW ?></h3>
-			<? } else { ?>
-				<h3><?= EDIT ?> - {{Code}}</h3>
-			<? } ?>
-		</div>
 		<div class="box-tools pull-right">
 			
 			<span id="statusMessage" class="text-info xl"></span>
@@ -172,41 +165,6 @@
 				</div>
 			</div>
 	    </div>
-		    
-
-	<!-- Statuses and messages -->
-	<div class="box-footer">
-		<? if (!$isNew) { ?>
-		<div>
-    	<button class="btn btn-default" onclick="return deleteItem('{{ID}}', '<?= $inList ?>');">
-    		<i class="ic-cancel-circle"></i> <?= DELETE ?>
-    	</button>
-
-    	</div>
-    	<? } ?>
-	</div>
 </form>
-
-	<script>
-		//bootstrap WYSIHTML5 - text editor
-		$(".textarea").wysihtml5({
-				"font-styles": true, //Font styling, e.g. h1, h2, etc. Default true
-				"emphasis": true, //Italics, bold, etc. Default true
-				"lists": true, //(Un)ordered lists, e.g. Bullets, Numbers. Default true
-				"html": true, //Button which allows you to edit the generated HTML. Default false
-				"link": true, //Button to insert a link. Default true
-				"image": true, //Button to insert an image. Default true,
-				"color": true //Button to change color of font 
-				
-		});
-		
-		// uklanja ikonu Saved - statusMessage sa ekrana
-		$("form").change(function(){
-			$("#statusMessage").html('');
-		});
-
-		$(".datepicker").pickadate({format: "yyyy-mm-dd"});
-	
-	</script>
 </script>
 

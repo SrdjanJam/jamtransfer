@@ -13,8 +13,7 @@
 	 	var transfersFilter = $("#transfersFilter").val(); // filter za transfere
 	 	var orderid = $("#orderid").val(); // filter za orderid
 	 	var detailid = $("#detailid").val(); // filter za detailid
-	 	var sortOrder  = $("#sortOrder").val();
-		
+	 	var sortOrder  = $("#sortOrder").val();		
 	 	var orderFromID = $("#orderFromID").val();
 		if (typeof orderFromID=='undefined') orderFromID='';
 	 	var locationName = $("#locationName").val();
@@ -31,7 +30,7 @@
 		if (typeof passengerData=='undefined') passengerData='';
 		var paymentMethod = $("#PaymentMethod").val();
 		if (typeof paymentMethod=='undefined') paymentMethod='-1';		
-		var driverConfStatus = $("#driverConfStatus").val();
+		var driverConfStatus = $("#DriverConfStatusChoose").val();
 		if (typeof driverConfStatus=='undefined') driverConfStatus='-1';		
 		var yearsOrder = $("#yearsOrder").val();
 		if (typeof yearsOrder=='undefined') yearsOrder='0';
@@ -52,7 +51,8 @@
 		if (typeof subdriverID=='undefined') subdriverID=0;	
 		var actionID = $("#actionID").val();
 		if (typeof actionID=='undefined') actionID=0;	
-		
+		if ($("#listExtras").is(':checked')) var listExtras=1;
+		else var listExtras=0;
 		var callFunction = 'allItems()'; // funkcija koju paginator poziva kod promjene stranice
 	
 		// ovo koristi i paginator funkcija!
@@ -83,6 +83,7 @@
 		'&yearsPickup='+yearsPickup+
 		'&sortField='+sortField+
 		'&sortDirection='+sortDirection+
+		'&listExtras='+listExtras+
 		'&routeID='+routeID+
 		'&vehicleTypeID='+vehicleTypeID+
 		'&vehicleID='+vehicleID+
@@ -120,9 +121,9 @@
 			  $("#PaymentMethod").change(function() {
 				  allItems();
 			  }) 			  
-			  $("#driverConfStatus").prepend('<option value="-1">All status</option>');
-			  $("#driverConfStatus option[value="+driverConfStatus+"]").prop("selected", true)
-			  $("#driverConfStatus").change(function() {
+			  $("#DriverConfStatusChoose").prepend('<option value="-1">All status</option>');
+			  $("#DriverConfStatusChoose option[value="+driverConfStatus+"]").prop("selected", true)
+			  $("#DriverConfStatusChoose").change(function() {
 				  allItems();
 			  }) 
 			  if (ItemsData.yearsOrder ) {
@@ -162,6 +163,7 @@
 			  }	
 		      if (orderid>0 || detailid>0) $('.itemsheader').hide();
 		      if (orderid>0 || detailid>0) $('#pageSelect').hide();
+		      if (listExtras==1) $('#listExtras').prop('checked', true);
 			  if ($(window).width() < 760) filtersDown();
 			  else	filtersUP();	
 			  

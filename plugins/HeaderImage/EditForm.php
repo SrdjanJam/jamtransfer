@@ -59,38 +59,6 @@
 		    
 
 	<!-- Statuses and messages -->
-	<div class="box-footer">
-		<? if (!$isNew) { ?>
-		<div>
-    	<button class="btn btn-default hidden" onclick="return deleteItem('{{ID}}', '<?= $inList ?>');">
-    		<i class="ic-cancel-circle"></i> <?= DELETE ?>
-    	</button>
-    	</div>
-    	<? } ?>
-
-	</div>
 </form>
-
-
-	<script>
-
-		//bootstrap WYSIHTML5 - text editor
-		$(".textarea").wysihtml5({
-				"font-styles": true, //Font styling, e.g. h1, h2, etc. Default true
-				"emphasis": true, //Italics, bold, etc. Default true
-				"lists": false, //(Un)ordered lists, e.g. Bullets, Numbers. Default true
-				"html": false, //Button which allows you to edit the generated HTML. Default false
-				"link": false, //Button to insert a link. Default true
-				"image": false, //Button to insert an image. Default true,
-				"color": false //Button to change color of font 
-				
-		});
-		
-		// uklanja ikonu Saved - statusMessage sa ekrana
-		$("form").change(function(){
-			$("#statusMessage").html('');
-		});
-	
-	</script>
 </script>
 	

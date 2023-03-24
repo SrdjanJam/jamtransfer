@@ -51,7 +51,6 @@ $detailFlds = $db->fieldValues();
 
 # Vezani transfer, ako postoji
 $odk = $db->getKeysBy('DetailsID', 'asc' , ' WHERE OrderID='. $OrderID);
-
 foreach ($odk as $key => $value)
 {
 	$db->getRow($value);
@@ -62,9 +61,11 @@ foreach ($odk as $key => $value)
 		);
 	}	
 }
+$detailFlds["RelatedTransfers"]=$relatedTransfers;
+
 $db->getRow($_REQUEST['ItemID']);
 
-
+//payment method
 $pm=$detailFlds["PaymentMethod"];
 $detailFlds["PaymentMethodName"]=$PaymentMethod[$pm];
 //zamena naziva mesta sa engleskim nazivom iz tabele places
@@ -80,12 +81,7 @@ if ($DropID!=0) {
 	$detailFlds["DropName"]=$pl->getPlaceNameEN();
 }
 
-$detailFlds["RelatedTransfers"] = $relatedTransfers;
 
-# VehicleTypes
-$vt->getRow($db->getVehicleType() );
-$detailFlds['VehicleTypeName'] = $vt->getVehicleTypeName();
-$detailFlds['VehicleClass'] = $vt->getVehicleClass();
 $detailFlds['DriversPrice'] = number_format($db->getDriversPrice()*$_SESSION['CurrencyRate'],2);
 $detailFlds['DetailPrice'] = number_format($db->getDetailPrice()*$_SESSION['CurrencyRate'],2);
 $detailFlds['ExtraCharge'] = number_format($db->getExtraCharge()*$_SESSION['CurrencyRate'],2);
@@ -109,9 +105,14 @@ $detailFlds['ProvisionAmountEUR'] = number_format($db->getProvisionAmount(),2);
 $detailFlds['DiscountEUR'] = number_format($db->getDiscount(),2);
 $detailFlds['DriverPaymentAmtEUR'] = number_format($db->getDriverPaymentAmt(),2);
 
+# VehicleTypes
+$vt->getRow($db->getVehicleType() );
+$detailFlds['VehicleTypeName'] = $vt->getVehicleTypeName();
+$detailFlds['VehicleClass'] = $vt->getVehicleClass();
+
+//partneri
 $au->getRow($db->getDriverID());
 $contractFile=$au->getContractFile();
-//partneri
 if ($contractFile!='inter') {
 	$detailFlds['ContactName'] = $au->getContactPerson();
 	if (empty($au->getAuthUserMob())) $detailFlds['ContactMob'] = $au->getAuthUserTel();
@@ -136,7 +137,6 @@ else {
 
 # Invoice data
 $inid = $ind->getKeysBy('ID', 'asc', "WHERE `DetailsID` =  ".$db->getDetailsID());
-
 $cinid=count($inid);
 if ($cinid>0) {	
 	$ind->getRow($inid[$cinid-1]);
@@ -163,7 +163,7 @@ $inid = $in->getKeysBy('ID', 'asc', "WHERE `UserID` =  '".$db->getDriverID()."'
 
 
 //prarametri za racune
-if ($_SESSION['AuthLevelID']==44) {
+/*if ($_SESSION['AuthLevelID']==44) {
 	//service type
 	switch ($db->PaymentMethod) {
 		case 1:
@@ -224,7 +224,7 @@ if ($_SESSION['AuthLevelID']==44) {
 	$detailFlds['DocumentType']=0;
 	
 	
-}
+}*/
 
 # documents
 $odock = $odoc->getKeysBy('ID', 'asc' , ' WHERE OrderID = ' . $OrderID);
@@ -239,10 +239,12 @@ if(count($odock) > 0) {
 }
 $detailFlds['Documents']=$orderDocument;
 
+
 # master key
 $omk = $om->getKeysBy('MOrderID', 'asc' , ' WHERE MOrderID = ' . $OrderID);
 # master row
 $om->getRow($omk[0]);
+$email=$om->getMPaxEmail();
 
 # get fields and values
 $masterFlds = $om->fieldValues();
@@ -257,16 +259,54 @@ if(count($olk) > 0) {
 	}
 }
 
+#other bookings
+$omk = $om->getKeysBy('MOrderID', 'asc' , " WHERE MPaxEmail = '" . $email . "'");
+$otherbookings="";
+if(count($omk) > 0) {
+	foreach ($omk as $key => $value) {
+		$om->getRow($value);
+		$otherbookings.=$value.",";
+	}
+	$otherbookings = substr($otherbookings,0,strlen($otherbookings)-1);
+}
+$odk = $db->getKeysBy('DetailsID', 'desc' , " WHERE OrderID in (". $otherbookings .")");
+if(count($odk) > 0) {
+	$otherTransfers=array();
+	foreach ($odk as $key => $value)
+	{
+		$db->getRow($value);
+		if ($db->getDetailsID() != $DetailsID) {
+			$otherTransfersrow = array(
+				"OtherTransferID" => $db->getDetailsID(),
+				"OtherTransferText" => $db->getOrderID().'-'.$db->getTNo()
+			);
+		}
+		$otherTransfers[]=$otherTransfersrow;
+	}
+}
+$detailFlds['otherTransfers']=$otherTransfers;
 # extra services
 $OrderDetailsID = $DetailsID;
-
 $oek = $oe->getKeysBy('ID', 'ASC', ' WHERE OrderDetailsID = ' . $OrderDetailsID);
 if(count($oek) > 0) {
 	foreach ($oek as $key => $value) {
 		$oe->getRow($value);
-		$oeServices[] = $oe->fieldValues();
+		$oeServices_row = $oe->fieldValues();
+		$ex->getRow($oe->getServiceID());
+		if ($ex->getOwnerID()<>$db->getDriverID()) $oeServices_row['ChangeDriverConflict']=1;
+		else $oeServices_row['ChangeDriverConflict']=0;
+		//$oeServices_row['ChangeDriverConflict']=1;
+		$oeServices[] = $oeServices_row;
 	}
 }
+$oe_array = $oe->fieldNames();
+foreach($oe_array as $oeX) {
+	$oeServices_row[$oeX]='';
+}	
+$oeServices_row['ID']=0;
+$oeServices_row['ExtrasID']=0;
+$oeServices_row['Qty']=1;
+$oeServices[] = $oeServices_row;
 
 // output everything
 $out[] = array(

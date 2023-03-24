@@ -24,7 +24,7 @@
 		</div>
 
 		<div class="col-md-5">
-			<?=COUNTRYNAMEEN;?>
+			<?=PLACENAMEEN;?>
 		</div>	
 
 		<div class="col-md-5">

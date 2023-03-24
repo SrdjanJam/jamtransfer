@@ -15,10 +15,10 @@ if (isset($type)) {
 }
 if (isset($type2)) {
 	if (!isset($_REQUEST['Type2']) or $_REQUEST['Type2'] == 0 or $_REQUEST['Type2'] == 99) {
-		$filter = "  AND ".$type2." != 0 ";
+		$filter .= "  AND ".$type2." != 0 ";
 	}
 	else {
-		$filter = "  AND ".$type2." = '" . $_REQUEST['Type2'] . "'";
+		$filter .= "  AND ".$type2." = '" . $_REQUEST['Type2'] . "'";
 	}
 }
 	if (isset($_REQUEST['transfersFilter'])) {
@@ -172,6 +172,7 @@ $yearsOrder 	= $_REQUEST['yearsOrder'];
 $yearsPickup 	= $_REQUEST['yearsPickup'];
 $sortField 	= $_REQUEST['sortField'];
 $sortDirection 	= $_REQUEST['sortDirection'];
+$listExtras 	= $_REQUEST['listExtras'];
 
 
 
@@ -236,7 +237,7 @@ if (isset($_REQUEST['document'])) {
 }
 # dodavanje search parametra u qry
 # DB_Where sad ima sve potrebno za qry
-/*if ( $_REQUEST['Search'] != "" )
+if ( $_REQUEST['Search'] != "" )
 {
 	$dbWhere .= " AND (";
 
@@ -249,7 +250,8 @@ if (isset($_REQUEST['document'])) {
 	}
 	$dbWhere = substr_replace( $dbWhere, "", -3 );
 	$dbWhere .= ')';
-}*/
+}
+if ($listExtras==1) $dbWhere .= " AND ExtraCharge >0 ";
 if ($paymentMethod>-1) $dbWhere .= " AND PaymentMethod = ".$paymentMethod;
 if ($driverConfStatus>-1) $dbWhere .= " AND DriverConfStatus = ".$driverConfStatus;
 if ($paymentNumber<>'') $dbWhere .= " AND (MCardNumber = '".$paymentNumber."' OR 

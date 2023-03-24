@@ -601,10 +601,7 @@
 
 		// Button Save:
 		$("#saved-message").on("click", function(){
-			var base=window.location.origin;
 			var link = 'plugins/Save.php';
-
-			alert(base);
 
 			var messageID = $('.textarea-dialog').attr("data-id");
 			var messageContent = $(".textarea-dialog").val();

@@ -653,8 +653,10 @@ return new Handlebars.SafeString(yesNoSlide());
 
 
 
-Handlebars.registerHelper("yesNoSliderEdit", function(currentLevel, fieldName) {
+Handlebars.registerHelper("yesNoSliderEdit", function(currentLevel, fieldName, defaultvalue) {
 	function yesNoSlide() {
+		if (typeof currentLevel=='undefined') currentLevel=0;
+		if (defaultvalue=='1') currentLevel=1; 
 		yesNoInput = '<span style="float:left">No</span>';
 		yesNoInput+= '<input class="primer" style="width: 30px;float:left;margin:2px 5px 0 5px;" type="range" max="1" class="Choice" name="'+fieldName+'" value="'+currentLevel+'"/>';
 		yesNoInput+= '<span style="float:left;">Yes</span>';
@@ -868,9 +870,9 @@ driverConfStatus select
 uzima podatke iz languages u lng/en_init.js
 */
 
-Handlebars.registerHelper("driverConfStatusSelect", function(currentValue) {
+Handlebars.registerHelper("driverConfStatusSelect", function(currentValue,name) {
 	function driverConfStatusDropdown() {
-		var driverConfStatusSelect = '<select name="driverConfStatus" id="driverConfStatus" class="select-bottom-edit">';
+		var driverConfStatusSelect = '<select name="'+name+'" id="'+name+'" value="'+currentValue+'"class="select-bottom-edit">';
 
 		$.each (driverConfStatus, function(i, val) {
 			driverConfStatusSelect += '<option value="'+i+'" ';
@@ -1068,12 +1070,13 @@ Handlebars.registerHelper("uploadImage", function(UserID, btnText) {
 Prikaz Driver polja kao dropdown
 */
 
-Handlebars.registerHelper("driverSelect", function(id,routeId) {
+Handlebars.registerHelper("driverSelect", function(id,routeId,vehicleTypeId) {
 	function driverSelectDropdown() {
 
-		var url = 'api/getDriversForRoute.php?RouteID='+routeId+'&callback=';
-
-		var selector = "<select class=\"w100\" name=\"DriverSelect\" id=\"DriverSelect\" onchange=\"applyChangeDriver(this);\">";
+		var url = 'api/getDriversForService.php?RouteID='+routeId+'&VehicleTypeID='+vehicleTypeId+'&callback=';
+		
+		console.log(url);
+		var selector = "<select class=\"w100\" name=\"DriverID\" id=\"DriverID\">";
 
 		selector += '<option value="0" data-tel="" data-co="" data-email="" data-realname=""> --- </option>';
 
@@ -1096,12 +1099,12 @@ Handlebars.registerHelper("driverSelect", function(id,routeId) {
 					selector += 'data-co="'+val.Company +'" ';
 					selector += 'data-email="'+val.Email +'" ';
 					selector += 'data-realname="'+val.RealName +'" ';
-
-					if (val.UserID == id) {
+					
+					if (val.UserID == id && (val.VehicleType == vehicleTypeId || val.VehicleType == '')) {
 						selector += ' selected="selected" ';
 					}
 
-					selector += '>' + val.Country + ' - ' + val.Terminal + ' - ' + val.Company;
+					selector += '>' + val.Country + ' - '  + val.Company + ' / '  + val.VehicleType + ' / ' + val.DriverPrice;
 					selector += '</option>';
 				});
 
@@ -1351,10 +1354,9 @@ function createRoutesSelect(data, id, fieldName) {
 Prikaz Extras polja kao dropdown
 */
 
-Handlebars.registerHelper("extrasSelect", function(id,fieldName,extras) {
+Handlebars.registerHelper("extrasSelect", function(id,fieldID,extras,driverid) {
 	function extrasSelectDropdown() {
-		var url = 'api/getExtrasMaster.php?callback=';
-
+		var url = 'api/getExtrasMaster.php?driverid='+driverid+'&callback=';
 		$.ajax({
 			type: 'POST',
 			url: url,
@@ -1365,7 +1367,7 @@ Handlebars.registerHelper("extrasSelect", function(id,fieldName,extras) {
 
 			beforeSend: function () {
 				if (extrasCache.exist(url)) {
-					selector = createExtrasSelect(extrasCache.get(url), id, fieldName);
+					selector = createExtrasSelect(extrasCache.get(url), id, fieldID);
 					return false;
 				}
 				return true;
@@ -1373,7 +1375,7 @@ Handlebars.registerHelper("extrasSelect", function(id,fieldName,extras) {
 
 			success: function(data) {
 				extrasCache.set(url, data);
-				selector = createExtrasSelect(data, id, fieldName);
+				selector = createExtrasSelect(data, id, fieldID);
 			}
 		});
 
@@ -1383,8 +1385,8 @@ Handlebars.registerHelper("extrasSelect", function(id,fieldName,extras) {
 	return new Handlebars.SafeString(extrasSelectDropdown());
 });
 
-function createExtrasSelect(data, id, fieldName) {
-	var selector = "<select class=\"w100 "+fieldName+"\" name=\""+fieldName+"\" id=\""+fieldName+"\" >";
+function createExtrasSelect(data, id, fieldID) {
+	var selector = "<select class=\"w100 ServiceID"+"\" name=\"ServiceID["+fieldID+"]\" id=\"ServiceID["+fieldID+"]\" >";
 		selector += '<option value="0"> --- </option>';
 
 		$.each(data, function(i,val) {
@@ -1393,7 +1395,7 @@ function createExtrasSelect(data, id, fieldName) {
 			if (val.ID == id) {
 				selector += ' selected="selected" ';
 			}
-
+			selector +=  'data-driverprice="'+val.DriverPrice+'" data-price="'+val.Price+'"';
 			selector += '>' + val.ServiceEN;
 			selector += '</option>';
 		});
@@ -1517,7 +1519,6 @@ Prikaz VehicleType kao dropdown
 
 Handlebars.registerHelper("vehicleTypeSelect", function(id,fieldName) {
 	function vehicleTypeSelectDropdown() {
-
 		var url = 'api/getVehicleType.php?callback=';
 		var selector = "<select class=\"w100\" name=\""+fieldName+"\" id=\""+fieldName+"\" >";
 		selector += '<option value="0"> --- </option>';

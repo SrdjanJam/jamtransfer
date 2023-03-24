@@ -1,8 +1,9 @@
 <?
 header('Content-Type: text/javascript; charset=UTF-8');
+require_once '../config.php';
 
 # init libs
-require_once '../../db/v4_VehicleTypes.class.php';
+require_once ROOT . '/db/v4_VehicleTypes.class.php';
 
 # init vars
 $out = array();
@@ -10,7 +11,7 @@ $out = array();
 # init class
 $db = new v4_VehicleTypes();
 
-$dbKeys = $db->getKeysBy('VehicleTypeNameEN', 'asc');
+$dbKeys = $db->getKeysBy('VehicleTypeID', 'asc');
 
 foreach($dbKeys as $n => $ID) {
 	$db->getRow($ID);

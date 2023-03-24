@@ -70,9 +70,9 @@
 			<select id='yearsPickup' class="select-top-edit" name='yearsPickup' value='0' onchange="allItems();">
 				<option value='0'>All years</option>
 			</select>
-
 			<button onclick="allSort('PickupDate','ASC')" class="button-asc-edit"><i class="fa fa-sort-asc"></i></button>
 			<button onclick="allSort('PickupDate','DESC')" class="button-desc-edit"><i class="fa fa-sort-desc"></i></button>			
+			<i class="fa fa-cubes" style="color:#900"></i><input type="checkbox" id="listExtras" name="listExtras"  value="" onchange="allItems();" />
 			</br>
 
 			<input id='locationName' class="input-one" name='locationName'  placeholder="Location Name" onchange="allItems();"/>					
@@ -81,7 +81,7 @@
 		<div class="col-md-2">
 			<small class="badge blue text-black badge-edit">Driver</small><br>
 			<input id='driverName' class="input-one" name='driverName'  placeholder="Driver Name/ID" onchange="allItems();"/><br>				
-			{{driverConfStatusSelect DriverConfStatus}}
+			{{driverConfStatusSelect "-1" "DriverConfStatusChoose"}}
 		</div>
 		<!-- Client/Agent: -->
 		<div class="col-md-2">
@@ -157,7 +157,7 @@
 							<i class="fa fa-phone"></i> {{MPaxTel}}
 						</small>						
 					</div>
-					{{#if StaffNote}}<small style="color:red">STAFF NOTE</small>{{/if}}				
+					{{#if StaffNote}}<small style="color:red"><i class="fa-solid fa-message"></i></small>{{/if}}				
 					{{#if FinalNote}}<small style="color:red">{{FinalNote}}</small>{{/if}}	
 					
 	

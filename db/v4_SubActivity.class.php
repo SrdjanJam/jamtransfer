@@ -136,7 +136,7 @@ WHERE ID = '".$this->ID."'");
 		DocumentImage,
 		ActionImage,
 		ListID,		
-		Approved
+		Approved,
 		Mark
 		) values ('
 		".$this->myreal_escape_string($this->ID)."',
@@ -151,7 +151,7 @@ WHERE ID = '".$this->ID."'");
 		'".$this->myreal_escape_string($this->DocumentImage)."',
 		'".$this->myreal_escape_string($this->ActionImage)."',	
 		'".$this->myreal_escape_string($this->ListID)."',				
-		'".$this->myreal_escape_string($this->Approved)."'
+		'".$this->myreal_escape_string($this->Approved)."',
 		'".$this->myreal_escape_string($this->Mark)."'
 		)");
 		return $this->connection->insert_id(); //return insert_id 

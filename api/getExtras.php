@@ -1,6 +1,6 @@
 <?
 
-require_once 'config.php';
+require_once '../config.php';
 
 require_once ROOT . '/db/v4_Extras.class.php';
 

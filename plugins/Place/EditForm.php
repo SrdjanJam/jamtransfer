@@ -124,50 +124,53 @@
 						<label for="Island"><?=ISLAND;?></label>
 					</div>
 					<div class="col-md-9">
-						{{yesNoSliderEdit Island 'Island' }}
+						{{yesNoSliderEdit Island 'Island'}}
 					</div>
 				</div>
-
 				<div class="row">
-					<div class="col-md-3">
-						<label for="Longitude"><?=LONGITUDE;?></label>
+					<div class="col-md-6">
+						<div class="row">
+							<div class="col-md-3">
+								<label for="Latitude"><?=LATITUDE;?></label>
+							</div>
+							<div class="col-md-9">
+								<input type="text" name="Latitude" id="Latitude" class="w100" value="{{Latitude}}"> 
+							</div>
+						</div>	
+						
+						<div class="row"> 
+							<div class="col-md-3">
+								<label for="Longitude"><?=LONGITUDE;?></label>
+							</div>
+							<div class="col-md-9">
+								<input type="text" name="Longitude" id="Longitude" class="w100" value="{{Longitude}}"> 
+							</div>
+						</div>
+						
+						<div class="row">
+							<div class="col-md-3">
+								<label for="Elevation"><?=ELEVATION;?></label>
+							</div>
+							<div class="col-md-9">
+								<input type="text" name="Elevation" id="Elevation" class="w100" value="{{Elevation}}"> 
+							</div>
+						</div>
 					</div>
-					<div class="col-md-9">
-						<input type="text" name="Longitude" id="Longitude" class="w100" value="{{Longitude}}"> 
+					<div class="col-md-6">
+						<div class="row">
+							<div class="col-md-3">
+								<iframe src="https://maps.google.com/maps?q={{Latitude}}, {{Longitude}}&z=10&output=embed"  frameborder="0" style="border:0"></iframe>
+							</div>
+							<div class="col-md-9" style='padding:50px'>{{WikiDesc}}</div>
+						</div>	
 					</div>
 				</div>
-				
-				<div class="row">
-					<div class="col-md-3">
-						<label for="Latitude"><?=LATITUDE;?></label>
-					</div>
-					<div class="col-md-9">
-						<input type="text" name="Latitude" id="Latitude" class="w100" value="{{Latitude}}"> 
-					</div>
-				</div>				
-
-				<div class="row">
-					<div class="col-md-3">
-						<label for="Elevation"><?=ELEVATION;?></label>
-					</div>
-					<div class="col-md-9">
-						<input type="text" name="Elevation" id="Elevation" class="w100" value="{{Elevation}}"> 
-					</div>
-				</div>
-				
-				<div class="row">
-					<div class="col-md-3">
-						<iframe src="https://maps.google.com/maps?q={{Latitude}}, {{Longitude}}&z=10&output=embed"  frameborder="0" style="border:0"></iframe>
-					</div>
-					<div class="col-md-9" style='padding:50px'>{{WikiDesc}}</div>
-				</div>	
-
 				<div class="row">
 					<div class="col-md-3">
 						<label for="PlaceActive"><?=PLACEACTIVE;?></label>
 					</div>
 					<div class="col-md-9">
-						{{yesNoSliderEdit PlaceActive 'PlaceActive' }}
+						{{yesNoSliderEdit PlaceActive 'PlaceActive' '1'}}
 					</div>
 				</div>	
 				<div class="row">

@@ -562,8 +562,8 @@ $(function() {
             var n;
             function m(s, o, p) {
                 var q = $(this), r = $.data(this, d);
-                r.w = o !== c ? o : q.width();
-                r.h = p !== c ? p : q.height();
+                //r.w = o !== c ? o : q.width();
+                //r.h = p !== c ? p : q.height();
                 n.apply(this, arguments)
             }
             if ($.isFunction(l)) {
