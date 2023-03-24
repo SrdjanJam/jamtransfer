@@ -1,142 +1,12 @@
 <style>
 
-{* PLUGINS FOLDER: ===============================================================  *}
-
-/* DriversTransfers/templates/index.tpl and AgentsTransfers/templates/index.tpl */
-.row_e:hover{ background:rgb(229, 229, 240); }
-/* Off */ /* .row_e{ padding:0 0 3px 0; font-size:18px; } */
-.col-md-4_e{ margin-bottom: 5px; }
-
-
-/* Booking/templates */
-.book{ color:white; }
-.book label{ color:white; }
-#selectTo_options a{ color:white; }
-#selectFrom_options a { color:white; }
-.row-add{ padding:20px; }
-.listTile .fa-user{ color:#797373; }
-
-/* Route */
-#TerminalID{
-	height:20px;
-	z-index:1;
-	width:405px;
-}
-#TerminalID option:hover{
-    background: #0088cc;
-    color: white;
-}
-
-/* ListTemplate.php */
-#show_items .row-edit{
-    color:#179ae6;
-    /* color:#3C8DBC; older */
-    font-weight:bold;
-    padding:10px 0;
-}
-
-/* Bookings/Orders */
-.row-sticky{
-    position: sticky;
-    top: 0;
-    z-index: 5;
-    background-color: white;
-    margin-left: 0px;
-    margin-right: 0px;
-    color: #0088cc;
-    /* background: #a1bdca; */
-}
-
-.row .itemsheader-edit{
-    background: #dadbebc0;
-    border: 1px solid #c5c5c5;
-    position: sticky;
-    top: 20;
-    z-index: 5;
-    margin-left: 0px;
-    margin-right: 0px;
-    padding: 5px;
-    box-shadow: 5px 5px 8px #616060;
-}
-.row .itemsheader-edit .col-md-2{
-    border-right: 1px solid #c5c5c5;
-}
-
-.row .listTile-edit{
-    display: flex;
-    margin-left: 0px;
-    margin-right: 0px;
-    background:#d9d8d8;
-}
-.listTile-edit .col-md-2{
-    background: #86bbd6;
-    margin: 5px;
-    border-radius: 5px;
-    box-sizing: border-box;
-    box-shadow: 5px 5px 8px #616060;
-}
-.listTile-edit .col-md-2:hover{
-    background: #9fc7db;
-}
-
-.select-top-edit{
-    color:rgb(78 66 66);
-    padding:2px;
-    border-radius: 5px !important;
-    margin-bottom: 2px;
-    box-shadow: 2px 2px 4px #616060 inset;
-}
-.select-bottom-edit{
-    color:rgb(78 66 66);
-    padding:2px;
-    border-radius: 5px !important;
-    margin-top: 2px;
-    box-shadow: 2px 2px 4px #616060 inset;
-}
-
-.button-asc-edit, .button-desc-edit{
-    box-shadow: 2px 2px 4px #616060;
-    background: #7ec2e9;
-    border: 1px solid rgb(152, 152, 155);
-}
-
-.input-one{ border-radius: 5px !important; }
-
-.select-top-edit, .select-bottom-edit, .button-asc-edit, .button-desc-edit, .input-one{
-    outline:none;
-    border:2px solid rgb(192, 199, 241);
-    font-family: 'Times New Roman', Times, serif;
-    color:rgb(59, 59, 66) !important;
-}
-.select-top-edit:focus, .select-bottom-edit:focus, .button-asc-edit:focus, .button-desc-edit:focus, .input-one:focus{
-    outline:none;
-    border:2px solid rgb(135, 147, 218);
-}
-
-.badge-edit{
-    color: #054ff3;
-    background: #f9f9f9;
-}
-
-.btn-default-edit{
-    color:white !important;
-}
-.btn-default-edit:hover{
-    color:black !important;
-}
-/* End of Bookings/Orders */
-
-
-
-
-
-{* END OF PLUGINS FOLDER: ===============================================================  *}
-{* ======================================================================================  *}
-
-
 {* TEMPLATES FOLDER: *}
 
 .wrapper-edit{ padding:0px; }
+
+.page-wrapper-edit{
+    background-image: url(./i/m-assets/white-bg/light_noise_diagonal.png) !important;
+}
 
 .white-bg-edit{ 
     padding-bottom:30px; 
@@ -150,6 +20,11 @@
     height: 100vh;
     overflow-y: auto; 
 }
+
+/* Header Main: */
+.border-bottom-edit{ padding: 12px 12px 10px 12px; }
+
+.header-edit{ padding: 0 14px 0 14px; }
 
 .nav-header-edit{
     background-image: linear-gradient(#ffdc7eab, #fab80654);
@@ -345,16 +220,44 @@
 /* ------------------------------------------ */
 /* Dialog */
 .ui-dialog{
-    height: 50% !important;
+    height: 80% !important;
     overflow-y: auto;
+    box-shadow: 0px 0px 5px 2px #4d4d52;
+    /* box-shadow: 0px 0px 2px 2px #424181; old */
 }
 
 .textarea-dialog{
     width: 100% !important;
-    height:70% !important;
+    height:80% !important;
 	resize: none;
     box-sizing: border-box !important;
+    background: #fdfdf4;
+    margin-top: 65px;
 }
+
+.dialog_help_style .ui-dialog-titlebar {
+    background: #c8f9ce;
+    box-shadow: 2px 2px 5px #424181;
+}
+
+.dialog_message_style .ui-dialog-titlebar {
+    background: #dfd0b5;
+    box-shadow: 2px 2px 5px #424181;
+}
+
+.ui-dialog-buttonpane {
+    position: absolute;
+    top: 41px;
+    width: 97%;
+    border-width: 0 0 1px 0 !important;
+}
+
+.ui-dialog-buttonpane #saved-message{
+    margin-right: 100px;
+    border: 2px solid #ffe423;
+    border-radius: 5px;
+}
+
 /* ------------------------------------------ */
 /* EditForm: */
 .box-info, .box-primary{
@@ -383,6 +286,170 @@
 /* ------------------------------------------ */
 
 
+
+{* PLUGINS FOLDER: ===============================================================  *}
+
+/* DriversTransfers/templates/index.tpl and AgentsTransfers/templates/index.tpl */
+.row_e:hover{ background:rgb(229, 229, 240); }
+/* Off */ /* .row_e{ padding:0 0 3px 0; font-size:18px; } */
+.col-md-4_e{ margin-bottom: 5px; }
+
+
+/* Booking/templates */
+.book{ color:white; }
+.book label{ color:white; }
+#selectTo_options a{ color:white; }
+#selectFrom_options a { color:white; }
+.row-add{ padding:20px; }
+.listTile .fa-user{ color:#797373; }
+
+/* Route */
+#TerminalID{
+	height:20px;
+	z-index:1;
+	width:405px;
+}
+#TerminalID option:hover{
+    background: #0088cc;
+    color: white;
+}
+
+/* ====================================================================================== */
+/* ListTemplate.php */
+#show_items .row-edit{
+    color:#179ae6;
+    /* color:#3C8DBC; older */
+    font-weight:bold;
+    padding:10px 0;
+}
+
+#show_items{
+    border: 1px solid #00000026;
+    border-radius: 5px;
+    padding: 15px;
+    background: #c0c0c026;
+    box-shadow: 0px 0px 5px 1px #898989;
+}
+
+.row-edit div{
+    border-right:1px solid rgb(105, 131, 170);
+}
+.row-edit div:last-child{
+    border-right:none;
+}
+
+.pad1em{
+    padding: 2px 0;
+}
+.pad1em div{
+    border-right:1px solid rgb(187, 187, 187);
+}
+.pad1em div:last-child{
+    border-right:none;
+}
+/* ====================================================================================== */
+
+/* ====================================================================================== */
+/* Bookings/Orders */
+.row-sticky{
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    background-color: white;
+    margin-left: 0px;
+    margin-right: 0px;
+    color: #0088cc;
+    /* background: #a1bdca; */
+}
+
+.row .itemsheader-edit{
+    background: #dadbebc0;
+    border: 1px solid #c5c5c5;
+    position: sticky;
+    top: 20;
+    z-index: 5;
+    margin-left: 0px;
+    margin-right: 0px;
+    padding: 5px;
+    box-shadow: 5px 5px 8px #616060;
+}
+.row .itemsheader-edit .col-md-2{
+    border-right: 1px solid #c5c5c5;
+}
+
+.row .listTile-edit{
+    display: flex;
+    margin-left: 0px;
+    margin-right: 0px;
+    background:#d9d8d8;
+}
+.listTile-edit .col-md-2{
+    background: #86bbd6;
+    margin: 5px;
+    border-radius: 5px;
+    box-sizing: border-box;
+    box-shadow: 5px 5px 8px #616060;
+}
+.listTile-edit .col-md-2:hover{
+    background: #9fc7db;
+}
+
+.select-top-edit{
+    color:rgb(78 66 66);
+    padding:2px;
+    border-radius: 5px !important;
+    margin-bottom: 2px;
+    box-shadow: 2px 2px 4px #616060 inset;
+}
+.select-bottom-edit{
+    color:rgb(78 66 66);
+    padding:2px;
+    border-radius: 5px !important;
+    margin-top: 2px;
+    box-shadow: 2px 2px 4px #616060 inset;
+}
+
+.button-asc-edit, .button-desc-edit{
+    box-shadow: 2px 2px 4px #616060;
+    background: #7ec2e9;
+    border: 1px solid rgb(152, 152, 155);
+}
+
+.input-one{ border-radius: 5px !important; }
+
+.select-top-edit, .select-bottom-edit, .button-asc-edit, .button-desc-edit, .input-one{
+    outline:none;
+    border:2px solid rgb(192, 199, 241);
+    font-family: 'Times New Roman', Times, serif;
+    color:rgb(59, 59, 66) !important;
+}
+.select-top-edit:focus, .select-bottom-edit:focus, .button-asc-edit:focus, .button-desc-edit:focus, .input-one:focus{
+    outline:none;
+    border:2px solid rgb(135, 147, 218);
+}
+
+.badge-edit{
+    color: #054ff3;
+    background: #f9f9f9;
+}
+
+.btn-default-edit{
+    color:white !important;
+}
+.btn-default-edit:hover{
+    color:black !important;
+}
+/* End of Bookings/Orders */
+/* ====================================================================================== */
+
+
+{* END OF PLUGINS FOLDER: ===============================================================  *}
+{* ======================================================================================  *}
+
+
+
+
+
 /* Cursor pointer */
 .listTile{ cursor:pointer; border-top:1px solid rgb(179, 179, 179) !important;}
 .listTile:hover{ background: rgba(204 204 204 / 82%); }
@@ -394,13 +461,6 @@
 .listTile:nth-of-type(2n):hover{ background: rgb(204 204 204 / 82%) !important; }
 /* off */
 /* .listTile:focus{ background: rgb(71, 42, 173); } */
-
-
-/* Check: */
-/* .ui-dialog-buttonpane{
-    position: absolute;
-    top:35px;
-} */
 
 /* ============================================================================== */
 /* SCROLL BAR: */
@@ -427,39 +487,6 @@
     
 }
 /* ============================================================================== */
-
-.page-wrapper-edit{
-    background-image: url(./i/m-assets/white-bg/light_noise_diagonal.png) !important;
-}
-
-.border-bottom-edit{ padding: 12px 12px 10px 12px; }
-
-.header-edit{ padding: 0 14px 0 14px; }
-
-#show_items{
-    border: 1px solid #00000026;
-    padding: 15px;
-    background: #c0c0c026;
-}
-
-
-.row-edit div{
-    border-right:1px solid rgb(105, 131, 170);
-}
-.row-edit div:last-child{
-    border-right:none;
-}
-
-.pad1em{
-    padding: 2px 0;
-}
-.pad1em div{
-    border-right:1px solid rgb(187, 187, 187);
-}
-.pad1em div:last-child{
-    border-right:none;
-}
-
 
 
 
