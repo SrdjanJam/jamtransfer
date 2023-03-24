@@ -21,11 +21,11 @@
 				<?=LANGUAGE;?>
 			</div>	
 
-			<div class="col-md-4">
+			<div class="col-md-5">
 				<?=TITLE;?>
 			</div>
 
-			<div class="col-md-2">
+			<div class="col-md-3">
 				<?=PAGE;?>
 			</div>
 
@@ -57,11 +57,11 @@
 						<strong>{{Language}}</strong>
 					</div>
 
-					<div class="col-md-4">
+					<div class="col-md-5">
 						<strong>{{Title}}</strong>
 					</div>
 
-					<div class="col-md-2">
+					<div class="col-md-3">
 						<strong>{{Page}}</strong>
 					</div>
 
