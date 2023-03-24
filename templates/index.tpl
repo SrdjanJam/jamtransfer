@@ -219,7 +219,7 @@
 						{* PROFILE =================================================================== *}
 						<!--nav-header-top-edit -->
 						<li class="nav-header nav-header-top-edit">
-							<div class="dropdown profile-element">
+							<div class="dropdown profile-element" style="text-align:center;">
 								<a data-toggle="dropdown" class="dropdown-toggle" href="#">
 								<span class="clear"> 
 								<span class="block m-t-xs">
@@ -229,7 +229,7 @@
 									</a>
 								</span>
 
-								<div style="margin-top:12px;text-decoration:underline;"><a href='logout.php'>Logout <i class="fa fa-sign-out"></i></a></div>
+								<div style="margin-top:12px;text-decoration:underline;text-align:center;"><a href='logout.php'>Logout <i class="fa fa-sign-out"></i></a></div>
 
 								<ul class="dropdown-menu animated fadeInRight m-t-xs">
 									<li><a href="profile" data-param="">Profile</a></li>
@@ -350,9 +350,12 @@
 							<button type="button" class="minimalize-styl-2 btn btn-primary btn-primary-edit" id="cashe"><i class="fas fa-redo-alt"></i></button>
 						</div>
 
-						{if $DEVELOPMENT}<span>TEST</span>{/if}
+						{* {if $DEVELOPMENT}<span>TEST</span>{/if} *}
 
-						<h2 style="display:inline-block;margin: 15px 0 0 55px;"><span class="m-r-sm text-muted">{$title}(page) - {$smarty.session.log_title}</span></h2>
+
+						<h2 style="display:inline-block;margin: 15px 0 0 55px;"><span class="m-r-sm text-muted">{$title}(page)</span></h2>
+						{* Server: *}
+						{* <h2 style="display:inline-block;margin: 15px 0 0 55px;"><span class="m-r-sm text-muted">{$title}(page) - {$smarty.session.log_title}</span></h2> *}
 
 						<ul class="nav navbar-top-links navbar-right">
 							<!-- Opener dialog button: -->
@@ -517,7 +520,7 @@
 				duration: 500
 			},
 			hide: {
-				effect: "explode",
+				effect: "clip",
 				duration: 500
 			},
 
@@ -539,18 +542,17 @@
 				duration: 500
 			},
 			hide: {
-				effect: "explode",
+				effect: "clip",
 				duration: 500
 			},
 			
 			buttons :  [{ 
      		text: "Save",
 			class: "saved-button",
-     		id: "saved-message",
+     		id: "saved-message", // Using
 				click: function(){
 					$(this).dialog("close");
 				}
-
    			}],
 
 			// Testing:
@@ -573,6 +575,7 @@
 				async: false,
 				success: function (data) {
 					$( ".dialog-help" ).html(data).dialog( "open" );
+					$( ".dialog-help" ).dialog( {dialogClass:'dialog_help_style'} );
 				}
 			});
 
@@ -593,6 +596,7 @@
 				success: function (data) {
 					$( ".dialog-message" ).dialog( "open" );
 					$( ".previous-messages" ).html(data);
+					$( ".dialog-message" ).dialog( {dialogClass:'dialog_message_style'} );
 				}
 			});
 
@@ -602,7 +606,6 @@
 		// Button Save:
 		$("#saved-message").on("click", function(){
 			var link = 'plugins/Save.php';
-
 			var messageID = $('.textarea-dialog').attr("data-id");
 			var messageContent = $(".textarea-dialog").val();
 
