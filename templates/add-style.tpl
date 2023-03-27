@@ -228,7 +228,7 @@
 
 .textarea-dialog{
     width: 100% !important;
-    height:80% !important;
+    height:20% !important;
 	resize: none;
     box-sizing: border-box !important;
     background: #fdfdf4;

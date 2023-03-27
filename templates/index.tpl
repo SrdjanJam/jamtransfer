@@ -353,7 +353,7 @@
 						{* {if $DEVELOPMENT}<span>TEST</span>{/if} *}
 
 
-						<h2 style="display:inline-block;margin: 15px 0 0 55px;"><span class="m-r-sm text-muted">{$title}(page)</span></h2>
+						<h2 style="display:inline-block;margin: 15px 0 0 55px;"><span class="m-r-sm text-muted">{$title} - {$smarty.session.log_title}</span></h2>
 						{* Server: *}
 						{* <h2 style="display:inline-block;margin: 15px 0 0 55px;"><span class="m-r-sm text-muted">{$title}(page) - {$smarty.session.log_title}</span></h2> *}
 
@@ -378,8 +378,8 @@
 						<!-- Dialog printed results here: -->
 						<div style="display:none;" class="dialog-help"></div>
 						<div style="display:none;" class="dialog-message">
+							<textarea data-id="{$ModulID}" class="textarea-dialog"></textarea>						
 							<div class="previous-messages"></div>
-							<textarea data-id="{$ModulID}" class="textarea-dialog"></textarea>
 						</div>
 					
 					
