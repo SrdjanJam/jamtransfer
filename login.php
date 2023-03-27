@@ -16,26 +16,31 @@ require_once('lng/' . $_SESSION['CMSLang'] . '_text.php');
 	
 		if(isset($_REQUEST['Login']))
 		{
-			if($_REQUEST['passwordT']!='') {
-				define("DB_HOST", "127.0.0.1");
-				$DB_USER="jamtrans_cms";
-				$DB_PASSWORD="~5%OuH{etSL)";
-				$DB_NAME="jamtrans_touradria";
-				require_once ROOT . '/db/db.class.php';	
-				$db = new DataBaseMysql();					
-				$result = $db->RunQuery("SELECT * FROM ".DB_PREFIX."LogDB 
-							WHERE LogPass = '".md5($_REQUEST['passwordT'])."'"); 
-				if($result->num_rows == 1)
-				{
-					$row = $result->fetch_assoc();				
-					$DB_USER=$row['User'];
-					$DB_PASSWORD=$row['Password'];
-					$DB_NAME=$row['Name'];
-					$db = new DataBaseMysql();	
-					$_SESSION['log_db']=$row['ID'];	
-					$_SESSION['log_title']=$row['Title'];	
 
-			
+			if($_REQUEST['passwordT']!='' || LOCAL) {
+				if (!LOCAL) {
+					define("DB_HOST", "127.0.0.1");
+					$DB_USER="jamtrans_cms";
+					$DB_PASSWORD="~5%OuH{etSL)";
+					$DB_NAME="jamtrans_touradria";
+					require_once ROOT . '/db/db.class.php';	
+					$db = new DataBaseMysql();	
+					$result = $db->RunQuery("SELECT * FROM ".DB_PREFIX."LogDB 
+							WHERE LogPass = '".md5($_REQUEST['passwordT'])."'"); 
+				}			
+				if($result->num_rows == 1 || LOCAL)
+				{
+					if (!LOCAL) {
+						$row = $result->fetch_assoc();				
+						$DB_USER=$row['User'];
+						$DB_PASSWORD=$row['Password'];
+						$DB_NAME=$row['Name'];
+						$db = new DataBaseMysql();	
+						$_SESSION['log_db']=$row['ID'];	
+						$_SESSION['log_title']=$row['Title'];	
+					}
+					else $_SESSION['log_title']="Local";
+					
 					if($_REQUEST['username']!='' && $_REQUEST['password']!='')
 					{
 						$_SESSION['CMSLang'] 	= $_REQUEST['language'];
