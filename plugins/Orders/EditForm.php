@@ -1,4 +1,5 @@
 <script type="text/x-handlebars-template" id="ItemEditTemplate">
+
 	<form id="ItemEditForm{{details.DetailsID}}" class="form box box-info" method="post" onsubmit="return false;">
 				
 		<div class="box-header box-header-edit">
@@ -97,7 +98,7 @@
 								</div>
 							</div>
 							<div class="col-md-4 ">
-								<div class="row dpayment">
+								<div class="row">
 									<div class="col-md-3 "><label><?= PAYMENT_METHOD ?></label></div>
 									<div class="col-md-9 ">
 										{{paymentMethodSelect details.PaymentMethod}}
@@ -111,14 +112,14 @@
 										>
 									</div>
 								</div>	
-								<div class="row dpayment">
+								<div class="row">
 									<div class="col-md-3 "><label><?= PAID_ONLINE ?></label></div>
 									<div class="col-md-9">
 										<input type="text" name="PayNow" id="PayNow" class="w25"
 										value="{{details.PayNow}}"> {{master.MCardNumber}}
 									</div>
 								</div>	
-								<div class="row dpayment">
+								<div class="row">
 									<div class="col-md-3 "><label><?= PAYMENT_FOR ?> (Invoice)</label></div>
 									<div class="col-md-9">
 										<input type="text" name="InvoiceAmount" id="InvoiceAmount" class="w25"
@@ -154,15 +155,11 @@
 						</div>	
 						
 						<div class="row dtransfer">
-							<div class="col-md-3 "><label><?= PAX ?></label></div>
-							<div class="col-md-9">
-								<input type="text"  name="PaxNo" class="w25" value="{{details.PaxNo}}">
+							<div class="col-md-3 "><label><?= VEHICLE ?> <?= PAX ?>/<?= TYPE ?>/Number</label></div>
+							<div class="col-md-3">
+								<i class="fa fa-person"></i><input type="text"  name="PaxNo" class="w25" value="{{details.PaxNo}}">
 							</div>
-						</div>						
-						<div class="row dtransfer">
-							<div class="col-md-3 "><label>Vehicle Type</label></div>
-							<div class="col-md-9">
-								<? /* oznacit tip vozila da bude vidljiviji */ ?>
+							<div class="col-md-3">
 								{{#compare details.VehicleClass "<" 10}}
 									<i class="fa fa-car"></i>
 								{{/compare}}
@@ -177,53 +174,42 @@
 								{{#compare details.VehiclesNo ">" 1}}
 									x{{details.VehiclesNo}}
 								{{/compare}}
-							{{vehicleTypeSelect details.VehicleType "VehicleType" "VehicleType"}}
+								{{vehicleTypeSelect details.VehicleType "VehicleType" "VehicleType"}}
+							</div>									
+							<div class="col-md-1">x</div>								
+							<div class="col-md-2">
+								<input type="number" name="VehicleNo" class="w75" value="{{details.VehiclesNo}}">
 							</div>									
 						</div>
 						<div class="row dtransfer">
-							<div class="col-md-3 "><label>Vehicle No.</label></div>
-							<div class="col-md-9">
-								<input type="text" name="PickupDate" class="w75 datepicker"value="{{details.VehiclesNo}}">
-							</div>									
-						</div>
-						<div class="row dtransfer">
-							<div class="col-md-3 "><label><?= PICKUP_DATE ?></label></div>
-							<div class="col-md-9">
-								<input type="text" name="PickupDate" class="w75 datepicker"value="{{details.PickupDate}}">
+							<div class="col-md-3 "><label><?= PICKUP_DATE ?> and <?= PICKUP_TIME ?></label></div>
+							<div class="col-md-3">
+								<input type="text" name="PickupDate" class="w75 datepicker" value="{{details.PickupDate}}">
+							</div>
+							<div class="col-md-3">
+								<input type="text" name="PickupTime" class="w75 timepicker" value="{{details.PickupTime}}">
 							</div>
 						</div>
 						<div class="row dtransfer">
-							<div class="col-md-3 "><label><?= PICKUP_TIME ?></label></div>
-							<div class="col-md-9">
-								<input type="text" name="PickupTime" class="w75 timepicker"
-								value="{{details.PickupTime}}"
-								>
-							</div>
-						</div>
-						<div class="row dtransfer">
-							<div class="col-md-3 "><label><?= PICKUP_NAME ?></label></div>
-							<div class="col-md-9">
+							<div class="col-md-3 "><label><?= PICKUP_NAME ?> and <?= PICKUP_ADDRESS ?></label></div>
+							<div class="col-md-3">
 								<input type="text" name="PickupName" id="PickupName" value="{{details.PickupName}}">
 								<div id="selectFrom_optionsPickup"  style="max-height:15em;overflow:auto"></div>
 							</div>							
-						</div>								
-						<div class="row dtransfer">
-							<div class="col-md-3 "><label><?= PICKUP_ADDRESS ?></label></div>
-							<div class="col-md-9">
-								<textarea name="PickupAddress">{{details.PickupAddress}}</textarea>
+							<div class="col-md-6">
+								<textarea name="PickupAddress" cols="40" rows="4"
+									style="width:100%">{{details.PickupAddress}}</textarea>
 							</div>
 						</div>
 						<div class="row dtransfer">
-							<div class="col-md-3 "><label><?= DROPOFF_NAME ?></label></div>
-							<div class="col-md-9">
+							<div class="col-md-3 "><label><?= DROPOFF_NAME ?> and <?= DROPOFF_ADDRESS ?></label></div>
+							<div class="col-md-3">
 								<input type="text" name="DropName" id="DropName" value="{{details.DropName}}">
 								<div id="selectFrom_optionsDrop"  style="max-height:15em;overflow:auto"></div>
 							</div>
-						</div>
-						<div class="row dtransfer">
-							<div class="col-md-3 "><label><?= DROPOFF_ADDRESS ?></label></div>
-							<div class="col-md-9">
-								<textarea name="DropAddress">{{details.DropAddress}}</textarea>								
+							<div class="col-md-6">
+								<textarea name="DropAddress" cols="40" rows="4"
+									style="width:100%">{{details.DropAddress}}</textarea>								
 							</div>
 						</div>	
 						<div class="row dtransfer">
@@ -341,19 +327,16 @@
 									<textarea class="textarea" name="DriverNotes" id="DriverNotes" cols="40" rows="4"
 									style="width:100%">{{{details.DriverNotes}}}</textarea>
 								</div>
-								<br>
-								<button class="btn btn-primary"
-								onclick="return sendEmailToDriver('{{details.OrderID}}','{{details.TNo}}');">
-									<?= SEND_EMAIL_TO_DRIVER ?>
-									<div id="sendMessageResponse"></div>
-								</button>
-								<br><br>
 							</div>
 						</div>
-						{{#compare details.SubDriver "!=" 0}}	
+						{{#compare details.DriverConfStatus ">" 1}}	
 						<div class="row dpdriver">
-							<div class="col-md-3 "><label><?= SUBDRIVER ?></label></div>
-							<div class="col-md-9">{{userName details.SubDriver "AuthUserRealName"}}  </div>	
+							<div class="col-md-3 "><label>SubDriver</label></div>
+							<div class="col-md-3">{{subdriverSelect details.SubDriver details.DriverID}}  </div>	
+							<div class="col-md-3"><a id="SubDriverMob" href=""></a></div>	
+							<div class="col-md-3">
+								<a target="_blank" href='schedule/{{details.PickupDate}}'>Schedule for {{details.PickupDate}}</a>
+							</div>	
 						</div>	
 						{{/compare}}
 
@@ -369,18 +352,19 @@
 						<div class="row dagent">
 							<div class="col-md-3 "><label>Agent Reference</label></div>
 							<div class="col-md-9">
-								<strong>{{master.MConfirmFile}}</strong> 
+								<input name="MConfirmFile" id="MConfirmFile" value="{{master.MConfirmFile}}"/> 
 							</div>
 						</div>
 						{{/compare}}
 						<div class="row dagent">
 							<div class="col-md-3 "><label><?= PROVISION ?></label></div>
 							<div class="col-md-9 ">
-								{{details.ProvisionAmount}} <?= CURRENCY ?>
+								<input name="ProvisionAmount" id="ProvisionAmount" value="{{details.ProvisionAmount}}"/> 
 							</div>
 						</div>	
 						
-						<div class="row dpassenger" id='ob' style='display:none'>
+						{{#compare details.UserLevelID "!=" '2'}}
+						<div class="row dpassenger">
 							<div class="col-md-3 "><label>Other bookings</label></div>
 							<div class="col-md-9" id='otherTransfers'>
 								{{#each details.otherTransfers}}
@@ -390,7 +374,8 @@
 									</a>
 								{{/each}}	
 							</div>									
-						</div>		 
+						</div>	
+						{{/compare}}						
 						<div class="row dpassenger">
 							<div class="col-md-3 "><label><?= PAX_FIRST_NAME ?></label></div>
 							<div class="col-md-9">
@@ -419,11 +404,7 @@
 							<div class="col-md-3 "><label><?= PAX_EMAIL ?></label></div>
 							<div class="col-md-9">
 								<input id="PassengerEmail" name="MPaxEmail" type="text"  class="w50"
-								value="{{master.MPaxEmail}}"
-								>
-								<a href="mailto:{{master.MPaxEmail}}" class="btn" title="Send E-mail">
-									<i class="fa fa-envelope l"></i>
-								</a>
+								value="{{master.MPaxEmail}}">
 							</div>
 						</div>
 						<div class="row dpassenger">
@@ -532,7 +513,17 @@
 		$('#DriverID').change(function(){
 			$('#DriverTel').val($('#DriverID :selected').attr('data-tel'));
 			$('#DriverEmail').val($('#DriverID :selected').attr('data-email'));
-		})		
+		})			
+		// promena mobilnog nakon promene subdrivera
+		function changesubdriver () {
+			$('#SubDriverMob').attr('href','tel:'+($('#SubDriver :selected').attr('data-tel')));
+			$('#SubDriverMob').text($('#SubDriver :selected').attr('data-tel'));
+		}		
+		changesubdriver ();		
+		$('#SubDriver').change(function(){
+			changesubdriver ();
+		})	
+		// promena lokacija		
 		$('#PickupName, #DropName').on('click keyup', function(event) {
 			var clicked_id='#'+$(this).attr('id');
 			var loc=$(this).attr('id').replace("Name", "");
@@ -572,6 +563,7 @@
 				})	
 			}
 		})	
+		// promena ekstrasa
 		$('.ServiceID').change(function() {
 			var driverprice = $(this).find('option:selected').attr('data-driverprice');
 			$(this).parent().parent().find('.driverprice').val(driverprice);			

@@ -2,12 +2,18 @@
 
 // Timetable sa prikazom transfera po vozacima za odabrani datum
 
-//if (!isset($_POST["DateFrom"])) $DateFrom = "2022-09-04";
-if (!isset($_POST["DateFrom"])) $DateFrom = date('Y-m-d');
-else $DateFrom	= $_POST["DateFrom"];
-//if (!isset($_POST["DateTo"])) $DateTo = "2022-09-04";
-if (!isset($_POST["DateTo"])) $DateTo = date('Y-m-d');
-else $DateTo		= $_POST["DateTo"];
+if (isset($_REQUEST["ScheduleDate"])) {
+	$DateFrom	= $_REQUEST["ScheduleDate"];
+	$DateTo	= $_REQUEST["ScheduleDate"];
+}
+else {	
+	//if (!isset($_POST["DateFrom"])) $DateFrom = "2022-09-04";
+	if (!isset($_POST["DateFrom"])) $DateFrom = date('Y-m-d');
+	else $DateFrom	= $_POST["DateFrom"];
+	//if (!isset($_POST["DateTo"])) $DateTo = "2022-09-04";
+	if (!isset($_POST["DateTo"])) $DateTo = date('Y-m-d');
+	else $DateTo		= $_POST["DateTo"];
+}
 if (!isset($_POST["NoColumns"])) $NoColumns = 3;
 else $NoColumns	= $_POST["NoColumns"];
 if (!isset($_POST["DriverStatus"])) $DriverStatus = 0;
@@ -16,6 +22,10 @@ $smarty->assign("DateFrom",$DateFrom);
 $smarty->assign("DateTo",$DateTo);
 $smarty->assign("NoColumns",$NoColumns);
 $smarty->assign("DriverStatus",$DriverStatus);
+if ($DateFrom<=date('Y-m-d') && $DateTo>=date('Y-m-d')) $todayshow='';
+else $todayshow='hide';
+$smarty->assign("todayshow",$todayshow);
+
 
 require_once ROOT . '/db/v4_AuthUsers.class.php';
 
@@ -209,7 +219,13 @@ while ($d = $r->fetch_object()) {
 				$row['DeviceTime']=$lc->Time;
 				if ((time()-$lc->Time)/3600<4 && (time()-$lc->Time)/3600>0) $inTime=true;
 				else $inTime=false;
-				$distACC=vincentyGreatCircleDistance($row['Lat'], $row['Lng'], $op->Latitude, $op->Longitude, $earthRadius = 6371000)/1000;
+				$distACC=vincentyGreatCircleDistance($row['Lat'], $row['Lng'], $op->Latitude, $op->Longitude, $earthRadius = 6371000);
+				$distACC=$distACC/1000; //distanca od prenocista
+				/*echo $row['Lat'].'-'.$row['Lng'].' / '.$op->PlaceNameEN.$op->Latitude.'-'.$op->Longitude. ' / ';
+				echo $distACC*1000;
+				echo "<br>";*/
+				if ($distACC<5) $row['IconPositon']='fa fa-home';
+				else $row['IconPositon']='fa fa-road';
 				if ($distACC>5 && $inTime) $row['ForTransferBreak']=false;
 			}
 		}
@@ -222,6 +238,7 @@ while ($d = $r->fetch_object()) {
 		$row['Mob'] = $d->AuthUserMob;		
 		//ovde izvuci vozacevo vozilo
 		$row['DriverCar'] = $vehicles[$row['DriverID']]['SubVehicleName'];		
+		$row['DriverAcomodation'] = $op->PlaceNameEN;		
 		$sddArray[] = $row;
 	}
 }

@@ -302,8 +302,6 @@ if (count($dbk) != 0) {
 		# OrderID za OrdersMaster
 		$OrderID = $od->getOrderID();
 
-
-
 		# master key
 		$omk = $om->getKeysBy('MOrderID', 'asc' , ' WHERE MOrderID = ' . $OrderID);
 

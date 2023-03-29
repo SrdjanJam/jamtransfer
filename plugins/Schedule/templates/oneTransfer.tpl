@@ -146,7 +146,7 @@
 						{if $sddArray[pom3].DriverID eq $sdArray[pom].Transfers[pom2].SubDriver}
 							selected
 						{/if}	
-						>{$sddArray[pom3].DriverName} - {$sddArray[pom3].DriverCar}</option>';
+						>{$sddArray[pom3].DriverName} - {$sddArray[pom3].DriverCar} - {$sddArray[pom3].DriverAcomodation}</option>';
 					{/section}	
 				</select>
 			</div>

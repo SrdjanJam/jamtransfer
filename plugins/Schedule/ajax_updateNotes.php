@@ -1,13 +1,18 @@
 <?
 @session_start();
 require_once "../../config.php";
-error_reporting(E_ALL & ~E_NOTICE & ~E_WARNING);
+
+require_once ROOT . '/db/v4_OrderDetails.class.php';
+require_once ROOT . '/db/v4_OrderLog.class.php';
+$od = new v4_OrderDetails();
+$ol = new v4_OrderLog();
 
 // FRANCUSKA FIX
 $SOwnerID = $_SESSION['OwnerID'];
 
 // preko timetable se samo sljedeca polja mogu mijenjati
 $data = array(
+        'DriverConfStatus' => $_REQUEST['DriverConfStatus'],
         'SubPickupTime' => $_REQUEST['SubPickupTime'],
         'FlightNo'   => $_REQUEST['FlightNo'],
         'FlightTime' => $_REQUEST['FlightTime'],
@@ -35,6 +40,43 @@ $q = substr_replace( $q, "", -1 );
 $q .= ' WHERE DetailsID = ' . $_REQUEST['ID'];
 
 unset($data);
+
+//unos u log
+if ($_REQUEST['DriverConfStatus']>2) {
+	$icon = 'fa fa-cloud-upload bg-blue';
+	$logDescription = '';
+	$logAction = 'Update';
+	$logTitle = 'Order Updated by ' . $_SESSION['UserName'];
+	$showToCustomer = 0;
+	$customerDescription = '';
+	$od->getRow($_REQUEST['ID']);
+	foreach ($od->fieldNames() as $name) {
+		$content=$od->myreal_escape_string($_REQUEST[$name]);
+		if(isset($_REQUEST[$name])) {
+			eval("\$old_content=\$od->get".$name."();");	
+			//eval("\$od->set".$name."(\$content);");
+			if($old_content != $content) {
+				$logDescription .= 'Changed: '. $name . ' <b>from:</b> ' . $old_content . ' <b>to:</b> ' . 
+									$content . '<br>';
+			}
+		}
+	}	
+	if($logDescription != '') { // ako nema promjena u podacima, ne treba nista upisivati
+
+		$ol->setOrderID($od->getOrderID());
+		$ol->setDetailsID($od->getDetailsID());
+		$ol->setAction($logAction);
+		$ol->setTitle($logTitle);
+		$ol->setDescription($logDescription);
+		$ol->setDateAdded(date("Y-m-d"));
+		$ol->setTimeAdded(date("H:i:s"));
+		$ol->setUserID($_SESSION['AuthUserID']);
+		$ol->setIcon($icon);
+		$ol->setShowToCustomer(0);
+		$ol->saveAsNew();
+	}
+}
+
 $db->RunQuery($q) ;
 echo ' <small>Saved.</small>';
 

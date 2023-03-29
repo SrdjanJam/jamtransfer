@@ -100,6 +100,7 @@ switch ($activePage) {
 		break;
 		
 	case 'expenses':
+	case 'tasks':
 		
 		if ($pathVars->fetchByIndex($indexStart + 1)) { 
 			if ($pathVars->fetchByIndex($indexStart + 1)=='vehicles') {
@@ -115,6 +116,13 @@ switch ($activePage) {
 		}	
 		break;			
 	
+	case 'schedule':
+		
+		if ($pathVars->fetchByIndex($indexStart + 1)) { 
+			$_REQUEST['ScheduleDate']=$pathVars->fetchByIndex($indexStart + 1);
+		}	
+		break;	
+		
 	case 'driversTransfers':
 		if ($pathVars->fetchByIndex($indexStart + 1)){
 			$steps = 2;

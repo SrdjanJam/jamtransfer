@@ -198,9 +198,10 @@ hr {
 
 					<div class="row orange white-text">
 						<strong>{$sdArray[pom].DriverName}</strong>	
-						<a href="tel:{$sdArray[pom].Mob}">{$sdArray[pom].Mob}</a>
-						<small>{$sdArray[pom].Accomodation}</small><br>
-						<small class='hide'>{$sdArray[pom].Device} {$sdArray[pom].Location}</small>
+						<a href="tel:{$sdArray[pom].Mob}">{$sdArray[pom].Mob}</a><br>
+						<div class='{$todayshow}'>
+							<i class="{$sdArray[pom].IconPositon}" aria-hidden="true"></i> <small>{$sdArray[pom].Device} {$sdArray[pom].Location}</small>
+						</div>
 					</div>
  
 					{if count($sdArray[pom].Transfers)}

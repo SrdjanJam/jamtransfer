@@ -240,10 +240,8 @@ if(count($odock) > 0) {
 $detailFlds['Documents']=$orderDocument;
 
 
-# master key
-$omk = $om->getKeysBy('MOrderID', 'asc' , ' WHERE MOrderID = ' . $OrderID);
 # master row
-$om->getRow($omk[0]);
+$om->getRow($OrderID);
 $email=$om->getMPaxEmail();
 
 # get fields and values
@@ -260,31 +258,33 @@ if(count($olk) > 0) {
 }
 
 #other bookings
-$omk = $om->getKeysBy('MOrderID', 'asc' , " WHERE MPaxEmail = '" . $email . "'");
-$otherbookings="";
-if(count($omk) > 0) {
-	foreach ($omk as $key => $value) {
-		$om->getRow($value);
-		$otherbookings.=$value.",";
-	}
-	$otherbookings = substr($otherbookings,0,strlen($otherbookings)-1);
-}
-$odk = $db->getKeysBy('DetailsID', 'desc' , " WHERE OrderID in (". $otherbookings .")");
-if(count($odk) > 0) {
-	$otherTransfers=array();
-	foreach ($odk as $key => $value)
-	{
-		$db->getRow($value);
-		if ($db->getDetailsID() != $DetailsID) {
-			$otherTransfersrow = array(
-				"OtherTransferID" => $db->getDetailsID(),
-				"OtherTransferText" => $db->getOrderID().'-'.$db->getTNo()
-			);
+if ($db->getUserLevelID()<>2) {
+	$omk = $om->getKeysBy('MOrderID', 'asc' , " WHERE MPaxEmail = '" . $email . "'");
+	$otherbookings="";
+	if(count($omk) > 0) {
+		foreach ($omk as $key => $value) {
+			$om->getRow($value);
+			$otherbookings.=$value.",";
 		}
-		$otherTransfers[]=$otherTransfersrow;
+		$otherbookings = substr($otherbookings,0,strlen($otherbookings)-1);
 	}
+	$odk = $db->getKeysBy('DetailsID', 'desc' , " WHERE OrderID in (". $otherbookings .")");
+	if(count($odk) > 0) {
+		$otherTransfers=array();
+		foreach ($odk as $key => $value)
+		{
+			$db->getRow($value);
+			if ($db->getDetailsID() != $DetailsID) {
+				$otherTransfersrow = array(
+					"OtherTransferID" => $db->getDetailsID(),
+					"OtherTransferText" => $db->getOrderID().'-'.$db->getTNo()
+				);
+			}
+			$otherTransfers[]=$otherTransfersrow;
+		}
+	}
+	$detailFlds['otherTransfers']=$otherTransfers;
 }
-$detailFlds['otherTransfers']=$otherTransfers;
 # extra services
 $OrderDetailsID = $DetailsID;
 $oek = $oe->getKeysBy('ID', 'ASC', ' WHERE OrderDetailsID = ' . $OrderDetailsID);

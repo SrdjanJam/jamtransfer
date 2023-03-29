@@ -5,6 +5,7 @@ statusDescription[2] = 'Changed';
 statusDescription[3] = 'Cancelled';
 statusDescription[4] = 'TEMP';
 statusDescription[5] = 'Completed';
+statusDescription[6] = 'PreOrder';
 
 var userLevels = {};
 userLevels[2] = 'Agent';

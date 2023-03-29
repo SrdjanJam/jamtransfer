@@ -217,12 +217,25 @@
 				var source   = $("#ItemEditTemplate").html();
 				var template = Handlebars.compile(source);
 				var HTML = template(data[0]);
+				
 				// promjena boje pozadine zadnje gledane plocice
 				$("#t_"+id).removeClass('white').addClass('bg-light-blue');
 
 				$("#one_Item"+id).html(HTML);
 
 				$("#ItemWrapper"+id).show('slow');
+				
+				$('.datepicker').datetimepicker({
+					// yearOffset:2,
+					lang:'en',
+					timepicker:false,
+					format:'Y-m-d',
+					formatDate:'Y-m-d',
+					closeOnDateSelect:true
+					// minDate:'-1970/01/02', // yesterday is minimum date
+					// maxDate:'+1970/01/02' // and tommorow is maximum date calendar
+				});
+				$('.timepicker').clockTimePicker();
 
 				// Trun off:
 				// $("#ItemWrapper"+id)[0].scrollIntoView({

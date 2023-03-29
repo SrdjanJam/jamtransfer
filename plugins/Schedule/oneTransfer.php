@@ -15,13 +15,11 @@
 		// da li je vozac u transferu
 		
 		if (!$sdArray[$key]['ForTransferBreak']) {
-			
 			$start_time=strtotime($t->PickupDate.' '.$t->SubPickupTime);
 			$finish_time=strtotime($t->PickupDate.' '.$t->SubPickupTime)+$t->TransferDuration*60;
-			if ($start_time>$t->DeviceTime)	$ForTransfer=true;
-				
+			if ($start_time>$t->DeviceTime)	$ForTransfer=true; // ide na transfer
 			if ($finish_time>$t->DeviceTime && $start_time<$t->DeviceTime)	{
-				$t->TransferIn=true;
+				$t->TransferIn=true; // na transferu je
 				$sdArray[$key]['ForTransferBreak']=true;
 				$ForTransfer=false;			
 			}	else $t->TransferIn=false;
@@ -33,7 +31,9 @@
 				$sdArray[$key]['ForTransferBreak']=true;
 			}	
 			else $t->ForTransfer=false;
-		} else $t->ForTransfer=false;
+		} else {
+			$t->ForTransfer=false;
+		}	
 		
 		if ($t->ForTransfer) {
 			$op->getRow($t->PickupID);

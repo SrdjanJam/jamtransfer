@@ -978,7 +978,7 @@ Handlebars.registerHelper("fromNow", function(datetime) {
 
 /*
 Prikaz TransferStatus polja kao dropdown
-uzima podatke iz statusDescription objekta u init.js!
+uzima podatke iz statusDescription objekta u lng/en_init.js!
 */
 
 Handlebars.registerHelper("transferStatusSelect", function(currentStatus) {
@@ -1122,6 +1122,51 @@ Handlebars.registerHelper("driverSelect", function(id,routeId,vehicleTypeId) {
 
 });
 
+/*
+Prikaz Driver polja kao dropdown
+*/
+
+Handlebars.registerHelper("subdriverSelect", function(id,ownerId) {
+	function driverSelectDropdown() {
+
+		var url = 'api/getSubDrivers.php?OwnerID='+ownerId+'&callback=';
+		
+		console.log(url);
+		var selector = "<select class=\"w100\" name=\"SubDriver\" id=\"SubDriver\">";
+
+		selector += '<option value="0" data-tel=""> --- </option>';
+
+		$.ajax({
+			type: 'POST',
+			url: url,
+			async: false,
+			contentType: "application/json",
+			dataType: 'jsonp',
+			error: function(data) {
+				alert("Error getting drivers");
+			},
+			success: function(data) {
+				$.each(data, function(i,val) {
+					selector += '<option value="' + val.UserID + '" ';
+					selector += 'data-tel="'+val.Mob +'" ';
+					if (val.UserID == id) {
+						selector += ' selected="selected" ';
+					}
+
+					selector += '>' + val.AuthUserRealName + ' / ' + val.Mob;
+					selector += '</option>';
+				});
+
+				selector += '</select>';
+			}
+		});
+
+		return selector;
+	}
+
+	return new Handlebars.SafeString(driverSelectDropdown());
+
+});
 
 
 /*
