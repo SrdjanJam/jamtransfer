@@ -47,15 +47,9 @@
 			<select id='yearsOrder' class="select-top-edit" name='yearsOrder' value='0' onchange="allItems();">
 				<option value='0'>All years</option>
 			</select>
-
-			<button onclick="allSort('OrderDate','ASC')" class="button-asc-edit"><i class="fa fa-sort-asc"></i></button>
-			<button onclick="allSort('OrderDate','DESC')" class="button-desc-edit"><i class="fa fa-sort-desc"></i></button>
-			</br>
-
-			<input id='orderFromID' class="input-one" name='orderFromID'  placeholder="From ID" size='6' onchange="allItems();"/>
-
-			<button onclick="allSort('OrderID','ASC')" class="button-asc-edit"><i class="fa fa-sort-asc"></i></button>
-			<button onclick="allSort('OrderID','DESC')" class="button-desc-edit"><i class="fa fa-sort-desc"></i></button>
+			<input id='orderFromDate' class="datepicker" name='orderFromDate'  placeholder="From Date" size='6' onchange="allItems();"/><br>
+			<button id="OrderDateASC" onclick="allSort('OrderDate','ASC')" class="button-asc-edit"><i class="fa fa-sort-asc"></i></button>
+			<button id="OrderDate-DESC" onclick="allSort('OrderDate','DESC')" class="button-desc-edit"><i class="fa fa-sort-desc"></i></button>
 		</div>
 		<!-- Payment: -->
 		<div class="col-md-2"> 
@@ -66,27 +60,26 @@
 		<!-- Transfer: -->
 		<div class="col-md-2"> 
 			<small class="badge blue text-black badge-edit">Transfer</small><br>
-
-			<select id='yearsPickup' class="select-top-edit" name='yearsPickup' value='0' onchange="allItems();">
+			<input id='pickupFromDate' class="datepicker" name='pickupFromDate'  placeholder="From Date" size='6' onchange="allItems();"/>
+			<!--<select id='yearsPickup' class="select-top-edit" name='yearsPickup' value='0' onchange="allItems();">
 				<option value='0'>All years</option>
-			</select>
+			</select>!-->
 			<button onclick="allSort('PickupDate','ASC')" class="button-asc-edit"><i class="fa fa-sort-asc"></i></button>
 			<button onclick="allSort('PickupDate','DESC')" class="button-desc-edit"><i class="fa fa-sort-desc"></i></button>			
 			<i class="fa fa-cubes" style="color:#900"></i><input type="checkbox" id="listExtras" name="listExtras"  value="" onchange="allItems();" />
 			</br>
-
 			<input id='locationName' class="input-one" name='locationName'  placeholder="Location Name" onchange="allItems();"/>					
 		</div>
 		<!-- Driver: -->
 		<div class="col-md-2">
-			<small class="badge blue text-black badge-edit">Driver</small><br>
-			<input id='driverName' class="input-one" name='driverName'  placeholder="Driver Name/ID" onchange="allItems();"/><br>				
+			<small class="badge blue text-black badge-edit">Partner</small><br>
+			<input id='driverName' class="input-one" name='driverName'  placeholder="Name/ID" onchange="allItems();"/><br>				
 			{{driverConfStatusSelect "-1" "DriverConfStatusChoose"}}
 		</div>
 		<!-- Client/Agent: -->
 		<div class="col-md-2">
-			<small class="badge blue text-black badge-edit">Client/Agent</small><br>
-			<input id='agentName' class="input-one" name='agentName'  placeholder="Agent Name/ID" onchange="allItems();"/><br>				
+			<small class="badge blue text-black badge-edit">Purchaser</small><br>
+			<input id='agentName' class="input-one" name='agentName'  placeholder="Name/ID" onchange="allItems();"/><br>				
 			<input id='agentOrder' class="input-one" name='agentOrder'  placeholder="Order Key / Agent Order" onchange="allItems();"/><br>				
 		</div>
 		<!-- Passenger: -->
@@ -108,6 +101,8 @@
 						<small>{{OrderDate}} {{MOrderTime}}</small></br>
 						<strong>{{MOrderID}} - {{TNo}}</strong><br>
 						<small>{{displayTransferStatusText TransferStatus}}</small>
+						{{#if StaffNote}}<small style="color:red"><i class="fa-solid fa-message"></i></small>{{/if}}				
+						{{#if FinalNote}}<small style="color:red"><i class="fa-solid fa-message"></i></small>{{/if}}	
 					</div>
 					<div class="col-md-2 payment" onclick="oneItem({{DetailsID}},'payment');">
 						<strong>{{addNumbers DetailPrice ExtraCharge}} €</strong><br>
@@ -143,11 +138,18 @@
 						<br>
 						{{DriversPrice}} €<br>
 						<small class="{{driverConfStyle DriverConfStatus}}">{{driverConfText DriverConfStatus}}</small>
+						{{#if DriverNotes}}<small style="color:red"><i class="fa-solid fa-message"></i></small>{{/if}}				
+						{{#if SubFinalNote}}<small style="color:red"><i class="fa-solid fa-message"></i></small>{{/if}}				
 					</div>
 					<div class="col-md-2 agent" onclick="oneItem({{DetailsID}},'agent');">
 						{{MOrderKey}}<br>
 						{{MConfirmFile}}<br>						
-						<strong>{{ userName UserID "AuthUserRealName" }}</strong>
+						{{#compare AgentID '>' 0}}
+							<img src='i/agents/{{ userName AgentID "Image" }}'>	 
+							<strong>{{ userName AgentID "AuthUserRealName" }}</strong>
+						{{/compare}}
+						{{#compare CustomerID '>' 1}}<strong>{{ userName CustomerID "AuthUserRealName" }}</strong>{{/compare}}
+						{{#compare UserLevelID '==' 12}}<strong>{{ userName UserID "AuthUserRealName" }}</strong>{{/compare}}
 					</div>					
 					<div class="col-md-2 passenger" onclick="oneItem({{DetailsID}},'passenger');">
 						<i class="fa fa-user"></i> <strong>{{PaxName}}</strong><br>
@@ -157,10 +159,6 @@
 							<i class="fa fa-phone"></i> {{MPaxTel}}
 						</small>						
 					</div>
-					{{#if StaffNote}}<small style="color:red"><i class="fa-solid fa-message"></i></small>{{/if}}				
-					{{#if FinalNote}}<small style="color:red">{{FinalNote}}</small>{{/if}}	
-					
-	
 			</div>
 
 		</div>
@@ -185,7 +183,7 @@
 		$('#sortField').val(field);
 		$('#sortDirection').val(direction);
 	}	
-	function allSort(field,direction) {
+	function allSort(field,direction) {	
 		setSort(field,direction).then(function() {allItems();});
 	}	
 </script>

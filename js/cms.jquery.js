@@ -1126,13 +1126,13 @@ Handlebars.registerHelper("driverSelect", function(id,routeId,vehicleTypeId) {
 Prikaz Driver polja kao dropdown
 */
 
-Handlebars.registerHelper("subdriverSelect", function(id,ownerId) {
+Handlebars.registerHelper("subdriverSelect", function(id,ownerId,field) {
 	function driverSelectDropdown() {
 
 		var url = 'api/getSubDrivers.php?OwnerID='+ownerId+'&callback=';
 		
 		console.log(url);
-		var selector = "<select class=\"w100\" name=\"SubDriver\" id=\"SubDriver\">";
+		var selector = "<select class=\"w100\" name=\""+field+"\" id=\""+field+"\">";
 
 		selector += '<option value="0" data-tel=""> --- </option>';
 
@@ -1153,7 +1153,7 @@ Handlebars.registerHelper("subdriverSelect", function(id,ownerId) {
 						selector += ' selected="selected" ';
 					}
 
-					selector += '>' + val.AuthUserRealName + ' / ' + val.Mob;
+					selector += '>' + val.AuthUserRealName;
 					selector += '</option>';
 				});
 

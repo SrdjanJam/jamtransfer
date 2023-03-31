@@ -1,7 +1,7 @@
 <?
 header('Content-Type: text/javascript; charset=UTF-8');
 require_once 'Initial.php';
-error_reporting(E_ALL);
+//error_reporting(E_ALL);
 # init vars
 $priceChanged = false;
 $data = array();
@@ -53,8 +53,8 @@ if($om->getMUserLevelID() == '2') {
 }
 
 foreach ($db->fieldNames() as $name) {
-	if(isset($_REQUEST[$name]) && !gettype($_REQUEST[$name])=='array') {
-		$content=$db->myreal_escape_string($_REQUEST[$name]);		
+	if(isset($_REQUEST[$name]) && gettype($_REQUEST[$name])!='array') {
+		$content=$db->myreal_escape_string($_REQUEST[$name]);
 		eval("\$old_content=\$db->get".$name."();");	
 		eval("\$db->set".$name."(\$content);");	
 		if(gettype($old_content)==gettype($content) && $old_content != $content) {
@@ -101,7 +101,7 @@ $OrderID=$db->getOrderID();
 $upd = '';
 $newID = '';
 foreach ($om->fieldNames() as $name) {
-	if(isset($_REQUEST[$name]) && !gettype($_REQUEST[$name])=='array') {
+	if(isset($_REQUEST[$name]) && gettype($_REQUEST[$name])!='array') {
 		$content=$om->myreal_escape_string($_REQUEST[$name]);
 		eval("\$old_content=\$om->get".$name."();");			
 		eval("\$om->set".$name."(\$content);");	

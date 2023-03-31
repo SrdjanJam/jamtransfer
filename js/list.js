@@ -14,8 +14,12 @@
 	 	var orderid = $("#orderid").val(); // filter za orderid
 	 	var detailid = $("#detailid").val(); // filter za detailid
 	 	var sortOrder  = $("#sortOrder").val();		
-	 	var orderFromID = $("#orderFromID").val();
-		if (typeof orderFromID=='undefined') orderFromID='';
+	 	var orderFromDate = $("#orderFromDate").val();
+		if (typeof orderFromDate=='undefined') orderFromDate='';
+	 	var pickupFromDate = $("#pickupFromDate").val();
+		var currentTime = new Date();	
+		if (typeof pickupFromDate=='undefined') pickupFromDate='';
+		//if (typeof pickupFromDate=='undefined') pickupFromDate=currentTime.getFullYear()+'-01-01';
 	 	var locationName = $("#locationName").val();
 		if (typeof locationName=='undefined') locationName='';
 	 	var paymentNumber = $("#paymentNumber").val();
@@ -35,7 +39,6 @@
 		var yearsOrder = $("#yearsOrder").val();
 		if (typeof yearsOrder=='undefined') yearsOrder='0';
 	 	var yearsPickup = $("#yearsPickup").val();
-		var currentTime = new Date();
 		if (typeof yearsPickup=='undefined') yearsPickup=currentTime.getFullYear();
 	 	var sortField = $("#sortField").val();
 		if (typeof sortField=='undefined') sortField='PickupDate';	 	
@@ -70,7 +73,8 @@
 		'&transfersFilter='+transfersFilter+
 		'&orderid='+orderid+
 		'&detailid='+detailid+
-		'&orderFromID='+orderFromID+
+		'&orderFromDate='+orderFromDate+
+		'&pickupFromDate='+pickupFromDate+
 		'&paymentNumber='+paymentNumber+
 		'&locationName='+locationName+
 		'&driverName='+driverName+
@@ -133,8 +137,11 @@
 					});
 					$("#yearsOrder option[value="+yearsOrder+"]").prop("selected", true)
 			  }				  
-			  if (ItemsData.orderFromID) {
-				  $("#orderFromID").val(ItemsData.orderFromID);
+			  if (ItemsData.orderFromDate) {
+				  $("#orderFromDate").val(ItemsData.orderFromDate);
+			  }			  
+			  if (ItemsData.pickupFromDate) {
+				  $("#pickupFromDate").val(ItemsData.pickupFromDate);
 			  }
 			  if (ItemsData.paymentNumber ) {
 				  $("#paymentNumber").val(ItemsData.paymentNumber);
@@ -165,8 +172,8 @@
 		      if (orderid>0 || detailid>0) $('#pageSelect').hide();
 		      if (listExtras==1) $('#listExtras').prop('checked', true);
 			  if ($(window).width() < 760) filtersDown();
-			  else	filtersUP();	
-			  
+			  else	filtersUP();
+				datetimepicker();			  
 		  },
 		  error: function() { alert('Get error occured.');}
 		});
@@ -225,17 +232,7 @@
 
 				$("#ItemWrapper"+id).show('slow');
 				
-				$('.datepicker').datetimepicker({
-					// yearOffset:2,
-					lang:'en',
-					timepicker:false,
-					format:'Y-m-d',
-					formatDate:'Y-m-d',
-					closeOnDateSelect:true
-					// minDate:'-1970/01/02', // yesterday is minimum date
-					// maxDate:'+1970/01/02' // and tommorow is maximum date calendar
-				});
-				$('.timepicker').clockTimePicker();
+				datetimepicker();
 
 				// Trun off:
 				// $("#ItemWrapper"+id)[0].scrollIntoView({
@@ -375,4 +372,18 @@
 				document.getElementById("buttons_"+id).innerHTML = savefield;
 			}
 		});
-	}	
+	}
+
+	function datetimepicker() {
+		$('.datepicker').datetimepicker({
+			// yearOffset:2,
+			lang:'en',
+			timepicker:false,
+			format:'Y-m-d',
+			formatDate:'Y-m-d',
+			closeOnDateSelect:true
+			// minDate:'-1970/01/02', // yesterday is minimum date
+			// maxDate:'+1970/01/02' // and tommorow is maximum date calendar
+		});
+		$('.timepicker').clockTimePicker();	
+	}			

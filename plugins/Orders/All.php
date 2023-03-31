@@ -142,7 +142,10 @@ if (isset($type2)) {
 
 if(!isset($_REQUEST['page'])) $_REQUEST['page']="";
 if(!isset($_REQUEST['length'])) $_REQUEST['length']="";
-if(!isset($_REQUEST['orderFromID'])) $_REQUEST['orderFromID']="";
+if(!isset($_REQUEST['orderFromDate'])) $_REQUEST['orderFromDate']="";
+if($_REQUEST['orderFromDate']=='' && isset($_COOKIE['orderFromDate'])) $_REQUEST['orderFromDate']=$_COOKIE['orderFromDate'];
+if(!isset($_REQUEST['pickupFromDate'])) $_REQUEST['pickupFromDate']="";
+if($_REQUEST['pickupFromDate']=='' && isset($_COOKIE['pickupFromDate'])) $_REQUEST['pickupFromDate']=$_COOKIE['pickupFromDate'];
 if(!isset($_REQUEST['paymentNumber'])) $_REQUEST['paymentNumber']="";
 if(!isset($_REQUEST['locationName'])) $_REQUEST['locationName']="";
 if(!isset($_REQUEST['driverName'])) $_REQUEST['driverName']="";
@@ -155,11 +158,13 @@ if(!isset($_REQUEST['yearsOrder'])) $_REQUEST['yearsOrder']="";
 if(!isset($_REQUEST['yearsPickup'])) $_REQUEST['yearsPickup']="";
 if(!isset($_REQUEST['sortField'])) $_REQUEST['sortField']="";
 if(!isset($_REQUEST['sortDirection'])) $_REQUEST['sortDirection']="";
-
 $page 		= $_REQUEST['page'];
 $length 	= $_REQUEST['length'];
 //$sortOrder 	= $_REQUEST['sortOrder'];
-$orderFromID 	= $_REQUEST['orderFromID'];
+$orderFromDate 	= $_REQUEST['orderFromDate'];
+setcookie("orderFromDate", $orderFromDate, time() + (7*24*60*60),"/");
+$pickupFromDate 	= $_REQUEST['pickupFromDate'];
+setcookie("pickupFromDate", $pickupFromDate, time() + (7*24*60*60),"/");
 $paymentNumber 	= $_REQUEST['paymentNumber'];
 $locationName 	= $_REQUEST['locationName'];
 $driverName 	= $_REQUEST['driverName'];
@@ -257,7 +262,8 @@ if ($driverConfStatus>-1) $dbWhere .= " AND DriverConfStatus = ".$driverConfStat
 if ($paymentNumber<>'') $dbWhere .= " AND (MCardNumber = '".$paymentNumber."' OR 
 											InvoiceNumber ='".$paymentNumber."' OR 
 											DriverInvoiceNumber ='".$paymentNumber."')";
-if ($orderFromID<>'') $dbWhere .= " AND OrderID > ".$orderFromID;
+if ($orderFromDate<>'') $dbWhere .= " AND OrderDate >= '".$orderFromDate."'";
+if ($pickupFromDate<>'') $dbWhere .= " AND PickupDate >= '".$pickupFromDate."'";
 if (strlen($locationName)>2) $dbWhere .= " AND (PickupName LIKE ('%".$locationName."%') OR 
 													DropName LIKE ('%".$locationName."%')) ";
 $queryDrivers="SELECT AuthUserID FROM v4_AuthUsers WHERE AuthUserRealName LIKE ('%".$driverName."%') 
@@ -284,13 +290,13 @@ while($row = $result->fetch_array(MYSQLI_ASSOC)){
 if ($yearsOrder>0) $dbWhere .= " AND YEAR(`OrderDate`)=".$yearsOrder;
 
 // year of PickupDate
-$query='SELECT YEAR(`PickupDate`) as yearPickup FROM `v4_OrderDetails`,`v4_OrdersMaster` '.$dbWhere.' AND MOrderID=OrderID group by YEAR(`PickupDate`) order by yearPickup DESC';
+/*$query='SELECT YEAR(`PickupDate`) as yearPickup FROM `v4_OrderDetails`,`v4_OrdersMaster` '.$dbWhere.' AND MOrderID=OrderID group by YEAR(`PickupDate`) order by yearPickup DESC';
 $result = $dbT->RunQuery($query);
 $odYearsPickup=array();
 while($row = $result->fetch_array(MYSQLI_ASSOC)){ 			
 	$odYearsPickup[]=$row['yearPickup'];
 }
-if ($yearsPickup>0) $dbWhere .= " AND YEAR(`PickupDate`)=".$yearsPickup;
+if ($yearsPickup>0) $dbWhere .= " AND YEAR(`PickupDate`)=".$yearsPickup;*/
 $odTotalRecords = $od->getFullOrderByDetailsID($sortField, $sortDirection, '' , $dbWhere);
 $dbk = $od->getFullOrderByDetailsID($sortField, $sortDirection, $limit  , $dbWhere);
 
@@ -366,7 +372,8 @@ if (count($dbk) != 0) {
 # send output back
 $output = array(
 'draw' => '0',
-'orderFromID' => $orderFromID,
+'orderFromDate' => $orderFromDate,
+'pickupFromDate' => $pickupFromDate,
 'paymentNumber' => $paymentNumber,
 'locationName' => $locationName,
 'driverName' => $driverName,

@@ -57,7 +57,7 @@
 		'9'	=>	'Drop-Off Address',
 		'10'	=>	'Pax Number',
 		'11'	=>	'Payment method',
-		'12'	=>	'Drivers Price',
+		'12'	=>	'Partners Price',
 		'13'	=>	'Extras',
 		'14'	=>	'Pickup Notes',
 		'15'	=>	'Message'
@@ -99,13 +99,13 @@
 
 	# DriverConfStatus
 	$DriverConfStatus = array(
-		'0'	=> 'No Driver',
+		'0'	=> 'No Partner',
 		'1'	=> 'Not Confirmed',
-		'2'	=> 'Driver Confirmed',
-		'3' => 'Driver Assigned',
-		'4'	=> 'Driver Declined',
+		'2'	=> 'Partner Confirmed',
+		'3' => 'Partner Assigned',
+		'4'	=> 'Partner Declined',
 		'5'	=> 'No-Show',
-		'6' => 'Driver Error',
+		'6' => 'Partner Error',
 		'7' => 'Transfer Completed',
 		'8' => 'Operator Error',
 		'9' => 'Dispatcher Error',
@@ -122,13 +122,13 @@
 
 	# Transfers Filters
 	$transfersFilters = array(
-		array ("id" => "noDriver", "name" => "No Driver"),
+		array ("id" => "noPartner", "name" => "No Partner"),
 		array ("id" => "notConfirmed", "name" => "Not Confirmed"),
 		array ("id" => "confirmed", "name" => "Confirmed"),
 		array ("id" => "declined", "name" => "Declined"),
 		array ("id" => "canceled", "name" => "Canceled"),
 		array ("id" => "noShow", "name" => "No Show"),
-		array ("id" => "driverError", "name" => "Driver Error"),
+		array ("id" => "PartnerError", "name" => "Partner Error"),
 		array ("id" => "agent", "name" => "Agent transfers"),
 		array ("id" => "notConfirmedAgent", "name" => "Agent transfers Not Confirmed"),
 		array ("id" => "notCompleted", "name" => "Not Completed"),
@@ -155,14 +155,14 @@ define("AGENT", "Agent");
 define("AGENT_COMMISION", "Ag.Comm.");
 define("AGENTS", "Agent orders");
 define("ALL", "All");
-define("ALL_DRIVERS", "All Drivers");
+define("ALL_DRIVERS", "All Partners");
 define("ALL_TRANSFERS", "All Transfers");
 define("APIUSER", "API User");
 define("APPROVED", "Approved");
 define("ARTICLE", "Article");
 define("ARTICLES", "Articles");
 define("ASCENDING", "Ascending");
-define("ASSIGNED_TO_ANOTHER_DRIVER", "This Transfer is assigned to another driver and removed from Your transfers list.");
+define("ASSIGNED_TO_ANOTHER_DRIVER", "This Transfer is assigned to another company and removed from Your transfers list.");
 define("AUTH_USER_REAL_NAME","AuthUserRealName");
 define("BALANCE", "Balance");
 define("BASE_PRICE", "Base Price");
@@ -183,12 +183,12 @@ define("CLOSE", "Close");
 define("CANCEL", "Cancel");
 define("SAVE_CHANGES", "Save Changes");
 define("COLUMN", "column(s)");
-define("COMPANY_ADDRESS", "Company address");
-define("COMPANY_DESC", "Company description");
-define("COMPANY_INFO", "Company Info");
-define("COMPANY_NAME", "Company name");
+define("COMPANY_ADDRESS", "Partner address");
+define("COMPANY_DESC", "Partner description");
+define("COMPANY_INFO", "Partner Info");
+define("COMPANY_NAME", "Partner name");
 define("COMPANY_TEXTS", "Various articles");
-define("COMPANY_WEB", "Company web");
+define("COMPANY_WEB", "Partner web");
 define("COMPLETED", "Completed");
 define("CONFIRMED", "Confirmed");
 define("READY", "Ready");
@@ -246,19 +246,19 @@ define("DETAIL_DESCRIPTION", "Please enter detailed description");
 define("DISCOUNT", "Return Discount");
 define("DISPLAY_ALL", "Display all");
 define("DISPLAY_NOT_CHECKED", "Display not checked");
-define("DRIVER", "Driver");
-define("DRIVER_EMAIL", "Driver's Email");
-define("DRIVER_ERROR", "Driver Error");
-define("DRIVER_NAME", "Driver's Name");
+define("DRIVER", "Transport company");
+define("DRIVER_EMAIL", "Partner's Email");
+define("DRIVER_ERROR", "Partner Error");
+define("DRIVER_NAME", "Partner's Name");
 define("DRIVER_PAID_AMOUNT", "Amount");
-define("DRIVER_PAYMENT", "Driver Payment");
-define("DRIVERS_BALANCE", "Driver's Balance");
-define("DRIVERS_WITH_TRANSFERS", "Drivers with transfers");
-define("DRIVERS_PRICE", "Driver's Price");
-define("DRIVER_ROUTES", "Driver Routes");
-define("DRIVERS", "Drivers");
+define("DRIVER_PAYMENT", "Partner Payment");
+define("DRIVERS_BALANCE", "Partner's Balance");
+define("DRIVERS_WITH_TRANSFERS", "Partners with transfers");
+define("DRIVERS_PRICE", "Partner's Price");
+define("DRIVER_ROUTES", "Partner's Routes");
+define("DRIVERS", "Partners");
 define("DRIVER_STATUS", "Transfer status");
-define("DRIVER_TEL", "Driver's Tel");
+define("DRIVER_TEL", "Partner's Tel");
 define("DROPOFF_ADDRESS", "Drop-Off Address");
 define("DROPOFF_NAME", "Drop-Off Name");
 define("DURATION", "Duration");
@@ -306,7 +306,7 @@ define("MARK_ACTIVE", "Mark Active");
 define("MARK_COMPLETED", "Mark Completed");
 define("MARK_NOSHOW", "No-Show");
 define("MARK_ERROR", "Errors");
-define("MARK_DRIVER_ERROR", "Driver Error");
+define("MARK_DRIVER_ERROR", "Partner Error");
 define("MARK_OPERATOR_ERROR", "Operator Error");
 define("MARK_DISPATCHER_ERROR", "Dispatcher Error");
 define("MARK_AGENT_ERROR", "Agent Error");
@@ -319,7 +319,7 @@ define("METHOD", "Method");
 define("MOB", "Mobile");
 define("MONAMOUNT", "Mon (amt)");
 define("MONPERCENT", "Mon (%)");
-define("MY_DRIVERS", "My Drivers");
+define("MY_DRIVERS", "My Partners");
 define("MY_VEHICLES", "My Vehicles");
 define("MENUORDER", "Menu Order");
 define("MP", "Most Popular");
@@ -351,7 +351,7 @@ define("NIGHTPERCENT", 'Percent (%)');
 define("NIGHT_SETTINGS", "Night trips");
 define("NIGHTSTART", "Night starts at");
 define("NO_DATA", "Nothing available");
-define("NO_DRIVER", "No Driver");
+define("NO_DRIVER", "No Partner");
 define("NO", "No");
 define("NO_SHOW", "No Show");
 define("NO_SURCHARGES", "No Rules");
@@ -361,7 +361,7 @@ define("NOT_READY","Not ready");
 define("NOTE", "Note");
 define("NOTES", "Pickup Notes");
 define("NOTESS", "Notes");
-define("NOTE_TO_DRIVER", "Note to Driver");
+define("NOTE_TO_DRIVER", "Note to Partner");
 define("NO_TRANSFERS", "No transfers to show.");
 define("NUMBER", "Number");
 define("ONETOTWO", "A &rarr; B");
@@ -411,9 +411,9 @@ define("POSITION", "Position");
 define("PICKUP_POINT", "Pickup Point");
 define("PRICE", "Price");
 define("PRICES", "All Prices");
-define("PRICES_EXPORT", "Export driver prices");
+define("PRICES_EXPORT", "Export Partner prices");
 define("ALL_PRICES_EXPORT", "All prices export");
-define("PRICES_IMPORT", "Import driver prices");
+define("PRICES_IMPORT", "Import Partner prices");
 define("PRICE_SETTINGS", "Price settings");
 define("PRINT_CONFIRMATION", "Print");
 define("PRINT", "Print");
@@ -476,7 +476,7 @@ define("SALES", "Sales");
 define("SATAMOUNT", "Sat (amt)");
 define("SATPERCENT", "Sat (%)");
 define("SAVE", "Save");
-define("SEND_EMAIL_TO_DRIVER", "Send e-mail to Driver");
+define("SEND_EMAIL_TO_DRIVER", "Send e-mail to Partner");
 define("SEND", "Send");
 define("SERVICE", "Service");
 define("SIGN_OUT", "Sign Out");
@@ -488,7 +488,7 @@ define("STATUS", "Status");
 define("SUBJECT", "Subject");
 define("SUNAMOUNT", "Sun (amt)");
 define("SUNPERCENT", "Sun (%)");
-define("SUMMARY_INVOICE_DRIVER", "Summary Invoice - Driver");
+define("SUMMARY_INVOICE_DRIVER", "Summary Invoice - Partner");
 define("SURCATEGORY", "Price Rules");
 define("SURCHARGES", "Price Rules");
 define("SYSTEM_MESSAGES", "System messages");
@@ -561,24 +561,24 @@ define("BEFORE", "before");
 define("ON", "on");
 define("SHOW_BOOKED", "Show transfers booked");
 define("AND_PICKUP_DATE_IS", "AND Pickup date is");
-define("AND_DRIVER_IS", "AND Driver is");
+define("AND_DRIVER_IS", "AND Partner is");
 define("APPLY", "Apply filter");
 define("SORT_BY_PICKUP_DATE", "Sort by Pickup date");
 define("NO_ROUTE_RULES_DEFINED", "There are no Route Rules defined.");
 define("SERVICE_SPECIFIC", "Service");
 define("VEHICLE_SPECIFIC", "Vehicle");
 define("DEFINE_GLOBAL", "Global Rules");
-define("MOST_DECLINES", "Drivers with most declines");
-define("TOP_DRIVERS", "Top drivers");
+define("MOST_DECLINES", "Partners with most declines");
+define("TOP_DRIVERS", "Top Partners");
 define("TOP_DEBTORS", "Largest debtors");
 
 define("CONFIRM", "Confirm");
 define("DECLINE", "Decline");
-define("CONFIRM_DECLINE_INSTRUCTIONS", "You can Confirm or Decline this transfer according to T&C. If you decline this transfer, it will be assigned to the next available driver. You cannot change your decision later on!");
+define("CONFIRM_DECLINE_INSTRUCTIONS", "You can Confirm or Decline this transfer according to T&C. If you decline this transfer, it will be assigned to the next available Partner. You cannot change your decision later on!");
 
 define("IMPORTANT_UPDATE", "Important update");
-define("YOUR_NEW_DRIVER_NAME", "Your new driver name");
-define("YOUR_NEW_DRIVER_TEL", "Your new driver phone");
+define("YOUR_NEW_DRIVER_NAME", "Your new Driver name");
+define("YOUR_NEW_DRIVER_TEL", "Your new Driver phone");
 
 define("VIEW_SITE", "View site");
 
@@ -651,21 +651,21 @@ define("SORT", "Sort");
 define("NO_EXTRAS", "No extras");
 define("PICKUP_NOTE", "Pickup Notes");
 define("STAFF_NOTE", "Staff Notes");
-define("NOTES_TO_DRIVER", "Notes to Driver");
+define("NOTES_TO_DRIVER", "Notes to Partner");
 define("FINAL_NOTE", "Final Note");
 define("RECIVE_CASH", "Recive - Cash");
 define("MAKE_BILL", "Make a bill!");
 define("UPLOAD_PDF_RECEIPT", "Upload PDF Receipt");
 define("DOWNLOAD_RECEIPT", "Download Receipt");
 define("DELETE_RECEIPT", "Delete Receipt");
-define("SUBDRIVERS", "Subdrivers");
+define("SUBDRIVERS", "SubDrivers");
 define("MY_EXPENSES", "My Expenses");
 define("EXPENSE", "Expense");
 define("DATUM", "Date");
 define("AMOUNT", "Amount");
-define("CO_EMAIL", "Company Email");
-define("CO_NAME", "Company Name");
-define("CO_ADDRESS", "Company Address");
+define("CO_EMAIL", "Partner Email");
+define("CO_NAME", "Partner Name");
+define("CO_ADDRESS", "Partner Address");
 define("TELEPHONE", "Telephone");
 define("EXPENSES_REPORT", "Expenses - Report");
 define("SHOW_EXPENSES", "Show Expenses");
@@ -705,7 +705,7 @@ define("EUR_TO_RSD", "1 EUR = ");
 define("SET_NEW_RATE", "Save New Rate");
 define("INVOICES_AGENTS", "Invoices");
 define("NEW_AGENT_INVOICE", "New Agent Invoice");
-define("NEW_DRIVER_INVOICE", "New Driver Invoice");
+define("NEW_DRIVER_INVOICE", "New Partner Invoice");
 define("STARTDATE", "Start date");
 define("ENDDATE", "End date");
 define("INVOICENUMBER", "Invoice Number");
@@ -714,7 +714,7 @@ define("AMOUNTEUR", "Total EUR");
 define("VATTOTAL", "Total VAT");
 define("CLIENT_EMAILS", "Client Emails");
 define("CLIENT_EMAIL_LIST", "Client Email List");
-define("DRIVERS_EMAIL_LIST", "Drivers Email List");
+define("DRIVERS_EMAIL_LIST", "Partners Email List");
 define("SHOW_CLIENTS", "Show Clients");
 define("SHOW_EMAILS", "Show Emails");
 define("USER_TYPE", "User Type");
@@ -778,7 +778,7 @@ define("COUNTRYDESC", "Country description");
 define("PLACENAME", "Location name");
 define("PLACE_ID","ID");
 
-define("DRIVER_PRICE", "Driver Price");
+define("DRIVER_PRICE", "Partner Price");
 define("PROVISIONPERC", "Provision %");
 
 define("COUNTRYISO", "Country ISO");
@@ -839,20 +839,20 @@ define("ENDTIME", "End Time");
 define("CORRECTIONPERCENT", "Percent");
 
 //Company info - Leo
-define("CO_TEL", "Company phone");
-define("CO_FAX", "Company fax");
-define("CO_CITY", "Company city");
-define("CO_COUNTRY", "Company country");
-define("CO_ZIP", "Company ZIP Code");
-define("CO_TAXNO", "Company tax number");
-define("CO_BANK", "Company bank");
-define("CO_ACCOUNTNO", "Company account number");
-define("CO_IBAN", "Company IBAN");
-define("CO_SWIFT", "Company SWIFT code");
-define("CO_DOMESTICTAX", "Company domestic tax");
-define("CO_FOREIGNTAX", "Company foreign tax");
-define("CO_EURINFO", "Company EUR info");
-define("CO_PAYMENTINFO", "Company payment info");
+define("CO_TEL", "Partner phone");
+define("CO_FAX", "Partner fax");
+define("CO_CITY", "Partner city");
+define("CO_COUNTRY", "Partner country");
+define("CO_ZIP", "Partner ZIP Code");
+define("CO_TAXNO", "Partner tax number");
+define("CO_BANK", "Partner bank");
+define("CO_ACCOUNTNO", "Partner account number");
+define("CO_IBAN", "Partner IBAN");
+define("CO_SWIFT", "Partner SWIFT code");
+define("CO_DOMESTICTAX", "Partner domestic tax");
+define("CO_FOREIGNTAX", "Partner foreign tax");
+define("CO_EURINFO", "Partner EUR info");
+define("CO_PAYMENTINFO", "Partner payment info");
 define("CO_FACEBOOK", "Facebook");
 define("CO_TWITTER", "Twitter");
 define("CO_LINKEDIN", "LinkedIn");
@@ -888,7 +888,7 @@ define("DEPOSIT", "Deposit (EUR)");
 
 
 // Vehice types
-define("DRIVER_VEHICLE","Driver Vehicle");
+define("DRIVER_VEHICLE","Partner Vehicle");
 
 // Master - location
 define("LONGITUDE","Longitude");
@@ -900,7 +900,7 @@ define("TOP_ROUTE","Top Route");
 define("KM","km");
 
 // Services - Extras Services - (folder ExtrasMaster)
-define("DRIVER_EXTRAS","Driver Extras");
+define("DRIVER_EXTRAS","Partner Extras");
 
 // Pricing - Coupons - (folder Coupons)
 define("DRIVER_ID","DriverID");
@@ -911,9 +911,9 @@ define("AUTHUSER_ID","ID");
 define("AUTHUSER_LEVEL","Level");
 define("AUTHUSER_IMAGE","Image");
 define("AUTHUSER","Auth User");
-define("AUTHUSERCOMPANY","Auth User Company");
+define("AUTHUSERCOMPANY","Auth User Partner");
 define("AUTHUSERNOTE","Auth User Note");
-define("SETASDRIVER","Set as driver");
+define("SETASDRIVER","Set as Partner");
 define("CONTACT","Contact");
 
 // Pricing - Services

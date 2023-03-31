@@ -232,6 +232,7 @@
 								{{#each oeServices}}
 									<div class="row">
 										<div class="col-md-6">
+											<!--ako novi drajver nema ekstras koji je izabran u bukingu!-->
 											{{#compare ChangeDriverConflict "==" 1}}
 												<span style="color:red">{{ServiceName}}</span>
 											{{/compare}}
@@ -252,94 +253,135 @@
 						</div>						
 
 						<div class="row dpdriver">
-							<div class="col-md-3 "><label><?= STATUS ?></label></div>
-							<div class="col-md-9">
-								{{driverConfStatusSelect details.DriverConfStatus "DriverConfStatus"}}
-								{{#compare details.DriverConfStatus "==" 2}}
-								{{details.DriverConfDate}} {{details.DriverConfTime}}
-								{{/compare}}								
-							</div>
-						</div>						
-						<div class="row dpdriver">
 							<div class="col-md-3 "><label><?= DRIVER_NAME ?></label></div>
-							<div class="col-md-6 driver" id="newDriverName">								
+							<div class="col-md-9 driver" id="newDriverName">								
 								{{driverSelect details.DriverID details.RouteID details.VehicleType}}
 							</div>
-						</div>
-						<div class="row dpdriver">
-							<div class="col-md-3 "><label><?= DRIVER_TEL ?></label></div>
-							<div class="col-md-9">
-								<input type="text" id="DriverTel" name="DriverTel" class="w25" value="{{details.DriverTel}}">							
-							</div>
-						</div>
-						<div class="row dpdriver">
-							<div class="col-md-3 "><label><?= DRIVER_EMAIL ?></label></div>
-							<div class="col-md-9">
-								<input type="text" id="DriverEmail" name="DriverEmail" class="w25" value="{{details.DriverEmail}}">															
-							</div>
-						</div>
-						<div class="row dpdriver">
-							<div class="col-md-3 "><label><?= DRIVERS_PRICE ?></label></div>
-							<div class="col-md-9">
-								<input type="text" id="DriversPrice" name="DriversPrice" class="w25" value="{{details.DriversPrice}}">
-							</div>
-						</div>
-						<div class="row dpdriver">
-							<div class="col-md-3 "><label>Driver <?= EXTRAS ?></label></div>
-							<div class="col-md-9">
-								<input type="text" id="DriverExtraCharge" name="DriverExtraCharge" class="w25" value="{{details.DriverExtraCharge}}">
-							</div>
-						</div>
-						<div class="row dpdriver">
-							<div class="col-md-3 "><label><?= DRIVER_PAID_AMOUNT ?></label></div>
-							<div class="col-md-9">
-								<input type="text" id="DriverPaymentAmt" name="DriverPaymentAmt" class="w25"
-								value="{{#compare details.DriverPaymentAmt ">" 0}}{{details.DriverPaymentAmt}}{{/compare}}{{#compare details.DriverPaymentAmt "==" 0}}{{details.DriversPrice}}{{/compare}}"
-								 readonly>
-							</div>
-						</div>								
-						{{#compare details.PaymentMethod "==" 2}}					
-						<div class="row dpdriver">
-							<div class="col-md-3 "><label>Driver <?= INVOICE ?></label></div>
-							<div class="col-md-9">{{details.DriverInvoiceNumberO}}</div>	
-						</div>
-						<div class="row dpdriver">
-							<div class="col-md-3 "><label><?= INVOICE ?> Date</label></div>
-							<div class="col-md-9">{{details.DriverInvoiceDateO}}  </div>	
-						</div>								
-						<div class="row dpdriver">
-							<div class="col-md-3 "><label><?= INVOICE ?> Total</label></div>
-							<div class="col-md-9">{{details.DriverGrandTotalO}} EUR    </div>	
-						</div>									
-						<div class="row dpdriver">
-							<div class="col-md-3 "><label>Due Date</label></div>
-							<div class="col-md-9">{{details.DriverDueDateO}}</div>	
-						</div>			 											
-						<div class="row dpdriver">
-							<div class="col-md-3 "><label><?= PAYMENT_STATUS ?></label></div>
-							<div class="col-md-9">{{details.DriverPaymentStatusO}}</div>	
 						</div>	
-						{{/compare}}	
 						<div class="row dpdriver">
-							<div class="col-md-3 "><label><?= MESSAGE ?></label></div>
-							<div class="col-md-9">
-								<div id="summernote">
-									<textarea class="textarea" name="DriverNotes" id="DriverNotes" cols="40" rows="4"
-									style="width:100%">{{{details.DriverNotes}}}</textarea>
+							<div class="col-md-4">
+								<div class="row">
+									<div class="col-md-3 "><label><?= STATUS ?></label></div>
+									<div class="col-md-9">
+										{{driverConfStatusSelect details.DriverConfStatus "DriverConfStatus"}}
+										{{#compare details.DriverConfStatus "==" 2}}
+										{{details.DriverConfDate}} {{details.DriverConfTime}}
+										{{/compare}}								
+									</div>
+								</div>	
+								<div class="row">
+									<div class="col-md-3 "><label><?= DRIVER_TEL ?></label></div>
+									<div class="col-md-9">
+										<input type="text" id="DriverTel" name="DriverTel" class="w25" value="{{details.DriverTel}}">							
+									</div>
 								</div>
+								<div class="row">
+									<div class="col-md-3 "><label><?= DRIVER_EMAIL ?></label></div>
+									<div class="col-md-9">
+										<input type="text" id="DriverEmail" name="DriverEmail" class="w25" value="{{details.DriverEmail}}">															
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-3 "><label><?= DRIVERS_PRICE ?></label></div>
+									<div class="col-md-9">
+										<input type="text" id="DriversPrice" name="DriversPrice" class="w25" value="{{details.DriversPrice}}">
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-3 "><label>Partner's <?= EXTRAS ?></label></div>
+									<div class="col-md-9">
+										<input type="text" id="DriverExtraCharge" name="DriverExtraCharge" class="w25" value="{{details.DriverExtraCharge}}">
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-3 "><label><?= DRIVER_PAID_AMOUNT ?></label></div>
+									<div class="col-md-9">
+										<input type="text" id="DriverPaymentAmt" name="DriverPaymentAmt" class="w25"
+										value="{{#compare details.DriverPaymentAmt ">" 0}}{{details.DriverPaymentAmt}}{{/compare}}{{#compare details.DriverPaymentAmt "==" 0}}{{details.DriversPrice}}{{/compare}}"
+										 readonly>
+									</div>
+								</div>	
+								<div class="row">
+									<div class="col-md-12 "><label><?= MESSAGE ?></label></div>
+								</div>	
+								<div class="row">									
+									<div class="col-md-12">
+										<div id="summernote">
+											<textarea class="textarea" name="DriverNotes" id="DriverNotes" cols="40" rows="4"
+											style="width:100%">{{details.DriverNotes}}</textarea>
+										</div>
+									</div>
+								</div>								
 							</div>
-						</div>
-						{{#compare details.DriverConfStatus ">" 1}}	
-						<div class="row dpdriver">
-							<div class="col-md-3 "><label>SubDriver</label></div>
-							<div class="col-md-3">{{subdriverSelect details.SubDriver details.DriverID}}  </div>	
-							<div class="col-md-3"><a id="SubDriverMob" href=""></a></div>	
-							<div class="col-md-3">
-								<a target="_blank" href='schedule/{{details.PickupDate}}'>Schedule for {{details.PickupDate}}</a>
-							</div>	
+							<div class="col-md-4">
+								{{#compare details.PaymentMethod "==" 2}}					
+								<div class="row">
+									<div class="col-md-3 "><label>Partner <?= INVOICE ?></label></div>
+									<div class="col-md-9">{{details.DriverInvoiceNumberO}}</div>	
+								</div>
+								<div class="row">
+									<div class="col-md-3 "><label><?= INVOICE ?> Date</label></div>
+									<div class="col-md-9">{{details.DriverInvoiceDateO}}  </div>	
+								</div>								
+								<div class="row">
+									<div class="col-md-3 "><label><?= INVOICE ?> Total</label></div>
+									<div class="col-md-9">{{details.DriverGrandTotalO}} EUR    </div>	
+								</div>									
+								<div class="row">
+									<div class="col-md-3 "><label>Due Date</label></div>
+									<div class="col-md-9">{{details.DriverDueDateO}}</div>	
+								</div>			 											
+								<div class="row">
+									<div class="col-md-3 "><label><?= PAYMENT_STATUS ?></label></div>
+									<div class="col-md-9">{{details.DriverPaymentStatusO}}</div>	
+								</div>	
+								{{/compare}}	
+							</div>
+							<div class="col-md-4">
+								<div class="row">
+									<a target="_blank" href='schedule/{{details.PickupDate}}'>Schedule for {{details.PickupDate}}</a>
+								</div>
+								<div class="row"><label>SubDriver</label></div>
+								<div class="row">
+									<div class="col-md-9">{{subdriverSelect details.SubDriver details.DriverID 'SubDriver'}}  </div>	
+									<div class="col-md-3"><a id="SubDriverMob" href=""></a></div>	
+								</div>	
+								<div class="row">
+									<div class="col-md-9">{{subdriverSelect details.SubDriver2 details.DriverID 'SubDriver2'}}  </div>	
+									<div class="col-md-3"><a id="SubDriver2Mob" href=""></a></div>	
+								</div>	
+								<div class="row">
+									<div class="col-md-9">{{subdriverSelect details.SubDriver3 details.DriverID 'SubDriver3'}}  </div>	
+									<div class="col-md-3"><a id="SubDriver3Mob" href=""></a></div>	
+								</div>	
+								<div class="row">
+									<div class="col-md-12 "><label>Message for driver</label></div>
+								</div>	
+								<div class="row">								
+									<div class="col-md-12">
+										<textarea class="textarea" name="SubDriverNote" id="SubDriverNote" cols="40" rows="4"
+										style="width:100%">{{details.SubDriverNote}}</textarea>
+									</div>
+								</div>	
+								{{#compare details.SubFinalNote '!==' ''}}		
+								<div class="row">
+									<div class="col-md-12 "><label>Message from driver</label></div>
+								</div>	
+								<div class="row">
+									<div class="col-md-12">{{details.SubFinalNote}}</div>
+								</div>
+								{{/compare}}										
+								{{#compare details.CashIn '>' 0}}		
+								<div class="row">
+									<div class="col-md-6 "><label>Received cash</label></div>
+									<div class="col-md-6">
+										{{details.CashIn}}
+									</div>
+								</div>		
+								{{/compare}}		
+							</div>
 						</div>	
-						{{/compare}}
-
+						
 						<div class="row dagent">
 							<div class="col-md-3 "><label><?= BOOKED_BY?></label></div>
 							<div class="col-md-9">
@@ -457,7 +499,7 @@
 													</span>
 
 													<div class="timeline-body">
-														{{{Description}}}
+														{{Description}}
 													</div>
 												</div>
 											</li>
@@ -508,6 +550,9 @@
 				$('#DriverID').prop( "disabled", false );
 				$('#DriverPrice').prop( "disabled", false );				
 			}	
+			if ($('#DriverConfStatus').val() != 3) {
+				$('#SubDriver').prop( "disabled", true );
+			}			
 		}
 		// promena telefona i email-a nakon promene drivera
 		$('#DriverID').change(function(){
@@ -515,14 +560,16 @@
 			$('#DriverEmail').val($('#DriverID :selected').attr('data-email'));
 		})			
 		// promena mobilnog nakon promene subdrivera
-		function changesubdriver () {
-			$('#SubDriverMob').attr('href','tel:'+($('#SubDriver :selected').attr('data-tel')));
-			$('#SubDriverMob').text($('#SubDriver :selected').attr('data-tel'));
+		function changesubdriver (i) {
+			$('#SubDriver'+i+'Mob').attr('href','tel:'+($('#SubDriver'+i+' :selected').attr('data-tel')));
+			$('#SubDriver'+i+'Mob').text($('#SubDriver'+i+' :selected').attr('data-tel'));
 		}		
-		changesubdriver ();		
-		$('#SubDriver').change(function(){
-			changesubdriver ();
-		})	
+		changesubdriver ('');		
+		changesubdriver ('2');		
+		changesubdriver ('3');		
+		$('#SubDriver').change(function(){changesubdriver ('');})	
+		$('#SubDriver2').change(function(){changesubdriver ('2');})	
+		$('#SubDriver3').change(function(){changesubdriver ('3');})	
 		// promena lokacija		
 		$('#PickupName, #DropName').on('click keyup', function(event) {
 			var clicked_id='#'+$(this).attr('id');
