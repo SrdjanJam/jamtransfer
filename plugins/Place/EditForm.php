@@ -127,6 +127,7 @@
 						{{yesNoSliderEdit Island 'Island'}}
 					</div>
 				</div>
+
 				<div class="row">
 					<div class="col-md-6">
 						<div class="row">
@@ -156,15 +157,20 @@
 							</div>
 						</div>
 					</div>
+
 					<div class="col-md-6">
 						<div class="row">
 							<div class="col-md-3">
 								<iframe src="https://maps.google.com/maps?q={{Latitude}}, {{Longitude}}&z=10&output=embed"  frameborder="0" style="border:0"></iframe>
 							</div>
-							<div class="col-md-9" style='padding:50px'>{{WikiDesc}}</div>
-						</div>	
+						</div>
+						<div class="row">
+							<div class="col-md-12">{{WikiDesc}}</div>
+						</div>
 					</div>
+
 				</div>
+
 				<div class="row">
 					<div class="col-md-3">
 						<label for="PlaceActive"><?=PLACEACTIVE;?></label>
