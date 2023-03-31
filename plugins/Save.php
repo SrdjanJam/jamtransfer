@@ -1,5 +1,6 @@
 <?php
 require_once "../config.php";
+require_once ROOT . '/common/functions/f.php';
 require_once ROOT . '/db/v4_Modules.class.php';
 require_once ROOT . '/db/v4_Messages.class.php';
 $md = new v4_Modules();
@@ -17,3 +18,11 @@ $ms->setDateTime(date("Y-m-d h:i:s"));
 $ms->setUserLevel($_SESSION['AuthLevelID']);
 $ms->setStatus(0);
 $ms->saveAsNew();
+
+// slanje mail-a
+	$mailMessage = '<bold>'.$md->getName().'</bold><br>';
+	$mailMessage .= '<bold>'.$_SESSION['UserRealName'].' - '.$_SESSION['log_title'].'</bold><br>';
+	$mailMessage .= $_REQUEST['Message'];
+	$mailto = 'jam.bgprogrameri@gmail.com';
+	$subject = 'New WIS message for page '. $md->getName() . ' from ' . $_SESSION['UserRealName'] . ' - ' .$_SESSION['log_title'];
+	mail_html($mailto, 'cms@jamtransfer.com', 'JamTransfer.com', 'cms@jamtransfer.com', $subject , $mailMessage);
