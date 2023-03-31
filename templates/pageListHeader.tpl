@@ -17,7 +17,7 @@ value=" WHERE {$ItemID} > 0">
 {/if}
 	<div class="col-md-2 col-md-2-infoShow" id="infoShow"></div>
 	{if isset($selecttype)}
-	<div class="col-md-2 asd">
+	<div class="col-md-2">
 		<i class="fa fa-list-ul edit-fa"></i>
 		<div class="form-group group-edit">
 		
@@ -31,7 +31,7 @@ value=" WHERE {$ItemID} > 0">
 	</div>
 	{/if}	
 	{if isset($selecttype2)}
-	<div class="col-md-2 asd">
+	<div class="col-md-2">
 		<i class="fa fa-list-ul edit-fa"></i>
 		<div class="form-group group-edit">
 		
@@ -47,7 +47,7 @@ value=" WHERE {$ItemID} > 0">
 
 	{if not isset($pagelength)}{assign var="pagelength" value="10"}{/if}
 	
-	<div class="col-md-2 asd">
+	<div class="col-md-2">
 		<i class="fa fa-eye edit-fa"></i>
 		<div class="form-group group-edit">
 			<select id="length" class="w75 form-control control-edit" onchange="allItems();">
@@ -60,13 +60,13 @@ value=" WHERE {$ItemID} > 0">
 		</div>
 	</div>
 
-	<div class="col-md-2 asd">
+	<div class="col-md-2">
 		<i class="fa fa-text-width edit-fa"></i>
 		<div class="form-group group-edit">
 			<input type="text" id="Search" class=" w75 form-control control-edit" onchange="allItems();" placeholder="Text + Enter to Search">
 		</div>
 	</div>
-	<div class="col-md-2 asd">
+	<div class="col-md-2">
 		<i class="fa fa-sort-amount-asc edit-fa"></i>
 		<div class="form-group group-edit">
 			<select name="sortOrder" id="sortOrder" onchange="allItems();" class="form-control control-edit">
@@ -77,7 +77,7 @@ value=" WHERE {$ItemID} > 0">
 	</div>
 
 	{if isset($selectactive)}		
-	<div class="col-md-2 asd">
+	<div class="col-md-2">
 		<i class="fa fa-filter edit-fa"></i> 
 		<div class="form-group group-edit">
 			<select name="Active" id="Active" onchange="allItems();" class="form-control control-edit">
@@ -91,7 +91,7 @@ value=" WHERE {$ItemID} > 0">
 	{/if}	
 	
 	{if isset($selectapproved)}		
-	<div class="col-md-2 asd">
+	<div class="col-md-2">
 		<i class="fa fa-filter edit-fa"></i> 
 		<div class="form-group group-edit">
 			<select name="Approved" id="Approved" onchange="allItems();" class="form-control control-edit">
@@ -104,7 +104,7 @@ value=" WHERE {$ItemID} > 0">
 	{/if}
 	
 	{if isset($selectsolved)}		
-	<div class="col-md-2 asd">
+	<div class="col-md-2">
 		<i class="fa fa-filter edit-fa"></i> 
 		<div class="form-group group-edit">
 			<select name="Approved" id="Approved" onchange="allItems();" class="form-control control-edit">

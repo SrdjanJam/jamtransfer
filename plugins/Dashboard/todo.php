@@ -46,14 +46,14 @@
                                     
                                 </div>
                                 <div class="box-footer clearfix no-border">
-                                    <input type="text" name="newItem" id="newItem" class="w100" 
+                                    <input type="text" name="newItem" id="newItem" class="w100 form-control" style="width:300px;"
                                     placeholder="New Item Text">
 
                                     <button class="btn btn-default pull-right" onclick="todoItem('add','');" >
                                     	<i class="fa fa-plus"></i> Save
                                     </button>
                                                                         
-                                    <button class="btn btn-default btn-xs" onclick="todoItem('deleteCompleted','');" >
+                                    <button class="btn btn-default btn-xs" style="margin-top:5px;" onclick="todoItem('deleteCompleted','');" >
                                     	<i class="fa fa-times"></i> Delete Completed
                                     </button>
                                     

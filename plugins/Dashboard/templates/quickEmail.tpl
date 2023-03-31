@@ -27,7 +27,7 @@
                     placeholder="{$SUBJECT}"/>
                 </div>
                 <div>
-                    <textarea class="textarea" placeholder="{$MESSAGE}" id="message"
+                    <textarea class="textarea form-control" placeholder="{$MESSAGE}" id="message"
                     style="width: 100%; height: 125px; font-size: 14px; 
                     line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
                 </div>

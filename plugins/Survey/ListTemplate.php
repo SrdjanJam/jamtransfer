@@ -1,5 +1,33 @@
 <script type="text/x-handlebars-template" id="ItemListTemplate">
 
+	<div class="row row-edit">
+		
+		<div class="col-md-1">
+			<?=ID;?>
+		</div>
+
+		<div class="col-md-3">
+			<?=ROUTENAMEEN;?>
+		</div>	
+
+		<div class="col-md-2">
+			<?=USERNAME;?>
+		</div>
+
+		<div class="col-md-1">
+			<?=SCORETOTAL;?>
+		</div>
+
+		<div class="col-md-3">
+			<?=COMMENT;?>
+		</div>
+
+		<div class="col-md-2">
+			<?=APPROVED;?>
+		</div>
+					
+	</div>
+
 	{{#each Item}}
 		<div  onclick="oneItem({{ID}});">
 		

@@ -52,16 +52,11 @@
     <br><br><strong>* Important Note:</strong>
     <br> negative balance means that JamTransfer owes this amount to Driver
     <br> positive Balance means that Driver owes this amount to JamTransfer
-	<div align="left" >
-	{* <form action="index.php?p=driversWTransfersCash&StartDate='.$_REQUEST['StartDate'].'&EndDate='.$_REQUEST['EndDate'].'&Submit=1" method="POST"> *}
 
-	<br/> 
 	
-	{* <input type="submit" class="btn btn-primary" value=" &larr; Back to Drivers List" name="reset" /> *}
-
-	</div>
 	
 	<div align="left">
+
 		<a href="{$root_home}driversTransfers/{$smarty.request.StartDate}/{$smarty.request.EndDate}/{$smarty.request.includePaymentMethod}" class="btn btn-primary">&larr; Back to Drivers List</a>
 			<br/>
 			{* Ako bude bilo potrebno *}
@@ -78,15 +73,16 @@
 	</div> {*End of left*}
 	
 	<hr><h4>Exported to CSV!</h4>
-	<small>
-	<a href="DriverBalance" class="btn btn-default"><i class="fa fa-download"></i> Download CSV</a>
-	 You can download CSV file here (or Right-Click->Save)
-	 <b>File format:</b> UTF-8, semi-colon (;) delimited</small>	
 
-	</div>		
+	<small>
+		<a href="DriverBalance" class="btn btn-default"><i class="fa fa-download"></i> Download CSV</a>
+		You can download CSV file here (or Right-Click->Save)
+		<b>File format:</b> UTF-8, semi-colon (;) delimited
+	</small>	
 	
 
 
 	{/if}
-</div>
+
+</div> {* / .container white *}
 	
