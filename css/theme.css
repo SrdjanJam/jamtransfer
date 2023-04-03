@@ -45,9 +45,12 @@ a:focus {
   color: #72afd2;
 }
 /* Layouts */
+/* 
+Changed:
 .wrapper {
   min-height: 100%;
-}
+} 
+*/
 .wrapper:before,
 .wrapper:after {
   display: table;
@@ -220,9 +223,8 @@ img {
   /* background-color: #3c8dbc !important; */
   /* background-color: #2a90dd !important; */
   /* box-shadow: 2px 2px 15px #1770b4 inset; */
-
-  background-image: linear-gradient(#1299ff8c, #5aaeefab) !important;
-  /* background-image: linear-gradient(#1299ff, #5aaeef) !important; old */
+  background-image: linear-gradient(#0091fe, #0090ffab) !important;
+  /* background-image: linear-gradient(#1299ff8c, #5aaeefab) !important; Old */
 }
 .bg-green {
   background-color: #00a65a !important;
@@ -1032,10 +1034,11 @@ body > .header .logo .icon {
    All form elements including input, select, textarea etc.
 -----------------------------------------------------------------
 */
+/* Changed: */
 .form-control {
-  -webkit-border-radius: 0px !important;
-  -moz-border-radius: 0px !important;
-  border-radius: 0px !important;
+  -webkit-border-radius: 5px !important;
+  -moz-border-radius: 5px !important;
+  border-radius: 5px !important;
   box-shadow: none;
 }
 .form-control:focus {
@@ -1784,6 +1787,7 @@ Component: timeline
   color: #666;
   border-color: #ddd;
   border-bottom-color: #ddd;
+  box-shadow: 3px 2px 4px 0px #888888;
 }
 .btn.btn-default:hover,
 .btn.btn-default:active,
@@ -1811,9 +1815,11 @@ Component: timeline
 .btn.btn-success.hover {
   background-color: #008d4c;
 }
+/* Changed: */
 .btn.btn-info {
   background-color: #00c0ef;
   border-color: #00acd6;
+  box-shadow: 3px 2px 4px 0px #888888;
 }
 .btn.btn-info:hover,
 .btn.btn-info:active,
@@ -2055,9 +2061,10 @@ Component: timeline
   text-transform: uppercase;
 }
 /* NAV TABS */
+/* Changed: */
 .nav-tabs-custom {
   margin-bottom: 20px;
-  background: #fff;
+  /* background: #fff; */
   box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
 }
 .nav-tabs-custom > .nav-tabs {
@@ -2128,7 +2135,9 @@ Component: timeline
 .nav-tabs-custom > .nav-tabs > li.header > .ion {
   margin-right: 10px;
 }
+/* Changed: */
 .nav-tabs-custom > .tab-content {
+  /* background-image: url(./i/m-assets/white-bg/stripes-light.webp) !important; */
   background: #fff;
   padding: 10px;
 }
