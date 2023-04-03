@@ -99,12 +99,12 @@
 					{* <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script> *}
 			<!-- ======================================================================================== -->
 					<!-- Bootstrap: -->
-					{* <script src="js/bootstrap.js" type="text/javascript"></script> *}
+					<!-- <script src="js/bootstrap.js" type="text/javascript"></script> -->
 					<!-- cdn: -->
 					<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 			<!-- ======================================================================================== -->
 					<!-- Jquery ui css: -->
-					{* <link rel="stylesheet" href="css/jquery-ui-1.8.9.custom.css" type="text/css" /> *}
+					<!-- <link rel="stylesheet" href="css/jquery-ui-1.8.9.custom.css" type="text/css" /> -->
 					<!-- cdn: -->
 					{* <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css"> *}
 					<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
@@ -134,10 +134,10 @@
 					<!-- Time Picker query-clock-timepicker: -->
 					<script type="text/javascript" src="js/jquery-clock-timepicker/jquery-clock-timepicker.min.js"></script>
 
-					<!-- Date Picker and time picker old /  -->
+					<!-- Date Picker and time picker old: /  -->
 					{* <script src="js/pickadate/picker.time.js" type="text/javascript"></script>
 					<script src="js/JAMTimepicker.js"></script> *}
-					<!-- Pick date old -->
+					<!-- Pick date old: -->
 					{* <script src="js/pickadate/picker.js" type="text/javascript"></script>
 					<script src="js/pickadate/picker.date.js" type="text/javascript"></script> *}
 			<!-- ======================================================================================== -->
@@ -152,12 +152,11 @@
 			<!-- ======================================================================================== -->
 			<!-- Misc: -->
 			<script src="js/handlebars-v1.3.0.js"></script>
-					<script src="js/jquery.slugify.js"></script><!-- jquery local -->
+					<script src="js/jquery.slugify.js"></script>
 			<script src="js/summernote/summernote.js"></script>
-					<script src="js/jquery.toaster.js"></script><!-- jquery local -->
+					<script src="js/jquery.toaster.js"></script>
 			<script src="lng/{$language}_init.js"></script>	
-					<script src="js/cms.jquery.js"></script><!-- jquery local -->
-
+					<script src="js/cms.jquery.js"></script>
 
 		{* MIXED WITH PHP CODE: *}
 		{if $pageList}
@@ -203,21 +202,20 @@
 
 {* BODY ============================================================================================= *}
 
-	<body class="fixed-top" style="height:100%!important;font-size:16px">
+	<body class="fixed-top body-edit">
 		{* main wrapper class*}
 		<div class="wrapper wrapper-edit">
 
-{* SIDEBAR ====================================================================================================================================== *}
+{* NAVBAR: ====================================================================================================================================== *}
 			
-			{* Start with navbar *}
+			<!-- Start with navbar -->
 			<nav class="navbar-default navbar-default-edit navbar-static-side additional-class" role="navigation">
-			<i class="lab la-accessible-icon"></i>
-				{* sidebar-collapse *}
+				<i class="lab la-accessible-icon"></i>
+				<!-- sidebar-collapse -->
 				<div class="sidebar-collapse">
 					<ul class="nav metismenu" id="side-menu">
-
-						{* PROFILE =================================================================== *}
-						<!--nav-header-top-edit -->
+						<!-- Profile =================================================================== -->
+						<!-- Header in navbar - nav-header-top-edit -->
 						<li class="nav-header nav-header-top-edit">
 							<div class="dropdown profile-element" style="text-align:center;">
 								<a data-toggle="dropdown" class="dropdown-toggle" href="#">
@@ -229,6 +227,7 @@
 									</a>
 								</span>
 
+								<!-- Logout link: -->
 								<div style="margin-top:12px;text-decoration:underline;text-align:center;"><a href='logout.php'>Logout <i class="fa fa-sign-out"></i></a></div>
 
 								<ul class="dropdown-menu animated fadeInRight m-t-xs">
@@ -236,15 +235,16 @@
 									<li class="divider"></li>
 									<li><a href='logout.php'>Logout</a></li>
 								</ul>
+
 							</div>
 						</li>
-						{* END OF PROFILE ======================================================================== *}
+						<!-- End of profile ======================================================================== -->
 
-						{* SETTING DRIVER ======================================================================== *}
+						<!-- Setting Driver ======================================================================== -->
 						{if $setasdriver}
 							
 							{if isset($smarty.session.UseDriverName)}
-							<!-- nav-header nav-header-edit -->
+								<!-- Header in navbar - nav-header nav-header-edit -->
 								<li class="nav-header nav-header-edit">
 									<h3 id="set-as">Seted as:</h3>
 									<h3 class="cut-name">{$smarty.session.UseDriverName}</h3>
@@ -252,7 +252,7 @@
 								</li>
 							{else}
 								{if isset ($smarty.cookies.UseDriverName)}	
-									<!-- Set as with cookie -->
+									<!--Header in navbar - Set as with cookie -->
 									<li class="nav-header nav-header-edit">
 										<a href="satAsDriver/{$smarty.cookies.UseDriverID}" style="padding-left:5px;padding-right:0px;">
 											<h3 id="set-us-2">Set as: <i class="fas fa-sign-in-alt"></i></h3>
@@ -263,9 +263,9 @@
 							{/if}
 							
 						{/if}
-						{* END OF SETTING DRIVER ====================================================================================== *}
+						<!-- End of setting driver ====================================================================================== -->
 
-						{* Items of sidebar *}
+						<!-- Items of sidebar -->
 						{section name=index loop=$menu1}
 							<li class="{$menu1[index].active}">
 								<a href='{$menu1[index].link}' >
@@ -276,37 +276,22 @@
 
 								
 								{if $menu1[index].menu}
-									{* collapse: ul: *}
+									<!-- collapse ul: -->
 									<ul class="nav nav-second-level collapse">
 
 										{section name=index1 loop=$menu1[index].menu}	
 											<li class="{$menu1[index].menu[index1].active}">
-												<a href="{$menu1[index].menu[index1].link}"><span class="nav-label nav-label-edit" title="{$menu1[index].menu[index1].description}">{$menu1[index].menu[index1].title} <span class='badge'>{{$menu1[index].menu[index1].phasestatus}}</span></span></a>
-
-													{if $menu1[index].menu[index1].title eq 'Orders'}
-														<!-- collapse: ul second level: -->
-													{*<ul class="nav nav-third-level collapse" >
-														<li><a href="{$menu1[index].menu[index1].link}"><span class="nav-label">All</span></a></li>
-
-														{section name=pom loop=$transfersFilters}
-															<li {if $transfersFilters[pom].id eq $transfersFilter} class="active" {/if}>
-																<a href="{$menu1[index].menu[index1].link}/{$transfersFilters[pom].id}"><span class="nav-label">{$transfersFilters[pom].name}</span></a>
-															</li>
-														{/section}
-
-													</select>						
-													</ul>*}
-													{/if}
+												<a href="{$menu1[index].menu[index1].link}"><span class="nav-label nav-label-edit-2" title="{$menu1[index].menu[index1].description}">{$menu1[index].menu[index1].title} <span class='badge'>{{$menu1[index].menu[index1].phasestatus}}</span></span></a>
 											</li>
 										{/section}
 
-									</ul>
+									</ul> <!-- End of collapse: ul -->
 								{/if}
 
 							</li>
 						{/section}
 
-				   </ul> {* End of nav metismenu *}
+				   </ul> <!-- End of nav metismenu -->
 				   
 				   
 				   <!-- developing status -->
@@ -317,61 +302,45 @@
 						<li>P - Plan</li>
 				   </ul>
 
-				</div> {* End of sidebar-collapse *}
+				</div> <!-- End of sidebar-collapse -->
 				
-			</nav> {* End of navbar-default navbar-static-side *}
-
-						
-
+			</nav> <!-- End of navbar-default navbar-static-side -->
 			
-			{* #page-wrapper *}
-			<div id="page-wrapper" class="content gray-bg dashbard-1 page-wrapper-edit" style="height: 100%;
-					display: flex;
-					flex-direction: column;
-					flex-wrap: nowrap;
-					overflow: hidden;
-					">
+{* PAGE WRAPPER ====================================================================================================================================== *}
+
+			<div id="page-wrapper" class="content gray-bg dashbard-1 page-wrapper-edit">
 
 {* HEADER ====================================================================================================================================== *}
 
 				<!-- ******************************************************************************** -->
-				<!-- Header Main: -->
+				<!-- Main header - border-bottom-edit: -->
 				<div class="header row border-bottom border-bottom-edit">
-					{* navbar *}	
+					<!-- navbar -->	
 					<nav class="navbar navbar-static-top navbar-static-top-edit" role="navigation" style="margin-bottom: 0">
 						
-						{* Minimalize *}
+						<!-- Minimalize -->
 						<div class="navbar-header">
 							<a class="navbar-minimalize minimalize-styl-2 btn btn-primary btn-primary-edit"><i class="fa fa-bars"></i> </a>
 						</div>
 
-						{* Refresh *}
+						<!-- Refresh -->
 						<div class="navbar-header">
 							<button type="button" class="minimalize-styl-2 btn btn-primary btn-primary-edit" id="cashe"><i class="fas fa-redo-alt"></i></button>
 						</div>
 
-						{* {if $DEVELOPMENT}<span>TEST</span>{/if} *}
-
-
+						<!-- Page title and database: -->
 						<h2 style="display:inline-block;margin: 15px 0 0 55px;"><span class="m-r-sm text-muted">{$title} - {$smarty.session.log_title}</span></h2>
-						{* Server: *}
-						{* <h2 style="display:inline-block;margin: 15px 0 0 55px;"><span class="m-r-sm text-muted">{$title}(page) - {$smarty.session.log_title}</span></h2> *}
 
 						<ul class="nav navbar-top-links navbar-right">
 							<!-- Opener dialog button: -->
 							<li><button type="button" id="opener-help" class="button-3">Help</button></li>
 							<li><button type="button" id="opener-message" class="button-3">Message</button></li>
 
-							{* Old *}
-							{* <li>
-								<h2><span class="m-r-sm text-muted">{$title} - {$smarty.session.log_title}</span></h2>
-							</li> *}
+							<!-- Prev version: -->
+							<!-- <li> <h2><span class="m-r-sm text-muted">{$title} - {$smarty.session.log_title}</span></h2> </li> -->
 
-							<li>
-								<a href='logout.php'>
-									<i class="fa fa-sign-out"></i>Logout
-								</a>
-							</li>
+							<!-- Logout: -->
+							<li><a href='logout.php'><i class="fa fa-sign-out"></i>Logout</a></li>
 
 						</ul>
 						
@@ -382,20 +351,19 @@
 							<div class="previous-messages"></div>
 						</div>
 					
-					
 					</nav>
-				</div> {* /.header row border-bottom *}
+				</div> <!-- /.header row border-bottom -->
 				<!-- ******************************************************************************** -->		
 			
 				{if not $isNew and $pageList}
-					{* .header *}
+					<!-- .header -->
 					<div class="header header-edit">  
-						{include file="pageListHeader.tpl"} 				   
+						{include file="pageListHeader.tpl"} <!-- Second header -->			   
 					</div> {* /.header *}
 				{/if}
 
 				{if $pageName eq 'Price Rules'}	
-					{* .header row *}
+					<!-- .header row -->
 					<div class="header row"> 
 						<div class="pull-left">
 							<span>Rule: <strong>{$smarty.request.rulesType}</strong></span>
@@ -404,19 +372,18 @@
 
 						</div>
 
-					</div> {* /.header row *}
+					</div> <!-- /.header row -->
 				{/if}
 
-				
-				
 {* MAIN CONTENT ================================================================================================================= *}
+
 				<div class="body row white-bg white-bg-edit">
 
 					{if isset($pageOLD)}
 						NOT MODEL VIEW CONTROL
 						{elseif isset($pageName) and $pageName ne ''}
 							{include file="{$root}/plugins/{$base}/templates/{$includeFileTpl}"}
-							MODEL VIEW CONTROL SMARTY		
+							MODEL VIEW CONTROL SMARTY
 						{elseif $pageList}
 							{include file="pageList.tpl"} 
 							MODEL VIEW CONTROL HANDLEBARS
@@ -425,9 +392,10 @@
 							SEMI MODEL VIEW CONTROL via OB_GET_CONTENTS
 					{/if}
 
-				</div> {* / .body row white-bg *}
+				</div> <!-- / .body row white-bg -->
 
 {* FOOTER ======================================================================================================================== *}
+
 				<div class="footer row footer-edit">
 
 					{if not $isNew and $pageList}				
@@ -440,12 +408,14 @@
 					
 					<div class="backdrop"><div class="spiner"></div></div>
 
-				</div>{* /.footer row *}
-				
+				</div><!-- /.footer row -->
 
-			</div> {* End of page-wrapper *}
+{* END OF FOOTER ======================================================================================================================== *}
 
-		</div> {* End of wrapper *}
+
+			</div> <!-- End of page-wrapper -->
+
+		</div> <!-- End of wrapper -->
 
 
 		<input type='hidden' id='local' value='{$local}' name='local'>
@@ -464,8 +434,9 @@
 		document.addEventListener("keydown", function(event) {
 			//event.preventDefault();
 			if (event.which==121) window.open(window.location.href+'/help','_blank');
-		})	
+		})
 		$(document).ready(function() {
+			// datepicker:
 			$('.datepicker').datetimepicker({
 				// yearOffset:2,
 				lang:'en',
@@ -476,9 +447,9 @@
 				// minDate:'-1970/01/02', // yesterday is minimum date
 				// maxDate:'+1970/01/02' // and tommorow is maximum date calendar
 			});
+			// timepicker:
 			$('.timepicker').clockTimePicker();
 		});
-		
 		$.ajaxSetup({
 			beforeSend: function (xhr,settings) {
 				return settings;
@@ -504,7 +475,7 @@
 		}); // End of click
 
 
-
+		// Dialog Help:
 		$( ".dialog-help" ).dialog({
 
 			title: 'Help Dialog',
@@ -526,7 +497,7 @@
 
 		});
 		
-
+		// Dialog message:
 		$( ".dialog-message" ).dialog({
 
 			title: 'Message Dialog',

@@ -4,8 +4,6 @@
 		<div class="box-title">
 			<? if ($isNew) { ?>
 				<h3><?= NNEW ?></h3>
-			<? } else { ?>
-				<h3><?= EDIT ?> - {{ID}}</h3>
 			<? } ?>
 		</div>
 		<div class="box-tools pull-right">

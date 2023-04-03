@@ -3,6 +3,7 @@
  * Copyright 2011-2016 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */ /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
+
 html {
     font-family: sans-serif;
     -webkit-text-size-adjust: 100%;
@@ -1576,11 +1577,16 @@ pre code {
     max-height: 340px;
     overflow-y: scroll;
 }
+/* Changed: */
 .container {
-    padding-right: 15px;
-    padding-left: 15px;
+    padding:5px 15px 5px !important; /* New */
+    /* padding-right: 15px;
+    padding-left: 15px; Old */
     margin-right: auto;
     margin-left: auto;
+    border: 1px solid #bdbcbc; /* New */
+    border-radius: 5px; /* New */
+    box-shadow: 0px 0px 5px 1px #898989; /* New */
 }
 @media (min-width: 768px) {
     .container {
@@ -15728,18 +15734,16 @@ h5 {
 /* Changed: */
 .nav > li.active > a {
     color: #fff;
-    background-image: linear-gradient(to bottom right, #40495475, #0505055c);
-    /* background-image: linear-gradient(to bottom right, #484f58, #050505); old 1 */
-    /* background-image: linear-gradient(to bottom right, #293846, #686868); old 2 */
-    
+    background-image: linear-gradient(to bottom right,#615f6859,#0505052b);
+    /* background-image: linear-gradient(to bottom right,#4049544d,#0505052b); old */
     border-radius: 10px;
 }
 /* Changed: */
 .navbar-default .nav > li > a:focus,
 .navbar-default .nav > li > a:hover {
-    background-color: #30303085;
+    background-color: #00000012;
     /* background-color: #293846; old */
-    /* background-color: #303030; old 2 */
+    /* background-color: #30303085; old 2 */
     box-shadow: 2px 2px 4px #090a0a;
     color: #fff;
     border-radius: 10px;
@@ -15867,9 +15871,9 @@ h5 {
 }
 /* Changed: */
 ul.nav-second-level {
-    background-image: linear-gradient(#b9646414, #3b39398f);
+    background-image: linear-gradient(#b9646414, #3b393945);
     /* background-image: linear-gradient(#52464614, #3b39398f); old 1 */
-    /* background-image: linear-gradient(#524646, #1c1919); old 2 */
+    /* background-image: linear-gradient(#b9646414, #3b39398f); old 2 */
 }
 /* Changed: */
 .nav > li.active {
@@ -15939,9 +15943,12 @@ ul.nav-second-level {
 .nav-third-level li {
     border-bottom: none !important;
 }
+/* Changed: */
 .nav-second-level li a {
     padding: 7px 10px 7px 10px;
+    /* padding: 4px 10px 7px 52px; Prev */
     padding-left: 52px;
+    
 }
 .nav-third-level li a {
     padding-left: 62px;
@@ -16684,6 +16691,7 @@ fieldset[disabled] .btn-white:focus,
 fieldset[disabled] .btn-white:hover {
     color: #cacaca;
 }
+/* Changed: */
 .form-control,
 .form-control:focus,
 .has-error .form-control:focus,
@@ -16698,7 +16706,8 @@ fieldset[disabled] .btn-white:hover {
 .popover,
 .progress,
 .progress-bar {
-    box-shadow: none;
+    box-shadow: 0px 0px 4px 1px #888888;
+    /* box-shadow: none; Old */
 }
 .btn-outline {
     color: inherit;
@@ -19156,8 +19165,10 @@ body.tour-open .animated {
 /* Changed: */
 body {
     font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    background-color: #493232;
-    /* background-color: #2f4050; old */
+
+    background-color: #443c3c;
+    /* background-color: #493232; old 1 */
+    /* background-color: #2f4050; old 2 */
     font-size: 13px;
     color: #676a6c;
     overflow-x: hidden;
@@ -19349,15 +19360,20 @@ ul.unstyled {
     font-size: 160px !important;
     color: #e5e6e7;
 }
+/* Changed: */
 .footer {
-    background: none repeat scroll 0 0 #fff;
-    border-top: 1px solid #e7eaec;
+    /* background: none repeat scroll 0 0 #fff; */
+    padding: 10px 20px;
+    /*
     bottom: 0;
     left: 0;
-    padding: 10px 20px;
     position: absolute;
-    right: 0;
+    right: 0; */
+    /* position: sticky;
+    top: 100vh;
+    */
 }
+
 .footer.fixed_full {
     position: fixed;
     bottom: 0;
