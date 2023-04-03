@@ -10,16 +10,24 @@
 			<?=MESSAGE_ID;?>
 		</div>
 
-		<div class="col-md-2">
+		<div class="col-md-1">
 			<?=PAGE;?>
 		</div>
 		
 		<div class="col-md-2">
 			<?=FROM_NAME;?>
+		</div>			
+		
+		<div class="col-md-5">
+			<?=MESSAGE;?>
 		</div>		
 		
-		<div class="col-md-2">
+		<div class="col-md-1">
 			<?=DATE_TIME;?>
+		</div>		
+		
+		<div class="col-md-1">
+			Solver
 		</div>
 
 		<div class="col-md-1">
@@ -41,16 +49,24 @@
 					{{ID}}
 				</div>
 
-				<div class="col-sm-2">
+				<div class="col-sm-1">
 					{{PageName}}
 				</div>				
 				
 				<div class="col-sm-2">
 					{{FromName}}
+				</div>				
+				
+				<div class="col-sm-5">
+					{{Body}}
 				</div>
 
-				<div class="col-sm-2">
+				<div class="col-sm-1">
 					{{DateTime}}
+				</div>				
+				
+				<div class="col-sm-1">
+					{{userName SolverID "AuthUserRealName"}}
 				</div>
 				
 				<div class="col-sm-1">

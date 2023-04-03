@@ -33,7 +33,19 @@
 						<label for="Message"><?=MESSAGE;?></label>
 					</div>
 					<div class="col-md-9">
-						{{Body}}
+						<textarea class="textarea" name="Body" id="Body" cols="40" rows="4"
+							style="width:100%">{{Body}}</textarea>
+						</div>					
+					</div>
+				</div>				
+				
+				<!-- Solver: -->
+				<div class="row">
+					<div class="col-md-3">
+						<label for="Message">Solver</label>
+					</div>
+					<div class="col-md-9">
+						{{userSelect SolverID "91" "SolverID"}}
 					</div>
 				</div>
 
@@ -46,6 +58,15 @@
 						{{yesNoSliderEdit Status 'Status' }}						
 					</div>
 				</div>
+				
+				<!-- SOLVED TIME: -->
+				<div class="row">
+					<div class="col-md-3 "><label>Solved Date</label></div>
+					<div class="col-md-9">
+						<input type="text" name="SolvedDate" class="w75 datepicker" value="{{SolvedDate}}">
+					</div>
+				</div>	
+				
 			</div>
 	    </div>
 </form>

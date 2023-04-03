@@ -25,6 +25,12 @@ if ($keyName != '' and $keyValue != '') {
 	$upd = 'Updated';
 	if($res !== true) $upd = $res;
 }
+if ($keyName != '' and $keyValue == '') {
+	$db->setFromName($_SESSION['UserRealName']);	
+	$db->setUserID($_SESSION['AuthUserID']);	
+	$db->setUserLevel($_SESSION['AuthLevelID']);	
+	$newID = $db->saveAsNew();
+}
 
 $out = array(
 	'update' => $upd

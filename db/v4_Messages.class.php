@@ -21,6 +21,8 @@ Class v4_Messages {
 	public $UserID; //int(10) unsigned
 	public $DateTime; //datetime
 	public $UserLevel; //tinyint(4) unsigned
+	public $SolverID; //tinyint(4) unsigned
+	public $SolvedDate; //tinyint(4) unsigned
 	public $Status; //tinyint(1)
 	
 	public $connection;
@@ -35,7 +37,7 @@ Class v4_Messages {
      * New object to the class. Don´t forget to save this new object "as new" by using the function $class->saveAsNew();
      *
      */
-	public function New_v4_Messages($PageID,$FromName,$PageLink,$Body,$UserID,$DateTime,$UserLevel,$Status){
+	public function New_v4_Messages($PageID,$FromName,$PageLink,$Body,$UserID,$DateTime,$UserLevel,$SolverID,$SolvedDate,$Status){
 		$this->PageID = $PageID;
 		$this->FromName = $FromName;
 		$this->PageLink = $PageLink;
@@ -43,6 +45,8 @@ Class v4_Messages {
 		$this->UserID = $UserID;
 		$this->DateTime = $DateTime;
 		$this->UserLevel = $UserLevel;
+		$this->SolverID = $SolverID;
+		$this->SolvedDate = $SolvedDate;
 		$this->Status = $Status;
 	}
 
@@ -64,6 +68,8 @@ Class v4_Messages {
 			$this->UserID = $row["UserID"];
 			$this->DateTime = $row["DateTime"];
 			$this->UserLevel = $row["UserLevel"];
+			$this->SolverID = $row["SolverID"];
+			$this->SolvedDate = $row["SolvedDate"];
 			$this->Status = $row["Status"];
 		}
 	}
@@ -90,6 +96,8 @@ Body = '".$this->myreal_escape_string($this->Body)."',
 UserID = '".$this->myreal_escape_string($this->UserID)."',
 DateTime = '".$this->myreal_escape_string($this->DateTime)."',
 UserLevel = '".$this->myreal_escape_string($this->UserLevel)."',
+SolverID = '".$this->myreal_escape_string($this->SolverID)."',
+SolvedDate = '".$this->myreal_escape_string($this->SolvedDate)."',
 Status = '".$this->myreal_escape_string($this->Status)."' WHERE ID = '".$this->ID."'");
 	return $result;
 }
@@ -98,7 +106,17 @@ Status = '".$this->myreal_escape_string($this->Status)."' WHERE ID = '".$this->I
      * Save the active var class as a new row on table
      */
 	public function saveAsNew(){
-		$this->connection->RunQuery("INSERT INTO v4_Messages (PageID, FromName, PageLink, Body, UserID, DateTime, UserLevel, Status) values ('".$this->myreal_escape_string($this->PageID)."', '".$this->myreal_escape_string($this->FromName)."', '".$this->myreal_escape_string($this->PageLink)."', '".$this->myreal_escape_string($this->Body)."', '".$this->myreal_escape_string($this->UserID)."', '".$this->myreal_escape_string($this->DateTime)."', '".$this->myreal_escape_string($this->UserLevel)."', '".$this->myreal_escape_string($this->Status)."')");
+		$this->connection->RunQuery("INSERT INTO v4_Messages (PageID, FromName, PageLink, Body, UserID, DateTime, UserLevel, SolverID, SolvedDate,Status) values (
+			'".$this->myreal_escape_string($this->PageID)."', 
+			'".$this->myreal_escape_string($this->FromName)."', 
+			'".$this->myreal_escape_string($this->PageLink)."', 
+			'".$this->myreal_escape_string($this->Body)."', 
+			'".$this->myreal_escape_string($this->UserID)."', 
+			'".$this->myreal_escape_string($this->DateTime)."', 
+			'".$this->myreal_escape_string($this->UserLevel)."', 
+			'".$this->myreal_escape_string($this->SolverID)."', 
+			'".$this->myreal_escape_string($this->SolvedDate)."', 
+			'".$this->myreal_escape_string($this->Status)."')");
 		return $this->connection->insert_id(); //return insert_id
 	}
 
@@ -165,13 +183,27 @@ Status = '".$this->myreal_escape_string($this->Status)."' WHERE ID = '".$this->I
 	 */
 	public function getDateTime(){
 		return $this->DateTime;
-	}
+	}	
 
 	/**
 	 * @return UserLevel - tinyint(4) unsigned
 	 */
 	public function getUserLevel(){
 		return $this->UserLevel;
+	}	
+	
+	/**
+	 * @return SolverID - tinyint(4) unsigned
+	 */
+	public function getSolverID(){
+		return $this->SolverID;
+	}	
+	
+	/**
+	 * @return SolvedDate - tinyint(4) unsigned
+	 */
+	public function getSolvedDate(){
+		return $this->SolvedDate;
 	}
 
 	/**
@@ -236,6 +268,20 @@ Status = '".$this->myreal_escape_string($this->Status)."' WHERE ID = '".$this->I
 	public function setUserLevel($UserLevel){
 		$this->UserLevel = $UserLevel;
 	}
+	
+	/**
+	 * @param Type: tinyint(4) unsigned
+	 */
+	public function setSolverID($SolverID){
+		$this->SolverID = $SolverID;
+	}
+	
+	/**
+	 * @param Type: tinyint(4) unsigned
+	 */
+	public function setSolvedDate($SolvedDate){
+		$this->SolvedDate = $SolvedDate;
+	}
 
 	/**
 	 * @param Type: tinyint(1)
@@ -260,6 +306,8 @@ Status = '".$this->myreal_escape_string($this->Status)."' WHERE ID = '".$this->I
 			'UserID' => $this->getUserID(),
 			'DateTime' => $this->getDateTime(),
 			'UserLevel' => $this->getUserLevel(),
+			'SolverID' => $this->getSolverID(),
+			'SolvedDate' => $this->getSolvedDate(),
 			'Status' => $this->getStatus()		);
 		return $fieldValues;
 	}
@@ -271,7 +319,7 @@ Status = '".$this->myreal_escape_string($this->Status)."' WHERE ID = '".$this->I
      */
 	public function fieldNames(){
 		$fieldNames = array(
-			'ID',			'PageID',			'FromName',			'PageLink',			'Body',			'UserID',			'DateTime',			'UserLevel',			'Status'		);
+			'ID',			'PageID',			'FromName',			'PageLink',			'Body',			'UserID',			'DateTime',			'UserLevel',			'SolverID',	'SolvedDate',	'Status'		);
 		return $fieldNames;
 	}
     /**

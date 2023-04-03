@@ -1123,6 +1123,53 @@ Handlebars.registerHelper("driverSelect", function(id,routeId,vehicleTypeId) {
 });
 
 /*
+Prikaz User polja kao dropdown po UserLevel-u
+*/
+
+Handlebars.registerHelper("userSelect", function(id,levelId,field) {
+	function userSelectDropdown() {
+
+		var url = 'api/getUsersByUserLevel.php?LevelID='+levelId+'&callback=';
+		
+		console.log(url);
+		var selector = "<select class=\"w100\" name=\""+field+"\" id=\""+field+"\">";
+
+		selector += '<option value="0"> --- </option>';
+
+		$.ajax({
+			type: 'POST',
+			url: url,
+			async: false,
+			contentType: "application/json",
+			dataType: 'jsonp',
+			error: function(data) {
+				alert("Error getting users");
+			},
+			success: function(data) {
+				$.each(data, function(i,val) {
+					selector += '<option value="' + val.UserID + '" ';
+					if (val.UserID == id) {
+						selector += ' selected="selected" ';
+					}
+					selector += '>' + val.AuthUserRealName;
+					selector += '</option>';
+				});
+
+				selector += '</select>';
+			}
+		});
+
+		return selector;
+	}
+
+	return new Handlebars.SafeString(userSelectDropdown());
+
+});
+
+
+
+
+/*
 Prikaz Driver polja kao dropdown
 */
 
