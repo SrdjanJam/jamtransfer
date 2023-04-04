@@ -19,7 +19,8 @@ $selectapproved='Status';
 #********************************
 $aColumns = array(
 	'ID',
-	'PageID'
+	'PageID',
+	'PageLink'
 	// dodaj ostala polja!
 );
 

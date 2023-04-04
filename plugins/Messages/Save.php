@@ -29,6 +29,7 @@ if ($keyName != '' and $keyValue == '') {
 	$db->setFromName($_SESSION['UserRealName']);	
 	$db->setUserID($_SESSION['AuthUserID']);	
 	$db->setUserLevel($_SESSION['AuthLevelID']);	
+	$db->setPageLink('general');	
 	$newID = $db->saveAsNew();
 }
 

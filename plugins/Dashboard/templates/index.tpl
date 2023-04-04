@@ -7,6 +7,10 @@
 					{/if}
 					{include file="plugins/Dashboard/templates/emptyRow.tpl"} 			
 
+					{if $charts} 
+						{include file="plugins/Dashboard/templates/charts.tpl"}
+					{/if}
+					
 					<div class="row">
 						{if $getOrder}
 						<section class="col-lg-6 xconnectedSortable"> 
