@@ -39,6 +39,9 @@
 }
 .pull-left-edit{ margin-left:10px; }
 .pull-right-edit{ margin-right:20px; }
+.pull-right .btn{
+    box-shadow: 2px 2px 2px 1px #888888;
+}
 
 .additional-class{
     position: fixed;
@@ -255,6 +258,12 @@
     overflow-y: auto;
     box-shadow: 0px 0px 5px 2px #4d4d52;
     /* box-shadow: 0px 0px 2px 2px #424181; old */
+}
+
+.textarea{
+    width:70%;
+    height:200px;
+    resize: none;
 }
 
 .textarea-dialog{
@@ -525,9 +534,8 @@
 /* ============================================================================== */
 
 
-.pull-right .btn{
-    box-shadow: 2px 2px 2px 1px #888888;
-}
+
+
 
 
 
