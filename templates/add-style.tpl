@@ -185,18 +185,20 @@
 }
 
 .nav-label-edit{
-    font-size: 21px;
+    font-size: 18px;
     /* font-style: italic; Off */
-    text-shadow: 2px 2px 1px #101010;
+    /*text-shadow: 2px 2px 1px #101010;*/
     /* text-shadow: 2px 2px 1px #494949; Old */
-    font-family: lucida, serif;
+	font-family: 'Font Awesome';
+	font-weight: 400;
 }
 
 .nav-label-edit-2{
-    font-size: 18px !important;
-    font-style: italic;
-    text-shadow: 2px 2px 1px #101010;
-    font-family: cambria, serif;
+    font-size: 17px !important;
+    /*font-style: italic;*/
+    /*text-shadow: 2px 2px 1px #101010;*/
+	font-family: 'Font Awesome';
+	font-weight: 400;
 }
 
 #side-menu .edit-fa{
