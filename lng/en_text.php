@@ -164,6 +164,8 @@ define("ARTICLES", "Articles");
 define("ASCENDING", "Ascending");
 define("ASSIGNED_TO_ANOTHER_DRIVER", "This Transfer is assigned to another company and removed from Your transfers list.");
 define("AUTH_USER_REAL_NAME","AuthUserRealName");
+define("ATTACHMENT", "Attachment");
+
 define("BALANCE", "Balance");
 define("BASE_PRICE", "Base Price");
 define("BASE","Base");
@@ -226,6 +228,8 @@ define("CUSTOMER_ACTIVE", "Active");
 define("CUSTOMER_IMAGE", "Image");
 define("CUSTOMER_IMAGE_TYPE", "Image Type");
 define("CUSTOMER_TYPE", "Type");
+define("CREATE_TIME", "Create Time");
+define("CREATOR_ID", "Creator ID");
 
 define("DASHBOARD", "Dashboard");
 define("DATE", "Date");
@@ -270,6 +274,7 @@ define("EXTRAS", "Extra services");
 define("EXPANCE_TITLE", "Title");
 define("EXPANCE_AMOUNT", "Amount");
 define("EXPANCE_APPROVED", "Approved");
+
 define("FACEBOOK", "Facebook");
 define("FINDER", "Finder");
 define("FLIGHT_NO", "Flight Number");
@@ -278,6 +283,7 @@ define("FREEFORM", "Free form transfer");
 define("FRIAMOUNT", "Fri (amt)");
 define("FRIPERCENT", "Fri (%)");
 define("FROM", "From");
+
 define("GOOGLE_PLUS", "Google+");
 define("GRAPH", "Graph");
 define("HEADER_IMAGES", "Header Images");
@@ -329,6 +335,8 @@ define("MSG_FORM", "Msq Form");
 define("FROM_NAME", "From Name");
 define("MSG", "Msq");
 define("MAIN", "Main");
+define("MAILID", "MailID");
+
 
 define("BODY", "Body");
 define("USER_ID", "User ID");
@@ -422,6 +430,7 @@ define("PROVISION", "Discount");
 define("PROFILE", "Profile");
 define("PUBLISHED", "Published");
 define("QUICK_EMAIL", "Quick Email");
+
 define("READY_FINISHED","Ready&Finished");
 define("REAL_NAME", "Real name");
 define("REMOVE_ROUTES_FROM_TO", "Remove all routes that <strong>begin</strong> or <strong>end</strong> at:");
@@ -437,6 +446,8 @@ define("ROUTE_SPECIFIC", "Route");
 define("ROUTES", "Routes");
 define("REQUEST_ID", "Request ID");
 define("REQUEST_TITLE", "Request Title");
+define("REPLY_TO", "ReplyTo");
+
 define("S1END", "Season 1 ends on");
 define("S1PERCENT", "(%)");
 define("S1START", "Season 1 starts on");
@@ -492,6 +503,7 @@ define("SUMMARY_INVOICE_DRIVER", "Summary Invoice - Partner");
 define("SURCATEGORY", "Price Rules");
 define("SURCHARGES", "Price Rules");
 define("SYSTEM_MESSAGES", "System messages");
+define("SENT_TIME", "Sent Time");
 
 define("TAXISITE", "Taxi Site");
 define("TEL", "Tel");
@@ -529,6 +541,7 @@ define("TWOTOONE", "B &rarr; A");
 define("TYPE", "Type");
 define("TASK_DATE", "Date");
 define("TOP_ROUTE_ID", "ID");
+define("TO_NAME", "To Name");
 
 define("UPDATED", "Updated");
 define("UPLOAD_IMAGES", "Drop Images Here");
