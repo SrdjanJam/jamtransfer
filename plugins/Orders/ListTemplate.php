@@ -30,7 +30,7 @@
 	
 
 
-	<div class="row row-sticky">
+	<div class="row row-sticky filter1">
 		<span class="right">
 			<a>
 				<i id='filtersDown' class="fa fa-angle-down" onclick="filtersDown()"><i class="fa fa-filter" style="font-size:22px;"></i></i>
@@ -39,7 +39,7 @@
 		</span>
 	</div>
 
-	<div class="row itemsheader itemsheader-edit">
+	<div class="row itemsheader itemsheader-edit filter2">
 		<!-- Order: -->
 		<div class="col-md-2">
 			<small class="badge blue text-black badge-edit">Order</small><br>

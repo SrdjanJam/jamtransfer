@@ -120,6 +120,10 @@
 
 				$("#show_Items").html(HTML);
 				
+			if	(ItemsData.showfilter == 0) {
+				$('.filter1').remove();
+				$('.filter2').remove();
+			}	
 			  $("#PaymentMethod").prepend('<option value="-1">All method</option>');
 			  $("#PaymentMethod option[value="+paymentMethod+"]").prop("selected", true)
 			  $("#PaymentMethod").change(function() {

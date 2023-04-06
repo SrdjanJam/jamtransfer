@@ -61,7 +61,9 @@ switch ($activePage) {
 			if (is_numeric($transfersFilter)) {
 				$detailid=$pathVars->fetchByIndex($indexStart + 1);
 				$isEdit=true;
-			}	
+			}
+
+			if (isset($_POST['orderid']) && $_POST['orderid']<>'') $orderid=$_POST['orderid'];	
 		}
 		break;
 		

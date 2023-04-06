@@ -179,9 +179,6 @@ $sortField 	= $_REQUEST['sortField'];
 $sortDirection 	= $_REQUEST['sortDirection'];
 $listExtras 	= $_REQUEST['listExtras'];
 
-
-
-
 $start = ((int)$page * (int)$length) - (int)$length;
 // var_dump($start);
 
@@ -201,6 +198,7 @@ $flds = array();
 
 $dbWhere = " " . $_REQUEST['where'];
 $dbWhere .= $filter;
+
 if (isset($_SESSION['UseDriverID']))  $dbWhere .=	" AND v4_OrderDetails.DriverID = '".$_SESSION['UseDriverID']."' ";
 
 if (isset($_REQUEST['document'])) {
@@ -297,6 +295,21 @@ while($row = $result->fetch_array(MYSQLI_ASSOC)){
 	$odYearsPickup[]=$row['yearPickup'];
 }
 if ($yearsPickup>0) $dbWhere .= " AND YEAR(`PickupDate`)=".$yearsPickup;*/
+
+//ako je dat orderid onda se drugi filteri ponistavaju
+$showfilter=1;
+if ($_REQUEST['orderid']<>"0") {
+	$showfilter=0;
+	$oid_arr=explode('-',$_REQUEST['orderid']);
+	if (count($oid_arr)>1) {
+		$oid=rtrim($oid_arr[0]);
+		$tn=rtrim($oid_arr[1]);
+		$dbWhere = " WHERE OrderID = ".$oid." AND TNo = ".$tn;
+	}
+	else $dbWhere = " WHERE OrderID = ".$_REQUEST['orderid'];			
+	//if (isset($_SESSION['UseDriverID']))  $dbWhere .=	" AND v4_OrderDetails.DriverID = '".$_SESSION['UseDriverID']."' ";	
+}
+	
 $odTotalRecords = $od->getFullOrderByDetailsID($sortField, $sortDirection, '' , $dbWhere);
 $dbk = $od->getFullOrderByDetailsID($sortField, $sortDirection, $limit  , $dbWhere);
 
@@ -371,6 +384,7 @@ if (count($dbk) != 0) {
 }
 # send output back
 $output = array(
+'showfilter' => $showfilter,
 'draw' => '0',
 'orderFromDate' => $orderFromDate,
 'pickupFromDate' => $pickupFromDate,

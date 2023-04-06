@@ -355,9 +355,11 @@
 				</div> <!-- /.header row border-bottom -->
 				<!-- ******************************************************************************** -->		
 			
-				{if not $isNew and $pageList}
+				{if not $isNew and $pageList} 							
 					<!-- .header -->
-					<div class="header header-edit">  
+					<div class="header header-edit 
+						{if $orderid gt 0}hidden{/if}
+					">  
 						{include file="pageListHeader.tpl"} <!-- Second header -->			   
 					</div> {* /.header *}
 				{/if}
@@ -383,13 +385,13 @@
 						NOT MODEL VIEW CONTROL
 						{elseif isset($pageName) and $pageName ne ''}
 							{include file="{$root}/plugins/{$base}/templates/{$includeFileTpl}"}
-							MODEL VIEW CONTROL SMARTY
 						{elseif $pageList}
 							{include file="pageList.tpl"} 
-							MODEL VIEW CONTROL HANDLEBARS
+							{if $orderid gt 0}
+								{include file="plugins/Dashboard/templates/getOrder.tpl"} 			
+							{/if}
 						{else}
 							{$page_render}
-							SEMI MODEL VIEW CONTROL via OB_GET_CONTENTS
 					{/if}
 
 				</div> <!-- / .body row white-bg -->
