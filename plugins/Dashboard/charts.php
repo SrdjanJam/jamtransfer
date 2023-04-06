@@ -22,3 +22,9 @@ $StatusDescription = array(
     $k = $od->getKeysBy('DetailsID', 'asc', $where);
 // filling data for charts
 
+$data1 = "data1";
+$data2 = "50";
+
+$smarty->assign("data1",$data1);
+$smarty->assign("data2",$data2);
+
