@@ -174,12 +174,10 @@ while ($d = $r->fetch_object()) {
 }
 
 date_default_timezone_set("Europe/Paris");		
-// dobavi vozace od trenutnog vlasnika timetable-a, slozi ih u sdArray sa podacima
+// dobavi vozace iz rasporeda
 $q = "SELECT * FROM v4_AuthUsers";
-//$q .= "	WHERE DriverID = " . $_SESSION['UseDriverID']; 
 $q .= " WHERE AuthUserID in (".$sdd.") ORDER BY DriverID,AuthUserID ASC";
 $r = $db->RunQuery($q);
-
 while ($d = $r->fetch_object()) {
 	if (in_array($d->AuthUserID,$subDArray)) {
 		$row = array();
@@ -230,17 +228,22 @@ while ($d = $r->fetch_object()) {
 			}
 		}
 		$sdArray[] = $row;
-	}	
-	if ($d->Active>0) {
-		$row = array();
-		$row['DriverID'] = $d->AuthUserID;
-		$row['DriverName'] = $d->AuthUserRealName;
-		$row['Mob'] = $d->AuthUserMob;		
-		//ovde izvuci vozacevo vozilo
-		$row['DriverCar'] = $vehicles[$row['DriverID']]['SubVehicleName'];		
-		$row['DriverAcomodation'] = $op->PlaceNameEN;		
-		$sddArray[] = $row;
 	}
+}	
+
+// dobavi vozace od trenutnog vlasnika timetable-a, slozi ih u sdArray sa podacima
+$q = "SELECT * FROM v4_AuthUsers";
+$q .= "	WHERE DriverID = " . $_SESSION['UseDriverID'] ." AND ACTIVE>0 ORDER BY DriverID,AuthUserID ASC"; 
+$r = $db->RunQuery($q);
+while ($d = $r->fetch_object()) {
+	$row = array();
+	$row['DriverID'] = $d->AuthUserID;
+	$row['DriverName'] = $d->AuthUserRealName;
+	$row['Mob'] = $d->AuthUserMob;		
+	//ovde izvuci vozacevo vozilo
+	$row['DriverCar'] = $vehicles[$row['DriverID']]['SubVehicleName'];		
+	$row['DriverAcomodation'] = $op->PlaceNameEN;		
+	$sddArray[] = $row;
 }
 
 // $t
