@@ -18,29 +18,37 @@
 		.drop-wrapper h3, .drag-wrapper h3{
             font-weight: bold;
 			font-size: 20px;
+			padding: 5px;
         }
 
 		.drop-wrapper .dropzoneN {
 			color: #5e5b53;
-    		background: #f7f4f1;
+    		background: #0000000a;
             min-height: 8%;
-			border: 1px solid #ebe9e8;
-			width:25%;
+			border: 1px solid #5e5b5382;
+			border-radius: 10px;
+			width:24%;
 			float:left;
 			font-family: Georgia, serif;
 			padding: 5px;
+			margin: 2px;
         }
 
 		.drag-wrapper{
             float: left;
             width: 25%;
 			min-height:100vh;
+			background: #c0c0c042;
+			border-left: 1px solid green;
         }
 
 		.dropelement {
-            border: 2px dashed rgb(100, 202, 105);
-			margin: 0 10px 5px 10px;
-			
+			border: 2px solid rgb(100, 202, 105);
+    		border-radius: 5px;
+    		margin: 0 10px 5px 10px;
+    		padding: 5px;
+			background: #c8cbb14f;
+			box-shadow: 4px 3px 13px 5px #91b6b4;
         }
 
 		.drop-wrapper .dropelement {
@@ -193,7 +201,6 @@
 									</div>
 								</a>
 							</div>
-
 						{/if}
 					{/section}
 
