@@ -21,6 +21,7 @@ else $DriverStatus	= $_POST["DriverStatus"];
 $smarty->assign("DateFrom",$DateFrom);
 $smarty->assign("DateTo",$DateTo);
 $smarty->assign("NoColumns",$NoColumns);
+$smarty->assign("NoColumnsADD",$NoColumns+1);
 $smarty->assign("DriverStatus",$DriverStatus);
 if ($DateFrom<=date('Y-m-d') && $DateTo>=date('Y-m-d')) $todayshow='';
 else $todayshow='hide';

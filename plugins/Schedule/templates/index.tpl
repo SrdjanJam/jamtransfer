@@ -226,5 +226,9 @@ hr {
 
 		
 		{/section}
+		{if $counter lt $NoColumnsADD}
+			</div>
+		{/if}
+		
 
 	</div> <!-- /.row row-shedule -->
