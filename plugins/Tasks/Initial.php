@@ -16,7 +16,6 @@ $ItemName='DisplayOrder ';
 $type='Active'; 
 $selectapproved='Approved';
 
-
 #********************************
 # kolone za koje je moguc Search 
 # treba ih samo nabrojati ovdje

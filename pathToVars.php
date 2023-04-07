@@ -103,7 +103,6 @@ switch ($activePage) {
 		
 	case 'expenses':
 	case 'tasks':
-		
 		if ($pathVars->fetchByIndex($indexStart + 1)) { 
 			if ($pathVars->fetchByIndex($indexStart + 1)=='vehicles') {
 				$VehicleID=$pathVars->fetchByIndex($indexStart + 2);
@@ -111,10 +110,17 @@ switch ($activePage) {
 			if ($pathVars->fetchByIndex($indexStart + 1)=='subdrivers') {
 				$SubDriverID=$pathVars->fetchByIndex($indexStart + 2);
 			}			
-			
 			if ($pathVars->fetchByIndex($indexStart + 1)=='actions') {
 				$ActionID=$pathVars->fetchByIndex($indexStart + 2);
 			}
+			if( $pathVars->fetchByIndex($indexStart + 1) =="paralelTasks") { 
+				$includeFile = "/ParalelTasks.php";
+				$includeFileTpl = "/paralelTask.tpl";			
+				if (is_numeric( $pathVars->fetchByIndex($indexStart + 2))) 
+					$vehicleID=$pathVars->fetchByIndex($indexStart + 2);				
+				if (is_numeric( $pathVars->fetchByIndex($indexStart + 3))) 
+					$expense=$pathVars->fetchByIndex($indexStart + 3);
+			}	
 		}	
 		break;			
 	

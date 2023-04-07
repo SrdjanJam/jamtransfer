@@ -56,22 +56,22 @@
         <div class="row">
 			<div class="col-md-6">
 				<div class="row">
-					<div class="col-md-3">
-						<label for="Datum">Vreme</label>
+					<div class="col-md-4">
+						<label for="Datum">Date & Time</label>
 					</div>
-					<div class="col-md-3">
+					<div class="col-md-4">
 						<input type="text" name="Datum1" id="Datum1" class="w100 datepicker" value="{{Datum1}}">
 					</div>
-					<div class="col-md-3">
+					<div class="col-md-4">
 						<input type="text" name="Vreme1" id="Vreme1" class="w100 timepicker" value="{{Vreme1}}">
 					</div>
 				</div>
 				<? if ($isNew) { ?>
 				<div class="row">
-					<div class="col-md-3">
+					<div class="col-md-4">
 						<label for="Task">Task</label>
 					</div>
-					<div class="col-md-9">
+					<div class="col-md-8">
 						<input type="hidden" name="actionsid" id="actionsid" value="{{Expense}}">
 						<select class="w100" name="Expense" id='actionsselect' value="{{Expense}}">
 							<?
@@ -83,10 +83,10 @@
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-md-3">
+					<div class="col-md-4">
 						<label for="DriverID"><?=DRIVER;?></label>
 					</div>
-					<div class="col-md-9">
+					<div class="col-md-8">
 						<select class="w100" name="DriverID">
 						{{#select DriverID}}
 							<?
@@ -98,12 +98,14 @@
 						</select>
 					</div>
 				</div>
+				<? } ?>	
+				
 				<div class="row">
-					<div class="col-md-3">
+					<div class="col-md-4">
 						<label for="Vehicle">Vehicle</label>
 					</div>
-					<div class="col-md-9">
-						<select class="w100" name="VehicleID">
+					<div class="col-md-8">
+						<select class="w100" name="VehicleID" <? if (!$isNew) { ?> disabled<? } ?> >
 						{{#select VehicleID}}
 							<?
 							foreach ($vehicleArr as $vehicle) {
@@ -114,35 +116,34 @@
 						</select>
 					</div>
 				</div>
-				<? } ?>	
 				
 				<div class="row">
-					<div class="col-md-3">
+					<div class="col-md-4">
 						<label for="Description"><?= DESCRIPTION ?></label>
 					</div>
-					<div class="col-md-9">
+					<div class="col-md-8">
 						<textarea name="Description" id="Description" class="w100" style="resize:none">{{Description}}</textarea>
 					</div>
 				</div>	
 				<? if (!$isNew) { ?>				
 				<div class="row">
-					<div class="col-md-3">
+					<div class="col-md-4">
 						<label for="Vreme">Finished</label>
 					</div>
-					<div class="col-md-9">
+					<div class="col-md-8">
 						{{Vreme}}
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-md-3">
+					<div class="col-md-4">
 						<label for="Note"><?= NOTE ?></label>
 					</div>
-					<div class="col-md-9">
+					<div class="col-md-8">
 						{{Note}}
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-md-3">
+					<div class="col-md-4">
 						<label for="Mark">Mark</label>
 					</div>
 					<div class="col-md-1">
@@ -153,10 +154,10 @@
 					</div>
 				</div>					
 				<div class="row">
-					<div class="col-md-3">
+					<div class="col-md-4">
 						<label for="Approved">Approved</label>
 					</div>
-					<div class="col-md-9 approved">
+					<div class="col-md-8 approved">
 						<large>{{yesNoSliderEdit Approved 'Approved' }}</large>
 					</div>
 				</div>								

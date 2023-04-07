@@ -97,12 +97,11 @@ $mdk = $md->getKeysBy('ModulID ' ,'asc', "where code='$activePage'");
 if (count($mdk)==1 && in_array($activePage,$active_pages)) {
 	$key=$mdk[0];
 	$md->getRow($key);
-	if (is_dir($modulesPath . '/'.$md->getBase())) {
-		require_once $modulesPath . '/'.$md->getBase().$includeFile;
-	
+	if (is_dir($modulesPath . '/'.$md->getBase())) {	
 		if (is_dir($modulesPath . '/'.$md->getBase().'/templates')) 
-			$pageName=$md->getName();		
+			$pageName=$md->getName();
 		else $pageList=$md->getName();
+		require_once $modulesPath . '/'.$md->getBase().$includeFile;		
 	}	
 	/*$md->getRow($md->getParentID());
 	$parentFolder=$md->getBase();

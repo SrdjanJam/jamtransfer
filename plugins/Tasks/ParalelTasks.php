@@ -1,84 +1,41 @@
 <?
-header('Content-Type: text/javascript; charset=UTF-8');
-error_reporting(E_PARSE);
+error_reporting(E_ALL);
+	$expense=109;
 
-require_once 'Initial.php';
-	
-
-	# init vars
-	$out = array();
-
-	# init class
-	// $ac = new v4_SubActivity();
-	// $eq = new v4_Request();
-	
-	# filters
-
-	$ID = $_REQUEST['ItemID'];
-
-	// echo $ID;
-
-	# Details  red
-	$db->getRow($ID);
-
-	# get fields and values
-	$detailFlds = $db->fieldValues();
-
-	// print_r($detailFlds);
-
-	$vreme_arr=explode(' ',$db->getDatum());
-
-
-	
-	$detailFlds['Datum1']=$vreme_arr[0];
-	$detailFlds['Vreme1']=$vreme_arr[1];
-
-	//prethodno select iz redova tabele
-	// $db = new DataBaseMySql();
-
-	
 	// check list
 	$checklist=array();
+	$ids="";
 
-	// print_r($db);
-	
-	 $sqls="SELECT * FROM `v4_ActionRequestItem`,`v4_Request` 
-		WHERE `ID`=v4_ActionRequestItem.`RequestID` AND `ActionID`=".$db->getExpense()."
-		 ORDER BY `DisplayOrder`";
 
-	
-	// echo $sqls;
-
-	
-	$query=mysqli_query($dbf->conn, $sqls) or die('Error in RequestCheckList query' . mysqli_connect_error());
+	$sqls="SELECT `ID`,`Datum`  FROM `v4_SubActivity` WHERE `OwnerID`=".$_SESSION['UseDriverID']." and `Expense`=".$expense." and `VehicleID`=".$vehicleID." ORDER by Datum DESC Limit 5";
+	$query=mysqli_query($db->conn, $sqls) or die('Error in SubActivity query' . mysqli_connect_error());
 	while($list = mysqli_fetch_object($query) ) {
-		$checklist_row=array();
-		$checklist_row['title']=$list->Title;
-		$checklist_row['active']=$list->Active;
-		$sqls2="SELECT * FROM `v4_TaskCheckList` WHERE `ActivityID`=".$ID. " AND  `RequestID`=".$list->RequestID;
-		$checklist_row['check']=0;
-		$query2=mysqli_query($dbf->conn, $sqls2) or die('Error in TaskCheckList query' . mysqli_connect_error());
-		$list2=mysqli_fetch_object($query2);
-		if (isset($list2)) {
-			if ($list->Active==1) $checklist_row['check']=1;
-			if ($list->Active==2) $checklist_row['photo']=$list2->Photo;
-			
-		}
-		
-		
-		$checklist[]=$checklist_row;	
-		
-		
-		
+		$list_row=array();
+		$list_row['id']=$list->ID;
+		$list_row['datum']=$list->Datum;
+		$list_all[]=$list_row;
+		$ids.=$list->ID.",";
 	}	
-	$detailFlds['checklist']=$checklist;
-
-
-
-	$out[] = $detailFlds;
+	$ids = substr($ids,0,strlen($ids)-1);
 	
 
-	# send output back
-	$output = json_encode($out);
-	echo $output;
-	
+	$sqls2="SELECT * FROM `v4_ActionRequestItem`,`v4_Request` 
+		WHERE `ID`=v4_ActionRequestItem.`RequestID` AND `ActionID`=".$expense." ORDER BY `DisplayOrder`";
+	$query2=mysqli_query($db->conn, $sqls2) or die('Error in RequestCheckList query' . mysqli_connect_error());
+	while($list2 = mysqli_fetch_object($query2) ) {
+		$checklist_row=array();
+		$checklist_row['title']=$list2->Title;
+		$checklist_row['active']=$list2->Active;
+		$sqls3="SELECT * FROM `v4_TaskCheckList` WHERE `ActivityID` in (".$ids. ") AND  `RequestID`=".$list2->RequestID;
+		$query3=mysqli_query($db->conn, $sqls3) or die('Error in TaskCheckList query' . mysqli_connect_error());
+		//$list3=mysqli_fetch_object($query3);
+		while($list3 = mysqli_fetch_object($query3) ) {
+			$checklist_row['check'][$list3->ActivityID]=0;			
+			if ($list2->Active==1) $checklist_row['check'][$list3->ActivityID]=1;
+			if ($list2->Active==2) $checklist_row['photo'][$list3->ActivityID]=$list3->Photo;
+		}
+		$checklist[]=$checklist_row;	
+	}
+	$smarty->assign('list_all',$list_all);
+	$smarty->assign('checklist',$checklist);
+	$smarty->assign('pageList',false);

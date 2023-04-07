@@ -1,6 +1,8 @@
 <?
+	$pageList="Tasks";
+	$pageName="";
+	
 	if (!$isNew) require_once 'ListTemplate.php';
-	else {
 		//punjnje select box-ova
 		//akcije-troskovi
 		require_once ROOT.'/db/v4_Actions.class.php';
@@ -33,8 +35,8 @@
 		while($s = $r->fetch_object()) {
 			$expenseArr[] = $s;
 		}	
-	}
 	
 	require_once 'EditForm.php';
 	$smarty->assign('ItemID','ID');
 	$smarty->assign('pagelength',20);
+	

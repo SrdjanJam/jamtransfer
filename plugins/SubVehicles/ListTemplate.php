@@ -107,7 +107,12 @@
 					<!-- Tasks: -->
 					<div class="col-md-1 col-xs-6">
 						<span><a target='_blank' href='tasks/vehicles/{{VehicleID}}'><?=TASKS;?></a></span>
-					</div>				
+					</div>		
+
+					<!-- Paralel Tasks: -->
+					<div class="col-md-1 col-xs-6">
+						<span><a target='_blank' href='tasks/paralelTasks/{{VehicleID}}/109'>Paralel</a></span>
+					</div>						
 
 				</div>
 			</form>
