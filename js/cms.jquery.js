@@ -115,7 +115,7 @@ function paginator(page, recordsTotal, length, callFunction) {
 
 		// PAGINATION DROPDOWN and BUTTONS -> #pageSelect div element
 		var selHtml = '<button class="btn btn-primary align" onclick="paginatorPrevPage();">Prev</button>';
-		selHtml += '<select id="pageSelector" onchange="'+ callFunction + ';">'; // ajax refresh prikaza
+		selHtml += '<select id="pageSelector" onchange="'+ callFunction + ';" style="padding: 5px;margin: 10px;width: 100px;border-radius:5px;box-shadow: 0px 0px 4px 1px #888888;">'; // ajax refresh prikaza
 		for (var i=1;i<=iMaxPages;i++)
 		{
 			selHtml += '<option value="'+i+'"';
