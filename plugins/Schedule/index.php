@@ -75,6 +75,16 @@ foreach ($olKeys as $olid) {
 	$olKeys2[]=$ol->getDetailsID();
 	}
 
+
+// customers by email
+$qC = "SELECT `CustType`,`CustEmail` FROM `v4_Customers`" ;
+$rC = $db->RunQuery($qC);
+$customers=array();
+while ($tC = $rC->fetch_object()) {
+	$customers[$tC->CustEmail]=$tC->CustType;
+}
+
+
 // Svi transferi za hvatanje other transfer
 $details=array();
 // za proveru return transfer-a

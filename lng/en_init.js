@@ -39,10 +39,10 @@ languages['nl'] = 'Nederlands';
 
 var customers = {};
 customers[0] = 'Normal';
-customers[1] = 'Platinum';
-customers[2] = 'Gold';
-customers[3] = 'Silver';
-customers[4] = 'Premium';
+customers[1] = 'Premium';
+customers[2] = 'Silver';
+customers[3] = 'Gold';
+customers[4] = 'Platinum';
 
 var yesNo = {};
 yesNo[0] = 'No';

@@ -80,6 +80,35 @@
 	if($t->DriverConfStatus >2) $t->bgColor = "#ffe599";										
 	if($t->TransferStatus == "5") $t->bgColor = "#fefefe";
 	if($t->TransferIn) $t->bgColor = "#b6d7a8";	
+	$t->CustomerType="";
+	if($t->MUserLevelID==3 or $t->MUserLevelID==9) {
+		$mkeys=array_keys($customers);
+		if (in_array($t->MPaxEmail,$mkeys)) {
+			$ctype=$customers[$t->MPaxEmail];
+			switch ($ctype) {
+				case 0:
+					$t->CustomerType="Customer";
+					$t->CustomerTypeColor="white";
+					break;			
+				case 1:
+					$t->CustomerType="Premium";
+					$t->CustomerTypeColor="#ADD8E6";										
+					break;			
+				case 2:
+					$t->CustomerType="Silver";
+					$t->CustomerTypeColor="#C0C0C0";										
+					break;			
+				case 3:
+					$t->CustomerType="*** Gold";
+					$t->CustomerTypeColor="#FFD700";															
+					break;			
+				case 4:
+					$t->CustomerType="**** Platinum";
+					$t->CustomerTypeColor="#E5E4E2";					
+					break;
+			}	
+		}
+	}	
 		
 	// drugi transfer		
 	$otherTransfer=getOtherTransferIDArray($t->DetailsID,$details);

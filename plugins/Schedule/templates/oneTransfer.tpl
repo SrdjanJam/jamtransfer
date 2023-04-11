@@ -25,9 +25,11 @@
 					<i class='fa fa-user-secret'></i>
 						{if $sdArray[pom].Transfers[pom2].Image ne ""}
 							<img src='i/agents/{$sdArray[pom].Transfers[pom2].Image}'>	 
-							<b>{$sdArray[pom].Transfers[pom2].AuthUserRealName}</b>
+						{else}	
+							<b>{$sdArray[pom].Transfers[pom2].AuthUserRealName}</b>			
 						{/if}
 				{/if}
+				<small class="badge" style="background-color:{$sdArray[pom].Transfers[pom2].CustomerTypeColor}">{$sdArray[pom].Transfers[pom2].CustomerType}</small>								
 			</span>					
 			<strong>
 				<a href="orders/detail/{$sdArray[pom].Transfers[pom2].DetailsID}" target="_blank">

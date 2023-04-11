@@ -185,7 +185,7 @@
 						<label for="ReservationNumber">Number of reservations</label>
 					</div>
 					<div class="col-md-9">
-						{{ReservationNumber}}
+						{{OrdersCount}}
 					</div>
 				</div>				
 				<div class="row">
@@ -193,7 +193,7 @@
 						<label for="ReservationNumber">Value of reservations</label>
 					</div>
 					<div class="col-md-9">
-						{{ReservationValue}}
+						{{OrdersValue}}
 					</div>
 				</div>	
 				<!-- CUSTOMER_TYPE: -->

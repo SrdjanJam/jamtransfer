@@ -27,8 +27,6 @@ require_once 'Initial.php';
 		}	
 	}
 	$detailFlds['PersonalCode']="PC".substr(md5($detailFlds['CustEmail']),0,10);
-	$detailFlds['ReservationNumber']=$countom;
-	$detailFlds['ReservationValue']=number_format($sumom,2,'.',',');
 	$detailFlds['Language']=$detailFlds['CustLanguage'];
 	$out[] = $detailFlds;
 

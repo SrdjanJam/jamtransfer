@@ -7,7 +7,7 @@
 <!-- LIST: -->
 	<div class="row row-edit">
 
-		<div class="col-md-3">
+		<div class="col-md-1">
 			<?=CUSTOMER_ID;?>
 		</div>
 
@@ -21,6 +21,10 @@
 
 		<div class="col-md-3">
 			<?=CUSTOMER_EMAIL;?>
+		</div>		
+		
+		<div class="col-md-2">
+			<?=TYPE;?>
 		</div>
 
 					
@@ -34,7 +38,7 @@
 			style="border-top:1px solid #ddd" 
 			id="t_{{CustID}}">
 
-				<div class="col-sm-3">
+				<div class="col-sm-1">
 					{{CustID}}
 				</div>
 				<div class="col-sm-3">
@@ -45,6 +49,9 @@
 				</div>
 				<div class="col-sm-3">
 					{{CustEmail}}
+				</div>				
+				<div class="col-sm-2">
+					{{displayCutomerType CustType}}
 				</div>
 
 			</div>

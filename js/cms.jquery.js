@@ -194,7 +194,7 @@ console.log("conf"+conf);
 	console.log("END");
 }
 
-function getTodoData() {
+/*function getTodoData() {
 	var url = 'api/'+
 	"todoItems.php?action=get&callback=?";
 
@@ -212,7 +212,7 @@ function getTodoData() {
 		  $("#showToDo").html(HTML);
 		}
 	});
-}
+}*/
 
 
 
@@ -426,6 +426,13 @@ FORMATIRANJE USER LEVELA ZA LISTU
 
 Handlebars.registerHelper("displayUserLevelText", function(levelNumeric) {
 	return userLevels[levelNumeric];
+});
+
+/*
+FORMATIRANJE CUSTOMER TYPE-a
+*/
+Handlebars.registerHelper("displayCutomerType", function(custType) {
+	return customers[custType];
 });
 
 /*
