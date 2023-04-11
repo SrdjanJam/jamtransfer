@@ -268,6 +268,7 @@
     resize: none;
 }
 
+
 .textarea-dialog{
     width: 100% !important;
     height:20% !important;
@@ -503,6 +504,28 @@
     cursor: auto;
 }
 
+/* Checkbox: */
+.row-checkbox-edit input[type=checkbox]{
+    display: block;
+    cursor: pointer;
+    /* appearance: none; */
+    background-color: #fff;
+    margin: 0;
+    font: inherit;
+    color: currentColor;
+    width: 2.15em;
+    height: 2.15em;
+    border: 0.15em solid currentColor;
+    border-radius: 0.15em;
+    transform: translateY(-0.075em);
+    box-shadow: 0px 0px 2px 1px #888888;
+}
+
+/* Buttons: */
+.go-edit, .rate-edit{
+    box-shadow: 2px 2px 5px 1px #42484d;
+}
+/* ====================================================================================== */
 
 {* END OF PLUGINS FOLDER: ===============================================================  *}
 {* ======================================================================================  *}

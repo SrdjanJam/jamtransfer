@@ -1,6 +1,14 @@
 
 <script type="text/x-handlebars-template" id="ItemListTemplate">
 
+	<div class="row row-edit">
+		
+		<div class="col-md-1">
+			<?=COMPANY_INFO;?>
+		</div>
+
+	</div>
+
 	{{#each Item}}
 		<div  onclick="oneItem({{ID}});">
 		
@@ -10,15 +18,6 @@
 		
 					<div class="col-sm-3">
 						<strong>{{co_name}}</strong>
-					</div>
-
-					<div class="col-sm-2">
-					</div>
-
-					<div class="col-sm-2">
-					</div>
-
-					<div class="col-sm-3">
 					</div>
 			</div>
 		</div>

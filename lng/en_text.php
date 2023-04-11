@@ -266,6 +266,8 @@ define("DRIVER_TEL", "Partner's Tel");
 define("DROPOFF_ADDRESS", "Drop-Off Address");
 define("DROPOFF_NAME", "Drop-Off Name");
 define("DURATION", "Duration");
+define("DISPLAYED_KM","Displayed km");
+
 define("EDIT", "Edit");
 define("EMAIL", "E-mail");
 define("EMAIL_TO", "E-mail to");
@@ -274,6 +276,7 @@ define("EXTRAS", "Extra services");
 define("EXPANCE_TITLE", "Title");
 define("EXPANCE_AMOUNT", "Amount");
 define("EXPANCE_APPROVED", "Approved");
+define("EXPENSES", "Expenses");
 
 define("FACEBOOK", "Facebook");
 define("FINDER", "Finder");
@@ -289,12 +292,15 @@ define("GRAPH", "Graph");
 define("HEADER_IMAGES", "Header Images");
 define("HELLO", "Hello");
 define("HELP", "Help");
+
 define("ID", "ID");
 define("IMAGE", "Image");
 define("IMAGE_MANAGER", "Image manager");
 define("ISLAND", "On island");
 define("IMAGE_MP","Image Most Popular");
 define("IMAGE_BG","Beckground Image");
+define("IMAGE_DESCRIPTION","Image Description");
+
 define("KEY", "Key");
 define("LANGUAGE", "Language");
 define("LASTCHANGE", "Last Change");
@@ -384,6 +390,7 @@ define("ORDERS", "Orders");
 define("ORDERS_BY_B_DATE", "by booking date");
 define("ORDERS_BY_TR_DATE", "by transfer date");
 define("OWNERID", "Owner ID");
+
 define("PARENT_ID", "Parent ID");
 define("PAGE_NOT_FOUND", "Page not found!");
 define("PAGE", "Page");
@@ -429,6 +436,9 @@ define("PRINTIT", "Print it");
 define("PROVISION", "Discount");
 define("PROFILE", "Profile");
 define("PUBLISHED", "Published");
+define("PHONE", "Phone");
+
+
 define("QUICK_EMAIL", "Quick Email");
 
 define("READY_FINISHED","Ready&Finished");
@@ -447,6 +457,7 @@ define("ROUTES", "Routes");
 define("REQUEST_ID", "Request ID");
 define("REQUEST_TITLE", "Request Title");
 define("REPLY_TO", "ReplyTo");
+define("RAPTOR", "RAPTOR");
 
 define("S1END", "Season 1 ends on");
 define("S1PERCENT", "(%)");
@@ -542,6 +553,7 @@ define("TYPE", "Type");
 define("TASK_DATE", "Date");
 define("TOP_ROUTE_ID", "ID");
 define("TO_NAME", "To Name");
+define("TASKS", "Tasks");
 
 define("UPDATED", "Updated");
 define("UPLOAD_IMAGES", "Drop Images Here");
