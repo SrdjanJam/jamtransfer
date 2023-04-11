@@ -8,7 +8,7 @@
                     <input type="text" name="exchangeRate" value="{$tecaj}"> RSD
                 </div>		
                 <div class="col-md-6">
-                    <button name="setRate" type="submit" class="btn btn-primary " value="1">{$SET_NEW_RATE}</button>
+                    <button name="setRate" type="submit" class="btn btn-primary rate-edit " value="1">{$SET_NEW_RATE}</button>
                 </div>	
             </div>
             
