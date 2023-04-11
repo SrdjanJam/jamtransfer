@@ -59,7 +59,7 @@
 			<form action="" method="post">
 			
 				<div class="row">
-					<div class="col-md-12">
+					<div class="col-md-12 driver-invoice">
 						<h2>New Driver Invoice</h2> 
 					</div>
 				</div>
@@ -82,39 +82,45 @@
 					</div>
 				</div>
 
+
 				{* Checkbox: *}
-				<div class="row">
-					<div class="col-md-1">
-						<label><b>Include</b></label>
+				<div class="row-checkbox-edit">
+					<div class="row">
+						<div class="col-md-1">
+							<label><b>Include</b></label>
+						</div>
+
+						<div class="col-md-2">
+							Online<input type="checkbox" name="Online" value="1">
+						</div>
+						<div class="col-md-2">
+							Cash<input type="checkbox" name="Cash" value="1">
+						</div>			
+						<div class="col-md-2">
+							Online + Cash <input type="checkbox" name="OnlineCash" value="1">
+						</div>
+						<div class="col-md-2">
+							Invoice <input type="checkbox" name="Invoice" value="1">
+						</div>
+						<div class="col-md-2">
+							Invoice 2 <input type="checkbox" name="Invoice2" value="1">
+						</div>
 					</div>
 
-					<div class="col-md-2">
-						Online<input type="checkbox" name="Online" class="form-control" value="1">
-					</div>
-					<div class="col-md-2">
-						Cash<input type="checkbox" name="Cash" class="form-control" value="1">
-					</div>			
-					<div class="col-md-2">
-						Online + Cash <input type="checkbox" name="OnlineCash" class="form-control" value="1">
-					</div>
-					<div class="col-md-2">
-						Invoice <input type="checkbox" name="Invoice" class="form-control" value="1">
-					</div>
-					<div class="col-md-2">
-						Invoice 2 <input type="checkbox" name="Invoice2" class="form-control" value="1">
-					</div>
-
+					<div class="row">
 					<!-- select all boxes -->
-					<div class="col-md-1">
-						<span style="color:rgb(21 85 229);">Check All</span><input type="checkbox" name="select-all" class="form-control" id="select-all" />
-					</div>	
+						<div class="col-md-1 col-md-offset-1">
+							<span style="color:rgb(21 85 229);">Check All</span><input type="checkbox" name="select-all" id="select-all" />
+						</div>	
+					</div>
 
-				</div>
+				</div> <!-- End of .row-checkbox-edit -->
+
 
 				<div class="row">
 					<div class="col-md-4 col-md-offset-2">
 						<br>
-						<button class="btn btn-primary" type="submit" name="Submit" value="1">Go</button>
+						<button class="btn btn-primary go-edit" type="submit" name="Submit" value="1">Go</button>
 					</div>
 				</div>
 
