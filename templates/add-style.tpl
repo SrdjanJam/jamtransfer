@@ -85,8 +85,8 @@
     box-shadow: 2px 2px 5px #424181;
 }
 .navbar-header .btn-primary-edit:hover{
-    background-color: #36619f;
-    border-color: #3c72bc;
+    background-color: #36619f !important;
+    border-color: #3c72bc !important;
 }
 
 .cut-name{
@@ -525,6 +525,18 @@
 .go-edit, .rate-edit{
     box-shadow: 2px 2px 5px 1px #42484d;
 }
+
+.btn.btn-primary:hover,
+.btn.btn-primary:active,
+.btn.btn-primary.hover {
+  background: #66bbee;
+  border-color: #367fa9;
+}
+
+#pageSelect .btn.btn-primary{
+    box-shadow: 0px 0px 4px 1px #888888;
+}
+
 /* ====================================================================================== */
 
 {* END OF PLUGINS FOLDER: ===============================================================  *}
@@ -557,7 +569,6 @@
     
 }
 /* ============================================================================== */
-
 
 
 
