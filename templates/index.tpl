@@ -238,6 +238,7 @@
 
 							</div>
 						</li>
+
 						<!-- End of profile ======================================================================== -->
 
 						<!-- Setting Driver ======================================================================== -->
@@ -405,7 +406,7 @@
 					{/if}
 
 					<div class="pull-right pull-right-edit">
-						Powered by <strong>Jamtransfer</strong>
+						Powered by <strong><a href="cms-taxi.com">CMS TAXI</a></strong>
 					</div>
 					
 					<div class="backdrop"><div class="spiner"></div></div>
