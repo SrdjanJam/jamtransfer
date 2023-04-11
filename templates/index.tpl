@@ -406,7 +406,7 @@
 					{/if}
 
 					<div class="pull-right pull-right-edit">
-						Powered by <strong><a href="cms-taxi.com">CMS TAXI</a></strong>
+						Powered by <strong><a href="https://taxicms.com/">Taxi CMS</a></strong>
 					</div>
 					
 					<div class="backdrop"><div class="spiner"></div></div>
