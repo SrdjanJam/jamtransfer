@@ -1,7 +1,10 @@
 {include file="{$root}/templates/add-style.tpl"}
 
 <div class="container white">
-    <h2>New Agent Invoice</h2>
+
+    <div class="agent-invoice">
+        <h2>New Agent Invoice</h2>
+    </div>
 
     {if isset($smarty.request.StartDate) && isset($smarty.request.EndDate) }
         
@@ -59,44 +62,50 @@
                     </div>
                 </div>
 
-                <div class="row"><div class="col-md-12"><hr/></div></div>
 
-                <div class="row">
-                    <div class="col-md-2">
-                        <label><b>Sistems</b></label>
-                    </div>
-                    <div class="col-md-2">
-                        Sistem <input type="checkbox" name="Sistem" class="form-control" value="1">
-                    </div>
-                </div>
+                <div class="row-checkbox-edit">
 
-                <div class="row"><div class="col-md-12"><hr/></div></div>
+                    <div class="row"><div class="col-md-12"><hr/></div></div>
 
-                <div class="row">
-                    <div class="col-md-2">
-                        <label><b>Include</b></label>
-                    </div>
-                    <div class="col-md-2">
-                        No-show <input type="checkbox" name="NoShow" class="form-control" value="1">
-                    </div>
-                    <div class="col-md-2">
-                        Driver error <input type="checkbox" name="DrErr" class="form-control" value="1">
-                    </div>
-                    <div class="col-md-4">
-                        Completed transfers only <input type="checkbox" name="CompletedTransfers" class="form-control" value="1">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label><b>Sistems</b></label>
+                        </div>
+                        <div class="col-md-2">
+                            Sistem <input type="checkbox" name="Sistem" value="1">
+                        </div>
                     </div>
 
-                    <!-- select all boxes -->
-					<div class="col-md-2">
-                        <span style="color:rgb(21 85 229);">Check All</span><input type="checkbox" name="select-all" class="form-control" id="select-all" />
-                    </div>	
+                    <div class="row"><div class="col-md-12"><hr/></div></div>
 
-                </div>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label><b>Include</b></label>
+                        </div>
+                        <div class="col-md-2">
+                            No-show <input type="checkbox" name="NoShow" value="1">
+                        </div>
+                        <div class="col-md-2">
+                            Driver error <input type="checkbox" name="DrErr" value="1">
+                        </div>
+                        <div class="col-md-4">
+                            Completed transfers only <input type="checkbox" name="CompletedTransfers" value="1">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <!-- select all boxes -->
+                        <div class="col-md-2 col-md-offset-2">
+                            <span style="color:rgb(21 85 229);">Check All</span><input type="checkbox" name="select-all" id="select-all" />
+                        </div>	
+                    </div>
+
+                </div> <!-- End of .row-checkbox-edit -->
 
                 <div class="row">
                     <div class="col-md-4 col-md-offset-2">
                         <br>
-                        <button class="btn btn-primary" type="submit" name="Submit" value="1">Go</button>
+                        <button class="btn btn-primary go-edit" type="submit" name="Submit" value="1">Go</button>
                         <br><br>
                     </div>
                 </div>
