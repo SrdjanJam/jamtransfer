@@ -21,11 +21,11 @@
 		</div>	
 
 		<div class="col-md-2">
-			<?=CONNECTED;?>
+			<?=DATE;?>
 		</div>
 
 		<div class="col-md-2">
-			<?=CONNECTED;?>
+			<?=PRICE;?>
 		</div>
 
 		<div class="col-md-1">
