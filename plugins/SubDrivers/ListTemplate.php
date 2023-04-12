@@ -20,10 +20,12 @@
 
 		<div class="col-md-2">
 			<i class="fa fa-envelope"></i>
+			<?=EMAIL;?>
 		</div>
 
 		<div class="col-md-1">
 			<i class="fa fa-phone"></i>
+			<?=PHONE;?>
 		</div>
 
 		<div class="col-md-1">
@@ -39,7 +41,7 @@
 		</div>
 				
 		<div class="col-md-1">
-			<a target='_blank' href='plugins/SubDrivers/getRaptorDrivers.php' style="color:blue;background:silver;"><i class="fas fa-external-link"></i>&nbsp;<u>RAPTOR</u></a>
+			<a target='_blank' href='plugins/SubDrivers/getRaptorDrivers.php' style="color:blue;background:silver;"><i class="fas fa-external-link"></i>&nbsp;<u><?=RAPTOR;?></u></a>
 		</div>				
 	</div>
 
