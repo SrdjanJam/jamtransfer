@@ -29,8 +29,8 @@ $smarty->assign('selectapproved',true);
 			<?=EXPANCE_AMOUNT;?>
 		</div>
 
-		<div class="col-md-1">
-			Displayed km
+		<div class="col-md-2">
+			<?=DISPLAYED_KM;?>
 		</div>
 
 		<div class="col-md-1">
@@ -77,7 +77,7 @@ $smarty->assign('selectapproved',true);
 						{{/compare}}
 					</div>
 
-					<div class="col-md-1">
+					<div class="col-md-2">
 						{{Description}}
 					</div>
 					
