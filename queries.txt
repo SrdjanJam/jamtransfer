@@ -1,0 +1,10 @@
+SELECT `RouteID`,`FromID`  FROM `v4_routes` WHERE `FromID` in (Select TerminalID from v4_terminals)
+SELECT * FROM `v4_routes` WHERE `RouteID` not in (Select RouteID from v4_routesterminals)
+
+SELECT RouteID FROM `v4_driverterminals`,v4_RoutesTerminals WHERE `DriverID`=876 and v4_driverterminals.TerminalID=v4_routesterminals.TerminalID
+
+SELECT CONCAT(`RouteID`,'-',`VehicleTypeID`) as code FROM `v4_services` WHERE `OwnerID`=876
+
+SELECT CONCAT(`RouteID`,'-',`VehicleTypeID`) as code FROM v4_driverroutes,v4_vehicles where v4_driverroutes.OwnerID=v4_vehicles.OwnerID
+
+create table xx1 SELECT * FROM `v4_OrderDetails` WHERE `TransferStatus` not in (3,9) and YEAR(`OrderDate`)>2021 and `RouteID`=0 and PickupID>0 and DropID>0 and `DetailsID` not in (SELECT DetailsID FROM `v4_OrderDetails`, v4_Routes WHERE ((`PickupID` = v4_Routes.FromID AND `DropID` = v4_Routes.ToID) OR (`DropID` = v4_Routes.FromID AND `PickupID` = v4_Routes.ToID)) AND `TransferStatus` NOT IN(3, 9) AND YEAR(`OrderDate`) > 2021 AND v4_OrderDetails.RouteID = 0 AND `PickupID` > 0 AND `DropID` > 0)
