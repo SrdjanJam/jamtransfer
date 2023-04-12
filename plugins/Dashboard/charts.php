@@ -32,6 +32,30 @@ $StatusDescription = array(
 	$values.="]";
 
 	$smarty->assign("levels",$levels);
-	$smarty->assign("values",$values);
+	$smarty->assign("values",$values);	
+	$timeBegin=time()-365*24*3600;
+	$timeBeginM=date('m',$timeBegin);
+	$timeEndM=date('m',time());
+	$timeBeginY=date('Y',$timeBegin);
+	$timeEndY=date('Y',time());
+	$timeBeginF="'".$timeBeginY."-".$timeBeginM."-01'";
+	$timeEndF="'".$timeEndY."-".$timeEndM."-01'";
+	$q2 = "SELECT MONTHNAME(`MOrderDate`) as month, YEAR(`MOrderDate`) as year, sum(`MOrderPriceEUR`) as value FROM `v4_OrdersMaster` 
+		WHERE `MOrderStatus` not in (3,9) and MOrderDate>=(".$timeBeginF.") and  MOrderDate<(".$timeEndF.")
+		GROUP BY MONTH(`MOrderDate`) ORDER BY MOrderDate";
+	$r2 = $db->RunQuery($q2);
+	$months2="[";
+	$values2="[";
+	while ($t2 = $r2->fetch_object()) {
+		$months2.="'".$t2->month." ".$t2->year."'";
+		$months2.=",";		
+		$values2.="'".$t2->value."'";
+		$values2.=",";		
+	}
+	$months2.="]";
+	$values2.="]";
+
+	$smarty->assign("months2",$months2);
+	$smarty->assign("values2",$values2);
 // filling data for charts
 

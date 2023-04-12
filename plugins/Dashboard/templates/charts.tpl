@@ -56,8 +56,8 @@ new Chart("pie-chart", {
 });
 
 // Bar Chart:
-var xValues = ["Italy", "France", "Spain", "USA", "Argentina","France", "Spain", "USA", "Argentina", "USA", "Argentina"];
-var yValues = [55, 49, 44, 24, 15, 55, 49, 44, 24, 15,55, 49];
+var xValues = {/literal}{$months2}{literal};
+var yValues = {/literal}{$values2}{literal};
 var barColors = ["red", "green","blue","orange","brown", "green","blue","orange","brown", "green","blue"];
 
 new Chart("bar-chart", {
@@ -73,7 +73,7 @@ new Chart("bar-chart", {
     legend: {display: false},
     title: {
       display: true,
-      text: "World Wine Production 2018"
+      text: "Value of ordered transfers in the last year"
     }
   }
 });
