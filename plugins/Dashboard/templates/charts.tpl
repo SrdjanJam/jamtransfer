@@ -39,7 +39,7 @@ new Chart("pie-chart", {
   options: {
     title: {
       display: true,
-      text: "Transfers purchaser"
+      text: "Value of ordered transfers in the last year by purchaser"
     },
     
   }
@@ -73,7 +73,7 @@ new Chart("bar-chart", {
     legend: {display: false},
     title: {
       display: true,
-      text: "Value of ordered transfers in the last year"
+      text: "Value of ordered transfers in the last year by months"
     }
   }
 });

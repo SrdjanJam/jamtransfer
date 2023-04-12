@@ -18,7 +18,15 @@ $StatusDescription = array(
 	require_once ROOT . '/db/db.class.php';
 	
 	$db = new DataBaseMysql();
-	$q = "SELECT v4_AuthLevels.AuthLevelName as level,count(*) as value FROM `v4_OrderDetails`,v4_AuthLevels where `TransferStatus` <9 and  v4_AuthLevels.AuthLevelID=`UserLevelID` group by `UserLevelID`";
+	
+	$timeBegin=time()-365*24*3600;
+	$timeBeginM=date('m',$timeBegin);
+	$timeBeginY=date('Y',$timeBegin);
+	$timeBeginD=date('d',$timeBegin);
+	$timeBeginF="'".$timeBeginY."-".$timeBeginM."-".$timeBeginD."'";
+	$q = "SELECT v4_AuthLevels.AuthLevelName as level,count(*) as value FROM `v4_OrderDetails`,v4_AuthLevels 
+		WHERE `TransferStatus` <9 and  v4_AuthLevels.AuthLevelID=`UserLevelID` AND OrderDate>=(".$timeBeginF.")
+		 GROUP BY `UserLevelID`";
 	$r = $db->RunQuery($q);
 	$levels="[";
 	$values="[";
