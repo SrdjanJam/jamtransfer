@@ -3,14 +3,12 @@ header('Content-Type: text/javascript; charset=UTF-8');
 require_once '../config.php';
 
 # init libs
-require_once '../db/v4_AuthUsers.class.php';
 require_once '../db/v4_Services.class.php';
 
 # init vars
 $out = array();
 
 # init class
-$au = new v4_AuthUsers();
 $sr = new v4_Services();
 # service
 
@@ -42,40 +40,33 @@ foreach($srKeys2 as $n => $ID) {
 	}
 }
 
-//$auWhere = " WHERE AuthLevelID = '31' AND Active='1' ";
-//$auKeys = $au->getKeysBy('Country, Terminal, AuthUserCompany', 'asc', $auWhere);
-
 $j=0;
 foreach($driverID as $n => $ID) {
 	$j++;
-	$au->getRow($ID);
+	$u=$users[$ID];
 	$out[] = array(
-				'UserID'		=> $au->getAuthUserID(), 
-				'RealName' 		=> $au->getAuthUserRealName(),
-				'Company' 		=> $au->getAuthUserCompany(),
-				'Tel' 			=> $au->getAuthUserTel(),
-				'Email'			=> $au->getAuthUserMail(),
-				'Country'       => $au->getCountry(),
+				'UserID'		=> $u->AuthUserID, 
+				'RealName' 		=> $u->AuthUserRealName,
+				'Company' 		=> $u->AuthUserCompany,
+				'Tel' 			=> $u->AuthUserTel,
+				'Email'			=> $u->AuthUserMail,
+				'Country'       => $u->Country,
 				'Terminal'      => "",
 				'DriverPrice'   => $dprice[$j],
 				'VehicleType'   => $dvt[$j]
 	);
 }
 
-$auWhere = " WHERE AuthLevelID = '31' AND Active='1' ";
-$auKeys = $au->getKeysBy('Country, Terminal, AuthUserCompany', 'asc', $auWhere);
-
-foreach($auKeys as $n => $ID) {
-	if (!in_array($ID,$driverID)) {
-		$au->getRow($ID);
+foreach($users as $u) {
+	if (!in_array($ID,$driverID) && $u->AuthLevelID==31) {
 		$out[] = array(
-					'UserID'		=> $au->getAuthUserID(), 
-					'RealName' 		=> $au->getAuthUserRealName(),
-					'Company' 		=> $au->getAuthUserCompany(),
-					'Tel' 			=> $au->getAuthUserTel(),
-					'Email'			=> $au->getAuthUserMail(),
-					'Country'       => $au->getCountry(),
-					'Terminal'      => $au->getTerminal(),
+					'UserID'		=> $u->AuthUserID, 
+					'RealName' 		=> $u->AuthUserRealName,
+					'Company' 		=> $u->AuthUserCompany,
+					'Tel' 			=> $u->AuthUserTel,
+					'Email'			=> $u->AuthUserMail,
+					'Country'       => $u->Country,
+					'Terminal'      => $u->Terminal,
 					'DriverPrice'   => "",
 					'VehicleType'   => ""
 		);

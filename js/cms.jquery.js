@@ -1089,7 +1089,6 @@ Handlebars.registerHelper("driverSelect", function(id,routeId,vehicleTypeId) {
 
 		// trenutni id je u input/hidden polju
 		//var id  = $("#DriverID").val();
-
 		$.ajax({
 			type: 'POST',
 			url: url,
@@ -1107,7 +1106,7 @@ Handlebars.registerHelper("driverSelect", function(id,routeId,vehicleTypeId) {
 					selector += 'data-email="'+val.Email +'" ';
 					selector += 'data-realname="'+val.RealName +'" ';
 					
-					if (val.UserID == id && (val.VehicleType == vehicleTypeId || val.VehicleType == '')) {
+					if (val.UserID == id) {
 						selector += ' selected="selected" ';
 					}
 
@@ -1456,6 +1455,7 @@ Prikaz Extras polja kao dropdown
 Handlebars.registerHelper("extrasSelect", function(id,fieldID,extras,driverid) {
 	function extrasSelectDropdown() {
 		var url = 'api/getExtrasMaster.php?driverid='+driverid+'&callback=';
+		console.log(url);
 		$.ajax({
 			type: 'POST',
 			url: url,
@@ -1800,7 +1800,7 @@ Handlebars.registerHelper("userName", function(id, returnField) {
 
 		var url =  'api/oneUser.php?callback=?&AuthUserID='+id;
 		var uName = 'User not found';
-
+		console.log(url);
 		$.ajax({
 			type: 'POST',
 			url: url,

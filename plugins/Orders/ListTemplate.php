@@ -104,52 +104,63 @@
 						{{#if StaffNote}}<small style="color:red"><i class="fa-solid fa-message"></i></small>{{/if}}				
 						{{#if FinalNote}}<small style="color:red"><i class="fa-solid fa-message"></i></small>{{/if}}	
 					</div>
-					<div class="col-md-2 payment" onclick="oneItem({{DetailsID}},'payment');">
-						<strong>{{addNumbers DetailPrice ExtraCharge}} €</strong><br>
-						{{paymentMethodText PaymentMethod}} <br>
-						<small>
-						{{#compare PaymentMethod "==" "1"}} {{MCardNumber}}	{{/compare}}
-						{{#compare PaymentMethod "==" "3"}} {{MCardNumber}}	{{/compare}}						
-						{{#compare PaymentMethod "==" "2"}} {{DriverInvoiceNumber}}	{{/compare}}
-						{{#compare PaymentMethod "==" "4"}} {{InvoiceNumber}} {{/compare}}
-						{{#compare PaymentMethod "==" "6"}} {{InvoiceNumber}}	{{/compare}}
-						</small>							
+					<div class="col-md-2 small-box payment" onclick="oneItem({{DetailsID}},'payment');">
+					    <div class="inner">
+							<strong>{{addNumbers DetailPrice ExtraCharge}} €</strong><br>
+							{{paymentMethodText PaymentMethod}} <br>
+							<small>
+							{{#compare PaymentMethod "==" "1"}} {{MCardNumber}}	{{/compare}}
+							{{#compare PaymentMethod "==" "3"}} {{MCardNumber}}	{{/compare}}						
+							{{#compare PaymentMethod "==" "2"}} {{DriverInvoiceNumber}}	{{/compare}}
+							{{#compare PaymentMethod "==" "4"}} {{InvoiceNumber}} {{/compare}}
+							{{#compare PaymentMethod "==" "6"}} {{InvoiceNumber}}	{{/compare}}
+							</small>	
+						</div>	
+						<div class="icon">
+							<i class="fa fa-file-invoice"></i>
+						</div>						
 					</div>
 					
-					<div class="col-md-2 transfer" onclick="oneItem({{DetailsID}},'transfer');">
-						{{#compare PickupDate ">=" "<?=date('Y')+1;?>-01-01"}}<span class="red-text">{{/compare}}
-						{{PickupDate}}
-						{{#compare PickupDate ">=" "<?=date('Y')+1;?>-01-01"}}</span>{{/compare}}
-						<span>{{PickupTime}}</span>
-						</br>
-						<strong>{{PickupName}} - {{DropName}}</strong>
-						<br>						
-						<small><i class="fa fa-car"></i> {{VehicleTypeName}}*{{VehiclesNo}}</small>
-						{{#compare ExtraCharge ">" 0}}
-							<i class="fa fa-cubes" style="color:#900"></i>
-						{{/compare}}
-						
+					<div class="col-md-2 small-box transfer" onclick="oneItem({{DetailsID}},'transfer');">
+					    <div class="inner">
+							{{#compare PickupDate ">=" "<?=date('Y')+1;?>-01-01"}}<span class="red-text">{{/compare}}
+							{{PickupDate}}
+							{{#compare PickupDate ">=" "<?=date('Y')+1;?>-01-01"}}</span>{{/compare}}
+							<span>{{PickupTime}}</span>
+							</br>
+							<strong>{{PickupName}} - {{DropName}}</strong>
+							<br>						
+							<small><i class="fa fa-car"></i> {{VehicleTypeName}}*{{VehiclesNo}}</small>
+							{{#compare ExtraCharge ">" 0}}
+								<i class="fa fa-cubes" style="color:#900"></i>
+							{{/compare}}
+						</div>
+						<div class="icon">
+							<i class="fa fa-road"></i>
+						</div>							
 					</div>
-					<div class="col-md-2 pdriver" onclick="oneItem({{DetailsID}},'pdriver');">
-						{{!-- userName DriverID "AuthUserCompany" --}}
-						{{#if DriverName}}
-							<strong><small>{{DriverName}}</small></strong>
-						{{/if}}	
-						<br>
-						{{DriversPrice}} €<br>
-						<small class="{{driverConfStyle DriverConfStatus}}">{{driverConfText DriverConfStatus}}</small>
-						{{#if DriverNotes}}<small style="color:red"><i class="fa-solid fa-message"></i></small>{{/if}}				
-						{{#if SubFinalNote}}<small style="color:red"><i class="fa-solid fa-message"></i></small>{{/if}}				
+					<div class="col-md-2 small-box pdriver" onclick="oneItem({{DetailsID}},'pdriver');">
+					    <div class="inner">
+							{{#if DriverName}}
+								<strong><small>{{DriverName}}</small></strong>
+							{{/if}}	
+							<br>
+							{{DriversPrice}} €<br>
+							<small class="{{driverConfStyle DriverConfStatus}}">{{driverConfText DriverConfStatus}}</small>
+							{{#if DriverNotes}}<small style="color:red"><i class="fa-solid fa-message"></i></small>{{/if}}				
+							{{#if SubFinalNote}}<small style="color:red"><i class="fa-solid fa-message"></i></small>{{/if}}				
+						</div>	
+						<div class="icon">
+							<h4>Driver company</h4>
+						</div>						
 					</div>
 					<div class="col-md-2 agent" onclick="oneItem({{DetailsID}},'agent');">
 						{{MOrderKey}}<br>
 						{{MConfirmFile}}<br>						
 						{{#compare AgentID '>' 0}}
-							<img src='i/agents/{{ userName AgentID "Image" }}'>	 
-							<strong>{{ userName AgentID "AuthUserRealName" }}</strong>
-						{{/compare}}
-						{{#compare CustomerID '>' 1}}<strong>{{ userName CustomerID "AuthUserRealName" }}</strong>{{/compare}}
-						{{#compare UserLevelID '==' 12}}<strong>{{ userName UserID "AuthUserRealName" }}</strong>{{/compare}}
+							<img src='i/agents/{{Image}}'>	 
+						{{/compare}}	
+						<strong>{{UserName}}</strong>
 					</div>					
 					<div class="col-md-2 passenger" onclick="oneItem({{DetailsID}},'passenger');">
 						<i class="fa fa-user"></i> <strong>{{PaxName}}</strong><br>

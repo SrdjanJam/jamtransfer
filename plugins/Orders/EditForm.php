@@ -18,13 +18,15 @@
 
 		<div class="box-body box-body-edit">
 			<div class="nav-tabs-custom nav-tabs-custom-edit">
+				{{#compare tab "==" "order"}}
 				<ul class="nav nav-tabs dorder">
 					<li class="active"><a href="#tab_1{{details.DetailsID}}" data-toggle="tab"><?= TRANSFER ?></a></li>
 					<li><a href="#tab_2{{details.DetailsID}}" data-toggle="tab"><?= ORDER_LOG ?></a></li>
 				</ul>
+				{{/compare}}
 				<div class="tab-content tab-content-edit">
-
 					<div class="tab-pane active" id="tab_1{{details.DetailsID}}">
+						{{#compare tab "==" "order"}}
 						<div class="row dorder">
 							<div class="col-md-3 "><label><?= ID ?></label></div>
 							<div class="col-md-9">
@@ -62,7 +64,8 @@
 								</div>
 							</div>
 						</div>	
-						
+						{{/compare}}
+						{{#compare tab "==" "payment"}}
 						<div class="row dpayment">
 							<div class="col-md-4 ">
 								<div class="row">
@@ -153,7 +156,8 @@
 								{{/compare}} 						
 							</div>
 						</div>	
-						
+						{{/compare}}
+						{{#compare tab "==" "transfer"}}						
 						<div class="row dtransfer">
 							<div class="col-md-3 "><label><?= VEHICLE ?> <?= PAX ?>/<?= TYPE ?>/Number</label></div>
 							<div class="col-md-3">
@@ -251,10 +255,11 @@
 								{{/each}}
 							</div>
 						</div>						
-
+						{{/compare}}
+						{{#compare tab "==" "pdriver"}}						
 						<div class="row dpdriver">
 							<div class="col-md-3 "><label><?= DRIVER_NAME ?></label></div>
-							<div class="col-md-9 driver" id="newDriverName">								
+							<div class="col-md-9 driver" id="newDriverName">	
 								{{driverSelect details.DriverID details.RouteID details.VehicleType}}
 							</div>
 						</div>	
@@ -337,6 +342,7 @@
 								</div>	
 								{{/compare}}	
 							</div>
+							{{#compare details.TransferStatus ">" "1"}}
 							<div class="col-md-4">
 								<div class="row">
 									<a target="_blank" href='schedule/{{details.PickupDate}}'>Schedule for {{details.PickupDate}}</a>
@@ -346,14 +352,18 @@
 									<div class="col-md-9">{{subdriverSelect details.SubDriver details.DriverID 'SubDriver'}}  </div>	
 									<div class="col-md-3"><a id="SubDriverMob" href=""></a></div>	
 								</div>	
+								{{#compare details.SubDriver "!==" "0"}}
 								<div class="row">
 									<div class="col-md-9">{{subdriverSelect details.SubDriver2 details.DriverID 'SubDriver2'}}  </div>	
 									<div class="col-md-3"><a id="SubDriver2Mob" href=""></a></div>	
 								</div>	
+								{{#compare details.SubDriver2 "!==" "0"}}
 								<div class="row">
 									<div class="col-md-9">{{subdriverSelect details.SubDriver3 details.DriverID 'SubDriver3'}}  </div>	
 									<div class="col-md-3"><a id="SubDriver3Mob" href=""></a></div>	
 								</div>	
+								{{/compare}}
+								{{/compare}}
 								<div class="row">
 									<div class="col-md-12 "><label>Message for driver</label></div>
 								</div>	
@@ -380,8 +390,10 @@
 								</div>		
 								{{/compare}}		
 							</div>
+							{{/compare}}		
 						</div>	
-						
+						{{/compare}}
+						{{#compare tab "==" "agent"}}						
 						<div class="row dagent">
 							<div class="col-md-3 "><label><?= BOOKED_BY?></label></div>
 							<div class="col-md-9">
@@ -404,7 +416,8 @@
 								<input name="ProvisionAmount" id="ProvisionAmount" value="{{details.ProvisionAmount}}"/> 
 							</div>
 						</div>	
-						
+						{{/compare}}
+						{{#compare tab "==" "passenger"}}												
 						{{#compare details.UserLevelID "!=" '2'}}
 						<div class="row dpassenger">
 							<div class="col-md-3 "><label>Other bookings</label></div>
@@ -472,6 +485,7 @@
 								<small>{{details.PickupNotes}}</small>
 							</div>
 						</div>
+						{{/compare}}
 					</div> {{!-- tab-pane tab_1 --}}
 
 					<div class="tab-pane" id="tab_2{{details.DetailsID}}">
@@ -552,6 +566,8 @@
 			}	
 			if ($('#DriverConfStatus').val() != 3) {
 				$('#SubDriver').prop( "disabled", true );
+				$('#SubDriver2').prop( "disabled", true );
+				$('#SubDriver3').prop( "disabled", true );
 			}			
 		}
 		// promena telefona i email-a nakon promene drivera

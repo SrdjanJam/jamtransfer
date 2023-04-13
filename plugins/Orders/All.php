@@ -334,10 +334,9 @@ if (count($dbk) != 0) {
 		$detailFlds['DetailPrice'] = number_format($od->getDetailPrice()*$_SESSION['CurrencyRate'],2);
 		$detailFlds['ExtraCharge'] = number_format($od->getExtraCharge()*$_SESSION['CurrencyRate'],2);
 		$detailFlds['DriverExtraCharge'] = number_format($od->getDriverExtraCharge()*$_SESSION['CurrencyRate'],2);
-		$vt->getRow($od->getVehicleType() );
-		$detailFlds['VehicleTypeName'] = $vt->getVehicleTypeName();
+		$detailFlds['VehicleTypeName'] = $vehicletypes[$od->getVehicleType()]->VehicleTypeName;
 		# document key
-		$odock = $odoc->getKeysBy('DocumentDate', 'desc' , ' WHERE OrderID = ' . $OrderID);
+		/*$odock = $odoc->getKeysBy('DocumentDate', 'desc' , ' WHERE OrderID = ' . $OrderID);
 		if (count($odock)>0) {
 			# document row
 			$odoc->getRow($odock[0]);
@@ -350,7 +349,7 @@ if (count($dbk) != 0) {
 			$detailFlds["Document"]="No document";
 			$detailFlds["DocumentDate"]="";	
 			$detailFlds["DocumentType"]=0;	
-		}	
+		}*/	
 
 		$ordermonth=date("m",strtotime($od->getOrderDate()));
 		$orderyear=date("Y",strtotime($od->getOrderDate()));
@@ -379,6 +378,9 @@ if (count($dbk) != 0) {
 		$masterFlds = $om->fieldValues();
 		if ($om->getMCardCountry()!=0) $masterFlds['CountryPhonePrefix'] = getCountryPrefix( $om->getMCardCountry() );
 		else $masterFlds['CountryPhonePrefix'] = '';
+		$masterFlds['UserName']=$users[$om->getMUserID()]->AuthUserRealName;
+		$masterFlds['Image']=$users[$om->getMUserID()]->Image;
+		
 		$out[] = array_merge($detailFlds , $masterFlds);    	  	
     }
 }

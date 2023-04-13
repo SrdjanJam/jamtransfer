@@ -106,12 +106,11 @@ $detailFlds['DiscountEUR'] = number_format($db->getDiscount(),2);
 $detailFlds['DriverPaymentAmtEUR'] = number_format($db->getDriverPaymentAmt(),2);
 
 # VehicleTypes
-$vt->getRow($db->getVehicleType() );
-$detailFlds['VehicleTypeName'] = $vt->getVehicleTypeName();
-$detailFlds['VehicleClass'] = $vt->getVehicleClass();
+$detailFlds['VehicleTypeName'] = $vehicletypes[$db->getVehicleType()]->VehicleTypeName;
+$detailFlds['VehicleClass'] = $vehicletypes[$db->getVehicleType()]->VehicleClass;
 
 //partneri
-$au->getRow($db->getDriverID());
+/*$au->getRow($db->getDriverID());
 $contractFile=$au->getContractFile();
 if ($contractFile!='inter') {
 	$detailFlds['ContactName'] = $au->getContactPerson();
@@ -133,7 +132,7 @@ else {
 		$detailFlds['ContactName'] = $au->getAuthUserRealName();
 		$detailFlds['ContactMob'] = $au->getAuthUserMob();
 	}
-}
+}*/
 
 # Invoice data
 $inid = $ind->getKeysBy('ID', 'asc', "WHERE `DetailsID` =  ".$db->getDetailsID());

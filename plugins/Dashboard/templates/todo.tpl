@@ -2,9 +2,8 @@
  <script> 
  {literal}
  	getTodoData();
-	
 	function getTodoData() {
-		var url = 'api/'+
+		var url = './api/'+
 		"todoItems.php?action=get&callback=?";
 		$.ajax({
 			type: 'GET',
@@ -21,13 +20,9 @@
 			}
 		});
 	}
-
-
-
-
  	function todoItem(action,itemId){
  		var newItem = $("#newItem").val();
-		var url = "plugins/todoItems.php?action=" + action +
+		var url = "./api/todoItems.php?action=" + action +
 		"&newItem=" + newItem +
 		"&ID=" + itemId +
 		"&callback=?";
@@ -45,11 +40,9 @@
 			}
 		});		
  	}
- 	
  	function toggleCompleted(cb,id) {
  			todoItem('completed',id);
  	}
-	
 	function editItem(id) {
 		var currentText = $("#taskText"+id).text();
 		$(".fa-edit").hide();

@@ -23,14 +23,14 @@
 						</section>
 						{/if}
 
-						{if $actualTransfers}
-                        <section class="col-lg-6 xconnectedSortable"> 
-							{include file="plugins/Dashboard/templates/actualTransfers.tpl"} 			
-                        </section>
-						{/if}
 						{if $todo}
                         <section class="col-lg-6 xconnectedSortable">
 							{include file="plugins/Dashboard/templates/todo.tpl"} 								
+                        </section>
+						{/if}
+						{if $actualTransfers}
+                        <section class="col-lg-6 xconnectedSortable"> 
+							{include file="plugins/Dashboard/templates/actualTransfers.tpl"} 			
                         </section>
 						{/if}
 

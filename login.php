@@ -123,6 +123,7 @@ require_once('lng/' . $_SESSION['CMSLang'] . '_text.php');
 								$db->RunQuery($qu);
 								if (isset($_COOKIE['page'])&& $_COOKIE['page']<>'logout') $page=$_COOKIE['page'];
 								else $page='dashboard';
+								makeSessionArrays($db);
 								header("Location: " .$page);
 								exit();
 									
@@ -163,7 +164,56 @@ require_once('lng/' . $_SESSION['CMSLang'] . '_text.php');
 
 		$smarty->display('login.tpl');
 
-	} ?>
+	} 
 
 	
-
+	function makeSessionArrays($db) {
+		// punjenje stalnih nizova
+		// users
+		$qU = "SELECT 
+			`AuthUserID`, 
+			`AuthLevelID`, 
+			`AuthUserRealName`, 
+			`AuthUserName`,  
+			`AuthUserCompany`, 
+			`Country`, 
+			`DriverID`,  
+			`AuthUserTel`, 
+			`AuthUserMob`, 
+			`EmergencyPhone`, 
+			`AuthUserFax`, 
+			`AuthUserMail`,
+			`Image`, 
+			`AcceptedPayment`,		
+			`Active` 
+			FROM `v4_AuthUsers` WHERE Active=1" ;
+		$rU = $db->RunQuery($qU);
+		while ($u = $rU->fetch_object()) {
+			$_SESSION['users'][$u->AuthUserID]=$u;
+		}		
+		// extras
+		$qEx = "SELECT 
+			`ID`, 
+			`OwnerID`, 
+			`ServiceID`, 
+			`ServiceEN`,  
+			`DriverPrice`, 
+			`Provision`,  
+			`Price` 
+			FROM `v4_Extras` " ;
+		$rEx = $db->RunQuery($qEx);
+		while ($ex = $rEx->fetch_object()) {
+			$_SESSION['extras'][$ex->ID]=$ex;
+		}		
+		// vehicleType
+		$qVT = "SELECT 
+			`VehicleTypeID`, 
+			`VehicleTypeName`, 
+			`VehicleClass`
+			FROM `v4_VehicleTypes` " ;
+		$rVT = $db->RunQuery($qVT);
+		while ($vt = $rVT->fetch_object()) {
+			$_SESSION['vehicletypes'][$vt->VehicleTypeID]=$vt;
+		}			
+	}	
+?>	

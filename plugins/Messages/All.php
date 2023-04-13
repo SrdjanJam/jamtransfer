@@ -80,6 +80,7 @@ if (count($dbk) != 0) {
 		// ako postoji neko custom polje, onda to ovdje.
 		// npr. $detaiAuthLevelName"]lFlds[" = $nekaDrugaDB->getAuthLevelName().' nesto';
 		$md->getRow($db->getPageID());
+		$detailFlds['SolverName']=$users[$db->getSolverID()]->AuthUserRealName;
 		$detailFlds['PageName']=$md->getName();
 		$out[] = $detailFlds;    	
     }

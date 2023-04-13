@@ -66,7 +66,7 @@
 				</div>				
 				
 				<div class="col-sm-1">
-					{{userName SolverID "AuthUserRealName"}}
+					{{SolverName}}
 				</div>
 				
 				<div class="col-sm-1">

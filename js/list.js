@@ -210,7 +210,8 @@
 			$('#t_'+id+' .'+tab).addClass('grey');
 		}	
 		// sakrij sve ostale elemente prije nego se otvori novi
-		$(".editFrame").hide('slow'); $(".editFrame form").html('');
+		$(".editFrame").hide(); 
+		$(".editFrame form").html('');
 		// idemo po podatke
 		console.log(window.base+url);
 		
@@ -244,8 +245,8 @@
 				// 	block: "start" // or "end"
 				// });	
 
-				$('.dorder, .dpayment, .dtransfer, .dpdriver, .dagent, .dpassenger').hide();
-				$('.d'+tab).show();
+				//$('.dorder, .dpayment, .dtransfer, .dpdriver, .dagent, .dpassenger').hide();
+				//$('.d'+tab).show();
 			},
 			error: function(xhr, status, error) {alert("Show error occured: " + xhr.status + " " + xhr.statusText); }
 		});

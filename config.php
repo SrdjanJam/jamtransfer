@@ -119,5 +119,9 @@ if (isset($_SESSION['AuthUserID'])) {
 $smarty->assign('isNew',false);
 //inicijalizacija promenljivih
 $filter='';
+// preuzimanje niza iz sesije
+$users=$_SESSION['users'];
+$extras=$_SESSION['extras'];
+$vehicletypes=$_SESSION['vehicletypes'];
 
 ?>

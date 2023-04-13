@@ -2,6 +2,7 @@
 require_once '../../config.php';
 require_once ROOT . '/db/v4_Messages.class.php';
 require_once ROOT . '/db/v4_Modules.class.php';
+require_once ROOT . '/db/v4_AuthUsers.class.php';
 
 $db = new v4_Messages();
 $md= new v4_Modules();
