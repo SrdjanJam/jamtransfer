@@ -120,8 +120,58 @@ $smarty->assign('isNew',false);
 //inicijalizacija promenljivih
 $filter='';
 // preuzimanje niza iz sesije
-$users=$_SESSION['users'];
+/*$users=$_SESSION['users'];
 $extras=$_SESSION['extras'];
-$vehicletypes=$_SESSION['vehicletypes'];
+$vehicletypes=$_SESSION['vehicletypes'];*/
 
+
+
+		// punjenje stalnih nizova
+		// users
+		$qU = "SELECT 
+			`AuthUserID`, 
+			`AuthLevelID`, 
+			`AuthUserRealName`, 
+			`AuthUserName`,  
+			`AuthUserCompany`, 
+			`Country`, 
+			`DriverID`,  
+			`AuthUserTel`, 
+			`AuthUserMob`, 
+			`EmergencyPhone`, 
+			`AuthUserFax`, 
+			`AuthUserMail`,
+			`Image`, 
+			`AcceptedPayment`,		
+			`Active` 
+			FROM `v4_AuthUsers` WHERE Active=1" ;
+		$rU = $db->RunQuery($qU);
+		while ($u = $rU->fetch_object()) {
+			$users[$u->AuthUserID]=$u;
+		}		
+		// extras
+		$qEx = "SELECT 
+			`ID`, 
+			`OwnerID`, 
+			`ServiceID`, 
+			`ServiceEN`,  
+			`DriverPrice`, 
+			`Provision`,  
+			`Price` 
+			FROM `v4_Extras` " ;
+		$rEx = $db->RunQuery($qEx);
+		while ($ex = $rEx->fetch_object()) {
+			$extras[$ex->ID]=$ex;
+		}		
+		// vehicleType
+		$qVT = "SELECT 
+			`VehicleTypeID`, 
+			`VehicleTypeName`, 
+			`VehicleClass`
+			FROM `v4_VehicleTypes` " ;
+		$rVT = $db->RunQuery($qVT);
+		while ($vt = $rVT->fetch_object()) {
+			$vehicletypes[$vt->VehicleTypeID]=$vt;
+		}		
+		
 ?>

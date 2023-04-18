@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.32, created on 2022-11-08 11:11:22
+/* Smarty version 3.1.32, created on 2023-04-13 14:58:04
   from 'C:\wamp\www\jamtransfer\plugins\Dashboard\templates\actualTransfers.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.32',
-  'unifunc' => 'content_636a2b4af0afe5_37290469',
+  'unifunc' => 'content_6437fc5c654379_50034313',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'bdca552cc1e1446faf14d9a57cbba59f9ac30c94' => 
     array (
       0 => 'C:\\wamp\\www\\jamtransfer\\plugins\\Dashboard\\templates\\actualTransfers.tpl',
-      1 => 1662542495,
+      1 => 1680769244,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_636a2b4af0afe5_37290469 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6437fc5c654379_50034313 (Smarty_Internal_Template $_smarty_tpl) {
 ?>	<style>
 		table {
 			border: 1px solid black;

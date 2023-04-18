@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.32, created on 2022-11-08 11:11:22
+/* Smarty version 3.1.32, created on 2023-04-13 14:58:03
   from 'C:\wamp\www\jamtransfer\plugins\Dashboard\templates\smallBoxes.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.32',
-  'unifunc' => 'content_636a2b4a85df84_24842482',
+  'unifunc' => 'content_6437fc5bdbd8e9_72805515',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '4654540dfd4cead6b4a20fd239d5de01b485ff42' => 
     array (
       0 => 'C:\\wamp\\www\\jamtransfer\\plugins\\Dashboard\\templates\\smallBoxes.tpl',
-      1 => 1662542495,
+      1 => 1680769243,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_636a2b4a85df84_24842482 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6437fc5bdbd8e9_72805515 (Smarty_Internal_Template $_smarty_tpl) {
 ?>   
 
                     <!-- Small boxes (Stat box) -->

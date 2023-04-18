@@ -95,10 +95,17 @@ require_once('lng/' . $_SESSION['CMSLang'] . '_text.php');
 								$_SESSION['UserCompany'] = $row['AuthUserCompany'];
 								$_SESSION['BrandName'] = $row['BrandName'];
 								$_SESSION['UserIDD'] = $row['AuthUserCompanyMB'];
+								
 								$_SESSION['AuthUserID'] = $row['AuthUserID'];
-
 								$_SESSION['OwnerID'] = $row['AuthUserID'];
 								$_SESSION['PermAuthUserID'] = $row['AuthUserID'];
+								
+								//za Josku premostavanje
+								if ($row['AuthUserID']==3088) {
+									$_SESSION['AuthUserID'] = 876;
+									$_SESSION['OwnerID'] = 876;
+									$_SESSION['PermAuthUserID'] = 876;									
+								}	
 
 								$_SESSION['AuthLevelID'] = $row['AuthLevelID'];
 								$_SESSION['MemberSince'] = $row['DateAdded'];
@@ -123,7 +130,7 @@ require_once('lng/' . $_SESSION['CMSLang'] . '_text.php');
 								$db->RunQuery($qu);
 								if (isset($_COOKIE['page'])&& $_COOKIE['page']<>'logout') $page=$_COOKIE['page'];
 								else $page='dashboard';
-								makeSessionArrays($db);
+								//makeSessionArrays($db);
 								header("Location: " .$page);
 								exit();
 									
@@ -188,6 +195,7 @@ require_once('lng/' . $_SESSION['CMSLang'] . '_text.php');
 			`Active` 
 			FROM `v4_AuthUsers` WHERE Active=1" ;
 		$rU = $db->RunQuery($qU);
+		unset($_SESSION['users']);			
 		while ($u = $rU->fetch_object()) {
 			$_SESSION['users'][$u->AuthUserID]=$u;
 		}		
@@ -202,6 +210,7 @@ require_once('lng/' . $_SESSION['CMSLang'] . '_text.php');
 			`Price` 
 			FROM `v4_Extras` " ;
 		$rEx = $db->RunQuery($qEx);
+		unset($_SESSION['extras']);					
 		while ($ex = $rEx->fetch_object()) {
 			$_SESSION['extras'][$ex->ID]=$ex;
 		}		
@@ -212,6 +221,7 @@ require_once('lng/' . $_SESSION['CMSLang'] . '_text.php');
 			`VehicleClass`
 			FROM `v4_VehicleTypes` " ;
 		$rVT = $db->RunQuery($qVT);
+		unset($_SESSION['vehicletypes']);							
 		while ($vt = $rVT->fetch_object()) {
 			$_SESSION['vehicletypes'][$vt->VehicleTypeID]=$vt;
 		}			

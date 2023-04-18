@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.32, created on 2023-03-27 10:35:07
+/* Smarty version 3.1.32, created on 2023-04-13 14:58:02
   from 'C:\wamp\www\jamtransfer\templates\index.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.32',
-  'unifunc' => 'content_6421553bbe7d66_16555636',
+  'unifunc' => 'content_6437fc5ab85c05_79403003',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'a1818a92b5a2f041fd91a227dabc592dea38fac2' => 
     array (
       0 => 'C:\\wamp\\www\\jamtransfer\\templates\\index.tpl',
-      1 => 1679904633,
+      1 => 1681216368,
       2 => 'file',
     ),
   ),
@@ -20,9 +20,10 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
     'file:pageListHeader.tpl' => 1,
     'file:pageList.tpl' => 1,
+    'file:plugins/Dashboard/templates/getOrder.tpl' => 1,
   ),
 ),false)) {
-function content_6421553bbe7d66_16555636 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6437fc5ab85c05_79403003 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html>
 	<head>
@@ -127,13 +128,17 @@ function content_6421553bbe7d66_16555636 (Smarty_Internal_Template $_smarty_tpl)
 >
 													<!-- ======================================================================================== -->
 					<!-- Bootstrap: -->
-										<!-- cdn: -->
+					<!-- <?php echo '<script'; ?>
+ src="js/bootstrap.js" type="text/javascript"><?php echo '</script'; ?>
+> -->
+					<!-- cdn: -->
 					<?php echo '<script'; ?>
  src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"><?php echo '</script'; ?>
 >
 			<!-- ======================================================================================== -->
 					<!-- Jquery ui css: -->
-										<!-- cdn: -->
+					<!-- <link rel="stylesheet" href="css/jquery-ui-1.8.9.custom.css" type="text/css" /> -->
+					<!-- cdn: -->
 										<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
 					<?php echo '<script'; ?>
  src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"><?php echo '</script'; ?>
@@ -183,8 +188,8 @@ function content_6421553bbe7d66_16555636 (Smarty_Internal_Template $_smarty_tpl)
  type="text/javascript" src="js/jquery-clock-timepicker/jquery-clock-timepicker.min.js"><?php echo '</script'; ?>
 >
 
-					<!-- Date Picker and time picker old /  -->
-										<!-- Pick date old -->
+					<!-- Date Picker and time picker old: /  -->
+										<!-- Pick date old: -->
 								<!-- ======================================================================================== -->
 			<!-- select 2: -->
 			<?php echo '<script'; ?>
@@ -207,21 +212,20 @@ function content_6421553bbe7d66_16555636 (Smarty_Internal_Template $_smarty_tpl)
 >
 					<?php echo '<script'; ?>
  src="js/jquery.slugify.js"><?php echo '</script'; ?>
-><!-- jquery local -->
+>
 			<?php echo '<script'; ?>
  src="js/summernote/summernote.js"><?php echo '</script'; ?>
 >
 					<?php echo '<script'; ?>
  src="js/jquery.toaster.js"><?php echo '</script'; ?>
-><!-- jquery local -->
+>
 			<?php echo '<script'; ?>
  src="lng/<?php echo $_smarty_tpl->tpl_vars['language']->value;?>
 _init.js"><?php echo '</script'; ?>
 >	
 					<?php echo '<script'; ?>
  src="js/cms.jquery.js"><?php echo '</script'; ?>
-><!-- jquery local -->
-
+>
 
 				<?php if ($_smarty_tpl->tpl_vars['pageList']->value) {?>
 
@@ -277,16 +281,18 @@ _init.js"><?php echo '</script'; ?>
 
 
 
-	<body class="fixed-top" style="height:100%!important;font-size:16px">
+	<body class="fixed-top body-edit">
 				<div class="wrapper wrapper-edit">
 
 			
-						<nav class="navbar-default navbar-default-edit navbar-static-side additional-class" role="navigation">
-			<i class="lab la-accessible-icon"></i>
-								<div class="sidebar-collapse">
+			<!-- Start with navbar -->
+			<nav class="navbar-default navbar-default-edit navbar-static-side additional-class" role="navigation">
+				<i class="lab la-accessible-icon"></i>
+				<!-- sidebar-collapse -->
+				<div class="sidebar-collapse">
 					<ul class="nav metismenu" id="side-menu">
-
-												<!--nav-header-top-edit -->
+						<!-- Profile =================================================================== -->
+						<!-- Header in navbar - nav-header-top-edit -->
 						<li class="nav-header nav-header-top-edit">
 							<div class="dropdown profile-element" style="text-align:center;">
 								<a data-toggle="dropdown" class="dropdown-toggle" href="#">
@@ -300,6 +306,7 @@ _init.js"><?php echo '</script'; ?>
 									</a>
 								</span>
 
+								<!-- Logout link: -->
 								<div style="margin-top:12px;text-decoration:underline;text-align:center;"><a href='logout.php'>Logout <i class="fa fa-sign-out"></i></a></div>
 
 								<ul class="dropdown-menu animated fadeInRight m-t-xs">
@@ -307,13 +314,17 @@ _init.js"><?php echo '</script'; ?>
 									<li class="divider"></li>
 									<li><a href='logout.php'>Logout</a></li>
 								</ul>
+
 							</div>
 						</li>
-						
-												<?php if ($_smarty_tpl->tpl_vars['setasdriver']->value) {?>
+
+						<!-- End of profile ======================================================================== -->
+
+						<!-- Setting Driver ======================================================================== -->
+						<?php if ($_smarty_tpl->tpl_vars['setasdriver']->value) {?>
 							
 							<?php if (isset($_SESSION['UseDriverName'])) {?>
-							<!-- nav-header nav-header-edit -->
+								<!-- Header in navbar - nav-header nav-header-edit -->
 								<li class="nav-header nav-header-edit">
 									<h3 id="set-as">Seted as:</h3>
 									<h3 class="cut-name"><?php echo $_SESSION['UseDriverName'];?>
@@ -322,7 +333,7 @@ _init.js"><?php echo '</script'; ?>
 								</li>
 							<?php } else { ?>
 								<?php if (isset($_COOKIE['UseDriverName'])) {?>	
-									<!-- Set as with cookie -->
+									<!--Header in navbar - Set as with cookie -->
 									<li class="nav-header nav-header-edit">
 										<a href="satAsDriver/<?php echo $_COOKIE['UseDriverID'];?>
 " style="padding-left:5px;padding-right:0px;">
@@ -335,8 +346,10 @@ _init.js"><?php echo '</script'; ?>
 							<?php }?>
 							
 						<?php }?>
-						
-												<?php
+						<!-- End of setting driver ====================================================================================== -->
+
+						<!-- Items of sidebar -->
+						<?php
 $__section_index_0_loop = (is_array(@$_loop=$_smarty_tpl->tpl_vars['menu1']->value) ? count($_loop) : max(0, (int) $_loop));
 $__section_index_0_total = $__section_index_0_loop;
 $_smarty_tpl->tpl_vars['__smarty_section_index'] = new Smarty_Variable(array());
@@ -359,7 +372,8 @@ for ($__section_index_0_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_
 
 								
 								<?php if ($_smarty_tpl->tpl_vars['menu1']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_index']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_index']->value['index'] : null)]['menu']) {?>
-																		<ul class="nav nav-second-level collapse">
+									<!-- collapse ul: -->
+									<ul class="nav nav-second-level collapse">
 
 										<?php
 $__section_index1_1_loop = (is_array(@$_loop=$_smarty_tpl->tpl_vars['menu1']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_index']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_index']->value['index'] : null)]['menu']) ? count($_loop) : max(0, (int) $_loop));
@@ -371,24 +385,20 @@ for ($__section_index1_1_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section
 											<li class="<?php echo $_smarty_tpl->tpl_vars['menu1']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_index']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_index']->value['index'] : null)]['menu'][(isset($_smarty_tpl->tpl_vars['__smarty_section_index1']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_index1']->value['index'] : null)]['active'];?>
 ">
 												<a href="<?php echo $_smarty_tpl->tpl_vars['menu1']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_index']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_index']->value['index'] : null)]['menu'][(isset($_smarty_tpl->tpl_vars['__smarty_section_index1']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_index1']->value['index'] : null)]['link'];?>
-"><span class="nav-label nav-label-edit" title="<?php echo $_smarty_tpl->tpl_vars['menu1']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_index']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_index']->value['index'] : null)]['menu'][(isset($_smarty_tpl->tpl_vars['__smarty_section_index1']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_index1']->value['index'] : null)]['description'];?>
+"><span class="nav-label nav-label-edit-2" title="<?php echo $_smarty_tpl->tpl_vars['menu1']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_index']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_index']->value['index'] : null)]['menu'][(isset($_smarty_tpl->tpl_vars['__smarty_section_index1']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_index1']->value['index'] : null)]['description'];?>
 "><?php echo $_smarty_tpl->tpl_vars['menu1']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_index']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_index']->value['index'] : null)]['menu'][(isset($_smarty_tpl->tpl_vars['__smarty_section_index1']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_index1']->value['index'] : null)]['title'];?>
  <span class='badge'><?php ob_start();
 echo $_smarty_tpl->tpl_vars['menu1']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_index']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_index']->value['index'] : null)]['menu'][(isset($_smarty_tpl->tpl_vars['__smarty_section_index1']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_index1']->value['index'] : null)]['phasestatus'];
 $_prefixVariable1 = ob_get_clean();
 echo $_prefixVariable1;?>
 </span></span></a>
-
-													<?php if ($_smarty_tpl->tpl_vars['menu1']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_index']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_index']->value['index'] : null)]['menu'][(isset($_smarty_tpl->tpl_vars['__smarty_section_index1']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_index1']->value['index'] : null)]['title'] == 'Orders') {?>
-														<!-- collapse: ul second level: -->
-																										<?php }?>
 											</li>
 										<?php
 }
 }
 ?>
 
-									</ul>
+									</ul> <!-- End of collapse: ul -->
 								<?php }?>
 
 							</li>
@@ -397,7 +407,8 @@ echo $_prefixVariable1;?>
 }
 ?>
 
-				   </ul> 				   
+				   </ul> <!-- End of nav metismenu -->
+				   
 				   
 				   <!-- developing status -->
 				   <ul id="status" style="list-style-type:none;">
@@ -407,50 +418,47 @@ echo $_prefixVariable1;?>
 						<li>P - Plan</li>
 				   </ul>
 
-				</div> 				
-			</nav> 
-						
-
+				</div> <!-- End of sidebar-collapse -->
+				
+			</nav> <!-- End of navbar-default navbar-static-side -->
 			
-						<div id="page-wrapper" class="content gray-bg dashbard-1 page-wrapper-edit" style="height: 100%;
-					display: flex;
-					flex-direction: column;
-					flex-wrap: nowrap;
-					overflow: hidden;
-					">
+
+			<div id="page-wrapper" class="content gray-bg dashbard-1 page-wrapper-edit">
 
 
 				<!-- ******************************************************************************** -->
-				<!-- Header Main: -->
+				<!-- Main header - border-bottom-edit: -->
 				<div class="header row border-bottom border-bottom-edit">
-						
+					<!-- navbar -->	
 					<nav class="navbar navbar-static-top navbar-static-top-edit" role="navigation" style="margin-bottom: 0">
 						
-												<div class="navbar-header">
+						<!-- Minimalize -->
+						<div class="navbar-header">
 							<a class="navbar-minimalize minimalize-styl-2 btn btn-primary btn-primary-edit"><i class="fa fa-bars"></i> </a>
 						</div>
 
-												<div class="navbar-header">
+						<!-- Refresh -->
+						<div class="navbar-header">
 							<button type="button" class="minimalize-styl-2 btn btn-primary btn-primary-edit" id="cashe"><i class="fas fa-redo-alt"></i></button>
 						</div>
 
-						
-
+						<!-- Page title and database: -->
 						<h2 style="display:inline-block;margin: 15px 0 0 55px;"><span class="m-r-sm text-muted"><?php echo $_smarty_tpl->tpl_vars['title']->value;?>
  - <?php echo $_SESSION['log_title'];?>
 </span></h2>
-												
+
 						<ul class="nav navbar-top-links navbar-right">
 							<!-- Opener dialog button: -->
 							<li><button type="button" id="opener-help" class="button-3">Help</button></li>
 							<li><button type="button" id="opener-message" class="button-3">Message</button></li>
 
-														
-							<li>
-								<a href='logout.php'>
-									<i class="fa fa-sign-out"></i>Logout
-								</a>
-							</li>
+							<!-- Prev version: -->
+							<!-- <li> <h2><span class="m-r-sm text-muted"><?php echo $_smarty_tpl->tpl_vars['title']->value;?>
+ - <?php echo $_SESSION['log_title'];?>
+</span></h2> </li> -->
+
+							<!-- Logout: -->
+							<li><a href='logout.php'><i class="fa fa-sign-out"></i>Logout</a></li>
 
 						</ul>
 						
@@ -462,18 +470,22 @@ echo $_prefixVariable1;?>
 							<div class="previous-messages"></div>
 						</div>
 					
-					
 					</nav>
-				</div> 				<!-- ******************************************************************************** -->		
+				</div> <!-- /.header row border-bottom -->
+				<!-- ******************************************************************************** -->		
 			
-				<?php if (!$_smarty_tpl->tpl_vars['isNew']->value && $_smarty_tpl->tpl_vars['pageList']->value) {?>
-										<div class="header header-edit">  
+				<?php if (!$_smarty_tpl->tpl_vars['isNew']->value && $_smarty_tpl->tpl_vars['pageList']->value) {?> 							
+					<!-- .header -->
+					<div class="header header-edit 
+						<?php if ($_smarty_tpl->tpl_vars['orderid']->value > 0) {?>hidden<?php }?>
+					">  
 						<?php $_smarty_tpl->_subTemplateRender("file:pageListHeader.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
-?> 				   
+?> <!-- Second header -->			   
 					</div> 				<?php }?>
 
 				<?php if ($_smarty_tpl->tpl_vars['pageName']->value == 'Price Rules') {?>	
-										<div class="header row"> 
+					<!-- .header row -->
+					<div class="header row"> 
 						<div class="pull-left">
 							<span>Rule: <strong><?php echo $_REQUEST['rulesType'];?>
 </strong></span>
@@ -484,10 +496,10 @@ echo $_prefixVariable1;?>
 
 						</div>
 
-					</div> 				<?php }?>
+					</div> <!-- /.header row -->
+				<?php }?>
 
-				
-				
+
 				<div class="body row white-bg white-bg-edit">
 
 					<?php if (isset($_smarty_tpl->tpl_vars['pageOLD']->value)) {?>
@@ -495,18 +507,21 @@ echo $_prefixVariable1;?>
 						<?php } elseif (isset($_smarty_tpl->tpl_vars['pageName']->value) && $_smarty_tpl->tpl_vars['pageName']->value != '') {?>
 							<?php $_smarty_tpl->_subTemplateRender(((string)$_smarty_tpl->tpl_vars['root']->value)."/plugins/".((string)$_smarty_tpl->tpl_vars['base']->value)."/templates/".((string)$_smarty_tpl->tpl_vars['includeFileTpl']->value), $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, true);
 ?>
-							MODEL VIEW CONTROL SMARTY		
 						<?php } elseif ($_smarty_tpl->tpl_vars['pageList']->value) {?>
 							<?php $_smarty_tpl->_subTemplateRender("file:pageList.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?> 
-							MODEL VIEW CONTROL HANDLEBARS
+							<?php if ($_smarty_tpl->tpl_vars['orderid']->value > 0) {?>
+								<?php $_smarty_tpl->_subTemplateRender("file:plugins/Dashboard/templates/getOrder.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
+?> 			
+							<?php }?>
 						<?php } else { ?>
 							<?php echo $_smarty_tpl->tpl_vars['page_render']->value;?>
 
-							SEMI MODEL VIEW CONTROL via OB_GET_CONTENTS
 					<?php }?>
 
-				</div> 
+				</div> <!-- / .body row white-bg -->
+
+
 				<div class="footer row footer-edit">
 
 					<?php if (!$_smarty_tpl->tpl_vars['isNew']->value && $_smarty_tpl->tpl_vars['pageList']->value) {?>				
@@ -514,15 +529,19 @@ echo $_prefixVariable1;?>
 					<?php }?>
 
 					<div class="pull-right pull-right-edit">
-						Powered by <strong>Jamtransfer</strong>
+						Powered by <strong><a href="https://taxicms.com/" target="_blank">TaxiCMS</a></strong>
 					</div>
 					
 					<div class="backdrop"><div class="spiner"></div></div>
 
-				</div>				
+				</div><!-- /.footer row -->
 
-			</div> 
-		</div> 
+
+
+			</div> <!-- End of page-wrapper -->
+
+		</div> <!-- End of wrapper -->
+
 
 		<input type='hidden' id='local' value='<?php echo $_smarty_tpl->tpl_vars['local']->value;?>
 ' name='local'>
@@ -543,8 +562,9 @@ echo $_prefixVariable1;?>
 		document.addEventListener("keydown", function(event) {
 			//event.preventDefault();
 			if (event.which==121) window.open(window.location.href+'/help','_blank');
-		})	
+		})
 		$(document).ready(function() {
+			// datepicker:
 			$('.datepicker').datetimepicker({
 				// yearOffset:2,
 				lang:'en',
@@ -555,9 +575,9 @@ echo $_prefixVariable1;?>
 				// minDate:'-1970/01/02', // yesterday is minimum date
 				// maxDate:'+1970/01/02' // and tommorow is maximum date calendar
 			});
+			// timepicker:
 			$('.timepicker').clockTimePicker();
 		});
-		
 		$.ajaxSetup({
 			beforeSend: function (xhr,settings) {
 				return settings;
@@ -585,7 +605,7 @@ echo $_prefixVariable1;?>
 		}); // End of click
 
 
-
+		// Dialog Help:
 		$( ".dialog-help" ).dialog({
 
 			title: 'Help Dialog',
@@ -607,7 +627,7 @@ echo $_prefixVariable1;?>
 
 		});
 		
-
+		// Dialog message:
 		$( ".dialog-message" ).dialog({
 
 			title: 'Message Dialog',

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.32, created on 2022-11-08 11:11:23
+/* Smarty version 3.1.32, created on 2023-04-13 14:58:04
   from 'C:\wamp\www\jamtransfer\plugins\Dashboard\templates\todo.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.32',
-  'unifunc' => 'content_636a2b4b18ec95_37940740',
+  'unifunc' => 'content_6437fc5c4fdef9_33265221',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '672501009823f76c92513045c15ec6738f5ccffe' => 
     array (
       0 => 'C:\\wamp\\www\\jamtransfer\\plugins\\Dashboard\\templates\\todo.tpl',
-      1 => 1662542495,
+      1 => 1681386759,
       2 => 'file',
     ),
   ),
@@ -20,15 +20,14 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_636a2b4b18ec95_37940740 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6437fc5c4fdef9_33265221 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div id="showToDo"></div>
  <?php echo '<script'; ?>
 > 
  
  	getTodoData();
-	
 	function getTodoData() {
-		var url = 'api/'+
+		var url = './api/'+
 		"todoItems.php?action=get&callback=?";
 		$.ajax({
 			type: 'GET',
@@ -45,13 +44,9 @@ function content_636a2b4b18ec95_37940740 (Smarty_Internal_Template $_smarty_tpl)
 			}
 		});
 	}
-
-
-
-
  	function todoItem(action,itemId){
  		var newItem = $("#newItem").val();
-		var url = "plugins/todoItems.php?action=" + action +
+		var url = "./api/todoItems.php?action=" + action +
 		"&newItem=" + newItem +
 		"&ID=" + itemId +
 		"&callback=?";
@@ -69,11 +64,9 @@ function content_636a2b4b18ec95_37940740 (Smarty_Internal_Template $_smarty_tpl)
 			}
 		});		
  	}
- 	
  	function toggleCompleted(cb,id) {
  			todoItem('completed',id);
  	}
-	
 	function editItem(id) {
 		var currentText = $("#taskText"+id).text();
 		$(".fa-edit").hide();

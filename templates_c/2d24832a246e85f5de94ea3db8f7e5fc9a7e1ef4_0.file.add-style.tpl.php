@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.32, created on 2023-03-27 10:35:08
+/* Smarty version 3.1.32, created on 2023-04-13 14:58:03
   from 'c:\wamp\www\jamtransfer\templates\add-style.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.32',
-  'unifunc' => 'content_6421553c7b7a83_43264875',
+  'unifunc' => 'content_6437fc5b880c64_40882948',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '2d24832a246e85f5de94ea3db8f7e5fc9a7e1ef4' => 
     array (
       0 => 'c:\\wamp\\www\\jamtransfer\\templates\\add-style.tpl',
-      1 => 1679904638,
+      1 => 1681213816,
       2 => 'file',
     ),
   ),
@@ -20,21 +20,49 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6421553c7b7a83_43264875 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6437fc5b880c64_40882948 (Smarty_Internal_Template $_smarty_tpl) {
 ?><style>
 
 
-.wrapper-edit{ padding:0px; }
-
-.page-wrapper-edit{
-    background-image: url(./i/m-assets/white-bg/light_noise_diagonal.png) !important;
+.body-edit{
+    height:100vh !important;
+    font-size:16px;
 }
 
-.white-bg-edit{ 
-    padding-bottom:30px; 
+/* Main wrapper: */
+.wrapper-edit{ padding:0px; }
+
+/* Sub wrapper: */
+.page-wrapper-edit{
     background-image: url(./i/m-assets/white-bg/light_noise_diagonal.png) !important;
-    height: 100%;
-    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    overflow: hidden;
+}
+
+/* Sub wrapper 2: */
+.white-bg-edit{ 
+    background-image: url(./i/m-assets/white-bg/light_noise_diagonal.png) !important;
+    /* height: 100%; check */
+    padding: 30px 30px 30px;
+    flex:1;
+}
+
+/* Footer */
+.footer-edit{
+    background: #0089fe1a;
+    /* background-image: linear-gradient(to bottom right, #a6d0ed, #cceeff); Old 1 */
+    /* background-image: linear-gradient(to bottom right, silver, #cceeff); Old 2 */
+    /* background-image: linear-gradient(to bottom right, #c0c0c036, #00aaff42); Old 3 */
+    /* box-shadow: 2px 2px 5px 2px #888888; example */
+    border-top: 1px solid #aaaaaa;
+    /* border-top: 1px solid #e7eaec; Old */
+}
+.pull-left-edit{ margin-left:10px; }
+.pull-right-edit{ margin-right:20px; }
+.pull-right .btn{
+    box-shadow: 2px 2px 2px 1px #888888;
 }
 
 .additional-class{
@@ -44,9 +72,9 @@ function content_6421553c7b7a83_43264875 (Smarty_Internal_Template $_smarty_tpl)
 }
 
 /* Header Main: */
-.border-bottom-edit{ padding: 12px 12px 10px 12px; }
+.border-bottom-edit{ padding: 12px 12px 7px 12px; }
 
-.header-edit{ padding: 0 14px 0 14px; }
+.header-edit{ padding: 5px 14px 5px 14px; }
 
 .nav-header-edit{
     background-image: linear-gradient(#ffdc7eab, #fab80654);
@@ -79,8 +107,8 @@ function content_6421553c7b7a83_43264875 (Smarty_Internal_Template $_smarty_tpl)
     box-shadow: 2px 2px 5px #424181;
 }
 .navbar-header .btn-primary-edit:hover{
-    background-color: #36619f;
-    border-color: #3c72bc;
+    background-color: #36619f !important;
+    border-color: #3c72bc !important;
 }
 
 .cut-name{
@@ -121,7 +149,10 @@ function content_6421553c7b7a83_43264875 (Smarty_Internal_Template $_smarty_tpl)
 
 
 .nav-header-edit #set-as{ color: #3e3e3e;}
-.nav-header-edit #set-as, #set-as-2{ font-family:Georgia, 'Times New Roman', Times, serif; }
+.nav-header-edit #set-as, #set-as-2{
+    font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    /* font-family:Georgia, 'Times New Roman', Times, serif; Old */
+}
 
 
 /* pageListHeader.tpl -------------------------------------------------------- */
@@ -138,11 +169,12 @@ function content_6421553c7b7a83_43264875 (Smarty_Internal_Template $_smarty_tpl)
 }
 
 .itemsheader-edit{
-   
     background: #0eb9f221;
     /* background: #def6fe; Old 1 */
-     /* background-image: linear-gradient(#C5D5DC,#CBEAFA); Old 2 */
+    /* background-image: linear-gradient(#C5D5DC,#CBEAFA); Old 2 */
+    box-shadow: 0px 0px 6px 3px #88888894;
     padding-top: 10px;
+    border-radius: 6px;
 }
 
 .col-md-2-infoShow{
@@ -152,6 +184,7 @@ function content_6421553c7b7a83_43264875 (Smarty_Internal_Template $_smarty_tpl)
 .btn-xs-edit{
     margin-left: 20px;
     margin-bottom: 10px;
+    box-shadow: 2px 2px 4px 1px #436477;
 }
 /* ------------------------------------------------------------------------------- */
 
@@ -167,21 +200,32 @@ function content_6421553c7b7a83_43264875 (Smarty_Internal_Template $_smarty_tpl)
 
 /* navbar top fixed */
 .navbar-static-top-edit{
-    background-image: linear-gradient(to bottom right, #c0c0c036, #00aaff3d);
-    /* background-image: linear-gradient(to bottom right, silver, #cceeff); Old */
+    background-image: linear-gradient(to bottom right,#00aaff3d, #c0c0c036);
+    /* background-image: linear-gradient(to bottom right, silver, #cceeff); Old 2 */
+    box-shadow: 0px 0px 6px 3px #88888894;
+    border-radius: 6px;
 }
 
 .nav-label-edit{
     font-size: 18px;
-    font-style: italic;
-    text-shadow: 2px 2px 1px #101010;
+    /* font-style: italic; Off */
+    /*text-shadow: 2px 2px 1px #101010;*/
     /* text-shadow: 2px 2px 1px #494949; Old */
+	font-family: 'Font Awesome';
+	font-weight: 400;
+}
+
+.nav-label-edit-2{
+    font-size: 17px !important;
+    /*font-style: italic;*/
+    /*text-shadow: 2px 2px 1px #101010;*/
+	font-family: 'Font Awesome';
+	font-weight: 400;
 }
 
 #side-menu .edit-fa{
     text-shadow: 3px 3px 2px #494949;
 }
-
 
 .nav.nav-second-level > li.active a{
     background: #6e6e6e28;
@@ -191,15 +235,7 @@ function content_6421553c7b7a83_43264875 (Smarty_Internal_Template $_smarty_tpl)
     /* background-image: linear-gradient(#705d5d, #1c1919) !important; Old */
     /* background-image: linear-gradient(#794e4e, #1c1919) !important; Older */
 }
-/* ------------------------------------------------------------------------------- */
-/* Footer */
-.footer-edit{
-    background-image: linear-gradient(to bottom right, #a6d0ed, #cceeff);
-    /* background-image: linear-gradient(to bottom right, silver, #cceeff); Old 1 */
-    /* background-image: linear-gradient(to bottom right, #c0c0c036, #00aaff42); Old 2 */
-}
-.pull-left-edit{ margin-left:10px; }
-.pull-right-edit{ margin-right:20px; }
+
 
 /* ------------------------------------------------------------------------------- */
 /* Button */
@@ -247,6 +283,13 @@ function content_6421553c7b7a83_43264875 (Smarty_Internal_Template $_smarty_tpl)
     box-shadow: 0px 0px 5px 2px #4d4d52;
     /* box-shadow: 0px 0px 2px 2px #424181; old */
 }
+
+.textarea{
+    width:70%;
+    height:200px;
+    resize: none;
+}
+
 
 .textarea-dialog{
     width: 100% !important;
@@ -303,9 +346,6 @@ function content_6421553c7b7a83_43264875 (Smarty_Internal_Template $_smarty_tpl)
 }
 
 
-/* ------------------------------------------ */
-
-
 
 
 /* DriversTransfers/templates/index.tpl and AgentsTransfers/templates/index.tpl */
@@ -340,6 +380,7 @@ function content_6421553c7b7a83_43264875 (Smarty_Internal_Template $_smarty_tpl)
     /* color:#3C8DBC; older */
     font-weight:bold;
     padding:10px 0;
+    /*text-shadow: 2px 2px 8px #ada3cc; spare */
 }
 
 #show_items{
@@ -359,6 +400,10 @@ function content_6421553c7b7a83_43264875 (Smarty_Internal_Template $_smarty_tpl)
 
 .pad1em{
     padding: 2px 0;
+    cursor:pointer; 
+    border-top:1px solid rgb(179, 179, 179) !important;
+    font-family: Lucida sans-serif;
+    font-size: 17px;
 }
 .pad1em div{
     border-right:1px solid rgb(187, 187, 187);
@@ -366,9 +411,15 @@ function content_6421553c7b7a83_43264875 (Smarty_Internal_Template $_smarty_tpl)
 .pad1em div:last-child{
     border-right:none;
 }
-/* ====================================================================================== */
+.pad1em:hover{ background: rgb(0 0 0 / 9%) !important; }
+
+/* off */
+/* .listTitleEdit{ cursor:auto !important; } */
+/* .listTile:focus{ background: rgb(71, 42, 173); } */
+
 
 /* ====================================================================================== */
+
 /* Bookings/Orders */
 .row-sticky{
     position: sticky;
@@ -382,7 +433,8 @@ function content_6421553c7b7a83_43264875 (Smarty_Internal_Template $_smarty_tpl)
 }
 
 .row .itemsheader-edit{
-    background: #dadbebc0;
+    background: #00bdfb12;
+    /* background: #dadbebc0; Old */
     border: 1px solid #c5c5c5;
     position: sticky;
     top: 20;
@@ -461,23 +513,51 @@ function content_6421553c7b7a83_43264875 (Smarty_Internal_Template $_smarty_tpl)
 /* End of Bookings/Orders */
 /* ====================================================================================== */
 
-
-
-
-
-
-
-/* Cursor pointer */
-.listTile{ cursor:pointer; border-top:1px solid rgb(179, 179, 179) !important;}
-.listTile:hover{ background: rgba(204 204 204 / 82%); }
-.listTitleEdit{ cursor:auto !important; }
-.listTile:nth-of-type(2n){ 
-    background: #e0e0e0 !important; 
-    /* background: #f1f1f1 !important; old  */
+/* Exchange rate, Vat Rate */
+.container .shadowLight-edit{
+    background: transparent !important;
+    margin: 0px;
+    padding: 5px;
+    border: none !important;
+    box-shadow: none;
+    cursor: auto;
 }
-.listTile:nth-of-type(2n):hover{ background: rgb(204 204 204 / 82%) !important; }
-/* off */
-/* .listTile:focus{ background: rgb(71, 42, 173); } */
+
+/* Checkbox: */
+.row-checkbox-edit input[type=checkbox]{
+    display: block;
+    cursor: pointer;
+    /* appearance: none; */
+    background-color: #fff;
+    margin: 0;
+    font: inherit;
+    color: currentColor;
+    width: 2.15em;
+    height: 2.15em;
+    border: 0.15em solid currentColor;
+    border-radius: 0.15em;
+    transform: translateY(-0.075em);
+    box-shadow: 0px 0px 2px 1px #888888;
+}
+
+/* Buttons: */
+.go-edit, .rate-edit{
+    box-shadow: 2px 2px 5px 1px #42484d;
+}
+
+.btn.btn-primary:hover,
+.btn.btn-primary:active,
+.btn.btn-primary.hover {
+  background: #66bbee;
+  border-color: #367fa9;
+}
+
+#pageSelect .btn.btn-primary{
+    box-shadow: 0px 0px 4px 1px #888888;
+}
+
+/* ====================================================================================== */
+
 
 /* ============================================================================== */
 /* SCROLL BAR: */
@@ -496,6 +576,8 @@ function content_6421553c7b7a83_43264875 (Smarty_Internal_Template $_smarty_tpl)
 /* Handle */
 ::-webkit-scrollbar-thumb {
     background: #aaa;
+    border: 2px solid #3e3231c9;
+    /* border: 2px solid #bd6d61c9; Old */
 }
 
 /* Handle on hover */
@@ -504,6 +586,9 @@ function content_6421553c7b7a83_43264875 (Smarty_Internal_Template $_smarty_tpl)
     
 }
 /* ============================================================================== */
+
+
+
 
 
 
