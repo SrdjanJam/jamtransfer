@@ -175,7 +175,8 @@
 		      if (orderid>0 || detailid>0) $('.itemsheader').hide();
 		      if (orderid>0 || detailid>0) $('#pageSelect').hide();
 		      if (listExtras==1) $('#listExtras').prop('checked', true);
-			  if ($(window).width() < 760) filtersDown();
+			  if (typeof window.filter == 'undefined') window.filter="down";
+			  if ($(window).width() < 760 || window.filter == "down") filtersDown();
 			  else	filtersUP();
 				datetimepicker();			  
 		  },
@@ -183,12 +184,14 @@
 		});
 	}
 	function filtersUP() {
-		$('.itemsheader').show();
+		window.filter="up";
+		$('.itemsheader2').show();
 		$('#filtersUP').hide();
 		$('#filtersDown').show();
 	}		
 	function filtersDown() {
-		$('.itemsheader').hide();
+		window.filter="down";		
+		$('.itemsheader2').hide();
 		$('#pageSelect').show();		
 		$('#filtersDown').hide();	
 		$('#filtersUP').show();		

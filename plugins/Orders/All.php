@@ -142,10 +142,10 @@ if (isset($type2)) {
 
 if(!isset($_REQUEST['page'])) $_REQUEST['page']="";
 if(!isset($_REQUEST['length'])) $_REQUEST['length']="";
-if(!isset($_REQUEST['orderFromDate'])) $_REQUEST['orderFromDate']="";
-if($_REQUEST['orderFromDate']=='' && isset($_COOKIE['orderFromDate'])) $_REQUEST['orderFromDate']=$_COOKIE['orderFromDate'];
-if(!isset($_REQUEST['pickupFromDate'])) $_REQUEST['pickupFromDate']="";
-if($_REQUEST['pickupFromDate']=='' && isset($_COOKIE['pickupFromDate'])) $_REQUEST['pickupFromDate']=$_COOKIE['pickupFromDate'];
+if(!isset($_REQUEST['orderFromDate']) && isset($_COOKIE['orderFromDate'])) $_REQUEST['orderFromDate']=$_COOKIE['orderFromDate'];
+else $_REQUEST['orderFromDate']=date('Y-m-d',time()-365*24*3600);
+if(!isset($_REQUEST['pickupFromDate']) && isset($_COOKIE['pickupFromDate'])) $_REQUEST['pickupFromDate']=$_COOKIE['pickupFromDate'];
+else $_REQUEST['pickupFromDate']=date('Y-m-d',time()-365*24*3600);
 if(!isset($_REQUEST['paymentNumber'])) $_REQUEST['paymentNumber']="";
 if(!isset($_REQUEST['locationName'])) $_REQUEST['locationName']="";
 if(!isset($_REQUEST['driverName'])) $_REQUEST['driverName']="";
