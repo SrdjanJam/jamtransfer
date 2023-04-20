@@ -9,6 +9,7 @@
 			text-align: center;
 		}	
 	</style>
+	
     <div class="box box-info box-info-edit">
         <div class="box-header">
             <i class="fa fa-road"></i>
