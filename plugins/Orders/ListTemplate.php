@@ -32,18 +32,35 @@
 
 	<div class="row row-sticky filter1">
 		<span class="right">
-			<a>
-				<i id='filtersDown' class="fa fa-angle-down" onclick="filtersDown()"><i class="fa fa-filter" style="font-size:22px;"></i></i>
-				<i id='filtersUP' class="fa fa-angle-up" onclick="filtersUP()"><i class="fa fa-filter" style="font-size:22px;"></i></i>
-			</a>
+				Advanced filters
+				<i id='filtersDown' class="fa fa-angle-down" onclick="filtersDown()"></i>
+				<i id='filtersUP' class="fa fa-angle-up" onclick="filtersUP()"></i>
 		</span>
 	</div>
 
-	<div class="row itemsheader itemsheader-edit filter2">
+	<div class="row">
+		<div class="col-md-2">
+			<small class="badge blue text-black badge-edit">Order</small>
+		</div>			
+		<div class="col-md-2">
+			<small class="badge blue text-black badge-edit">Payment</small>
+		</div>		
+		<div class="col-md-2">
+			<small class="badge blue text-black badge-edit">Transfer</small>
+		</div>			
+		<div class="col-md-2">
+			<small class="badge blue text-black badge-edit">Driver Partner</small>
+		</div>			
+		<div class="col-md-2">
+			<small class="badge blue text-black badge-edit">Purchaser</small>
+		</div>		
+		<div class="col-md-2">
+			<small class="badge blue text-black badge-edit">Passenger</small>
+		</div>	
+	</div>		
+	<div class="row itemsheader2 itemsheader-edit2 filter2">
 		<!-- Order: -->
 		<div class="col-md-2">
-			<small class="badge blue text-black badge-edit">Order</small><br>
-
 			<select id='yearsOrder' class="select-top-edit" name='yearsOrder' value='0' onchange="allItems();">
 				<option value='0'>All years</option>
 			</select>
@@ -53,13 +70,11 @@
 		</div>
 		<!-- Payment: -->
 		<div class="col-md-2"> 
-			<small class="badge blue text-black badge-edit">Payment</small><br>
 			{{paymentMethodSelect PaymentMethod}}<br>
 			<input id='paymentNumber' class="input-one" name='paymentNumber'  placeholder="Payment / Invoice No" onchange="allItems();"/>					
 		</div>
 		<!-- Transfer: -->
 		<div class="col-md-2"> 
-			<small class="badge blue text-black badge-edit">Transfer</small><br>
 			<input id='pickupFromDate' class="datepicker" name='pickupFromDate'  placeholder="From Date" size='6' onchange="allItems();"/>
 			<!--<select id='yearsPickup' class="select-top-edit" name='yearsPickup' value='0' onchange="allItems();">
 				<option value='0'>All years</option>
@@ -72,19 +87,16 @@
 		</div>
 		<!-- Driver: -->
 		<div class="col-md-2">
-			<small class="badge blue text-black badge-edit">Partner</small><br>
 			<input id='driverName' class="input-one" name='driverName'  placeholder="Name/ID" onchange="allItems();"/><br>				
 			{{driverConfStatusSelect "-1" "DriverConfStatusChoose"}}
 		</div>
 		<!-- Client/Agent: -->
 		<div class="col-md-2">
-			<small class="badge blue text-black badge-edit">Purchaser</small><br>
 			<input id='agentName' class="input-one" name='agentName'  placeholder="Name/ID" onchange="allItems();"/><br>				
 			<input id='agentOrder' class="input-one" name='agentOrder'  placeholder="Order Key / Agent Order" onchange="allItems();"/><br>				
 		</div>
 		<!-- Passenger: -->
 		<div class="col-md-2">
-			<small class="badge blue text-black badge-edit">Passenger</small><br>
 			<input id='passengerData' class="input-one" name='passengerData'  placeholder="Passenger Data" onchange="allItems();"/>					
 		</div>			
 	</div>
