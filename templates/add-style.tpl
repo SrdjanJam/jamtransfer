@@ -2,6 +2,7 @@
 
 {* TEMPLATES FOLDER: *}
 
+
 .body-edit{
     height:100vh !important;
     font-size:16px;
