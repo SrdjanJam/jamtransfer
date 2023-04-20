@@ -110,8 +110,9 @@
 }
 
 .nav-header-top-edit{
-    background-image: linear-gradient(#ff00002b, #4b494961) !important;
-    /* background-image: linear-gradient(#ff00002b, #04040461) !important; old */
+    background-image: linear-gradient(#ff00002b, #04040461) !important;
+    /* background-image: linear-gradient(#8b4444, #212628) !important; Old 1 */
+    /* background-image: linear-gradient(#eb12123d, #212628) !important; Old 2 */
     margin: 5px 5px 10px 5px;
     border-radius: 10px;
     /* box-shadow: 5px 5px 16px #232328 inset; */
@@ -177,8 +178,8 @@
 
 /* navbar top fixed */
 .navbar-static-top-edit{
-    background-image: linear-gradient(#00aaff3d, #c0c0c036);
-    /* background-image: linear-gradient(to bottom right,#00aaff3d, #c0c0c036); old */
+    background-image: linear-gradient(to bottom right,#00aaff3d, #c0c0c036);
+    /* background-image: linear-gradient(to bottom right, silver, #cceeff); Old 2 */
     box-shadow: 0px 0px 6px 3px #88888894;
     border-radius: 6px;
 }
@@ -305,10 +306,6 @@
 .box-info, .box-primary{
     background-image: url(./i/m-assets/white-bg/stripes-light.webp) !important;
     box-shadow: 5px 5px 8px #616060;
-}
-.box-info-edit{
-    overflow-y: auto;
-    height: 300px;
 }
 
 .box-body .row{
