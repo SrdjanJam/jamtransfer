@@ -11,18 +11,19 @@
 	$DetailsID = $_REQUEST['DetailsID'];
 	$reason = $_REQUEST['reason'];
 
-	require_once ROOT . '/f/f.php';
+	require_once '../config.php';
 	require_once ROOT . '/lng/en.php';
-	require_once ROOT . '/cms/lng/en_text.php';
+	require_once ROOT . '/lng/en_text.php';
 	require_once ROOT . '/db/v4_OrderDetails.class.php';
 	require_once ROOT . '/db/v4_OrdersMaster.class.php';
 	require_once ROOT . '/db/v4_AuthUsers.class.php';
-
+	require_once ROOT . '/db/v4_Mailer.class.php';
 
 	// classes
 	$od = new v4_OrderDetails();
 	$om = new v4_OrdersMaster();
 	$au = new v4_AuthUsers();
+	$ml = new v4_Mailer();
 
 	$od->getRow($DetailsID);
 	$OrderID = $od->getOrderID();
@@ -51,6 +52,7 @@
 	}
 
 
+
 	// slaganje potvrde za poslati vozacu ili putniku
 	ob_start();
 	if ($profile == 'driver') {
@@ -74,16 +76,27 @@
 	$message = ob_get_contents();
 	ob_end_clean();
 
-
 	// slanje maila
 	if ($message != '' and $mailTo != '') {
 		//$mailTo='jam.bgprogrameri@gmail.com';//za probu
-		$sent = mail_html($mailTo, $mailFrom, $fromName, $mailFrom, $subject, $message);
+		//$sent = mail_html($mailTo, $mailFrom, $fromName, $mailFrom, $subject, $message);
+		$ml->setCreateTime(date("Y-m-d H:i:s"));
+		$ml->setCreatorID($_SESSION['AuthUserID']);
+		$ml->setFromName($fromName);
+		$ml->setToName($mailTo);
+		$ml->setReplyTo('');
+		$ml->setSubject($subject);
+		$ml->setBody($message);
+		$ml->setAttachment('');
+		$ml->setStatus(0);
+ 
+		$ml->saveAsNew();
+		$sent = true;
 	}
 	else $sent = false;
 
-	if ($sent) $output = '<span class="badge bg-green"><i class="ic-happy"></i> Message sent. </span>';
-	else $output = '<span class="badge bg-red"><i class="ic-sad"></i> Message not sent. </span>';
+	if ($sent) $output = '<span class="badge bg-green"><i class="ic-happy"></i> Message sent to mail queue</span>';
+	else $output = '<span class="badge bg-red"><i class="ic-sad"></i> Message not sent to mail queue</span>';
 
 	echo $_GET['callback'] . '(' . json_encode($output) . ')';
 
@@ -96,7 +109,16 @@
 //Trazena izmjena da prilikom slanja ovog maila se uopce ne vidi pax mail (dosad bio masked) - 13.07.2018 - Dušica Vojteški
 
 function newPrintReservation( $OrderID, $profile, $d, $m) {
-    require ROOT .  '/LoadLanguage.php';
+
+	if(
+	    isset($_SESSION['language']) and 
+	    $_SESSION['language'] != '' and 
+    	file_exists(ROOT . '/lng/var-' . strtolower($_SESSION['language']) . '.php')
+	) require ROOT . '/lng/var-' . strtolower($_SESSION['language']) . '.php';
+	else {
+		$_SESSION['language'] = 'en';
+		require ROOT. '/lng/var-en.php';
+	}
 	$total = $d->PayNow + $d->PayLater
 ?>
     <table width="100%" style="table-layout:fixed">

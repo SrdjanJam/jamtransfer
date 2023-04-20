@@ -95,14 +95,15 @@ foreach($mdk as $key) {
 }	
 $mdk = $md->getKeysBy('ModulID ' ,'asc', "where code='$activePage'");
 if (count($mdk)==1 && in_array($activePage,$active_pages)) {
-	$key=$mdk[0];
-	$md->getRow($key);
+	$keyP=$mdk[0];
+	$md->getRow($keyP);
 	if (is_dir($modulesPath . '/'.$md->getBase())) {	
 		if (is_dir($modulesPath . '/'.$md->getBase().'/templates')) 
 			$pageName=$md->getName();
 		else $pageList=$md->getName();
 		require_once $modulesPath . '/'.$md->getBase().$includeFile;		
 	}	
+	
 	/*$md->getRow($md->getParentID());
 	$parentFolder=$md->getBase();
 	$md->getRow($key);
@@ -156,7 +157,7 @@ $smarty->assign('currenturl',ROOT_HOME.$activePage);
 $smarty->assign('title',$md->getName());
 $smarty->assign('base',$md->getBase());
 $smarty->assign('parentID',$md->getParentID());
-$smarty->assign('ModulID',$key);
+$smarty->assign('ModulID',$keyP);
 $smarty->assign('setasdriver',$setasdriver);
 
 

@@ -106,15 +106,20 @@
 	{{#each Item}}
 		<div>
 		
-			<div class="row {{color}} pad1em listTile listTile-edit" 
+			<div class="row {{color}} listTile-edit" 
 			id="t_{{DetailsID}}">
 
-					<div class="col-md-2 order"  onclick="oneItem({{DetailsID}},'order');">	
-						<small>{{OrderDate}} {{MOrderTime}}</small></br>
-						<strong>{{MOrderID}} - {{TNo}}</strong><br>
-						<small>{{displayTransferStatusText TransferStatus}}</small>
-						{{#if StaffNote}}<small style="color:red"><i class="fa-solid fa-message"></i></small>{{/if}}				
-						{{#if FinalNote}}<small style="color:red"><i class="fa-solid fa-message"></i></small>{{/if}}	
+					<div class="col-md-2 small-box order"  onclick="oneItem({{DetailsID}},'order');">	
+					    <div class="inner">
+							<small>{{OrderDate}} {{MOrderTime}}</small></br>
+							<strong>{{MOrderID}} - {{TNo}}</strong><br>
+							<small>{{displayTransferStatusText TransferStatus}}</small>
+							{{#if StaffNote}}<small style="color:red"><i class="fa-solid fa-message"></i></small>{{/if}}				
+							{{#if FinalNote}}<small style="color:red"><i class="fa-solid fa-message"></i></small>{{/if}}
+						</div>	
+						<div class="icon">
+							<h4>Order</h4>
+						</div>						
 					</div>
 					<div class="col-md-2 small-box payment" onclick="oneItem({{DetailsID}},'payment');">
 					    <div class="inner">
@@ -166,21 +171,31 @@
 							<h4>Driver company</h4>
 						</div>						
 					</div>
-					<div class="col-md-2 agent" onclick="oneItem({{DetailsID}},'agent');">
-						{{MOrderKey}}<br>
-						{{MConfirmFile}}<br>						
-						{{#compare AgentID '>' 0}}
-							<img src='i/agents/{{Image}}'>	 
-						{{/compare}}	
-						<strong>{{UserName}}</strong>
+					<div class="col-md-2 small-box agent" onclick="oneItem({{DetailsID}},'agent');">
+					    <div class="inner">										
+							{{MOrderKey}}<br>
+							{{MConfirmFile}}<br>						
+							{{#compare AgentID '>' 0}}
+								<img src='i/agents/{{Image}}'>	 
+							{{/compare}}	
+							<strong>{{UserName}}</strong>
+						</div>	
+						<div class="icon">
+							<h4>Purchaser</h4>
+						</div>							
 					</div>					
-					<div class="col-md-2 passenger" onclick="oneItem({{DetailsID}},'passenger');">
-						<i class="fa fa-user"></i> <strong>{{PaxName}}</strong><br>
-						<small>
-							<i class="fa fa-envelope-o"></i> {{MPaxEmail}}
-							<br>
-							<i class="fa fa-phone"></i> {{MPaxTel}}
-						</small>						
+					<div class="col-md-2 small-box passenger" onclick="oneItem({{DetailsID}},'passenger');">
+					    <div class="inner">					
+							<strong>{{PaxName}}</strong><br>
+							<small>
+								<i class="fa fa-envelope-o"></i> {{MPaxEmail}}
+								<br>
+								<i class="fa fa-phone"></i> {{MPaxTel}}
+							</small>	
+						</div>	
+						<div class="icon">
+							<small><i class="fa fa-user"></i></small>
+						</div>							
 					</div>
 			</div>
 

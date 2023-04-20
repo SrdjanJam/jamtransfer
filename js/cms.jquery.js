@@ -2183,3 +2183,69 @@ String.prototype.replaceAll = function(str1, str2, ignore)
 {
 	return this.replace(new RegExp(str1.replace(/([\/\,\!\\\^\$\{\}\[\]\(\)\.\*\+\?\|\<\>\-\&])/g,"\\$&"),(ignore?"gi":"g")),(typeof(str2)=="string")?str2.replace(/\$/g,"$$$$"):str2);
 }
+
+// ponovno slanje potvrde vozacu ili putniku
+function sendUpdateEmail(mailTo, mailFrom, fromName, subject, message, profile, DetailsID, responseButton) {
+	var reason = $( "#ChangeTransferReason option:selected" ).text();
+	console.log(reason);
+	$responseButton = $(responseButton);
+	var url =  'api/sendUpdateEmail.php' +
+		'?mailTo=' + mailTo +
+		'&mailFrom=' + mailFrom +
+		'&fromName=' + fromName +
+		'&subject=' + subject +
+		'&message=' + message +
+		'&profile=' + profile +
+		'&DetailsID=' + DetailsID +
+		'&reason=' + reason +	
+		'&callback=?';
+
+	if (confirm("Are you sure?")) {
+		$responseButton.children("div").html('Sending...');
+		console.log(url);
+		$.ajax({
+			type: 'POST',
+			url: url,
+			async: false,
+			contentType: "application/json",
+			dataType: 'jsonp',
+			success: function(data) {
+				$responseButton.children("div").html(data);
+			}
+		});
+	}
+
+	return false;
+}
+
+
+function sendEmailToDriver(transferId, tNo) {
+	var subject = 'Update';
+	var message = $("#DriverNotes").val();
+
+	//var to		= 'bogo.split@gmail.com';
+
+	// u produkciji ovo staviti
+	var to = $("#sendEmailTo").val();
+
+	var url = WEBSITEURL + '/cms/a/'+
+		"sendEmail.php?to=" + to +
+		"&subject=Ref. Order ID: " + transferId + '-' + tNo + ': '+ subject +
+		"&message="+ message +
+		"&callback=?";
+	$("#sendMessageResponse").html('Sending...');
+
+	$.ajax({
+		type: 'POST',
+		url: url,
+		async: false,
+		contentType: "application/json",
+		dataType: 'jsonp',
+		success: function(data) {
+			$("#sendMessageResponse").html(data);
+		}
+	});
+
+	return false;
+}
+
