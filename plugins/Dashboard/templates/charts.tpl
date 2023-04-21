@@ -58,7 +58,7 @@ new Chart("pie-chart", {
 // Bar Chart:
 var xValues = {/literal}{$months2}{literal};
 var yValues = {/literal}{$values2}{literal};
-var barColors = ["red", "green","blue","orange","brown", "green","blue","orange","brown", "green","blue"];
+var barColors = ["red", "green","blue","orange","brown", "green","blue","orange","brown", "green","blue","orange"];
 
 new Chart("bar-chart", {
   type: "bar",
