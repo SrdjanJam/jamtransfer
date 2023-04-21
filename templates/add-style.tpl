@@ -3,6 +3,7 @@
 {* TEMPLATES FOLDER: *}
 
 
+
 .body-edit{
     height:100vh !important;
     font-size:16px;
@@ -21,7 +22,7 @@
 }
 
 /* Sub wrapper 2: */
-.white-bg-edit{ 
+.white-bg-edit{
     background-image: url(./i/m-assets/white-bg/light_noise_diagonal.png) !important;
     /* height: 100%; check */
     padding: 30px 30px 30px;
@@ -47,7 +48,7 @@
 .additional-class{
     position: fixed;
     height: 100vh;
-    overflow-y: auto; 
+    overflow-y: auto;
 }
 
 /* Header Main: */
@@ -97,23 +98,22 @@
     /* font-style: italic; */
 }
 .mini-navbar .nav-header-edit .cut-name{
-    overflow:hidden; 
-    white-space:nowrap; 
-    text-overflow:ellipsis; 
-    width:60px; 
+    overflow:hidden;
+    white-space:nowrap;
+    text-overflow:ellipsis;
+    width:60px;
 }
 
 .mini-navbar .nav-header-edit .cut-name-2{
-    overflow:hidden; 
-    white-space:nowrap; 
-    text-overflow:ellipsis; 
-    width:50px; 
+    overflow:hidden;
+    white-space:nowrap;
+    text-overflow:ellipsis;
+    width:50px;
 }
 
 .nav-header-top-edit{
-    background-image: linear-gradient(#ff00002b, #04040461) !important;
-    /* background-image: linear-gradient(#8b4444, #212628) !important; Old 1 */
-    /* background-image: linear-gradient(#eb12123d, #212628) !important; Old 2 */
+    background-image: linear-gradient(#ff00002b, #4b494961) !important;
+    /* background-image: linear-gradient(#ff00002b, #04040461) !important; old */
     margin: 5px 5px 10px 5px;
     border-radius: 10px;
     /* box-shadow: 5px 5px 16px #232328 inset; */
@@ -144,7 +144,7 @@
     .form-group.group-edit{
         width:90%;
     }
-    
+
 }
 
 .itemsheader-edit{
@@ -179,8 +179,8 @@
 
 /* navbar top fixed */
 .navbar-static-top-edit{
-    background-image: linear-gradient(to bottom right,#00aaff3d, #c0c0c036);
-    /* background-image: linear-gradient(to bottom right, silver, #cceeff); Old 2 */
+    background-image: linear-gradient(#00aaff3d, #c0c0c036);
+    /* background-image: linear-gradient(to bottom right,#00aaff3d, #c0c0c036); old */
     box-shadow: 0px 0px 6px 3px #88888894;
     border-radius: 6px;
 }
@@ -225,7 +225,7 @@
   /* background: linear-gradient(177deg, #2ea44f 0%, #58ce79 100%); */
   border: 1px solid rgba(27, 31, 35, .15);
   border-radius: 6px;
-  /* box-shadow: rgba(27, 31, 35, .1) 0 1px 0; Old */ 
+  /* box-shadow: rgba(27, 31, 35, .1) 0 1px 0; Old */
   box-shadow: 2px 2px 5px #424181;
   box-sizing: border-box;
   color: #fff;
@@ -251,7 +251,7 @@
 .button-3:hover {
   background-color: #6cc9e3;
   /* background-color: #45afcc; old */
-  
+
 }
 
 /* ------------------------------------------ */
@@ -307,6 +307,10 @@
 .box-info, .box-primary{
     background-image: url(./i/m-assets/white-bg/stripes-light.webp) !important;
     box-shadow: 5px 5px 8px #616060;
+}
+.box-info-edit{
+    overflow-y: auto;
+    height: 300px;
 }
 
 .box-body .row{
@@ -382,7 +386,7 @@
 
 .pad1em{
     padding: 2px 0;
-    cursor:pointer; 
+    cursor:pointer;
     border-top:1px solid rgb(179, 179, 179) !important;
     font-family: Lucida sans-serif;
     font-size: 17px;
@@ -554,9 +558,9 @@
 ::-webkit-scrollbar-track {
     background: #f1f1f1;
     margin-right: 5px;
-    
+
 }
- 
+
 /* Handle */
 ::-webkit-scrollbar-thumb {
     background: #aaa;
@@ -567,7 +571,7 @@
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
     background: #646363;
-    
+
 }
 /* ============================================================================== */
 
