@@ -1,7 +1,33 @@
-   
+<style>
+                                  
+    @media screen and (min-width:1398px) and (max-width: 1880px) {
+        .target {
+            font-weight: bold;
+            color: #fbfbfb;
+            animation-name: rightToLeft;
+            animation-duration: 4.5s;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+            /* animation: rightToLeft 4.5s linear infinite; */
+            white-space: nowrap;
+            }
+
+            @keyframes rightToLeft {
+                0% {
+                    transform: translateX(200px);
+                }
+                100% {
+                    transform: translateX(-160px);
+                }
+            }
+
+    }
+
+</style>
 
                     <!-- Small boxes (Stat box) -->
                     <div class="row">
+
                         <div class="col-lg-2 col-xs-6">
                             <!-- small box -->
                             <a href="orders/newTransfers">
@@ -25,6 +51,7 @@
                                 </div>
                             </a>
                         </div><!-- ./col -->
+
                         {*<div class="col-lg-2 col-xs-6">
                             <!-- small box -->
                             <a href="orders/active">
@@ -48,6 +75,7 @@
                                 </div>
                             </a>
                         </div><!-- ./col -->
+
                         <div class="col-lg-2 col-xs-6">
                             <!-- small box -->
                             <a href="orders/confirmed">
@@ -69,6 +97,7 @@
                                 </div>
                             </a>
 						</div>*}
+
                         <div class="col-lg-2 col-xs-6">
                             <!-- small box -->
                             <a href="orders/notConfirmed">
@@ -89,7 +118,8 @@
                                     </span>
                                 </div>
                             </a>
-                        </div><!-- ./col -->      					
+                        </div><!-- ./col -->      
+
 						<div class="col-lg-2 col-xs-6">
                             <!-- small box -->
                             <a href="orders/notConfirmedToday">
@@ -98,9 +128,11 @@
                                         <h3>
                                             {$notConfirmedOrdersToday}
                                         </h3>
-                                        <p>
-                                            Today unconfirmed/declined 
-                                        </p>
+                                        <div style="overflow-x: hidden;overflow-y: hidden;">
+                                            <p class="target">
+                                                Today unconfirmed/declined 
+                                            </p>
+                                        </div>
                                     </div>
                                     <div class="icon">
                                         <i class="ion ion-ios7-alarm"></i>
@@ -110,7 +142,8 @@
                                     </span>
                                 </div>
                             </a>
-                        </div><!-- ./col -->						
+                        </div><!-- ./col -->	
+
 						<div class="col-lg-2 col-xs-6">
                             <!-- small box -->
                             <a href="orders/notConfirmedTomorrow">
@@ -119,9 +152,11 @@
                                         <h3>
                                             {$notConfirmedOrdersTomorrow}
                                         </h3>
-                                        <p>
-                                            Tomorrow unconfirmed/declined 
-                                        </p>
+                                        <div style="overflow-x: hidden;overflow-y: hidden;">
+                                            <p class="target">
+                                                Tomorrow unconfirmed/declined 
+                                            </p>
+                                        </div>
                                     </div>
                                     <div class="icon">
                                         <i class="ion ion-ios7-alarm"></i>
@@ -132,6 +167,7 @@
                                 </div>
                             </a>
                         </div><!-- ./col -->
+
                         <div class="col-lg-2 col-xs-6">
                             <!-- small box -->
                             <a href="orders/declined">
@@ -153,6 +189,7 @@
                                 </div>
                             </a>
                         </div><!-- ./col -->
+
                         <div class="col-lg-2 col-xs-6">
                             <!-- small box -->
                             <a href="orders/tomorrow">
@@ -173,5 +210,6 @@
                                     </span>
                                 </div>
                             </a>
-                        </div><!-- ./col -->						
+                        </div><!-- ./col -->
+
                     </div><!-- /.row -->
