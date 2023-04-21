@@ -12,18 +12,14 @@
 	$reason = $_REQUEST['reason'];
 
 	require_once '../config.php';
-	require_once ROOT . '/lng/en.php';
-	require_once ROOT . '/lng/en_text.php';
 	require_once ROOT . '/db/v4_OrderDetails.class.php';
 	require_once ROOT . '/db/v4_OrdersMaster.class.php';
 	require_once ROOT . '/db/v4_AuthUsers.class.php';
-	require_once ROOT . '/db/v4_Mailer.class.php';
 
 	// classes
 	$od = new v4_OrderDetails();
 	$om = new v4_OrdersMaster();
 	$au = new v4_AuthUsers();
-	$ml = new v4_Mailer();
 
 	$od->getRow($DetailsID);
 	$OrderID = $od->getOrderID();
@@ -79,18 +75,7 @@
 	// slanje maila
 	if ($message != '' and $mailTo != '') {
 		//$mailTo='jam.bgprogrameri@gmail.com';//za probu
-		//$sent = mail_html($mailTo, $mailFrom, $fromName, $mailFrom, $subject, $message);
-		$ml->setCreateTime(date("Y-m-d H:i:s"));
-		$ml->setCreatorID($_SESSION['AuthUserID']);
-		$ml->setFromName($fromName);
-		$ml->setToName($mailTo);
-		$ml->setReplyTo('');
-		$ml->setSubject($subject);
-		$ml->setBody($message);
-		$ml->setAttachment('');
-		$ml->setStatus(0);
- 
-		$ml->saveAsNew();
+		$sent = mail_html($mailTo, $mailFrom, $fromName, $mailFrom, $subject, $message);
 		$sent = true;
 	}
 	else $sent = false;

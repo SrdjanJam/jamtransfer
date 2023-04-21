@@ -63,10 +63,10 @@ foreach ($db->fieldNames() as $name) {
 			// ako se promijenio vozac
 			if ($name == 'DriverID') {
 				// obavijesti starog vozaca
-				//$logDescription .= informOldDriver($db->getOrderID(),$db->getTNo(),$old_content) . '<br>';
+				$logDescription .= informOldDriver($db->getOrderID(),$db->getTNo(),$old_content) . '<br>';
 
 				// obavijesti novog vozaca
-				//$logDescription .= informNewDriver($db->getOrderID(),$db->getTNo(),$content) .'<br>';
+				$logDescription .= informNewDriver($db->getOrderID(),$db->getTNo(),$content) .'<br>';
 
 				// obavijesti kupca 
 				$customerDescription .= YOUR_NEW_DRIVER_NAME . ' : ' . $_REQUEST['DriverName'] . '<br>';

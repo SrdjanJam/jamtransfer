@@ -329,6 +329,11 @@
 											<textarea class="textarea" name="DriverNotes" id="DriverNotes" cols="40" rows="4"
 											style="width:100%">{{details.DriverNotes}}</textarea>
 										</div>
+										<button class="btn btn-primary"
+										onclick="return sendEmailToDriver('{{details.OrderID}}','{{details.TNo}}');">
+											<?= SEND_EMAIL_TO_DRIVER ?>
+											<div id="sendMessageResponse"></div>
+										</button>										
 									</div>
 								</div>								
 							</div>

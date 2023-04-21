@@ -13,7 +13,7 @@ require_once ROOT . '/db/v4_Invoices.class.php';
 require_once ROOT . '/db/v4_InvoiceDetails.class.php';
 require_once ROOT . '/db/v4_AuthUsers.class.php';
 
-
+require_once ROOT . '/api/informFuncs.php';
 
 class v4_OrdersJoin extends v4_OrderDetails {
 	public function getFullOrderByDetailsID($column, $order, $limit, $where = NULL) {

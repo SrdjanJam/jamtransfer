@@ -1,23 +1,6 @@
 <?
 @session_start();
 
-// za vozace je hardkodirano na engleski
-
-	// LANGUAGES
-	if ( isset($_SESSION['CMSLang']) and $_SESSION['CMSLang'] != '') {
-		$languageFile = ROOT .'/cms/lng/' . $_SESSION['CMSLang'] . '_text.php';
-		if ( file_exists( $languageFile) ) require_once $languageFile;
-		else {
-			$_SESSION['CMSLang'] = 'en';
-			require_once ROOT .'/cms/lng/en_text.php';
-		}
-	}
-	else {
-		$_SESSION['CMSLang'] = 'en';
-		require_once ROOT .'/cms/lng/en_text.php';
-	}
-	// END OF LANGUAGES	
-require_once ROOT . '/f/f.php';
 
 
 function informCustomer($OrderID, $TNo, $msg) {
