@@ -1,20 +1,21 @@
 <?
 header('Content-Type: text/javascript; charset=UTF-8');
 require_once '../config.php';
-session_start();
+
+
 
 $output = array();
 
-	require_once ROOT.'db/v4_TodoList.class.php';
+	require_once '../db/v4_TodoList.class.php';
 	
 	$i = new v4_TodoList();
+
+	if(isset($_REQUEST['ID'])) $ID = $_REQUEST['ID'];
+	if(isset($_SESSION['AuthUserID'])) $OwnerID = $_SESSION['AuthUserID'];
+	if(isset($_REQUEST['newItem'])) $newItem = $_REQUEST['newItem'];
+	if(isset($_REQUEST['action'])) $action = $_REQUEST['action'];
+
 	
-	$ID			= $_REQUEST['ID'];
-	$OwnerID 	= $_SESSION['AuthUserID'];
-	$newItem 	= $_REQUEST['newItem'];
-	$action		= $_REQUEST['action'];
-
-
 
 	if ( $action == 'add') {
 	
@@ -102,6 +103,7 @@ $output = array();
 	}
 	
 
-if(count($output) == 0) $output[] = array("task" => 'No tasks', "elapsed" => '');
+if(count($output) == 0) 
+$output[] = array("task" => 'No tasks', "elapsed" => '');
 	
 echo $_GET['callback'] . '(' . json_encode($output) . ')';	
