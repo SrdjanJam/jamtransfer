@@ -43,8 +43,10 @@ if ($keyName != '' and $keyValue == '') {
 }
 // zaprimanje - razduzivanje vozila
 $ex_arr=array(109,127);
+
 if( in_array($_REQUEST['Expense'],$ex_arr)) {
 	// brisanje
+
 $sqlD="DELETE FROM `v4_SubVehiclesSubDrivers` WHERE `OwnerID`='".$_REQUEST['OwnerID']."' && (SubVehicleID=".$_REQUEST['VehicleID']." || SubDriverID=".$_REQUEST['DriverID'].")";
 	$dbf->RunQuery($sqlD);
 	if(isset($_REQUEST['Approved']) && $_REQUEST['Approved']==1 && $_REQUEST['Expense']==109) {
