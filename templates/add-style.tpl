@@ -2,8 +2,6 @@
 
 {* TEMPLATES FOLDER: *}
 
-
-
 .body-edit{
     height:100vh !important;
     font-size:16px;
@@ -22,7 +20,7 @@
 }
 
 /* Sub wrapper 2: */
-.white-bg-edit{
+.white-bg-edit{ 
     background-image: url(./i/m-assets/white-bg/light_noise_diagonal.png) !important;
     /* height: 100%; check */
     padding: 30px 30px 30px;
@@ -48,7 +46,7 @@
 .additional-class{
     position: fixed;
     height: 100vh;
-    overflow-y: auto;
+    overflow-y: auto; 
 }
 
 /* Header Main: */
@@ -98,17 +96,17 @@
     /* font-style: italic; */
 }
 .mini-navbar .nav-header-edit .cut-name{
-    overflow:hidden;
-    white-space:nowrap;
-    text-overflow:ellipsis;
-    width:60px;
+    overflow:hidden; 
+    white-space:nowrap; 
+    text-overflow:ellipsis; 
+    width:60px; 
 }
 
 .mini-navbar .nav-header-edit .cut-name-2{
-    overflow:hidden;
-    white-space:nowrap;
-    text-overflow:ellipsis;
-    width:50px;
+    overflow:hidden; 
+    white-space:nowrap; 
+    text-overflow:ellipsis; 
+    width:50px; 
 }
 
 .nav-header-top-edit{
@@ -144,7 +142,7 @@
     .form-group.group-edit{
         width:90%;
     }
-
+    
 }
 
 .itemsheader-edit{
@@ -225,7 +223,7 @@
   /* background: linear-gradient(177deg, #2ea44f 0%, #58ce79 100%); */
   border: 1px solid rgba(27, 31, 35, .15);
   border-radius: 6px;
-  /* box-shadow: rgba(27, 31, 35, .1) 0 1px 0; Old */
+  /* box-shadow: rgba(27, 31, 35, .1) 0 1px 0; Old */ 
   box-shadow: 2px 2px 5px #424181;
   box-sizing: border-box;
   color: #fff;
@@ -251,7 +249,7 @@
 .button-3:hover {
   background-color: #6cc9e3;
   /* background-color: #45afcc; old */
-
+  
 }
 
 /* ------------------------------------------ */
@@ -321,10 +319,10 @@
 	margin-top:5px;
 }
 
-.box-body-edit{ background: #3f67b9; }
+.box-body-edit{ background: #6cd7f36b; }
 
 .box-header-edit{
-    background: #3f67b9;
+    background: #6cd7f36b;
     color: white;
 }
 
@@ -384,20 +382,20 @@
     border-right:none;
 }
 
-.pad1em{
+#show_Items .pad1em{
     padding: 2px 0;
-    cursor:pointer;
+    cursor:pointer; 
     border-top:1px solid rgb(179, 179, 179) !important;
     font-family: Lucida sans-serif;
     font-size: 17px;
 }
-.pad1em div{
+#show_Items .pad1em div{
     border-right:1px solid rgb(187, 187, 187);
 }
-.pad1em div:last-child{
+#show_Items .pad1em div:last-child{
     border-right:none;
 }
-.pad1em:hover{ background: rgb(0 0 0 / 9%) !important; }
+#show_Items .pad1em:hover{ background: rgb(0 0 0 / 9%) !important; }
 
 /* off */
 /* .listTitleEdit{ cursor:auto !important; } */
@@ -411,7 +409,7 @@
     position: sticky;
     top: 0;
     z-index: 5;
-    background-color: white;
+    /* background-color: white; */
     margin-left: 0px;
     margin-right: 0px;
     color: #0088cc;
@@ -419,11 +417,11 @@
 }
 
 .row .itemsheader-edit{
-    background: #00bdfb12;
-    /* background: #dadbebc0; Old */
+    background: #00bdfbbd;
+    /* background: #00bdfb12; Old */
     border: 1px solid #c5c5c5;
     position: sticky;
-    top: 20;
+    top: 35;
     z-index: 5;
     margin-left: 0px;
     margin-right: 0px;
@@ -441,14 +439,20 @@
     background:#d9d8d8;
 }
 .listTile-edit .col-md-2{
-    background: #86bbd6;
+    background: #a7d5ed;
+    /* background: #86bbd6; Old */
     margin: 5px;
     border-radius: 5px;
     box-sizing: border-box;
     box-shadow: 5px 5px 8px #616060;
+    color: #3d3d3d;
 }
 .listTile-edit .col-md-2:hover{
-    background: #9fc7db;
+    background: #9bd6f3;
+    /* background: #9fc7db; Old */
+    color: black;
+    /* color: white; Old */
+    font-weight: bold;
 }
 
 .select-top-edit{
@@ -558,9 +562,9 @@
 ::-webkit-scrollbar-track {
     background: #f1f1f1;
     margin-right: 5px;
-
+    
 }
-
+ 
 /* Handle */
 ::-webkit-scrollbar-thumb {
     background: #aaa;
@@ -571,7 +575,7 @@
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
     background: #646363;
-
+    
 }
 /* ============================================================================== */
 
