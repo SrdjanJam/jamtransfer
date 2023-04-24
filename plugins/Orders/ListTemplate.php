@@ -22,6 +22,34 @@
 	
 ?>
 
+<style>
+	.right-edit{
+		border-bottom: 1px solid #1b8aab;
+		font-size: 22px;
+	}
+
+	.right-edit a{
+		color: #0c81e5;
+		background: #dbdbdb;
+	}
+
+	.right-edit a:hover{
+		color: #009efb;
+	}
+
+	.inner-edit{
+		border-style: none !important;
+	}
+
+	.icon h4{
+		color: cornflowerblue;
+	}
+
+	.grey{
+		background-color: #6cd7f3 !important;
+	}
+</style>
+
 <!-- Script: -->
 <script type="text/x-handlebars-template" id="ItemListTemplate">
 
@@ -31,36 +59,19 @@
 
 
 	<div class="row row-sticky filter1">
-		<span class="right">
-				Advanced filters
-				<i id='filtersDown' class="fa fa-angle-down" onclick="filtersDown()"></i>
-				<i id='filtersUP' class="fa fa-angle-up" onclick="filtersUP()"></i>
+		<span class="right right-edit">
+			<a class="right-a"> 
+				<a id='filtersDown' onclick="filtersDown()">Hide Filters <i class="fa fa-angle-down"></i></a>
+				<a id='filtersUP' onclick="filtersUP()">Show Filters <i class="fa fa-angle-up"></i></a>
+			</a>
 		</span>
 	</div>
 
-	<div class="row">
-		<div class="col-md-2">
-			<small class="badge blue text-black badge-edit">Order</small>
-		</div>			
-		<div class="col-md-2">
-			<small class="badge blue text-black badge-edit">Payment</small>
-		</div>		
-		<div class="col-md-2">
-			<small class="badge blue text-black badge-edit">Transfer</small>
-		</div>			
-		<div class="col-md-2">
-			<small class="badge blue text-black badge-edit">Driver Partner</small>
-		</div>			
-		<div class="col-md-2">
-			<small class="badge blue text-black badge-edit">Purchaser</small>
-		</div>		
-		<div class="col-md-2">
-			<small class="badge blue text-black badge-edit">Passenger</small>
-		</div>	
-	</div>		
-	<div class="row itemsheader2 itemsheader-edit2 filter2">
+	<div class="row itemsheader itemsheader-edit filter2">
 		<!-- Order: -->
 		<div class="col-md-2">
+			<small class="badge blue text-black badge-edit">Order</small><br>
+
 			<select id='yearsOrder' class="select-top-edit" name='yearsOrder' value='0' onchange="allItems();">
 				<option value='0'>All years</option>
 			</select>
@@ -70,11 +81,13 @@
 		</div>
 		<!-- Payment: -->
 		<div class="col-md-2"> 
+			<small class="badge blue text-black badge-edit">Payment</small><br>
 			{{paymentMethodSelect PaymentMethod}}<br>
 			<input id='paymentNumber' class="input-one" name='paymentNumber'  placeholder="Payment / Invoice No" onchange="allItems();"/>					
 		</div>
 		<!-- Transfer: -->
 		<div class="col-md-2"> 
+			<small class="badge blue text-black badge-edit">Transfer</small><br>
 			<input id='pickupFromDate' class="datepicker" name='pickupFromDate'  placeholder="From Date" size='6' onchange="allItems();"/>
 			<!--<select id='yearsPickup' class="select-top-edit" name='yearsPickup' value='0' onchange="allItems();">
 				<option value='0'>All years</option>
@@ -87,16 +100,19 @@
 		</div>
 		<!-- Driver: -->
 		<div class="col-md-2">
+			<small class="badge blue text-black badge-edit">Partner</small><br>
 			<input id='driverName' class="input-one" name='driverName'  placeholder="Name/ID" onchange="allItems();"/><br>				
 			{{driverConfStatusSelect "-1" "DriverConfStatusChoose"}}
 		</div>
 		<!-- Client/Agent: -->
 		<div class="col-md-2">
+			<small class="badge blue text-black badge-edit">Purchaser</small><br>
 			<input id='agentName' class="input-one" name='agentName'  placeholder="Name/ID" onchange="allItems();"/><br>				
 			<input id='agentOrder' class="input-one" name='agentOrder'  placeholder="Order Key / Agent Order" onchange="allItems();"/><br>				
 		</div>
 		<!-- Passenger: -->
 		<div class="col-md-2">
+			<small class="badge blue text-black badge-edit">Passenger</small><br>
 			<input id='passengerData' class="input-one" name='passengerData'  placeholder="Passenger Data" onchange="allItems();"/>					
 		</div>			
 	</div>
@@ -106,23 +122,18 @@
 	{{#each Item}}
 		<div>
 		
-			<div class="row {{color}} listTile-edit" 
+			<div class="row {{color}} pad1em listTile listTile-edit" 
 			id="t_{{DetailsID}}">
 
-					<div class="col-md-2 small-box order"  onclick="oneItem({{DetailsID}},'order');">	
-					    <div class="inner">
-							<small>{{OrderDate}} {{MOrderTime}}</small></br>
-							<strong>{{MOrderID}} - {{TNo}}</strong><br>
-							<small>{{displayTransferStatusText TransferStatus}}</small>
-							{{#if StaffNote}}<small style="color:red"><i class="fa-solid fa-message"></i></small>{{/if}}				
-							{{#if FinalNote}}<small style="color:red"><i class="fa-solid fa-message"></i></small>{{/if}}
-						</div>	
-						<div class="icon">
-							<h4>Order</h4>
-						</div>						
+					<div class="col-md-2 order"  onclick="oneItem({{DetailsID}},'order');">	
+						<small>{{OrderDate}} {{MOrderTime}}</small></br>
+						<strong>{{MOrderID}} - {{TNo}}</strong><br>
+						<small>{{displayTransferStatusText TransferStatus}}</small>
+						{{#if StaffNote}}<small style="color:red"><i class="fa-solid fa-message"></i></small>{{/if}}				
+						{{#if FinalNote}}<small style="color:red"><i class="fa-solid fa-message"></i></small>{{/if}}	
 					</div>
 					<div class="col-md-2 small-box payment" onclick="oneItem({{DetailsID}},'payment');">
-					    <div class="inner">
+					    <div class="inner inner-edit">
 							<strong>{{addNumbers DetailPrice ExtraCharge}} €</strong><br>
 							{{paymentMethodText PaymentMethod}} <br>
 							<small>
@@ -134,12 +145,12 @@
 							</small>	
 						</div>	
 						<div class="icon">
-							<i class="fa fa-file-invoice"></i>
+							<i class="fa fa-file-invoice" style="font-size:60px;"></i>
 						</div>						
 					</div>
 					
 					<div class="col-md-2 small-box transfer" onclick="oneItem({{DetailsID}},'transfer');">
-					    <div class="inner">
+					    <div class="inner inner-edit">
 							{{#compare PickupDate ">=" "<?=date('Y')+1;?>-01-01"}}<span class="red-text">{{/compare}}
 							{{PickupDate}}
 							{{#compare PickupDate ">=" "<?=date('Y')+1;?>-01-01"}}</span>{{/compare}}
@@ -153,11 +164,11 @@
 							{{/compare}}
 						</div>
 						<div class="icon">
-							<i class="fa fa-road"></i>
+							<i class="fa fa-road" style="font-size:60px;"></i>
 						</div>							
 					</div>
 					<div class="col-md-2 small-box pdriver" onclick="oneItem({{DetailsID}},'pdriver');">
-					    <div class="inner">
+					    <div class="inner inner-edit">
 							{{#if DriverName}}
 								<strong><small>{{DriverName}}</small></strong>
 							{{/if}}	
@@ -171,31 +182,21 @@
 							<h4>Driver company</h4>
 						</div>						
 					</div>
-					<div class="col-md-2 small-box agent" onclick="oneItem({{DetailsID}},'agent');">
-					    <div class="inner">										
-							{{MOrderKey}}<br>
-							{{MConfirmFile}}<br>						
-							{{#compare AgentID '>' 0}}
-								<img src='i/agents/{{Image}}'>	 
-							{{/compare}}	
-							<strong>{{UserName}}</strong>
-						</div>	
-						<div class="icon">
-							<h4>Purchaser</h4>
-						</div>							
+					<div class="col-md-2 agent" onclick="oneItem({{DetailsID}},'agent');">
+						{{MOrderKey}}<br>
+						{{MConfirmFile}}<br>						
+						{{#compare AgentID '>' 0}}
+							<img src='i/agents/{{Image}}'>	 
+						{{/compare}}	
+						<strong>{{UserName}}</strong>
 					</div>					
-					<div class="col-md-2 small-box passenger" onclick="oneItem({{DetailsID}},'passenger');">
-					    <div class="inner">					
-							<strong>{{PaxName}}</strong><br>
-							<small>
-								<i class="fa fa-envelope-o"></i> {{MPaxEmail}}
-								<br>
-								<i class="fa fa-phone"></i> {{MPaxTel}}
-							</small>	
-						</div>	
-						<div class="icon">
-							<small><i class="fa fa-user"></i></small>
-						</div>							
+					<div class="col-md-2 passenger" onclick="oneItem({{DetailsID}},'passenger');">
+						<i class="fa fa-user"></i> <strong>{{PaxName}}</strong><br>
+						<small>
+							<i class="fa fa-envelope-o"></i> {{MPaxEmail}}
+							<br>
+							<i class="fa fa-phone"></i> {{MPaxTel}}
+						</small>						
 					</div>
 			</div>
 
@@ -208,7 +209,7 @@
 				</div>
 			</div>
 		</div>
-	<hr></hr>
+	
 	{{/each}}
 
 
