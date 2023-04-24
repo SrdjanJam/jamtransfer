@@ -4,21 +4,7 @@
 				
 		<div class="box-header box-header-edit">
 			<div class="box-tools pull-right">
-				{{#compare details.DriverConfStatus ">" 0}}
-					<button id='resendVoucher' class="btn btn-primary"><?= RESEND_VOUCHER ?></button>
-					<label id='lrv' style='display:none'><?= RESEND_VOUCHER ?> Reason</label>	
-					{{changeTransferReasonSelect details.ChangeTransferReason}}
-					<button id='todriver' class="btn btn-primary" style='display:none'
-					onclick="return sendUpdateEmail('{{details.DriverEmail}}','','','','','driver','{{details.DetailsID}}',this);">
-						<?= TO_DRIVER ?>
-						<div></div>
-					</button>
-					<button id='topax' class="btn btn-primary" style='display:none'
-					onclick="return sendUpdateEmail('{{master.MPaxEmail}}','','','','','pax','{{details.DetailsID}}',this);">
-						<?= TO_PAX ?>
-						<div></div>
-					</button>&nbsp;&nbsp;&nbsp;
-				{{/compare}}
+				
 				<button class="btn " title="<?= CLOSE ?>"
 				onclick="return editCloseItem('{{details.DetailsID}}');">
 					<i class="fa fa-chevron-up l""></i>
@@ -263,7 +249,7 @@
 											<input type="text" class="w25 Price" name="Price[{{ID}}]" id="Price[{{ID}}]" value="{{Price}}">
 										</div>										
 										<div class="col-md-2">
-											<input type="number" class="w25" name="Qty[{{ID}}]" id="Qty[{{ID}}]" value="{{Qty}}">
+											<input type="number" class="w25" name="Qty[{{ID}}]" id="Qty[{{ID}}]" value="{{Qty}}" style="width:100% !important;">
 										</div>
 									</div>
 								{{/each}}
@@ -652,17 +638,6 @@
 			var price = $(this).find('option:selected').attr('data-price');
 			$(this).parent().parent().find('.price').val(price);
 		})	
-		// dugmad za slanje mail-ova		
-		$('#ChangeTransferReason').hide();
-		$('#resendVoucher').click(function() {
-			$("#lrv").show(300);
-			$("#ChangeTransferReason").show(300);
-			$("#resendVoucher").hide();
-		})			
-		$('#ChangeTransferReason').click(function() {
-			$('#todriver').show(300);
-			$('#topax').show(300);		
-		})			
 		
 	</script>
 
