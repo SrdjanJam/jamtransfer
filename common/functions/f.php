@@ -788,10 +788,23 @@ function getServiceName($ServiceID) {
 
 function mail_html($mailto, $from_mail, $from_name, $replyto, $subject, $message, $attachment = '') {
 
+	require_once ROOT . '/db/v4_Mailer.class.php';
+	$ml = new v4_Mailer();
 
-	require_once ROOT . '/PHPMailer-master/PHPMailerAutoload.php';
+	$ml->setCreateTime(date("Y-m-d H:i:s"));
+	$ml->setCreatorID($_SESSION['AuthUserID']);
+	$ml->setFromName($from_name);
+	$ml->setToName($mailto);
+	$ml->setReplyTo($replyto);
+	$ml->setSubject($subject);
+	$ml->setBody($message);
+	$ml->setAttachment($attachment);
+	$ml->setStatus(0);
 
-	$mail = new PHPMailer;
+	$ml->saveAsNew();
+
+	/*require_once ROOT . '/PHPMailer-master/PHPMailerAutoload.php';
+	$mail = new PHPMailer;*/
 
 	//$mail->SMTPDebug = 3;									// Enable verbose debug output
 	/*
@@ -803,7 +816,7 @@ function mail_html($mailto, $from_mail, $from_name, $replyto, $subject, $message
     $mail->SMTPSecure = 'tls';								// Enable TLS encryption, `ssl` also accepted
     $mail->Port = 587;										// TCP port to connect to
     */
-	$mail->CharSet = 'UTF-8';
+	/*$mail->CharSet = 'UTF-8';
 	$mail->setFrom($from_mail, $from_name);
 	$mail->addAddress($mailto);									// Add a recipient
 	//$mail->addAddress('ellen@example.com');					// Name is optional
@@ -823,7 +836,7 @@ function mail_html($mailto, $from_mail, $from_name, $replyto, $subject, $message
 		return 'Mailer Error: ' . $mail->ErrorInfo;
 	} else {
 		return 'OK';
-	}
+	}*/
 }
 
 /*

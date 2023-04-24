@@ -72,7 +72,6 @@
 						<label for="Task">Task</label>
 					</div>
 					<div class="col-md-8">
-						<input type="hidden" name="actionsid" id="actionsid" value="{{Expense}}">
 						<select class="w100" name="Expense" id='actionsselect' value="{{Expense}}">
 							<?
 							foreach ($opis as $key=>$o) {
@@ -98,6 +97,10 @@
 						</select>
 					</div>
 				</div>
+				<? } else {?>	
+					<input type="hidden" name="Expense"  value="{{Expense}}">
+					<input type="hidden" name="DriverID"  value="{{DriverID}}">
+					<input type="hidden" name="VehicleID"  value="{{VehicleID}}">
 				<? } ?>	
 				
 				<div class="row">

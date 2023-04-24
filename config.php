@@ -142,7 +142,8 @@ $vehicletypes=$_SESSION['vehicletypes'];*/
 			`AuthUserFax`, 
 			`AuthUserMail`,
 			`Image`, 
-			`AcceptedPayment`,		
+			`AcceptedPayment`,	
+			`IBAN`,	
 			`Active` 
 			FROM `v4_AuthUsers` WHERE Active=1" ;
 		$rU = $db->RunQuery($qU);

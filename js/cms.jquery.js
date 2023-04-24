@@ -2223,13 +2223,11 @@ function sendEmailToDriver(transferId, tNo) {
 	var subject = 'Update';
 	var message = $("#DriverNotes").val();
 
-	//var to		= 'bogo.split@gmail.com';
-
 	// u produkciji ovo staviti
 	var to = $("#sendEmailTo").val();
 
-	var url = WEBSITEURL + '/cms/a/'+
-		"sendEmail.php?to=" + to +
+	var url = "api/sendEmail.php?"+
+		"to=" + to +
 		"&subject=Ref. Order ID: " + transferId + '-' + tNo + ': '+ subject +
 		"&message="+ message +
 		"&callback=?";
