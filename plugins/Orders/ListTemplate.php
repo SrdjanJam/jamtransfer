@@ -67,7 +67,7 @@
 		</span>
 	</div>
 
-	<div class="row itemsheader itemsheader-edit filter2">
+	<div class="row itemsheader2 itemsheader-edit filter2">
 		<!-- Order: -->
 		<div class="col-md-2">
 			<small class="badge blue text-black badge-edit">Order</small><br>
