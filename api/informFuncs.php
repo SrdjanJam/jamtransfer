@@ -83,17 +83,15 @@ function informNewDriver($OrderID, $TNo, $DriverID) {
 	
 	$message .= 'Hello' . '!<br><br>';
 	$message .= 'We have new transfer(s) for you.<br>Please Confirm or Decline these transfers immediately using the link(s) below:<br><br>';
-	
 	$k = $od->getKeysBy('DetailsID', 'asc', " WHERE OrderID = '". $OrderID . "' AND TNo ='" . $TNo ."'");
 	//foreach($k as $nn => $id) {
 		$od->getRow($k[0]);
-		
 		$om->getRow($od->getOrderID());
 		$orderKey = $om->getMOrderKey();
 		$mailto = $au->getAuthUserMail();			
 		
-		$link = '<a href="http://' . $_SERVER['SERVER_NAME'] . '/cms/dcN.php?code='.$od->getDetailsID() .
-				'&control='.$orderKey.'&id='.$DriverID.'">'. 
+		$link = '<a href="https://' . ROOT_HOME . '/dcN.php?code/'.$od->getDetailsID() .
+				'/control/'.$orderKey.'/id/'.$DriverID.'">'. 
 				$od->getOrderID().'-'.$od->getTNo() .
 				'</a>';
 		$message .= $link . '<br>';
@@ -105,10 +103,10 @@ function informNewDriver($OrderID, $TNo, $DriverID) {
 	$message .= pdfFooter('1');
 	
 	mail_html($mailto, 'new-transfer@jamtransfer.com', 'JamTransfer', 'info@jamtransfer.com',
-		  'New transfer' . ' - ' . $OrderKey , $message);
+		  'New transfer' . ' - ' . $orderKey , $message);
 
 	mail_html('cms@jamtransfer.com', 'new-transfer@jamtransfer.com', 'JamTransfer', 'info@jamtransfer.com',
-		  'New transfer' . ' - ' . $OrderKey , $message);
+		  'New transfer' . ' - ' . $orderKey , $message);
 		  
 		  
 	return '>>> New Driver informed. Driver ID: ' . $DriverID . ' E-mail: ' . $mailto;

@@ -2199,7 +2199,7 @@ function sendUpdateEmail(mailTo, mailFrom, fromName, subject, message, profile, 
 		'&DetailsID=' + DetailsID +
 		'&reason=' + reason +	
 		'&callback=?';
-
+	console.log(url);
 	if (confirm("Are you sure?")) {
 		$responseButton.children("div").html('Sending...');
 		console.log(url);

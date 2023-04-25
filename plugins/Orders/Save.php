@@ -93,6 +93,8 @@ foreach ($db->fieldNames() as $name) {
 		}
 	}	
 }
+$au->getRow($db->getDriverID());
+$db->setDriverName($au->getAuthUserRealName());
 $db->setDriverExtraCharge(number_format($sumDriverPrice));
 $db->setExtraCharge(number_format($sumPrice));
 $db->setPaxName($_REQUEST['MPaxFirstName'] . ' ' . $_REQUEST['MPaxLastName']);

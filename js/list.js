@@ -268,6 +268,36 @@
 		return false;
 	}
 
+	function sendItem(id) {
+		if($("#ItemEditForm"+id).valid() == false) {return false;}
+		var newData = $("#ItemEditForm"+id).serializeObject();
+		var formData = $("#ItemEditForm"+id).serialize();
+		// update data on server
+		var url = window.root + 'Send.php';
+		var data = 'callback=?&id=' + id + '&' + formData;
+		console.log(url+'?'+data);		
+		$.ajax({
+			type: 'POST',
+			url: url,
+			data: data,			
+			async: false,
+			//contentType: "application/json",
+			dataType: 'jsonp',
+			success: function(data, status) {
+				$("#statusMessage").html('<i class="ic-checkmark-circle s"></i> ');
+				// osvjezi podatke na ekranu za zadani element
+				if (id == '') {
+					alert ('New Item created');
+					window.location.href = window.currenturl;
+				}	
+				else allItems();
+				$(".editFrame").hide('slow');
+				$(".editFrame form").html('');
+			},
+			error: function(xhr, status, error) {alert("Save error occured: " + xhr.status + " " + xhr.statusText); }
+		});
+		return false;
+	}	
 	function editSaveItem(id) {
 		if($("#ItemEditForm"+id).valid() == false) {return false;}
 		var newData = $("#ItemEditForm"+id).serializeObject();

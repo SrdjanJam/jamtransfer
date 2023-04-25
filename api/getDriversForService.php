@@ -56,9 +56,8 @@ foreach($driverID as $n => $ID) {
 				'VehicleType'   => $dvt[$j]
 	);
 }
-
 foreach($users as $u) {
-	if (!in_array($ID,$driverID) && $u->AuthLevelID==31) {
+	if (!in_array($u->AuthUserID,$driverID) && $u->AuthLevelID==31) {
 		$out[] = array(
 					'UserID'		=> $u->AuthUserID, 
 					'RealName' 		=> $u->AuthUserRealName,
