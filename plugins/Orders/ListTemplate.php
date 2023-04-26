@@ -48,16 +48,21 @@
 	.grey{
 		background-color: #6cd7f3 !important;
 	}
+
+
 </style>
 
+
 <!-- Script: -->
+
+
+<!-- =================================================================== -->
+
 <script type="text/x-handlebars-template" id="ItemListTemplate">
 
 	<input type='hidden' id='sortField' name='sortField'/>
 	<input type='hidden' id='sortDirection' name='sortDirection'/>
 	
-
-
 	<div class="row row-sticky filter1">
 		<span class="right right-edit">
 			<a class="right-a"> 
@@ -76,9 +81,21 @@
 				<option value='0'>All years</option>
 			</select>
 			<input id='orderFromDate' class="datepicker" name='orderFromDate'  placeholder="From Date" size='6' onchange="allItems();"/><br>
-			<button id="OrderDateASC" onclick="allSort('OrderDate','ASC')" class="button-asc-edit"><i class="fa fa-sort-asc"></i></button>
-			<button id="OrderDate-DESC" onclick="allSort('OrderDate','DESC')" class="button-desc-edit"><i class="fa fa-sort-desc"></i></button>
+			<!-- <button id="OrderDateASC" onclick="allSort('OrderDate','ASC')" class="button-asc-edit"><i class="fa fa-sort-asc"></i></button>
+			<button id="OrderDate-DESC" onclick="allSort('OrderDate','DESC')" class="button-desc-edit"><i class="fa fa-sort-desc"></i></button> -->
+
+
+			<div id="myBtn">
+			<!-- <a class="purple-head hover-black" id="myBtn"> -->
+				<span id="asc"><i class="fa fa-angle-up"></i></span>
+				<span style="display:none;" id="desc"><i class="fa fa-angle-down"></i></span>
+			<!-- </a> -->
+			</div>
+
+
 		</div>
+
+
 		<!-- Payment: -->
 		<div class="col-md-2"> 
 			<small class="badge blue text-black badge-edit">Payment</small><br>
@@ -212,12 +229,22 @@
 	
 	{{/each}}
 
+	<script>
 
-</script>
+	// Change the icon and sorting:
+	$("#myBtn span").click(function(){
+		if($(this).attr("id")=="asc"){
+			$(this).parent().find("#asc").hide();
+			$(this).parent().find("#desc").show();
+			allSort('OrderDate','ASC');
+		}else{
+			$(this).parent().find("#asc").show();
+			$(this).parent().find("#desc").hide();
+			allSort('OrderDate','DESC');
+		}
+	});
 
 
-
-<script>
 	async function setSort(field,direction) {
 		$('#sortField').val(field);
 		$('#sortDirection').val(direction);
@@ -226,3 +253,11 @@
 		setSort(field,direction).then(function() {allItems();});
 	}	
 </script>
+
+
+
+</script>
+
+
+
+
