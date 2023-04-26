@@ -185,13 +185,31 @@ if ($keyName != '' and $keyValue != '') {
 	$upd = 'Updated';
 	if($res !== true) $upd = $res;
 }
-/*if ($keyName != '' and $keyValue == '') {
-	$newID = $db->saveAsNew();
+if ($keyName != '' and $keyValue == '') {
+	$om->setSiteID(2);
+	$om->setMOrderDate(date("Y-m-d"));
+	$om->setMOrderTime(date("H:i:s"));
+	$om->setMUserLevelID($_SESSION["AuthLevelID"]);
+	$om->setMUserID($_SESSION["AuthUserID"]);
+	
+	$om->setMOrderKey(create_order_key()); // pravi OrderKey
 	$newIDOM = $om->saveAsNew();
-}*/
+	$db->setSiteID(2);	
+	$db->setOrderID($newIDOM);
+	$db->setTNo(1);	
+	$db->setOrderDate(date("Y-m-d"));
+	$db->setPickupDate(date("Y-m-d"));
+	$db->setUserLevelID($_SESSION["AuthLevelID"]);
+	$db->setUserID($_SESSION["AuthUserID"]);
+	$db->setTransferStatus(4);	
+	
+	
+	$newID = $db->saveAsNew();
+}
 $out = array(
 	'update' => $upd,
-	'insert' => $newID
+	'insert' => $newID,
+	'page' => 'orders'
 );
 
 

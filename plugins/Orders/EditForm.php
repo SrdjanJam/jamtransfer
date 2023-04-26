@@ -23,7 +23,7 @@
 				onclick="return editCloseItem('{{details.DetailsID}}');">
 					<i class="fa fa-chevron-up l""></i>
 				</button>
-				<button class="btn btn-info" title="<?= SAVE_CHANGES ?>" 
+				<button id="save" class="btn btn-info" title="<?= SAVE_CHANGES ?>" 
 				onclick="return editSaveItem('{{details.DetailsID}}');">
 				<i class="fa fa-save"></i>
 				</button>
@@ -568,6 +568,13 @@
 		<input type="hidden" name="sendEmailTo" id="sendEmailTo" value="{{details.DriverEmail}}">
 		
 	</form>
+	<? if ($isNew) { ?>
+		<script>
+		$('document').ready(function() {
+			$("#save").trigger("click");
+		});		
+		</script>
+	<? } else  { ?>	
 	<script>
 		//sistem za blokiranje promena u odnosu na statuse
 		DriverConfStatusRelated();
@@ -664,6 +671,6 @@
 			$('#topax').show(300);		
 		})			
 	</script>
-
+	<? } ?>
 </script>
 

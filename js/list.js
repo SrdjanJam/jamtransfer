@@ -317,7 +317,8 @@
 				$("#statusMessage").html('<i class="ic-checkmark-circle s"></i> ');
 				// osvjezi podatke na ekranu za zadani element
 				if (id == '') {
-					alert ('New Item created');
+					if (typeof data.page!=='undefined' && data.page=="orders") window.currenturl=window.currenturl+'/detail/'+data.insert
+					else alert ('New Item created');
 					window.location.href = window.currenturl;
 				}	
 				else allItems();
