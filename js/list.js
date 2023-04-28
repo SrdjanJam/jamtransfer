@@ -1,5 +1,6 @@
 	var data_Items = [];
 	window.base='http://localhost/jamtransfer/';
+	var validationFields = ["PlaceTypeEN", "PlaceTypeRUS"];
 	function allItems() {
 		// podaci iz input polja - filtriranje
 		var where  = $("#whereCondition").val(); // glavni filter koji uvijek radi
@@ -146,6 +147,12 @@
 			  }			  
 			  if (ItemsData.pickupFromDate) {
 				  $("#pickupFromDate").val(ItemsData.pickupFromDate);
+			  }			 
+			  if (ItemsData.sortField) {
+				  $("#sortField").val(ItemsData.sortField);
+			  }			  
+			  if (ItemsData.sortDirection) {
+				  $("#sortDirection").val(ItemsData.sortDirection);
 			  }
 			  if (ItemsData.paymentNumber ) {
 				  $("#paymentNumber").val(ItemsData.paymentNumber);
@@ -298,13 +305,19 @@
 		});
 		return false;
 	}	
-	function editSaveItem(id) {
+	function editSaveItem(id,returnT) {
+		if (typeof returnT=='undefined') returnT=0;	
+		$("#ItemEditForm"+id+" input ").each(function(){
+			if( $.inArray($(this).attr('name'), validationFields) !== -1 ) {
+				$(this).attr('required','required');
+			}			
+		})	
 		if($("#ItemEditForm"+id).valid() == false) {return false;}
 		var newData = $("#ItemEditForm"+id).serializeObject();
 		var formData = $("#ItemEditForm"+id).serialize();
 		// update data on server
 		var url = window.root + 'Save.php';
-		var data = 'callback=?&id=' + id + '&' + formData;
+		var data = 'callback=?&id=' + id + '&' + formData + '&return=' + returnT;
 		console.log(url+'?'+data);		
 		$.ajax({
 			type: 'POST',
@@ -318,8 +331,10 @@
 				// osvjezi podatke na ekranu za zadani element
 				if (id == '') {
 					if (typeof data.page!=='undefined' && data.page=="orders") window.currenturl=window.currenturl+'/detail/'+data.insert
-					else alert ('New Item created');
-					window.location.href = window.currenturl;
+					else toastr['success']('New Item created');	
+					setTimeout( function(){ 
+						window.location.href = window.currenturl;					
+					}  , 500 );
 				}	
 				else allItems();
 				$(".editFrame").hide('slow');
