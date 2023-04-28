@@ -27,7 +27,7 @@
             min-height: 8%;
 			border: 1px solid #5e5b5382;
 			border-radius: 10px;
-			width:24%;
+			width:32%;
 			float:left;
 			font-family: Georgia, serif;
 			padding: 5px;
@@ -38,13 +38,13 @@
             float: left;
             width: 25%;
 			min-height:100vh;
-			background: #c0c0c042;
-			border-left: 1px solid green;
+			background: #b1d3e961;
+			border-radius: 7px;
         }
 
 		.dropelement {
 			border: 2px solid rgb(100, 202, 105);
-    		border-radius: 5px;
+    		border-radius: 8px;                  
     		margin: 0 10px 5px 10px;
     		padding: 5px;
 			background: #c8cbb14f;
@@ -77,7 +77,6 @@
 		@media screen and (max-width:1200px) {
 
 			.drop-wrapper, .drop-wrapper .dropzoneN, .drag-wrapper {
-				float: none;
 				width:100%;
 			}
 
