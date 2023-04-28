@@ -131,8 +131,8 @@
     /* font-family:Georgia, 'Times New Roman', Times, serif; Old */
 }
 
-
-/* pageListHeader.tpl -------------------------------------------------------- */
+/* ------------------------------------------------------------------------------- */
+/* pageListHeader.tpl */
 
 .form-group.group-edit{
     display: inline-block;
@@ -254,12 +254,67 @@
 
 /* ------------------------------------------ */
 /* Dialog */
-.ui-dialog{
+
+.ui-dialog{ /*Global dialog style */
     height: 80% !important;
     overflow-y: auto;
     box-shadow: 0px 0px 5px 2px #4d4d52;
     /* box-shadow: 0px 0px 2px 2px #424181; old */
+    top:130px !important;
 }
+
+.dialog_help_style .ui-dialog-titlebar { /*Global style */
+    background: #c8f9ce;
+    box-shadow: 2px 2px 5px #424181;
+}
+
+.dialog_message_style .ui-dialog-titlebar { /*Global style */
+    background: #dfd0b5;
+    box-shadow: 2px 2px 5px #424181;
+}
+
+.ui-dialog-buttonpane { /*Global style */
+    position: absolute;
+    top: 41px;
+    width: 97%;
+    border-width: 0 0 1px 0 !important;
+}
+
+.ui-dialog-buttonpane #saved-message{
+    margin-right: 100px;
+    border: 2px solid #ffe423;
+    border-radius: 5px;
+}
+
+@media (min-width: 768px) and (max-width: 1300px) {
+    .ui-dialog{ /*Global dialog style */
+        height: 80% !important;
+        overflow-y: auto;
+        box-shadow: 0px 0px 5px 2px #4d4d52;
+        /* box-shadow: 0px 0px 2px 2px #424181; old */
+        /* margin-top: 400px; dosen't work */
+        top:130px !important;
+        width:50% !important;
+        left:300px !important;
+    }
+
+
+}
+
+@media (max-width: 767px)  {
+    .ui-dialog{ /*Global dialog style */
+        height: 80% !important;
+        overflow-y: auto;
+        box-shadow: 0px 0px 5px 2px #4d4d52;
+        /* box-shadow: 0px 0px 2px 2px #424181; old */
+        top:130px !important;
+        width:60% !important;
+    }
+
+}
+
+/* ------------------------------------------ */
+/* Textarea */
 
 .textarea{
     width:70%;
@@ -275,29 +330,6 @@
     box-sizing: border-box !important;
     background: #fdfdf4;
     margin-top: 65px;
-}
-
-.dialog_help_style .ui-dialog-titlebar {
-    background: #c8f9ce;
-    box-shadow: 2px 2px 5px #424181;
-}
-
-.dialog_message_style .ui-dialog-titlebar {
-    background: #dfd0b5;
-    box-shadow: 2px 2px 5px #424181;
-}
-
-.ui-dialog-buttonpane {
-    position: absolute;
-    top: 41px;
-    width: 97%;
-    border-width: 0 0 1px 0 !important;
-}
-
-.ui-dialog-buttonpane #saved-message{
-    margin-right: 100px;
-    border: 2px solid #ffe423;
-    border-radius: 5px;
 }
 
 /* ------------------------------------------ */
@@ -325,6 +357,9 @@
     background: #6cd7f36b;
     color: white;
 }
+
+/* ------------------------------------------ */
+
 
 {* END OF TEMPLATES: ======================================================================================  *}
 {* ========================================================================================================  *}
@@ -396,6 +431,7 @@
     border-right:none;
 }
 #show_Items .pad1em:hover{ background: rgb(0 0 0 / 9%) !important; }
+
 
 /* off */
 /* .listTitleEdit{ cursor:auto !important; } */
