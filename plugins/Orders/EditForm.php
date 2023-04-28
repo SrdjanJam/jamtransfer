@@ -1,3 +1,4 @@
+<?= $newID ?>
 <script type="text/x-handlebars-template" id="ItemEditTemplate">
 
 	<form id="ItemEditForm{{details.DetailsID}}" class="form box box-info" method="post" onsubmit="return false;">
@@ -45,12 +46,16 @@
 							<div class="col-md-3 "><label><?= ID ?></label></div>
 							<div class="col-md-9">
 								<strong>{{details.OrderID}}-{{details.TNo}}</strong> {{transferStatusSelect details.TransferStatus}}
+								<i class="fa fa-exchange"></i>
 								{{#if details.RelatedTransfers.RelatedTransferText includeZero=true}}
-									<i class="fa fa-exchange"></i>
 									<a href="orders/detail/{{details.RelatedTransfers.RelatedTransfer}}"
 										class="badge blue text-black">
 										{{details.RelatedTransfers.RelatedTransferText}}
 									</a>
+								{{else}}		
+									<button id="save" class="badge blue text-black" title="Add Return Transfer" 
+									onclick="return editSaveItem('{{details.DetailsID}}',1);">Add Return Transfer
+									</button>
 								{{/if}}
 							</div>
 						</div>
@@ -571,7 +576,7 @@
 	<? if ($isNew) { ?>
 		<script>
 		$('document').ready(function() {
-			$("#save").trigger("click");
+			//$("#save").trigger("click");
 		});		
 		</script>
 	<? } else  { ?>	

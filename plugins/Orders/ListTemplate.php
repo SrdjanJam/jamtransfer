@@ -60,8 +60,14 @@
 
 <script type="text/x-handlebars-template" id="ItemListTemplate">
 
-	<input type='hidden' id='sortField' name='sortField'/>
-	<input type='hidden' id='sortDirection' name='sortDirection'/>
+	<select id='sortField' name='sortField' onchange="allItems();">
+		<option value="OrderDate">Order Date</option>	
+		<option value="PickupDate">Pickup Date</option>		
+	</select>	
+	<select id='sortDirection' name='sortDirection' onchange="allItems();">
+		<option value="ASC">ASC</option>	
+		<option value="DESC">DESC</option>		
+	</select>
 	
 	<div class="row row-sticky filter1">
 		<span class="right right-edit">
@@ -81,18 +87,6 @@
 				<option value='0'>All years</option>
 			</select>
 			<input id='orderFromDate' class="datepicker" name='orderFromDate'  placeholder="From Date" size='6' onchange="allItems();"/><br>
-			<!-- <button id="OrderDateASC" onclick="allSort('OrderDate','ASC')" class="button-asc-edit"><i class="fa fa-sort-asc"></i></button>
-			<button id="OrderDate-DESC" onclick="allSort('OrderDate','DESC')" class="button-desc-edit"><i class="fa fa-sort-desc"></i></button> -->
-
-
-			<div id="myBtn">
-			<!-- <a class="purple-head hover-black" id="myBtn"> -->
-				<span id="asc"><i class="fa fa-angle-up"></i></span>
-				<span style="display:none;" id="desc"><i class="fa fa-angle-down"></i></span>
-			<!-- </a> -->
-			</div>
-
-
 		</div>
 
 
@@ -109,10 +103,9 @@
 			<!--<select id='yearsPickup' class="select-top-edit" name='yearsPickup' value='0' onchange="allItems();">
 				<option value='0'>All years</option>
 			</select>!-->
-			<button onclick="allSort('PickupDate','ASC')" class="button-asc-edit"><i class="fa fa-sort-asc"></i></button>
-			<button onclick="allSort('PickupDate','DESC')" class="button-desc-edit"><i class="fa fa-sort-desc"></i></button>			
 			<i class="fa fa-cubes" style="color:#900"></i><input type="checkbox" id="listExtras" name="listExtras"  value="" onchange="allItems();" />
 			</br>
+
 			<input id='locationName' class="input-one" name='locationName'  placeholder="Location Name" onchange="allItems();"/>					
 		</div>
 		<!-- Driver: -->
@@ -199,21 +192,31 @@
 							<h4>Driver company</h4>
 						</div>						
 					</div>
-					<div class="col-md-2 agent" onclick="oneItem({{DetailsID}},'agent');">
-						{{MOrderKey}}<br>
-						{{MConfirmFile}}<br>						
-						{{#compare AgentID '>' 0}}
-							<img src='i/agents/{{Image}}'>	 
-						{{/compare}}	
-						<strong>{{UserName}}</strong>
+					<div class="col-md-2 small-box agent" onclick="oneItem({{DetailsID}},'agent');">
+					    <div class="inner inner-edit">
+							{{MOrderKey}}<br>
+							{{MConfirmFile}}<br>						
+							{{#compare AgentID '>' 0}}
+								<img src='i/agents/{{Image}}'>	 
+							{{/compare}}	
+							<strong>{{UserName}}</strong>
+						</div>	
+						<div class="icon">
+							<h4>Purchaser</h4>
+						</div>								
 					</div>					
-					<div class="col-md-2 passenger" onclick="oneItem({{DetailsID}},'passenger');">
-						<i class="fa fa-user"></i> <strong>{{PaxName}}</strong><br>
-						<small>
-							<i class="fa fa-envelope-o"></i> {{MPaxEmail}}
-							<br>
-							<i class="fa fa-phone"></i> {{MPaxTel}}
-						</small>						
+					<div class="col-md-2 small-box passenger" onclick="oneItem({{DetailsID}},'passenger');">
+					    <div class="inner inner-edit">					
+							<i class="fa fa-user"></i> <strong>{{PaxName}}</strong><br>
+							<small>
+								<i class="fa fa-envelope-o"></i> {{MPaxEmail}}
+								<br>
+								<i class="fa fa-phone"></i> {{MPaxTel}}
+							</small>
+						</div>	
+						<div class="icon">
+							<i class="fa fa-person" style="font-size:60px;"></i>
+						</div>								
 					</div>
 			</div>
 
@@ -232,19 +235,6 @@
 	<script>
 
 	// Change the icon and sorting:
-	$("#myBtn span").click(function(){
-		if($(this).attr("id")=="asc"){
-			$(this).parent().find("#asc").hide();
-			$(this).parent().find("#desc").show();
-			allSort('OrderDate','ASC');
-		}else{
-			$(this).parent().find("#asc").show();
-			$(this).parent().find("#desc").hide();
-			allSort('OrderDate','DESC');
-		}
-	});
-
-
 	async function setSort(field,direction) {
 		$('#sortField').val(field);
 		$('#sortDirection').val(direction);

@@ -184,6 +184,9 @@ hr {
 	<!-- MAIN CONTENT: -->
 	<div class="row row-shedule">
 		{assign var=counter value=1}
+		{if $sdArray|count eq 0}
+			<h1 class='red'>No transfers for this period</h1>
+		{/if}
 		{section name=pom loop=$sdArray}
 			{if $counter eq 1}
 			<div class="row">	

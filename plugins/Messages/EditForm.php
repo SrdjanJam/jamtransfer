@@ -8,6 +8,10 @@
 				onclick="return editCloseItem('{{ID}}');">
 				<i class="fa fa-close"></i>
 			</button>
+			<button class="btn btn-danger" title="<?= CANCEL ?>" 
+				onclick="return deleteItem('{{ID}}');">
+				<i class="fa fa-ban"></i>
+			</button>			
 			<button id="save_button" class="btn btn-info" title="<?= SAVE_CHANGES ?>"
 				onclick="return editSaveItem('{{ID}}');">
 				<i class="fa fa-save"></i>
