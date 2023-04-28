@@ -1,36 +1,46 @@
 <?
 	$smarty->assign('selectsolved',true);
 ?>
+
+<style>
+	@media only screen and (max-width: 1350px) {
+		/* For mobile phones: */
+		[class*="col-"] {
+			width: 100% !important;
+		}
+	}
+</style>
+
 <script type="text/x-handlebars-template" id="ItemListTemplate">
 
 <!-- LIST: -->
 	<div class="row row-edit">
 		
-		<div class="col-md-1">
+		<div class="col-sm-1">
 			<?=MESSAGE_ID;?>
 		</div>
 
-		<div class="col-md-1">
+		<div class="col-sm-1">
 			<?=PAGE;?>
 		</div>
 		
-		<div class="col-md-2">
+		<div class="col-sm-2">
 			<?=FROM_NAME;?>
 		</div>			
 		
-		<div class="col-md-5">
+		<div class="col-sm-5">
 			<?=MESSAGE;?>
 		</div>		
 		
-		<div class="col-md-1">
+		<div class="col-sm-1">
 			<?=DATE_TIME;?>
 		</div>		
 		
-		<div class="col-md-1">
+		<div class="col-sm-1">
 			Solver
 		</div>
 
-		<div class="col-md-1">
+		<div class="col-sm-1">
 			Solved
 		</div>
 					
@@ -92,3 +102,4 @@
 
 </script>
 	
+

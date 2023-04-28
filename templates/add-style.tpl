@@ -136,8 +136,9 @@
 
 .form-group.group-edit{
     display: inline-block;
-    width:70%;
+    width:90%;
 }
+
 @media screen and (max-width:1000px){
     .form-group.group-edit{
         width:90%;
@@ -448,6 +449,7 @@
     /* background-color: white; */
     margin-left: 0px;
     margin-right: 0px;
+    margin-bottom: 5px;
     color: #0088cc;
     /* background: #a1bdca; */
 }
@@ -475,20 +477,20 @@
     background:#d9d8d8;
 }
 .listTile-edit .col-md-2{
-    background: #a7d5ed;
-    /* background: #86bbd6; Old */
+    background: #dfebee;
+    /* background: #a7d5ed; Old */
     margin: 5px;
     border-radius: 5px;
     box-sizing: border-box;
-    box-shadow: 5px 5px 8px #616060;
+    box-shadow: 3px 2px 3px 2px #395876;
+    /* box-shadow: 5px 5px 8px #616060; old */
     color: #3d3d3d;
 }
 .listTile-edit .col-md-2:hover{
-    background: #9bd6f3;
-    /* background: #9fc7db; Old */
+    background: #bbd5db;
+    /* background: #9bd6f3; Old */
     color: black;
     /* color: white; Old */
-    font-weight: bold;
 }
 
 .select-top-edit{

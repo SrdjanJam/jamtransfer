@@ -26,11 +26,20 @@
 	.right-edit{
 		border-bottom: 1px solid #1b8aab;
 		font-size: 22px;
+		background: #c8dff3;
+		padding: 1px 5px;
+		border-radius: 5px;
+		box-shadow: 2px 1px 3px 0px #6ba4e3;
+		/* box-shadow: 2px 1px 3px 0px #4a4848; old */
+		text-shadow: #4ba7e1 1px 0 2px;
 	}
 
 	.right-edit a{
+		color: #1186e0;
+		/* Old:
 		color: #0c81e5;
-		background: #dbdbdb;
+		background: #dbdbdb; 
+		*/
 	}
 
 	.right-edit a:hover{
@@ -49,6 +58,22 @@
 		background-color: #6cd7f3 !important;
 	}
 
+	@media only screen and (max-width: 1650px) {
+		/* For mobile phones: */
+		[class*="col-"] {
+			width: 100% !important;
+			
+		}
+		
+	}
+
+	@media only screen and (max-width: 1250px) {
+		/* For mobile phones: */
+		.pad1em{
+			flex-direction: column;
+		}
+		
+	}
 
 </style>
 
@@ -60,14 +85,7 @@
 
 <script type="text/x-handlebars-template" id="ItemListTemplate">
 
-	<select id='sortField' name='sortField' onchange="allItems();">
-		<option value="OrderDate">Order Date</option>	
-		<option value="PickupDate">Pickup Date</option>		
-	</select>	
-	<select id='sortDirection' name='sortDirection' onchange="allItems();">
-		<option value="ASC">ASC</option>	
-		<option value="DESC">DESC</option>		
-	</select>
+	
 	
 	<div class="row row-sticky filter1">
 		<span class="right right-edit">
@@ -79,6 +97,17 @@
 	</div>
 
 	<div class="row itemsheader2 itemsheader-edit filter2">
+		<!-- Sorting Order Date and Pickup Date: -->
+		<div style="display:block;margin:10px;">
+			<select id='sortField' name='sortField' onchange="allItems();">
+				<option value="OrderDate">Order Date</option>	
+				<option value="PickupDate">Pickup Date</option>		
+			</select>	
+			<select id='sortDirection' name='sortDirection' onchange="allItems();">
+				<option value="ASC">ASC</option>	
+				<option value="DESC">DESC</option>		
+			</select>
+		</div>
 		<!-- Order: -->
 		<div class="col-md-2">
 			<small class="badge blue text-black badge-edit">Order</small><br>
