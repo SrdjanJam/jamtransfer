@@ -1,10 +1,6 @@
-
 <input type="hidden"  id="whereCondition" name="whereCondition" 
 value=" WHERE {$ItemID} > 0">
 
-<input type="hidden"  id="orderid" name="orderid" value="{$orderid}">
-<input type="hidden"  id="detailid" name="detailid" value="{$detailid}">
-<input type="hidden"  id="transfersFilter" name="transfersFilter" value="{$transfersFilter}">
 <input type="hidden"  id="routeID" name="routeID" value="{$RouteID}">
 <input type="hidden"  id="vehicleTypeID" name="vehicleTypeID" value="{$VehicleTypeID}">
 <input type="hidden"  id="vehicleID" name="vehicleID" value="{$VehicleID}">
@@ -12,10 +8,6 @@ value=" WHERE {$ItemID} > 0">
 <input type="hidden"  id="actionID" name="actionID" value="{$ActionID}">
 
 <div class="row itemsheader itemsheader-edit">
-{if $existNew}
-	<a class="btn btn-primary btn-xs btn-xs-edit" href="{$currenturl}/new">{$NNEW}</a><br>
-{/if}
-	<div class="col-md-2 col-md-2-infoShow" id="infoShow"></div>
 	{if isset($selecttype)}
 	<div class="col-md-2">
 		<i class="fa fa-list-ul edit-fa"></i>
@@ -45,27 +37,14 @@ value=" WHERE {$ItemID} > 0">
 	</div>
 	{/if}
 
-	{if not isset($pagelength)}{assign var="pagelength" value="10"}{/if}
-	
-	<div class="col-md-2">
-		<i class="fa fa-eye edit-fa"></i>
-		<div class="form-group group-edit">
-			<select id="length" class="w75 form-control control-edit" onchange="allItems();">
-				<option value="5" {if $pagelength eq '5'} selected {/if}> 5 </option>
-				<option value="10" {if $pagelength eq '10'} selected {/if}> 10 </option>
-				<option value="20" {if $pagelength eq '20'} selected {/if}> 20 </option>
-				<option value="50" {if $pagelength eq '50'} selected {/if}> 50 </option>
-				<option value="100" {if $pagelength eq '100'} selected {/if}> 100 </option>
-			</select>
-		</div>
-	</div>
-
 	<div class="col-md-2">
 		<i class="fa fa-text-width edit-fa"></i>
 		<div class="form-group group-edit">
 			<input type="text" id="Search" class=" w75 form-control control-edit" onchange="allItems();" placeholder="Text + Enter to Search">
 		</div>
 	</div>
+
+	{if $pageList ne 'Orders'}
 	<div class="col-md-2">
 		<i class="fa fa-sort-amount-asc edit-fa"></i>
 		<div class="form-group group-edit">
@@ -73,9 +52,9 @@ value=" WHERE {$ItemID} > 0">
 				<option value="ASC"> {$ASCENDING} </option>
 				<option value="DESC" {if isset($selectapproved) or isset($selectsolved)}SELECTED{/if}> {$DESCENDING} </option>
 			</select>
-		</div>		
-	</div>
-
+		</div>	
+	</div>		
+	{/if}	
 	{if isset($selectactive)}		
 	<div class="col-md-2">
 		<i class="fa fa-filter edit-fa"></i> 

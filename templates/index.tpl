@@ -331,7 +331,6 @@
 
 						<!-- Page title and database: -->
 						<h2 style="display:inline-block;margin: 15px 0 0 55px;"><span class="m-r-sm text-muted">{$title} - {$smarty.session.log_title}</span></h2>
-
 						<ul class="nav navbar-top-links navbar-right">
 							<!-- Opener dialog button: -->
 							<li><button type="button" id="opener-help" class="button-3">Help</button></li>
@@ -361,7 +360,11 @@
 					<div class="header header-edit 
 						{if $orderid gt 0}hidden{/if}
 					">  
-						{include file="pageListHeader.tpl"} <!-- Second header -->			   
+						{if $pageList ne 'Orders'}
+							{include file="pageListHeader.tpl"} <!-- Second header -->		
+						{else}
+							{include file="pageListHeader2.tpl"} 
+						{/if}						
 					</div> {* /.header *}
 				{/if}
 
@@ -402,9 +405,25 @@
 				<div class="footer row footer-edit">
 
 					{if not $isNew and $pageList}				
-						<div id="pageSelect" class="pull-left pull-left-edit"></div>
+						<div id="pageSelect" class="col-md-4 pull-left pull-left-edit"></div>
+						<div class="col-md-2 col-md-2-infoShow" id="infoShow"></div>
+						{if not isset($pagelength)}{assign var="pagelength" value="10"}{/if}
+						<div class="col-md-2">
+							<i class="fa fa-eye edit-fa"></i>
+							<div class="form-group group-edit">
+								<select id="length" class="w75 form-control control-edit" onchange="allItems();">
+									<option value="5" {if $pagelength eq '5'} selected {/if}> 5 </option>
+									<option value="10" {if $pagelength eq '10'} selected {/if}> 10 </option>
+									<option value="20" {if $pagelength eq '20'} selected {/if}> 20 </option>
+									<option value="50" {if $pagelength eq '50'} selected {/if}> 50 </option>
+									<option value="100" {if $pagelength eq '100'} selected {/if}> 100 </option>
+								</select>
+							</div>
+						</div>	
+						{if $existNew}
+							<a class="btn btn-primary btn-xs btn-xs-edit" href="{$currenturl}/new"><i class="fa fa-plus" aria-hidden="true"></i></a><br>
+						{/if}						
 					{/if}
-
 					<div class="pull-right pull-right-edit">
 						Powered by <strong><a href="https://taxicms.com/" target="_blank">TaxiCMS</a></strong>
 					</div>

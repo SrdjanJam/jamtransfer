@@ -21,6 +21,8 @@
 		var currentTime = new Date();	
 		if (typeof pickupFromDate=='undefined') pickupFromDate='';
 		//if (typeof pickupFromDate=='undefined') pickupFromDate=currentTime.getFullYear()+'-01-01';
+	 	var order = $("#order").val();
+		if (typeof order=='undefined') order='';
 	 	var locationName = $("#locationName").val();
 		if (typeof locationName=='undefined') locationName='';
 	 	var paymentNumber = $("#paymentNumber").val();
@@ -34,9 +36,9 @@
 	 	var passengerData = $("#passengerData").val();
 		if (typeof passengerData=='undefined') passengerData='';
 		var paymentMethod = $("#PaymentMethod").val();
-		if (typeof paymentMethod=='undefined') paymentMethod='-1';		
+		//if (typeof paymentMethod=='undefined') paymentMethod='-1';		
 		var driverConfStatus = $("#DriverConfStatusChoose").val();
-		if (typeof driverConfStatus=='undefined') driverConfStatus='-1';		
+		//if (typeof driverConfStatus=='undefined') driverConfStatus='-1';
 		var yearsOrder = $("#yearsOrder").val();
 		if (typeof yearsOrder=='undefined') yearsOrder='0';
 	 	var yearsPickup = $("#yearsPickup").val();
@@ -76,7 +78,8 @@
 		'&detailid='+detailid+
 		'&orderFromDate='+orderFromDate+
 		'&pickupFromDate='+pickupFromDate+
-		'&paymentNumber='+paymentNumber+
+		'&paymentNumber='+paymentNumber+	
+		'&order='+order+
 		'&locationName='+locationName+
 		'&driverName='+driverName+
 		'&agentName='+agentName+
@@ -121,7 +124,7 @@
 
 				$("#show_Items").html(HTML);
 				
-			if	(ItemsData.showfilter == 0) {
+			/*if	(ItemsData.showfilter == 0) {
 				$('.filter1').remove();
 				$('.filter2').remove();
 			}	
@@ -132,9 +135,9 @@
 			  }) 			  
 			  $("#DriverConfStatusChoose").prepend('<option value="-1">All status</option>');
 			  $("#DriverConfStatusChoose option[value="+driverConfStatus+"]").prop("selected", true)
-			  $("#DriverConfStatusChoose").change(function() {
+			  $("#DriverConfStatusChoose").change(function() 
 				  allItems();
-			  }) 
+			  }) */
 			  if (ItemsData.yearsOrder ) {
 				  var yearsOrderArr = ItemsData.yearsOrder;
 				  $.each(yearsOrderArr, function(i, item) {
@@ -336,7 +339,19 @@
 						window.location.href = window.currenturl;					
 					}  , 500 );
 				}	
-				else allItems();
+				else {
+					if (typeof data.returnT!=='undefined' && data.returnT==1) {
+						window.currenturl=window.currenturl+'/order/'+data.orderid;
+						toastr['success']('New Item created');
+						setTimeout( function(){ 
+							window.location.href = window.currenturl;					
+						}  , 500 );						
+					}	
+					else toastr['success']('Item updated');	
+					setTimeout( function(){ 
+						allItems();					
+					}  , 500 );	
+				}	
 				$(".editFrame").hide('slow');
 				$(".editFrame form").html('');
 			},

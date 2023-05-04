@@ -151,13 +151,14 @@ if(!isset($_REQUEST['pickupFromDate']) || empty($_REQUEST['pickupFromDate'])) {
 	else $_REQUEST['pickupFromDate']=date('Y-m-d',time()-365*24*3600);
 }
 if(!isset($_REQUEST['paymentNumber'])) $_REQUEST['paymentNumber']="";
+if(!isset($_REQUEST['order'])) $_REQUEST['order']="";
 if(!isset($_REQUEST['locationName'])) $_REQUEST['locationName']="";
 if(!isset($_REQUEST['driverName'])) $_REQUEST['driverName']="";
 if(!isset($_REQUEST['agentName'])) $_REQUEST['agentName']="";
 if(!isset($_REQUEST['agentOrder'])) $_REQUEST['agentOrder']="";
 if(!isset($_REQUEST['passengerData'])) $_REQUEST['passengerData']="";
-if(!isset($_REQUEST['paymentMethod'])) $_REQUEST['paymentMethod']="";
-if(!isset($_REQUEST['driverConfStatus'])) $_REQUEST['driverConfStatus']="";
+if(!isset($_REQUEST['paymentMethod'])) $_REQUEST['paymentMethod']=0;
+if(!isset($_REQUEST['driverConfStatus'])) $_REQUEST['driverConfStatus']=0;
 if(!isset($_REQUEST['yearsOrder'])) $_REQUEST['yearsOrder']="";
 if(!isset($_REQUEST['yearsPickup'])) $_REQUEST['yearsPickup']="";
 if(!isset($_REQUEST['sortField'])) $_REQUEST['sortField']="";
@@ -170,6 +171,7 @@ setcookie("orderFromDate", $orderFromDate, time() + (7*24*60*60),"/");
 $pickupFromDate 	= $_REQUEST['pickupFromDate'];
 setcookie("pickupFromDate", $pickupFromDate, time() + (7*24*60*60),"/");
 $paymentNumber 	= $_REQUEST['paymentNumber'];
+$order 	= $_REQUEST['order'];
 $locationName 	= $_REQUEST['locationName'];
 $driverName 	= $_REQUEST['driverName'];
 $agentName 	= $_REQUEST['agentName'];
@@ -259,13 +261,14 @@ if ( $_REQUEST['Search'] != "" )
 	$dbWhere .= ')';
 }
 if ($listExtras==1) $dbWhere .= " AND ExtraCharge >0 ";
-if ($paymentMethod>-1) $dbWhere .= " AND PaymentMethod = ".$paymentMethod;
-if ($driverConfStatus>-1) $dbWhere .= " AND DriverConfStatus = ".$driverConfStatus;
+if ($paymentMethod>0) $dbWhere .= " AND PaymentMethod = ".$paymentMethod;
+if ($driverConfStatus>0) $dbWhere .= " AND DriverConfStatus = ".$driverConfStatus;
 if ($paymentNumber<>'') $dbWhere .= " AND (MCardNumber = '".$paymentNumber."' OR 
 											InvoiceNumber ='".$paymentNumber."' OR 
 											DriverInvoiceNumber ='".$paymentNumber."')";
 if ($orderFromDate<>'') $dbWhere .= " AND OrderDate >= '".$orderFromDate."'";
 if ($pickupFromDate<>'') $dbWhere .= " AND PickupDate >= '".$pickupFromDate."'";
+if ($order<>'') $dbWhere .= " AND OrderID = '".$order."'";
 if (strlen($locationName)>2) $dbWhere .= " AND (PickupName LIKE ('%".$locationName."%') OR 
 													DropName LIKE ('%".$locationName."%')) ";
 $queryDrivers="SELECT AuthUserID FROM v4_AuthUsers WHERE AuthUserRealName LIKE ('%".$driverName."%') 

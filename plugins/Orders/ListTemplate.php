@@ -5,7 +5,6 @@
 		$arr_all[]=$arr_row;
 	}
 	$smarty->assign('options',$arr_all);
-	$smarty->assign('selecttype',true);
 	
 	require_once ROOT.'/db/v4_AuthLevels.class.php';
 	$al = new v4_AuthLevels();
@@ -18,8 +17,20 @@
 		$arr_all2[]=$arr_row;
 	}
 	$smarty->assign('options2',$arr_all2);
-	$smarty->assign('selecttype2',true);
 	
+	foreach($PaymentMethod as $nn => $id) {
+		$arr_row['id']=$nn;
+		$arr_row['name']=$id;
+		$arr_all3[]=$arr_row;
+	}
+	$smarty->assign('options3',$arr_all3);		
+	
+	foreach($DriverConfStatus as $nn => $id) {
+		$arr_row['id']=$nn;
+		$arr_row['name']=$id;
+		$arr_all4[]=$arr_row;
+	}
+	$smarty->assign('options4',$arr_all4);	
 ?>
 
 <style>
@@ -84,78 +95,6 @@
 <!-- =================================================================== -->
 
 <script type="text/x-handlebars-template" id="ItemListTemplate">
-
-	
-	
-	<div class="row row-sticky filter1">
-		<span class="right right-edit">
-			<a class="right-a"> 
-				<a id='filtersDown' onclick="filtersDown()">Hide Filters <i class="fa fa-angle-down"></i></a>
-				<a id='filtersUP' onclick="filtersUP()">Show Filters <i class="fa fa-angle-up"></i></a>
-			</a>
-		</span>
-	</div>
-
-	<div class="row itemsheader2 itemsheader-edit filter2">
-		<!-- Sorting Order Date and Pickup Date: -->
-		<div style="display:block;margin:10px;">
-			<select id='sortField' name='sortField' onchange="allItems();">
-				<option value="OrderDate">Order Date</option>	
-				<option value="PickupDate">Pickup Date</option>		
-			</select>	
-			<select id='sortDirection' name='sortDirection' onchange="allItems();">
-				<option value="ASC">ASC</option>	
-				<option value="DESC">DESC</option>		
-			</select>
-		</div>
-		<!-- Order: -->
-		<div class="col-md-2">
-			<small class="badge blue text-black badge-edit">Order</small><br>
-
-			<select id='yearsOrder' class="select-top-edit" name='yearsOrder' value='0' onchange="allItems();">
-				<option value='0'>All years</option>
-			</select>
-			<input id='orderFromDate' class="datepicker" name='orderFromDate'  placeholder="From Date" size='6' onchange="allItems();"/><br>
-		</div>
-
-
-		<!-- Payment: -->
-		<div class="col-md-2"> 
-			<small class="badge blue text-black badge-edit">Payment</small><br>
-			{{paymentMethodSelect PaymentMethod}}<br>
-			<input id='paymentNumber' class="input-one" name='paymentNumber'  placeholder="Payment / Invoice No" onchange="allItems();"/>					
-		</div>
-		<!-- Transfer: -->
-		<div class="col-md-2"> 
-			<small class="badge blue text-black badge-edit">Transfer</small><br>
-			<input id='pickupFromDate' class="datepicker" name='pickupFromDate'  placeholder="From Date" size='6' onchange="allItems();"/>
-			<!--<select id='yearsPickup' class="select-top-edit" name='yearsPickup' value='0' onchange="allItems();">
-				<option value='0'>All years</option>
-			</select>!-->
-			<i class="fa fa-cubes" style="color:#900"></i><input type="checkbox" id="listExtras" name="listExtras"  value="" onchange="allItems();" />
-			</br>
-
-			<input id='locationName' class="input-one" name='locationName'  placeholder="Location Name" onchange="allItems();"/>					
-		</div>
-		<!-- Driver: -->
-		<div class="col-md-2">
-			<small class="badge blue text-black badge-edit">Partner</small><br>
-			<input id='driverName' class="input-one" name='driverName'  placeholder="Name/ID" onchange="allItems();"/><br>				
-			{{driverConfStatusSelect "-1" "DriverConfStatusChoose"}}
-		</div>
-		<!-- Client/Agent: -->
-		<div class="col-md-2">
-			<small class="badge blue text-black badge-edit">Purchaser</small><br>
-			<input id='agentName' class="input-one" name='agentName'  placeholder="Name/ID" onchange="allItems();"/><br>				
-			<input id='agentOrder' class="input-one" name='agentOrder'  placeholder="Order Key / Agent Order" onchange="allItems();"/><br>				
-		</div>
-		<!-- Passenger: -->
-		<div class="col-md-2">
-			<small class="badge blue text-black badge-edit">Passenger</small><br>
-			<input id='passengerData' class="input-one" name='passengerData'  placeholder="Passenger Data" onchange="allItems();"/>					
-		</div>			
-	</div>
-
 
 
 	{{#each Item}}

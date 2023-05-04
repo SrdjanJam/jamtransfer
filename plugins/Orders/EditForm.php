@@ -53,7 +53,7 @@
 										{{details.RelatedTransfers.RelatedTransferText}}
 									</a>
 								{{else}}		
-									<button id="save" class="badge blue text-black" title="Add Return Transfer" 
+									<button id="saveR" class="badge blue text-black" title="Add Return Transfer" 
 									onclick="return editSaveItem('{{details.DetailsID}}',1);">Add Return Transfer
 									</button>
 								{{/if}}
@@ -576,7 +576,7 @@
 	<? if ($isNew) { ?>
 		<script>
 		$('document').ready(function() {
-			//$("#save").trigger("click");
+			$("#save").trigger("click");
 		});		
 		</script>
 	<? } else  { ?>	

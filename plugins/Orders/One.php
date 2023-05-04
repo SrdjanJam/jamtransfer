@@ -257,7 +257,7 @@ if(count($olk) > 0) {
 }
 
 #other bookings
-if ($db->getUserLevelID()<>2) {
+if ($db->getUserLevelID()<>2 && !empty($email)) {
 	$omk = $om->getKeysBy('MOrderID', 'asc' , " WHERE MPaxEmail = '" . $email . "'");
 	$otherbookings="";
 	if(count($omk) > 0) {

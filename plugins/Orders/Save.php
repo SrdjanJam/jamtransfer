@@ -185,6 +185,18 @@ if ($keyName != '' and $keyValue != '') {
 	$upd = 'Updated';
 	if($res !== true) $upd = $res;
 }
+if ($_REQUEST['return']==1) {
+	$db->setTNo(2);	
+	$pickupid=$db->getPickupID();
+	$pickupname=$db->getPickupName();
+	$db->setPickupID($db->getDropID());	
+	$db->setPickupName($db->getDropName());	
+	$db->setDropID($pickupid);	
+	$db->setDropName($pickupname);	
+	$db->setDropPlace('');	
+	$newIDOM=$db->getOrderID();	
+	$newID = $db->saveAsNew();	
+}	
 if ($keyName != '' and $keyValue == '') {
 	$om->setSiteID(2);
 	$om->setMOrderDate(date("Y-m-d"));
@@ -203,13 +215,14 @@ if ($keyName != '' and $keyValue == '') {
 	$db->setUserID($_SESSION["AuthUserID"]);
 	$db->setTransferStatus(4);	
 	
-	
 	$newID = $db->saveAsNew();
 }
 $out = array(
 	'update' => $upd,
 	'insert' => $newID,
-	'page' => 'orders'
+	'page' => 'orders',
+	'orderid' => $newIDOM,
+	'returnT' => $_REQUEST['return']
 );
 
 
