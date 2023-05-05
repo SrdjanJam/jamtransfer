@@ -65,7 +65,7 @@ value=" WHERE {$ItemID} > 0">
 			<small class="badge blue text-black badge-edit">Partner</small><br>
 			<input id='driverName' class="input-one" name='driverName'  placeholder="Name/ID" onchange="allItems();"/><br>
 			<select id="DriverConfStatusChoose" class="w75 form-control control-edit" onchange="allItems();">		
-				<option value="0">{$ALL} {$STATUS}</option>
+				<option value="-1">{$ALL} {$STATUS}</option>
 				{section name=pom loop=$options4}
 					<option value="{$options4[pom].id}">{$options4[pom].name}</option>
 				{/section}

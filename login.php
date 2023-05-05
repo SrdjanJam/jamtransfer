@@ -128,7 +128,7 @@ require_once('lng/' . $_SESSION['CMSLang'] . '_text.php');
 								$qu  = "UPDATE v4_AuthUsers SET LastVisited = '".date("Y-m-d H:i:s") ."' ";
 								$qu .= " WHERE AuthUserID = '" .$_SESSION['AuthUserID']. "'";
 								$db->RunQuery($qu);
-								if (isset($_COOKIE['page'])&& $_COOKIE['page']<>'logout') $page=$_COOKIE['page'];
+								if (isset($_COOKIE['pageEx'])&& $_COOKIE['pageEx']<>'logout') $page=$_COOKIE['pageEx'];
 								else $page='dashboard';
 								//makeSessionArrays($db);
 								header("Location: " .$page);

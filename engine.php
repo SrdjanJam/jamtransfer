@@ -30,7 +30,7 @@ if(!isset($_SESSION['UserAuthorized']) or $_SESSION['UserAuthorized'] == false) 
 	require_once 'login.php';
 	exit();	
 }
-else setcookie("page", $activePage, time() + (7*24*60*60),"/");
+else setcookie("pageEx", $activePage, time() + (7*24*60*60),"/");
 
 if (isset ($_SESSION['UseDriverID'])){
 	setcookie("UseDriverID", $_SESSION['UseDriverID'],time()+24*3600);

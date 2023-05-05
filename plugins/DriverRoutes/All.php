@@ -48,13 +48,15 @@ $routes_arr = "";
 			$routes[]=$row2['RouteID'];
 		}
 	}	
-	while($row = $result->fetch_array(MYSQLI_ASSOC)){
-		if ($_REQUEST['Type']==1 && in_array($row['RouteID'],$routes)) $routes_arr.=$row['RouteID'].",";
-		else if ($_REQUEST['Type']==2 && !in_array($row['RouteID'],$routes)) $routes_arr.=$row['RouteID'].",";
-		else if ($_REQUEST['Type']==0) $routes_arr.=$row['RouteID'].",";
-	}		
-	$routes_arr = substr($routes_arr,0,strlen($routes_arr)-1);	
-	$DB_Where .= " AND RouteID in (".$routes_arr.")";
+	if ($result->num_rows>0) {		
+		while($row = $result->fetch_array(MYSQLI_ASSOC)){
+			if ($_REQUEST['Type']==1 && in_array($row['RouteID'],$routes)) $routes_arr.=$row['RouteID'].",";
+			else if ($_REQUEST['Type']==2 && !in_array($row['RouteID'],$routes)) $routes_arr.=$row['RouteID'].",";
+			else if ($_REQUEST['Type']==0) $routes_arr.=$row['RouteID'].",";
+		}		
+		$routes_arr = substr($routes_arr,0,strlen($routes_arr)-1);	
+		$DB_Where .= " AND RouteID in (".$routes_arr.")";
+	}
 
 # dodavanje search parametra u qry
 # DB_Where sad ima sve potrebno za qry

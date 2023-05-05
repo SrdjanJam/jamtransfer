@@ -262,7 +262,7 @@ if ( $_REQUEST['Search'] != "" )
 }
 if ($listExtras==1) $dbWhere .= " AND ExtraCharge >0 ";
 if ($paymentMethod>0) $dbWhere .= " AND PaymentMethod = ".$paymentMethod;
-if ($driverConfStatus>0) $dbWhere .= " AND DriverConfStatus = ".$driverConfStatus;
+if ($driverConfStatus>-1) $dbWhere .= " AND DriverConfStatus = ".$driverConfStatus;
 if ($paymentNumber<>'') $dbWhere .= " AND (MCardNumber = '".$paymentNumber."' OR 
 											InvoiceNumber ='".$paymentNumber."' OR 
 											DriverInvoiceNumber ='".$paymentNumber."')";

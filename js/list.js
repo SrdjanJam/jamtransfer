@@ -64,15 +64,19 @@
 		// ovo koristi i paginator funkcija!
 	 	var recordsTotal = 0;
 	 	var page  = $("#pageSelector").val();
-
-		if(typeof page==='undefined') {page=1;}
-		if(page<=0) {page=1;}
-	 	var url = window.root+'All.php?where='+where+
+		if(typeof page==='undefined') {var page=1;}
+		if(page<=0) {var page=1;}
+	 	var url = window.root+'All.php';
+		var data = 	
+		'where='+where+
 		'&Type='+status+
 		'&Type2='+status2+
 		'&Active='+active+
 		'&Approved='+approved+
-	 	'&Search='+filter+'&page='+page+'&length='+length+'&sortOrder='+sortOrder+
+	 	'&Search='+filter+
+		'&page='+page+
+		'&length='+length+
+		'&sortOrder='+sortOrder+
 		'&transfersFilter='+transfersFilter+
 		'&orderid='+orderid+
 		'&detailid='+detailid+
@@ -98,10 +102,12 @@
 		'&subdriverID='+subdriverID+
 		'&actionID='+actionID+
 		'&callback=?';
-		console.log(window.base+url);
+		console.log(window.base+url+'?'+data);
 		$.ajax({
 		 type: 'GET',
-		  url: url,
+		  url: url+'?'+data,
+		  //url: url,
+		  //data: data,			
 		  async: false,
 		  contentType: "application/json",
 		  dataType: 'jsonp',
