@@ -1,5 +1,6 @@
 <style>
 
+
 	[class*="col-"] > *{ /* Target all child elements in the parent */
 		margin-top:3px;
 	}
