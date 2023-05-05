@@ -1,3 +1,94 @@
+<style>
+
+
+	[class*="col-"] > *{ /* Target all child elements in the parent */
+		margin-top:3px;
+	}
+	[class*="col-"] > *:first-child{
+		margin-top:0px;
+	}
+
+	.select-top-edit.addon{
+		width:50% !important;
+		display: inline;
+	}
+
+	.input-one{
+		width: 100%;
+	}
+
+
+	.datepicker-edit{ width:48%; }
+
+	.datepicker-edit,.datepicker-edit-2{
+		color: rgb(1 114 255) !important;
+		padding:2px;
+		border-radius: 5px !important;
+		margin-bottom: 2px;
+		box-shadow: 2px 2px 4px #3f50a1;
+		outline:none;
+		border:2px solid rgb(135, 147, 218);
+		font-weight: bold;
+	}
+
+
+	@media screen and (max-width: 1200px) {
+		/* For mobile phones: */
+		#show, #show-2{
+			display: inline-block;
+		}
+
+		.select-top-edit.addon{
+			width:100% !important;
+		}
+		.datepicker-edit{
+			width:100% !important;
+		}
+		
+	}
+
+</style>
+
+{* Scripts: *}
+<script>
+
+	function resize(){
+
+		if ($(window).width() > 1203) {
+			$('.filter').show();
+			$('#show').hide();
+			$('#show-2').hide();
+		}
+
+		if ($(window).width() < 1202) {
+			$('.filter').hide();
+			$('#show').show();
+		}
+
+	}
+	
+	$(document).ready(function(){
+
+		$('#show').click(function() {
+			$('.filter').toggle(400);
+			$('#show').hide();
+			$('#show-2').show();
+    	});
+
+		$('#show-2').click(function() {
+			$('.filter').toggle(400);
+			$('#show').show();
+			$('#show-2').hide();
+		});
+
+		resize();
+		$(window).resize(resize);
+
+	});
+
+</script>
+
+
 <input type="hidden"  id="whereCondition" name="whereCondition" 
 value=" WHERE {$ItemID} > 0">
 

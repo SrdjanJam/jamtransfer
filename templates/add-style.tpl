@@ -1,5 +1,6 @@
 <style>
 
+
 {* TEMPLATES FOLDER: *}
 
 .body-edit{
