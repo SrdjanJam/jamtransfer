@@ -2,6 +2,7 @@
 var allTransfers = [];
 var drivers = [];
 
+
 var placesCache = {
 	data: {},
 	remove: function (url) {
