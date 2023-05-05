@@ -405,33 +405,27 @@
 
 				<div class="footer row footer-edit">
 
-					{if not $isNew and $pageList}
-
+					{if not $isNew and $pageList}				
+						<div id="pageSelect" class="col-md-4 pull-left pull-left-edit"></div>
 						<div class="col-md-2 col-md-2-infoShow" id="infoShow"></div>
-
-							<div id="pageSelect" class=" pull-left pull-left-edit col-md-3"></div>
-						
-							{if not isset($pagelength)}{assign var="pagelength" value="10"}{/if}
-						
-							<div class="col-md-3">
-								<i class="fa fa-eye edit-fa"></i>
-								<div class="form-group group-edit">
-									<select id="length" class="w75 form-control control-edit" onchange="allItems();">
-										<option value="5" {if $pagelength eq '5'} selected {/if}> 5 </option>
-										<option value="10" {if $pagelength eq '10'} selected {/if}> 10 </option>
-										<option value="20" {if $pagelength eq '20'} selected {/if}> 20 </option>
-										<option value="50" {if $pagelength eq '50'} selected {/if}> 50 </option>
-										<option value="100" {if $pagelength eq '100'} selected {/if}> 100 </option>
-									</select>
-								</div>
+						{if not isset($pagelength)}{assign var="pagelength" value="10"}{/if}
+						<div class="col-md-2">
+							<i class="fa fa-eye edit-fa"></i>
+							<div class="form-group group-edit">
+								<select id="length" class="w75 form-control control-edit" onchange="allItems();">
+									<option value="5" {if $pagelength eq '5'} selected {/if}> 5 </option>
+									<option value="10" {if $pagelength eq '10'} selected {/if}> 10 </option>
+									<option value="20" {if $pagelength eq '20'} selected {/if}> 20 </option>
+									<option value="50" {if $pagelength eq '50'} selected {/if}> 50 </option>
+									<option value="100" {if $pagelength eq '100'} selected {/if}> 100 </option>
+								</select>
 							</div>
-						
+						</div>	
 						{if $existNew}
-							<div class="col-md-1"><a class="btn btn-primary btn-xs btn-xs-edit" href="{$currenturl}/new"><i class="fa fa-plus" aria-hidden="true"></i></a></div>
-						{/if}		
-
+							<a class="btn btn-primary btn-xs btn-xs-edit" href="{$currenturl}/new"><i class="fa fa-plus" aria-hidden="true"></i></a><br>
+						{/if}						
 					{/if}
-					<div class="pull-right pull-right-edit col-md-2">
+					<div class="pull-right pull-right-edit">
 						Powered by <strong><a href="https://taxicms.com/" target="_blank">TaxiCMS</a></strong>
 					</div>
 					
