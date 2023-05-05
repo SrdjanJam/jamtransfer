@@ -1,5 +1,6 @@
 <style>
 
+
 {* TEMPLATES FOLDER: *}
 
 .body-edit{
@@ -38,14 +39,7 @@
     /* border-top: 1px solid #e7eaec; Old */
 }
 .pull-left-edit{ margin-left:10px; }
-
-.pull-right-edit{ 
-    /* margin-right:20px;
-    height: 30px;
-    align-items: center;
-    display: flex;  */
-}
-
+.pull-right-edit{ margin-right:20px; }
 .pull-right .btn{
     box-shadow: 2px 2px 2px 1px #888888;
 }
@@ -143,10 +137,10 @@
 
 .form-group.group-edit{
     display: inline-block;
-    width:85%;
+    width:90%;
 }
 
-@media screen and (max-width:768px){
+@media screen and (max-width:1000px){
     .form-group.group-edit{
         width:90%;
     }
@@ -158,9 +152,8 @@
     /* background: #def6fe; Old 1 */
     /* background-image: linear-gradient(#C5D5DC,#CBEAFA); Old 2 */
     box-shadow: 0px 0px 6px 3px #88888894;
+    padding-top: 10px;
     border-radius: 6px;
-    padding: 5px 55px 5px 35;
-
 }
 
 .col-md-2-infoShow{
@@ -168,11 +161,9 @@
 }
 
 .btn-xs-edit{
-    box-shadow: 2px 2px 4px 1px #436477;
     margin-left: 20px;
     margin-bottom: 10px;
-    margin-top: 5px;
-    padding: 5px 10px;
+    box-shadow: 2px 2px 4px 1px #436477;
 }
 /* ------------------------------------------------------------------------------- */
 
@@ -451,7 +442,7 @@
 
 /* ====================================================================================== */
 
-/* Transfers/Orders */
+/* Bookings/Orders */
 .row-sticky{
     position: sticky;
     top: 0;
@@ -503,16 +494,19 @@
     /* color: white; Old */
 }
 
-.select-top-edit, .select-bottom-edit{
-    color: rgb(45 106 183) !important;
-    /* color: rgb(1 114 255) !important; old */
+.select-top-edit{
+    color:rgb(78 66 66);
     padding:2px;
     border-radius: 5px !important;
     margin-bottom: 2px;
-    box-shadow: 2px 2px 4px #3f50a1;
-    /* box-shadow: 2px 2px 4px #616060; old */
-    font-size: 16px !important;
-
+    box-shadow: 2px 2px 4px #616060 inset;
+}
+.select-bottom-edit{
+    color:rgb(78 66 66);
+    padding:2px;
+    border-radius: 5px !important;
+    margin-top: 2px;
+    box-shadow: 2px 2px 4px #616060 inset;
 }
 
 .button-asc-edit, .button-desc-edit{
@@ -527,7 +521,7 @@
     outline:none;
     border:2px solid rgb(192, 199, 241);
     font-family: 'Times New Roman', Times, serif;
-    color:rgb(59, 59, 66);
+    color:rgb(59, 59, 66) !important;
 }
 .select-top-edit:focus, .select-bottom-edit:focus, .button-asc-edit:focus, .button-desc-edit:focus, .input-one:focus{
     outline:none;
@@ -625,35 +619,8 @@
 /* ============================================================================== */
 
 
-.form-control{
-    width:100% !important;
-}
 
-.form-group {
-    margin-bottom: 0px !important;
-}
 
-@media only screen and (max-width: 1400px) {
-    
-    [class*="col-"]{
-        width: 100% !important;
-        padding: 5px;
-    }
 
-    .pull-right-edit, .pull-left-edit{ margin:0; }
-
-    .footer-edit{
-        display: flex;
-        flex-direction: column;
-        text-align: center;
-    }
-
-    .group-edit{
-        width: 50% !important;
-    }
-
-    .btn-xs-edit{ width:50%; padding: 10px; }
-			
-}
 
 </style>
