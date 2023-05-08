@@ -616,12 +616,13 @@
 		$('#SubDriver2').change(function(){changesubdriver ('2');})	
 		$('#SubDriver3').change(function(){changesubdriver ('3');})	
 		// promena lokacija		
-		$('#PickupName, #DropName').on('click keyup', function(event) {
+		$('#PickupName,#DropName').on('click keyup', function(event) {
 			var clicked_id='#'+$(this).attr('id');
+
 			var loc=$(this).attr('id').replace("Name", "");
 			var html = '';
-			query = $(clicked_id).val();
-			if (query.length > 2) {
+			query = $(clicked_id).val();			
+			if (query.length > 2) {				
 				$.ajax({
 					url:  './api/getFromPlacesEdgeN.php',
 					type: 'GET',
@@ -648,13 +649,31 @@
 							$(".PickupName").click(function(){
 								$(clicked_id).val($(this).attr('data-name'));
 								$("#"+loc+"ID").val($(this).attr('id'));
+								var fid=$(this).attr('id');
 								$("#selectFrom_options"+loc).hide("slow");
-							});
+								$.ajax({
+									url:  './api/getToPlacesEdge.php',
+									type: 'GET',
+									dataType: 'jsonp',
+									data: {
+										fid : fid
+									},
+									error: function() {
+										//callback();
+									},
+									success: function(res) {
+										console.log (res);
+									}
+								})		
+								
+							});						
 						}						
 					}
 				})	
 			}
 		})	
+		
+		
 		// promena ekstrasa
 		$('.ServiceID').change(function() {
 			var driverprice = $(this).find('option:selected').attr('data-driverprice');

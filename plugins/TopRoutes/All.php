@@ -80,7 +80,7 @@ if (count($dbk) != 0) {
 		// npr. $detailFlds["AuthLevelName"] = $nekaDrugaDB->getAuthLevelName().' nesto';
 
 		$dbR->getRow($db->getTopRouteID());
-		$detailFlds["RouteNameEN"] = $dbR->getRouteNameEN();
+		$detailFlds["RouteNameEN"] = $dbR->getRouteName();
 
 
 		$out[] = $detailFlds;
