@@ -176,7 +176,7 @@
 			//var fID=$("#FromID option:selected").val();
 			//var tID=$("#ToID option:selected").val();
 			if (fID>0 && tID>0) {
-				var base=window.location.origin;
+				var base=window.rootbase;
 				if (window.location.host=='localhost') base=base+'/jamtransfer';
 
 				var link = base+'/plugins/Route/SurTerminals.php?fID='+fID+'&tID='+tID;

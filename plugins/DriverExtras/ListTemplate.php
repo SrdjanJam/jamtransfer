@@ -60,7 +60,8 @@ if (isset($_SESSION['UseDriverID']) && $_SESSION['UseDriverID']>0) {
 			
 			var extrasid=$(this).parent().attr('data-id');
 				
-			var base=window.location.origin;
+			var base=window.rootbase;
+
 			if (window.location.host=='localhost') base=base+'/jamtransfer';
 			var driverextras=$(this).val();	
 			var link = base+'/plugins/DriverExtras/Save.php';

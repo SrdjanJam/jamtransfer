@@ -168,6 +168,7 @@
 				<script type="text/javascript">
 					window.root = 'plugins/{/literal}{$base}{literal}/';
 					window.currenturl = '{/literal}{$currenturl}{literal}';
+					window.rootbase='{/literal}{$root_home}{literal}';
 				</script>
 			{/literal}
 

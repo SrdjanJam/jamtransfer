@@ -90,7 +90,7 @@
 			if (change==2) var active=$(this).val();	
 			if (change==3) var onetotwo=$(this).val();	
 			if (change==4) var twotoone=$(this).val();	
-			var base=window.location.origin;
+			var base=window.rootbase;
 			if (window.location.host=='localhost') base=base+'/jamtransfer';
 			if (change==1) var link = base+'/plugins/DriverRoutes/Save.php';
 			if (change==2) var link = base+'/plugins/DriverRoutes/SaveActive.php';	
@@ -116,7 +116,7 @@
 		$('.surcategory input').change(function(){
 			var surcategory=$(this).val();
 			var routeid=$(this).parent().parent().parent().attr('data-id');
-			var base=window.location.origin;
+			var base=window.rootbase;
 			if (window.location.host=='localhost') base=base+'/jamtransfer';		
 			var link = base+'/plugins/DriverRoutes/Update.php';
 			var param = "RouteID="+routeid+"&SurCategory="+surcategory;

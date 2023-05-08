@@ -151,7 +151,7 @@
 			$('.b-delete').click(function(){
 				if (confirm("Are you sure to delete this row?")) {
 
-					var base=window.location.origin;
+					var base=window.rootbase;
 					if (window.location.host=='localhost') base=base+'/jamtransfer';
 
 					var link = base+'/plugins/SubVehicles/Delete.php';

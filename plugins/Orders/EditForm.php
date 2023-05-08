@@ -182,7 +182,7 @@
 							<div class="col-md-3">
 								<i class="fa fa-person"></i><input type="text"  name="PaxNo" class="w25" value="{{details.PaxNo}}">
 							</div>
-							<div class="col-md-3">
+							<div class="col-md-4">
 								{{#compare details.VehicleClass "<" 10}}
 									<i class="fa fa-car"></i>
 								{{/compare}}
@@ -198,10 +198,8 @@
 									x{{details.VehiclesNo}}
 								{{/compare}}
 								{{vehicleTypeSelect details.VehicleType "VehicleType" "VehicleType"}}
-							</div>									
-							<div class="col-md-1">x</div>								
-							<div class="col-md-2">
-								<input type="number" name="VehicleNo" class="w75" value="{{details.VehiclesNo}}">
+							x
+								<input type="text" name="VehiclesNo" class="w75" value="{{details.VehiclesNo}}">
 							</div>									
 						</div>
 						<div class="row dtransfer">

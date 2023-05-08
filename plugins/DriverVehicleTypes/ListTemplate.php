@@ -84,7 +84,7 @@
 			var change=$(this).parent().parent().attr('data-change');	
 			var vehicleid=$(this).parent().parent().attr('data-id');
 			if (change==1) var drivervehicle=$(this).val();	
-			var base=window.location.origin;
+			var base=window.rootbase;
 			if (window.location.host=='localhost') base=base+'/jamtransfer';
 			if (change==1) var link = base+'/plugins/DriverVehicleTypes/Save.php';
 			if (change==1) var param = "VehicleTypeID="+vehicleid+"&DriverVehicle="+drivervehicle;
@@ -104,7 +104,7 @@
 		$('.surcategory input').change(function(){
 			var surcategory=$(this).val();
 			var vehicleid=$(this).parent().parent().parent().attr('data-id');
-			var base=window.location.origin;
+			var base=window.rootbase;
 			if (window.location.host=='localhost') base=base+'/jamtransfer';		
 			var link = base+'/plugins/DriverVehicleTypes/Update.php';
 			var param = "VehicleTypeID="+vehicleid+"&SurCategory="+surcategory;

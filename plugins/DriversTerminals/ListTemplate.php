@@ -50,7 +50,7 @@
 		$('.terminal input').change(function(){
 			var placeid=$(this).parent().attr('data-id');
 			var terminal=$(this).val();	
-			var base=window.location.origin;
+			var base=window.rootbase;
 			if (window.location.host=='localhost') base=base+'/jamtransfer';		
 			var link = base+'/plugins/DriversTerminals/Save.php';
 			var param = "PlaceID="+placeid+"&Terminal="+terminal;

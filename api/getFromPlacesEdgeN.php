@@ -35,7 +35,7 @@ $cachetime = 84600;
 
 	
 	# DriverRoutes - check if anyone drives from that Place
-	$q2 = "SELECT DISTINCT FromID, ToID FROM v4_DriverRoutes";
+	/*$q2 = "SELECT DISTINCT FromID, ToID FROM v4_DriverRoutes";
 	
 	$w2 = $db->RunQuery($q2);
 	$from_arr=array();
@@ -44,16 +44,16 @@ $cachetime = 84600;
 	{
 		$from_arr[]=$p2->FromID;
 		$to_arr[]=$p2->ToID;
-	}
-			
+	}*/
+
 //Blogit($lang);	
 //Blogit($q);	
 
 
 	while($p = mysqli_fetch_object($w))
 	{
-		if (in_array($p->PlaceID,$from_arr) || in_array($p->PlaceID,$to_arr))
-		{
+		//if (in_array($p->PlaceID,$from_arr) || in_array($p->PlaceID,$to_arr))
+		//{
 			if($p->PlaceActive == '1') {
 				# Add Place to array
 				$pnLang = 'PlaceName'. $lang;
@@ -75,7 +75,7 @@ $cachetime = 84600;
 													);
 				}
 			}
-		}						
+		//}						
 	}
 
 	# Sort by name
