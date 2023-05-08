@@ -46,6 +46,14 @@
 		
 	}
 
+	@media screen and (min-width: 1201px) {
+		/* For mobile phones: */
+		#show, #show-2{
+			display: inline-block;
+		}
+		
+	}
+
 </style>
 
 {* Scripts: *}
@@ -56,12 +64,16 @@
 		if ($(window).width() > 1203) {
 			$('.filter').show();
 			$('#show').hide();
-			$('#show-2').hide();
+			$('#show-2').show();
+			$('#wrapp-buttons').css("text-align",""); // Remove text align from #wrapp-buttons
 		}
 
 		if ($(window).width() < 1202) {
 			$('.filter').hide();
 			$('#show').show();
+			$('#show-2').hide();
+			$('#wrapp-buttons').css("text-align","center");
+			
 		}
 
 	}
@@ -97,9 +109,9 @@ value=" WHERE {$ItemID} > 0">
 <input type="hidden"  id="Search">
 
 <!-- Show and Hide Filters buttons: -->
-<div style="text-align: center">
-	<div id="show" style="cursor:pointer;font-weight:bold;display:none;"><i class="fa-solid fa-bars" style="font-size: 30px;margin: 5px;color: #0ac3ed;"></i>Show Filters</div>
-	<div id="show-2" style="cursor:pointer;font-weight:bold;display:none;"><i class="fa-solid fa-bars" style="font-size: 30px;margin: 5px;color: #0ac3ed;"></i>Hide Filters</div>
+<div id="wrapp-buttons">
+	<div id="show" style="cursor:pointer;font-weight:bold;"><i class="fa-solid fa-bars" style="font-size: 30px;margin: 5px;color: #0ac3ed;"></i>Show Filters</div>
+	<div id="show-2" style="cursor:pointer;font-weight:bold;"><i class="fa-solid fa-bars" style="font-size: 30px;margin: 5px;color: #0ac3ed;"></i>Hide Filters</div>
 </div>
 
 
