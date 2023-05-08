@@ -366,7 +366,7 @@
 								</div>	
 								{{/compare}}	
 							</div>
-							{{#compare details.TransferStatus ">" "1"}}
+							{{#compare details.DriverConfStatus ">" "1"}}
 							<div class="col-md-4">
 								<div class="row">
 									<a target="_blank" href='schedule/{{details.PickupDate}}'>Schedule for {{details.PickupDate}}</a>

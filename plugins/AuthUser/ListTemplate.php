@@ -61,9 +61,11 @@
 
 				<!-- AUTHUSER_IMAGE: -->
 				<div class="col-sm-1 col-xs-4">
+				{{#compare DBImage "==" "1"}}
 					<img src="api/showProfileImage.php?UserID={{AuthUserID}}" 
 						style="max-height:60px; max-width:60px;" 
 						class="img-thumbnail">
+				{{/compare}}		
 				</div>
 
 				<!-- AUTHUSER_ID -->
