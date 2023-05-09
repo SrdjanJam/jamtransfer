@@ -212,6 +212,7 @@ if ($keyName != '' and $keyValue == '') {
 	$db->setOrderDate(date("Y-m-d"));
 	$db->setPickupDate(date("Y-m-d"));
 	$db->setUserLevelID($_SESSION["AuthLevelID"]);
+	if (isset($_SESSION['UseDriverID'])) $db->setDriverID($_SESSION["UseDriverID"]);
 	$db->setUserID($_SESSION["AuthUserID"]);
 	$db->setTransferStatus(4);	
 	

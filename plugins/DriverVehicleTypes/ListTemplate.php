@@ -28,7 +28,7 @@
 				<?=ROUTES;?>
 			</div>				
 			<div class="col-md-1">
-				<?=DATE;?>
+				Off duty dates
 			</div>				
 			<div class="col-md-1">
 				<?=VEHICLES;?>

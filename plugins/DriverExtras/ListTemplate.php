@@ -23,8 +23,20 @@ if (isset($_SESSION['UseDriverID']) && $_SESSION['UseDriverID']>0) {
 			<?=SERVICEEN;?>
 		</div>	
 
-		<div class="col-md-4">
+		<div class="col-md-2">
 			<?=CONNECTED;?>
+		</div>		
+		
+		<div class="col-md-1">
+			Driver Price
+		</div>		
+		
+		<div class="col-md-2">
+			Provision (%)
+		</div>		
+		
+		<div class="col-md-2">
+			<?= PRICE ?>
 		</div>
 					
 	</div>
@@ -44,10 +56,24 @@ if (isset($_SESSION['UseDriverID']) && $_SESSION['UseDriverID']>0) {
 				{{ServiceEN}}
 			</div>
 
-			<div class="col-md-4 extras" data-id="{{ID}}" data-change="1" data-active="{{DriverExtras}}">
+			<div class="col-md-2 extras active1" data-id="{{ID}}" data-name="{{ServiceEN}}" data-change="1" data-active="{{DriverExtras}}">
 				{{yesNoSliderEdit DriverExtras 'DriverExtras' }}
 			</div>
 
+			<!-- DriverPrice -->
+			<div class="col-md-2 extras" data-id="{{ID}}">
+				<input type="text" name="DriverPrice" id="DriverPrice"  class="w10 show_hide" value="{{DriverPrice}}" >
+			</div>			
+			
+			<!-- DriverPrice -->
+			<div class="col-md-1 extras" data-id="{{ID}}">
+				<input type="text" name="Provision" id="Provision"  class="w10 show_hide" value="{{Provision}}" />
+			</div>			
+			
+			<!-- Price -->
+			<div class="col-md-2 extras" data-id="{{ID}}">
+				<span>{{Price}}</span>
+			</div>
 		</div>
 		
 
@@ -55,17 +81,30 @@ if (isset($_SESSION['UseDriverID']) && $_SESSION['UseDriverID']>0) {
 
 
 	<script>
-
+		$('.show_hide').each(function(){
+			if ($(this).parent().parent().find('.active1').attr('data-active')==0) $(this).hide();
+		});	
+		
 		$('.extras input').change(function(){
 			
 			var extrasid=$(this).parent().attr('data-id');
-				
+			var extrasname=$(this).parent().attr('data-name');
+			var driverextras=$(this).val();				
+			if ($(this).attr('name')=='DriverPrice') {
+				var driverprice=$(this).val();
+				driverextras=1;
+			}
+			else var driverprice=0;				
+			if ($(this).attr('name')=='Provision') {
+				var provision=$(this).val();
+				driverextras=1;
+			}	
+			else var provision=0;	
 			var base=window.rootbase;
 
 			if (window.location.host=='localhost') base=base+'/jamtransfer';
-			var driverextras=$(this).val();	
 			var link = base+'/plugins/DriverExtras/Save.php';
-			var param = "ExtrasID="+extrasid+"&DriverExtras="+driverextras;
+			var param = "ExtrasID="+extrasid+"&ExtrasName="+extrasname+"&DriverPrice="+driverprice+"&Provision="+provision+"&DriverExtras="+driverextras;
 			var $t = $(this);
 			console.log(link+'?'+param);
 			$.ajax({
@@ -73,8 +112,8 @@ if (isset($_SESSION['UseDriverID']) && $_SESSION['UseDriverID']>0) {
 				url: link,
 				data: param,
 				success: function(data) {
-					if (data==0) $t.parent().parent().parent().find('.show_hide').hide(500);
-					if (data==1) $t.parent().parent().parent().find('.show_hide').show(500);
+					if (data==0) $t.parent().parent().find('.show_hide').hide(500);
+					if (data==1) $t.parent().parent().find('.show_hide').show(500);
 					
 					toastr['success'](window.success);	
 				}				

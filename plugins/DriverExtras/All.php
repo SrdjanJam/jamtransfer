@@ -85,11 +85,13 @@ if (count($dbk) != 0) {
 
 		// ako postoji neko custom polje, onda to ovdje.
 		// npr. $detailFlds["AuthLevelName"] = $nekaDrugaDB->getAuthLevelName().' nesto';
-
 		$result = $dbT->RunQuery("SELECT * FROM v4_Extras WHERE ServiceID=".$key." AND OwnerID=".$_SESSION['UseDriverID']); 
 		$detailFlds["DriverExtras"]=0;
 		while($row = $result->fetch_array(MYSQLI_ASSOC)){
 			$detailFlds["DriverExtras"]=1;
+			$detailFlds["DriverPrice"]=$row['DriverPrice'];
+			$detailFlds["Provision"]=$row['Provision'];
+			$detailFlds["Price"]=$row['Price'];
 		}
 
 		$out[] = $detailFlds;    	

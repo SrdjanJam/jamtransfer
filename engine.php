@@ -44,128 +44,133 @@ if ($_SESSION['AuthLevelID']==31) $_SESSION['UseDriverID']=$_SESSION['AuthUserID
 
 $sql="SELECT ModulID FROM `v4_ModulesLevel` WHERE AuthLevelID=".$AuthLevelID;
 $result = $db->RunQuery($sql);
-while($row = $result->fetch_array(MYSQLI_ASSOC)){
-	$modules_arr.=$row['ModulID'].",";
-}
-$modules_arr = substr($modules_arr,0,strlen($modules_arr)-1);
-// meni
-require_once 'db/v4_Modules.class.php';
-$md = new v4_Modules();
-$mdk = $md->getKeysBy('MenuOrder ' ,'asc', "where Active=1 AND ParentID=0 AND ModulID in (".$modules_arr.")");
-$setasdriver=false;
-foreach($mdk as $key) {
-	$md->getRow($key);
-	$row1=array();
-	$row1['title']=$md->getName();
-	$row1['link']=$md->getCode();
-	$active_pages[]=$md->getCode();			
-	$row1['icon']=$md->getIcon();
-	$row1['description']=$md->getDescription();
-	$row1['phasestatus']=phaseStatus($md->getPhase());
-	
-	$mdk2 = $md->getKeysBy('MenuOrder ' ,'asc', "where Active=1 AND ParentID=".$md->getModulID()." AND ModulID in (".$modules_arr.")");
-	$menu2=array();
-	if ($md->getCode()==$activePage) $active_parent=true;		
-	else $active_parent=false;
-	if (count($mdk2)>0) {
-		$row1['arrow']='fa arrow';
-		foreach($mdk2 as $key2) {
-			$md->getRow($key2);
-			if ($md->getCode()=='setDriver') $setasdriver=true;
-			$row2=array();
-			$row2['title']=$md->getName();
-			$row2['link']=$md->getCode();	
-			$row2['description']=$md->getDescription();	
-			$row2['phasestatus']=phaseStatus($md->getPhase());
-			$active_pages[]=$md->getCode();			
-			//$row2['icon']=$md->getIcon();
-			if ($md->getCode()==$activePage) {
-				$row2['active']='active';
-				$active_parent=true;
-			}	
-			else $row2['active']='';
-			$menu2[]=$row2;	
-		}
+if ($result->num_rows>0) {
+	while($row = $result->fetch_array(MYSQLI_ASSOC)){
+		$modules_arr.=$row['ModulID'].",";
 	}
-	else $row1['arrow']='';	
-	if ($active_parent) $row1['active']='active';
-	else $row1['active']='';		
-	$row1['menu']=$menu2;	
-	$menu1[]=$row1;
-}	
-$mdk = $md->getKeysBy('ModulID ' ,'asc', "where code='$activePage'");
-if (count($mdk)==1 && in_array($activePage,$active_pages)) {
-	$keyP=$mdk[0];
-	$md->getRow($keyP);
-	if (is_dir($modulesPath . '/'.$md->getBase())) {	
-		if (is_dir($modulesPath . '/'.$md->getBase().'/templates')) 
-			$pageName=$md->getName();
-		else $pageList=$md->getName();
-		require_once $modulesPath . '/'.$md->getBase().$includeFile;		
+	$modules_arr = substr($modules_arr,0,strlen($modules_arr)-1);
+	// meni
+	require_once 'db/v4_Modules.class.php';
+	$md = new v4_Modules();
+	$mdk = $md->getKeysBy('MenuOrder ' ,'asc', "where Active=1 AND ParentID=0 AND ModulID in (".$modules_arr.")");
+	$setasdriver=false;
+	foreach($mdk as $key) {
+		$md->getRow($key);
+		$row1=array();
+		$row1['title']=$md->getName();
+		$row1['link']=$md->getCode();
+		$active_pages[]=$md->getCode();			
+		$row1['icon']=$md->getIcon();
+		$row1['description']=$md->getDescription();
+		$row1['phasestatus']=phaseStatus($md->getPhase());
+		
+		$mdk2 = $md->getKeysBy('MenuOrder ' ,'asc', "where Active=1 AND ParentID=".$md->getModulID()." AND ModulID in (".$modules_arr.")");
+		$menu2=array();
+		if ($md->getCode()==$activePage) $active_parent=true;		
+		else $active_parent=false;
+		if (count($mdk2)>0) {
+			$row1['arrow']='fa arrow';
+			foreach($mdk2 as $key2) {
+				$md->getRow($key2);
+				if ($md->getCode()=='setDriver') $setasdriver=true;
+				$row2=array();
+				$row2['title']=$md->getName();
+				$row2['link']=$md->getCode();	
+				$row2['description']=$md->getDescription();	
+				$row2['phasestatus']=phaseStatus($md->getPhase());
+				$active_pages[]=$md->getCode();			
+				//$row2['icon']=$md->getIcon();
+				if ($md->getCode()==$activePage) {
+					$row2['active']='active';
+					$active_parent=true;
+				}	
+				else $row2['active']='';
+				$menu2[]=$row2;	
+			}
+		}
+		else $row1['arrow']='';	
+		if ($active_parent) $row1['active']='active';
+		else $row1['active']='';		
+		$row1['menu']=$menu2;	
+		$menu1[]=$row1;
 	}	
-	
-	/*$md->getRow($md->getParentID());
-	$parentFolder=$md->getBase();
-	$md->getRow($key);
-	if (is_dir($modulesPath . '/'.$parentFolder.'/'.$md->getBase())) {
-		require_once $modulesPath . '/'.$parentFolder.'/'.$md->getBase().$includefile;
-	
-		if (is_dir($modulesPath . '/'.$parentFolder.'/'.$md->getBase().'/templates')) 
-			$smarty->assign('page',$md->getName());		
-		else $smarty->assign('pageList',$md->getName());
-	}	
-	$smarty->assign('parentFolder',$parentFolder);
-	*/
-	if ($md->getIsNew()==1) $existNew=true;
+	$mdk = $md->getKeysBy('ModulID ' ,'asc', "where code='$activePage'");
+	if (count($mdk)==1 && in_array($activePage,$active_pages)) {
+		$keyP=$mdk[0];
+		$md->getRow($keyP);
+		if (is_dir($modulesPath . '/'.$md->getBase())) {	
+			if (is_dir($modulesPath . '/'.$md->getBase().'/templates')) 
+				$pageName=$md->getName();
+			else $pageList=$md->getName();
+			require_once $modulesPath . '/'.$md->getBase().$includeFile;		
+		}	
+		
+		/*$md->getRow($md->getParentID());
+		$parentFolder=$md->getBase();
+		$md->getRow($key);
+		if (is_dir($modulesPath . '/'.$parentFolder.'/'.$md->getBase())) {
+			require_once $modulesPath . '/'.$parentFolder.'/'.$md->getBase().$includefile;
+		
+			if (is_dir($modulesPath . '/'.$parentFolder.'/'.$md->getBase().'/templates')) 
+				$smarty->assign('page',$md->getName());		
+			else $smarty->assign('pageList',$md->getName());
+		}	
+		$smarty->assign('parentFolder',$parentFolder);
+		*/
+		if ($md->getIsNew()==1) $existNew=true;
+	}
+	else {
+		if (count($mdk)==1) header("Location: ". ROOT_HOME . '/dashboard');
+		else exit('Page not found');
+	}
+
+
+	/*if (isset($_SESSION['UseDriverID'])) $existNew=false;
+	if ($md->getName()=="SubDrivers") $existNew=true;
+	if ($md->getName()=="Vehicles") $existNew=true;
+	if ($md->getName()=="Actions") $existNew=true;
+	if ($md->getName()=="Request") $existNew=true;
+	if ($md->getName()=="Tasks") $existNew=true;
+	if ($md->getName()=="Orders") $existNew=false;
+	if ($md->getName()=="Invoices") $existNew=false;
+	if ($md->getName()=="Set Driver") $existNew=false;
+	if ($_SESSION['AuthLevelID']==42) $existNew=false;
+	if ($_SESSION['AuthUserID']==874) $existNew=true;
+	if ($md->getName()=="Articles") $existNew=true;*/
+
+
+	$smarty->assign('transfersFilter',$transfersFilter);
+	$smarty->assign('includeFile',$includeFile);
+	$smarty->assign('includeFileTpl',$includeFileTpl);
+	$smarty->assign('orderid',$orderid);
+	$smarty->assign('detailid',$detailid);
+	$smarty->assign('RouteID',$RouteID);
+	$smarty->assign('VehicleTypeID',$VehicleTypeID);
+	$smarty->assign('VehicleID',$VehicleID);
+	$smarty->assign('SubDriverID',$SubDriverID);
+	$smarty->assign('ActionID',$ActionID);
+	$smarty->assign('item',$item);
+	$smarty->assign('isNew',$isNew);
+	$smarty->assign('existNew',$existNew);
+	$smarty->assign('menu1',$menu1);
+	$smarty->assign('pageName',$pageName);
+	$smarty->assign('pageList',$pageList);
+	$smarty->assign('currenturl',ROOT_HOME.$activePage);
+	$smarty->assign('title',$md->getName());
+	$smarty->assign('base',$md->getBase());
+	$smarty->assign('parentID',$md->getParentID());
+	$smarty->assign('ModulID',$keyP);
+	$smarty->assign('setasdriver',$setasdriver);
+
+
+		
+	// display
+	?><script type="text/x-handlebars-template"></script><?
+
+	$smarty->display("index.tpl");	
 }
-else {
-	if (count($mdk)==1) header("Location: ". ROOT_HOME . '/dashboard');
-	else exit('Page not found');
-}
+else echo "<h1>No menu options for this profile</h1>";
 
-/*if (isset($_SESSION['UseDriverID'])) $existNew=false;
-if ($md->getName()=="SubDrivers") $existNew=true;
-if ($md->getName()=="Vehicles") $existNew=true;
-if ($md->getName()=="Actions") $existNew=true;
-if ($md->getName()=="Request") $existNew=true;
-if ($md->getName()=="Tasks") $existNew=true;
-if ($md->getName()=="Orders") $existNew=false;
-if ($md->getName()=="Invoices") $existNew=false;
-if ($md->getName()=="Set Driver") $existNew=false;
-if ($_SESSION['AuthLevelID']==42) $existNew=false;
-if ($_SESSION['AuthUserID']==874) $existNew=true;
-if ($md->getName()=="Articles") $existNew=true;*/
-
-
-$smarty->assign('transfersFilter',$transfersFilter);
-$smarty->assign('includeFile',$includeFile);
-$smarty->assign('includeFileTpl',$includeFileTpl);
-$smarty->assign('orderid',$orderid);
-$smarty->assign('detailid',$detailid);
-$smarty->assign('RouteID',$RouteID);
-$smarty->assign('VehicleTypeID',$VehicleTypeID);
-$smarty->assign('VehicleID',$VehicleID);
-$smarty->assign('SubDriverID',$SubDriverID);
-$smarty->assign('ActionID',$ActionID);
-$smarty->assign('item',$item);
-$smarty->assign('isNew',$isNew);
-$smarty->assign('existNew',$existNew);
-$smarty->assign('menu1',$menu1);
-$smarty->assign('pageName',$pageName);
-$smarty->assign('pageList',$pageList);
-$smarty->assign('currenturl',ROOT_HOME.$activePage);
-$smarty->assign('title',$md->getName());
-$smarty->assign('base',$md->getBase());
-$smarty->assign('parentID',$md->getParentID());
-$smarty->assign('ModulID',$keyP);
-$smarty->assign('setasdriver',$setasdriver);
-
-
-	
-// display
-?><script type="text/x-handlebars-template"></script><?
-
-$smarty->display("index.tpl");	
 
 function phaseStatus($status) {
 	switch ($status) {

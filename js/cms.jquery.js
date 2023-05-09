@@ -1080,9 +1080,8 @@ Prikaz Driver polja kao dropdown
 
 Handlebars.registerHelper("driverSelect", function(id,routeId,vehicleTypeId) {
 	function driverSelectDropdown() {
-
+		if (typeof vehicleTypeId=='undefined') var vehicleTypeId=0;		
 		var url = 'api/getDriversForService.php?RouteID='+routeId+'&VehicleTypeID='+vehicleTypeId+'&callback=';
-		
 		console.log(url);
 		var selector = "<select class=\"w100\" name=\"DriverID\" id=\"DriverID\">";
 
