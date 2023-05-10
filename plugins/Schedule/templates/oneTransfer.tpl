@@ -387,6 +387,7 @@
 				else {
 					$("#indicator_"+i).css("borderLeftColor","green");
 				}
+				toastr['success'](window.success);						
 			},
 			error: function (e) {
 				msg.innerHTML = "Error";

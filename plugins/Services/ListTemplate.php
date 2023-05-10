@@ -57,7 +57,8 @@
 				
 				<!-- ServicePrice1(Active Prace): -->				
 				<div class="col-md-2">
-					<b><input type="text" name="ServicePrice1"  id="ServicePrice1" value="{{ServicePrice1}}" style="width:120px;"></b>
+					<b><input type="text" name="ServicePrice1"  id="ServicePrice1" value="{{ServicePrice1}}" 
+						style="width:120px;" data-id="{{ServiceID}}"></b>
 					{{ServicePrice1}}
 				</div>
 
@@ -69,7 +70,7 @@
 
 				<!-- Price rules: -->
 				<div class="col-md-5 surcategory" >
-					<span>{{SurCategoryRB PriceRules 'SurCategory' '4' 'services' ServiceID}}</span>
+					<span data-id="{{ServiceID}}">{{SurCategoryRB PriceRules 'SurCategory' '4' 'services' ServiceID}}</span>
 				</div>
 			</div>		
 			
@@ -83,17 +84,25 @@
 		$('input').change(function(){
 			var base=window.rootbase;
 			if (window.location.host=='localhost') base=base+'/jamtransfer';	
-			var link = base+'/plugins/Services/Save.php';			
-			var ServiceID=$('#ServiceID').val();
-			var ServicePrice1=$('#ServicePrice1').val();
-			var SurCategory = $('input[name="SurCategory"]:checked').val();
-			var param='ServiceID='+ServiceID+'&ServicePrice1='+ServicePrice1+'&SurCategory='+SurCategory;
+			var link = base+'/plugins/Services/Save.php';		
+
+			if ($(this).attr("name")=="ServicePrice1") {
+				var ServiceID=$(this).attr("data-id");
+				var ServicePrice1=$(this).val();
+				var param='ServiceID='+ServiceID+'&ServicePrice1='+ServicePrice1;
+			}
+			if ($(this).attr("name")=="SurCategory") {
+				var ServiceID=$(this).parent().parent().attr("data-id");
+				var SurCategory = $(this).val();
+				var param='ServiceID='+ServiceID+'&SurCategory='+SurCategory;
+			}
 			console.log(link+'?'+param);
 			$.ajax({
 				type: 'POST',
 				url: link,
 				data: param,
 				success: function(data) {
+					toastr['success'](window.success);	
 				}				
 			});			
 		})	

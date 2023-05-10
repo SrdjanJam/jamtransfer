@@ -114,6 +114,7 @@
 				data: param,
 				success: function(data) {
 					$('#t_ .ID').val(data);
+					toastr['success'](window.success);						
 				}				
 			});
 			

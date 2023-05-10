@@ -33,7 +33,6 @@ $q = 'UPDATE v4_OrderDetails SET';
 foreach ($data as $field => $value)	{
 	$q .= " " . $field . " = '" . $value. "' ,";
 }
-if (isset($_REQUEST['Mail']) && $_REQUEST['Mail']==1) $q .= " `DriverConfStatus` = 2 ,";
 // get rid of last ,
 $q = substr_replace( $q, "", -1 );
 
@@ -76,7 +75,6 @@ if ($_REQUEST['DriverConfStatus']>2) {
 		$ol->saveAsNew();
 	}
 }
-
 $db->RunQuery($q) ;
 echo ' <small>Saved.</small>';
 
@@ -114,7 +112,7 @@ if (isset($_REQUEST['Mail']) && $_REQUEST['Mail']==1) {
 	
 	$mailMessage .= 'Pickup Point: ' .$d->PickupPlace. '<br>';
 
-	echo $mailMessage .= '
+	$mailMessage .= '
 	You can contact Your driver directly in case You are delayed etc.<br>
 	or you can call our Customer Service 24/7 as well.<br>
 	<br>
@@ -127,11 +125,10 @@ if (isset($_REQUEST['Mail']) && $_REQUEST['Mail']==1) {
 	<br>
 	JamTransfer.com Team';
 	
-	//$mailto = $m->MPaxEmail;
-	$mailto = 'jam.bgprogrameri@gmail.com';
+	$mailto = $m->MPaxEmail;
 	$subject = 'Important Update for Transfer: '. ' ' . $m->MOrderKey.'-'.$m->MOrderID . '-' . $d->TNo;
-	/*mail_html($mailto, 'driver-info@jamtransfer.com', 'JamTransfer.com', 'info@jamtransfer.com',
-	$subject , $mailMessage);*/
+	mail_html($mailto, 'driver-info@jamtransfer.com', 'JamTransfer.com', 'info@jamtransfer.com',
+	$subject , $mailMessage);
 	
 }	
 

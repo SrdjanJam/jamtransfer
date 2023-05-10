@@ -42,14 +42,14 @@ if ($keyName != '' and $keyValue == '') {
 	$newID = $db->saveAsNew();
 }
 // zaprimanje - razduzivanje vozila
-$ex_arr=array(109,127);
+$ex_arr=array(ZADUZIVANJE,RAZDUZIVANJE);
 
 if( in_array($_REQUEST['Expense'],$ex_arr)) {
 	// brisanje
 
 $sqlD="DELETE FROM `v4_SubVehiclesSubDrivers` WHERE `OwnerID`='".$_REQUEST['OwnerID']."' && (SubVehicleID=".$_REQUEST['VehicleID']." || SubDriverID=".$_REQUEST['DriverID'].")";
 	$dbf->RunQuery($sqlD);
-	if(isset($_REQUEST['Approved']) && $_REQUEST['Approved']==1 && $_REQUEST['Expense']==109) {
+	if(isset($_REQUEST['Approved']) && $_REQUEST['Approved']==1 && $_REQUEST['Expense']==ZADUZIVANJE) {
 		//unos
 		$sql="INSERT INTO `v4_SubVehiclesSubDrivers`(`OwnerID`,`SubVehicleID`, `SubDriverID`) VALUES ('".$_REQUEST['OwnerID']."','".$_REQUEST['VehicleID']."','".$_REQUEST['DriverID']."')";
 		$dbf->RunQuery($sql);	
