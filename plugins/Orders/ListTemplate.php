@@ -69,22 +69,6 @@
 		background-color: #6cd7f3 !important;
 	}
 
-	@media only screen and (max-width: 1650px) {
-		/* For mobile phones: */
-		[class*="col-"] {
-			width: 100% !important;
-			
-		}
-		
-	}
-
-	@media only screen and (max-width: 1250px) {
-		/* For mobile phones: */
-		.pad1em{
-			flex-direction: column;
-		}
-		
-	}
 
 </style>
 
@@ -100,8 +84,10 @@
 	{{#each Item}}
 		<div>
 		
-			<div class="row {{color}} pad1em listTile listTile-edit" 
+			<div class="row {{color}} pad1em listTile listTile-edit orders-edit" 
 			id="t_{{DetailsID}}">
+
+				<!-- <div class="col-md-12"> -->
 
 					<div class="col-md-2 order"  onclick="oneItem({{DetailsID}},'order');">	
 						<small>{{OrderDate}} {{MOrderTime}}</small></br>
@@ -186,6 +172,9 @@
 							<i class="fa fa-person" style="font-size:60px;"></i>
 						</div>								
 					</div>
+
+				<!-- </div> End of .col-md-12 -->
+
 			</div>
 
 		</div>
