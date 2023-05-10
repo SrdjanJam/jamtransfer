@@ -14,7 +14,6 @@ if (isset($_SESSION['UseDriverID']) && $_SESSION['UseDriverID']>0) {
 <script type="text/x-handlebars-template" id="ItemListTemplate">
 
 	<div class="row row-edit">
-		
 		<div class="col-md-1">
 			<?=SERVICE_ID;?>
 		</div>
@@ -31,14 +30,14 @@ if (isset($_SESSION['UseDriverID']) && $_SESSION['UseDriverID']>0) {
 			Driver Price
 		</div>		
 		
-		<div class="col-md-2">
+		<div class="col-md-1">
 			Provision (%)
 		</div>		
 		
-		<div class="col-md-2">
+		<div class="col-md-1">
 			<?= PRICE ?>
 		</div>
-					
+
 	</div>
 
 	{{#each Item}}
@@ -61,19 +60,20 @@ if (isset($_SESSION['UseDriverID']) && $_SESSION['UseDriverID']>0) {
 			</div>
 
 			<!-- DriverPrice -->
-			<div class="col-md-2 extras" data-id="{{ID}}">
-				<input type="text" name="DriverPrice" id="DriverPrice"  class="w10 show_hide" value="{{DriverPrice}}" >
+			<div class="col-md-1 extras" data-id="{{ID}}">
+				<input type="text" name="DriverPrice" id="DriverPrice"  class="w10 show_hide" value="{{DriverPrice}}" style="width:100%;" >
 			</div>			
 			
-			<!-- DriverPrice -->
+			<!-- Provisoin -->
 			<div class="col-md-1 extras" data-id="{{ID}}">
-				<input type="text" name="Provision" id="Provision"  class="w10 show_hide" value="{{Provision}}" />
-			</div>			
+				<input type="text" name="Provision" id="Provision"  class="w10 show_hide" value="{{Provision}}" style="width:100%;" >
+			</div>		
 			
 			<!-- Price -->
-			<div class="col-md-2 extras" data-id="{{ID}}">
+			<div class="col-md-1 extras" data-id="{{ID}}">
 				<span>{{Price}}</span>
 			</div>
+
 		</div>
 		
 
