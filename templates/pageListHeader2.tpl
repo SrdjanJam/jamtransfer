@@ -1,3 +1,58 @@
+<style>
+
+	[class*="col-"] > *{ /* Target all child elements in the parent */
+		margin-top:3px;
+	}
+	[class*="col-"] > *:first-child{
+		margin-top:0px;
+	}
+
+	.select-top-edit.addon{
+		width:50%;
+		display: inline;
+	}
+
+	.input-one{
+		width: 100%;
+	}
+
+
+	.datepicker-edit{ width:48%; }
+
+	.datepicker-edit,.datepicker-edit-2{
+		color: rgb(1 114 255) !important;
+		padding:2px;
+		border-radius: 5px !important;
+		margin-bottom: 2px;
+		box-shadow: 2px 2px 4px #3f50a1;
+		outline:none;
+		border:2px solid rgb(135, 147, 218);
+		font-weight: bold;
+	}
+
+	#wrapp-buttons{
+		float:left;
+		background: #479de929;
+		border-radius: 5px;
+		padding-right: 5px;
+		box-shadow: 3px 3px 4px 0px #3b75b9;
+	}
+
+	.show-edit{
+		cursor:pointer; font-weight:bold; color: #0584f1; text-shadow: #0584f1 0px 0px 1px;
+	}
+
+	.fa-bars-edit{
+		font-size: 20px;margin: 5px;color: #0584f1;
+	}
+
+	.show-edit:hover,.fa-bars-edit:hover{
+		cursor:pointer; font-weight:bold; color: #0b70c9;
+	}
+	
+
+</style>
+
 <input type="hidden"  id="whereCondition" name="whereCondition" 
 value=" WHERE {$ItemID} > 0">
 
@@ -34,7 +89,7 @@ value=" WHERE {$ItemID} > 0">
 		<br><br>
 
 		<!-- Order: -->
-		<div class="col-md-2" style="padding-left: 0px;>
+		<div class="col-md-2 order-edit">
 			<small class="badge blue text-black badge-edit">Order</small><br>
 			<input id='order' class="input-one" name='order'  placeholder="Order ID" onchange="allItems();"/><br>
 						
@@ -85,7 +140,7 @@ value=" WHERE {$ItemID} > 0">
 			<input id='driverName' class="input-one" name='driverName'  placeholder="Name/ID" onchange="allItems();"/><br>
 			
 				<select id="DriverConfStatusChoose" class="w75 form-control select-top-edit" onchange="allItems();">		
-					<option value="0">{$ALL} {$STATUS}</option>
+					<option value="-1">{$ALL} {$STATUS}</option>
 					{section name=pom loop=$options4}
 						<option value="{$options4[pom].id}">{$options4[pom].name}</option>
 					{/section}
@@ -116,86 +171,6 @@ value=" WHERE {$ItemID} > 0">
 
 
 </div>
-
-
-
-<style>
-
-	[class*="col-"] > *{ /* Target all child elements in the parent */
-		margin-top:3px;
-	}
-	[class*="col-"] > *:first-child{
-		margin-top:0px;
-	}
-
-	.select-top-edit.addon{
-		width:50% !important;
-		display: inline;
-	}
-
-	.input-one{
-		width: 100%;
-	}
-
-
-	.datepicker-edit{ width:48%; }
-
-	.datepicker-edit,.datepicker-edit-2{
-		color: rgb(1 114 255) !important;
-		padding:2px;
-		border-radius: 5px !important;
-		margin-bottom: 2px;
-		box-shadow: 2px 2px 4px #3f50a1;
-		outline:none;
-		border:2px solid rgb(135, 147, 218);
-		font-weight: bold;
-	}
-
-	#wrapp-buttons{
-		float:left;
-		background: #479de929;
-		border-radius: 5px;
-		padding-right: 5px;
-		box-shadow: 3px 3px 4px 0px #3b75b9;
-	}
-
-	.show-edit{
-		cursor:pointer; font-weight:bold; color: #0584f1; text-shadow: #0584f1 0px 0px 1px;
-	}
-
-	.fa-bars-edit{
-		font-size: 20px;margin: 5px;color: #0584f1;
-	}
-
-	.show-edit:hover,.fa-bars-edit:hover{
-		cursor:pointer; font-weight:bold; color: #0b70c9;
-	}
-
-	@media screen and (max-width: 1200px) {
-		/* For mobile phones: */
-		#show, #show-2{
-			display: inline-block;
-		}
-
-		.select-top-edit.addon{
-			width:100% !important;
-		}
-
-		.datepicker-edit{
-			width:100% !important;
-		}
-		
-	}
-
-
-	@media screen and (min-width: 1201px) {
-		#show, #show-2{
-			display: inline-block;
-		}
-		
-	}
-
-</style>
 
 {* Scripts: *}
 <script>
