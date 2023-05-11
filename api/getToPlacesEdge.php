@@ -27,10 +27,20 @@ while($r = $r1->fetch_object())
 	$pl->getRow($toID);
 	$routes[$r->RouteID] = array(
 									'ID' => $r->RouteID,
+									'ToID' => $toID,
 									'ToPlace' => $pl->getPlaceNameEN(),
 									'RouteName' => $r->RouteName
 								);		
 }
+usort($routes, function($a, $b) {
+    if ($a['ToPlace'] > $b['ToPlace']) {
+        return 1;
+    } elseif ($a['ToPlace'] < $b['ToPlace']) {
+        return -1;
+    }
+    return 0;
+});
+
 $res = json_encode($routes);
 echo $_GET['callback'] . '(' . $res. ')';
 

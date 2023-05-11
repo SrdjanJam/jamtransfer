@@ -223,6 +223,14 @@
 							</div>
 						</div>
 						<div class="row dtransfer">
+							<div class="col-md-3 "><label><?= ROUTE ?> <?= TO ?></label></div>
+							<div class="col-md-6">
+								<select name="Route" id="Route">
+									<option value="-1">No route</option>
+								</select>
+							</div>
+						</div>	
+						<div class="row dtransfer">
 							<div class="col-md-3 "><label><?= DROPOFF_NAME ?> and <?= DROPOFF_ADDRESS ?></label></div>
 							<div class="col-md-3">
 								<input type="text" name="DropName" id="DropName" value="{{details.DropName}}">
@@ -568,6 +576,7 @@
 		<input type="hidden" name="PickupType" id="PickupType" value="{{details.PlaceType}}" >
 		<input type="hidden" name="PickupID" id="PickupID" value="{{details.PickupID}}" >
 		<input type="hidden" name="DropID" id="DropID" value="{{details.DropID}}" >
+		<input type="hidden" name="RouteID" id="RouteID" value="{{details.RouteID}}" >
 		<input type="hidden" name="sendEmailTo" id="sendEmailTo" value="{{details.DriverEmail}}">
 		
 	</form>
@@ -662,6 +671,12 @@
 										//callback();
 									},
 									success: function(res) {
+										$.each(res, function(index, element) {
+											console.log(element.RouteName)
+											$("#Route").append(
+												'<option data-toid="'+element.ToID+'" value="'+element.ID+'">'+element.ToPlace+'</option>'
+											)	
+										});				
 										console.log (res);
 									}
 								})		
@@ -672,8 +687,16 @@
 				})	
 			}
 		})	
-		
-		
+		// proemena rute
+		$('#Route').change(function() {
+			
+			var toName = $(this).find("option:selected").text();	
+			var toID = $(this).find("option:selected").attr('data-toid');	
+			var rID = $(this).find("option:selected").val();
+			$('#DropName').val(toName);
+			$('#DropID').val(toID);
+			$('#RouteID').val(rID);
+		})	
 		// promena ekstrasa
 		$('.ServiceID').change(function() {
 			var driverprice = $(this).find('option:selected').attr('data-driverprice');
