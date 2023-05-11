@@ -87,8 +87,6 @@
 			<div class="row {{color}} pad1em listTile listTile-edit orders-edit" 
 			id="t_{{DetailsID}}">
 
-				<!-- <div class="col-md-12"> -->
-
 					<div class="col-md-2 order"  onclick="oneItem({{DetailsID}},'order');">	
 						<small>{{OrderDate}} {{MOrderTime}}</small></br>
 						<strong>{{MOrderID}} - {{TNo}}</strong><br>
@@ -172,8 +170,6 @@
 							<i class="fa fa-person" style="font-size:60px;"></i>
 						</div>								
 					</div>
-
-				<!-- </div> End of .col-md-12 -->
 
 			</div>
 

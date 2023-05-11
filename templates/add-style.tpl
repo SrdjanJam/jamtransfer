@@ -370,6 +370,8 @@
 .textarea-dialog{ 
     width: 100% !important; height:20% !important; resize: none; box-sizing: border-box !important; background: #fdfdf4; margin-top: 65px;
 }
+
+textarea{ width:90% !important; }
 /* ------------------------------------------ */
 
 {* END OF TEMPLATES: ======================================================================================  *}
@@ -488,9 +490,9 @@
         padding: 5px;
     }
 
-    [class*="col-"]{
+    [class*="col-md"]{
         width: 100% !important;
-        padding: 5px;
+        padding: 5px 0;
         text-align: center;
     }
 
@@ -514,8 +516,31 @@
         flex-direction: column;
     }
 
+    /* Check: */
+    /* .textarea{ 
+        width: 90% !important;
+    } */
+
+    .col-md-9, .col-md-8 > *{ 
+            float:none !important;
+        }
+
+    .col-md-8 input[type="text"]{
+        text-align: center;
+    }
+    
+    [class*="col-"] input[type="range"]{ display:inline-block; }
+    .col-md-9 input[type="text"]{ width:90% !important; }
+    .col-md-9 .wysihtml5-toolbar{ 
+        display: inline-flex;
+    }
+
+    iframe{
+        width:90% !important;
+    }
 			
 }
+
 
 
 @media (min-width: 768px) and (max-width: 1300px) {
@@ -537,7 +562,6 @@
 }
 
 
-
 @media (max-width: 767px)  {
     .ui-dialog{ /*Global dialog style */
         height: 80% !important;
@@ -553,8 +577,14 @@
 }
 
 
-
-
-
-
 </style>
+
+<script>
+    function resize(){
+        if($(window).width() < 1400){
+            $(".col-md-6").removeClass("col-md-offset-3");
+        }
+    }
+    resize();
+    $(window).resize(resize);
+</script>

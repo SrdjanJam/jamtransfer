@@ -23,6 +23,28 @@
 
     }
 
+    @media screen and (max-width: 550px){
+        .target {
+            font-weight: bold;
+            color: #fbfbfb;
+            animation-name: rightToLeft;
+            animation-duration: 4.5s;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+            /* animation: rightToLeft 4.5s linear infinite; */
+            white-space: nowrap;
+            }
+
+            @keyframes rightToLeft {
+                0% {
+                    transform: translateX(200px);
+                }
+                100% {
+                    transform: translateX(-160px);
+                }
+            }
+    }
+
 </style>
 
                     <!-- Small boxes (Stat box) -->
