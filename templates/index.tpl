@@ -321,18 +321,22 @@
 					<!-- navbar -->	
 					<nav class="navbar navbar-static-top navbar-static-top-edit" role="navigation" style="margin-bottom: 0">
 						
-						<!-- Minimalize -->
-						<div class="navbar-header">
-							<a class="navbar-minimalize minimalize-styl-2 btn btn-primary btn-primary-edit"><i class="fa fa-bars"></i> </a>
+						<div class="navbar-left-add" style="display:inline-block;">
+							<!-- Minimalize -->
+							<div class="navbar-header">
+								<a class="navbar-minimalize minimalize-styl-2 btn btn-primary btn-primary-edit"><i class="fa fa-bars"></i> </a>
+							</div>
+
+							<!-- Refresh -->
+							<div class="navbar-header">
+								<button type="button" class="minimalize-styl-2 btn btn-primary btn-primary-edit" id="cashe"><i class="fas fa-redo-alt"></i></button>
+							</div>
+
+							<!-- Page title and database: -->
+							<h2 style="display:inline-block;margin: 15px 0 0 55px;vertical-align: super;"><span class="m-r-sm text-muted">{$title} - {$smarty.session.log_title}</span></h2>
+
 						</div>
 
-						<!-- Refresh -->
-						<div class="navbar-header">
-							<button type="button" class="minimalize-styl-2 btn btn-primary btn-primary-edit" id="cashe"><i class="fas fa-redo-alt"></i></button>
-						</div>
-
-						<!-- Page title and database: -->
-						<h2 style="display:inline-block;margin: 15px 0 0 55px;"><span class="m-r-sm text-muted">{$title} - {$smarty.session.log_title}</span></h2>
 						<ul class="nav navbar-top-links navbar-right">
 							<!-- Opener dialog button: -->
 							<li><button type="button" id="opener-help" class="button-3">Help</button></li>
