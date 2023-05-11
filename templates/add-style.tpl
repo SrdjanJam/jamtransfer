@@ -455,7 +455,7 @@ textarea{ width:90% !important; }
 }
 /* ============================================================================== */
 
-.form-control{ width:100%; }
+.form-control{ width:100%;}
 .form-group { margin-bottom: 0px !important; }
 
 .tab-content-edit{ padding:20px !important; }
@@ -538,7 +538,31 @@ textarea{ width:90% !important; }
     iframe{
         width:90% !important;
     }
-			
+
+    .form-control{ width:90%;}
+
+    .row{
+        margin-left:0;
+        margin-right:0;
+        padding-left:0;
+        padding-right:0;
+    }
+
+    .navbar-right {
+        float: none !important;
+        text-align: center;
+    }
+
+    .navbar-left-add{
+        display: block !important;
+        text-align: center;
+    }
+
+    .navbar-left-add .navbar-header{
+        display: inline-block !important;
+        float: none;
+    }
+
 }
 
 
