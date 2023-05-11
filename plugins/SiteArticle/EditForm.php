@@ -54,7 +54,7 @@
 						<label for="Title"><?=TITLE;?></label>
 					</div>
 					<div class="col-md-9">
-						<input type="text" name="Title" id="Title" style="width: 1000px;" value="{{Title}}">
+						<input type="text" name="Title" id="Title" value="{{Title}}">
 					</div>
 				</div>
 
