@@ -1080,8 +1080,9 @@ Prikaz Driver polja kao dropdown
 
 Handlebars.registerHelper("driverSelect", function(id,routeId,vehicleTypeId) {
 	function driverSelectDropdown() {
-		if (typeof vehicleTypeId=='undefined') var vehicleTypeId=0;		
+
 		var url = 'api/getDriversForService.php?RouteID='+routeId+'&VehicleTypeID='+vehicleTypeId+'&callback=';
+		
 		console.log(url);
 		var selector = "<select class=\"w100\" name=\"DriverID\" id=\"DriverID\">";
 
@@ -1429,7 +1430,7 @@ Handlebars.registerHelper("routeSelect", function(id,fieldName,routes) {
 });
 
 function createRoutesSelect(data, id, fieldName) {
-	var selector = "<select class=\"w100 "+fieldName+"\" name=\""+fieldName+"\" id=\""+fieldName+"\" style=\"width:100%\" >";
+	var selector = "<select class=\"w100 "+fieldName+"\" name=\""+fieldName+"\" id=\""+fieldName+"\" style=\"width:90%\" >";
 		selector += '<option value="0"> --- </option>';
 
 		$.each(data, function(i,val) {
