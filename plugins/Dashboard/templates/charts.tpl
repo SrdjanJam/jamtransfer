@@ -3,7 +3,7 @@
 <!-- Showing charts: -->
 <div class="row" style="padding:10px;">
   <div class="col-sm-6"><canvas id="pie-chart" style="display:inline-block;"></canvas></div>
-  <div class="col-sm-6"><canvas id="bar-chart" style="display:inline-block;col-sm-6"></canvas></div>
+  {if not isset($smarty.session.UseDriverID)}<div class="col-sm-6"><canvas id="bar-chart" style="display:inline-block;col-sm-6"></canvas></div>{/if}
 </div>
 
 

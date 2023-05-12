@@ -3,8 +3,8 @@
  {literal}
  	getTodoData();
 	function getTodoData() {
-		var url = './api/'+
-		"todoItems.php?action=get&callback=?";
+		var url = "api/todoItems.php?action=get&callback=?";
+		console.log(url);
 		$.ajax({
 			type: 'GET',
 			url: url,
@@ -18,6 +18,7 @@
 			  var HTML = template({todoItems : data});
 			  $("#showToDo").html(HTML);
 			}
+			
 		});
 	}
  	function todoItem(action,itemId){

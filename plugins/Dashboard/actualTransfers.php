@@ -7,7 +7,9 @@
 	$timeStart=date('H:i',time()-7200);
 	$timeEnd=date('H:i',time()+10800);
 	$query= "SELECT * FROM v4_OrderDetails
-				WHERE PickupDate = '".date('Y-m-d')."' 
+				WHERE ";
+	if (isset($_SESSION['UseDriverID'])) $query.= " DriverID=".$_SESSION['UseDriverID']." AND ";
+	$query.= "PickupDate = '".date('Y-m-d')."' 
 				AND PickupTime>'".$timeStart."' 
 				AND PickupTime<'".$timeEnd."'
 				AND TransferStatus not in (3,4,9)

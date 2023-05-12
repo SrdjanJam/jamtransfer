@@ -12,12 +12,12 @@
 					{/if}
 					
 					<div class="row">
-						{if $getOrder}
+						{if $getOrder and not isset($smarty.session.UseDriverID)}
 						<section class="col-lg-6 xconnectedSortable"> 
 							{include file="plugins/Dashboard/templates/getOrder.tpl"} 			
 						</section><!-- /.Left col -->
 						{/if}
-						{if $getUnfinishedPayment}						
+						{if not isset($smarty.session.UseDriverID)}						
 						<section class="col-lg-6 xconnectedSortable"> 
 							{include file="plugins/Dashboard/templates/getUnfinishedPayment.tpl"} 			
 						</section>
