@@ -55,7 +55,7 @@
 
 	
 	
-	<div align="left">
+	<div align="left" class="left-edit">
 
 		<a href="{$root_home}driversTransfers/{$smarty.request.StartDate}/{$smarty.request.EndDate}/{$smarty.request.includePaymentMethod}" class="btn btn-primary">&larr; Back to Drivers List</a>
 			<br/>
@@ -64,11 +64,10 @@
 	
 		{if $smarty.request.driverid > 0}
 			<a class="btn btn-danger l" style="color:white !important;float:right;" id="CreateInvoice" href="{$root_home}driversTransfers/invoice/{$smarty.request.driverid}/{$smarty.request.StartDate}/{$smarty.request.EndDate}/{$smarty.request.includePaymentMethod}">
-			<i class="fa fa-cogs"></i> Create Invoice</a> &nbsp;&nbsp;
-			<br/><br/>
+			<i class="fa fa-cogs"></i> Create Invoice</a>
 		{/if}
 
-		<br/><br/>
+		
 
 	</div> {*End of left*}
 	
