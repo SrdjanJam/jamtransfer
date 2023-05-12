@@ -110,7 +110,7 @@
 			<tr>
 				<td colspan="3">
 				<!-- Second Table -->
-					<table class="table table-bordered" width="100%">
+					<table class="table-bordered second-table-edit" style="width:100%;">
 						<thead>
 							<tr>
 								<th class="pad4px">No.</th>
