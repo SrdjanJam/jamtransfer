@@ -51,7 +51,7 @@
 
 		{/section} {* End of section*}
 
-		<div class="row" style="font-weight:bold;background:#f5f5f5;padding:15px;">
+		<div class="row total-balance-add" style="font-weight:bold;background:#f5f5f5;padding:15px;">
 			Total Balance <div class="col-md-2 col-md-offset-3 text-right">{$totalBalance|number_format:2}</div>
 		</div>
 		{else}
@@ -91,26 +91,26 @@
 						</div>
 
 						<div class="col-md-2">
-							Online<input type="checkbox" name="Online" value="1">
+							<div>Online</div><input type="checkbox" name="Online" value="1">
 						</div>
 						<div class="col-md-2">
-							Cash<input type="checkbox" name="Cash" value="1">
+							<div>Cash</div><input type="checkbox" name="Cash" value="1">
 						</div>			
 						<div class="col-md-2">
-							Online + Cash <input type="checkbox" name="OnlineCash" value="1">
+							<div>Online + Cash</div><input type="checkbox" name="OnlineCash" value="1">
 						</div>
 						<div class="col-md-2">
-							Invoice <input type="checkbox" name="Invoice" value="1">
+							<div>Invoice</div><input type="checkbox" name="Invoice" value="1">
 						</div>
 						<div class="col-md-2">
-							Invoice 2 <input type="checkbox" name="Invoice2" value="1">
+							<div>Invoice 2</div><input type="checkbox" name="Invoice2" value="1">
 						</div>
 					</div>
 
 					<div class="row">
 					<!-- select all boxes -->
 						<div class="col-md-1 col-md-offset-1">
-							<span style="color:rgb(21 85 229);">Check All</span><input type="checkbox" name="select-all" id="select-all" />
+							<div style="color:rgb(21 85 229);">Check All</div><input type="checkbox" name="select-all" id="select-all" />
 						</div>	
 					</div>
 
@@ -145,5 +145,18 @@
 				});
 			}
 		});
+
+		// Resize:
+		function resize(){
+			if($(window).width() < 1400){
+				$(".col-md-1").removeClass("col-md-offset-1");
+				$(".col-md-4").removeClass("col-md-offset-2");
+			}
+    	}
+
+		resize();
+		$(window).resize(resize);
+
+
 	});
 </script>

@@ -460,6 +460,8 @@ textarea{ width:90% !important; }
 
 .tab-content-edit{ padding:20px !important; }
 
+.container.white{ width:90% !important; }
+
 
 /* Media screen: */
 @media screen and (min-width: 1201px) {
@@ -520,8 +522,12 @@ textarea{ width:90% !important; }
     /* .textarea{ 
         width: 90% !important;
     } */
-
-    .col-md-9, .col-md-8 > *{ 
+    
+    .col-md-9 > *{ 
+            float:none !important;
+        }
+    
+    .col-md-8 > *{ 
             float:none !important;
         }
 
@@ -529,8 +535,10 @@ textarea{ width:90% !important; }
         text-align: center;
     }
     
-    [class*="col-"] input[type="range"]{ display:inline-block; }
-    .col-md-9 input[type="text"]{ width:90% !important; }
+    [class*="col-"] input[type="range"]{ display:inline-block !important; }
+
+    .col-md-9 input[type="text"]{ width:90% !important; margin-bottom: 5px;}
+
     .col-md-9 .wysihtml5-toolbar{ 
         display: inline-flex;
     }
@@ -562,6 +570,15 @@ textarea{ width:90% !important; }
         display: inline-block !important;
         float: none;
     }
+
+    .navbar-left-add h2{
+        margin:0 0 0 10px !important;
+    }
+
+    .row-checkbox-edit input[type=checkbox]{
+        display: inline-block;
+    }
+
 
 }
 
@@ -597,6 +614,47 @@ textarea{ width:90% !important; }
     }
 
     .form-group.group-edit{ width:90%; }
+
+    .table{
+        display: block !important;
+        overflow-x: auto !important;
+        width: 100% !important;
+    }
+
+    table tbody td {
+        display: block !important;
+        text-align: center !important;
+        font-size: 13px;
+        border-bottom: 1px dotted #ccc;
+        padding:5px;
+	
+    }
+
+    table tbody th {
+        display: block;
+        text-align: center;
+        font-size: 13px;
+        border-bottom: 1px dotted #ccc;
+        padding:5px;
+    }
+
+    .btn.btn-danger{
+        float: none !important;
+        margin-top: 5px;
+    }
+
+    .left-edit{
+        text-align: center;
+    }
+
+    .pad4px{
+        width:auto !important;
+    }
+
+    .total-balance-add{
+        text-align: center;
+    }
+    
 
 }
 
