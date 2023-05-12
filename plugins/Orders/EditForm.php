@@ -543,7 +543,7 @@
 													</span>
 
 													<div class="timeline-body">
-														{{Description}}
+														{{{Description}}}
 													</div>
 												</div>
 											</li>

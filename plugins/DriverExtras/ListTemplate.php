@@ -71,7 +71,7 @@ if (isset($_SESSION['UseDriverID']) && $_SESSION['UseDriverID']>0) {
 			
 			<!-- Price -->
 			<div class="col-md-1 extras" data-id="{{ID}}">
-				<span>{{Price}}</span>
+				<span class="price">{{Price}}</span>
 			</div>
 
 		</div>
@@ -104,17 +104,23 @@ if (isset($_SESSION['UseDriverID']) && $_SESSION['UseDriverID']>0) {
 
 			if (window.location.host=='localhost') base=base+'/jamtransfer';
 			var link = base+'/plugins/DriverExtras/Save.php';
-			var param = "ExtrasID="+extrasid+"&ExtrasName="+extrasname+"&DriverPrice="+driverprice+"&Provision="+provision+"&DriverExtras="+driverextras;
+			var param = "ExtrasID="+extrasid+"&ExtrasName="+extrasname+"&DriverPrice="+driverprice+"&Provision="+provision+"&DriverExtras="+driverextras+'&callback=?';
 			var $t = $(this);
 			console.log(link+'?'+param);
 			$.ajax({
-				type: 'POST',
-				url: link,
-				data: param,
+				type: 'GET',
+				url: link+'?'+param,
+				async: false,
+				contentType: "application/json",
+				dataType: 'jsonp',
 				success: function(data) {
-					if (data==0) $t.parent().parent().find('.show_hide').hide(500);
-					if (data==1) $t.parent().parent().find('.show_hide').show(500);
-					
+					$t.parent().parent().find('.price').html(data.price);					
+					if (data.driverextras==0) {
+						$t.parent().parent().find('.show_hide').hide(500);
+						$t.parent().parent().find('.show_hide').val(0);
+						$t.parent().parent().find('.price').html('');
+					}	
+					if (data.driverextras==1) $t.parent().parent().find('.show_hide').show(500);
 					toastr['success'](window.success);	
 				}				
 			});
