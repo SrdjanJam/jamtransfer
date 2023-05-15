@@ -579,6 +579,10 @@ textarea{ width:90% !important; }
         display: inline-block;
     }
 
+    .container-edit{
+        width: 100%;
+    }
+
 
 }
 
@@ -600,28 +604,17 @@ textarea{ width:90% !important; }
 		flex-direction: column;
 	}
 
+
 }
 
-
-@media (max-width: 767px)  {
-    .ui-dialog{ /*Global dialog style */
-        height: 80% !important;
-        overflow-y: auto;
-        box-shadow: 0px 0px 5px 2px #4d4d52;
-        /* box-shadow: 0px 0px 2px 2px #424181; old */
-        top:130px !important;
-        width:60% !important;
-    }
-
-    .form-group.group-edit{ width:90%; }
-
+@media (max-width: 900px){
     .table{
-        display: block !important;
+        /* display: block !important; */
         overflow-x: auto !important;
         width: 100% !important;
     }
 
-    table tbody td {
+    .table tbody td {
         display: block !important;
         text-align: center !important;
         font-size: 13px;
@@ -630,7 +623,29 @@ textarea{ width:90% !important; }
 	
     }
 
-    table tbody th {
+    .table tbody th {
+        display: block;
+        text-align: center;
+        font-size: 13px;
+        border-bottom: 1px dotted #ccc;
+        padding:5px;
+    } 
+
+
+    form table tbody td {
+        display: block !important;
+        text-align: center !important;
+        font-size: 13px;
+        border-bottom: 1px dotted #ccc;
+        padding:5px;
+	
+    }
+
+    /* .xdsoft_calendar{
+        display: inline !important;
+    } */
+
+    form table tbody th {
         display: block;
         text-align: center;
         font-size: 13px;
@@ -638,6 +653,8 @@ textarea{ width:90% !important; }
         padding:5px;
     }
 
+
+    /* For invoice: */
     .btn.btn-danger{
         float: none !important;
         margin-top: 5px;
@@ -654,7 +671,24 @@ textarea{ width:90% !important; }
     .total-balance-add{
         text-align: center;
     }
+
+
+}
+
+
+@media (max-width: 767px)  {
     
+    .ui-dialog{ /*Global dialog style */
+        height: 80% !important;
+        overflow-y: auto;
+        box-shadow: 0px 0px 5px 2px #4d4d52;
+        /* box-shadow: 0px 0px 2px 2px #424181; old */
+        top:130px !important;
+        width:60% !important;
+    }
+
+    .form-group.group-edit{ width:90%; }
+
 
 }
 

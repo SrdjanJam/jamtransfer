@@ -1,5 +1,5 @@
 <form name="exchangeRate" method="post" action="">
-    <div class="container">
+    <div class="container container-edit">
         <div class="box box-info pad1em shadowLight shadowLight-edit">
             <h2>Exchange rate</h2>
             <div class="row">
