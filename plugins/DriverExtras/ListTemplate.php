@@ -91,15 +91,20 @@ if (isset($_SESSION['UseDriverID']) && $_SESSION['UseDriverID']>0) {
 			var extrasname=$(this).parent().attr('data-name');
 			var driverextras=$(this).val();				
 			if ($(this).attr('name')=='DriverPrice') {
+				
 				var driverprice=$(this).val();
+				var provision=$(this).parent().parent().find('#Provision').val();
 				driverextras=1;
 			}
-			else var driverprice=0;				
-			if ($(this).attr('name')=='Provision') {
+			else if ($(this).attr('name')=='Provision') {
 				var provision=$(this).val();
+				var driverprice=$(this).parent().parent().find('#DriverPrice').val();
 				driverextras=1;
 			}	
-			else var provision=0;	
+			else {
+				var driverprice=0;	
+				var provision=0;	
+			}	
 			var base=window.rootbase;
 
 			if (window.location.host=='localhost') base=base+'/jamtransfer';
