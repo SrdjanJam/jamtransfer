@@ -34,7 +34,7 @@
 	{{#each Item}}
 		<div  onclick="oneItem({{CustID}});">
 		
-			<div class="row {{color}} pad1em listTile" 
+			<div class="row {{color}} pad1em listTile customer-edit" 
 			style="border-top:1px solid #ddd" 
 			id="t_{{CustID}}">
 
