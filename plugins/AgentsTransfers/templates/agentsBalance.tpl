@@ -54,7 +54,7 @@
         <br/>Total transfers: {counter}
         | Total Invoice: {$totInv|number_format:2}
 
-        <div align="left">
+        <div align="left" class="left-edit">
 
             {* {if $smarty.request.pm eq 4}{$proc=agentsWTransfers}{/if}
             {if $smarty.request.pm eq 6}{$proc=agentsWTransfers2}{/if} *}
@@ -70,7 +70,7 @@
                 <div class="right">
                     <a class="btn btn-danger l" style="color:white !important" id="CreateInvoice"
                     href="{$root_home}agentsTransfers/invoice/{$smarty.request.agentid}/{$smarty.request.StartDate}/{$smarty.request.EndDate}/{$smarty.request.NoShow}/{$smarty.request.DrErr}/{$smarty.request.CompletedTransfers}/{$smarty.request.Sistem}" target="_blank"><i class="fa fa-cogs"></i> Create Invoice</a> &nbsp;&nbsp;
-                    <br/><br/>
+                    <br/>
                 </div> {* / .right *}
 
         </div> {* / align="left" *}

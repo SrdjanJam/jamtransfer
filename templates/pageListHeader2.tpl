@@ -177,14 +177,14 @@ value=" WHERE {$ItemID} > 0">
 
 	function resize(){
 
-		if ($(window).width() > 1203) {
+		if ($(window).width() > 1553) {
 			$('.filter').show();
 			$('#show').hide();
 			$('#show-2').show();
 			$('#wrapp-buttons').css("text-align",""); // Remove text align from #wrapp-buttons
 		}
 
-		if ($(window).width() < 1202) {
+		if ($(window).width() < 1552) {
 			$('.filter').hide();
 			$('#show').show();
 			$('#show-2').hide();

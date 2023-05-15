@@ -90,7 +90,7 @@
 					<br>
 					<br>
 
-					<strong>Delivery date:</strong> 
+					<strong class="strong-edit">Delivery date:</strong> 
 
 					{if !$saved}
 						<input type="text" value="{$Date}" name="InvoiceDate" id="InvoiceDate" class="jqdatepicker no-print"

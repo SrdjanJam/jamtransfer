@@ -107,7 +107,7 @@
 
 						<br><br>
 
-						<strong>Rok za plaćanje:</strong> 
+						<strong class="strong-edit">Rok za plaćanje:</strong> 
 						<input type="text" name="DueDate" id="DueDate" value="{$dueDate}"><br>
 						<input type="hidden" name="DueDate" id="DueDate" value="{$dueDate}">
 
