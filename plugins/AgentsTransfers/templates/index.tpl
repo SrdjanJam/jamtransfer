@@ -62,7 +62,7 @@
                     </div>
                 </div>
 
-
+                {* Checkbox: *}
                 <div class="row-checkbox-edit">
 
                     <div class="row"><div class="col-md-12"><hr/></div></div>
@@ -72,7 +72,7 @@
                             <label><b>Sistems</b></label>
                         </div>
                         <div class="col-md-2">
-                            Sistem <input type="checkbox" name="Sistem" value="1">
+                            <div>Sistem</div> <input type="checkbox" name="Sistem" value="1">
                         </div>
                     </div>
 
@@ -83,20 +83,20 @@
                             <label><b>Include</b></label>
                         </div>
                         <div class="col-md-2">
-                            No-show <input type="checkbox" name="NoShow" value="1">
+                            <div>No-show</div><input type="checkbox" name="NoShow" value="1">
                         </div>
                         <div class="col-md-2">
-                            Driver error <input type="checkbox" name="DrErr" value="1">
+                            <div>Driver error</div><input type="checkbox" name="DrErr" value="1">
                         </div>
                         <div class="col-md-4">
-                            Completed transfers only <input type="checkbox" name="CompletedTransfers" value="1">
+                            <div>Completed transfers only</div><input type="checkbox" name="CompletedTransfers" value="1">
                         </div>
                     </div>
 
                     <div class="row">
                         <!-- select all boxes -->
-                        <div class="col-md-2 col-md-offset-2">
-                            <span style="color:rgb(21 85 229);">Check All</span><input type="checkbox" name="select-all" id="select-all" />
+                        <div class="col-md-1 col-md-offset-1">
+                            <div style="color:rgb(21 85 229);">Check All</div><input type="checkbox" name="select-all" id="select-all" />
                         </div>	
                     </div>
 
@@ -132,5 +132,18 @@
 				});
 			}
 		});
+
+        // Resize:
+		function resize(){
+			if($(window).width() < 1400){
+				$(".col-md-1").removeClass("col-md-offset-1");
+				$(".col-md-4").removeClass("col-md-offset-2");
+			}
+    	}
+
+		resize();
+		$(window).resize(resize);
+
+
 	});
 </script>
