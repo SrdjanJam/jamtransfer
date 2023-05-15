@@ -473,7 +473,7 @@ textarea{ width:90% !important; }
 
 
 
-@media only screen and (max-width: 1400px) {
+@media only screen and (max-width: 1550px) {
 
     /* .row-edit is in #show_items labels: */
     .row-edit div { border-right: none; }
@@ -493,6 +493,12 @@ textarea{ width:90% !important; }
     }
 
     [class*="col-md"]{
+        width: 100% !important;
+        padding: 5px 0;
+        text-align: center;
+    }
+    
+    .customer-edit [class*="col-sm"]{
         width: 100% !important;
         padding: 5px 0;
         text-align: center;
@@ -530,6 +536,9 @@ textarea{ width:90% !important; }
     .col-md-8 > *{ 
             float:none !important;
         }
+    .col-md-6 > *{ 
+        float:none !important;
+    }
 
     .col-md-8 input[type="text"]{
         text-align: center;
@@ -581,6 +590,10 @@ textarea{ width:90% !important; }
 
     .container-edit{
         width: 100%;
+    }
+
+    #DriverID{
+        width:100% !important;
     }
 
 
@@ -641,10 +654,6 @@ textarea{ width:90% !important; }
 	
     }
 
-    /* .xdsoft_calendar{
-        display: inline !important;
-    } */
-
     form table tbody th {
         display: block;
         text-align: center;
@@ -660,6 +669,10 @@ textarea{ width:90% !important; }
         margin-top: 5px;
     }
 
+    .pull-right .btn.btn-danger{
+        margin-top: 0;
+    }
+
     .left-edit{
         text-align: center;
     }
@@ -670,6 +683,14 @@ textarea{ width:90% !important; }
 
     .total-balance-add{
         text-align: center;
+    }
+
+    .right{ 
+        float:none !important; text-align:center; 
+    }
+
+    .strong-edit{
+        display: block;
     }
 
 
