@@ -10,10 +10,10 @@
 <script type="text/x-handlebars-template" id="ItemListTemplate">
 
 	<div class="row row-edit">
-		<div class="col-sm-1">
+		<div class="col-md-1">
 			<?=TERMINAL_ID;?>
 		</div>							
-		<div class="col-sm-5">
+		<div class="col-md-5">
 			<?=TERMINAL_NAME;?>
 		</div>	
 		<div class="col-md-6">
@@ -29,11 +29,11 @@
 			style="border-top:1px solid #ddd" 
 			id="t_{{PlaceID}}">
 		
-				<div class="col-sm-1">
+				<div class="col-md-1">
 					{{PlaceID}}
 				</div>
 
-				<div class="col-sm-5">
+				<div class="col-md-5">
 					<strong>{{PlaceNameEN}}</strong>,
 					{{CountryNameEN}}
 				</div>
