@@ -77,7 +77,8 @@
 		@media screen and (max-width:1200px) {
 
 			.drop-wrapper, .drop-wrapper .dropzoneN, .drag-wrapper {
-				width:100%;
+				/* width:100%; */
+				width: -webkit-fill-available;
 			}
 
 
