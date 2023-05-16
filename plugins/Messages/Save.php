@@ -16,8 +16,14 @@ foreach ($db->fieldNames() as $name) {
 		eval("\$db->set".$name."(\$content);");	
 	}
 }
-
-
+$au->getRow($db->getUserID());
+$mailto=$au->getAuthUserMail();
+$subject="Answer om message ".$db->getID();
+$mailMessage= $db->getBody()."<br><strong>".$db->getAnswer()."</strong>";
+if ($_REQUEST["SendMail"]=="on") {
+	mail_html($mailto, 'cms@jamtransfer.com', 'JamTransfer.com', 'cms@jamtransfer.com',
+	$subject , $mailMessage);
+}
 $upd = '';
 
 if ($keyName != '' and $keyValue != '') {

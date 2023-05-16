@@ -42,7 +42,30 @@
 						</div>					
 					</div>
 				</div>				
+								
+				<!-- Answer: -->
+				<div class="row">
+					<div class="col-md-3">
+						<label for="Answer">Answer</label>
+					</div>
+					<div class="col-md-9">
+						<textarea class="textarea" name="Answer" id="Answer" cols="40" rows="4"
+							style="width:100%">{{Answer}}</textarea>
+						</div>					
+					</div>
+				</div>				
+	
+				<!-- SendMail: -->
+				<div class="row">
+					<div class="col-md-3">
+						<label for="SendMail">Send Mail</label>
+					</div>
+					<div class="col-md-9">
+						<input type="checkbox" name="SendMail" style="height: 0.8em">	
+					</div>
+				</div>	
 				
+
 				<!-- Solver: -->
 				<div class="row">
 					<div class="col-md-3">

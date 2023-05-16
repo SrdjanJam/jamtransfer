@@ -222,12 +222,18 @@
 									style="width:100%">{{details.PickupAddress}}</textarea>
 							</div>
 						</div>
-						<div class="row dtransfer">
+						<div class="row dtransfer routeto">
 							<div class="col-md-3 "><label><?= ROUTE ?> <?= TO ?></label></div>
 							<div class="col-md-6">
 								<select name="Route" id="Route">
-									<option value="-1">No route</option>
+									<option value="-1">Choose route</option>
 								</select>
+							</div>
+						</div>							
+						<div class="row dtransfer routed">
+							<div class="col-md-3 "><label><?= ROUTE ?></label></div>
+							<div class="col-md-6">
+								<strong>{{#if 'details.RouteID>0'}}YES{{else}}<>NO{{/if}}</strong>
 							</div>
 						</div>	
 						<div class="row dtransfer">
@@ -318,7 +324,7 @@
 									</div>
 								</div>
 								<div class="row">
-									<div class="col-md-3 "><label>Partner's <?= EXTRAS ?></label></div>
+									<div class="col-md-3 "><label>Driver's <?= EXTRAS ?></label></div>
 									<div class="col-md-9">
 										<input type="text" id="DriverExtraCharge" name="DriverExtraCharge" class="w25" value="{{details.DriverExtraCharge}}">
 									</div>
@@ -592,7 +598,10 @@
 		DriverConfStatusRelated();
 		$('#DriverConfStatus').change(function(){
 			DriverConfStatusRelated();
-		})	
+		})
+		// skrivanje izbornika ruta	
+		$('.routeto').hide();
+		
 		function DriverConfStatusRelated() {
 			if ($('#DriverConfStatus').val() > 1) {
 				$('#DriverID').prop( "disabled", true );
@@ -671,12 +680,16 @@
 										//callback();
 									},
 									success: function(res) {
+										$('.routeto').show();
+
 										$.each(res, function(index, element) {
 											console.log(element.RouteName)
 											$("#Route").append(
 												'<option data-toid="'+element.ToID+'" value="'+element.ID+'">'+element.ToPlace+'</option>'
 											)	
-										});				
+										});	
+										$('.routed').hide();
+
 										console.log (res);
 									}
 								})		

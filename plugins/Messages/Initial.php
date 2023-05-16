@@ -6,6 +6,7 @@ require_once ROOT . '/db/v4_AuthUsers.class.php';
 
 $db = new v4_Messages();
 $md= new v4_Modules();
+$au= new v4_AuthUsers();
 $dbT = new DataBaseMysql();
 
 $keyName = 'ID';

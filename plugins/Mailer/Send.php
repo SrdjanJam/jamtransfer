@@ -16,6 +16,7 @@ foreach ($db->fieldNames() as $name) {
 		eval("\$db->set".$name."(\$content);");	
 	}
 }
+$db->setSentTime(date("Y-m-d H:i:s"));
 $from_mail="cms@jamtransfer.com";
 $from_name=$db->getFromName();
 $mailto='jam.bgprogrameri@gmail.com';

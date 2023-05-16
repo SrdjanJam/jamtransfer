@@ -18,6 +18,7 @@ Class v4_Messages {
 	public $FromName; //varchar(255)
 	public $PageLink; //varchar(255)
 	public $Body; //text
+	public $Answer; //text
 	public $UserID; //int(10) unsigned
 	public $DateTime; //datetime
 	public $UserLevel; //tinyint(4) unsigned
@@ -37,11 +38,12 @@ Class v4_Messages {
      * New object to the class. Don´t forget to save this new object "as new" by using the function $class->saveAsNew();
      *
      */
-	public function New_v4_Messages($PageID,$FromName,$PageLink,$Body,$UserID,$DateTime,$UserLevel,$SolverID,$SolvedDate,$Status){
+	public function New_v4_Messages($PageID,$FromName,$PageLink,$Body,$Answer,$UserID,$DateTime,$UserLevel,$SolverID,$SolvedDate,$Status){
 		$this->PageID = $PageID;
 		$this->FromName = $FromName;
 		$this->PageLink = $PageLink;
 		$this->Body = $Body;
+		$this->Answer = $Answer;
 		$this->UserID = $UserID;
 		$this->DateTime = $DateTime;
 		$this->UserLevel = $UserLevel;
@@ -65,6 +67,7 @@ Class v4_Messages {
 			$this->FromName = $row["FromName"];
 			$this->PageLink = $row["PageLink"];
 			$this->Body = $row["Body"];
+			$this->Answer = $row["Answer"];
 			$this->UserID = $row["UserID"];
 			$this->DateTime = $row["DateTime"];
 			$this->UserLevel = $row["UserLevel"];
@@ -93,6 +96,7 @@ PageID = '".$this->myreal_escape_string($this->PageID)."',
 FromName = '".$this->myreal_escape_string($this->FromName)."',
 PageLink = '".$this->myreal_escape_string($this->PageLink)."',
 Body = '".$this->myreal_escape_string($this->Body)."',
+Answer = '".$this->myreal_escape_string($this->Answer)."',
 UserID = '".$this->myreal_escape_string($this->UserID)."',
 DateTime = '".$this->myreal_escape_string($this->DateTime)."',
 UserLevel = '".$this->myreal_escape_string($this->UserLevel)."',
@@ -106,11 +110,12 @@ Status = '".$this->myreal_escape_string($this->Status)."' WHERE ID = '".$this->I
      * Save the active var class as a new row on table
      */
 	public function saveAsNew(){
-		$this->connection->RunQuery("INSERT INTO v4_Messages (PageID, FromName, PageLink, Body, UserID, DateTime, UserLevel, SolverID, SolvedDate,Status) values (
+		$this->connection->RunQuery("INSERT INTO v4_Messages (PageID, FromName, PageLink, Body, Answer, UserID, DateTime, UserLevel, SolverID, SolvedDate,Status) values (
 			'".$this->myreal_escape_string($this->PageID)."', 
 			'".$this->myreal_escape_string($this->FromName)."', 
 			'".$this->myreal_escape_string($this->PageLink)."', 
 			'".$this->myreal_escape_string($this->Body)."', 
+			'".$this->myreal_escape_string($this->Answer)."', 
 			'".$this->myreal_escape_string($this->UserID)."', 
 			'".$this->myreal_escape_string($this->DateTime)."', 
 			'".$this->myreal_escape_string($this->UserLevel)."', 
@@ -169,6 +174,13 @@ Status = '".$this->myreal_escape_string($this->Status)."' WHERE ID = '".$this->I
 	 */
 	public function getBody(){
 		return $this->Body;
+	}	
+	
+	/**
+	 * @return Answer - text
+	 */
+	public function getAnswer(){
+		return $this->Answer;
 	}
 
 	/**
@@ -246,6 +258,13 @@ Status = '".$this->myreal_escape_string($this->Status)."' WHERE ID = '".$this->I
 	 */
 	public function setBody($Body){
 		$this->Body = $Body;
+	}	
+	
+	/**
+	 * @param Type: text
+	 */
+	public function setAnswer($Answer){
+		$this->Answer = $Answer;
 	}
 
 	/**
@@ -303,6 +322,7 @@ Status = '".$this->myreal_escape_string($this->Status)."' WHERE ID = '".$this->I
 			'FromName' => $this->getFromName(),
 			'PageLink' => $this->getPageLink(),
 			'Body' => $this->getBody(),
+			'Answer' => $this->getAnswer(),
 			'UserID' => $this->getUserID(),
 			'DateTime' => $this->getDateTime(),
 			'UserLevel' => $this->getUserLevel(),
@@ -319,7 +339,7 @@ Status = '".$this->myreal_escape_string($this->Status)."' WHERE ID = '".$this->I
      */
 	public function fieldNames(){
 		$fieldNames = array(
-			'ID',			'PageID',			'FromName',			'PageLink',			'Body',			'UserID',			'DateTime',			'UserLevel',			'SolverID',	'SolvedDate',	'Status'		);
+			'ID',			'PageID',			'FromName',			'PageLink',			'Body',			'Answer',		'UserID',			'DateTime',			'UserLevel',			'SolverID',	'SolvedDate',	'Status'		);
 		return $fieldNames;
 	}
     /**
