@@ -11,10 +11,10 @@
 
 <script type="text/x-handlebars-template" id="ItemListTemplate">
 		<div class="row row-edit">
-			<div class="col-sm-1">
+			<div class="col-md-1">
 				<?=VEHICLETYPEID;?>
 			</div>							
-			<div class="col-sm-2">
+			<div class="col-md-2">
 				<?=VEHICLE_TYPE;?>
 			</div>	
 			<div class="col-md-1">
@@ -28,7 +28,7 @@
 				<?=ROUTES;?>
 			</div>				
 			<div class="col-md-1">
-				Off duty dates
+				<?=DATE;?>
 			</div>				
 			<div class="col-md-1">
 				<?=VEHICLES;?>
@@ -43,11 +43,11 @@
 				style="border-top:1px solid #ddd" 
 				id="t_{{VehicleTypeID}}">
 						<!-- VehicleTypeID: -->
-						<div class="col-sm-1">
+						<div class="col-md-1">
 							{{VehicleTypeID}}
 						</div>
 						<!-- VehicleTypeName: -->
-						<div class="col-sm-2">
+						<div class="col-md-2">
 							<strong>{{VehicleTypeName}}</strong>
 						</div>
 						<!-- Connected:  -->
