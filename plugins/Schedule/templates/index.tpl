@@ -40,15 +40,17 @@ hr {
 /* new */
 .row-header{
 	/* background: rgb(205 216 243);  */ /* Old */
-	background-image: linear-gradient(#88b7ed, #d0dff1);
-	/* background-image: linear-gradient(#bcc3cb, #d0dff1); Expriment */
-	box-shadow: 5px 5px 8px #616060;
+	background-image: linear-gradient(#a8beef, #96a0a99e);
+	/* background-image: linear-gradient(#88b7ed, #d0dff1); old */
+	box-shadow: 5px 5px 8px #6c9bb6;
+	/* box-shadow: 5px 5px 8px #616060 old; */
 	padding: 10px;
 	position: sticky;
 	top: 0;
     z-index: 5;
     /* margin-left: 0px; 
     margin-right: 0px; */
+	border-radius: 5px;
 }
 .row-header input{
 	margin-bottom: 5px;
@@ -64,16 +66,20 @@ hr {
 
 .row .white{
 	/* border:1px solid rgb(223 223 223); Old */
-	border: 3px solid rgb(136 177 217);
+	/* border: 2px solid rgb(136 177 217); off */
 	border-radius:5px;
+	box-shadow: 0px 0px 8px 0px #6d7fba;
 }
 
 .row .orange{
-	background-image: linear-gradient(#88b7ed, #d0dff1);
-	color:#474542;
+	background-image: linear-gradient(#c8d7e9, #d0dff1);
+	/* background-image: linear-gradient(#88b7ed, #d0dff1); old */
+	color: #06a1fc;
+	/* color:#474542; old */
 	padding:5px;
 	font-size:18px;
 	font-family:Georgia, 'Times New Roman', Times, serif;
+	text-shadow: #949492 0 0 1px;
 }
 
 .col-md-edit{
@@ -83,10 +89,12 @@ hr {
 .sub-card{
 	/* background:#e8eef1; old */
 	/* background-image: linear-gradient(#d6e6e7, #e6e7e0); old */
-	background:#d6e6e7;
-	margin:10px;
-	padding:5px;
+	background: #7370de45;
+	/* background:#d6e6e7; old */
+	margin:5px;
+	padding:2px;
 	border-radius:5px;
+	box-shadow: 3px 1px 3px 0px #5d5959;
 }
 .sub-card .row{
 	font-family: Tahoma, Verdana, Geneva, sans-serif;
@@ -146,39 +154,89 @@ hr {
 	border-radius: 5px;
 }
 
+.input-edit{
+	box-shadow: 1px 1px 5px 2px #4f7ab4;
+}
+
+.btn-primary-edit{
+	box-shadow: 1px 1px 4px 1px #4d5077;
+}
+
+.datepicker{
+	background: #e9f2f7;
+	color: #0082ff;
+}
+
+/* Filters: */
+#schedule-filters{
+	float:left;
+	background: #479de929;
+	border-radius: 5px;
+	padding-right: 5px;
+	box-shadow: 3px 3px 4px 0px #3b75b9;
+}
+
+.show-edit{
+	cursor:pointer; font-weight:bold; color: #0584f1; text-shadow: #0584f1 0px 0px 1px;
+}
+
+.fa-bars-edit{
+	font-size: 20px;margin: 5px;color: #0584f1;
+}
+
+.show-edit:hover,.fa-bars-edit:hover{
+	cursor:pointer; font-weight:bold; color: #0b70c9;
+}
+
+.filter{
+	overflow: hidden;
+}
+/* ------------------------------------------------------ */
+
 </style>
 
 	<!-- HEADER: -->
 	<div class="row row-header">
 
-		<form  action="" method="post" onsubmit="return validate()">
-			<div class="col-sm-2">
-				<input id="DateFrom" class="datepicker form-control" name="DateFrom" value="{$DateFrom}" style="border:2px solid black;">
-			</div>
-			<div class="col-sm-2">
-				<input id="DateTo" class="datepicker form-control" name="DateTo" value="{$DateTo}" style="border:2px solid black;">
-			</div>	
-			<div class="col-sm-2">
-				<select name="NoColumns" class="form-control">
-					<option value="1" {if $NoColumns eq 1}selected{/if}>1 {$COLUMN}</option>
-					<option value="2" {if $NoColumns eq 2}selected{/if}>2 {$COLUMN}</option>
-					<option value="3" {if $NoColumns eq 3}selected{/if}>3 {$COLUMN}</option>
-					<option value="4" {if $NoColumns eq 4}selected{/if}>4 {$COLUMN}</option>
-					<option value="6" {if $NoColumns eq 6}selected{/if}>6 {$COLUMN}</option>
-					<option value="12" {if $NoColumns eq 12}selected{/if}>12 {$COLUMN}</option>
-				</select>		
-			</div>			
-			<div class="col-sm-2">
-				<select name="DriverStatus" class="form-control">
-					<option value="0" {if $DriverStatus eq 0}selected{/if}>{$DISPLAY_ALL}</option>
-					<option value="1" {if $DriverStatus eq 1}selected{/if}>{$NOT_READY}</option>
-					<option value="2" {if $DriverStatus eq 2}selected{/if}>{$READY_FINISHED}</option>
-				</select>		
-			</div>
-			<div class="col-sm-2">
-				<button type="submit" class="btn btn-primary">Go</button>
-			</div>
-		</form> <!-- /form -->
+	<!-- Show and Hide Filters buttons: -->
+	<div id="schedule-filters">
+		<div id="show" class="show-edit"><i class="fa-solid fa-bars fa-bars-edit"></i>Show Filters</div>
+		<div id="show-2" class="show-edit"><i class="fa-solid fa-bars fa-bars-edit"></i>Hide Filters</div>
+	</div>
+
+
+		<div class="filter">
+
+			<form  action="" method="post" onsubmit="return validate()">
+				<div class="col-sm-2">
+					<input id="DateFrom" class="datepicker form-control input-edit" name="DateFrom" value="{$DateFrom}">
+				</div>
+				<div class="col-sm-2">
+					<input id="DateTo" class="datepicker form-control input-edit" name="DateTo" value="{$DateTo}">
+				</div>	
+				<div class="col-sm-2">
+					<select name="NoColumns" class="form-control input-edit">
+						<option value="1" {if $NoColumns eq 1}selected{/if}>1 {$COLUMN}</option>
+						<option value="2" {if $NoColumns eq 2}selected{/if}>2 {$COLUMN}</option>
+						<option value="3" {if $NoColumns eq 3}selected{/if}>3 {$COLUMN}</option>
+						<option value="4" {if $NoColumns eq 4}selected{/if}>4 {$COLUMN}</option>
+						<option value="6" {if $NoColumns eq 6}selected{/if}>6 {$COLUMN}</option>
+						<option value="12" {if $NoColumns eq 12}selected{/if}>12 {$COLUMN}</option>
+					</select>		
+				</div>			
+				<div class="col-sm-2">
+					<select name="DriverStatus" class="form-control input-edit">
+						<option value="0" {if $DriverStatus eq 0}selected{/if}>{$DISPLAY_ALL}</option>
+						<option value="1" {if $DriverStatus eq 1}selected{/if}>{$NOT_READY}</option>
+						<option value="2" {if $DriverStatus eq 2}selected{/if}>{$READY_FINISHED}</option>
+					</select>		
+				</div>
+				<div class="col-sm-2">
+					<button type="submit" class="btn btn-primary btn-primary-edit">Go</button>
+				</div>
+			</form> <!-- /form -->
+
+		</div> <!-- /.filter -->
 	</div> <!-- /.row -->
 
 	<!-- MAIN CONTENT: -->
@@ -229,9 +287,49 @@ hr {
 
 		
 		{/section}
-		{if $counter lt $NoColumnsADD}
+		{if $counter lt $NoColumnsADD and $counter ne 1} 
 			</div>
 		{/if}
 		
 
 	</div> <!-- /.row row-shedule -->
+
+
+{* Scripts: *}
+<script>
+
+function resize(){
+
+	if ($(window).width() > 1553) {
+		$('.filter').show();
+		$('#show').hide();
+		$('#show-2').hide();
+	}
+
+	if ($(window).width() < 1552) {
+		$('.filter').hide();
+		$('#show').show();
+		$('#show-2').hide();
+		
+	}
+
+}
+
+
+$('#show').click(function() {
+	$('.filter').toggle(600);
+	$('#show').hide();
+	$('#show-2').show();
+});
+
+$('#show-2').click(function() {
+	$('.filter').toggle(600);
+	$('#show').show();
+	$('#show-2').hide();
+});
+
+resize();
+$(window).resize(resize);
+
+
+</script>
