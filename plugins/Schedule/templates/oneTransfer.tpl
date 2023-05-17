@@ -1,14 +1,29 @@
+<style>
+
+.input-edit {
+    width: 80%;
+}
+
+select{
+	width:100%;
+	margin-bottom: 5px;
+}
+
+</style>
+
+
 {assign var="ID" value="{$sdArray[pom].Transfers[pom2].DetailsID}"}
+
 <!-- Sub card: -->
 {if $sdArray[pom].Transfers[pom2].ForTransfer}
-<div class="sub-card">
-	<div class="row" style="background:#b6d7a8; padding:10px;"> 
-		<small><b>Connection transfer</b> {$sdArray[pom].Transfers[pom2].Device}</small>
-		<div>{$sdArray[pom].Transfers[pom2].Location} - {$sdArray[pom].Transfers[pom2].PickupName}
-		<br>{$sdArray[pom].Transfers[pom2].Distance2}km / {$sdArray[pom].Transfers[pom2].Duration2}min / {$sdArray[pom].Transfers[pom2].Shedule}</div>
-		<small><iframe src="https://maps.google.com/maps?q={$sdArray[pom].Lat},{$sdArray[pom].Lng} &z=8&output=embed"  frameborder="0" style="border:0"></iframe></small>
-	</div>
-</div>	
+	<div class="sub-card">
+		<div class="row" style="background:#b6d7a8; padding:10px;"> 
+			<small><b>Connection transfer</b> {$sdArray[pom].Transfers[pom2].Device}</small>
+			<div>{$sdArray[pom].Transfers[pom2].Location} - {$sdArray[pom].Transfers[pom2].PickupName}
+			<br>{$sdArray[pom].Transfers[pom2].Distance2}km / {$sdArray[pom].Transfers[pom2].Duration2}min / {$sdArray[pom].Transfers[pom2].Shedule}</div>
+			<small><iframe src="https://maps.google.com/maps?q={$sdArray[pom].Lat},{$sdArray[pom].Lng} &z=8&output=embed"  frameborder="0" style="border:0"></iframe></small>
+		</div>
+	</div>	
 {/if}
 <div class="sub-card">
 	<div class="bgColor" style="background:{$sdArray[pom].Transfers[pom2].bgColor};padding:10px;">
@@ -18,6 +33,7 @@
 			<div>{$sdArray[pom].Transfers[pom2].Distance2}km / {$sdArray[pom].Transfers[pom2].Duration2}min / {$sdArray[pom].Transfers[pom2].Shedule}</div>
 			<small><iframe src="https://maps.google.com/maps?q={$sdArray[pom].Lat},{$sdArray[pom].Lng} &z=8&output=embed"  frameborder="0" style="border:0"></iframe></small>
 		{/if}
+
 		<!-- row first -->
 		<div class="row"> <!-- TRANSFER -->
 			<span>
@@ -49,37 +65,6 @@
 			<h4>{$sdArray[pom].Transfers[pom2].PickupName} - {$sdArray[pom].Transfers[pom2].DropName}</h4>
 		</div>
 
-		<style>
-			
-			.form-group.form-group-edit{
-				display: inline;
-			}
-
-
-			@media screen and (max-width:1000px){
-				.form-group.form-group-edit{
-					display: block;
-				}
-
-				.row-third-edit .col-md-3{
-					margin-top: 10px;
-				}
-				.row-third-edit .form-control{
-					width:100%;
-				}
-
-				.clock-timepicker{
-					width:100% !important;
-				}
-				
-				select{
-					width:100%;
-					margin-bottom: 5px;
-				}
-				
-			}
-		</style>
-
 		<!-- row third -->
 		<div class="row row-third-edit">
 
@@ -92,7 +77,7 @@
 			<div class="col-md-3">
 				<input type="text" class="w100 form-control {$sdArray[pom].Transfers[pom2].color2}"  id="PickupTimeX_{$sdArray[pom].Transfers[pom2].DetailsID}"
 					name="PickupTimeX_{$sdArray[pom].Transfers[pom2].DetailsID}"
-					value="{$sdArray[pom].Transfers[pom2].PickupTime}" />
+					value="{$sdArray[pom].Transfers[pom2].PickupTime}" style="width: -webkit-fill-available;" />
 			</div>
 			<!-- info icons -->
 			<div class="col-md-3 small align-middle">
@@ -106,35 +91,44 @@
 			</div>
 
 			<div class="col-md-3">
-			<i class="fa fa-clock-o"></i>		
-				<div class="form-group form-group-edit">
+				<i class="fa fa-clock-o"></i>		
 				
-					<input type="text" name="TransferDuration_{$sdArray[pom].Transfers[pom2].DetailsID}" 
-					id="TransferDuration_{$sdArray[pom].Transfers[pom2].DetailsID}" class="form-control" size="2" value="{$sdArray[pom].Transfers[pom2].TransferDuration}" 
-					title="Transfer duration"  onchange="saveTransfer({$sdArray[pom].Transfers[pom2].DetailsID},0)">
-				</div>	
+				<input type="text" name="TransferDuration_{$sdArray[pom].Transfers[pom2].DetailsID}" 
+				id="TransferDuration_{$sdArray[pom].Transfers[pom2].DetailsID}" class="form-control input-edit transfer-duration-edit" size="2" value="{$sdArray[pom].Transfers[pom2].TransferDuration}" 
+				title="Transfer duration"  onchange="saveTransfer({$sdArray[pom].Transfers[pom2].DetailsID},0)">
+
 				<div>
 					{if $sdArray[pom].Transfers[pom2].Extras|count gt 0}<i class="fa fa-cubes red-text"></i>{/if}
 				</div>
 			</div>
 
 		</div> 
-		
+
 		<!-- row forth -->
 		<div class="row">
+			
 			{if $sdArray[pom].Transfers[pom2].FsLink ne ''}
 				<big><a target="_blank" href="{$sdArray[pom].Transfers[pom2].FsLink}"><i class="fa fa-plane" aria-hidden="true"></i></a></big>
 			{else}
 				<i class="fa fa-plane" aria-hidden="true"></i>
-			{/if}	
+			{/if}
+			
 			<input type="text" name="FlightNo_{$sdArray[pom].Transfers[pom2].DetailsID}" id="FlightNo_{$sdArray[pom].Transfers[pom2].DetailsID}"
-			value="{$sdArray[pom].Transfers[pom2].FlightNo}" onchange="saveTransfer({$sdArray[pom].Transfers[pom2].DetailsID},0)">
+			value="{$sdArray[pom].Transfers[pom2].FlightNo}" onchange="saveTransfer({$sdArray[pom].Transfers[pom2].DetailsID},0)" class="input-edit-2 flight-no-edit">
+				
+
+			
 			<input type="text" name="FlightTime_{$sdArray[pom].Transfers[pom2].DetailsID}" class="timepicker" id="FlightTime_{$sdArray[pom].Transfers[pom2].DetailsID}"
-			value="{$sdArray[pom].Transfers[pom2].FlightTime}" onchange="saveTransfer({$sdArray[pom].Transfers[pom2].DetailsID},0)">
+			value="{$sdArray[pom].Transfers[pom2].FlightTime}" onchange="saveTransfer({$sdArray[pom].Transfers[pom2].DetailsID},0)" class="input-edit-2">
+			
+
+			
 			{if $sdArray[pom].Transfers[pom2].flightTimeConflict}
 				<span class='blink'>{$FLIGHT_TIME_CONFLICT}</span>
 				{$sdArray[pom].Transfers[pom2].FlightTime}
-			{/if}			
+			{/if}
+			
+
 		</div>
 				
 		<!-- row fifth -->
