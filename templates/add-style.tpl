@@ -463,7 +463,10 @@ textarea{ width:90% !important; }
 .container.white{ width:90% !important; }
 
 
-/* Media screen: */
+/* MEDIA SCREEN: */
+
+/* ================================================================================= */
+/* 1 */
 @media screen and (min-width: 1201px) {
     #show, #show-2{
         display: inline-block;
@@ -471,8 +474,8 @@ textarea{ width:90% !important; }
 		
 }
 
-
-
+/* ================================================================================= */
+/* 2 */
 @media only screen and (max-width: 1550px) {
 
     /* .row-edit is in #show_items labels: */
@@ -554,7 +557,7 @@ textarea{ width:90% !important; }
         width:90% !important;
     }
 
-    .form-control{ width:90%;}
+    /* .form-control{ width:90%;} */
 
     .row{
         margin-left:0;
@@ -594,11 +597,54 @@ textarea{ width:90% !important; }
         width:100% !important;
     }
 
+    .clock-timepicker{
+		width:100% !important;
+		margin: 0;
+		padding: 0;
+	}
+	.clock-timepicker input[type=text]{
+		width:100% !important;
+		margin: 0;
+		padding: 0;
+	}
+
+    select{
+		width:100%;
+		margin-bottom: 5px;
+	}
+
+    .input-edit {
+        width: 100% !important;
+    }
+
+	.input-edit-2{
+		display:block;
+	}
+
+	.flight-no-edit{
+		margin:0 auto 5px;
+	}
+
+    .flight-no-edit {
+		margin:0 auto 5px;
+        width:100%;
+	}
+
+    .transfer-duration-edit{
+        margin-bottom: 5px;
+    }
+
+    #schedule-filters{
+		float:none !important;
+		margin:0 auto;
+        width: fit-content;
+	}
+
 
 }
 
-
-
+/* ================================================================================= */
+/* 3 */
 @media (min-width: 768px) and (max-width: 1300px) {
     .ui-dialog{ /*Global dialog style */
         height: 80% !important;
@@ -618,6 +664,8 @@ textarea{ width:90% !important; }
 
 }
 
+/* ================================================================================= */
+/* 4 */
 @media (max-width: 900px){
     .table{
         /* display: block !important; */
@@ -692,9 +740,18 @@ textarea{ width:90% !important; }
     }
 
 
+    .row-third-edit .col-md-3{
+		margin-top: 10px;
+	}
+	.row-third-edit .form-control{
+		width:100%;
+	}
+
+
 }
 
-
+/* ================================================================================= */
+/* 5 */
 @media (max-width: 767px)  {
     
     .ui-dialog{ /*Global dialog style */
