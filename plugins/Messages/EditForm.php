@@ -20,86 +20,86 @@
 	</div>
 	
 	<div class="box-body ">
-        <div class="row">
-			<div class="col-md-12">
-				<!-- MSG: -->
-				<div class="row">
-					<div class="col-md-3">
-						<label for="PageLink">Page Link</label>
-					</div>
-					<div class="col-md-9">
-						<a target='_blank' href='<?=ROOT_HOME ?>{{PageLink}}'>{{PageLink}}</a>
-					</div>
-				</div>
-				<!-- BODY: -->
-				<div class="row">
-					<div class="col-md-3">
-						<label for="Message"><?=MESSAGE;?></label>
-					</div>
-					<div class="col-md-9">
-						<textarea class="textarea" name="Body" id="Body" cols="40" rows="4"
-							style="width:100%">{{Body}}</textarea>
-						</div>					
-					</div>
-				</div>				
-								
-				<!-- Answer: -->
-				<div class="row">
-					<div class="col-md-3">
-						<label for="Answer">Answer</label>
-					</div>
-					<div class="col-md-9">
-						<textarea class="textarea" name="Answer" id="Answer" cols="40" rows="4"
-							style="width:100%">{{Answer}}</textarea>
-						</div>					
-					</div>
-				</div>				
-	
-				<!-- SendMail: -->
-				<div class="row">
-					<div class="col-md-3">
-						<label for="SendMail">Send Mail</label>
-					</div>
-					<div class="col-md-9">
-						<input type="checkbox" name="SendMail" style="height: 0.8em">	
-					</div>
-				</div>	
-				
-
-				<!-- Solver: -->
-				<div class="row">
-					<div class="col-md-3">
-						<label for="Message">Solver</label>
-					</div>
-					<div class="col-md-9">
-						{{userSelect SolverID "91" "SolverID"}}
-					</div>
-				</div>
-
-				<!-- STATUS: -->
-				<div class="row">
-					<div class="col-md-3">
-						<label for="Status">Solved</label>
-					</div>
-					<div class="col-md-9 solved">
-						{{yesNoSliderEdit Status 'Status' }}						
-					</div>
-				</div>
-				
-				<!-- SOLVED TIME: -->
-				<div class="row">
-					<div class="col-md-3 "><label>Solved Date</label></div>
-					<div class="col-md-9">
-						<input type="text" name="SolvedDate" class="w75 datepicker" value="{{SolvedDate}}">
-					</div>
-				</div>	
-				
+			
+		<!-- MSG: -->
+		<div class="row">
+			<div class="col-md-3">
+				<label for="PageLink">Page Link</label>
 			</div>
-	    </div>
+			<div class="col-md-9">
+				<a target='_blank' href='<?=ROOT_HOME ?>{{PageLink}}'>{{PageLink}}</a>
+			</div>
+		</div>
+
+		<!-- BODY: -->
+		<div class="row">
+			<div class="col-md-3">
+			
+				<label for="Message"><?=MESSAGE;?></label>
+			</div>
+			<div class="col-md-9">
+				<textarea class="textarea" name="Body" id="Body" cols="40" rows="4"
+					style="width:100%">{{Body}}</textarea>
+			</div>
+		</div>
+		
+		<!-- Answer: -->
+		<div class="row">
+			<div class="col-md-3">
+				<label for="Answer">Answer</label>
+			</div>
+			<div class="col-md-9">
+				<textarea class="textarea" name="Answer" id="Answer" cols="40" rows="4"
+					style="width:100%">{{Answer}}</textarea>
+			</div>
+		</div>
+						
+		<!-- SendMail: -->
+		<div class="row">
+			<div class="col-md-3">
+				<label for="SendMail">Send Mail</label>
+			</div>
+			<div class="col-md-9">
+				<input type="checkbox" name="SendMail" style="height: 0.8em">	
+			</div>
+		</div>	
+		
+
+		<!-- Solver: -->
+		<div class="row">
+			<div class="col-md-3">
+				<label for="Message">Solver</label>
+			</div>
+			<div class="col-md-9">
+				{{userSelect SolverID "91" "SolverID"}}
+			</div>
+		</div>
+
+		<!-- STATUS: -->
+		<div class="row">
+			<div class="col-md-3">
+				<label for="Status">Solved</label>
+			</div>
+			<div class="col-md-9 solved">
+				{{yesNoSliderEdit Status 'Status' }}						
+			</div>
+		</div>
+		
+		<!-- SOLVED TIME: -->
+		<div class="row">
+			<div class="col-md-3 "><label>Solved Date</label></div>
+			<div class="col-md-9">
+				<input type="text" name="SolvedDate" class="w75 datepicker" value="{{SolvedDate}}">
+			</div>
+		</div>	
+				
+	</div> <!-- /.box-body -->
 </form>
+
+
 	<script>
 		$('.solved input').change(function() {
 			$('#save_button').trigger('click');
 		})	</script>
-</script>
+	</script>
 
