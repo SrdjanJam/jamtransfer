@@ -110,6 +110,14 @@
     /* font-family:Georgia, 'Times New Roman', Times, serif; Old */
 }
 
+/* Filters: */
+#footer-filters{
+	background: #479de929;
+	border-radius: 5px;
+	padding-right: 5px;
+	box-shadow: 3px 3px 4px 0px #3b75b9;
+}
+
 /* ====================================================================================== */
 /* ListTemplate.php */
 #show_items .row-edit{
@@ -439,7 +447,7 @@ textarea{ width:90% !important; }
 {* END OF PLUGINS FOLDER: ===============================================================  *}
 {* ======================================================================================  *}
 
-/* ============================================================================== */
+/* -------------------------------------------------------------------------------------- */
 /* SCROLL BAR: */
 /* width */
 ::-webkit-scrollbar { width: 12px; }
@@ -453,7 +461,7 @@ textarea{ width:90% !important; }
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover { background: #646363;
 }
-/* ============================================================================== */
+/* -------------------------------------------------------------------------------------- */
 
 .form-control{ width:100%;}
 .form-group { margin-bottom: 0px !important; }
@@ -463,9 +471,10 @@ textarea{ width:90% !important; }
 .container.white{ width:90% !important; }
 
 
+
+/* *************************************************************************************** */
 /* MEDIA SCREEN: */
 
-/* ================================================================================= */
 /* 1 */
 @media screen and (min-width: 1201px) {
     #show, #show-2{
@@ -474,7 +483,7 @@ textarea{ width:90% !important; }
 		
 }
 
-/* ================================================================================= */
+/* ===================================== */
 /* 2 */
 @media only screen and (max-width: 1550px) {
 
@@ -526,11 +535,6 @@ textarea{ width:90% !important; }
     .pad1em{
         flex-direction: column;
     }
-
-    /* Check: */
-    /* .textarea{ 
-        width: 90% !important;
-    } */
     
     [class*="col-"] > *{ 
         float:none !important;
@@ -557,7 +561,6 @@ textarea{ width:90% !important; }
         width:90% !important;
     }
 
-    /* .form-control{ width:90%;} */
 
     .row{
         margin-left:0;
@@ -634,16 +637,64 @@ textarea{ width:90% !important; }
         margin-bottom: 5px;
     }
 
+    /* ---------------------------- */
+    /* Filters: */
     #schedule-filters{
 		float:none !important;
 		margin:0 auto;
         width: fit-content;
 	}
 
+    #pageListHeader-filters{
+        float:none !important;
+		margin:0 auto;
+        width: fit-content;
+    }
+
+    #footer-filters{
+		float:none !important;
+		margin:0 auto;
+        width: fit-content;
+	}
+
+    #wrapp-buttons{
+		float:none !important;
+		margin:0 auto;
+        width: fit-content;
+	}
+
+    .filterOlderAdd{
+        float:none !important;
+        margin-left:0 !important;
+    }
+
+    .show-edit{
+		cursor:pointer; font-weight:bold; color: #0584f1; text-shadow: #0584f1 0px 0px 1px;
+	}
+
+	.fa-bars-edit{
+		font-size: 20px;margin: 5px;color: #0584f1;
+	}
+
+	.show-edit:hover,.fa-bars-edit:hover{
+		cursor:pointer; font-weight:bold; color: #0b70c9;
+	}
+
+    .col-md-3{
+        position: static !important;
+    }
+
+    .header-edit{
+        overflow-y: auto;
+    }
+
+    /* ---------------------------- */
+
+    
 
 }
 
-/* ================================================================================= */
+/* ===================================== */
 /* 3 */
 @media (min-width: 768px) and (max-width: 1300px) {
     .ui-dialog{ /*Global dialog style */
@@ -664,7 +715,7 @@ textarea{ width:90% !important; }
 
 }
 
-/* ================================================================================= */
+/* ===================================== */
 /* 4 */
 @media (max-width: 900px){
     .table{
@@ -750,7 +801,7 @@ textarea{ width:90% !important; }
 
 }
 
-/* ================================================================================= */
+/* ==================================== */
 /* 5 */
 @media (max-width: 767px)  {
     
