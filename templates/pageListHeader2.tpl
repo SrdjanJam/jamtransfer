@@ -74,7 +74,7 @@ value=" WHERE {$ItemID} > 0">
 	
 	<div class="filter">
 
-		<div style="padding:5px;float:left;margin-left:20px;">
+		<div class="filterOlderAdd" style="padding:5px;float:left;margin-left:20px;">
 			<b style="color:blue;">Sort by:</b>
 			<select id='sortField' class="select-top-edit" name='sortField' onchange="allItems();">
 				<option value="OrderDate">Order Date</option>	
