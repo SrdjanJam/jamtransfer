@@ -3,7 +3,7 @@
 						{include file="plugins/Dashboard/templates/smallBoxes.tpl"}
 					{/if}					
 					{if $translatorPanel} 
-						<h2>Translator panel for {$smarty.session.UserRealName}</h2>
+						<h2>{TRANSLATOR_PANEL_FOR} {$smarty.session.UserRealName}</h2>
 					{/if}
 					{include file="plugins/Dashboard/templates/emptyRow.tpl"} 			
 
@@ -12,12 +12,12 @@
 					{/if}
 					
 					<div class="row">
-						{if $getOrder and not isset($smarty.session.UseDriverID)}
+						{if $getOrder}
 						<section class="col-lg-6 xconnectedSortable"> 
 							{include file="plugins/Dashboard/templates/getOrder.tpl"} 			
 						</section><!-- /.Left col -->
 						{/if}
-						{if not isset($smarty.session.UseDriverID)}						
+						{if $getUnfinishedPayment}						
 						<section class="col-lg-6 xconnectedSortable"> 
 							{include file="plugins/Dashboard/templates/getUnfinishedPayment.tpl"} 			
 						</section>
