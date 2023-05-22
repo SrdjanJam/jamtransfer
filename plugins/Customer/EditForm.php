@@ -36,7 +36,7 @@
 				</div>				
 				<div class="row">
 					<div class="col-md-3">
-						<label for="CustID">Personal code:</label>
+						<label for="CustID"><?=PERSONAL_CODE;?></label>
 					</div>
 					<div class="col-md-9">
 						<strong>{{PersonalCode}}</strong>
@@ -182,7 +182,7 @@
 			<div class="col-md-6">
 				<div class="row">
 					<div class="col-md-3">
-						<label for="ReservationNumber">Number of reservations</label>
+						<label for="ReservationNumber"><?=NUMBER_OF_RESERVATION;?></label>
 					</div>
 					<div class="col-md-9">
 						{{OrdersCount}}
@@ -190,7 +190,7 @@
 				</div>				
 				<div class="row">
 					<div class="col-md-3">
-						<label for="ReservationNumber">Value of reservations</label>
+						<label for="ReservationNumber"><?=VALUE_OF_RESERVATION;?></label>
 					</div>
 					<div class="col-md-9">
 						{{OrdersValue}}
