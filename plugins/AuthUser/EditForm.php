@@ -263,7 +263,7 @@
 							</div>
 							{{/compare}}
 							<div class="row">
-								<div class="col-md-3 "><label>Message for user</label></div>
+								<div class="col-md-3 "><label><?= MESSAGE_FOR_USER ?></label></div>
 								<div class="col-md-9">
 									<textarea class="textarea" name="AuthUserNote1" id="AuthUserNote1" 
 									cols="40" rows="4"

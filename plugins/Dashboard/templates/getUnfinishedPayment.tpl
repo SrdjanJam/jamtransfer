@@ -12,10 +12,10 @@
     <div class="box box-info">
         <div class="box-header">
             <i class="fa fa-credit-card"></i>
-            <h3 class="box-title">Unfinished online payment</h3>
+            <h3 class="box-title">{UNFINISHED_ONLINE_PAYMENT}</h3>
 		</div>	
 		<div class="box-body">
-	<table><tr><th>number_key</th><th>Name</th><th>Email</th><th>Time</th><th>EUR</th><!--<th>Status</th>!--></tr>
+	<table><tr><th>{NUMBER_KEY}</th><th>{NAME}</th><th>{EMAIL}</th><th>{TIME}</th><th>{EUR}</th><!--<th>Status</th>!--></tr>
 	{section name=index loop=$payments}
 	<tr>
 		<td>&shy; {$payments[index].MOrderKey}  </td>
