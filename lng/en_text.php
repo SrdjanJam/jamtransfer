@@ -57,7 +57,7 @@
 		'9'	=>	'Drop-Off Address',
 		'10'	=>	'Pax Number',
 		'11'	=>	'Payment method',
-		'12'	=>	'Drivers Price',
+		'12'	=>	'Partners Price',
 		'13'	=>	'Extras',
 		'14'	=>	'Pickup Notes',
 		'15'	=>	'Message'
@@ -99,13 +99,13 @@
 
 	# DriverConfStatus
 	$DriverConfStatus = array(
-		'0'	=> 'No Driver',
+		'0'	=> 'No Partner',
 		'1'	=> 'Not Confirmed',
-		'2'	=> 'Driver Confirmed',
-		'3' => 'SubDriver Assigned',
-		'4'	=> 'Driver Declined',
+		'2'	=> 'Partner Confirmed',
+		'3' => 'Partner Assigned',
+		'4'	=> 'Partner Declined',
 		'5'	=> 'No-Show',
-		'6' => 'Driver Error',
+		'6' => 'Partner Error',
 		'7' => 'Transfer Completed',
 		'8' => 'Operator Error',
 		'9' => 'Dispatcher Error',
@@ -122,13 +122,13 @@
 
 	# Transfers Filters
 	$transfersFilters = array(
-		array ("id" => "noDriver", "name" => "No Driver"),
+		array ("id" => "noPartner", "name" => "No Partner"),
 		array ("id" => "notConfirmed", "name" => "Not Confirmed"),
 		array ("id" => "confirmed", "name" => "Confirmed"),
 		array ("id" => "declined", "name" => "Declined"),
 		array ("id" => "canceled", "name" => "Canceled"),
 		array ("id" => "noShow", "name" => "No Show"),
-		array ("id" => "DriverError", "name" => "Driver Error"),
+		array ("id" => "PartnerError", "name" => "Partner Error"),
 		array ("id" => "agent", "name" => "Agent transfers"),
 		array ("id" => "notConfirmedAgent", "name" => "Agent transfers Not Confirmed"),
 		array ("id" => "notCompleted", "name" => "Not Completed"),
@@ -155,7 +155,7 @@ define("AGENT", "Agent");
 define("AGENT_COMMISION", "Ag.Comm.");
 define("AGENTS", "Agent orders");
 define("ALL", "All");
-define("ALL_DRIVERS", "All Drivers");
+define("ALL_DRIVERS", "All Partners");
 define("ALL_TRANSFERS", "All Transfers");
 define("APIUSER", "API User");
 define("APPROVED", "Approved");
@@ -185,12 +185,12 @@ define("CLOSE", "Close");
 define("CANCEL", "Cancel");
 define("SAVE_CHANGES", "Save Changes");
 define("COLUMN", "column(s)");
-define("COMPANY_ADDRESS", "Driver address");
-define("COMPANY_DESC", "Driver description");
-define("COMPANY_INFO", "Driver Info");
-define("COMPANY_NAME", "Driver name");
+define("COMPANY_ADDRESS", "Partner address");
+define("COMPANY_DESC", "Partner description");
+define("COMPANY_INFO", "Partner Info");
+define("COMPANY_NAME", "Partner name");
 define("COMPANY_TEXTS", "Various articles");
-define("COMPANY_WEB", "Driver web");
+define("COMPANY_WEB", "Partner web");
 define("COMPLETED", "Completed");
 define("CONFIRMED", "Confirmed");
 define("READY", "Ready");
@@ -251,22 +251,24 @@ define("DISCOUNT", "Return Discount");
 define("DISPLAY_ALL", "Display all");
 define("DISPLAY_NOT_CHECKED", "Display not checked");
 define("DRIVER", "Transport company");
-define("DRIVER_EMAIL", "Driver's Email");
-define("DRIVER_ERROR", "Driver Error");
-define("DRIVER_NAME", "Driver's Name");
+define("DRIVER_EMAIL", "Partner's Email");
+define("DRIVER_ERROR", "Partner Error");
+define("DRIVER_NAME", "Partner's Name");
 define("DRIVER_PAID_AMOUNT", "Amount");
-define("DRIVER_PAYMENT", "Driver Payment");
-define("DRIVERS_BALANCE", "Driver's Balance");
-define("DRIVERS_WITH_TRANSFERS", "Drivers with transfers");
-define("DRIVERS_PRICE", "Driver's Price");
-define("DRIVER_ROUTES", "Driver's Routes");
-define("DRIVERS", "Drivers");
+define("DRIVER_PAYMENT", "Partner Payment");
+define("DRIVERS_BALANCE", "Partner's Balance");
+define("DRIVERS_WITH_TRANSFERS", "Partners with transfers");
+define("DRIVERS_PRICE", "Partner's Price");
+define("DRIVER_ROUTES", "Partner's Routes");
+define("DRIVERS", "Partners");
 define("DRIVER_STATUS", "Transfer status");
-define("DRIVER_TEL", "Driver's Tel");
+define("DRIVER_TEL", "Partner's Tel");
 define("DROPOFF_ADDRESS", "Drop-Off Address");
 define("DROPOFF_NAME", "Drop-Off Name");
 define("DURATION", "Duration");
 define("DISPLAYED_KM","Displayed km");
+define("DISPLAY_ORDER","Display order");
+define("DISTRIBUTION","Distribution");
 
 define("EDIT", "Edit");
 define("EMAIL", "E-mail");
@@ -318,7 +320,7 @@ define("MARK_ACTIVE", "Mark Active");
 define("MARK_COMPLETED", "Mark Completed");
 define("MARK_NOSHOW", "No-Show");
 define("MARK_ERROR", "Errors");
-define("MARK_DRIVER_ERROR", "Driver Error");
+define("MARK_DRIVER_ERROR", "Partner Error");
 define("MARK_OPERATOR_ERROR", "Operator Error");
 define("MARK_DISPATCHER_ERROR", "Dispatcher Error");
 define("MARK_AGENT_ERROR", "Agent Error");
@@ -327,11 +329,12 @@ define("MARK_PENDING", "Pending");
 define("MEMBER_SINCE", "Member since");
 define("MENUTITLE", "Link slug");
 define("MESSAGE", "Message");
+define("MESSAGE_FOR_USER", "Message for user");
 define("METHOD", "Method");
 define("MOB", "Mobile");
 define("MONAMOUNT", "Mon (amt)");
 define("MONPERCENT", "Mon (%)");
-define("MY_DRIVERS", "My Drivers");
+define("MY_DRIVERS", "My Partners");
 define("MY_VEHICLES", "My Vehicles");
 define("MENUORDER", "Menu Order");
 define("MP", "Most Popular");
@@ -365,7 +368,7 @@ define("NIGHTPERCENT", 'Percent (%)');
 define("NIGHT_SETTINGS", "Night trips");
 define("NIGHTSTART", "Night starts at");
 define("NO_DATA", "Nothing available");
-define("NO_DRIVER", "No Driver");
+define("NO_DRIVER", "No Partner");
 define("NO", "No");
 define("NO_SHOW", "No Show");
 define("NO_SURCHARGES", "No Rules");
@@ -375,7 +378,7 @@ define("NOT_READY","Not ready");
 define("NOTE", "Note");
 define("NOTES", "Pickup Notes");
 define("NOTESS", "Notes");
-define("NOTE_TO_DRIVER", "Note to Driver");
+define("NOTE_TO_DRIVER", "Note to Partner");
 define("NO_TRANSFERS", "No transfers to show.");
 define("NUMBER", "Number");
 define("ONETOTWO", "A &rarr; B");
@@ -426,9 +429,9 @@ define("POSITION", "Position");
 define("PICKUP_POINT", "Pickup Point");
 define("PRICE", "Price");
 define("PRICES", "All Prices");
-define("PRICES_EXPORT", "Export Driver prices");
+define("PRICES_EXPORT", "Export Partner prices");
 define("ALL_PRICES_EXPORT", "All prices export");
-define("PRICES_IMPORT", "Import Driver prices");
+define("PRICES_IMPORT", "Import Partner prices");
 define("PRICE_SETTINGS", "Price settings");
 define("PRINT_CONFIRMATION", "Print");
 define("PRINT", "Print");
@@ -458,6 +461,7 @@ define("REQUEST_ID", "Request ID");
 define("REQUEST_TITLE", "Request Title");
 define("REPLY_TO", "ReplyTo");
 define("RAPTOR", "RAPTOR");
+define("RECIEVER_ID","Reciever ID");
 
 define("S1END", "Season 1 ends on");
 define("S1PERCENT", "(%)");
@@ -498,7 +502,7 @@ define("SALES", "Sales");
 define("SATAMOUNT", "Sat (amt)");
 define("SATPERCENT", "Sat (%)");
 define("SAVE", "Save");
-define("SEND_EMAIL_TO_DRIVER", "Send e-mail to Driver");
+define("SEND_EMAIL_TO_DRIVER", "Send e-mail to Partner");
 define("SEND", "Send");
 define("SERVICE", "Service");
 define("SIGN_OUT", "Sign Out");
@@ -510,7 +514,7 @@ define("STATUS", "Status");
 define("SUBJECT", "Subject");
 define("SUNAMOUNT", "Sun (amt)");
 define("SUNPERCENT", "Sun (%)");
-define("SUMMARY_INVOICE_DRIVER", "Summary Invoice - Driver");
+define("SUMMARY_INVOICE_DRIVER", "Summary Invoice - Partner");
 define("SURCATEGORY", "Price Rules");
 define("SURCHARGES", "Price Rules");
 define("SYSTEM_MESSAGES", "System messages");
@@ -586,20 +590,20 @@ define("BEFORE", "before");
 define("ON", "on");
 define("SHOW_BOOKED", "Show transfers booked");
 define("AND_PICKUP_DATE_IS", "AND Pickup date is");
-define("AND_DRIVER_IS", "AND Driver is");
+define("AND_DRIVER_IS", "AND Partner is");
 define("APPLY", "Apply filter");
 define("SORT_BY_PICKUP_DATE", "Sort by Pickup date");
 define("NO_ROUTE_RULES_DEFINED", "There are no Route Rules defined.");
 define("SERVICE_SPECIFIC", "Service");
 define("VEHICLE_SPECIFIC", "Vehicle");
 define("DEFINE_GLOBAL", "Global Rules");
-define("MOST_DECLINES", "Drivers with most declines");
-define("TOP_DRIVERS", "Top Drivers");
+define("MOST_DECLINES", "Partners with most declines");
+define("TOP_DRIVERS", "Top Partners");
 define("TOP_DEBTORS", "Largest debtors");
 
 define("CONFIRM", "Confirm");
 define("DECLINE", "Decline");
-define("CONFIRM_DECLINE_INSTRUCTIONS", "You can Confirm or Decline this transfer according to T&C. If you decline this transfer, it will be assigned to the next available Driver. You cannot change your decision later on!");
+define("CONFIRM_DECLINE_INSTRUCTIONS", "You can Confirm or Decline this transfer according to T&C. If you decline this transfer, it will be assigned to the next available Partner. You cannot change your decision later on!");
 
 define("IMPORTANT_UPDATE", "Important update");
 define("YOUR_NEW_DRIVER_NAME", "Your new Driver name");
@@ -676,7 +680,7 @@ define("SORT", "Sort");
 define("NO_EXTRAS", "No extras");
 define("PICKUP_NOTE", "Pickup Notes");
 define("STAFF_NOTE", "Staff Notes");
-define("NOTES_TO_DRIVER", "Notes to Driver");
+define("NOTES_TO_DRIVER", "Notes to Partner");
 define("FINAL_NOTE", "Final Note");
 define("RECIVE_CASH", "Recive - Cash");
 define("MAKE_BILL", "Make a bill!");
@@ -688,9 +692,9 @@ define("MY_EXPENSES", "My Expenses");
 define("EXPENSE", "Expense");
 define("DATUM", "Date");
 define("AMOUNT", "Amount");
-define("CO_EMAIL", "Driver Email");
-define("CO_NAME", "Driver Name");
-define("CO_ADDRESS", "Driver Address");
+define("CO_EMAIL", "Partner Email");
+define("CO_NAME", "Partner Name");
+define("CO_ADDRESS", "Partner Address");
 define("TELEPHONE", "Telephone");
 define("EXPENSES_REPORT", "Expenses - Report");
 define("SHOW_EXPENSES", "Show Expenses");
@@ -730,7 +734,7 @@ define("EUR_TO_RSD", "1 EUR = ");
 define("SET_NEW_RATE", "Save New Rate");
 define("INVOICES_AGENTS", "Invoices");
 define("NEW_AGENT_INVOICE", "New Agent Invoice");
-define("NEW_DRIVER_INVOICE", "New Driver Invoice");
+define("NEW_DRIVER_INVOICE", "New Partner Invoice");
 define("STARTDATE", "Start date");
 define("ENDDATE", "End date");
 define("INVOICENUMBER", "Invoice Number");
@@ -739,7 +743,7 @@ define("AMOUNTEUR", "Total EUR");
 define("VATTOTAL", "Total VAT");
 define("CLIENT_EMAILS", "Client Emails");
 define("CLIENT_EMAIL_LIST", "Client Email List");
-define("DRIVERS_EMAIL_LIST", "Drivers Email List");
+define("DRIVERS_EMAIL_LIST", "Partners Email List");
 define("SHOW_CLIENTS", "Show Clients");
 define("SHOW_EMAILS", "Show Emails");
 define("USER_TYPE", "User Type");
@@ -803,7 +807,7 @@ define("COUNTRYDESC", "Country description");
 define("PLACENAME", "Location name");
 define("PLACE_ID","ID");
 
-define("DRIVER_PRICE", "Driver Price");
+define("DRIVER_PRICE", "Partner Price");
 define("PROVISIONPERC", "Provision %");
 
 define("COUNTRYISO", "Country ISO");
@@ -864,20 +868,20 @@ define("ENDTIME", "End Time");
 define("CORRECTIONPERCENT", "Percent");
 
 //Company info - Leo
-define("CO_TEL", "Driver phone");
-define("CO_FAX", "Driver fax");
-define("CO_CITY", "Driver city");
-define("CO_COUNTRY", "Driver country");
-define("CO_ZIP", "Driver ZIP Code");
-define("CO_TAXNO", "Driver tax number");
-define("CO_BANK", "Driver bank");
-define("CO_ACCOUNTNO", "Driver account number");
-define("CO_IBAN", "Driver IBAN");
-define("CO_SWIFT", "Driver SWIFT code");
-define("CO_DOMESTICTAX", "Driver domestic tax");
-define("CO_FOREIGNTAX", "Driver foreign tax");
-define("CO_EURINFO", "Driver EUR info");
-define("CO_PAYMENTINFO", "Driver payment info");
+define("CO_TEL", "Partner phone");
+define("CO_FAX", "Partner fax");
+define("CO_CITY", "Partner city");
+define("CO_COUNTRY", "Partner country");
+define("CO_ZIP", "Partner ZIP Code");
+define("CO_TAXNO", "Partner tax number");
+define("CO_BANK", "Partner bank");
+define("CO_ACCOUNTNO", "Partner account number");
+define("CO_IBAN", "Partner IBAN");
+define("CO_SWIFT", "Partner SWIFT code");
+define("CO_DOMESTICTAX", "Partner domestic tax");
+define("CO_FOREIGNTAX", "Partner foreign tax");
+define("CO_EURINFO", "Partner EUR info");
+define("CO_PAYMENTINFO", "Partner payment info");
 define("CO_FACEBOOK", "Facebook");
 define("CO_TWITTER", "Twitter");
 define("CO_LINKEDIN", "LinkedIn");
@@ -913,7 +917,7 @@ define("DEPOSIT", "Deposit (EUR)");
 
 
 // Vehice types
-define("DRIVER_VEHICLE","Driver Vehicle");
+define("DRIVER_VEHICLE","Partner Vehicle");
 
 // Master - location
 define("LONGITUDE","Longitude");
@@ -925,7 +929,7 @@ define("TOP_ROUTE","Top Route");
 define("KM","km");
 
 // Services - Extras Services - (folder ExtrasMaster)
-define("DRIVER_EXTRAS","Driver Extras");
+define("DRIVER_EXTRAS","Partner Extras");
 
 // Pricing - Coupons - (folder Coupons)
 define("DRIVER_ID","DriverID");
@@ -936,9 +940,9 @@ define("AUTHUSER_ID","ID");
 define("AUTHUSER_LEVEL","Level");
 define("AUTHUSER_IMAGE","Image");
 define("AUTHUSER","Auth User");
-define("AUTHUSERCOMPANY","Auth User Driver");
+define("AUTHUSERCOMPANY","Auth User Partner");
 define("AUTHUSERNOTE","Auth User Note");
-define("SETASDRIVER","Set as Driver");
+define("SETASDRIVER","Set as Partner");
 define("CONTACT","Contact");
 
 // Pricing - Services
@@ -966,678 +970,46 @@ define("TEXT","Text");
 define("HTMLBEFORE"," HTML Before");
 // =================================================
 
-// COMMENTED:
-/*
-$smarty->assign("ACCEPTED_PAYMENT", "Accepted Payment");
-$smarty->assign("ACTIONS", "Actions");
-$smarty->assign("ACTIVE", "Active");
-$smarty->assign("ADD", "Add");
-$smarty->assign("ADDRESS", "Address");
-$smarty->assign("ADMIN", "Admin");
-$smarty->assign("ADMIN_NOTES", "Staff Notes");
-$smarty->assign("ADVANCED_SEARCH", "Advanced Search");
-$smarty->assign("AFFILIATE", "Affiliate");
-$smarty->assign("AGENT", "Agent");
-$smarty->assign("AGENT_COMMISION", "Ag.Comm.");
-$smarty->assign("AGENTS", "Agent orders");
-$smarty->assign("ALL", "All");
-$smarty->assign("ALL_DRIVERS", "All Drivers");
-$smarty->assign("ALL_TRANSFERS", "All Transfers");
-$smarty->assign("APIUSER", "API User");
-$smarty->assign("APPROVED", "Approved");
-$smarty->assign("ARTICLE", "Article");
-$smarty->assign("ARTICLES", "Articles");
-$smarty->assign("ASCENDING", "Ascending");
-$smarty->assign("ASSIGNED_TO_ANOTHER_DRIVER", "This Transfer is assigned to another driver and removed from Your transfers list.");
-$smarty->assign("BALANCE", "Balance");
-$smarty->assign("BASE_PRICE", "Base Price");
-$smarty->assign("BOOKED_BY", "Booked by");
-$smarty->assign("BOOKING", "Booking");
-$smarty->assign("BOOKINGS", "Bookings");
-$smarty->assign("BRAND_NAME", "Brand name");
-$smarty->assign("BY_BOOKING_DATE", "by booking date");
-$smarty->assign("BY_TRANSFER_DATE", "by transfer date");
-$smarty->assign("CALENDAR", "Calendar");
-$smarty->assign("CANCELED_ORDERS", "Cancelled orders");
-$smarty->assign("CANCELLED", "Cancelled");
-$smarty->assign("CANCEL_TRANSFER", "Cancel transfer");
-$smarty->assign("CASH", "Cash");
-$smarty->assign("CLOSE", "Close");
-$smarty->assign("COMPANY_ADDRESS", "Company address");
-$smarty->assign("COMPANY_DESC", "Company description");
-$smarty->assign("COMPANY_INFO", "Company Info");
-$smarty->assign("COMPANY_NAME", "Company name");
-$smarty->assign("COMPANY_TEXTS", "Various articles");
-$smarty->assign("COMPANY_WEB", "Company web");
-$smarty->assign("COMPLETED", "Completed");
-$smarty->assign("CONFIRMED", "Ready");
-$smarty->assign("CONTACT_PERSON", "Contact person");
-$smarty->assign("CONTENT", "Content");
-$smarty->assign("CONTRACT_FILE", "Contract file");
-$smarty->assign("CONTRACT_DATE", "Contract date");
-$smarty->assign("CONTRACT_SIGNATURE", "Contract signature");
-$smarty->assign("COUNTRIES", "Countries");
-$smarty->assign("COUNTRY_CURRENCY", "Country currency");
-$smarty->assign("COUNTRY_NAME", "Country name");
-$smarty->assign("COUNTRY_NAME_RU", "Country name in Russian");
-$smarty->assign("COUPONS", "Coupons");
-$smarty->assign("COUPON_DISCOUNT", "Coupon discount");
-$smarty->assign("CURRENCY", 'Eur');
-$smarty->assign("CURRENCYTYPE", 'Currency');
-$smarty->assign("CURRENT_PRICE", "Active Price");
-$smarty->assign("CUSTOM", "Custom");
-$smarty->assign("CUSTOMER", "Customer");
-$smarty->assign("DASHBOARD", "Dashboard");
-$smarty->assign("DATE", "Date");
-$smarty->assign("DATE_ADDED", "Date added");
-$smarty->assign("DATA", "data");
-$smarty->assign("DATA_CHECKED", "Data checked");
-$smarty->assign("DATE_SETTINGS", "Off-Duty Dates");
-$smarty->assign("DAY_SETTINGS", "Days of the week");
-$smarty->assign("DECLINED", "Declined");
-$smarty->assign("DELETE_COUNTRY", "Delete Country");
-$smarty->assign("DELETE", "Delete");
-$smarty->assign("DELETE_CACHE", "Delete cache");
-$smarty->assign("DELETE_IMAGE", "Delete image");
-$smarty->assign("DELETE_TRANSFER", "Delete transfer");
-$smarty->assign("DELETE_USER", "Delete User");
-$smarty->assign("DESCENDING", "Descending");
-$smarty->assign("DETAIL_DESCRIPTION", "Please enter detailed description");
-$smarty->assign("DISCOUNT", "Return Discount");
-$smarty->assign("DISPLAY_ALL", "Display all");
-$smarty->assign("DISPLAY_NOT_CHECKED", "Display not checked");
-$smarty->assign("DRIVER", "Driver");
-$smarty->assign("DRIVER_EMAIL", "Driver's Email");
-$smarty->assign("DRIVER_ERROR", "Driver Error");
-$smarty->assign("DRIVER_NAME", "Driver's Name");
-$smarty->assign("DRIVER_PAID_AMOUNT", "Amount");
-$smarty->assign("DRIVER_PAYMENT", "Driver Payment");
-$smarty->assign("DRIVERS_BALANCE", "Driver's Balance");
-$smarty->assign("DRIVERS_WITH_TRANSFERS", "Drivers with transfers");
-$smarty->assign("DRIVERS_PRICE", "Driver's Price");
-$smarty->assign("DRIVER_ROUTES", "Driver Routes");
-$smarty->assign("DRIVERS", "Drivers");
-$smarty->assign("DRIVER_STATUS", "Transfer status");
-$smarty->assign("DRIVER_TEL", "Driver's Tel");
-$smarty->assign("DROPOFF_ADDRESS", "Drop-Off Address");
-$smarty->assign("DROPOFF_NAME", "Drop-Off Name");
-$smarty->assign("DURATION", "Duration");
-$smarty->assign("EDIT", "Edit");
-$smarty->assign("EMAIL", "E-mail");
-$smarty->assign("EMAIL_TO", "E-mail to");
-$smarty->assign("EMERGENCY_PHONE", "Emergency phone");
-$smarty->assign("EXTRAS", "Extra services");
-$smarty->assign("FACEBOOK", "Facebook");
-$smarty->assign("FINDER", "Finder");
-$smarty->assign("FLIGHT_NO", "Flight Number");
-$smarty->assign("FLIGHT_TIME", "Flight Time");
-$smarty->assign("FREEFORM", "Free form transfer");
-$smarty->assign("FRIAMOUNT", "Fri (amt)");
-$smarty->assign("FRIPERCENT", "Fri (%)");
-$smarty->assign("FROM", "From");
-$smarty->assign("GOOGLE_PLUS", "Google+");
-$smarty->assign("GRAPH", "Graph");
-$smarty->assign("HEADER_IMAGES", "Header Images");
-$smarty->assign("HELLO", "Hello");
-$smarty->assign("ID", "ID");
-$smarty->assign("IMAGE", "Image");
-$smarty->assign("IMAGE_MANAGER", "Image manager");
-$smarty->assign("ISLAND", "On island");
-$smarty->assign("KEY", "Key");
-$smarty->assign("LANGUAGE", "Language");
-$smarty->assign("LASTCHANGE", "Last Change");
-$smarty->assign("LAST_VISIT", "Last visit");
-$smarty->assign("LEVEL", "Level");
-$smarty->assign("LINKEDIN", "LinkedIn");
-$smarty->assign("LIST", "List");
-$smarty->assign("LOADING", "Loading...");
-$smarty->assign("LOCATION", "Location");
-$smarty->assign("LOCATIONS", "Locations");
-$smarty->assign("LOCATION_TYPES", "Location Types");
-$smarty->assign("LOGIN_FAILED", "Login failed!");
-$smarty->assign("MARK_ACTIVE", "Mark Active");
-$smarty->assign("MARK_COMPLETED", "Mark Completed");
-$smarty->assign("MARK_NOSHOW", "No-Show");
-$smarty->assign("MARK_ERROR", "Errors");
-$smarty->assign("MARK_DRIVER_ERROR", "Driver Error");
-$smarty->assign("MARK_OPERATOR_ERROR", "Operator Error");
-$smarty->assign("MARK_DISPATCHER_ERROR", "Dispatcher Error");
-$smarty->assign("MARK_AGENT_ERROR", "Agent Error");
-$smarty->assign("MARK_FORCE_MAJEURE", "Force majeure");
-$smarty->assign("MARK_PENDING", "Pending");
-$smarty->assign("MEMBER_SINCE", "Member since");
-$smarty->assign("MENUTITLE", "Link slug");
-$smarty->assign("MESSAGE", "Message");
-$smarty->assign("METHOD", "Method");
-$smarty->assign("MOB", "Mobile");
-$smarty->assign("MONAMOUNT", "Mon (amt)");
-$smarty->assign("MONPERCENT", "Mon (%)");
-$smarty->assign("MY_DRIVERS", "My Drivers");
-$smarty->assign("MY_VEHICLES", "My Vehicles");
-$smarty->assign("NAME", "Name");
-$smarty->assign("NET_INCOME", "Commision");
-$smarty->assign("NETTO_PRICE", "Netto Price");
-$smarty->assign("NEW_ROUTE", "New Route");
-$smarty->assign("NEW_TRANSFER", "New transfer");
-$smarty->assign("NEW_USER", "Add new User");
-$smarty->assign("NEW_PASSWORD", "New Password");
-$smarty->assign("NEWW", "New");
-$smarty->assign("NNEW", "New");
-$smarty->assign("NIGHTAMOUNT", "or fixed Amount");
-$smarty->assign("NIGHTEND", "Night ends at");
-$smarty->assign("NIGHTPERCENT", 'Percent (%)');
-$smarty->assign("NIGHT_SETTINGS", "Night trips");
-$smarty->assign("NIGHTSTART", "Night starts at");
-$smarty->assign("NO_DATA", "Nothing available");
-$smarty->assign("NO_DRIVER", "No Driver");
-$smarty->assign("NO", "No");
-$smarty->assign("NO_SHOW", "No Show");
-$smarty->assign("NO_SURCHARGES", "No Price Rules");
-$smarty->assign("NOT_ACTIVE", "Not active");
-$smarty->assign("NOT_CONFIRMED", "Not confirmed");
-$smarty->assign("NOTE", "Note");
-$smarty->assign("NOTES", "Pickup Notes");
-$smarty->assign("NOTESS", "Notes");
-$smarty->assign("NOTE_TO_DRIVER", "Note to Driver");
-$smarty->assign("NO_TRANSFERS", "No transfers to show.");
-$smarty->assign("NUMBER", "Number");
-$smarty->assign("ONETOTWO", "A &rarr; B");
-$smarty->assign("ONLINE", "Online");
-$smarty->assign("OPERATOR", "Operator");
-$smarty->assign("OPERATOR_ORDERS", "Operator orders");
-$smarty->assign("ORDER_KEY", "Order Key");
-$smarty->assign("ORDER_DATE", "Order date");
-$smarty->assign("ORDER_LOG", "Timeline");
-$smarty->assign("ORDER", "Order");
-$smarty->assign("ORDERS", "Orders");
-$smarty->assign("ORDERS_BY_B_DATE", "by booking date");
-$smarty->assign("ORDERS_BY_TR_DATE", "by transfer date");
-$smarty->assign("OWNERID", "Owner ID");
-$smarty->assign("PAGE_NOT_FOUND", "Page not found!");
-$smarty->assign("PAGES", "Pages");
-$smarty->assign("PAID_ONLINE", "Paid Online");
-$smarty->assign("PAID", "Paid");
-$smarty->assign("PASSENGER", "Passenger");
-$smarty->assign("PASSWORD", "Password");
-$smarty->assign("PAX_EMAIL", "Passenger's Email");
-$smarty->assign("PAX_TEL", "Passenger's Phone");
-$smarty->assign("PAX_NAME", "Passenger's Name");
-$smarty->assign("PAX_FIRST_NAME", "Pax First Name");
-$smarty->assign("PAX_LAST_NAME", "Pax Last Name");
-$smarty->assign("PAX", "Pax");
-$smarty->assign("PAYMENT_FOR", "For payment");
-$smarty->assign("PAYMENT_METHOD", "Payment method");
-$smarty->assign("PAYMENT_STATUS", "Payment status");
-$smarty->assign("PICKUP_ADDRESS", "Pickup Address");
-$smarty->assign("PICKUP_DATE", "Pickup Date");
-$smarty->assign("PICKUP_NAME", "Pickup Name");
-$smarty->assign("PICKUP_TIME", "Pickup Time");
-$smarty->assign("PLACETYPEEN", "Location Type (EN)");
-$smarty->assign("PLACECOUNTRY", "Country");
-$smarty->assign("PLACENAMEEN", "Location name (EN)");
-$smarty->assign("PLACENAMESEO", "SEO name");
-$smarty->assign("PLACETYPE", "Location type");
-$smarty->assign("PLACECITY", "City");
-$smarty->assign("PLACEADDRESS", "Address");
-$smarty->assign("PLACEDESC", "Description");
-$smarty->assign("PLACEACTIVE", "Active");
-$smarty->assign("POSITION", "Position");
-$smarty->assign("PICKUP_POINT", "Pickup Point");
-$smarty->assign("PRICE", "Price");
-$smarty->assign("PRICES", "All prices");
-$smarty->assign("PRICES_EXPORT", "Export driver prices");
-$smarty->assign("ALL_PRICES_EXPORT", "All prices export");
-$smarty->assign("PRICES_IMPORT", "Import driver prices");
-$smarty->assign("PRICE_SETTINGS", "Price settings");
-$smarty->assign("PRINT_CONFIRMATION", "Print");
-$smarty->assign("PRINT", "Print");
-$smarty->assign("PROVISION", "Discount");
-$smarty->assign("PROFILE", "Profile");
-$smarty->assign("PUBLISHED", "Published");
-$smarty->assign("QUICK_EMAIL", "Quick Email");
-$smarty->assign("REAL_NAME", "Real name");
-$smarty->assign("REMOVE_ROUTES_FROM_TO", "Remove all routes that <strong>begin</strong> or <strong>end</strong> at:");
-$smarty->assign("REPORTS", "Reports");
-$smarty->assign("RESEND_VOUCHER", "Resend Voucher");
-$smarty->assign("RETURNDISCOUNT", "Return Discount");
-$smarty->assign("ROUTEID", "Route ID");
-$smarty->assign("ROUTENAME", "Route name");
-$smarty->assign("ROUTE", "Route");
-$smarty->assign("ROUTE_SETTINGS", "Route settings");
-$smarty->assign("ROUTE_SPECIFIC", "Use Route Rules");
-$smarty->assign("ROUTES", "Routes");
-$smarty->assign("S1END", "Season 1 ends on");
-$smarty->assign("S1PERCENT", "(%)");
-$smarty->assign("S1START", "Season 1 starts on");
-$smarty->assign("S2END", "Season 2 ends on");
-$smarty->assign("S2PERCENT", "(%)");
-$smarty->assign("S2START", "Season 2 starts on");
-$smarty->assign("S3END", "Season 3 ends on");
-$smarty->assign("S3PERCENT", "(%)");
-$smarty->assign("S3START", "Season 3 starts on");
-$smarty->assign("S4END", "Season 4 ends on");
-$smarty->assign("S4PERCENT", "(%)");
-$smarty->assign("S4START", "Season 4 starts on");
-$smarty->assign("S5END", "Season 5 ends on");
-$smarty->assign("S5PERCENT", "(%)");
-$smarty->assign("S5START", "Season 5 starts on");
-$smarty->assign("S6END", "Season 6 ends on");
-$smarty->assign("S6PERCENT", "(%)");
-$smarty->assign("S6START", "Season 6 starts on");
-$smarty->assign("S7END", "Season 7 ends on");
-$smarty->assign("S7PERCENT", "(%)");
-$smarty->assign("S7START", "Season 7 starts on");
-$smarty->assign("S8END", "Season 8 ends on");
-$smarty->assign("S8PERCENT", "(%)");
-$smarty->assign("S8START", "Season 8 starts on");
-$smarty->assign("S9END", "Season 9 ends on");
-$smarty->assign("S9PERCENT", "(%)");
-$smarty->assign("S9START", "Season 9 starts on");
-$smarty->assign("S10END", "Season 10 ends on");
-$smarty->assign("S10PERCENT", "(%)");
-$smarty->assign("S10START", "Season 10 starts on");
-$smarty->assign("STARTSEASON", "Season start at");
-$smarty->assign("ENDSEASON", "Season end at");
-$smarty->assign("WEEKDAYS", "Weekdays");
+define("PERSONAL_CODE","Personal code:");
+define("NUMBER_OF_RESERVATION","Number of reservations");
+define("VALUE_OF_RESERVATION","Value of reservations");
 
 
-$smarty->assign("SALES", "Sales");
-$smarty->assign("SATAMOUNT", "Sat (amt)");
-$smarty->assign("SATPERCENT", "Sat (%)");
-$smarty->assign("SAVE", "Save");
-$smarty->assign("SEND_EMAIL_TO_DRIVER", "Send e-mail to Driver");
-$smarty->assign("SEND", "Send");
-$smarty->assign("SERVICE", "Service");
-$smarty->assign("SIGN_OUT", "Sign Out");
-$smarty->assign("SITE_CONTENT", "Site content");
-$smarty->assign("SITEID", "Site ID");
-$smarty->assign("SITE_SETTINGS", "Site settings");
-$smarty->assign("STATUS", "Status");
-$smarty->assign("SUBJECT", "Subject");
-$smarty->assign("SUNAMOUNT", "Sun (amt)");
-$smarty->assign("SUNPERCENT", "Sun (%)");
-$smarty->assign("SUMMARY_INVOICE_DRIVER", "Summary Invoice - Driver");
-$smarty->assign("SURCATEGORY", "Price Rules");
-$smarty->assign("SURCHARGES", "Price Rules");
-$smarty->assign("SYSTEM_MESSAGES", "System messages");
-$smarty->assign("TAXISITE", "Taxi Site");
-$smarty->assign("TEL", "Tel");
-$smarty->assign("THANK_YOU", "Thank You");
-$smarty->assign("THERE_ARE_NO_DATA", '<i class="fa fa-circle-o-notch fa-spin fa-5x"></i>');
-$smarty->assign("THERE_ARE_NO", "Loading ");
-$smarty->assign("THERE_ARE", "Loading ");
-$smarty->assign("THIS_WEEK", "This week");
-$smarty->assign("THUAMOUNT", "Thu (amt)");
-$smarty->assign("THUPERCENT", "Thu (%)");
-$smarty->assign("TIME", "Time");
-$smarty->assign("TITLE", "Title");
-$smarty->assign("TODO", "To do");
-$smarty->assign("TODAY", "Today");
-$smarty->assign("TOMORROW", "Tomorrow");
-$smarty->assign("TOTAL", "Total");
-$smarty->assign("TO", "To");
-$smarty->assign("TO_DRIVER", "To Driver");
-$smarty->assign("TO_PAX", "To Pax");
-$smarty->assign("TRANSFER_DATA", "Transfer data");
-$smarty->assign("TRANSFER_FOR_YOU","
-		We have new transfer(s) for you.<br>
-		Please Confirm or Decline these transfers immediately using the link(s) below:<br><br>
-");
-$smarty->assign("THIS_INFO_WILL_BE_SENT_TO_CUSTOMER", "Please fill-in the following data.<br>
-												If you Confirm this transfer,
-												this info will be sent to customer.");
-$smarty->assign("TRANSFER_STATUS", "Status");
-$smarty->assign("TRANSFERS", "Transfers");
-$smarty->assign("TRANSFER", "Transfer");
-$smarty->assign("TUEAMOUNT", "Tue (amt)");
-$smarty->assign("TUEPERCENT", "Tue (%)");
-$smarty->assign("TURNOVER", "Turnover");
-$smarty->assign("TWOTOONE", "B &rarr; A");
-$smarty->assign("UPDATED", "Updated");
-$smarty->assign("UPLOAD_IMAGES", "Drop Images Here");
-$smarty->assign("UPLOAD_NEW_IMAGE", "Upload new image");
-$smarty->assign("UPLOAD", "Upload");
-$smarty->assign("USE_BOTH", "Both Username and Password are required!");
-$smarty->assign("USE_GLOBAL", "Use Global Rules");
-$smarty->assign("USERID", "User ID");
-$smarty->assign("USER_NAME", "User name");
-$smarty->assign("USERS", "Users");
-$smarty->assign("USER", "User");
-$smarty->assign("VEHICLE", "Vehicle");
-$smarty->assign("VEHICLES", "Vehicles");
-$smarty->assign("VEHICLECAPACITY", "Max. Pax");
-$smarty->assign("VEHICLEDESCRIPTION", "Veh.Description");
-$smarty->assign("VEHICLENAME", "Vehicle name");
-$smarty->assign("VEHICLETYPEID", "Vehicle type");
-$smarty->assign("VEHICLE_TYPE", "Vehicle Type");
-$smarty->assign("VEHICLE_TYPES", "Vehicle Types");
-$smarty->assign("VEHICLEID", "Vehicle ID");
-$smarty->assign("VEHICLE_IMAGES_NOTE", "Only .jpg files smaller than 200Kb are allowed. Preferred dimensions 200x150px.");
-$smarty->assign("VEHICLE_IMAGES", "Vehicle images");
-$smarty->assign("WAITING", "Waiting");
-$smarty->assign("WEDAMOUNT", "Wed (amt)");
-$smarty->assign("WEDPERCENT", "Wed (%)");
-$smarty->assign("YES", "Yes");
-$smarty->assign("AFTER_INCLUDING", "after and including");
-$smarty->assign("AFTER", "after");
-$smarty->assign("BEFORE", "before");
-$smarty->assign("ON", "on");
-$smarty->assign("SHOW_BOOKED", "Show transfers booked");
-$smarty->assign("AND_PICKUP_DATE_IS", "AND Pickup date is");
-$smarty->assign("AND_DRIVER_IS", "AND Driver is");
-$smarty->assign("APPLY", "Apply filter");
-$smarty->assign("SORT_BY_PICKUP_DATE", "Sort by Pickup date");
-$smarty->assign("NO_ROUTE_RULES_DEFINED", "There are no Route Rules defined.");
-$smarty->assign("SERVICE_SPECIFIC", "Use Service Rules");
-$smarty->assign("VEHICLE_SPECIFIC", "Use Vehicle Rules");
-$smarty->assign("DEFINE_GLOBAL", "Global Rules");
-$smarty->assign("MOST_DECLINES", "Drivers with most declines");
-$smarty->assign("TOP_DRIVERS", "Top drivers");
-$smarty->assign("TOP_DEBTORS", "Largest debtors");
+define("DISTRIBUTION","Distribution");
+define("NO_OF_TRANSFERS","No of transfers:");
+define("NO_OF","No of:");
+define("TRANSFER_STATUS_2","Transfer status:");
+define("ACTIVE","Active");
+define("CHANGED","Changed");
+define("TEMP","Temp");
+define("CANCELLED","Cancelled");
+define("COMPLETED","Completed");
+define("DRIVER_CONFIRMATION_STATUS","Driver confirmation status:");
+define("NO_DRIVER","No Driver");
+define("NOT_CONFIRMED","Not Confirmed");
+define("CONFIRMED","Confirmed");
+define("READY","ready");
+define("DECLINED","Declined");
+define("NO_SHOW","No-show");
+define("DRIVER_ERROR","Driver error");
+define("COMPLETED","Completed");
 
-$smarty->assign("CONFIRM", "Confirm");
-$smarty->assign("DECLINE", "Decline");
-$smarty->assign("CONFIRM_DECLINE_INSTRUCTIONS", "You can Confirm or Decline this transfer according to T&C. If you decline this transfer, it will be assigned to the next available driver. You cannot change your decision later on!");
+define("ACTUAL_TRANSFERS","Actual transfers");
 
-$smarty->assign("IMPORTANT_UPDATE", "Important update");
-$smarty->assign("YOUR_NEW_DRIVER_NAME", "Your new driver name");
-$smarty->assign("YOUR_NEW_DRIVER_TEL", "Your new driver phone");
+define("GET_TRANSFER_ORDER","GET TRANSFER ORDER");
+define("TRANSFER_ORDER_NUMBER","Transfer order number:");
+define("VIEW","View");
 
-$smarty->assign("VIEW_SITE", "View site");
+define("UNFINISHED_ONLINE_PAYMENT","Unfinished online payment");
+define("NUMBER_KEY","number_key");
+define("NAME","Name");
+define("EMAIL","Email");
+define("TIME","Time");
+define("EUR","Eur");
 
-$smarty->assign("ADD_ROUTES_FROM_TO", "Add Routes that <strong>begin</strong> or <strong>end</strong> at selected location");
-$smarty->assign("PLEASE_REFRESH", "Please refresh this page.");
+define("TRANSLATOR_PANEL_FOR","Translator panel for");
 
-$smarty->assign("SERVICEPRICE1", "Active Price");
-$smarty->assign("SERVICEPRICE2", "New Price");
-$smarty->assign("SERVICEETA", "Duration");
-$smarty->assign("VEHICLEAVAILABLE", "Vehicle Available");
-$smarty->assign("SUBMIT_NEW_PRICES", "Submit new prices for Admin approval");
-$smarty->assign("NEW_PRICES_INFO", "When you finish entering new prices, click the button below to inform Admin and ask for the approval for the new prices. <br>New prices will become active when approved.");
-
-$smarty->assign("CONFIRM_TRANSFER", 'Please confirm this transfer:');
-
-$smarty->assign("VEHICLETYPENAME", "Vehicle Type Name");
-$smarty->assign("MIN", "Min");
-$smarty->assign("MAX", "Max");
-$smarty->assign("VEHICLECLASS", "Vehicle Class");
-$smarty->assign("DESCRIPTION", "Description");
-$smarty->assign("DESCRIPTIONEN", "Description (EN)");
-$smarty->assign("DESCRIPTIONRU", "Description (RU)");
-$smarty->assign("DESCRIPTIONFR", "Description (FR)");
-$smarty->assign("DESCRIPTIONDE", "Description (DE)");
-$smarty->assign("DESCRIPTIONIT", "Description (IT)");
-$smarty->assign("AIRCONDITION", "Free WiFi");
-
-// agent
-$smarty->assign("LAST_BOOKINGS", "Recent Bookings");
-$smarty->assign("CLICK_TO_BOOK_AGAIN", "Click on a link to book again");
-$smarty->assign("THIS_YEAR", "This year");
-$smarty->assign("UNPAID_INVOICES", "Amount due");
-$smarty->assign("PAID_INVOICES", "Amount paid");
-$smarty->assign("PROVISION", "Agent commission");
-$smarty->assign("INVOICES", "Invoices total");
-$smarty->assign("INVOICE", "Invoice");
-
-// user
-$smarty->assign("COUNTRY", "Country");
-$smarty->assign("COUNTRY_SHORT", "Country Short");
-$smarty->assign("CITY", "City");
-$smarty->assign("TERMINAL", "Terminal");
-$smarty->assign("TAX_NUMBER", "Tax Number");
-$smarty->assign("ACCOUNT_OWNER", "Account owner");
-$smarty->assign("ACCOUNT_BANK", "Account Bank");
-$smarty->assign("IBAN", "IBAN");
-$smarty->assign("SWIFT", "SWIFT");
-$smarty->assign("FAX", "Fax");
-$smarty->assign("PRICE_RANGE1", "Price range");
-$smarty->assign("PRICE_RANGE2", "Price range");
-$smarty->assign("PRICE_RANGE3", "Price range");
-$smarty->assign("PREMIUM_PRICE_RANGE1", "Premium price range");
-$smarty->assign("PREMIUM_PRICE_RANGE2", "Premium price range");
-$smarty->assign("PREMIUM_PRICE_RANGE3", "Premium price range");
-$smarty->assign("FCLASS_PRICE_RANGE1", "First Class price range");
-$smarty->assign("FCLASS_PRICE_RANGE2", "First Class price range");
-$smarty->assign("FCLASS_PRICE_RANGE3", "First Class price range");
-$smarty->assign("OUR_COMMISION", "Our commission");
-
-// timetable
-$smarty->assign("TIMETABLE", "Timetable");
-$smarty->assign("TRANSFER_LIST", "Transfer List");
-$smarty->assign("SHOW_TRANSFERS", "Show Transfers");
-$smarty->assign("REQUIRED", "Required");
-$smarty->assign("SORT", "Sort");
-$smarty->assign("NO_EXTRAS", "No extras");
-$smarty->assign("STAFF_NOTE", "Staff Notes");
-$smarty->assign("NOTES_TO_DRIVER", "Notes to Driver");
-$smarty->assign("FINAL_NOTE", "Final Note");
-$smarty->assign("RAZDUZENO_CASH", "Naplaćeno - Cash");
-$smarty->assign("UPLOAD_PDF_RECEIPT", "Upload PDF Receipt");
-$smarty->assign("DOWNLOAD_RECEIPT", "Download Receipt");
-$smarty->assign("DELETE_RECEIPT", "Delete Receipt");
-$smarty->assign("SUBDRIVERS", "Subdrivers");
-$smarty->assign("MY_EXPENSES", "My Expenses");
-$smarty->assign("EXPENSE", "Expense");
-$smarty->assign("DATUM", "Date");
-$smarty->assign("AMOUNT", "Amount");
-$smarty->assign("CO_EMAIL", "Company Email");
-$smarty->assign("CO_NAME", "Company Name");
-$smarty->assign("CO_ADDRESS", "Company Address");
-$smarty->assign("TELEPHONE", "Telephone");
-$smarty->assign("EXPENSES_REPORT", "Expenses - Report");
-$smarty->assign("SHOW_EXPENSES", "Show Expenses");
-$smarty->assign("OPTIONAL", "optional");
-$smarty->assign("NOTESS", "Notes");
-$smarty->assign("TOTAL_CARD", "Total Card");
-$smarty->assign("TOTAL_CASH", "Total Cash");
-$smarty->assign("TOTAL_PAID", "Total Paid");
-$smarty->assign("TOTAL_VALUE", "Total Value");
-
-// reports
-$smarty->assign("TRANSFERS_SUMMARY", "Transfers Summary");
-$smarty->assign("TRANSFERS_SUMMARY_BOOKING", "Transfers Summary by Booking Date");
-$smarty->assign("TRANSFERS_SUMMARY_DESCRIPTION","
-&middot; canceled transfers excluded <br>
-&middot; Temp transfers excluded <br>
-&middot; all prices in EUR <br>
-&middot; ordered by Date <br>
-");
-$smarty->assign("BOOKING_DATE", "Booking Date");
-$smarty->assign("SHOW_DETAILS", "Show details");
-$smarty->assign("SUBMIT", "Submit");
-$smarty->assign("TOTAL_TRANSFERS", "Total number of transfers");
-$smarty->assign("CARD", "Card");
-$smarty->assign("NETTO", "Net Income");
-$smarty->assign("ADMIN_ORDERS", "Admin orders");
-$smarty->assign("AGENT_ORDERS", "Agent orders");
-$smarty->assign("API_ORDERS", "API orders");
-$smarty->assign("TAXI_SITE_ORDERS", "Taxi site orders");
-$smarty->assign("SITE_ORDERS", "Site orders");
-$smarty->assign("LEGEND", "Legend");
-$smarty->assign("PRICE_LIST", "Price list");
-$smarty->assign("SUMMARY_INVOICE_AGENT", "Summary Invoice Agent");
-$smarty->assign("AGENTS_WITH_TRANSFERS", "Agents with transfers");
-$smarty->assign("AGENTS_BALANCE", "Agent transfers");
-$smarty->assign("EXCHANGE_RATE", "Exchange Rate");
-$smarty->assign("EUR_TO_RSD", "1 EUR = ");
-$smarty->assign("SET_NEW_RATE", "Save New Rate");
-$smarty->assign("INVOICES_AGENTS", "Invoices");
-$smarty->assign("NEW_AGENT_INVOICE", "New Agent Invoice");
-$smarty->assign("NEW_DRIVER_INVOICE", "New Driver Invoice");
-$smarty->assign("STARTDATE", "Start date");
-$smarty->assign("ENDDATE", "End date");
-$smarty->assign("INVOICENUMBER", "Invoice Number");
-$smarty->assign("INVOICEDATE", "Invoice Date");
-$smarty->assign("AMOUNTEUR", "Total EUR");
-$smarty->assign("VATTOTAL", "Total VAT");
-$smarty->assign("CLIENT_EMAILS", "Client Emails");
-$smarty->assign("CLIENT_EMAIL_LIST", "Client Email List");
-$smarty->assign("DRIVERS_EMAIL_LIST", "Drivers Email List");
-$smarty->assign("SHOW_CLIENTS", "Show Clients");
-$smarty->assign("SHOW_EMAILS", "Show Emails");
-$smarty->assign("USER_TYPE", "User Type");
-$smarty->assign("AGENT_REPORT", "Agent Report");
-$smarty->assign("APPROVED", "Approved");
-
-// driver confirmation
-	$smarty->assign("SERVICES_DESC1", "
-		Service includes vehicle and driver
-	");
-
-	$smarty->assign("SERVICES_DESC2", "
-		Prices are per vehicle, not per person
-	");
-
-	$smarty->assign("SERVICES_DESC5", "
-		One piece of medium luggage and one piece of hand luggage per passenger are free of charge
-	");
-
-	$smarty->assign("SERVICES_DESC6", "
-		We will send you driver`s contact information by email
-	");
-
-	$smarty->assign("SERVICES_DESC7", "
-			Your driver will meet you with the nameplate at the pick up point. Keep your phone turned on
-	");
-
-	$smarty->assign("SERVICES_DESC3", "
-			Waiting at the airports up to one hour after landing time is free
-	");
-
-	$smarty->assign("SERVICES_DESC4", "
-			 Flight delays are monitored
-	");
-
-	$smarty->assign("SERVICES_DESC8", "
-			 In case of delay, cancellation or other unforeseen circumstances,
-			 you are obligated to inform your driver (local operator) or in case
-			 of emergency our Call Centre +381646597200
-	");
-
-	$smarty->assign("SERVICES_DESC9", "
-			In case that you have not received driver's contact
-			information by e-mail 24 hours before the transfer, please contact us.
-	");
-
-
-// translator
-$smarty->assign("POLICIES", "Policies");
-$smarty->assign("ENGLISH", "English");
-$smarty->assign("RUSSIAN", "Russian");
-$smarty->assign("FRENCH", "French");
-$smarty->assign("GERMAN", "German");
-$smarty->assign("ITALIAN", "Italian");
-$smarty->assign("LEN", " (EN)");
-$smarty->assign("LRU", " (RU)");
-$smarty->assign("LFR", " (FR)");
-$smarty->assign("LDE", " (DE)");
-$smarty->assign("LIT", " (IT)");
-$smarty->assign("COUNTRYNAME", "Country name");
-$smarty->assign("COUNTRYDESC", "Country description");
-$smarty->assign("PLACENAME", "Location name");
-
-$smarty->assign("DRIVER_PRICE", "Driver Price");
-$smarty->assign("PROVISIONPERC", "Provision %");
-
-$smarty->assign("COUNTRYISO", "Country ISO");
-$smarty->assign("COUNTRYCODE", "Country code");
-$smarty->assign("COUNTRYCODE3", "Country code 3");
-$smarty->assign("PHONEPREFIX", "Phone prefix");
-
-// coupons
-$smarty->assign("CODE", "Code");
-$smarty->assign("VALIDFROM", "Valid From");
-$smarty->assign("VALIDTO", "Valid To");
-$smarty->assign("TRANSFERFROMDATE", "From Date");
-$smarty->assign("TRANSFERTODATE", "To Date");
-$smarty->assign("LIMITLOCATIONID", "Limit Location");
-$smarty->assign("WEEKDAYSONLY", "Weekdays Only");
-$smarty->assign("RETURNONLY", "Return Only");
-$smarty->assign("TIMESUSED", "Times Used");
-
-$smarty->assign("REFRESH_CACHE", "Refresh Cache");
-
-// reviews
-$smarty->assign("SURVEY", "Survey");
-$smarty->assign("SEND_EMAIL_SURVEY", "Send Email Survey");
-$smarty->assign("SURVEY_SENT", "Survey sent at");
-$smarty->assign("ROUTE_REVIEWS", "Reviews");
-$smarty->assign("ORDERID", "Order ID");
-$smarty->assign("USEREMAIL", "User Email");
-$smarty->assign("USERNAME", "User Name");
-$smarty->assign("COMMENT", "Comment");
-$smarty->assign("SCORESERVICE", "Score - Service");
-$smarty->assign("SCOREDRIVER", "Score - Driver");
-$smarty->assign("SCORECLEAN", "Score - Cleanliness");
-$smarty->assign("SCOREVALUE", "Score - Value for money");
-$smarty->assign("SCOREWEBSITE", "Score - Website");
-$smarty->assign("SCORETOTAL", "Score - Total");
-$smarty->assign("DRIVERONTIME", "Was driver on time");
-$smarty->assign("RECOMMEND", "Would recommend");
-$smarty->assign("BOOKAGAIN", "Would book again");
-$smarty->assign("SURVEY_REPORT", "Survey - Report");
-$smarty->assign("SHOW_REVIEWS", "Show results");
-$smarty->assign("SURVEY_RESULTS_LIST", "Survey results - List");
-
-$smarty->assign("EXTRA_SERVICES", "Extras Master");
-$smarty->assign("ANY", "All");
-$smarty->assign("ONLY_EXTRAS", "Only with extras");
-
-$smarty->assign("PAY_CASH", "Cash");
-$smarty->assign("PAY_INVOICE", "Bank transfer");
-$smarty->assign("PAY_ONLINE", "Online");
-
-// Josip Special Dates
-$smarty->assign("SPECIALDATE", "Date");
-$smarty->assign("SPECIALDATES", "Special Dates");
-$smarty->assign("SPECIALTIMES", "Special Times");
-$smarty->assign("STARTTIME", "Start Time");
-$smarty->assign("ENDTIME", "End Time");
-$smarty->assign("CORRECTIONPERCENT", "Percent");
-
-//Company info - Leo
-$smarty->assign("CO_NAME", "Company name");
-$smarty->assign("CO_ADDRESS", "Company address");
-$smarty->assign("CO_TEL", "Company phone");
-$smarty->assign("CO_FAX", "Company fax");
-$smarty->assign("CO_CITY", "Company city");
-$smarty->assign("CO_COUNTRY", "Company country");
-$smarty->assign("CO_ZIP", "Company ZIP Code");
-$smarty->assign("CO_TAXNO", "Company tax number");
-$smarty->assign("CO_BANK", "Company bank");
-$smarty->assign("CO_ACCOUNTNO", "Company account number");
-$smarty->assign("CO_IBAN", "Company IBAN");
-$smarty->assign("CO_SWIFT", "Company SWIFT code");
-$smarty->assign("CO_DOMESTICTAX", "Company domestic tax");
-$smarty->assign("CO_FOREIGNTAX", "Company foreign tax");
-$smarty->assign("CO_EURINFO", "Company EUR info");
-$smarty->assign("CO_PAYMENTINFO", "Company payment info");
-$smarty->assign("CO_FACEBOOK", "Facebook");
-$smarty->assign("CO_TWITTER", "Twitter");
-$smarty->assign("CO_LINKEDIN", "LinkedIn");
-$smarty->assign("CO_YOUTUBE", "Youtube");
-$smarty->assign("CO_GOOGLEPLUS", "Google+");
-//Extra Services
-$smarty->assign("ID", "Service ID");
-$smarty->assign("DISPLAYORDER", "Service Display order");
-$smarty->assign("SERVICEEN", "Extra service (EN)");
-$smarty->assign("SERVICEDE", "Extra service (DE)");
-$smarty->assign("SERVICERU", "Extra service (RU)");
-$smarty->assign("SERVICEFR", "Extra service (FR)");
-$smarty->assign("SERVICEIT", "Extra service (IT)");
-$smarty->assign("SERVICESE", "Extra service (SE)");
-$smarty->assign("SERVICENO", "Extra service (NO)");
-$smarty->assign("SERVICEES", "Extra service (ES)");
-$smarty->assign("SERVICENL", "Extra service (NL)");
-$smarty->assign("LSE", " (SE)");
-$smarty->assign("LNO", " (NO)");
-$smarty->assign("LES", " (ES)");
-$smarty->assign("LNL", " (NL)");
-$smarty->assign("COUNTRYNAMERU", "Country name (RU)");
-$smarty->assign("DESCRIPTIONSE", "Description (SE)");
-$smarty->assign("DESCRIPTIONNO", "Description (NO)");
-$smarty->assign("DESCRIPTIONES", "Description (ES)");
-$smarty->assign("DESCRIPTIONNL", "Description (NL)");
-$smarty->assign("SUBDRIVER_HISTORY", "Subdriver History");
-$smarty->assign("AGENT_TRANSFERS", "Agent transfers");
-$smarty->assign("DEPOSIT", "Deposit (EUR)");*/
+define("MORE_INFO","More info");
+define("ALL","All");
+define("TODAY_UNCONFIRMED_DECLINED","Today unconfirmed/declined");
+define("TOMORROW_UNCORFIRMED_DECLINED","Tomorrow unconfirmed/declined");
