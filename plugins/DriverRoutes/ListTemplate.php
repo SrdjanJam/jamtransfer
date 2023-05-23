@@ -10,33 +10,33 @@
 ?>
 
 <script type="text/x-handlebars-template" id="ItemListTemplate">
-		<div class="row row-edit">
-			<div class="col-sm-1">
-				<?=ROUTEID;?>
-			</div>							
-			<div class="col-sm-2">
-				<?=ROUTENAME;?>
-			</div>	
-			<div class="col-md-1">
-				<?=CONNECTED;?>
-			</div>				
-			<div class="col-md-1">
-				<?=ACTIVE;?>
-			</div>
-			<div class="col-md-1">
-				<?=ONETOTWO;?>
-			</div>	
-			<div class="col-md-1">
-				<?=TWOTOONE;?>
-			</div>			
-			<!-- SURCATEGORY: -->
-			<div class="col-md-3">
-				<?=SURCATEGORY;?>
-			</div>
-			<div class="col-md-1">
-				<?=PRICE;?>
-			</div>				
+	<div class="row row-edit">
+		<div class="col-sm-1">
+			<?=ROUTEID;?>
+		</div>							
+		<div class="col-sm-2">
+			<?=ROUTENAME;?>
+		</div>	
+		<div class="col-md-1">
+			<?=CONNECTED;?>
+		</div>				
+		<div class="col-md-1">
+			<?=ACTIVE;?>
 		</div>
+		<div class="col-md-1">
+			<?=ONETOTWO;?>
+		</div>	
+		<div class="col-md-1">
+			<?=TWOTOONE;?>
+		</div>			
+		<!-- SURCATEGORY: -->
+		<div class="col-md-3">
+			<?=SURCATEGORY;?>
+		</div>
+		<div class="col-md-1">
+			<?=PRICE;?>
+		</div>				
+	</div>
 
 	{{#each Item}}
 				
@@ -72,7 +72,7 @@
 						</div>
 						<!-- Prices: -->
 						<div class="col-md-1">
-							<span class="show_hide"><a target='_blank' href='services/route/{{RouteID}}'>Vehicles</a></span>
+							<span class="show_hide"><a target='_blank' href='services/route/{{RouteID}}'><?=VEHICLES;?></a></span>
 						</div>
 				</div>
 			</div>
