@@ -1013,3 +1013,28 @@ define("MORE_INFO","More info");
 define("ALL","All");
 define("TODAY_UNCONFIRMED_DECLINED","Today unconfirmed/declined");
 define("TOMORROW_UNCORFIRMED_DECLINED","Tomorrow unconfirmed/declined");
+
+define("DRIVERS","Drivers");
+define("ROUTES","Routes");
+
+define("PROVISION","Provision");
+
+define("ORDER","Order");
+define("BOOKED_DRIVER","Booked driver");
+define("BOOKED_PRICE","Booked price");
+define("BOOKED_VEHICLE","Booked vehicle");
+define("DRIVERS_PRICE","Driver's price");
+define("OTHER_DRIVER_FOR_THIS_ROUTE","Other drivers for this route");
+define("VEHICLE_TYPE","Vehicle type");
+define("FIRST_CONFIRM_REQUEST","First confirm Request");
+define("LOW_OFFER_REQUEST","Low offer Request");
+define("SELECT_TERMINAL_FOR_THIS_TRANSFER","Select Terminal for this transfer");
+
+define("DATES","Dates");
+
+define("APPROVED_FUEL_PRICE","Approved Fuel price");
+
+define("SELECT_OR","Select or");
+define("UPLAD_PROGRESS","Upload progress");
+define("UPLOADED","Uploaded");
+define("IMAGES_ON_SERVER","Images on Server");

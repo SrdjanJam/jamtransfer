@@ -61,15 +61,15 @@
 						</div>
 						<!-- Prices: -->
 						<div class="col-md-1">
-							<span class="show_hide"><a target='_blank' href='services/vehicleType/{{VehicleTypeID}}'>Routes</a></span>
+							<span class="show_hide"><a target='_blank' href='services/vehicleType/{{VehicleTypeID}}'><?=ROUTES;?></a></span>
 						</div>
 						<!-- Dates: -->
 						<div class="col-md-1">
-							<span class="show_hide"><a target='_blank' href='offDuty/{{VehicleID}}'>Dates</a></span>
+							<span class="show_hide"><a target='_blank' href='offDuty/{{VehicleID}}'><?=DATES;?></a></span>
 						</div>						
 						<!-- Vehicles: -->
 						<div class="col-md-1">
-							<span class="show_hide"><a target='_blank' href='subVehicles/{{VehicleTypeID}}'>Vehicles</a></span>
+							<span class="show_hide"><a target='_blank' href='subVehicles/{{VehicleTypeID}}'><?=VEHICLES;?></a></span>
 						</div>
 				</div>
 			</div>
