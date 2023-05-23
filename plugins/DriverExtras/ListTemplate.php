@@ -27,11 +27,11 @@ if (isset($_SESSION['UseDriverID']) && $_SESSION['UseDriverID']>0) {
 		</div>		
 		
 		<div class="col-md-1">
-			Driver Price
+			<?=DRIVER_PRICE;?>
 		</div>		
 		
 		<div class="col-md-1">
-			Provision (%)
+			<?=PROVISION;?> (%)
 		</div>		
 		
 		<div class="col-md-1">
@@ -71,7 +71,7 @@ if (isset($_SESSION['UseDriverID']) && $_SESSION['UseDriverID']>0) {
 			
 			<!-- Price -->
 			<div class="col-md-1 extras" data-id="{{ID}}">
-				<span class="price">{{Price}}</span>
+				<span>{{Price}}</span>
 			</div>
 
 		</div>
@@ -91,41 +91,30 @@ if (isset($_SESSION['UseDriverID']) && $_SESSION['UseDriverID']>0) {
 			var extrasname=$(this).parent().attr('data-name');
 			var driverextras=$(this).val();				
 			if ($(this).attr('name')=='DriverPrice') {
-				
 				var driverprice=$(this).val();
-				var provision=$(this).parent().parent().find('#Provision').val();
 				driverextras=1;
 			}
-			else if ($(this).attr('name')=='Provision') {
+			else var driverprice=0;				
+			if ($(this).attr('name')=='Provision') {
 				var provision=$(this).val();
-				var driverprice=$(this).parent().parent().find('#DriverPrice').val();
 				driverextras=1;
 			}	
-			else {
-				var driverprice=0;	
-				var provision=0;	
-			}	
+			else var provision=0;	
 			var base=window.rootbase;
 
 			if (window.location.host=='localhost') base=base+'/jamtransfer';
 			var link = base+'/plugins/DriverExtras/Save.php';
-			var param = "ExtrasID="+extrasid+"&ExtrasName="+extrasname+"&DriverPrice="+driverprice+"&Provision="+provision+"&DriverExtras="+driverextras+'&callback=?';
+			var param = "ExtrasID="+extrasid+"&ExtrasName="+extrasname+"&DriverPrice="+driverprice+"&Provision="+provision+"&DriverExtras="+driverextras;
 			var $t = $(this);
 			console.log(link+'?'+param);
 			$.ajax({
-				type: 'GET',
-				url: link+'?'+param,
-				async: false,
-				contentType: "application/json",
-				dataType: 'jsonp',
+				type: 'POST',
+				url: link,
+				data: param,
 				success: function(data) {
-					$t.parent().parent().find('.price').html(data.price);					
-					if (data.driverextras==0) {
-						$t.parent().parent().find('.show_hide').hide(500);
-						$t.parent().parent().find('.show_hide').val(0);
-						$t.parent().parent().find('.price').html('');
-					}	
-					if (data.driverextras==1) $t.parent().parent().find('.show_hide').show(500);
+					if (data==0) $t.parent().parent().find('.show_hide').hide(500);
+					if (data==1) $t.parent().parent().find('.show_hide').show(500);
+					
 					toastr['success'](window.success);	
 				}				
 			});
