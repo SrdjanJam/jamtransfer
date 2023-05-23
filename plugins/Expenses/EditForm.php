@@ -58,7 +58,7 @@ $currency = array(
 			<div class="col-md-6">
 				<div class="row">
 					<div class="col-md-3">
-						<label for="Approved">Approved</label>
+						<label for="Approved"><?=APPROVED;?></label>
 					</div>
 					<div class="col-md-9">
 						<large>{{yesNoSliderEdit Approved 'Approved' }}</large>
@@ -66,7 +66,7 @@ $currency = array(
 				</div>
 				{{#compare ApprovedFuelPrice ">" 0}}
 				<div class="row">
-					Approved Fuel price:{{ApprovedFuelPrice}}
+					<?=APPROVED_FUEL_PRICE;?>:{{ApprovedFuelPrice}}
 				</div>		
 				{{/compare}}
 				<div class="row">
