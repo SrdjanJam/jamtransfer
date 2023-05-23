@@ -323,7 +323,14 @@
 		})	
 		if($("#ItemEditForm"+id).valid() == false) {return false;}
 		var newData = $("#ItemEditForm"+id).serializeObject();
-		var formData = $("#ItemEditForm"+id).serialize();
+		var formData = $("#ItemEditForm"+id+" textarea:not('.textarea_html')").serialize();
+		
+		$(".textarea_html").each(function(){
+			var encodehtml=htmlEnc($(this).val());
+			formData=formData+'&'+$(this).attr('name')+'='+encodehtml;
+		});
+		console.log(formData);
+						
 		// update data on server
 		var url = window.root + 'Save.php';
 		var data = 'callback=?&id=' + id + '&' + formData + '&return=' + returnT;
@@ -461,4 +468,12 @@
 			// maxDate:'+1970/01/02' // and tommorow is maximum date calendar
 		});
 		$('.timepicker').clockTimePicker();	
-	}			
+	}	
+
+	function htmlEnc(s) {
+	  return s.replace(/&/g, '&amp;')
+		.replace(/</g, '%25lt;')
+		.replace(/>/g, '%25gt;')
+		.replace(/'/g, '%25#39;')
+		.replace(/"/g, '%25#34;');
+	}		

@@ -87,7 +87,7 @@
 						<label for="text"><?=DESCRIPTION;?></label>
 					</div>
 					<div class="col-md-9">
-						{{des_arr.en}}
+						{{{des_arr.en}}}
 						<!--<textarea name="des"  style="resize:none;width:100%;min-height:200px;">{{des_arr.en}}</textarea>!-->
 					</div>
 				</div>					
@@ -97,7 +97,7 @@
 						<label for="text"><?=DESCRIPTION;?> {{@key}} {{language}}</label>
 					</div>	
 					<div class="col-md-9">	
-						<textarea name='des_{{@key}}' style="resize:none;width:100%;min-height:200px;" >{{this}}</textarea>
+						<textarea class="textarea textarea_html" name='des_{{@key}}' style="resize:none;width:100%;min-height:200px;" >{{this}}</textarea>
 					</div>	
 				</div>	
 				{{/each}}
@@ -111,7 +111,7 @@
 </form>
 
 	<script>
-
+$(".textarea").destroy();
 		//bootstrap WYSIHTML5 - text editor
 		$(".textarea").wysihtml5({
 				"font-styles": true, //Font styling, e.g. h1, h2, etc. Default true
@@ -121,8 +121,10 @@
 				"link": true, //Button to insert a link. Default true
 				"image": true, //Button to insert an image. Default true,
 				"color": true //Button to change color of font 
-				
 		});
+		
+$
+
 		
 		// uklanja ikonu Saved - statusMessage sa ekrana
 		$("form").change(function(){

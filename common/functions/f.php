@@ -4802,4 +4802,15 @@ function getConnectedUserNamePlus($id) {
 	}
 }
 
-require_once ROOT.'/plugins/Booking/functions.php';
+function htmldecode(& $html)
+{
+	$html = str_replace('%gt;', '>', $html);
+	$html = str_replace('%lt;', '<', $html);
+	$html = str_replace('%quot;','"', $html);
+	//$html = str_replace('&amp;', '&', $html);
+	$html = str_replace('%#39;', '\'', $html);
+	$html = str_replace('%#34;', '\'', $html);
+	$html = str_replace('%ndash;', '-', $html);
+	return $html;
+}
+
