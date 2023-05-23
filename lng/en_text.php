@@ -1038,7 +1038,3 @@ define("SELECT_OR","Select or");
 define("UPLAD_PROGRESS","Upload progress");
 define("UPLOADED","Uploaded");
 define("IMAGES_ON_SERVER","Images on Server");
-
-define("NICE","Nice");
-define("LYON","Lyon");
-define("SPLIT","Split");
