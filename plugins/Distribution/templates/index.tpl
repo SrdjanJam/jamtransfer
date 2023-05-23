@@ -90,7 +90,7 @@
     <body>
 
 		<div style="text-align: center;">
-			<a class='marked' href='{$root_home}calendar'>Calendar</a>	
+			<a class='marked' href='{$root_home}calendar'>{CALENDAR}</a>	
 			&nbsp;&nbsp;&nbsp;&nbsp;
 			&nbsp;&nbsp;&nbsp;&nbsp;			
 			<a href='{$root_home}distribution/{$days[2]}'>
@@ -108,12 +108,12 @@
 			</a>
 			&nbsp;&nbsp;&nbsp;&nbsp;
 			&nbsp;&nbsp;&nbsp;&nbsp;
-			<a class='marked' href='{$root_home}distribution/vehicles'>Vehicles</a>
+			<a class='marked' href='{$root_home}distribution/vehicles'>{VEHICLES}</a>
 		</div> <!-- End of text-align: center -->
 
 		<div class="transfers">
 			<div class="drop-wrapper ">
-				<h3>Drivers:</h3>
+				<h3>{DRIVERS}:</h3>
 			
 				{section name=pom1 loop=$drivers}
 					<div class="dropzoneN" data-svid="{$drivers[pom1].SubVehicleID}" data-id="{$drivers[pom1].DriverID}">
@@ -171,7 +171,7 @@
 
 			<!-- For drop: ========================================================== -->
 			<div class="drag-wrapper dropzoneN" data-id='0' data-svid='0'>
-				<h3>Routes:</h3>
+				<h3>{ROUTES}:</h3>
 				<div class="sort">
 
 					{section name=pom1 loop=$transfers}
