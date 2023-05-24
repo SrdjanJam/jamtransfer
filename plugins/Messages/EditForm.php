@@ -24,7 +24,7 @@
 		<!-- MSG: -->
 		<div class="row">
 			<div class="col-md-3">
-				<label for="PageLink">Page Link</label>
+				<label for="PageLink"><?=PAGE_LINK;?></label>
 			</div>
 			<div class="col-md-9">
 				<a target='_blank' href='<?=ROOT_HOME ?>{{PageLink}}'>{{PageLink}}</a>
@@ -46,7 +46,7 @@
 		<!-- Answer: -->
 		<div class="row">
 			<div class="col-md-3">
-				<label for="Answer">Answer</label>
+				<label for="Answer"><?=ANSWER;?></label>
 			</div>
 			<div class="col-md-9">
 				<textarea class="textarea" name="Answer" id="Answer" cols="40" rows="4"
@@ -57,7 +57,7 @@
 		<!-- SendMail: -->
 		<div class="row">
 			<div class="col-md-3">
-				<label for="SendMail">Send Mail</label>
+				<label for="SendMail"><?=SEND_MAIL;?></label>
 			</div>
 			<div class="col-md-9">
 				<input type="checkbox" name="SendMail" style="height: 0.8em">	
@@ -68,7 +68,7 @@
 		<!-- Solver: -->
 		<div class="row">
 			<div class="col-md-3">
-				<label for="Message">Solver</label>
+				<label for="Message"><?=SLOVER;?></label>
 			</div>
 			<div class="col-md-9">
 				{{userSelect SolverID "91" "SolverID"}}
@@ -78,7 +78,7 @@
 		<!-- STATUS: -->
 		<div class="row">
 			<div class="col-md-3">
-				<label for="Status">Solved</label>
+				<label for="Status"><?=SOLVED;?></label>
 			</div>
 			<div class="col-md-9 solved">
 				{{yesNoSliderEdit Status 'Status' }}						
@@ -87,7 +87,7 @@
 		
 		<!-- SOLVED TIME: -->
 		<div class="row">
-			<div class="col-md-3 "><label>Solved Date</label></div>
+			<div class="col-md-3 "><label><?=SOLVED_DATE;?></label></div>
 			<div class="col-md-9">
 				<input type="text" name="SolvedDate" class="w75 datepicker" value="{{SolvedDate}}">
 			</div>
