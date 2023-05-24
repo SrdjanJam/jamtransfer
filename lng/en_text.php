@@ -1038,3 +1038,32 @@ define("SELECT_OR","Select or");
 define("UPLAD_PROGRESS","Upload progress");
 define("UPLOADED","Uploaded");
 define("IMAGES_ON_SERVER","Images on Server");
+
+define("PAGE_LINK","Page Link");
+define("ANSWER","Answer");
+define("SEND_MAIL","Send Mail");
+define("SLOVER","Solver");
+define("SOLVED","Solved");
+define("SOLVED_DATE","Solved Date");
+
+define("IS_NEW_ENTRY","Is New entry");
+define("PHASE","Phase");
+
+define("ADD_RETURN_TRANSFER","Add Return Transfer");
+define("DRIVER_S","Driver`s");
+define("DISCOUNT","Discount");
+define("DUE_DATE","Due Date");
+define("AND_","And");
+define("NO_ROUTE","No route");
+define("SERVICE_NAME","Service Name");
+define("DRIVERS_PRICE","Drivers Price");
+define("QUANTITY","Quantity");
+define("PARTNER_S","Partner's");
+define("SCHEDULE_FOR","Schedule for");
+define("SUB_DRIVER","SubDriver");
+define("MESSAGE_FOR_DRIVER","Message for driver");
+define("MESSAGE_FROM_DRIVER","Message from driver");
+define("RECEIVED_CASH","Received cash");
+define("AGENT_REFERENCE","Agent Reference");
+define("OTHER_BOOKINGS","Other bookings");
+define("PARTNER","Partner");
