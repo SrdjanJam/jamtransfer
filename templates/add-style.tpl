@@ -477,7 +477,7 @@ textarea{ width:90% !important; }
 
 /* 1 */
 @media screen and (min-width: 1201px) {
-    #show, #show-2{
+    #show, #hide{
         display: inline-block;
     }
 		
@@ -517,7 +517,7 @@ textarea{ width:90% !important; }
     }
 
     
-    #show, #show-2{
+    #show, #hide{
         display: inline-block;
     }
 
@@ -668,7 +668,7 @@ textarea{ width:90% !important; }
         margin-left:0 !important;
     }
 
-    .show-edit{
+    .button-toggle{
 		cursor:pointer; font-weight:bold; color: #0584f1; text-shadow: #0584f1 0px 0px 1px;
 	}
 
@@ -676,7 +676,7 @@ textarea{ width:90% !important; }
 		font-size: 20px;margin: 5px;color: #0584f1;
 	}
 
-	.show-edit:hover,.fa-bars-edit:hover{
+	.button-toggle:hover,.fa-bars-edit:hover{
 		cursor:pointer; font-weight:bold; color: #0b70c9;
 	}
 
@@ -690,7 +690,9 @@ textarea{ width:90% !important; }
 
     /* ---------------------------- */
 
-    
+    .filter{
+		display: none;
+	}
 
 }
 
