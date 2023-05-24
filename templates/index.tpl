@@ -412,8 +412,8 @@
 
 					<!-- Show and Hide Filters buttons: -->
 					<div id="footer-filters">
-						<div id="filter-show" class="show-edit"><i class="fa-solid fa-bars fa-bars-edit"></i>Show Footer</div>
-						<div id="filter-show-2" class="show-edit"><i class="fa-solid fa-bars fa-bars-edit"></i>Hide Footer</div>
+						<div id="filter-show" class="button-toggle"><i class="fa-solid fa-bars fa-bars-edit"></i>Show Footer</div>
+						<div id="filter-hide" class="button-toggle"><i class="fa-solid fa-bars fa-bars-edit"></i>Hide Footer</div>
 					</div>
 
 					<!-- Filter -->
@@ -694,13 +694,13 @@
 			if ($(window).width() > 1550) {
 				$('.filter-wrapper').show();
 				$('#filter-show').hide();
-				$('#filter-show-2').hide();
+				$('#filter-hide').hide();
 			}
 
 			if ($(window).width() < 1499) {
 				$('.filter-wrapper').hide();
 				$('#filter-show').show();
-				$('#filter-show-2').hide();
+				$('#filter-hide').hide();
 				
 			}
 
@@ -710,13 +710,13 @@
 		$('#filter-show').click(function() {
 			$('.filter-wrapper').toggle(600);
 			$('#filter-show').hide();
-			$('#filter-show-2').show();
+			$('#filter-hide').show();
 		});
 
-		$('#filter-show-2').click(function() {
+		$('#filter-hide').click(function() {
 			$('.filter-wrapper').toggle(600);
 			$('#filter-show').show();
-			$('#filter-show-2').hide();
+			$('#filter-hide').hide();
 		});
 
 		resizeContent();
