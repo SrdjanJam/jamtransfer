@@ -81,7 +81,7 @@
 				</div>					
 				<div class="row">
 					<div class="col-md-3">
-						<label for="IsNew">Is New entry</label>
+						<label for="IsNew"><?=IS_NEW_ENTRY;?></label>
 					</div>
 					<div class="col-md-9">
 						{{yesNoSliderEdit IsNew 'IsNew' }}
@@ -89,7 +89,7 @@
 				</div>				
 				<div class="row">
 					<div class="col-md-3">
-						<label for="Phase">Phase</label>
+						<label for="Phase"><?=PHASE;?></label>
 					</div>
 					<div class="col-md-9">
 						<input type="number" name="Phase" id="Phase" class="w1" value="{{Phase}}">
