@@ -176,7 +176,7 @@ hr {
 	box-shadow: 3px 3px 4px 0px #3b75b9;
 }
 
-.show-edit{
+.button-toggle{
 	cursor:pointer; font-weight:bold; color: #0584f1; text-shadow: #0584f1 0px 0px 1px;
 }
 
@@ -184,7 +184,7 @@ hr {
 	font-size: 20px;margin: 5px;color: #0584f1;
 }
 
-.show-edit:hover,.fa-bars-edit:hover{
+.button-toggle:hover,.fa-bars-edit:hover{
 	cursor:pointer; font-weight:bold; color: #0b70c9;
 }
 
@@ -200,8 +200,8 @@ hr {
 
 	<!-- Show and Hide Filters buttons: -->
 	<div id="schedule-filters">
-		<div id="show" class="show-edit"><i class="fa-solid fa-bars fa-bars-edit"></i>Show Filters</div>
-		<div id="show-2" class="show-edit"><i class="fa-solid fa-bars fa-bars-edit"></i>Hide Filters</div>
+		<div id="show" class="button-toggle"><i class="fa-solid fa-bars fa-bars-edit"></i>{$SHOW_FILTERS}</div>
+		<div id="hide" class="button-toggle"><i class="fa-solid fa-bars fa-bars-edit"></i>{$HIDE_FILTERS}</div>
 	</div>
 
 
@@ -232,7 +232,7 @@ hr {
 					</select>		
 				</div>
 				<div class="col-sm-2">
-					<button type="submit" class="btn btn-primary btn-primary-edit">Go</button>
+					<button type="submit" class="btn btn-primary btn-primary-edit">{$GO}</button>
 				</div>
 			</form> <!-- /form -->
 
@@ -243,7 +243,7 @@ hr {
 	<div class="row row-shedule">
 		{assign var=counter value=1}
 		{if $sdArray|count eq 0}
-			<h1 class='red'>No transfers for this period</h1>
+			<h1 style="color: chocolate;">{$NO_TRANSFERS_FOR_THIS_PERIOD}</h1>
 		{/if}
 		{section name=pom loop=$sdArray}
 			{if $counter eq 1}
@@ -271,7 +271,7 @@ hr {
 						{/section}
 
 					{else}
-							No Choosen Schedule.
+							{$NO_CHOOSEN_SCHEDULE}
 
 					{/if}
 
@@ -303,13 +303,13 @@ function resize(){
 	if ($(window).width() > 1553) {
 		$('.filter').show();
 		$('#show').hide();
-		$('#show-2').hide();
+		$('#hide').hide();
 	}
 
 	if ($(window).width() < 1552) {
 		$('.filter').hide();
 		$('#show').show();
-		$('#show-2').hide();
+		$('#hide').hide();
 		
 	}
 
@@ -319,13 +319,13 @@ function resize(){
 $('#show').click(function() {
 	$('.filter').toggle(600);
 	$('#show').hide();
-	$('#show-2').show();
+	$('#hide').show();
 });
 
-$('#show-2').click(function() {
+$('#hide').click(function() {
 	$('.filter').toggle(600);
 	$('#show').show();
-	$('#show-2').hide();
+	$('#hide').hide();
 });
 
 resize();
