@@ -230,12 +230,12 @@
 								</span>
 
 								<!-- Logout link: -->
-								<div style="margin-top:12px;text-decoration:underline;text-align:center;"><a href='logout.php'>Logout <i class="fa fa-sign-out"></i></a></div>
+								<div style="margin-top:12px;text-decoration:underline;text-align:center;"><a href='logout.php'>{$LOGOUT} <i class="fa fa-sign-out"></i></a></div>
 
 								<ul class="dropdown-menu animated fadeInRight m-t-xs">
-									<li><a href="profile" data-param="">Profile</a></li>
+									<li><a href="profile" data-param="">{$PROFILE}</a></li>
 									<li class="divider"></li>
-									<li><a href='logout.php'>Logout</a></li>
+									<li><a href='logout.php'>{$LOGOUT}</a></li>
 								</ul>
 
 							</div>
@@ -249,16 +249,16 @@
 							{if isset($smarty.session.UseDriverName)}
 								<!-- Header in navbar - nav-header nav-header-edit -->
 								<li class="nav-header nav-header-edit">
-									<h3 id="set-as">Seted as:</h3>
+									<h3 id="set-as">{$SETED_AS}:</h3>
 									<h3 class="cut-name">{$smarty.session.UseDriverName}</h3>
-									<a href="setout.php" id="a-setout">Setout &nbsp;<i class="fas fa-sign-out-alt"></i></a>	
+									<a href="setout.php" id="a-setout">{$SETOUT} &nbsp;<i class="fas fa-sign-out-alt"></i></a>	
 								</li>
 							{else}
 								{if isset ($smarty.cookies.UseDriverName)}	
 									<!--Header in navbar - Set as with cookie -->
 									<li class="nav-header nav-header-edit">
 										<a href="satAsDriver/{$smarty.cookies.UseDriverID}" style="padding-left:5px;padding-right:0px;">
-											<h3 id="set-us-2">Set as: <i class="fas fa-sign-in-alt"></i></h3>
+											<h3 id="set-us-2">{$SET_AS}: <i class="fas fa-sign-in-alt"></i></h3>
 											<h3 class="cut-name-2">{$smarty.cookies.UseDriverName}</h3>
 										</a>
 									</li>
@@ -299,10 +299,10 @@
 				   
 				   <!-- developing status -->
 				   <ul id="status" style="list-style-type:none;">
-						<li>A - Active</li>
-						<li>T - Test</li>
-						<li>D - Development</li>
-						<li>P - Plan</li>
+						<li>{$A_ACTIVE}</li>
+						<li>{$T_TEST}</li>
+						<li>{$D_DEVELOPMENT}</li>
+						<li>{$P_PLAN}</li>
 				   </ul>
 
 				</div> <!-- End of sidebar-collapse -->
@@ -339,14 +339,14 @@
 
 						<ul class="nav navbar-top-links navbar-right">
 							<!-- Opener dialog button: -->
-							<li><button type="button" id="opener-help" class="button-3">Help</button></li>
-							<li><button type="button" id="opener-message" class="button-3">Message</button></li>
+							<li><button type="button" id="opener-help" class="button-3">{$HELP}</button></li>
+							<li><button type="button" id="opener-message" class="button-3">{$MESSAGE}</button></li>
 
 							<!-- Prev version: -->
 							<!-- <li> <h2><span class="m-r-sm text-muted">{$title} - {$smarty.session.log_title}</span></h2> </li> -->
 
 							<!-- Logout: -->
-							<li><a href='logout.php'><i class="fa fa-sign-out"></i>Logout</a></li>
+							<li><a href='logout.php'><i class="fa fa-sign-out"></i>{$LOGOUT}</a></li>
 
 						</ul>
 						
@@ -378,9 +378,9 @@
 					<!-- .header row -->
 					<div class="header row"> 
 						<div class="pull-left">
-							<span>Rule: <strong>{$smarty.request.rulesType}</strong></span>
-							{if $routeName}<span>Route:<strong>{$routeName}</strong></span>{/if}
-							{if $vehicleName}<span>Vehicle:<strong>{$vehicleName}</strong></span>{/if}
+							<span>{$RULE}: <strong>{$smarty.request.rulesType}</strong></span>
+							{if $routeName}<span>{$ROUTE}:<strong>{$routeName}</strong></span>{/if}
+							{if $vehicleName}<span>{$VEHICLE}:<strong>{$vehicleName}</strong></span>{/if}
 
 						</div>
 
@@ -392,7 +392,7 @@
 				<div class="body row white-bg white-bg-edit">
 
 					{if isset($pageOLD)}
-						NOT MODEL VIEW CONTROL
+						{NOT_MODEL_VIEW_CONTROL}
 						{elseif isset($pageName) and $pageName ne ''}
 							{include file="{$root}/plugins/{$base}/templates/{$includeFileTpl}"}
 						{elseif $pageList}
@@ -412,8 +412,8 @@
 
 					<!-- Show and Hide Filters buttons: -->
 					<div id="footer-filters">
-						<div id="filter-show" class="button-toggle"><i class="fa-solid fa-bars fa-bars-edit"></i>Show Footer</div>
-						<div id="filter-hide" class="button-toggle"><i class="fa-solid fa-bars fa-bars-edit"></i>Hide Footer</div>
+						<div id="filter-show" class="button-toggle"><i class="fa-solid fa-bars fa-bars-edit"></i>{$SHOW_FOOTER}</div>
+						<div id="filter-hide" class="button-toggle"><i class="fa-solid fa-bars fa-bars-edit"></i>{$HIDE_FOOTER}</div>
 					</div>
 
 					<!-- Filter -->
@@ -446,7 +446,7 @@
 
 						{/if}
 						<div class="pull-right pull-right-edit col-md-2">
-							Powered by <strong><a href="https://taxicms.com/" target="_blank">TaxiCMS</a></strong>
+							{$POWERED_BY} <strong><a href="https://taxicms.com/" target="_blank">{$TAXI_CMS}</a></strong>
 						</div>
 						
 						

@@ -67,7 +67,7 @@
                                     </div>
                                     
                                         <span  class="small-box-footer">
-                                            {MORE_INFO} <i class="fa fa-arrow-circle-right"></i>
+                                            {$MORE_INFO} <i class="fa fa-arrow-circle-right"></i>
                                         </span>
                                     
                                 </div>
@@ -129,14 +129,14 @@
                                             {$notConfirmedOrders}
                                         </h3>
                                         <p>
-                                            {$NOT_CONFIRMED} {ALL}
+                                            {$NOT_CONFIRMED} {$ALL}
                                         </p>
                                     </div>
                                     <div class="icon">
                                         <i class="ion ion-ios7-alarm"></i>
                                     </div>
                                      <span class="small-box-footer">
-                                        {MORE_INFO} <i class="fa fa-arrow-circle-right"></i>
+                                        {$MORE_INFO} <i class="fa fa-arrow-circle-right"></i>
                                     </span>
                                 </div>
                             </a>
@@ -152,7 +152,7 @@
                                         </h3>
                                         <div style="overflow-x: hidden;overflow-y: hidden;">
                                             <p class="target">
-                                                {TODAY_UNCONFIRMED_DECLINED} 
+                                                {$TODAY_UNCONFIRMED_DECLINED} 
                                             </p>
                                         </div>
                                     </div>
@@ -160,7 +160,7 @@
                                         <i class="ion ion-ios7-alarm"></i>
                                     </div>
                                      <span class="small-box-footer">
-                                        {MORE_INFO} <i class="fa fa-arrow-circle-right"></i>
+                                        {$MORE_INFO} <i class="fa fa-arrow-circle-right"></i>
                                     </span>
                                 </div>
                             </a>
@@ -176,7 +176,7 @@
                                         </h3>
                                         <div style="overflow-x: hidden;overflow-y: hidden;">
                                             <p class="target">
-                                                {TOMORROW_UNCORFIRMED_DECLINED} 
+                                                {$TOMORROW_UNCORFIRMED_DECLINED} 
                                             </p>
                                         </div>
                                     </div>
@@ -184,7 +184,7 @@
                                         <i class="ion ion-ios7-alarm"></i>
                                     </div>
                                      <span class="small-box-footer">
-                                        {MORE_INFO} <i class="fa fa-arrow-circle-right"></i>
+                                        {$MORE_INFO} <i class="fa fa-arrow-circle-right"></i>
                                     </span>
                                 </div>
                             </a>
@@ -206,7 +206,7 @@
                                         <i class="ion ion-nuclear"></i>
                                     </div>
                                      <span class="small-box-footer">
-                                        {MORE_INFO} <i class="fa fa-arrow-circle-right"></i>
+                                        {$MORE_INFO} <i class="fa fa-arrow-circle-right"></i>
                                     </span>
                                 </div>
                             </a>
@@ -228,7 +228,7 @@
                                         <i class="fa fa-car"></i>
                                     </div>
                                      <span class="small-box-footer">
-                                        {MORE_INFO} <i class="fa fa-arrow-circle-right"></i>
+                                        {$MORE_INFO} <i class="fa fa-arrow-circle-right"></i>
                                     </span>
                                 </div>
                             </a>

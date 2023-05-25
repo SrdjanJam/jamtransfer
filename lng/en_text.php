@@ -159,6 +159,7 @@ define("ALL_DRIVERS", "All Partners");
 define("ALL_TRANSFERS", "All Transfers");
 define("APIUSER", "API User");
 define("APPROVED", "Approved");
+define("NOT_APPROVED", "Not approved");
 define("ARTICLE", "Article");
 define("ARTICLES", "Articles");
 define("ASCENDING", "Ascending");
@@ -558,6 +559,7 @@ define("TASK_DATE", "Date");
 define("TOP_ROUTE_ID", "ID");
 define("TO_NAME", "To Name");
 define("TASKS", "Tasks");
+define("TASK", "Task");
 
 define("UPDATED", "Updated");
 define("UPLOAD_IMAGES", "Drop Images Here");
@@ -1015,7 +1017,9 @@ define("TODAY_UNCONFIRMED_DECLINED","Today unconfirmed/declined");
 define("TOMORROW_UNCORFIRMED_DECLINED","Tomorrow unconfirmed/declined");
 
 define("DRIVERS","Drivers");
+define("DRIVER","Driver");
 define("ROUTES","Routes");
+define("ROUTE","Route");
 
 define("PROVISION","Provision");
 
@@ -1044,6 +1048,7 @@ define("ANSWER","Answer");
 define("SEND_MAIL","Send Mail");
 define("SLOVER","Solver");
 define("SOLVED","Solved");
+define("NOT_SOLVED","Solved");
 define("SOLVED_DATE","Solved Date");
 
 define("IS_NEW_ENTRY","Is New entry");
@@ -1067,3 +1072,64 @@ define("RECEIVED_CASH","Received cash");
 define("AGENT_REFERENCE","Agent Reference");
 define("OTHER_BOOKINGS","Other bookings");
 define("PARTNER","Partner");
+define("DRIVER_COMPANY","Driver company");
+define("PURCHASER","Purchaser");
+
+define("PLACEID","Place ID");
+define("PLACETYPEID","Place Type ID");
+
+define("NO_TRANSFERS_FOR_THIS_PERIOD","No transfers for this period");
+define("NO_CHOOSEN_SCHEDULE","No Choosen Schedule");
+define("REF_NO","Ref.No");
+define("EMERGENCY","Emergency");
+define("GO","Go");
+define("SHOW_FILTERS","Show Filters");
+define("HIDE_FILTERS","Hide Filters");
+
+define("FLAT_PLACE_ID","Flat Place ID");
+define("SEMI","Semi");
+
+define("PARALEL","Paralel");
+
+define("DISCARD","Discard");
+
+define("ZADUZENJE","Zaduženje");
+define("RAZDUZENJE","Razduženje");
+
+define("DATE_AND_TIME","Date & Time");
+
+define("FINISHED","Finished");
+define("MARK","Mark");
+
+define("SHOW_FOOTER","Show Footer");
+define("HIDE_FOOTER","Hide Footer");
+define("POWERED_BY","Powered by");
+define("TAXI_CMS","TaxiCMS");
+define("LOGOUT","Logout");
+define("SETED_AS","Seted as");
+define("SETOUT","Setout");
+define("SET_AS","Set as");
+define("A_ACTIVE","A - Active");
+define("T_TEST","T - Test");
+define("D_DEVELOPMENT","D - Development");
+define("P_PLAN","P - Plan");
+define("RULE","Rule");
+define("NOT_MODEL_VIEW_CONTROL","NOT MODEL VIEW CONTROL");
+
+define("SIGN_IN","Sign in");
+define("PASSWORD_FOR_TEST","Password for test");
+define("YOUR_ACCOUT_HAS_BEEN_BLOCKED","Your account has been blocked.");
+define("PLEASE_CONTACT_US_IMMEDIATELY","Please contact us immediately!");
+
+define("SEMI_ACTIVE","Semi Active");
+define("SORT_BY","Sort by");
+define("ASC","ASC");
+define("DESC","DESC");
+define("ALL_YEARS","All years");
+define("PAYMENT","Payment");
+define("TRANSFER","Transfer");
+
+define("AGENT","Agent");
+
+define("CONNECTION_TRANSFER","Connection transfer");
+define("ON_TRANSFER","On transfer");

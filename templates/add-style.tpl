@@ -485,7 +485,7 @@ textarea{ width:90% !important; }
 
 /* ===================================== */
 /* 2 */
-@media only screen and (max-width: 1550px) {
+@media screen and (max-width: 1550px) {
 
     /* .row-edit is in #show_items labels: */
     .row-edit div { border-right: none; }
@@ -612,7 +612,7 @@ textarea{ width:90% !important; }
 	}
 
     select{
-		width:100%;
+		width:90%;
 		margin-bottom: 5px;
 	}
 
@@ -695,6 +695,7 @@ textarea{ width:90% !important; }
 	}
 
 }
+
 
 /* ===================================== */
 /* 3 */

@@ -81,7 +81,7 @@
         <div class="vehicles"> 
 		
 			<div class="drop-wrapper">
-				<h3>{DRIVERS}:</h3>
+				<h3>{$DRIVERS}:</h3>
 
 				{section name=pom1 loop=$drivers} {* $vehicles changes to $drivers *}
 					
@@ -102,7 +102,7 @@
 
 			<!-- For drop: -->
 			<div class="drag-wrapper sort dropzoneN" data-id='0'>
-				<h3>{VEHICLES}:</h3>
+				<h3>{$VEHICLES}:</h3>
 
 				{section name=pom1 loop=$vehicles}
 					{if $vehicles[pom1].SubDriver eq 0}

@@ -79,17 +79,17 @@
         <!-- Form: -->
         <form class="form-signin" method="post" action="login.php">
 
-          <h2 class="form-signin-heading">Sign in</h2>
+          <h2 class="form-signin-heading">{$SIGN_IN}</h2>
           
-          <label for="username" class="sr-only">User name</label>
+          <label for="username" class="sr-only">{$USER_NAME}</label>
           
           <input type="text" name="username" id="username" class="form-control" placeholder="User name" required autofocus>
           
-          <label for="inputPassword" class="sr-only">Password</label>
+          <label for="inputPassword" class="sr-only">{$PASSWORD}</label>
           <input type="password" name="password" id="password" class="form-control" placeholder="Password" required>
           
 		  {if not $LOCAL}
-		  <label for="inputPasswordT" class="sr-only">Password for test</label>
+		  <label for="inputPasswordT" class="sr-only">{$PASSWORD_FOR_TEST}</label>
           <input type="password" name="passwordT" id="passwordT" class="form-control" placeholder="Password for test" required>
 		  {/if}
 		  
@@ -100,21 +100,21 @@
           </select>
 		  !-->
 
-          <button class="btn btn-lg btn-primary btn-block" name="Login" type="submit">Sign in</button>
+          <button class="btn btn-lg btn-primary btn-block" name="Login" type="submit">{$SIGN_IN}</button>
 
           {if $error}
 
             {if $message eq 1}
-            <br/><b>Your account has been blocked.</b><br/>
-                    Please contact us immediately!
+            <br/><b>{$YOUR_ACCOUT_HAS_BEEN_BLOCKED}</b><br/>
+                    {$PLEASE_CONTACT_US_IMMEDIATELY}
             {/if}
     
             {if $message eq 2}
-              <br/><b class="lFailed">{LOGIN_FAILED}</b><br/>
+              <br/><b class="lFailed">{$LOGIN_FAILED}</b><br/>
             {/if}
     
             {if $message eq 3}
-              <br/><b>{USE_BOTH}</b><br/>
+              <br/><b>{$USE_BOTH}</b><br/>
             {/if}
     
     

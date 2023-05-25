@@ -67,22 +67,22 @@ value=" WHERE {$ItemID} > 0">
 
 	<!-- Show and Hide Filters buttons: -->
 	<div id="wrapp-buttons">
-		<div id="show" class="button-toggle"><i class="fa-solid fa-bars fa-bars-edit"></i>Show Filters</div>
-		<div id="hide" class="button-toggle"><i class="fa-solid fa-bars fa-bars-edit"></i>Hide Filters</div>
+		<div id="show" class="button-toggle"><i class="fa-solid fa-bars fa-bars-edit"></i>{$SHOW_FILTERS}</div>
+		<div id="hide" class="button-toggle"><i class="fa-solid fa-bars fa-bars-edit"></i>{$HIDE_FILTERS}</div>
 	</div>
 
 	
 	<div class="filter">
 
 		<div class="filterOlderAdd" style="padding:5px;float:left;margin-left:20px;">
-			<b style="color:blue;">Sort by:</b>
+			<b style="color:blue;">{$SORT_BY}:</b>
 			<select id='sortField' class="select-top-edit" name='sortField' onchange="allItems();">
-				<option value="OrderDate">Order Date</option>	
-				<option value="PickupDate">Pickup Date</option>		
+				<option value="OrderDate">{$ORDER_DATE}</option>	
+				<option value="PickupDate">{$PICKUP_DATE}</option>		
 			</select>				
 			<select id='sortDirection' class="select-top-edit" name='sortDirection' onchange="allItems();">
-				<option value="ASC">ASC</option>	
-				<option value="DESC">DESC</option>		
+				<option value="ASC">{$ASC}</option>	
+				<option value="DESC">{$DESC}</option>		
 			</select>
 		</div>
 
@@ -90,11 +90,11 @@ value=" WHERE {$ItemID} > 0">
 
 		<!-- Order: -->
 		<div class="col-md-2 order-edit">
-			<small class="badge blue text-black badge-edit">Order</small><br>
+			<small class="badge blue text-black badge-edit">{$ORDER}</small><br>
 			<input id='order' class="input-one" name='order'  placeholder="Order ID" onchange="allItems();"/><br>
 						
 			<select id='yearsOrder' class="form-control select-top-edit addon" name='yearsOrder' value='0' onchange="allItems();">
-				<option value='0'>All years</option>
+				<option value='0'>{$ALL_YEARS}</option>
 			</select>
 			
 			<input id='orderFromDate' class="datepicker datepicker-edit" name='orderFromDate'  placeholder="From Date" onchange="allItems();" /><br>
@@ -110,7 +110,7 @@ value=" WHERE {$ItemID} > 0">
 
 		<!-- Payment: -->
 		<div class="col-md-2"> 
-			<small class="badge blue text-black badge-edit">Payment</small><br>
+			<small class="badge blue text-black badge-edit">{$PAYMENT}</small><br>
 			<input id='paymentNumber' class="input-one" name='paymentNumber'  placeholder="Payment / Invoice No" onchange="allItems();"/>	
 			
 				<select id="PaymentMethod" class="w75 form-control select-top-edit" onchange="allItems();">		
@@ -123,7 +123,7 @@ value=" WHERE {$ItemID} > 0">
 
 		<!-- Transfer: -->
 		<div class="col-md-2"> 
-			<small class="badge blue text-black badge-edit">Transfer</small><br>
+			<small class="badge blue text-black badge-edit">{$TRANSFER}</small><br>
 			<input id='locationName' class="input-one" name='locationName'  placeholder="Location Name" onchange="allItems();"/>
 			
 				<input id='pickupFromDate' class="datepicker datepicker-edit-2" name='pickupFromDate'  placeholder="From Date" onchange="allItems();" style="width:80%;"/>
@@ -136,7 +136,7 @@ value=" WHERE {$ItemID} > 0">
 
 		<!-- Driver: -->
 		<div class="col-md-2">
-			<small class="badge blue text-black badge-edit">Partner</small><br>
+			<small class="badge blue text-black badge-edit">{$PARTNER}</small><br>
 			<input id='driverName' class="input-one" name='driverName'  placeholder="Name/ID" onchange="allItems();"/><br>
 			
 				<select id="DriverConfStatusChoose" class="w75 form-control select-top-edit" onchange="allItems();">		
@@ -149,7 +149,7 @@ value=" WHERE {$ItemID} > 0">
 
 		<!-- Client/Agent: -->
 		<div class="col-md-2">
-			<small class="badge blue text-black badge-edit">Purchaser</small><br>
+			<small class="badge blue text-black badge-edit">{$PURCHASER}</small><br>
 			<input id='agentName' class="input-one" name='agentName'  placeholder="Name/ID" onchange="allItems();"/><br>				
 			<input id='agentOrder' class="input-one" name='agentOrder'  placeholder="Order Key / Agent Order" onchange="allItems();"/><br>				
 			
@@ -163,7 +163,7 @@ value=" WHERE {$ItemID} > 0">
 
 		<!-- Passenger: -->
 		<div class="col-md-2">
-			<small class="badge blue text-black badge-edit">Passenger</small><br>
+			<small class="badge blue text-black badge-edit">{$PASSENGER}</small><br>
 			<input id='passengerData' class="input-one" name='passengerData'  placeholder="Passenger Data" onchange="allItems();"/>					
 		</div>	
 

@@ -36,8 +36,8 @@ value=" WHERE {$ItemID} > 0">
 
 <!-- Show and Hide Filters buttons: -->
 <div id="pageListHeader-filters">
-	<div id="show" class="button-toggle"><i class="fa-solid fa-bars fa-bars-edit"></i>Show Filters</div>
-	<div id="hide" class="button-toggle"><i class="fa-solid fa-bars fa-bars-edit"></i>Hide Filters</div>
+	<div id="show" class="button-toggle"><i class="fa-solid fa-bars fa-bars-edit"></i>{$SHOW_FILTERS}</div>
+	<div id="hide" class="button-toggle"><i class="fa-solid fa-bars fa-bars-edit"></i>{$HIDE_FILTERS}</div>
 </div>
 
 	<div class="filter">
@@ -95,9 +95,9 @@ value=" WHERE {$ItemID} > 0">
 			<div class="form-group group-edit">
 				<select name="Active" id="Active" onchange="allItems();" class="form-control control-edit">
 					<option value="99" selected="selected">{$ALL}</option>			
-					<option value="1"> Active </option>
-					{if isset($selectactive2)}<option value="2"> Semi Active </option>{/if}
-					<option value="0"> Not Active </option>
+					<option value="1"> {$ACTIVE} </option>
+					{if isset($selectactive2)}<option value="2"> {$SEMI_ACTIVE} </option>{/if}
+					<option value="0"> {$NOT_ACTIVE} </option>
 				</select>
 			</div>
 		</div>
@@ -109,8 +109,8 @@ value=" WHERE {$ItemID} > 0">
 			<div class="form-group group-edit">
 				<select name="Approved" id="Approved" onchange="allItems();" class="form-control control-edit">
 					<option value="99" selected="selected">{$ALL}</option>			
-					<option value="1"> Approved </option>
-					<option value="0"> Not Approved </option>
+					<option value="1"> {$APPROVED} </option>
+					<option value="0"> {$NOT_APPROVED} </option>
 				</select>
 			</div>
 		</div>
@@ -122,8 +122,8 @@ value=" WHERE {$ItemID} > 0">
 			<div class="form-group group-edit">
 				<select name="Approved" id="Approved" onchange="allItems();" class="form-control control-edit">
 					<option value="99" selected="selected">{$ALL}</option>			
-					<option value="1"> Solved </option>
-					<option value="0"> Not Solved </option>
+					<option value="1"> {$SOLVED} </option>
+					<option value="0"> {$NOT_SOLVED} </option>
 				</select>
 			</div>
 		</div>
