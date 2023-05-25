@@ -38,7 +38,7 @@
 		box-shadow: 3px 3px 4px 0px #3b75b9;
 	}
 
-	.show-edit{
+	.button-toggle{
 		cursor:pointer; font-weight:bold; color: #0584f1; text-shadow: #0584f1 0px 0px 1px;
 	}
 
@@ -46,7 +46,7 @@
 		font-size: 20px;margin: 5px;color: #0584f1;
 	}
 
-	.show-edit:hover,.fa-bars-edit:hover{
+	.button-toggle:hover,.fa-bars-edit:hover{
 		cursor:pointer; font-weight:bold; color: #0b70c9;
 	}
 	
@@ -67,8 +67,8 @@ value=" WHERE {$ItemID} > 0">
 
 	<!-- Show and Hide Filters buttons: -->
 	<div id="wrapp-buttons">
-		<div id="show" class="show-edit"><i class="fa-solid fa-bars fa-bars-edit"></i>Show Filters</div>
-		<div id="show-2" class="show-edit"><i class="fa-solid fa-bars fa-bars-edit"></i>Hide Filters</div>
+		<div id="show" class="button-toggle"><i class="fa-solid fa-bars fa-bars-edit"></i>Show Filters</div>
+		<div id="hide" class="button-toggle"><i class="fa-solid fa-bars fa-bars-edit"></i>Hide Filters</div>
 	</div>
 
 	
@@ -175,40 +175,43 @@ value=" WHERE {$ItemID} > 0">
 {* Scripts: *}
 <script>
 
+
 	function resize(){
 
-		if ($(window).width() > 1553) {
+		if ($(window).width() > 1551) {
 			$('.filter').show();
 			$('#show').hide();
-			$('#show-2').show();
+			$('#hide').show();
 			$('#wrapp-buttons').css("text-align",""); // Remove text align from #wrapp-buttons
 		}
 
-		if ($(window).width() < 1552) {
-			$('.filter').hide();
+		if ($(window).width() < 1550 ) {
 			$('#show').show();
-			$('#show-2').hide();
-			$('#wrapp-buttons').css("text-align","center");
-			
+			$('#hide').hide();
+			$('#wrapp-buttons').css("text-align","center");	
 		}
 
-	}
-	
+
+	} // End of function resize()
+
 
 	$('#show').click(function() {
-		$('.filter').toggle(600);
+		$('.filter').fadeToggle();
 		$('#show').hide();
-		$('#show-2').show();
+		$('#hide').show();
 	});
 
-	$('#show-2').click(function() {
-		$('.filter').toggle(600);
+	$('#hide').click(function() {
+		$('.filter').fadeToggle();
 		$('#show').show();
-		$('#show-2').hide();
+		$('#hide').hide();
 	});
 
-	resize();
-	$(window).resize(resize);
+	
+	$(document).ready(function(){
+		resize();
+		$(window).resize(resize);
+	});
 
 
 </script>
