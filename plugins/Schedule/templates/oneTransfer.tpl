@@ -18,7 +18,7 @@ select{
 {if $sdArray[pom].Transfers[pom2].ForTransfer}
 	<div class="sub-card">
 		<div class="row" style="background:#b6d7a8; padding:10px;"> 
-			<small><b>Connection transfer</b> {$sdArray[pom].Transfers[pom2].Device}</small>
+			<small><b>{$CONNECTION_TRANSFER}</b> {$sdArray[pom].Transfers[pom2].Device}</small>
 			<div>{$sdArray[pom].Transfers[pom2].Location} - {$sdArray[pom].Transfers[pom2].PickupName}
 			<br>{$sdArray[pom].Transfers[pom2].Distance2}km / {$sdArray[pom].Transfers[pom2].Duration2}min / {$sdArray[pom].Transfers[pom2].Shedule}</div>
 			<small><iframe src="https://maps.google.com/maps?q={$sdArray[pom].Lat},{$sdArray[pom].Lng} &z=8&output=embed"  frameborder="0" style="border:0"></iframe></small>
@@ -28,7 +28,7 @@ select{
 <div class="sub-card">
 	<div class="bgColor" style="background:{$sdArray[pom].Transfers[pom2].bgColor};padding:10px;">
 		{if $sdArray[pom].Transfers[pom2].TransferIn}
-			<small><b>On transfer</b> {$sdArray[pom].Transfers[pom2].Device}</small>
+			<small><b>{$ON_TRANSFER}</b> {$sdArray[pom].Transfers[pom2].Device}</small>
 			<div>{$sdArray[pom].Transfers[pom2].Location} - {$sdArray[pom].Transfers[pom2].DropName}</div>
 			<div>{$sdArray[pom].Transfers[pom2].Distance2}km / {$sdArray[pom].Transfers[pom2].Duration2}min / {$sdArray[pom].Transfers[pom2].Shedule}</div>
 			<small><iframe src="https://maps.google.com/maps?q={$sdArray[pom].Lat},{$sdArray[pom].Lng} &z=8&output=embed"  frameborder="0" style="border:0"></iframe></small>
@@ -207,9 +207,9 @@ select{
 
 					{if !empty($sdArray[pom].Transfers[pom2].MConfirmFile)}
 						<br>
-						Ref.No:  <b>{$sdArray[pom].Transfers[pom2].MConfirmFile} </b>
+						{$REF_NO}:  <b>{$sdArray[pom].Transfers[pom2].MConfirmFile} </b>
 						<br>    
-						Emergency: <b> {$sdArray[pom].Transfers[pom2].EmergencyPhone} </b>
+						{$EMERGENCY}: <b> {$sdArray[pom].Transfers[pom2].EmergencyPhone} </b>
 					{/if}
 
 					<br>					
@@ -255,19 +255,19 @@ select{
 
 				{if $sdArray[pom].Transfers[pom2].PickupNotes}
 				<div class="row-one">
-					<small class="bold">{PICKUP_NOTE}</small></br>
+					<small class="bold">{$PICKUP_NOTE}</small></br>
 					{$sdArray[pom].Transfers[pom2].PickupNotes}
 				</div>
 				{/if}
 
 				<div class="row-two">
-					<small class="bold">{STAFF_NOTE}</small></br>
+					<small class="bold">{$STAFF_NOTE}</small></br>
 					<textarea name="StaffNote_{$sdArray[pom].Transfers[pom2].DetailsID}" id="StaffNote_{$sdArray[pom].Transfers[pom2].DetailsID}"
 					rows="4">{$sdArray[pom].Transfers[pom2].StaffNote|stripslashes}</textarea>
 				</div>
 
 				<div class="row-third">
-					<small class="bold">{NOTES_TO_DRIVER}</small><br>
+					<small class="bold">{$NOTES_TO_DRIVER}</small><br>
 					<textarea style="border: 1px solid #ddd;" name="SubDriverNote_{$sdArray[pom].Transfers[pom2].DetailsID}" 
 					id="SubDriverNote_{$sdArray[pom].Transfers[pom2].DetailsID}" class="span3" rows="4">
 					{$sdArray[pom].Transfers[pom2].SubDriverNote|stripslashes}</textarea>
@@ -275,7 +275,7 @@ select{
 
 				{if $sdArray[pom].Transfers[pom2].FinalNote or $sdArray[pom].Transfers[pom2].SubFinalNote}
 				<div class="row-forth">
-					<small class="bold">{FINAL_NOTE}</small><br>
+					<small class="bold">{$FINAL_NOTE}</small><br>
 					{$sdArray[pom].Transfers[pom2].SubFinalNote}<br>
 					{$sdArray[pom].Transfers[pom2].FinalNote}
 				</div>
@@ -290,7 +290,7 @@ select{
 			
 			<div class="col-md-6">
 				<button class="btn btn-primary btn-block" onclick="saveTransfer({$sdArray[pom].Transfers[pom2].DetailsID},1)">
-					<i class="fa fa-save"></i> Save
+					<i class="fa fa-save"></i> {SAVE}
 				</button>
 			</div>
 			
