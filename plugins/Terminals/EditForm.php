@@ -97,7 +97,7 @@
 						<label for="text"><?=DESCRIPTION;?> {{@key}} {{language}}</label>
 					</div>	
 					<div class="col-md-9">	
-						<textarea class="textarea textarea_html" name='des_{{@key}}' style="resize:none;width:100%;min-height:200px;" >{{this}}</textarea>
+						<textarea class="" name='des_{{@key}}' style="resize:none;width:100%;min-height:200px;" >{{this}}</textarea>
 					</div>	
 				</div>	
 				{{/each}}

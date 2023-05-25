@@ -4804,13 +4804,19 @@ function getConnectedUserNamePlus($id) {
 
 function htmldecode(& $html)
 {
-	$html = str_replace('%gt;', '>', $html);
+	/*$html = str_replace('%gt;', '>', $html);
 	$html = str_replace('%lt;', '<', $html);
 	$html = str_replace('%quot;','"', $html);
 	//$html = str_replace('&amp;', '&', $html);
 	$html = str_replace('%#39;', '\'', $html);
 	$html = str_replace('%#34;', '\'', $html);
-	$html = str_replace('%ndash;', '-', $html);
+	$html = str_replace('%ndash;', '-', $html);*/
+	$html = str_replace('"', '\'', $html);
+	$html = str_replace('\n', ' ', $html);
+	$html = str_replace('&nbsp;', ' ', $html);
+	$html = str_replace('WstyleW', 'style', $html);
+	$html = str_replace('WimgW', 'img', $html);
+	$html = str_replace('WsrcW', 'src', $html);
 	return $html;
 }
 

@@ -51,7 +51,7 @@
 						<label for="text"><?=DESCRIPTION;?></label>
 					</div>
 					<div class="col-md-9">
-						{{des_arr.en}}
+						{{{des_arr.en}}}
 						<!--<textarea name="des"  style="resize:none;width:100%;min-height:200px;">{{des_arr.en}}</textarea>!-->
 					</div>
 				</div>					

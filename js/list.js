@@ -323,9 +323,11 @@
 		})	
 		if($("#ItemEditForm"+id).valid() == false) {return false;}
 		var newData = $("#ItemEditForm"+id).serializeObject();
-		var formData = $("#ItemEditForm"+id+" textarea:not('.textarea_html')").serialize();
+		//var formData = encodeURIComponent($("#ItemEditForm"+id).serialize());
+		//var formData = $("#ItemEditForm"+id+" textarea:not('.textarea_html')").serialize();
 		
-		$(".textarea_html").each(function(){
+		var formData='';
+		$("#ItemEditForm"+id).find("input, select, textarea").each(function(){
 			var encodehtml=htmlEnc($(this).val());
 			formData=formData+'&'+$(this).attr('name')+'='+encodehtml;
 		});
@@ -471,9 +473,17 @@
 	}	
 
 	function htmlEnc(s) {
-	  return s.replace(/&/g, '&amp;')
+		var value=encodeURIComponent(s);
+		if (value.indexOf('style')>-1) value =  value.replace(/style/g,'WstyleW');
+		if (value.indexOf('img')>-1) value =  value.replace(/img/g,'WimgW');
+		if (value.indexOf('src')>-1) value =  value.replace(/src/g,'WsrcW');
+		//if (value.indexOf('&')>-1) value =  value.replace(/&/g,'%26');
+		//if (value.indexOf('+')>-1) value =  value.replace(/\+/g,'%2B');	
+		return value;	
+	  /*return s.replace(/&/g, '&amp;')
 		.replace(/</g, '%25lt;')
 		.replace(/>/g, '%25gt;')
 		.replace(/'/g, '%25#39;')
-		.replace(/"/g, '%25#34;');
-	}		
+		.replace(/"/g, '%25#34;');*/
+		
+	}		C
