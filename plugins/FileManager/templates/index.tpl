@@ -6,7 +6,7 @@
 	<div class="row btn blue fileinput-button"  style="height:200px;padding-top:50px;display: block;border:none;">
 		<!-- Button to select & upload files -->
 		{* <span class="btn blue fileinput-button"> *}
-			<div style="font-size:30px;color:#2d84f1;"><i class="fa fa-cloud-upload xl" ></i><b> {SELECT_OR} {$UPLOAD_IMAGES }</b></div>
+			<div style="font-size:30px;color:#2d84f1;"><i class="fa fa-cloud-upload xl" ></i><b> {$SELECT_OR} {$UPLOAD_IMAGES }</b></div>
 			<!-- The file input field used as target for the file upload widget -->
 			<input id="fileupload" type="file" name="files[]" multiple > 
 		{* </span> *}
@@ -26,7 +26,7 @@
 	<div class="row">
 		<!-- The global progress bar -->
 		<br>
-		<p style="color:rgb(51, 157, 219);font-weight:bold;font-style:italic;">{UPLAD_PROGRESS}</p>
+		<p style="color:rgb(51, 157, 219);font-weight:bold;font-style:italic;">{$UPLAD_PROGRESS}</p>
 		<div id="progress" class="progress progress-info progress-striped">
 			<div class="bar"></div>
 		</div>
@@ -34,7 +34,7 @@
   
 	<div class="row">  
 		<!-- The list of files uploaded -->
-		<h2>{UPLOADED}:</h2>
+		<h2>{$UPLOADED}:</h2>
 		<br><br>
 	</div>
 	
@@ -44,7 +44,7 @@
   
 	<div class="row">
 		<br><br>
-		<h2>{IMAGES_ON_SERVER}</h2>
+		<h2>{$IMAGES_ON_SERVER}</h2>
 		<br>
 		{section name=pom loop=$file_arr}		
 			<div class="col-md-12" id="{$file_arr[pom].count}" >
