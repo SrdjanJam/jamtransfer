@@ -166,7 +166,7 @@ body {
 							<div class="cal_days l">
 								<b>{$month_transfers[pom].nom}</b> 
 								{if $smarty.session.AuthLevelID eq '31' or isset($smarty.session.UseDriverID)}
-									<a target='_blank' href='{$root_home}distribution/{$month_transfers[pom].date}'>{DISTRIBUTION}</a>
+									<a target='_blank' href='{$root_home}distribution/{$month_transfers[pom].date}'>{$DISTRIBUTION}</a>
 								{/if}	
 							</div>
 									<div class="show-data">
@@ -215,7 +215,7 @@ body {
 									</div> {* / show-date *}
 											
 									{* <br> *}
-							<small class="small">{NO_OF_TRANSFERS} <br>{$month_transfers[pom].noOfTransfers}</small>
+							<small class="small">{$NO_OF_TRANSFERS} <br>{$month_transfers[pom].noOfTransfers}</small>
 							<small class="small-mini" style="display:none;">{NO_OF} <br>{$month_transfers[pom].noOfTransfers}</small>
 							
 					
@@ -241,24 +241,24 @@ body {
 
 
 <div class="dashboard-legend">
-	{TRANSFER_STATUS_2}
+	{$TRANSFER_STATUS_2}
 	<ul>
-		<i class="fa fa-circle-o text-blue"></i> {ACTIVE} |
-		<i class="fa fa-circle-o text-orange"></i> {CHANGED} |
-		<i class="fa fa-question-circle text-orange"></i> {TEMP} |
-		<i class="fa fa-times-circle" style="color:#c00"></i>{CANCELLED}  |
-		<i class="fa fa-check-circle text-green"></i> {COMPLETED}<br>
+		<i class="fa fa-circle-o text-blue"></i> {$ACTIVE} |
+		<i class="fa fa-circle-o text-orange"></i> {$CHANGED} |
+		<i class="fa fa-question-circle text-orange"></i> {$TEMP} |
+		<i class="fa fa-times-circle" style="color:#c00"></i>{$CANCELLED}  |
+		<i class="fa fa-check-circle text-green"></i> {$COMPLETED}<br>
 	</ul><br>
-	{DRIVER_CONFIRMATION_STATUS}
+	{$DRIVER_CONFIRMATION_STATUS}
 	<ul>
-		<i class="fa fa-car" style="color:#c00"></i> {NO_DRIVER} |
-		<i class="fa fa-info-circle text-orange"></i> {NOT_CONFIRMED} |
-		<i class="fa fa-thumbs-up text-blue"></i> {CONFIRMED} |
-		<i class="fa fa-car text-blue"></i> {READY} |
-		<i class="fa fa-thumbs-down" style="color:#c00"></i> {DECLINED} |
-		<i class="fa fa-user-times" style="color:#c00"></i> {NO_SHOW} |
-		<i class="fa fa-black-tie" style="color:#c00"></i> {DRIVER_ERROR} |
-		<i class="fa fa-check-square text-green"></i> {COMPLETED}
+		<i class="fa fa-car" style="color:#c00"></i> {$NO_DRIVER} |
+		<i class="fa fa-info-circle text-orange"></i> {$NOT_CONFIRMED} |
+		<i class="fa fa-thumbs-up text-blue"></i> {$CONFIRMED} |
+		<i class="fa fa-car text-blue"></i> {$READY} |
+		<i class="fa fa-thumbs-down" style="color:#c00"></i> {$DECLINED} |
+		<i class="fa fa-user-times" style="color:#c00"></i> {$NO_SHOW} |
+		<i class="fa fa-black-tie" style="color:#c00"></i> {$DRIVER_ERROR} |
+		<i class="fa fa-check-square text-green"></i> {$COMPLETED}
 	</ul>
 </div>
 
