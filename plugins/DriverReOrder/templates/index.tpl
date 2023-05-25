@@ -9,7 +9,7 @@
 			<div class="row xpad1em white-text">
 
 				<div class="row z-depth-2 white lighten-5">			
-						<h3>{ORDER}: <?= $od->getOrderID() ?>-<?= $od->getTNo() ?> Route: <?= $od->getPickupName() ?> - <?= $od->getDropName() ?></h3>
+						<h3>{$ORDER}: <?= $od->getOrderID() ?>-<?= $od->getTNo() ?> Route: <?= $od->getPickupName() ?> - <?= $od->getDropName() ?></h3>
 						
 						
 				</div>
@@ -21,20 +21,20 @@
 
 				<div class="row z-depth-2 white lighten-5">			
 					<div class="col-md-3">
-						<h4>{BOOKED_DRIVER}</h4>							 					
+						<h4>{$BOOKED_DRIVER}</h4>							 					
 						<h3><b style='color:blue'><?= $driverName ?></b></h3>
 					</div>				
 					<div class="col-md-3"> 
-						<h4>{BOOKED_PRICE}: <?= number_format($DetailPrice,2) ?></h4>							 						
-						<h4>{DRIVERS_PRICE}: <?= number_format($DriversPrice2,2) ?></h4>
+						<h4>{$BOOKED_PRICE}: <?= number_format($DetailPrice,2) ?></h4>							 						
+						<h4>{$DRIVERS_PRICE}: <?= number_format($DriversPrice2,2) ?></h4>
 					</div>						
 					<div class="col-md-3">						
-						<h4>{BOOKED_VEHICLE}</h4>							 										
+						<h4>{$BOOKED_VEHICLE}</h4>							 										
 						<img class="" src="<?= $vehicleImage ?>" style="max-height:20%; max-width:20%;" alt="car">
 						<span style="text-transform:uppercase; font-weight:100 !important"><?= $vt->getVehicleTypeName() ?></span>
 					</div>							
 					<div class="col-md-3"> 
-						<h4>{VEHICLES}</h4>							 
+						<h4>{$VEHICLES}</h4>							 
 						<h3><?= $od->getVehiclesNo() ?></h3>							 						
 					</div>							
 				</div>
@@ -46,21 +46,21 @@
 			
 			<div class="row z-depth-2 white lighten-5 center">
 				<div class="col-md-5 white">
-					<h4>{OTHER_DRIVER_FOR_THIS_ROUTE}</h4>						
+					<h4>{$OTHER_DRIVER_FOR_THIS_ROUTE}</h4>						
 				</div>	
 				<div class="col-md-3 white">
-					<h4>{VEHICLE_TYPE}</h4>						
+					<h4>{$VEHICLE_TYPE}</h4>						
 				</div>					
 							
 				<div class="col-md-2 request">
-					<h4>{FIRST_CONFIRM_REQUEST}</h4>											
+					<h4>{$FIRST_CONFIRM_REQUEST}</h4>											
 				</div>				
 				<div class="col-md-2 request">
-					<h4>{LOW_OFFER_REQUEST}</h4>											
+					<h4>{$LOW_OFFER_REQUEST}</h4>											
 				</div>				
 			</div>			
 			
-			<h4>{SELECT_TERMINAL_FOR_THIS_TRANSFER}</h4>
+			<h4>{$SELECT_TERMINAL_FOR_THIS_TRANSFER}</h4>
 			
 			
 			<? 	
