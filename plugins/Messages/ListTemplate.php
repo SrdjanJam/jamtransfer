@@ -37,11 +37,11 @@
 		</div>		
 		
 		<div class="col-sm-1">
-			Solver
+			<?=SLOVER;?>
 		</div>
 
 		<div class="col-sm-1">
-			Solved
+			<?=SOLVED;?>
 		</div>
 					
 	</div>
