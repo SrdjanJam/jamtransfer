@@ -470,7 +470,11 @@ textarea{ width:90% !important; }
 
 .container.white{ width:90% !important; }
 
-
+.cal_month_edit, .cal_year_edit{
+	border: 2px solid #ddd;
+    padding: 5px;
+    border-radius: 5px;
+}
 
 /* *************************************************************************************** */
 /* MEDIA SCREEN: */
