@@ -1048,7 +1048,7 @@ define("ANSWER","Answer");
 define("SEND_MAIL","Send Mail");
 define("SLOVER","Solver");
 define("SOLVED","Solved");
-define("NOT_SOLVED","Solved");
+define("NOT_SOLVED","Not Solved");
 define("SOLVED_DATE","Solved Date");
 
 define("IS_NEW_ENTRY","Is New entry");

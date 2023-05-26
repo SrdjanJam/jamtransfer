@@ -42,7 +42,7 @@
 
 				<div class="row">
 					<div class="col-md-2">
-						<label for="DisplayOrder">Display order</label>
+						<label for="DisplayOrder"><?=DISPLAY_ORDER;?></label>
 					</div>
 					<div class="col-md-10">
 						<input type="text" name="DisplayOrder" id="DisplayOrder" class="w100" value="{{DisplayOrder}}">
@@ -51,7 +51,7 @@
 
 				<div class="row row-edit-2">
 					<div class="col-md-2">
-						<label for="Active">Active</label>
+						<label for="Active"><?=ACTIVE;?></label>
 					</div>
 					<div class="col-md-10">
 						<select class="w100" name="Active"  value="{{Active}}">
@@ -67,7 +67,7 @@
 						
 				<div class="row">
 					<div class="col-md-2">
-						<label for="Title">Title</label>
+						<label for="Title"><?=TITLE;?></label>
 					</div>
 					<div class="col-md-10">
 						<input type="text" name="Title" id="Title" class="w100" value="{{Title}}">
