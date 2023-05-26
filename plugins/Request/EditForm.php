@@ -55,10 +55,10 @@
 					</div>
 					<div class="col-md-10">
 						<select class="w100" name="Active"  value="{{Active}}">
-							<option value="0" {{#compare Active "==" 0}} selected {{/compare}}>Not Active</option>
-							<option value="1" {{#compare Active "==" 1}} selected {{/compare}}>CheckBox</option>
-							<option value="2" {{#compare Active "==" 2}} selected {{/compare}}>Photo</option>
-							<option value="3" {{#compare Active "==" 3}} selected {{/compare}}>Video</option>
+							<option value="0" {{#compare Active "==" 0}} selected {{/compare}}><?=NOT_ACTIVE;?></option>
+							<option value="1" {{#compare Active "==" 1}} selected {{/compare}}><?=CHECK_BOX;?></option>
+							<option value="2" {{#compare Active "==" 2}} selected {{/compare}}><?=PHOTO;?></option>
+							<option value="3" {{#compare Active "==" 3}} selected {{/compare}}><?=VIDEO;?></option>
 						</select>					
 					</div>
 				</div>				
