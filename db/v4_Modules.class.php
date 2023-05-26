@@ -21,6 +21,7 @@ Class v4_Modules {
 
 	function __construct(){
 		$this->connection = new DataBaseMysql();
+		$this->table = "v4_Modules_".$_COOKIE['CMSLang'];
 	}	
 	public function myreal_escape_string($string){
 		return $this->connection->real_escape_string($string);
@@ -49,7 +50,7 @@ Class v4_Modules {
 	}
 	
 	public function getRow($key_row){
-		$result = $this->connection->RunQuery("Select * from v4_Modules where ModulID = \"$key_row\" ");
+		$result = $this->connection->RunQuery("Select * from ". $this->table." where ModulID = \"$key_row\" ");
 		if($result->num_rows < 1) return false;
 		while($row = $result->fetch_array(MYSQLI_ASSOC)){
 			$this->ModulID = $row["ModulID"];
@@ -68,11 +69,11 @@ Class v4_Modules {
 	}
 
 	public function deleteRow($key_row){
-		$this->connection->RunQuery("DELETE FROM v4_Modules WHERE ModulID = $key_row");
+		$this->connection->RunQuery("DELETE FROM ". $this->table." WHERE ModulID = $key_row");
 	}
 	
 		public function saveRow(){
-		$result = $this->connection->RunQuery("UPDATE v4_Modules set 
+		$result = $this->connection->RunQuery("UPDATE ". $this->table." set 
 ModulID = '".$this->myreal_escape_string($this->ModulID)."', 
 Name = '".$this->myreal_escape_string($this->Name)."', 
 Code = '".$this->myreal_escape_string($this->Code)."', 
@@ -89,12 +90,12 @@ Active = '".$this->myreal_escape_string($this->Active)."' WHERE ModulID = '".$th
 }
 
 	public function saveAsNew(){
-		$this->connection->RunQuery("INSERT INTO v4_Modules (ModulID, Name, Code, Base, ParentID, MenuOrder, Icon, Description, Help, IsNew, Phase, Active) values ('".$this->myreal_escape_string($this->ModulID)."', '".$this->myreal_escape_string($this->Name)."', '".$this->myreal_escape_string($this->Code)."', '".$this->myreal_escape_string($this->Base)."', '".$this->myreal_escape_string($this->ParentID)."', '".$this->myreal_escape_string($this->MenuOrder)."','".$this->myreal_escape_string($this->Icon)."','".$this->myreal_escape_string($this->Description)."','".$this->myreal_escape_string($this->Help)."','".$this->myreal_escape_string($this->IsNew)."','".$this->myreal_escape_string($this->Phase)."','".$this->myreal_escape_string($this->Active)."')");
+		$this->connection->RunQuery("INSERT INTO ". $this->table." (ModulID, Name, Code, Base, ParentID, MenuOrder, Icon, Description, Help, IsNew, Phase, Active) values ('".$this->myreal_escape_string($this->ModulID)."', '".$this->myreal_escape_string($this->Name)."', '".$this->myreal_escape_string($this->Code)."', '".$this->myreal_escape_string($this->Base)."', '".$this->myreal_escape_string($this->ParentID)."', '".$this->myreal_escape_string($this->MenuOrder)."','".$this->myreal_escape_string($this->Icon)."','".$this->myreal_escape_string($this->Description)."','".$this->myreal_escape_string($this->Help)."','".$this->myreal_escape_string($this->IsNew)."','".$this->myreal_escape_string($this->Phase)."','".$this->myreal_escape_string($this->Active)."')");
 		return $this->connection->insert_id(); //return insert_id 
 	}
 	public function getKeysBy($column, $order, $where = NULL){
 		$keys = array(); $i = 0;
-		$result = $this->connection->RunQuery("SELECT ModulID from v4_Modules $where ORDER BY $column $order");
+		$result = $this->connection->RunQuery("SELECT ModulID from ". $this->table." $where ORDER BY $column $order");
 			while($row = $result->fetch_array(MYSQLI_ASSOC)){
 				$keys[$i] = $row["ModulID"];
 				$i++;

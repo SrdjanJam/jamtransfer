@@ -93,12 +93,12 @@
           <input type="password" name="passwordT" id="passwordT" class="form-control" placeholder="Password for test" required>
 		  {/if}
 		  
-			<!--
+		
           <select name="language" id="language" class="form-control">
             <option value='en'>English</option>
-            <option value='hr'>Hrvatski</option>
+            <option value='fr'>Français</option>
           </select>
-		  !-->
+		  
 
           <button class="btn btn-lg btn-primary btn-block" name="Login" type="submit">{$SIGN_IN}</button>
 

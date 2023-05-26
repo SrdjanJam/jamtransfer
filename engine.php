@@ -3,7 +3,6 @@
 // ali ako nije logiran, ne moze
 // nakon Logina vraca korisnika na spremljenu stranicu
 $_SESSION['InitialRequest'] = $_SERVER['REQUEST_URI'];
-
 $help="menu";
 $isNew=false;
 $transfersFilter='';
@@ -26,6 +25,7 @@ $ActionID=0;
 
 require_once 'pathToVars.php';
 // LOGIN
+
 if(!isset($_SESSION['UserAuthorized']) or $_SESSION['UserAuthorized'] == false) {
 	require_once 'login.php';
 	exit();	
@@ -138,7 +138,6 @@ if ($result->num_rows>0) {
 	if ($_SESSION['AuthUserID']==874) $existNew=true;
 	if ($md->getName()=="Articles") $existNew=true;*/
 
-
 	$smarty->assign('transfersFilter',$transfersFilter);
 	$smarty->assign('includeFile',$includeFile);
 	$smarty->assign('includeFileTpl',$includeFileTpl);
@@ -166,10 +165,11 @@ if ($result->num_rows>0) {
 		
 	// display
 	?><script type="text/x-handlebars-template"></script><?
-
 	$smarty->display("index.tpl");	
 }
 else echo "<h1>No menu options for this profile</h1>";
+
+
 
 
 function phaseStatus($status) {

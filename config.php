@@ -1,5 +1,4 @@
 <?
-
 require_once 'conn_string.php';
 require_once ROOT. '/definitions.php';
 

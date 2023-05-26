@@ -1,13 +1,16 @@
 <?
 //session_start();
 require_once 'config.php';
-
 //$_SESSION = array();
 
 # Language
-$_SESSION['CMSLang'] = 'en';
-if(!empty($_COOKIE['CMSLang'])) $_SESSION['CMSLang'] = $_COOKIE['CMSLang'];
+
+if (isset($_REQUEST['language'])) $_SESSION['CMSLang'] = $_REQUEST['language'];
+else if(!empty($_COOKIE['CMSLang'])) $_SESSION['CMSLang'] = $_COOKIE['CMSLang'];
+else $_SESSION['CMSLang'] = "en";
+setcookie("CMSLang", $_SESSION['CMSLang'], time() + (7*24*60*60),"/");
 require_once('lng/' . $_SESSION['CMSLang'] . '_text.php');
+
 	# Config File
 
 	$showLoginForm = true;
