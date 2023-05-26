@@ -71,7 +71,7 @@
 									<select name="Active" id="Active">
 										{{#select Active}}
 											<option value="0"><?= NOT_ACTIVE?></option>
-											<option value="2">Semi <?= ACTIVE?></option>
+											<option value="2"><?= SEMI?> <?= ACTIVE?></option>
 											<option value="1"><?= ACTIVE?></option>
 										{{/select}}
 									</select>
@@ -133,7 +133,7 @@
 							</div>							
 														
 							<div class="row">
-								<div class="col-md-3 "><label>Flat Place ID</label></div>
+								<div class="col-md-3 "><label>{FLAT_PLACE_ID}</label></div>
 								<div class="col-md-9">
 									<input type="text" name="IBAN" class="w100"
 									 value="{{IBAN}}"
