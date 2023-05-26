@@ -59,8 +59,8 @@
 
 					<div class="col-md-2" id="buttons_{{ID}}">
 						{{#compare Approved "==" 0}}
-							<button class="btn btn-default btn-sm btn-info clickable" onclick="approveReview({{ID}},1,this)">Approve</button>
-							<button class="btn btn-default btn-sm red clickable" onclick="approveReview({{ID}},2,this)">Discard</button>
+							<button class="btn btn-default btn-sm btn-info clickable" onclick="approveReview({{ID}},1,this)"><?=APPROVED;?></button>
+							<button class="btn btn-default btn-sm red clickable" onclick="approveReview({{ID}},2,this)"><?=DISCARD;?></button>
 						{{else}}
 							{{#compare Approved "==" 1}}Approved
 							{{else}} Discarded
