@@ -1,13 +1,12 @@
-
 <div class="row-fluid">
 	<div class="">
 		<div class="col-md-1" style="width:99% !important;">
 			<div class="dp_content">
 				<div align="center">
-					<select name="cal_month" id="cal_month" onchange="calendar()">
+					<select name="cal_month" id="cal_month" class="cal_month_edit" onchange="calendar()">
 						{html_options values=$month_val selected=$month_sel output=$month_out}
 					</select>
-					<select name="cal_year"  id="cal_year" onchange="calendar()">
+					<select name="cal_year"  id="cal_year" class="cal_year_edit" onchange="calendar()">
 						{html_options values=$year_val selected=$year_sel output=$year_out}
 					</select>
 				</div>
