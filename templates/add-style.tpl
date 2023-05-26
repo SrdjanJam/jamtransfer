@@ -450,12 +450,12 @@ textarea{ width:90% !important; }
 /* -------------------------------------------------------------------------------------- */
 /* SCROLL BAR: */
 /* width */
-::-webkit-scrollbar { width: 12px; }
+::-webkit-scrollbar { width: 14px; }
 /* Track */
 ::-webkit-scrollbar-track { background: #f1f1f1; margin-right: 5px; }
 /* Handle */
 ::-webkit-scrollbar-thumb { 
-    background: #aaa; border: 2px solid #3e3231c9;
+    background: #aaa; border: 1px solid #050505;
     /* border: 2px solid #bd6d61c9; Old */
 }
 /* Handle on hover */
@@ -470,6 +470,7 @@ textarea{ width:90% !important; }
 
 .container.white{ width:90% !important; }
 
+/* Calendar: */
 .cal_month_edit, .cal_year_edit{
 	border: 2px solid #ddd;
     padding: 5px;

@@ -33,9 +33,9 @@
 					</div>
 					<div class="col-md-10">
 						<select class="w100" name="Active"  value="{{Active}}">
-							<option value="0" {{#compare Active "==" 0}} selected {{/compare}}>Not Active</option>
-							<option value="1" {{#compare Active "==" 1}} selected {{/compare}}>Expense</option>
-							<option value="2" {{#compare Active "==" 2}} selected {{/compare}}>Activity</option>
+							<option value="0" {{#compare Active "==" 0}} selected {{/compare}}><?=NOT_ACTIVE;?></option>
+							<option value="1" {{#compare Active "==" 1}} selected {{/compare}}><?=EXPENSE;?></option>
+							<option value="2" {{#compare Active "==" 2}} selected {{/compare}}><?=ACTIVITY;?></option>
 						</select>					
 					</div>
 				</div>				
