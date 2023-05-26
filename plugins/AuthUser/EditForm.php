@@ -378,12 +378,12 @@
 							{{#compare AuthLevelID "==" '2'}}
 							<div class="row">
 								<div class="col-md-3">
-									<label><?= ACCEPTED_PAYMENT ?> - not active</label>
+									<label><?= ACCEPTED_PAYMENT ?> - <?= NOT_ACTIVE ?></label>
 								</div>
 								<div class="col-md-9">
 									<select name="AcceptedPayment" id="AcceptedPayment">
 									{{#select AcceptedPayment}}
-										<option value="0">Not selected</option>									
+										<option value="0"><?= NOT_SELECTED ?></option>									
 										<option value="11"><?= ONLINE ?></option>
 										<option value="13"><?= CASH ?></option>
 										<option value="10"><?= INVOICE ?></option>										
@@ -602,7 +602,7 @@
 				<div class="tab-pane" id="tab_2{{AuthUserID}}">
 					<div class="row">
 						<div class="col-md-3">
-							<label for="SurCategory"><?=SURCATEGORY;?></label>
+							<label for="SurCategory"><?= SURCATEGORY ?></label>
 						</div>
 						<div class="col-md-9">
 							<select name="SurCategory" id="SurCategory" class="w100" >
