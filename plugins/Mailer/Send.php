@@ -19,8 +19,7 @@ foreach ($db->fieldNames() as $name) {
 $db->setSentTime(date("Y-m-d H:i:s"));
 $from_mail="cms@jamtransfer.com";
 $from_name=$db->getFromName();
-$mailto='jam.bgprogrameri@gmail.com';
-//$mailto=$db->getToName();
+$mailto=$db->getToName();
 $replyto=$db->getReplyTo();
 $subject=$db->getSubject();
 $message=$db->getBody();
