@@ -1,4 +1,5 @@
 	var data_Items = [];
+
 	window.base='http://localhost/jamtransfer/';
 	var validationFields = ["PlaceTypeEN", "PlaceTypeRUS"];
 	function allItems() {
@@ -213,7 +214,7 @@
 		$('#filtersUP').show();		
 	}	
 	function oneItem(id,tab) { 
-
+		var ModuleID=$('#ModuleID').val();
 		// click na element - hide element ako je vec prikazan, nema potrebe za ajax
 		if ( $("#ItemWrapper"+id).css('display') != 'none') {
 			$("#ItemWrapper"+id).hide('slow'); 
@@ -257,7 +258,7 @@
 				$("#ItemWrapper"+id).show('slow');
 				
 				datetimepicker();
-
+				
 				// Trun off:
 				// $("#ItemWrapper"+id)[0].scrollIntoView({
 				// 	behavior: "smooth", // or "auto" or "instant"
@@ -269,6 +270,28 @@
 			},
 			error: function(xhr, status, error) {alert("Show error occured: " + xhr.status + " " + xhr.statusText); }
 		});
+
+		var url =  "plugins/fieldsSetter.php?ModuleID="+ModuleID;
+		console.log(url);
+		$.ajax({
+			type: 'GET',
+			url: url,
+			async: false,
+			contentType: "application/json",
+			dataType: 'jsonp',
+			success: function(out) {
+				$.each(out.data, function() {
+					console.log(this);
+					var name = this.Name;
+					if (this.Hidden != 1) {
+						if (this.Disabled != 1) {
+							if (this.Required == 1) $('.box-body').find("[name='"+name+"']").attr('required',true);
+						} else 	$('.box-body').find("[name='"+name+"']").attr('disabled','disabled');
+					} else $('.box-body').find("[name='"+name+"']").attr('hidden',true);
+				})
+			}	
+		});	
+		
 	}
 	function new_Item() { 
 		var source   = $("#ItemEditTemplate").html();
@@ -486,4 +509,4 @@
 		.replace(/'/g, '%25#39;')
 		.replace(/"/g, '%25#34;');*/
 		
-	}		C
+	}

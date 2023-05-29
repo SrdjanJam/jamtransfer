@@ -37,10 +37,10 @@
 	# TransferStatus - novi
 	$StatusDescription = array(
 		'1' =>    'Active',
-		'2' =>    'Changed',
-		'3' =>    'Canceled',
+		'2' =>    'Modifié',
+		'3' =>    'Annulé',
 		'4' =>    'TEMP',
-		'5'	=>	  'Completed',
+		'5'	=>	  'Complété',
 		'6'	=>	  'PreOrder'
 	);
 
@@ -239,7 +239,7 @@ define("DATA", "data");
 define("DATA_CHECKED", "Data checked");
 define("DATE_SETTINGS", "Off-Duty Dates");
 define("DAY_SETTINGS", "Days of the week");
-define("DECLINED", "Declined");
+define("DECLINED", "Diminué");
 define("DELETE_COUNTRY", "Delete Country");
 define("DELETE", "Delete");
 define("DELETE_CACHE", "Delete cache");
