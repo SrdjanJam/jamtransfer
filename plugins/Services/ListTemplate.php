@@ -23,10 +23,16 @@
 				<?=DISCOUNT;?>
 			</div> -->
 
-			<div class="col-md-5">
+			<div class="col-md-2">
 				<?=SURCATEGORY;?>
-			</div>
+			</div>			
 			
+			<div class="col-md-1">
+				<a href="plugins/Services/PriceList_<?= $_SESSION['UseDriverID'] ?>.csv">Download CSV</a>
+			</div>
+			<div class="col-md-2">
+				<input id="uploaded" name="uploaded" type="file" maxlength="20" class="form-control w50"/>
+			</div>	
 		</div>				
 	</div>
 
@@ -81,7 +87,7 @@
 
 
 	<script>
-		$('input').change(function(){
+		$('.listTile input').change(function(){
 			var base=window.rootbase;
 			if (window.location.host=='localhost') base=base+'/jamtransfer';	
 			var link = base+'/plugins/Services/Save.php';		
@@ -106,6 +112,31 @@
 				}				
 			});			
 		})	
+		
+		$('#uploaded').change(function(){
+			var formData = new FormData();
+			formData.append('file', $('#uploaded')[0].files[0]);
+			var base=window.rootbase;			
+			var link2 = base+'/plugins/Services/Upload.php';	
+			$.ajax({
+				url : link2,
+				type : 'POST',
+				data : formData,
+				processData: false,  // tell jQuery not to process the data
+				contentType: false,  // tell jQuery not to set contentType
+				success : function(data) {
+					console.log(data);
+					if (data=='1') {
+						toastr['success'](window.success);	
+						function sleep() {
+							location.reload();
+						}
+						setTimeout(sleep, 500);
+					} else 	toastr['error'](window.unsuccess);	
+			   }
+			})	
+		})	
+		
 	</script>
 </script>
 	

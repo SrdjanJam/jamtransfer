@@ -468,6 +468,7 @@
 		<input type='hidden' id='ModuleID' value='{$ModulID}' name='ModuleID'>
 		<input type='hidden' id='local' value='{$local}' name='local'>
 		<input type='hidden' id='success' value='{$SUCCESS}' name='success'>
+		<input type='hidden' id='unsuccess' value='{$UNSUCCESS}' name='unsuccess'>
 		<input type='hidden' id='delete' value='{$DELETE_ROW}' name='delete'>
 		
 
@@ -514,6 +515,7 @@
 	$(document).ready(function(){
 
 		window.success = $("#success").val();
+		window.unsuccess = $("#unsuccess").val();
 		window.delete = $("#delete").val();
 		
 		// toggleClass:

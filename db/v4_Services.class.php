@@ -89,6 +89,7 @@ Class v4_Services {
 			$this->Active = $row["Active"];
 			$this->LastChange = $row["LastChange"];
 		}
+		return true;
 	}
 
     /**

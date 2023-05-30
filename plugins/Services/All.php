@@ -92,6 +92,9 @@ $dbTotalRecords = $s->getServicesByRouteName('v4_Routes.RouteName ' . $sortOrder
 # test za LIMIT - trebalo bi ga iskoristiti za pagination! 'asc' . ' LIMIT 0,50'
 $sk = $s->getServicesByRouteName('v4_Routes.RouteName ' . $sortOrder . ', v4_Services.VehicleTypeID ASC', '' . $limit , $DB_Where);
 
+$dlm = ";";
+$header='SID'.$dlm.'Pax'.$dlm.'Route'.$dlm.'Vehicle'.$dlm.'OneWayPrice(EUR)'.$dlm. 'km'.$dlm."\n";
+$table_row="";
 if (count($sk) != 0) {
     foreach ($sk as $nn => $key)
     {
@@ -106,9 +109,28 @@ if (count($sk) != 0) {
 		$detailFlds["VehicleTypeName"]=$dbC2->getVehicleTypeName();
 		$detailFlds["PriceRules"]=$s->getSurCategory();
 		// npr. $detailFlds["AuthLevelName"] = $nekaDrugaDB->getAuthLevelName().' nesto';
-		$out[] = $detailFlds;    	
-    }
+		$out[] = $detailFlds;
+
+
+
+		$table_row.=$detailFlds["ServiceID"]. $dlm. $dbC2->getVehicleTypeID() . $dlm .
+				$dbC->getRouteName() . $dlm .
+				$dbC2->getVehicleTypeName() . $dlm . 
+				$detailFlds["ServicePrice1"] .  $dlm . $dbC->getKM(). $dlm .
+				"\n";
+
+	
+	}
 }
+
+ob_start(); 
+echo $header.$table_row;
+$csv = ob_get_contents();
+ob_end_clean();
+$fp = fopen('PriceList_'.($_SESSION['UseDriverID']).'.csv', 'w');
+fwrite($fp, $csv);
+fclose($fp);	
+
 # send output back
 $output = array(
 'recordsTotal' => count($dbTotalRecords),
