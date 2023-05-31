@@ -28,10 +28,10 @@
 			</div>			
 			
 			<div class="col-md-1">
-				<a href="plugins/Services/PriceList_<?= $_SESSION['UseDriverID'] ?>.csv">Download CSV</a>
-			</div>
-			<div class="col-md-2">
-				<input id="uploaded" name="uploaded" type="file" maxlength="20" class="form-control w50"/>
+				<a href="plugins/Services/PriceList_<?= $_SESSION['UseDriverID'] ?>.csv"><i class="fa fa-download" aria-hidden="true"></i> Download</a>
+			</div>	
+			<div class="col-md-2">			
+				</i><input id="uploaded" name="uploaded" type="file" class="form-control">
 			</div>	
 		</div>				
 	</div>

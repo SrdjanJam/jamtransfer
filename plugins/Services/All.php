@@ -110,6 +110,24 @@ if (count($sk) != 0) {
 		$detailFlds["PriceRules"]=$s->getSurCategory();
 		// npr. $detailFlds["AuthLevelName"] = $nekaDrugaDB->getAuthLevelName().' nesto';
 		$out[] = $detailFlds;
+	}
+}
+$sk = $s->getServicesByRouteName('v4_Routes.RouteName ' . $sortOrder . ', v4_Services.VehicleTypeID ASC', '', $DB_Where);
+if (count($sk) != 0) {
+    foreach ($sk as $nn => $key)
+    {
+    	$s->getRow($key);
+		// ako treba neki lookup, onda to ovdje
+		# get all fields and values
+		$detailFlds = $s->fieldValues();
+		// ako postoji neko custom polje, onda to ovdje.
+		$dbC->getRow($s->getRouteID());
+		$dbC2->getRow($s->getVehicleTypeID());
+		//$detailFlds["RouteName"]=$dbC->getRouteName();
+		//$detailFlds["VehicleTypeName"]=$dbC2->getVehicleTypeName();
+		//$detailFlds["PriceRules"]=$s->getSurCategory();
+		// npr. $detailFlds["AuthLevelName"] = $nekaDrugaDB->getAuthLevelName().' nesto';
+		//$out[] = $detailFlds;
 
 
 
@@ -122,7 +140,6 @@ if (count($sk) != 0) {
 	
 	}
 }
-
 ob_start(); 
 echo $header.$table_row;
 $csv = ob_get_contents();

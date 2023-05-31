@@ -318,6 +318,30 @@ if ($_REQUEST['orderid']<>"0") {
 }
 	
 $odTotalRecords = $od->getFullOrderByDetailsID($sortField, $sortDirection, '' , $dbWhere);
+
+$dbk = $od->getFullOrderByDetailsID($sortField, $sortDirection, ''  , $dbWhere);
+$sum=array();
+$sql = "Select count(*) as ItemNumber,
+	sum(DriversPrice) as DriversPrice,
+	sum(DetailPrice) as DetailPrice,
+	sum(ExtraCharge) as ExtraCharge,
+	sum(DriverExtraCharge) as DriverExtraCharge,
+	sum(Provision) as Provision,
+	sum(Discount*DetailPrice/100) as Discount
+FROM v4_OrderDetails " . $dbWhere;
+$r = $dbT->RunQuery($sql);
+$result=$r->fetch_object();
+$sum['ItemNumber']=$result->ItemNumber;
+$sum['DriversPrice']=number_format($result->DriversPrice*$_SESSION['CurrencyRate'],2);
+$sum['DetailPrice']=number_format($result->DetailPrice*$_SESSION['CurrencyRate'],2);
+$sum['ExtraCharge']=number_format($result->ExtraCharge*$_SESSION['CurrencyRate'],2);
+$sum['DriverExtraCharge']=number_format($result->DriverExtraCharge*$_SESSION['CurrencyRate'],2);
+$sum['Provision']=number_format($result->Provision*$_SESSION['CurrencyRate'],2);
+$sum['Discount']=number_format($result->Discount*$_SESSION['CurrencyRate'],2);
+$gm=$result->DetailPrice+$result->ExtraCharge-$result->Provision-$result->DriversPrice-$result->DriverExtraCharge;
+$sum['GrossMargin'] = number_format($gm**$_SESSION['CurrencyRate'],2);
+$sum['Ratio']=number_format(($gm*100/($result->DriversPrice+$result->DriverExtraCharge))*$_SESSION['CurrencyRate'],2);
+	
 $dbk = $od->getFullOrderByDetailsID($sortField, $sortDirection, $limit  , $dbWhere);
 
 if (count($dbk) != 0) {
@@ -393,6 +417,7 @@ if (count($dbk) != 0) {
 }
 # send output back
 $output = array(
+'sum' =>$sum,
 'showfilter' => $showfilter,
 'draw' => '0',
 'orderFromDate' => $orderFromDate,

@@ -103,7 +103,7 @@
 		'&subdriverID='+subdriverID+
 		'&actionID='+actionID+
 		'&callback=?';
-		console.log(window.base+url+'?'+data);
+		console.log(url+'?'+data);
 		$.ajax({
 		 type: 'GET',
 		  url: url+'?'+data,
@@ -115,10 +115,11 @@
 		  success: function(ItemsData) {
 
 			  // CUSTOM STUFF
+			  var sum = ItemsData.sum;
 			  // uzmi samo podatke o itemima
-			  var data = ItemsData.data;
 			  recordsTotal = ItemsData.recordsTotal;
 			  paginator(page,recordsTotal,length, callFunction);
+			  var data = ItemsData.data;			  
 			  $.each(data, function(i, item) {
 				data[i].color ='white';
 			  });
@@ -126,9 +127,7 @@
 				// poziva se handlebars da pripremi prikaz
 				var source   = $("#ItemListTemplate").html();
 				var template = Handlebars.compile(source);
-
-				var HTML = template({Item : data_Items});
-
+				var HTML = template({Item : data_Items, Item2: sum });
 				$("#show_Items").html(HTML);
 				
 			/*if	(ItemsData.showfilter == 0) {
