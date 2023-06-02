@@ -467,12 +467,12 @@ Prikaz AuthLevelID polja kao checkbox
 uzima podatke iz userLevels objekta u lng/en_init.js!
 */
 
-Handlebars.registerHelper("userLevelCheck", function(currentLevel) {
+Handlebars.registerHelper("userLevelCheck", function(currentLevel, code) {
 	function userLevelsChecking() {
 		var userLevelsCheck = '';
 		$.each (userLevels, function(i, val) {
 			userLevelsCheck += '<input type="checkbox" class="level" name="level" value="" data-id="'+i+'"/>';
-			userLevelsCheck += '<label for="level"> '+ val +'</label><br>';
+			userLevelsCheck += '<label for="level"> <a href="'+code+'FieldsSettings/'+i+'">'+ val +'</a></label><br>';
 		});
 
 

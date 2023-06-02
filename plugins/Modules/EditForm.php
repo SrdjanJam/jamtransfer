@@ -108,7 +108,7 @@
 				<div class="row">
 					<div class="col-md-3 "><label><?= LEVEL ?></label></div>
 					<div class="col-md-9 checking">
-						{{userLevelCheck AuthLevelID}}
+						{{userLevelCheck AuthLevelID Code}}
 					</div>
 				</div>				
 				<div class="row">
