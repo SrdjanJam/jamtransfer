@@ -150,6 +150,14 @@ if(!isset($_REQUEST['pickupFromDate']) || empty($_REQUEST['pickupFromDate'])) {
 	if(isset($_COOKIE['pickupFromDate'])) $_REQUEST['pickupFromDate']=$_COOKIE['pickupFromDate'];
 	else $_REQUEST['pickupFromDate']=date('Y-m-d',time()-365*24*3600);
 }
+if(!isset($_REQUEST['orderToDate']) || empty($_REQUEST['orderToDate'])) {
+	if(isset($_COOKIE['orderToDate'])) $_REQUEST['orderToDate']=$_COOKIE['orderToDate'];
+	else $_REQUEST['orderToDate']=date('Y-m-d',time());
+}	
+if(!isset($_REQUEST['pickupToDate']) || empty($_REQUEST['pickupToDate'])) { 
+	if(isset($_COOKIE['pickupToDate'])) $_REQUEST['pickupToDate']=$_COOKIE['pickupToDate'];
+	else $_REQUEST['pickupToDate']=date('Y-m-d',time()+365*24*3600);
+}
 if(!isset($_REQUEST['paymentNumber'])) $_REQUEST['paymentNumber']="";
 if(!isset($_REQUEST['order'])) $_REQUEST['order']="";
 if(!isset($_REQUEST['locationName'])) $_REQUEST['locationName']="";
@@ -170,6 +178,10 @@ $orderFromDate 	= $_REQUEST['orderFromDate'];
 setcookie("orderFromDate", $orderFromDate, time() + (7*24*60*60),"/");
 $pickupFromDate 	= $_REQUEST['pickupFromDate'];
 setcookie("pickupFromDate", $pickupFromDate, time() + (7*24*60*60),"/");
+$orderToDate 	= $_REQUEST['orderToDate'];
+setcookie("orderToDate", $orderToDate, time() + (7*24*60*60),"/");
+$pickupToDate 	= $_REQUEST['pickupToDate'];
+setcookie("pickupToDate", $pickupToDate, time() + (7*24*60*60),"/");
 $paymentNumber 	= $_REQUEST['paymentNumber'];
 $order 	= $_REQUEST['order'];
 $locationName 	= $_REQUEST['locationName'];
@@ -184,6 +196,8 @@ $yearsPickup 	= $_REQUEST['yearsPickup'];
 $sortField 	= $_REQUEST['sortField'];
 $sortDirection 	= $_REQUEST['sortDirection'];
 $listExtras 	= $_REQUEST['listExtras'];
+$paymentChecker = $_REQUEST['paymentChecker'];
+$flightTimeChecker = $_REQUEST['flightTimeChecker'];
 
 $start = ((int)$page * (int)$length) - (int)$length;
 // var_dump($start);
@@ -261,6 +275,7 @@ if ( $_REQUEST['Search'] != "" )
 	$dbWhere .= ')';
 }
 if ($listExtras==1) $dbWhere .= " AND ExtraCharge >0 ";
+
 if ($paymentMethod>0) $dbWhere .= " AND PaymentMethod = ".$paymentMethod;
 if ($driverConfStatus>-1) $dbWhere .= " AND DriverConfStatus = ".$driverConfStatus;
 if ($paymentNumber<>'') $dbWhere .= " AND (MCardNumber = '".$paymentNumber."' OR 
@@ -268,6 +283,8 @@ if ($paymentNumber<>'') $dbWhere .= " AND (MCardNumber = '".$paymentNumber."' OR
 											DriverInvoiceNumber ='".$paymentNumber."')";
 if ($orderFromDate<>'') $dbWhere .= " AND OrderDate >= '".$orderFromDate."'";
 if ($pickupFromDate<>'') $dbWhere .= " AND PickupDate >= '".$pickupFromDate."'";
+if ($orderToDate<>'') $dbWhere .= " AND OrderDate <= '".$orderToDate."'";
+if ($pickupToDate<>'') $dbWhere .= " AND PickupDate <= '".$pickupToDate."'";
 if ($order<>'') $dbWhere .= " AND OrderID = '".$order."'";
 if (strlen($locationName)>2) $dbWhere .= " AND (PickupName LIKE ('%".$locationName."%') OR 
 													DropName LIKE ('%".$locationName."%')) ";
@@ -316,6 +333,98 @@ if ($_REQUEST['orderid']<>"0") {
 	else $dbWhere = " WHERE OrderID = ".$_REQUEST['orderid'];			
 	//if (isset($_SESSION['UseDriverID']))  $dbWhere .=	" AND v4_OrderDetails.DriverID = '".$_SESSION['UseDriverID']."' ";	
 }
+	
+	
+// ove checkere tek treba definisati
+if ($flightTimeChecker==1) {
+	$dbk = $od->getFullOrderByDetailsID($sortField, $sortDirection, ''  , $dbWhere);
+	if (count($dbk) != 0) {
+		foreach ($dbk as $nn => $key)
+		{	
+			$od->getRow($key);
+			$PickupID=$od->getPickupID();
+			$DropID=$od->getDropID();
+			$Duration='';
+			if ($PickupID!=0) {
+				$pl->getRow($PickupID);
+				$PickupPlaceType=$pl->getPlaceType();
+			}
+			if ($DropID!=0) {
+				$pl->getRow($DropID);
+				$DropPlaceType=$pl->getPlaceType();	
+			}
+			$RouteID=$od->getRouteID();
+			if ($RouteID>0) {
+				$rt->getRow($RouteID);
+				$Duration=$rt->getDuration();
+			}			
+			
+			# flight conflict
+			$ConflictTime=false;
+			$ptA=explode(':',$od->getPickupTime());
+			$pt=60*$ptA[0]+$ptA[1];
+			$ftA=explode(':',$od->getFlightTime());
+			$ft=60*$ftA[0]+$ftA[1];
+			if ($PickupPlaceType==1) {	
+				$TimeDiff=$pt-$ft;
+				if ($TimeDiff<0 || $TimeDiff>120) $ConflictColor='red';
+				else $ConflictColor='';
+			} else if ($DropPlaceType==1) {	
+				$TimeDiff=$ft-$pt-$Duration-120;
+				if ($TimeDiff<-60) $ConflictColor='red';
+				else if ($TimeDiff<0) $ConflictColor='yellow';
+				else $ConflictColor='';
+			} else {
+				$TimeDiff=0;
+				$ConflictColor='';
+			}
+			$ConflictColorArr[$key]=$ConflictColor;
+			$TimeDiffArr[$key]=$TimeDiff;
+
+			if ($ConflictColor=='red' || $ConflictColor=='yellow') {
+				$fligt_time_conflict  .= $key. ",";
+			}	
+		}
+		$fligt_time_conflict = substr($fligt_time_conflict,0,strlen($fligt_time_conflict)-1);
+		$dbWhere .= " AND DetailsID in (".$fligt_time_conflict.")";
+	}	
+}	
+
+if ($paymentChecker==1) {
+	$dbk = $od->getFullOrderByDetailsID($sortField, $sortDirection, ''  , $dbWhere);
+	if (count($dbk) != 0) {
+		foreach ($dbk as $nn => $key)
+		{	
+			$od->getRow($key);
+			$PayDiff=$od->getDetailPrice()+$od->getExtraCharge()-$od->getPayNow()-$od->getPayLater()-$od->getInvoiceAmount()-$od->getProvisionAmount();
+			$ConflictColor='';
+			$PayDiffArr[$key]="";			
+			if ($PayDiff>0.5 || $PayDiff<-0.5) {
+				$ConflictColor='red';
+				$payment_conflict  .= $key. ",";
+				$PayDiffArr[$key]=number_format($PayDiff,2)." € difference";				
+			}
+			$pm=$od->getPaymentMethod();
+			if (
+				($pm==1 && $od->getPayNow()==0) ||
+				($pm==3 && $od->getPayNow()==0) ||
+				($pm==2 && $od->getPayLater()==0) ||
+				($pm==3 && $od->getPayLater()==0) ||
+				($pm==4 && $od->getInvoiceAmount()==0) ||
+				($pm==6 && $od->getInvoiceAmount()==0) 
+			) {
+				$ConflictColor='yellow';
+				$PayDiffArr[$key]="Wrong Payment Type";								
+				$payment_conflict  .= $key. ",";
+			}	
+			$PayConflictColorArr[$key]=$ConflictColor;
+			
+		}
+		$payment_conflict = substr($payment_conflict,0,strlen($payment_conflict)-1);
+		$dbWhere .= " AND DetailsID in (".$payment_conflict.")";		
+	}
+}	
+
 	
 $odTotalRecords = $od->getFullOrderByDetailsID($sortField, $sortDirection, '' , $dbWhere);
 
@@ -404,6 +513,11 @@ if (count($dbk) != 0) {
 			$pl->getRow($DropID);
 			$detailFlds["DropName"]=$pl->getPlaceNameEN();
 		}
+		
+		$detailFlds["ConflictColor"] = $ConflictColorArr[$key];
+		$detailFlds["TimeDiff"] = $TimeDiffArr[$key];
+		$detailFlds["PayConflictColor"] = $PayConflictColorArr[$key];
+		$detailFlds["PayDiff"] = $PayDiffArr[$key];
 				
 		# get fields and values
 		$masterFlds = $om->fieldValues();
@@ -411,6 +525,7 @@ if (count($dbk) != 0) {
 		else $masterFlds['CountryPhonePrefix'] = '';
 		$masterFlds['UserName']=$users[$om->getMUserID()]->AuthUserRealName;
 		$masterFlds['Image']=$users[$om->getMUserID()]->Image;
+
 		
 		$out[] = array_merge($detailFlds , $masterFlds);    	  	
     }
@@ -422,6 +537,8 @@ $output = array(
 'draw' => '0',
 'orderFromDate' => $orderFromDate,
 'pickupFromDate' => $pickupFromDate,
+'orderToDate' => $orderToDate,
+'pickupToDate' => $pickupToDate,
 'sortField' => $sortField,
 'sortDirection' => $sortDirection,
 'paymentNumber' => $paymentNumber,

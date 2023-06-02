@@ -1,6 +1,7 @@
 <?
 require_once '../../config.php';
 require_once ROOT . '/db/v4_Places.class.php';
+require_once ROOT . '/db/v4_Routes.class.php';
 require_once ROOT . '/db/v4_OrderDetails.class.php';
 require_once ROOT . '/db/v4_OrdersMaster.class.php';
 require_once ROOT . '/db/v4_OrderDocument.class.php';
@@ -34,6 +35,7 @@ class v4_OrdersJoin extends v4_OrderDetails {
 $db = new v4_OrderDetails();
 $od = new v4_OrdersJoin();
 $pl = new v4_Places();
+$rt = new v4_Routes();
 $om = new v4_OrdersMaster();
 $odoc = new v4_OrderDocument();
 $ol = new v4_OrderLog();

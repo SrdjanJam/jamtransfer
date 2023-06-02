@@ -18,10 +18,14 @@
 	 	var sortOrder  = $("#sortOrder").val();		
 	 	var orderFromDate = $("#orderFromDate").val();
 		if (typeof orderFromDate=='undefined') orderFromDate='';
+		var orderToDate = $("#orderToDate").val();
+		if (typeof orderToDate=='undefined') orderToDate='';
 	 	var pickupFromDate = $("#pickupFromDate").val();
-		var currentTime = new Date();	
 		if (typeof pickupFromDate=='undefined') pickupFromDate='';
+		var currentTime = new Date();			
 		//if (typeof pickupFromDate=='undefined') pickupFromDate=currentTime.getFullYear()+'-01-01';
+	 	var pickupToDate = $("#pickupToDate").val();
+		if (typeof pickupToDate=='undefined') pickupToDate='';		
 	 	var order = $("#order").val();
 		if (typeof order=='undefined') order='';
 	 	var locationName = $("#locationName").val();
@@ -59,7 +63,11 @@
 		var actionID = $("#actionID").val();
 		if (typeof actionID=='undefined') actionID=0;	
 		if ($("#listExtras").is(':checked')) var listExtras=1;
-		else var listExtras=0;
+		else var listExtras=0;		
+		if ($("#paymentChecker").is(':checked')) var paymentChecker=1;
+		else var paymentChecker=0;		
+		if ($("#flightTimeChecker").is(':checked')) var flightTimeChecker=1;
+		else var flightTimeChecker=0;
 		var callFunction = 'allItems()'; // funkcija koju paginator poziva kod promjene stranice
 	
 		// ovo koristi i paginator funkcija!
@@ -82,7 +90,9 @@
 		'&orderid='+orderid+
 		'&detailid='+detailid+
 		'&orderFromDate='+orderFromDate+
+		'&orderToDate='+orderToDate+
 		'&pickupFromDate='+pickupFromDate+
+		'&pickupToDate='+pickupToDate+
 		'&paymentNumber='+paymentNumber+	
 		'&order='+order+
 		'&locationName='+locationName+
@@ -97,6 +107,8 @@
 		'&sortField='+sortField+
 		'&sortDirection='+sortDirection+
 		'&listExtras='+listExtras+
+		'&paymentChecker='+paymentChecker+
+		'&flightTimeChecker='+flightTimeChecker+
 		'&routeID='+routeID+
 		'&vehicleTypeID='+vehicleTypeID+
 		'&vehicleID='+vehicleID+
@@ -153,9 +165,15 @@
 			  }				  
 			  if (ItemsData.orderFromDate) {
 				  $("#orderFromDate").val(ItemsData.orderFromDate);
+			  }				  
+			  if (ItemsData.orderToDate) {
+				  $("#orderToDate").val(ItemsData.orderToDate);
 			  }			  
 			  if (ItemsData.pickupFromDate) {
 				  $("#pickupFromDate").val(ItemsData.pickupFromDate);
+			  }			  
+			  if (ItemsData.pickupToDate) {
+				  $("#pickupToDate").val(ItemsData.pickupToDate);
 			  }			 
 			  if (ItemsData.sortField) {
 				  $("#sortField").val(ItemsData.sortField);
@@ -191,6 +209,8 @@
 		      if (orderid>0 || detailid>0) $('.itemsheader').hide();
 		      if (orderid>0 || detailid>0) $('#pageSelect').hide();
 		      if (listExtras==1) $('#listExtras').prop('checked', true);
+		      if (paymentChecker==1) $('#paymentChecker').prop('checked', true);
+		      if (flightTimeChecker==1) $('#flightTimeChecker').prop('checked', true);
 			  if (typeof window.filter == 'undefined') window.filter="down";
 			  if ($(window).width() < 760 || window.filter == "down") filtersDown();
 			  else	filtersUP();

@@ -163,8 +163,8 @@ require_once('lng/' . $_SESSION['CMSLang'] . '_text.php');
 			}	
 		}	
 		else{
-			$error = true;
-			$message = 2;
+			//$error = true;
+			//$message = 2;
 		}
 	// Smarty assign:
 	$smarty->assign('error',$error);

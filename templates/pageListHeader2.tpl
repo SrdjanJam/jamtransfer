@@ -99,13 +99,15 @@ value=" WHERE {$ItemID} > 0">
 			
 			<input id='orderFromDate' class="datepicker datepicker-edit" name='orderFromDate'  placeholder="From Date" onchange="allItems();" /><br>
 			
-			<select id="Type" class="w75 form-control select-top-edit" onchange="allItems();">
+			<select id="Type" class="form-control select-top-edit addon" onchange="allItems();">
 				<option value="0">{$ALL} {$STATUS}</option>
 				{section name=pom loop=$options}
 					<option value="{$options[pom].id}">{$options[pom].name}</option>
 				{/section}
 			</select>
 			
+			<input id='orderToDate' class="datepicker datepicker-edit" name='orderToDate'  placeholder="To Date" onchange="allItems();" /><br>
+
 		</div>
 
 		<!-- Payment: -->
@@ -119,6 +121,7 @@ value=" WHERE {$ItemID} > 0">
 						<option value="{$options3[pom].id}">{$options3[pom].name}</option>
 					{/section}
 				</select>
+				<i class="fa fa-money" style="color:#900"></i><input type="checkbox" id="paymentChecker" name="paymentChecker"  value="" onchange="allItems();" />Checker				
 		</div>
 
 		<!-- Transfer: -->
@@ -132,6 +135,7 @@ value=" WHERE {$ItemID} > 0">
 				</select>!-->
 				<i class="fa fa-cubes" style="color:#900"></i><input type="checkbox" id="listExtras" name="listExtras"  value="" onchange="allItems();" />
 				</br>
+				<input id='pickupToDate' class="datepicker datepicker-edit-2" name='pickupToDate'  placeholder="To Date" onchange="allItems();" style="width:80%;"/>				
 		</div>
 
 		<!-- Driver: -->
@@ -165,6 +169,7 @@ value=" WHERE {$ItemID} > 0">
 		<div class="col-md-2">
 			<small class="badge blue text-black badge-edit">{$PASSENGER}</small><br>
 			<input id='passengerData' class="input-one" name='passengerData'  placeholder="Passenger Data" onchange="allItems();"/>					
+			<i class="fa fa-plane" style="color:#900"></i><input type="checkbox" id="flightTimeChecker" name="flightTimeChecker"  value="" onchange="allItems();" />Flight Time Checker		
 		</div>	
 
 	</div> <!-- End of .filter -->

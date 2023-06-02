@@ -17,30 +17,33 @@ $StatusDescription = array(
 	require_once ROOT . '/db/v4_OrderDetails.class.php';
 
     $od = new v4_OrderDetails();
+	
+	if (isset($_SESSION['UseDriverID'])) $driverQ=" WHERE DriverID=".$_SESSION['UseDriverID']." AND ";
+	else $driverQ=" WHERE ";
 
-    $where = ' WHERE PickupDate >= "'.date("Y-m-d").'" AND TransferStatus < "3"';
+    $where = $driverQ.' PickupDate >= "'.date("Y-m-d").'" AND TransferStatus < "3"';
     $k = $od->getKeysBy('DetailsID', 'asc', $where);
     $smarty->assign('activeOrders', count($k));
 
 
-    $where = ' WHERE PickupDate >= "'.date("Y-m-d").'" AND TransferStatus < "3" AND (DriverConfStatus = "2" OR DriverConfStatus = "3")';
+    $where = $driverQ.' PickupDate >= "'.date("Y-m-d").'" AND TransferStatus < "3" AND (DriverConfStatus = "2" OR DriverConfStatus = "3")';
     $k = $od->getKeysBy('DetailsID', 'asc', $where);
     $smarty->assign('confirmedOrders', count($k));
 
 
-    $where = ' WHERE TransferStatus < "3" AND DriverConfStatus = "1"';
+    $where = $driverQ.' TransferStatus < "3" AND DriverConfStatus = "1"';
     $k = $od->getKeysBy('DetailsID', 'asc', $where);
     $smarty->assign('notConfirmedOrders', count($k));    
 	
-	$where = ' WHERE PickupDate = "'.date("Y-m-d").'" AND TransferStatus < "3" AND (DriverConfStatus = "1" OR DriverConfStatus = "4")';
+	$where = $driverQ.' PickupDate = "'.date("Y-m-d").'" AND TransferStatus < "3" AND (DriverConfStatus = "1" OR DriverConfStatus = "4")';
     $k = $od->getKeysBy('DetailsID', 'asc', $where);
     $smarty->assign('notConfirmedOrdersToday',count($k));	
 	
-	$where = ' WHERE PickupDate = ("'.date("Y-m-d").'"+INTERVAL 1 DAY) AND TransferStatus < "3" AND (DriverConfStatus = "1" OR DriverConfStatus = "4")';
+	$where = $driverQ.' PickupDate = ("'.date("Y-m-d").'"+INTERVAL 1 DAY) AND TransferStatus < "3" AND (DriverConfStatus = "1" OR DriverConfStatus = "4")';
     $k = $od->getKeysBy('DetailsID', 'asc', $where);
     $smarty->assign('notConfirmedOrdersTomorrow',count($k));
 
-    $where = ' WHERE PickupDate >= "'.date("Y-m-d").'" AND TransferStatus < "3" AND DriverConfStatus = "4"';
+    $where = $driverQ.' PickupDate >= "'.date("Y-m-d").'" AND TransferStatus < "3" AND DriverConfStatus = "4"';
     $k = $od->getKeysBy('DetailsID', 'asc', $where);
     $smarty->assign('declined',count($k));
 
@@ -51,12 +54,12 @@ $StatusDescription = array(
 	$fromDate= date("Y-m-d", $today);
 	$lastWeek= date("Y-m-d", $lastWeek);
 
-    $where = ' WHERE OrderDate = "'. $fromDate.'" AND TransferStatus < "3"';
+    $where = $driverQ.' OrderDate = "'. $fromDate.'" AND TransferStatus < "3"';
     $k = $od->getKeysBy('DetailsID', 'asc', $where);
     $smarty->assign('todayBooking',count($k));
 
 
-    $where = ' WHERE OrderDate >= "'.$lastWeek.'" AND TransferStatus < "3" AND (DriverConfStatus = "2" OR DriverConfStatus = "3")';
+    $where = $driverQ.' OrderDate >= "'.$lastWeek.'" AND TransferStatus < "3" AND (DriverConfStatus = "2" OR DriverConfStatus = "3")';
     $k = $od->getKeysBy('DetailsID', 'asc', $where);
     $smarty->assign('lastWeekBooking',count($k));	
 
@@ -64,7 +67,7 @@ $StatusDescription = array(
 
 	$datetime = new DateTime('tomorrow');
 	$tomorrow = $datetime->format('Y-m-d');
-    $where = ' WHERE PickupDate = "'.$tomorrow.'" AND TransferStatus < "3"';
+    $where = $driverQ.' PickupDate = "'.$tomorrow.'" AND TransferStatus < "3"';
     $k = $od->getKeysBy('DetailsID', 'asc', $where);
     $smarty->assign('tomorrowTransfers', count($k));
 
