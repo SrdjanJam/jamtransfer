@@ -472,7 +472,7 @@ Handlebars.registerHelper("userLevelCheck", function(currentLevel, code) {
 		var userLevelsCheck = '';
 		$.each (userLevels, function(i, val) {
 			userLevelsCheck += '<input type="checkbox" class="level" name="level" value="" data-id="'+i+'"/>';
-			userLevelsCheck += '<label for="level"> <a href="'+code+'FieldsSettings/'+i+'">'+ val +'</a></label><br>';
+			userLevelsCheck += '<label for="level"> <a target="_blank" href="'+code+'/fieldsSettings/'+i+'">'+ val +'</a></label><br>';
 		});
 
 

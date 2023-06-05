@@ -15,6 +15,7 @@ Class v4_FieldsSettings {
 
 	public $ID; //int(10)
 	public $ModuleID; //int(10)
+	public $LevelID; //int(10)
 	public $Name; 
 	public $Required; //int(1)
 	public $Disabled; //int(1)	
@@ -34,6 +35,7 @@ Class v4_FieldsSettings {
 	public function New_v4_FieldsSettings($ID,$ModuleID,$Name,$Required,$Disabled,$Hidden){
 		$this->ID = $ID;
 		$this->ModuleID = $ModuleID;
+		$this->LevelID = $LevelID;
 		$this->Name = $Name;
 		$this->Required = $Required;
 		$this->Disabled = $Disabled;		
@@ -52,6 +54,7 @@ Class v4_FieldsSettings {
 		while($row = $result->fetch_array(MYSQLI_ASSOC)){
 			$this->ID = $row["ID"];
 			$this->ModuleID = $row["ModuleID"];
+			$this->LevelID = $row["LevelID"];
 			$this->Name = $row["Name"];
 			$this->Required = $row["Required"];
 			$this->Disabled = $row["Disabled"];			
@@ -76,6 +79,7 @@ Class v4_FieldsSettings {
 		$result = $this->connection->RunQuery("UPDATE v4_FieldsSettings set 
 ID = '".$this->myreal_escape_string($this->ID)."', 
 ModuleID = '".$this->myreal_escape_string($this->ModuleID)."', 
+LevelID = '".$this->myreal_escape_string($this->LevelID)."', 
 Name = '".$this->myreal_escape_string($this->Name)."', 
 Required = '".$this->myreal_escape_string($this->Required)."', 
 Disabled = '".$this->myreal_escape_string($this->Disabled)."', 
@@ -88,8 +92,9 @@ Hidden = '".$this->myreal_escape_string($this->Hidden)."'
      * Save the active var class as a new row on table
      */
 	public function saveAsNew(){
-		$this->connection->RunQuery("INSERT INTO v4_FieldsSettings (ID, ModuleID, Name, Required, Disabled, Hidden) values ('".$this->myreal_escape_string($this->ID)."',
+		$this->connection->RunQuery("INSERT INTO v4_FieldsSettings (ID, ModuleID, LevelID, Name, Required, Disabled, Hidden) values ('".$this->myreal_escape_string($this->ID)."',
 		'".$this->myreal_escape_string($this->ModuleID)."',
+		'".$this->myreal_escape_string($this->LevelID)."',
 		'".$this->myreal_escape_string($this->Name)."',
 		'".$this->myreal_escape_string($this->Required)."',
 		'".$this->myreal_escape_string($this->Disabled)."',		
@@ -127,6 +132,13 @@ Hidden = '".$this->myreal_escape_string($this->Hidden)."'
 		return $this->ModuleID;
 	}
 
+	/**
+	 * @return LevelID - int(10)
+	 */
+	public function getLevelID(){
+		return $this->LevelID;
+	}
+	
 	/**
 	 * @return Name - int(10)
 	 */
@@ -174,6 +186,13 @@ Hidden = '".$this->myreal_escape_string($this->Hidden)."'
 	/**
 	 * @param Type: int(10)
 	 */
+	public function setLevelID($LevelID){
+		$this->LevelID = $LevelID;
+	}
+	
+	/**
+	 * @param Type: int(10)
+	 */
 	public function setName($Name){
 		$this->Name = $Name;
 	}
@@ -210,6 +229,7 @@ Hidden = '".$this->myreal_escape_string($this->Hidden)."'
 		$fieldValues = array(
 			'ID' => $this->getID(),
 			'ModuleID' => $this->getModuleID(),
+			'LevelID' => $this->getLevelID(),
 			'Name' => $this->getName(),
 			'Required' => $this->getRequired(),
 			'Disabled' => $this->getDisabled(),			
@@ -224,7 +244,7 @@ Hidden = '".$this->myreal_escape_string($this->Hidden)."'
      */
 	public function fieldNames(){
 		$fieldNames = array(
-			'ID',			'ModuleID',		'ModuleID',		'Required',		'Disabled',			'Hidden'	);
+			'ID',			'ModuleID',		'LevelID',		'Required',		'Disabled',			'Hidden'	);
 		return $fieldNames;
 	}
     /**

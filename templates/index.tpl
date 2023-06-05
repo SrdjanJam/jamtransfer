@@ -333,7 +333,10 @@
 							</div>
 
 							<!-- Page title and database: -->
-							<h2 style="display:inline-block;margin: 15px 0 0 55px;vertical-align: super;"><span class="m-r-sm text-muted">{$title} - {$smarty.session.log_title}</span></h2>
+							<h2 style="display:inline-block;margin: 15px 0 0 55px;vertical-align: super;">
+								<span class="m-r-sm text-muted">{$title} - {$smarty.session.log_title}</span>
+								{if $fieldsSettings eq 1}<span class="m-r-sm text-muted"> / Fields Settings</span>{/if}
+								</h2>
 
 						</div>
 
@@ -464,13 +467,19 @@
 
 		</div> <!-- End of wrapper -->
 
-
+		<input type="hidden" id="fieldsSettings" name="fieldsSettings" value="{$fieldsSettings}">
+		<input type="hidden" id="levelID" name="levelID" value="{$levelID}">
 		<input type='hidden' id='ModuleID' value='{$ModulID}' name='ModuleID'>
 		<input type='hidden' id='local' value='{$local}' name='local'>
 		<input type='hidden' id='success' value='{$SUCCESS}' name='success'>
 		<input type='hidden' id='unsuccess' value='{$UNSUCCESS}' name='unsuccess'>
 		<input type='hidden' id='delete' value='{$DELETE_ROW}' name='delete'>
 		
+		<div style="display:none;" id="fsBlock" data-attr="">
+			<span><label>Required</label> <input type="checkbox" class="" name="required" value="" data-attr=""/></span>
+			<span><label>Disabled</label> <input type="checkbox" class="" name="disabled" value="" data-attr=""/></span>
+			<span><label>Hidden</label> <input type="checkbox" class="" name="hidden" value="" data-attr=""/></span>
+		</div>
 
 	</body>
 </html>

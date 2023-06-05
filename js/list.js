@@ -1,7 +1,7 @@
 	var data_Items = [];
-
 	window.base='http://localhost/jamtransfer/';
 	var validationFields = ["PlaceTypeEN", "PlaceTypeRUS"];
+
 	function allItems() {
 		// podaci iz input polja - filtriranje
 		var where  = $("#whereCondition").val(); // glavni filter koji uvijek radi
@@ -290,7 +290,7 @@
 			error: function(xhr, status, error) {alert("Show error occured: " + xhr.status + " " + xhr.statusText); }
 		});
 
-		var url =  "plugins/fieldsSetter.php?ModuleID="+ModuleID;
+		var url =  "plugins/fieldsSettings.php?ModuleID="+ModuleID;
 		console.log(url);
 		$.ajax({
 			type: 'GET',
@@ -313,11 +313,16 @@
 		
 	}
 	function new_Item() { 
+
 		var source   = $("#ItemEditTemplate").html();
 		var template = Handlebars.compile(source);
 		var HTML = template();
 		$("#new_Item").html(HTML);
 		$("#ItemWrapperNew").show('slow');
+		
+		var fieldsSettings = $("#fieldsSettings").val();
+		if (fieldsSettings==1) fieldSetter();
+	//})		
 	}
 
 
@@ -500,6 +505,60 @@
 		});
 	}
 
+	function fieldSetter() {
+		$('button').hide();
+		var mid = $("#ModuleID").val();
+		var lid = $("#levelID").val();
+		$('iframe').each(function() {
+			$(this).remove();
+		})		
+		$('input:not(:hidden), textarea').each(function() {
+			var name=$(this).attr('name');
+			$("#fsBlock input").attr('data-attr',name);
+			var fsHTML = $("#fsBlock").html();
+			$(this).after(fsHTML);			
+			$(this).hide();
+		})	
+		
+		var url =  "plugins/fieldsSettings.php?ModuleID="+mid+"&LevelID="+lid;
+		console.log(url);
+		$.ajax({
+			type: 'GET',
+			url: url,
+			async: false,
+			contentType: "application/json",
+			dataType: 'jsonp',
+			success: function(out) {
+				$.each(out.data, function() {
+					console.log(this);
+					var name = this.Name;
+					if (this.Required == 1) $(":checkbox[name='required'][data-attr='"+name+"']").prop('checked',true);
+					if (this.Disabled == 1) $(":checkbox[name='disabled'][data-attr='"+name+"']").prop('checked',true);
+					if (this.Hidden == 1) $(":checkbox[name='hidden'][data-attr='"+name+"']").prop('checked',true);
+				})
+			}	
+		});	
+		
+		$(":checkbox").click(function() {
+			if ($(this).prop('checked')) var check=1;
+			else var check=0;
+			var fname=$(this).attr('data-attr');
+			var setType = $(this).attr('name');
+			var param = 'LevelID='+lid+'&ModuleID='+mid+'&Name='+fname+'&SetType='+setType+'&SetValue='+check;
+			var url =  "plugins/fieldsSetter.php?"+param;
+			console.log(url);
+			$.ajax({
+				type: 'GET',
+				url: url,
+				async: false,
+				success: function() {
+					toastr['success']('Item updated');
+				}	
+			});
+		});	
+	}
+
+	
 	function datetimepicker() {
 		$('.datepicker').datetimepicker({
 			// yearOffset:2,

@@ -138,6 +138,14 @@ if ($result->num_rows>0) {
 	if ($_SESSION['AuthUserID']==874) $existNew=true;
 	if ($md->getName()=="Articles") $existNew=true;*/
 
+	if ($specialpage2=='fieldsSettings') {
+		$smarty->assign('fieldsSettings',1);
+		$smarty->assign('levelID',$specialpage);
+	}	
+	else {
+		$smarty->assign('fieldsSettings',0);
+		$smarty->assign('levelID',0);		
+	}
 	$smarty->assign('transfersFilter',$transfersFilter);
 	$smarty->assign('includeFile',$includeFile);
 	$smarty->assign('includeFileTpl',$includeFileTpl);
