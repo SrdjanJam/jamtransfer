@@ -40,6 +40,7 @@ require_once ROOT . '/db/v4_Places.class.php';
 require_once ROOT . '/db/v4_Routes.class.php';
 require_once ROOT . '/db/v4_OrderLog.class.php';
 require_once ROOT . '/db/v4_SubVehicles.class.php';
+require_once ROOT . '/db/v4_Notifications.class.php';
 
 $db = new DataBaseMysql();
 $om = new v4_OrdersMaster();
@@ -50,6 +51,7 @@ $op = new v4_Places();
 $or = new v4_Routes();
 $ol = new v4_OrderLog();
 $sv = new v4_SubVehicles();
+$nt = new v4_Notifications();
 
 
 $ordersArray = array();
@@ -239,6 +241,18 @@ if ($r->num_rows>0) {
 					if ($distACC>5 && $inTime) $row['ForTransferBreak']=false;
 				}
 			}
+			// hvatanje notifikacije
+			$ntk = $nt->getKeysBy('NotificationID', 'asc' , ' WHERE 
+				SubDriverID= '.$d->AuthUserID.' AND DateToSend = "'.$DateFrom.'" AND NotificationType=1');
+			$row['TimeToSend']="";
+			$row['NotificationID']=0;			
+			if (count($ntk)>0) {
+				$nt->getRow($ntk[0]);
+				$tt=explode(":",$nt->getTimeToSend());
+				$timeToSend=$tt[0].":".$tt[1];
+				$row['TimeToSend']=$timeToSend;
+				$row['NotificationID']=$nt->getNotificationID();
+			} 		
 			$sdArray[] = $row;
 		}
 	}	

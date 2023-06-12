@@ -259,7 +259,11 @@ hr {
 
 					<div class="row orange white-text">
 						<strong>{$sdArray[pom].DriverName}</strong>	
-						<a href="tel:{$sdArray[pom].Mob}">{$sdArray[pom].Mob}</a><br>
+						<a href="tel:{$sdArray[pom].Mob}">{$sdArray[pom].Mob}</a>
+						<input type="text" class="timepicker readytime" name="readytime" value="{$sdArray[pom].TimeToSend}" placeholder="ready time"
+							data-sdid="{$sdArray[pom].DriverID}" data-nid="{$sdArray[pom].NotificationID}"
+						/>
+						<br>
 						<div class='{$todayshow}'>
 							<i class="{$sdArray[pom].IconPositon}" aria-hidden="true"></i> <small>{$sdArray[pom].Device} {$sdArray[pom].Location}</small>
 						</div>
@@ -331,5 +335,22 @@ $('#hide').click(function() {
 resize();
 $(window).resize(resize);
 
+$('.readytime').change(function(){
+	var ReadyTime = $(this).val();
+	var ReadyDate = $("#DateFrom").val();
+	var sdid = $(this).attr('data-sdid');
+	var nid = $(this).attr('data-nid');
+	var url = "plugins/Schedule/readyTime.php";
+	var param = "TimeToSend="+ReadyTime+"&DateToSend="+ReadyDate+"&SubDriverID="+sdid+"&NotificationID="+nid;
+	console.log(url+'?'+param);
+	$.ajax({
+		url: url,
+		type: "POST",
+		data: param,
+		success: function (data) {
+			toastr['success'](window.success);	
+		}
+	})	
+})
 
 </script>
