@@ -115,7 +115,7 @@
 								{{#if PayConflictColor}}<div><strong>{{PayDiff}}</strong></div>{{/if}}								
 								<div class="icon">
 									<i class="fa fa-file-invoice" style="font-size:60px;"></i>
-								</div>						
+								</div>	    					
 							</div>
 							
 							<div class="col-md-2 small-box transfer" onclick="oneItem({{DetailsID}},'transfer');">
