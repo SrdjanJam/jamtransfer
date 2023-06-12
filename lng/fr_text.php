@@ -4,190 +4,191 @@
 /*
 	# TransferStatus taxido - trenutni
 	$StatusDescription = array(
-		'1' =>    'New',	// brise se
+		'1' =>    'Nouveau',	// brise se
 		'2' =>    'Active',
-		'3' =>    'Canceled',
-		'4' =>    'Refunded', // u PaymentStatus
+		'3' =>    'Annulé',
+		'4' =>    'Remboursé', //  Statut de paiement
 		'5' =>    'No-Show', // u DriverConfStatus
-		'6' =>    'DriverError', // u DriverConfStatus
-		'7' =>    'Completed',
-		'8' =>    'Comm.Paid'
+		'6' =>    'Erreur du conducteur', // u DriverConfStatus
+		'7' =>    'Complété',
+		'8' =>    'Commission payée'
 	);
 */
 
 	# Payment Status
 	/* prva ideja
 	$PaymentStatus = array(
-		'0'	=>	'Not Paid',
-		'1'	=>	'Paid Full Online',
-		'2'	=>	'Paid Full Cash',
-		'3'	=> 	'Paid Online Part',
-		'4'	=> 	'Paid Cash Part',
-		'5'	=>	'Invoice sent - Not paid',
-		'6'	=>	'Invoice Paid',
-		'7'	=>	'Warning sent',
-		'8'	=> 	'Paid after Warning',
-		'9'	=>	'Compensated',
-		'10'=>	'Sued',
-		'98'=>	'Paid - Closed',
-		'99'=>	'Lost - will not be paid'
+		'0'	=>	'Pas payé',
+		'1'	=>	'Paiement total en ligne',
+		'2'	=>	'Paiement total en espèces',
+		'3'	=> 	'Paiement partiel en ligne',
+		'4'	=> 	'Paiement partiel en espèces',
+		'5'	=>	'Facture envoyée - Pas de paiement',
+		'6'	=>	'Facture payée',
+		'7'	=>	'Relance envoyée',
+		'8'	=> 	'Payée suite relance',
+		'9'	=>	'Compensée',
+		'10'=>	'émise',
+		'98'=>	'payé-clôturé',
+		'99'=>	'Perdu - ne sera pas payée'
 	);
 	*/
 
 	# TransferStatus - novi
 	$StatusDescription = array(
-		'1' =>    'Active',
+		'1' =>    'Actif',
 		'2' =>    'Modifié',
 		'3' =>    'Annulé',
-		'4' =>    'TEMP',
+		'4' =>    'Temporaire',
 		'5'	=>	  'Complété',
-		'6'	=>	  'PreOrder'
+		'6'	=>	  'Pré réservation'
 	);
 
 	# Change Transfer Reason Method
 	$ChangeTransferReason = array(
-		'1'	=>	'Pax FirstLast Name',
-		'2'	=>	'Pax Phone',
-		'3'	=>	'Pax Email',
-		'4'	=>	'Pickup Date',
-		'5'	=>	'Pickup Time',
-		'6'	=>	'Flight Time',
-		'7'	=>	'Flight Number',
-		'8'	=>	'Pickup Address',
-		'9'	=>	'Drop-Off Address',
-		'10'	=>	'Pax Number',
-		'11'	=>	'Payment method',
-		'12'	=>	'Partners Price',
-		'13'	=>	'Extras',
-		'14'	=>	'Pickup Notes',
+		'1'	=>	'Nom et prénom du passager',
+		'2'	=>	'Le numéro de téléphone du passager',
+		'3'	=>	'L`email du passager',
+		'4'	=>	'La date de prise en charge',
+		'5'	=>	'L`heure de la prise en charge',
+		'6'	=>	'L`horaire du vol',
+		'7'	=>	'Le numéro du vol',
+		'8'	=>	'L`adresse de prise en charge',
+		'9'	=>	'Adresse d`arrivée”',
+		'10'	=>	'Le nombre de personnes',
+		'11'	=>	'Moyen de paiement',
+		'12'	=>	'Le prix du partenaire‘',
+		'13'	=>	'Les extras',
+		'14'	=>	'Remarques',
 		'15'	=>	'Message'
 	);
 
 
 	# Payment Method
 	$PaymentMethod = array(
-		'1'	=>	'Online',
-		'2'	=>	'Cash',
-		'3'	=>	'Combined',
-		'4'	=>	'Bank transfer',
+		'1'	=>	'En ligne',
+		'2'	=>	'Espèces',
+		'3'	=>	'Paiement combiné',
+		'4'	=>	'Paiement par virement',
 		'5'	=>	'Compensation',
-		'6'	=>	'Bank transfer 2',
-		'9'	=>  'Other'
+		'6'	=>	'Paiement par virement 2',
+		'9'	=>  'Autre'
 	);
 
 	# Payment Method
 	$AcceptedPayment = array(
-		'0'		=>	'Not selected',
-		'1'		=>	'All',
-		'2'		=>	'Online',
-		'3'		=>	'Cash',
-		'10'	=>	'Invoice',
-		'11'	=>	'Online',
-		'12'	=>	'Invoice 2',
-		'13'	=>	'Cash'
+		'0'		=>	'Non sélectionné',
+		'1'		=>	'Tout',
+		'2'		=>	'En ligne',
+		'3'		=>	'Espèce',
+		'10'	=>	'Sur facture',
+		'11'	=>	'En ligne',
+		'12'	=>	'Sur facture 2',
+		'13'	=>	'Espèces'
 	);
 
 	$PaymentStatus = array(
-		'0'	=>	'Not Paid',
-		'1'	=>	'Warning sent',
-		'2' =>	'Sued',
-		'3' =>  'Refunded',
-		'10'=>	'Lost - will not be paid',
-		'91'=>	'Compensated',
-		'99'=>	'Paid'
+		'0'	=>	'Pas payé',
+		'1'	=>	'Relance envoyée',
+		'2' =>	'Continuer',
+		'3' =>  'Rembourser',
+		'10'=>	'Perdu - ne sera pas payé',
+		'91'=>	'Compensé',
+		'99'=>	'Payé'
 	);
 
-	# DriverConfStatus
 	$DriverConfStatus = array(
 		'0'	=> 'No Partner',
-		'1'	=> 'Not Confirmed',
-		'2'	=> 'Partner Confirmed',
-		'3' => 'Partner Assigned',
-		'4'	=> 'Partner Declined',
+		'0'	=> 'Pas de partenaire',
+		'1'	=> 'Pas confirmé',
+		'2'	=> 'Partenaire Confirmé',
+		'3' => 'Partenaire assigné',
+		'4'	=> 'Refus partenaire',
 		'5'	=> 'No-Show',
-		'6' => 'Partner Error',
-		'7' => 'Transfer Completed',
-		'8' => 'Operator Error',
-		'9' => 'Dispatcher Error',
-		'10' => 'Agent Error',
+		'6' => 'Partenaire erreur',
+		'7' => 'Transfert complété',
+		'8' => 'Erreur de l`opérateur',
+		'9' => 'Erreur du régulateur',
+		'10' => 'Erreur de l`agent'
 	);
 
 	# Driver Payment
 	$DriverPayment = array(
-		'0' => 'Not Paid',
-		'1' => 'Partly paid',
-		'2'	=> 'Paid',
-		'3' => 'Compensated'
+		'0' => 'Pas payé',
+		'1' => 'Partiellement payé',
+		'2'	=> 'Payé',
+		'3' => 'Compensé'
 	);
 
 	# Transfers Filters
 	$transfersFilters = array(
-		array ("id" => "noPartner", "name" => "No Partner"),
-		array ("id" => "notConfirmed", "name" => "Not Confirmed"),
-		array ("id" => "confirmed", "name" => "Confirmed"),
-		array ("id" => "declined", "name" => "Declined"),
-		array ("id" => "canceled", "name" => "Canceled"),
+		array ("id" => "noPartner", "name" => "Pas de partenaire"),
+		array ("id" => "notConfirmed", "name" => "Pas confirmé"),
+		array ("id" => "confirmed", "name" => "Confirmé"),
+		array ("id" => "declined", "name" => "Decliné"),
+		array ("id" => "canceled", "name" => "Annulé"),
 		array ("id" => "noShow", "name" => "No Show"),
-		array ("id" => "PartnerError", "name" => "Partner Error"),
-		array ("id" => "agent", "name" => "Agent transfers"),
-		array ("id" => "notConfirmedAgent", "name" => "Agent transfers Not Confirmed"),
-		array ("id" => "notCompleted", "name" => "Not Completed"),
-		array ("id" => "invoice2", "name" => "Invoice 2"),
+		array ("id" => "PartnerError", "name" => "Erreur partenaire"),
+		array ("id" => "agent", "name" => "Transfers d`agents"),
+		array ("id" => "notConfirmedAgent", "name" => "Transferts d`agents pas confirmé"),
+		array ("id" => "notCompleted", "name" => "pas complété"),
+		array ("id" => "invoice2", "name" => "Facture 2"),
 	) ;
 
-	$monthNames = array("January", "February", "March", "April", "May", "June", "July",
-	"August", "September", "October", "November", "December");
+	$monthNames = array("Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet",
+	"Août", "Septembre", "Octobre", "Novembre", "Décembre");
 
-	$dayNames = array("Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat");
 
-define("ACCEPTED_PAYMENT", "Accepted Payment");
+	$dayNames =  array("Dim", "Lun", "Mar", "Mer", "Jeu", "Ven", "Sam");
+	
+define("ACCEPTED_PAYMENT", "Paiement accepté");
 define("ACTIONS", "Actions");
-define("ACTIONS_ID", "Actions ID");
-define("ACTIONS_TITLE", "Actions Title");
+define("ACTIONS_ID", "Actions Identification");
+define("ACTIONS_TITLE", "Titre des actions");
 define("ACTIVE", "Active");
-define("ADD", "Add");
-define("ADDRESS", "Address");
-define("ADMIN", "Admin");
-define("ADMIN_NOTES", "Staff Notes");
-define("ADVANCED_SEARCH", "Advanced Search");
-define("AFFILIATE", "Affiliate");
+define("ADD", "Ajouter");
+define("ADDRESS", "Adresse");
+define("ADMIN", "Administrateur");
+define("ADMIN_NOTES", "Commentaire interne");
+define("ADVANCED_SEARCH", "Recherche avancée");
+define("AFFILIATE", "Affilié");
 define("AGENT", "Agent");
-define("AGENT_COMMISION", "Ag.Comm.");
-define("AGENTS", "Agent orders");
-define("ALL", "All");
-define("ALL_DRIVERS", "All Partners");
-define("ALL_TRANSFERS", "All Transfers");
-define("APIUSER", "API User");
-define("APPROVED", "Approved");
-define("NOT_APPROVED", "Not approved");
+define("AGENT_COMMISION", "Commission de l`agence.");
+define("AGENTS", "Commandes d`agents");
+define("ALL", "Tout");
+define("ALL_DRIVERS", "Tous les partenaires");
+define("ALL_TRANSFERS", "Tous les transferts");
+define("APIUSER", "Utilisateur API");
+define("APPROVED", "Approuvé");
+define("NOT_APPROVED", "pas approuvé");
 define("ARTICLE", "Article");
 define("ARTICLES", "Articles");
-define("ASCENDING", "Ascending");
-define("ASSIGNED_TO_ANOTHER_DRIVER", "This Transfer is assigned to another company and removed from Your transfers list.");
-define("AUTH_USER_REAL_NAME","AuthUserRealName");
-define("ATTACHMENT", "Attachment");
+define("ASCENDING", "Ascendant");
+define("ASSIGNED_TO_ANOTHER_DRIVER", "Ce transfert est attribué à une autre société et supprimé de votre liste de transferts.");
+define("AUTH_USER_REAL_NAME","Nom de l'utilisateur authentifié");
+define("ATTACHMENT", "Pièce jointe");
 
 define("BALANCE", "Balance");
-define("BASE_PRICE", "Base Price");
+define("BASE_PRICE", "Le prix de base");
 define("BASE","Base");
-define("BOOKED_BY", "Booked by");
-define("BOOKING", "Booking");
-define("BOOKINGS", "Bookings");
-define("BRAND_NAME", "Brand name");
-define("BY_BOOKING_DATE", "by booking date");
-define("BY_TRANSFER_DATE", "by transfer date");
+define("BOOKED_BY", "Réservé par");
+define("BOOKING", "Réservation");
+define("BOOKINGS", "Réservations");
+define("BRAND_NAME", "Nom de la marque");
+define("BY_BOOKING_DATE", "Par date de réservation");
+define("BY_TRANSFER_DATE", "par date de tarnsfert");
 
-define("CALENDAR", "Calendar");
-define("CANCELED_ORDERS", "Cancelled orders");
-define("CANCELLED", "Cancelled");
-define("CANCEL_TRANSFER", "Cancel transfer");
-define("CASH", "Cash");
-define("CLOSE", "Close");
-define("CANCEL", "Cancel");
-define("SAVE_CHANGES", "Save Changes");
-define("COLUMN", "column(s)");
-define("COMPANY_ADDRESS", "Partner address");
-define("COMPANY_DESC", "Partner description");
+define("CALENDAR", "Calendrier");
+define("CANCELED_ORDERS", "Commandes annulées");
+define("CANCELLED", "Annulé");
+define("CANCEL_TRANSFER", "Transfer annulé");
+define("CASH", "Espèces");
+define("CLOSE", "Fermer");
+define("CANCEL", "Annuler");
+define("SAVE_CHANGES", "Sauvegarder les modifications");
+define("COLUMN", "colonne(s)");
+define("COMPANY_ADDRESS", "Adresse du partenaire");
+define("COMPANY_DESC", "Descriptif du partenaire");
 define("COMPANY_INFO", "Partner Info");
 define("COMPANY_NAME", "Partner name");
 define("COMPANY_TEXTS", "Various articles");
@@ -239,7 +240,7 @@ define("DATA", "data");
 define("DATA_CHECKED", "Data checked");
 define("DATE_SETTINGS", "Off-Duty Dates");
 define("DAY_SETTINGS", "Days of the week");
-define("DECLINED", "Diminué");
+define("DECLINED", "Declined");
 define("DELETE_COUNTRY", "Delete Country");
 define("DELETE", "Delete");
 define("DELETE_CACHE", "Delete cache");
@@ -390,7 +391,7 @@ define("ORDER_KEY", "Order Key");
 define("ORDER_DATE", "Order date");
 define("ORDER_LOG", "Timeline");
 define("ORDER", "Order");
-define("ORDERS", "Orders");
+define("ORDERS", "Commandes");
 define("ORDERS_BY_B_DATE", "by booking date");
 define("ORDERS_BY_TR_DATE", "by transfer date");
 define("OWNERID", "Owner ID");

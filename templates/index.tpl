@@ -369,7 +369,7 @@
 					<div class="header header-edit 
 						{if $orderid gt 0}hidden{/if}
 					">  
-						{if $pageList ne 'Orders'}
+						{if $pageList ne $ORDERS}
 							{include file="pageListHeader.tpl"} <!-- Second header -->		
 						{else}
 							{include file="pageListHeader2.tpl"} 

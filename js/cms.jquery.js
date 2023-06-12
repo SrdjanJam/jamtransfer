@@ -1106,8 +1106,9 @@ Handlebars.registerHelper("driverSelect", function(id,routeId,vehicleTypeId) {
 					selector += 'data-co="'+val.Company +'" ';
 					selector += 'data-email="'+val.Email +'" ';
 					selector += 'data-realname="'+val.RealName +'" ';
+					selector += 'data-vehicletype="'+val.VehicleType +'" ';
 					
-					if (val.UserID == id) {
+					if (val.UserID == id && val.VehicleType == vehicleTypeId) {
 						selector += ' selected="selected" ';
 					}
 

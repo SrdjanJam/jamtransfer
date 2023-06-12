@@ -422,6 +422,8 @@
 							</div>
 							{{/compare}}		
 						</div>	
+						<input type="hidden" name="VehicleType" id="VehicleType" value="{{details.VehicleType}}" >
+						
 						{{/compare}}
 						{{#compare tab "==" "agent"}}						
 						<div class="row dagent">
@@ -612,6 +614,10 @@
 		$('#DriverID').change(function(){
 			$('#DriverTel').val($('#DriverID :selected').attr('data-tel'));
 			$('#DriverEmail').val($('#DriverID :selected').attr('data-email'));
+			$('#VehicleType').val($('#DriverID :selected').attr('data-vehicletype'));
+			var vtid = $('#DriverID :selected').attr('data-vehicletype');
+			$('#VehicleType').val(vtid);
+
 		})			
 		// promena mobilnog nakon promene subdrivera
 		function changesubdriver (i) {

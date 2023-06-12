@@ -4811,12 +4811,15 @@ function htmldecode(& $html)
 	$html = str_replace('%#39;', '\'', $html);
 	$html = str_replace('%#34;', '\'', $html);
 	$html = str_replace('%ndash;', '-', $html);*/
+	$html = str_replace('%26;', '&', $html);	
 	$html = str_replace('"', '\'', $html);
 	$html = str_replace('\n', ' ', $html);
 	$html = str_replace('&nbsp;', ' ', $html);
 	$html = str_replace('WstyleW', 'style', $html);
 	$html = str_replace('WimgW', 'img', $html);
 	$html = str_replace('WsrcW', 'src', $html);
+	$html = str_replace('WscriptW', 'script', $html);
+	$html = str_replace('WlinkW', 'link', $html);
 	return $html;
 }
 

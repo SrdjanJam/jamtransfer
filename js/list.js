@@ -578,7 +578,9 @@
 		if (value.indexOf('style')>-1) value =  value.replace(/style/g,'WstyleW');
 		if (value.indexOf('img')>-1) value =  value.replace(/img/g,'WimgW');
 		if (value.indexOf('src')>-1) value =  value.replace(/src/g,'WsrcW');
-		//if (value.indexOf('&')>-1) value =  value.replace(/&/g,'%26');
+		if (value.indexOf('script')>-1) value =  value.replace(/script/g,'WscriptW');		
+		if (value.indexOf('link')>-1) value =  value.replace(/link/g,'WlinkW');		
+		if (value.indexOf('&')>-1) value =  value.replace(/&/g,'%26');
 		//if (value.indexOf('+')>-1) value =  value.replace(/\+/g,'%2B');	
 		return value;	
 	  /*return s.replace(/&/g, '&amp;')

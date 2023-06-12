@@ -51,7 +51,7 @@ if($om->getMUserLevelID() == '2') {
 	$MAgentCommisionPercent = $au->getProvision();
 	$isAgent = true;
 }
-
+$payment_arr=array("DetailPrice", "DriversPrice", "Discount", "ExtraCharge", "DriverExtraCharge", "PaymentMethod", "PayNow", "PayLater", "InvoiceAmount");
 foreach ($db->fieldNames() as $name) {
 	if(isset($_REQUEST[$name]) && gettype($_REQUEST[$name])!='array') {
 		$content=$db->myreal_escape_string($_REQUEST[$name]);
@@ -87,12 +87,13 @@ foreach ($db->fieldNames() as $name) {
 					$db->setPayLater(number_format( $_REQUEST['DetailPrice'] - $db->getPayNow()),2,'.');
 				}
 			}
-			if($name == 'PayNow' or $name == 'PayLater') {
+			if (in_array($name,$payment_arr))  {
 				$priceChanged = true;
 			}
 		}
 	}	
 }
+if ($priceChanged) $logDescription .= '<b>PAYMENT DATA CHANGE</b>';  
 $au->getRow($db->getDriverID());
 $db->setDriverName($au->getAuthUserRealName());
 $db->setDriverExtraCharge(number_format($sumDriverPrice));
@@ -108,7 +109,7 @@ foreach ($om->fieldNames() as $name) {
 		eval("\$old_content=\$om->get".$name."();");			
 		eval("\$om->set".$name."(\$content);");	
 		if(gettype($old_content)==gettype($content) && $old_content != $content) {
-			$logDescription .= 'Changed: '. $name . ' <b>from:</b> ' . $old_content . ' <b>to:</b> ' . $content . '<br>';
+			$logDescription .= 'Changed: '. $name . ' <b>from:</b> ' . $old_content . ' <b>to:</b> ' . $content . '<br>' ;
 		}		
 	}	
 }

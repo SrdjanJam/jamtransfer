@@ -18,7 +18,9 @@ if (isset($type2)) {
 		$filter .= "  AND ".$type2." != 0 ";
 	}
 	else {
-		$filter .= "  AND ".$type2." = '" . $_REQUEST['Type2'] . "'";
+		if ($_REQUEST['Type2']==7) $Type2=2;
+		else $Type2=$_REQUEST['Type2'];
+		$filter .= "  AND ".$type2." = '" . $Type2 . "'";
 	}
 }
 	if (isset($_REQUEST['transfersFilter'])) {
@@ -291,9 +293,11 @@ if (strlen($locationName)>2) $dbWhere .= " AND (PickupName LIKE ('%".$locationNa
 $queryDrivers="SELECT AuthUserID FROM v4_AuthUsers WHERE AuthUserRealName LIKE ('%".$driverName."%') 
 														OR AuthUserID = '".$driverName."'";												
 if (strlen($driverName)>2) $dbWhere .= " AND v4_OrderDetails.DriverID IN (".$queryDrivers.") ";
-$queryAgents="SELECT AuthUserID FROM v4_AuthUsers WHERE AuthUserRealName LIKE ('%".$agentName."%') 
-														OR AuthUserID = '".$agentName."'";												
-if (strlen($agentName)>2) $dbWhere .= " AND v4_OrderDetails.AgentID IN (".$queryAgents.") ";
+$queryAgents="SELECT AuthUserID FROM v4_AuthUsers WHERE (AuthUserRealName LIKE ('%".$agentName."%') 
+														OR AuthUserID = '".$agentName."')";	
+if ($_REQUEST['Type2']==7) 	$queryAgents.= 	" AND NOT(`Image` is NULL or `Image`=' ') ";
+else $queryAgents.= " AND (`Image` is NULL or `Image`=' ') ";
+if (strlen($agentName)>2 || $_REQUEST['Type2']==7) $dbWhere .= " AND v4_OrderDetails.AgentID IN (".$queryAgents.") ";
 if (strlen($agentOrder)>2) $dbWhere .= " AND ( MConfirmFile LIKE ('%".$agentOrder."%') OR
 												MOrderKey LIKE ('%".$agentOrder."%') ) ";
 if (strlen($passengerData)>2) $dbWhere .= " AND (MPaxFirstName LIKE ('%".$passengerData."%') OR 
@@ -391,6 +395,12 @@ if ($flightTimeChecker==1) {
 }	
 
 if ($paymentChecker==1) {
+	//niz order logova sa promenjenim cenama
+	$sql="SELECT `DetailsID`  FROM `v4_OrderLog` WHERE `Description` like ('%PAYMENT DATA CHANGE%') group by `DetailsID`";
+	$query=mysqli_query($dbT->conn, $sql) or die('Error in query' . mysqli_connect_error());
+	while( $l = mysqli_fetch_object($query) ) {
+		$list[]=$l->DetailsID;
+	}	
 	$dbk = $od->getFullOrderByDetailsID($sortField, $sortDirection, ''  , $dbWhere);
 	if (count($dbk) != 0) {
 		foreach ($dbk as $nn => $key)
@@ -400,7 +410,7 @@ if ($paymentChecker==1) {
 			$ConflictColor='';
 			$PayDiffArr[$key]="";			
 			if ($PayDiff>0.5 || $PayDiff<-0.5) {
-				$ConflictColor='red';
+				$ConflictColor='red lighten-5';
 				$payment_conflict  .= $key. ",";
 				$PayDiffArr[$key]=number_format($PayDiff,2)." € difference";				
 			}
@@ -413,10 +423,21 @@ if ($paymentChecker==1) {
 				($pm==4 && $od->getInvoiceAmount()==0) ||
 				($pm==6 && $od->getInvoiceAmount()==0) 
 			) {
-				$ConflictColor='yellow';
+				$ConflictColor='red';
 				$PayDiffArr[$key]="Wrong Payment Type";								
 				$payment_conflict  .= $key. ",";
 			}	
+			if (in_array($key,$list)) {
+				$ConflictColor='yellow';
+				$PayDiffArr[$key]="Payment Data Change";	
+				$payment_conflict  .= $key. ",";
+			}
+			
+			if($od->SubDriver>0 && $od->TransferStatus>4 && $od->TransferStatus<9 && $od->PayLater>0 && $od->CashIn != $od->PayLater) {
+				$ConflictColor='red lighten-3';
+				$PayDiffArr[$key]="Cash Difference";	
+				$payment_conflict  .= $key. ",";
+			}
 			$PayConflictColorArr[$key]=$ConflictColor;
 			
 		}

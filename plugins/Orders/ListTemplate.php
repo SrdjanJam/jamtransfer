@@ -8,7 +8,7 @@
 	
 	require_once ROOT.'/db/v4_AuthLevels.class.php';
 	$al = new v4_AuthLevels();
-	$where = " WHERE AuthLevelID in (2,3,4,5,6,12,41,91)";
+	$where = " WHERE AuthLevelID in (2,3,4,5,6,7,12,41,91)";
 	$authLevels = $al->getKeysBy('AuthLevelName', 'asc', $where);
 	foreach($authLevels as $nn => $id) {
 		$al->getRow($id);
@@ -112,10 +112,7 @@
 									{{#compare PaymentMethod "==" "6"}} {{InvoiceNumber}}	{{/compare}}
 									</small>	
 								</div>	
-								{{#if PayConflictColor}}<div><strong>{{PayDiff}}</strong></div>{{/if}}
-								<div class="icon">
-									<i class="fa fa-person" style="font-size:60px;"></i>
-								</div>								
+								{{#if PayConflictColor}}<div><strong>{{PayDiff}}</strong></div>{{/if}}								
 								<div class="icon">
 									<i class="fa fa-file-invoice" style="font-size:60px;"></i>
 								</div>						
