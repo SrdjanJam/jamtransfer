@@ -106,6 +106,7 @@
 					<div class="row {{color}} pad1em listTile listTile-edit orders-edit" 
 					id="t_{{DetailsID}}">
 
+							<!-- Order: -->
 							<div class="col-md-2 order"  onclick="oneItem({{DetailsID}},'order');">	
 								<small>{{OrderDate}} {{MOrderTime}}</small></br>
 								<strong>{{MOrderID}} - {{TNo}}</strong><br>
@@ -113,6 +114,76 @@
 								{{#if StaffNote}}<small style="color:red"><i class="fa-solid fa-message"></i></small>{{/if}}				
 								{{#if FinalNote}}<small style="color:red"><i class="fa-solid fa-message"></i></small>{{/if}}	
 							</div>
+
+							<!-- Client/Agent Purchaser: -->
+							<div class="col-md-2 small-box agent" onclick="oneItem({{DetailsID}},'agent');">
+								<div class="inner inner-edit">
+									{{MOrderKey}}<br>
+									{{MConfirmFile}}<br>						
+									{{#compare AgentID '>' 0}}
+										<img src='i/agents/{{Image}}'>	 
+									{{/compare}}	
+									<strong>{{UserName}}</strong>
+								</div>	
+								<div class="icon">
+									<h4>Purchaser</h4>
+								</div>								
+							</div>
+
+							<!-- Transfer: -->
+							<div class="col-md-2 small-box transfer" onclick="oneItem({{DetailsID}},'transfer');">
+								<div class="inner inner-edit">
+									{{#compare PickupDate ">=" "<?=date('Y')+1;?>-01-01"}}<span class="red-text">{{/compare}}
+									{{PickupDate}}
+									{{#compare PickupDate ">=" "<?=date('Y')+1;?>-01-01"}}</span>{{/compare}}
+									<span>{{PickupTime}}</span>
+									</br>
+									<strong>{{PickupName}} - {{DropName}}</strong>
+									<br>						
+									<small><i class="fa fa-car"></i> {{VehicleTypeName}}*{{VehiclesNo}}</small>
+									{{#compare ExtraCharge ">" 0}}
+										<i class="fa fa-cubes" style="color:#900"></i>
+									{{/compare}}
+								</div>
+								<div class="icon">
+									<i class="fa fa-road" style="font-size:60px;"></i>
+								</div>							
+							</div>
+
+							<!-- Partner: -->
+							<div class="col-md-2 small-box pdriver" onclick="oneItem({{DetailsID}},'pdriver');">
+								<div class="inner inner-edit">
+									{{#if DriverName}}
+										<strong><small>{{DriverName}}</small></strong>
+									{{/if}}	
+									<br>
+									{{DriversPrice}} €<br>
+									<small class="{{driverConfStyle DriverConfStatus}}">{{driverConfText DriverConfStatus}}</small>
+									{{#if DriverNotes}}<small style="color:red"><i class="fa-solid fa-message"></i></small>{{/if}}				
+									{{#if SubFinalNote}}<small style="color:red"><i class="fa-solid fa-message"></i></small>{{/if}}				
+								</div>	
+								<div class="icon">
+									<h4>Driver company</h4>
+								</div>						
+							</div>
+
+							<!-- Passanger: -->
+							<div class="col-md-2 small-box passenger {{ConflictColor}}" onclick="oneItem({{DetailsID}},'passenger');">
+								<div class="inner inner-edit">					
+									<i class="fa fa-user"></i> <strong>{{PaxName}}</strong><br>
+									<small>
+										<i class="fa fa-envelope-o"></i> {{MPaxEmail}}
+										<br>
+										<i class="fa fa-phone"></i> {{MPaxTel}}
+									</small>
+								</div>
+								{{#if ConflictColor}}<div><strong>{{TimeDiff}} minutes Flight Conflict</strong></div>{{/if}}
+								<div class="icon">
+									<i class="fa fa-person" style="font-size:60px;"></i>
+								</div>								
+							</div>
+
+							<!-- Payment: -->
 							<div class="col-md-2 small-box payment {{PayConflictColor}}" onclick="oneItem({{DetailsID}},'payment');">
 								<div class="inner inner-edit">
 									<strong>{{addNumbers DetailPrice ExtraCharge}} €</strong><br>
@@ -132,67 +203,6 @@
 															
 							</div>
 							
-							<div class="col-md-2 small-box transfer" onclick="oneItem({{DetailsID}},'transfer');">
-								<div class="inner inner-edit">
-									{{#compare PickupDate ">=" "<?=date('Y')+1;?>-01-01"}}<span class="red-text">{{/compare}}
-									{{PickupDate}}
-									{{#compare PickupDate ">=" "<?=date('Y')+1;?>-01-01"}}</span>{{/compare}}
-									<span>{{PickupTime}}</span>
-									</br>
-									<strong>{{PickupName}} - {{DropName}}</strong>
-									<br>						
-									<small><i class="fa fa-car"></i> {{VehicleTypeName}}*{{VehiclesNo}}</small>
-									{{#compare ExtraCharge ">" 0}}
-										<i class="fa fa-cubes" style="color:#900"></i>
-									{{/compare}}
-								</div>
-								<div class="icon">
-									<i class="fa fa-road" style="font-size:60px;"></i>
-								</div>							
-							</div>
-							<div class="col-md-2 small-box pdriver" onclick="oneItem({{DetailsID}},'pdriver');">
-								<div class="inner inner-edit">
-									{{#if DriverName}}
-										<strong><small>{{DriverName}}</small></strong>
-									{{/if}}	
-									<br>
-									{{DriversPrice}} €<br>
-									<small class="{{driverConfStyle DriverConfStatus}}">{{driverConfText DriverConfStatus}}</small>
-									{{#if DriverNotes}}<small style="color:red"><i class="fa-solid fa-message"></i></small>{{/if}}				
-									{{#if SubFinalNote}}<small style="color:red"><i class="fa-solid fa-message"></i></small>{{/if}}				
-								</div>	
-								<div class="icon">
-									<h4>Driver company</h4>
-								</div>						
-							</div>
-							<div class="col-md-2 small-box agent" onclick="oneItem({{DetailsID}},'agent');">
-								<div class="inner inner-edit">
-									{{MOrderKey}}<br>
-									{{MConfirmFile}}<br>						
-									{{#compare AgentID '>' 0}}
-										<img src='i/agents/{{Image}}'>	 
-									{{/compare}}	
-									<strong>{{UserName}}</strong>
-								</div>	
-								<div class="icon">
-									<h4>Purchaser</h4>
-								</div>								
-							</div>					
-							<div class="col-md-2 small-box passenger {{ConflictColor}}" onclick="oneItem({{DetailsID}},'passenger');">
-								<div class="inner inner-edit">					
-									<i class="fa fa-user"></i> <strong>{{PaxName}}</strong><br>
-									<small>
-										<i class="fa fa-envelope-o"></i> {{MPaxEmail}}
-										<br>
-										<i class="fa fa-phone"></i> {{MPaxTel}}
-									</small>
-								</div>
-								{{#if ConflictColor}}<div><strong>{{TimeDiff}} minutes Flight Conflict</strong></div>{{/if}}
-								<div class="icon">
-									<i class="fa fa-person" style="font-size:60px;"></i>
-								</div>								
-							</div>
-
 					</div>
 
 				</div>
@@ -206,6 +216,8 @@
 				</div>
 			{{/each}}
 		</div>
+
+		<!-- Reporter: -->
 		<div class="tab-pane" id="tab_2">
 			<div id="sum" class="sum-edit">
 				<div>
@@ -246,7 +258,8 @@
 				</div>
 
 			</div> <!-- End of #sum -->
-		</div>		
+		</div>	
+
 	</div>
 </div>	
 
