@@ -228,7 +228,6 @@ define("CUSTOMER_SUBSCRIBED", "Subscribed");
 define("CUSTOMER_ACTIVE", "Active");
 define("CUSTOMER_IMAGE", "Image");
 define("CUSTOMER_IMAGE_TYPE", "Image Type");
-define("CUSTOMER_TYPE", "Type");
 define("CREATE_TIME", "Create Time");
 define("CREATOR_ID", "Creator ID");
 
@@ -511,7 +510,6 @@ define("SITE", "Site");
 define("SITE_CONTENT", "Site content");
 define("SITEID", "Site ID");
 define("SITE_SETTINGS", "Site settings");
-define("STATUS", "Status");
 define("SUBJECT", "Subject");
 define("SUNAMOUNT", "Sun (amt)");
 define("SUNPERCENT", "Sun (%)");
@@ -977,24 +975,13 @@ define("NUMBER_OF_RESERVATION","Number of reservations");
 define("VALUE_OF_RESERVATION","Value of reservations");
 
 
-define("DISTRIBUTION","Distribution");
 define("NO_OF_TRANSFERS","No of transfers:");
 define("NO_OF","No of:");
 define("TRANSFER_STATUS_2","Transfer status:");
-define("ACTIVE","Active");
 define("CHANGED","Changed");
 define("TEMP","Temp");
-define("CANCELLED","Cancelled");
-define("COMPLETED","Completed");
 define("DRIVER_CONFIRMATION_STATUS","Driver confirmation status:");
-define("NO_DRIVER","No Driver");
-define("NOT_CONFIRMED","Not Confirmed");
-define("CONFIRMED","Confirmed");
-define("READY","ready");
-define("DECLINED","Declined");
-define("NO_SHOW","No-show");
-define("DRIVER_ERROR","Driver error");
-define("COMPLETED","Completed");
+
 
 define("ACTUAL_TRANSFERS","Actual transfers");
 
@@ -1004,32 +991,19 @@ define("VIEW","View");
 
 define("UNFINISHED_ONLINE_PAYMENT","Unfinished online payment");
 define("NUMBER_KEY","number_key");
-define("NAME","Name");
-define("EMAIL","Email");
-define("TIME","Time");
 define("EUR","Eur");
 
 define("TRANSLATOR_PANEL_FOR","Translator panel for");
 
 define("MORE_INFO","More info");
-define("ALL","All");
 define("TODAY_UNCONFIRMED_DECLINED","Today unconfirmed/declined");
 define("TOMORROW_UNCORFIRMED_DECLINED","Tomorrow unconfirmed/declined");
 
-define("DRIVERS","Drivers");
-define("DRIVER","Driver");
-define("ROUTES","Routes");
-define("ROUTE","Route");
 
-define("PROVISION","Provision");
-
-define("ORDER","Order");
 define("BOOKED_DRIVER","Booked driver");
 define("BOOKED_PRICE","Booked price");
 define("BOOKED_VEHICLE","Booked vehicle");
-define("DRIVERS_PRICE","Driver's price");
 define("OTHER_DRIVER_FOR_THIS_ROUTE","Other drivers for this route");
-define("VEHICLE_TYPE","Vehicle type");
 define("FIRST_CONFIRM_REQUEST","First confirm Request");
 define("LOW_OFFER_REQUEST","Low offer Request");
 define("SELECT_TERMINAL_FOR_THIS_TRANSFER","Select Terminal for this transfer");
@@ -1056,12 +1030,10 @@ define("PHASE","Phase");
 
 define("ADD_RETURN_TRANSFER","Add Return Transfer");
 define("DRIVER_S","Driver`s");
-define("DISCOUNT","Discount");
 define("DUE_DATE","Due Date");
 define("AND_","And");
 define("NO_ROUTE","No route");
 define("SERVICE_NAME","Service Name");
-define("DRIVERS_PRICE","Drivers Price");
 define("QUANTITY","Quantity");
 define("PARTNER_S","Partner's");
 define("SCHEDULE_FOR","Schedule for");
@@ -1127,9 +1099,7 @@ define("ASC","ASC");
 define("DESC","DESC");
 define("ALL_YEARS","All years");
 define("PAYMENT","Payment");
-define("TRANSFER","Transfer");
 
-define("AGENT","Agent");
 
 define("CONNECTION_TRANSFER","Connection transfer");
 define("ON_TRANSFER","On transfer");
