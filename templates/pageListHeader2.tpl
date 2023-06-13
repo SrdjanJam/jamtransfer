@@ -74,6 +74,7 @@ value=" WHERE {$ItemID} > 0">
 	
 	<div class="filter">
 
+		<!-- Sort by: -->
 		<div class="filterOlderAdd" style="padding:5px;float:left;margin-left:20px;">
 			<b style="color:#157bff;">{$SORT_BY}:</b>
 			<select id='sortField' class="select-top-edit" name='sortField' onchange="allItems();">
@@ -110,18 +111,18 @@ value=" WHERE {$ItemID} > 0">
 
 		</div>
 
-		<!-- Payment: -->
-		<div class="col-md-2 col-md-2-edit"> 
-			<small class="badge blue text-black badge-edit">{$PAYMENT}</small><br>
-			<input id='paymentNumber' class="input-one" name='paymentNumber'  placeholder="Payment / Invoice No" onchange="allItems();"/>	
+		<!-- Client/Agent purchaser: -->
+		<div class="col-md-2 col-md-2-edit">
+			<small class="badge blue text-black badge-edit">{$PURCHASER}</small><br>
+			<input id='agentName' class="input-one" name='agentName'  placeholder="Name/ID" onchange="allItems();"/><br>				
+			<input id='agentOrder' class="input-one" name='agentOrder'  placeholder="Order Key / Agent Order" onchange="allItems();"/><br>				
 			
-				<select id="PaymentMethod" class="w75 form-control select-top-edit" onchange="allItems();">		
-					<option value="-1">{$ALL} {$PAYMENT}</option>
-					{section name=pom loop=$options3}
-						<option value="{$options3[pom].id}">{$options3[pom].name}</option>
+				<select id="Type2" class="w75 form-control select-top-edit" onchange="allItems();">
+					<option value="0">{$ALL} {$USERS}</option>
+					{section name=pom2 loop=$options2}
+						<option value="{$options2[pom2].id}">{$options2[pom2].name}</option>
 					{/section}
 				</select>
-				<i class="fa fa-money" style="color:#900"></i><input type="checkbox" id="paymentChecker" name="paymentChecker"  value="" onchange="allItems();" />Checker				
 		</div>
 
 		<!-- Transfer: -->
@@ -151,26 +152,26 @@ value=" WHERE {$ItemID} > 0">
 				</select>
 		</div>
 
-		<!-- Client/Agent: -->
-		<div class="col-md-2 col-md-2-edit">
-			<small class="badge blue text-black badge-edit">{$PURCHASER}</small><br>
-			<input id='agentName' class="input-one" name='agentName'  placeholder="Name/ID" onchange="allItems();"/><br>				
-			<input id='agentOrder' class="input-one" name='agentOrder'  placeholder="Order Key / Agent Order" onchange="allItems();"/><br>				
-			
-				<select id="Type2" class="w75 form-control select-top-edit" onchange="allItems();">
-					<option value="0">{$ALL} {$USERS}</option>
-					{section name=pom2 loop=$options2}
-						<option value="{$options2[pom2].id}">{$options2[pom2].name}</option>
-					{/section}
-				</select>
-		</div>
-
 		<!-- Passenger: -->
 		<div class="col-md-2 col-md-2-edit">
 			<small class="badge blue text-black badge-edit">{$PASSENGER}</small><br>
 			<input id='passengerData' class="input-one" name='passengerData'  placeholder="Passenger Data" onchange="allItems();"/>					
 			<i class="fa fa-plane" style="color:#900"></i><input type="checkbox" id="flightTimeChecker" name="flightTimeChecker"  value="" onchange="allItems();" />Flight Time Checker		
 		</div>	
+
+		<!-- Payment: -->
+		<div class="col-md-2 col-md-2-edit"> 
+			<small class="badge blue text-black badge-edit">{$PAYMENT}</small><br>
+			<input id='paymentNumber' class="input-one" name='paymentNumber'  placeholder="Payment / Invoice No" onchange="allItems();"/>	
+			
+				<select id="PaymentMethod" class="w75 form-control select-top-edit" onchange="allItems();">		
+					<option value="-1">{$ALL} {$PAYMENT}</option>
+					{section name=pom loop=$options3}
+						<option value="{$options3[pom].id}">{$options3[pom].name}</option>
+					{/section}
+				</select>
+				<i class="fa fa-money" style="color:#900"></i><input type="checkbox" id="paymentChecker" name="paymentChecker"  value="" onchange="allItems();" />Checker				
+		</div>
 
 	</div> <!-- End of .filter -->
 
