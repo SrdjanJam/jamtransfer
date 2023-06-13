@@ -24,16 +24,14 @@ $StatusDescription = array(
 	$timeBeginY=date('Y',$timeBegin);
 	$timeBeginD=date('d',$timeBegin);
 	$timeBeginF="'".$timeBeginY."-".$timeBeginM."-".$timeBeginD."'";
-	$q = "SELECT v4_AuthLevels.AuthLevelName as level,count(*) as value FROM `v4_OrderDetails`,v4_AuthLevels 
-		WHERE ";
-	if (isset($_SESSION['UseDriverID'])) $q .= " v4_OrderDetails.DriverID =".$_SESSION['UseDriverID']." AND ";	
-	$q .= " `TransferStatus` <9 and  v4_AuthLevels.AuthLevelID=`UserLevelID` AND OrderDate>=(".$timeBeginF.")
+	$q = "SELECT v4_AuthLevels.AuthLevelID as level,count(*) as value FROM `v4_OrderDetails`,v4_AuthLevels 
+		WHERE `TransferStatus` <9 and  v4_AuthLevels.AuthLevelID=`UserLevelID` AND OrderDate>=(".$timeBeginF.")
 		 GROUP BY `UserLevelID`";
 	$r = $db->RunQuery($q);
 	$levels="[";
 	$values="[";
 	while ($t = $r->fetch_object()) {
-		$levels.="'".$t->level."'";
+		$levels.="'".$levels_array[$t->level]."'";
 		$levels.=",";		
 		$values.="'".$t->value."'";
 		$values.=",";		
@@ -50,14 +48,14 @@ $StatusDescription = array(
 	$timeEndY=date('Y',time());
 	$timeBeginF="'".$timeBeginY."-".$timeBeginM."-01'";
 	$timeEndF="'".$timeEndY."-".$timeEndM."-01'";
-	$q2 = "SELECT MONTHNAME(`MOrderDate`) as month, YEAR(`MOrderDate`) as year, sum(`MOrderPriceEUR`) as value FROM `v4_OrdersMaster` 
+	$q2 = "SELECT MONTH(`MOrderDate`) as month, YEAR(`MOrderDate`) as year, sum(`MOrderPriceEUR`) as value FROM `v4_OrdersMaster` 
 		WHERE `MOrderStatus` not in (3,9) and MOrderDate>=(".$timeBeginF.") and  MOrderDate<(".$timeEndF.")
 		GROUP BY MONTH(`MOrderDate`) ORDER BY MOrderDate";
 	$r2 = $db->RunQuery($q2);
 	$months2="[";
 	$values2="[";
 	while ($t2 = $r2->fetch_object()) {
-		$months2.="'".$t2->month." ".$t2->year."'";
+		$months2.="'".$monthNames[$t2->month]." ".$t2->year."'";
 		$months2.=",";		
 		$values2.="'".$t2->value."'";
 		$values2.=",";		
@@ -65,7 +63,7 @@ $StatusDescription = array(
 	$months2.="]";
 	$values2.="]";
 
+
 	$smarty->assign("months2",$months2);
 	$smarty->assign("values2",$values2);
 // filling data for charts
-

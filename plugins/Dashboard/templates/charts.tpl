@@ -3,7 +3,7 @@
 <!-- Showing charts: -->
 <div class="row" style="padding:10px;">
   <div class="col-sm-6"><canvas id="pie-chart" style="display:inline-block;"></canvas></div>
-  {if not isset($smarty.session.UseDriverID)}<div class="col-sm-6"><canvas id="bar-chart" style="display:inline-block;col-sm-6"></canvas></div>{/if}
+  <div class="col-sm-6"><canvas id="bar-chart" style="display:inline-block;col-sm-6"></canvas></div>
 </div>
 
 
@@ -13,7 +13,9 @@
 
 Chart.defaults.global.defaultFontSize = 14;
 
+
 // Pie Chart:
+var title_pie = "{/literal}{$TITLE_PIE}{literal}";
 var xValues = {/literal}{$levels}{literal};
 var yValues = {/literal}{$values}{literal};
 var barColors = [
@@ -25,6 +27,7 @@ var barColors = [
   "#AD00FF70", // Dispatcher
   "#FF000070", // Admin
 ];
+
 
 new Chart("pie-chart", {
   type: "pie",
@@ -39,7 +42,7 @@ new Chart("pie-chart", {
   options: {
     title: {
       display: true,
-      text: "Value of ordered transfers in the last year by purchaser"
+      text: title_pie
     },
     
   }
@@ -56,6 +59,7 @@ new Chart("pie-chart", {
 });
 
 // Bar Chart:
+var title_bar = "{/literal}{$TITLE_BAR}{literal}";
 var xValues = {/literal}{$months2}{literal};
 var yValues = {/literal}{$values2}{literal};
 var barColors = ["red", "green","blue","orange","brown", "green","blue","orange","brown", "green","blue","orange"];
@@ -73,7 +77,7 @@ new Chart("bar-chart", {
     legend: {display: false},
     title: {
       display: true,
-      text: "Value of ordered transfers in the last year by months"
+      text: title_bar
     }
   }
 });
