@@ -9,7 +9,7 @@
 
 /* Sub wrapper: */
 .page-wrapper-edit{
-    background-image: url(./i/m-assets/white-bg/light_noise_diagonal.png) !important;
+    background-image: url(./i/m-assets/white-bg/noise_lines.png) !important;
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
@@ -18,7 +18,7 @@
 
 /* Sub wrapper 2: */
 .white-bg-edit{ 
-    background-image: url(./i/m-assets/white-bg/light_noise_diagonal.png) !important;
+    background-image: url(./i/m-assets/white-bg/noise_lines.png) !important;
     /* height: 100%; check */
     padding: 30px 30px 30px;
     flex:1;
@@ -478,9 +478,12 @@ textarea{ width:90% !important; }
 }
 
 /* *************************************************************************************** */
+/* *************************************************************************************** */
+/* *************************************************************************************** */
+/* *************************************************************************************** */
+
 /* MEDIA SCREEN: */
 
-/* 1 */
 @media screen and (min-width: 1201px) {
     #show, #hide{
         display: inline-block;
@@ -489,7 +492,6 @@ textarea{ width:90% !important; }
 }
 
 /* ===================================== */
-/* 2 */
 @media screen and (max-width: 1550px) {
 
     /* .row-edit is in #show_items labels: */
@@ -528,6 +530,11 @@ textarea{ width:90% !important; }
 
     .select-top-edit.addon{
         width:100% !important;
+    }
+
+    .select-top-edit{
+        width:100%;
+        text-align: center;
     }
 
     .datepicker-edit{
@@ -671,6 +678,11 @@ textarea{ width:90% !important; }
     .filterOlderAdd{
         float:none !important;
         margin-left:0 !important;
+        text-align: center;
+        padding: 10px !important;
+    }
+    .filterOlderAdd select{
+        margin-bottom: 5px;
     }
 
     .button-toggle{
@@ -699,11 +711,22 @@ textarea{ width:90% !important; }
 		display: none;
 	}
 
+    .sum-edit{
+        flex-direction: column;
+    }
+
+    .col-md-2-edit{
+        padding: 10px;
+    }
+
+    .datepicker-edit-2-small{
+        width:100% !important;
+    }
+
 }
 
 
 /* ===================================== */
-/* 3 */
 @media (min-width: 768px) and (max-width: 1300px) {
     .ui-dialog{ /*Global dialog style */
         height: 80% !important;
@@ -724,7 +747,6 @@ textarea{ width:90% !important; }
 }
 
 /* ===================================== */
-/* 4 */
 @media (max-width: 900px){
     .table{
         /* display: block !important; */
@@ -810,7 +832,6 @@ textarea{ width:90% !important; }
 }
 
 /* ==================================== */
-/* 5 */
 @media (max-width: 767px)  {
     
     .ui-dialog{ /*Global dialog style */
