@@ -69,6 +69,19 @@
 		background-color: #6cd7f3 !important;
 	}
 
+/* Sum edit for report: */
+	.sum-edit{
+		display: flex;
+	}
+	.sum-edit div{
+		padding: 5px;
+		flex-basis: 100%;
+		text-align: center;
+	}
+	.sum-edit div p{
+		margin-bottom: 0;
+	}
+/* -------------------------------- */
 
 </style>
 
@@ -116,7 +129,7 @@
 								<div class="icon">
 									<i class="fa fa-file-invoice" style="font-size:60px;"></i>
 								</div>	 
-<!-- xxx!-->									
+															
 							</div>
 							
 							<div class="col-md-2 small-box transfer" onclick="oneItem({{DetailsID}},'transfer');">
@@ -194,17 +207,45 @@
 			{{/each}}
 		</div>
 		<div class="tab-pane" id="tab_2">
-			<div id="sum">
-				Item Number {{Item2.ItemNumber}} <br>
-				Discount {{Item2.Discount}} <br>				
-				DetailPrice {{Item2.DetailPrice}} <br>
-				ExtraCharge {{Item2.ExtraCharge}} <br>
-				Provision {{Item2.Provision}} <br>		
-				DriversPrice {{Item2.DriversPrice}} <br>
-				DriverExtraCharge {{Item2.DriverExtraCharge}} <br>
-				GrossMargin {{Item2.GrossMargin}} <br>
-				Ratio <b>{{Item2.Ratio}}</b> <br>
-			</div>
+			<div id="sum" class="sum-edit">
+				<div>
+					<p>Item Number</p>
+					<b>{{Item2.ItemNumber}}</b>
+				</div>
+				<div>
+					<p>Discount</p> 
+					<b>{{Item2.Discount}}</b>
+				</div>
+				<div>
+					<p>DetailPrice</p> 
+					<b>{{Item2.DetailPrice}}</b> 
+				</div>
+				<div>
+					<p>ExtraCharge</p> 
+					<b>{{Item2.ExtraCharge}}</b>  
+				</div>
+				<div>
+					<p>Provision</p>
+					<b>{{Item2.Provision}}</b> 
+				</div>
+				<div>
+					<p>DriversPrice</p>
+					<b>{{Item2.DriversPrice}}</b>  
+				</div>
+				<div>
+					<p>DriverExtraCharge</p>
+					<b>{{Item2.DriverExtraCharge}}</b>  
+				</div>
+				<div>
+					<p>GrossMargin</p> 
+					<b>{{Item2.GrossMargin}}</b> 
+				</div>
+				<div>
+					<p>Ratio</p> 
+					<b style="color:#0f5b89;">{{Item2.Ratio}}</b> 
+				</div>
+
+			</div> <!-- End of #sum -->
 		</div>		
 	</div>
 </div>	

@@ -75,7 +75,7 @@ value=" WHERE {$ItemID} > 0">
 	<div class="filter">
 
 		<div class="filterOlderAdd" style="padding:5px;float:left;margin-left:20px;">
-			<b style="color:blue;">{$SORT_BY}:</b>
+			<b style="color:#157bff;">{$SORT_BY}:</b>
 			<select id='sortField' class="select-top-edit" name='sortField' onchange="allItems();">
 				<option value="OrderDate">{$ORDER_DATE}</option>	
 				<option value="PickupDate">{$PICKUP_DATE}</option>		
@@ -89,7 +89,7 @@ value=" WHERE {$ItemID} > 0">
 		<br><br>
 
 		<!-- Order: -->
-		<div class="col-md-2 order-edit">
+		<div class="col-md-2 col-md-2-edit order-edit">
 			<small class="badge blue text-black badge-edit">{$ORDER}</small><br>
 			<input id='order' class="input-one" name='order'  placeholder="Order ID" onchange="allItems();"/><br>
 						
@@ -111,7 +111,7 @@ value=" WHERE {$ItemID} > 0">
 		</div>
 
 		<!-- Payment: -->
-		<div class="col-md-2"> 
+		<div class="col-md-2 col-md-2-edit"> 
 			<small class="badge blue text-black badge-edit">{$PAYMENT}</small><br>
 			<input id='paymentNumber' class="input-one" name='paymentNumber'  placeholder="Payment / Invoice No" onchange="allItems();"/>	
 			
@@ -125,21 +125,21 @@ value=" WHERE {$ItemID} > 0">
 		</div>
 
 		<!-- Transfer: -->
-		<div class="col-md-2"> 
+		<div class="col-md-2 col-md-2-edit"> 
 			<small class="badge blue text-black badge-edit">{$TRANSFER}</small><br>
 			<input id='locationName' class="input-one" name='locationName'  placeholder="Location Name" onchange="allItems();"/>
 			
-				<input id='pickupFromDate' class="datepicker datepicker-edit-2" name='pickupFromDate'  placeholder="From Date" onchange="allItems();" style="width:80%;"/>
+				<input id='pickupFromDate' class="datepicker datepicker-edit-2 datepicker-edit-2-small" name='pickupFromDate'  placeholder="From Date" onchange="allItems();" style="width:80%;"/>
 				<!--<select id='yearsPickup' class="select-top-edit" name='yearsPickup' value='0' onchange="allItems();">
 					<option value='0'>All years</option>
 				</select>!-->
 				<i class="fa fa-cubes" style="color:#900"></i><input type="checkbox" id="listExtras" name="listExtras"  value="" onchange="allItems();" />
 				</br>
-				<input id='pickupToDate' class="datepicker datepicker-edit-2" name='pickupToDate'  placeholder="To Date" onchange="allItems();" style="width:80%;"/>				
+				<input id='pickupToDate' class="datepicker datepicker-edit-2 datepicker-edit-2-small" name='pickupToDate'  placeholder="To Date" onchange="allItems();" style="width:80%;"/>				
 		</div>
 
 		<!-- Driver: -->
-		<div class="col-md-2">
+		<div class="col-md-2 col-md-2-edit">
 			<small class="badge blue text-black badge-edit">{$PARTNER}</small><br>
 			<input id='driverName' class="input-one" name='driverName'  placeholder="Name/ID" onchange="allItems();"/><br>
 			
@@ -152,7 +152,7 @@ value=" WHERE {$ItemID} > 0">
 		</div>
 
 		<!-- Client/Agent: -->
-		<div class="col-md-2">
+		<div class="col-md-2 col-md-2-edit">
 			<small class="badge blue text-black badge-edit">{$PURCHASER}</small><br>
 			<input id='agentName' class="input-one" name='agentName'  placeholder="Name/ID" onchange="allItems();"/><br>				
 			<input id='agentOrder' class="input-one" name='agentOrder'  placeholder="Order Key / Agent Order" onchange="allItems();"/><br>				
@@ -166,7 +166,7 @@ value=" WHERE {$ItemID} > 0">
 		</div>
 
 		<!-- Passenger: -->
-		<div class="col-md-2">
+		<div class="col-md-2 col-md-2-edit">
 			<small class="badge blue text-black badge-edit">{$PASSENGER}</small><br>
 			<input id='passengerData' class="input-one" name='passengerData'  placeholder="Passenger Data" onchange="allItems();"/>					
 			<i class="fa fa-plane" style="color:#900"></i><input type="checkbox" id="flightTimeChecker" name="flightTimeChecker"  value="" onchange="allItems();" />Flight Time Checker		
