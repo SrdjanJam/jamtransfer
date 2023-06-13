@@ -135,10 +135,11 @@
 		array ("id" => "invoice2", "name" => "Invoice 2"),
 	) ;
 
-	$monthNames = array("January", "February", "March", "April", "May", "June", "July",
-	"August", "September", "October", "November", "December");
+	
 
 	$dayNames = array("Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat");
+
+
 
 define("ACCEPTED_PAYMENT", "Accepted Payment");
 define("ACTIONS", "Actions");
@@ -689,7 +690,7 @@ define("DOWNLOAD_RECEIPT", "Download Receipt");
 define("DELETE_RECEIPT", "Delete Receipt");
 define("SUBDRIVERS", "SubDrivers");
 define("MY_EXPENSES", "My Expenses");
-define("EXPENSE", "Expense");
+define("c", "Expense");
 define("DATUM", "Date");
 define("AMOUNT", "Amount");
 define("CO_EMAIL", "Partner Email");
@@ -985,7 +986,7 @@ define("DRIVER_CONFIRMATION_STATUS","Driver confirmation status:");
 
 define("ACTUAL_TRANSFERS","Actual transfers");
 
-define("GET_TRANSFER_ORDER","GET TRANSFER ORDER");
+
 define("TRANSFER_ORDER_NUMBER","Transfer order number:");
 define("VIEW","View");
 
@@ -1103,3 +1104,57 @@ define("PAYMENT","Payment");
 
 define("CONNECTION_TRANSFER","Connection transfer");
 define("ON_TRANSFER","On transfer");
+
+define("CHECK_BOX","CheckBox");
+define("PHOTO","Photo");
+define("VIDEO","Video");
+
+define("ACTIVITY","Activity");
+define("EXPENSE","Expense");
+
+define("NOT_SELECTED","Not selected");
+
+
+// =====================================================================================
+// NEW:
+
+// Levels:
+$levels_array = array(
+	'2' => 'Agent',
+	'3'=>'Client',
+	'4'=>'Affiliate',
+	'5'=>'iFrame User',
+	'6'=>'API User',
+	'31'=>'Driver',
+	'41'=>'Operator',
+	'91'=>'Admin',
+	'99'=>'SystemAdmin',
+	'12'=>'Taxi Site',
+	'92'=>'Manager',
+	'42'=>'Translator',
+	'43'=>'RoutesAdmin',
+	'32'=>'Subdriver',
+	'44'=>'Accountant',
+	'45'=>'Dispatcher'
+);
+
+// Months:
+$monthNames = array(
+	"1"=>"January", 
+	"2"=>"February", 
+	"3"=>"March", 
+	"4"=>"April", 
+	"5"=>"May",
+	"6"=>"June",
+	"7"=>"July",
+	"8"=>"August", 
+	"9"=>"September", 
+	"10"=>"October", 
+	"11"=>"November", 
+	"12"=>"December"
+);
+
+
+define("TITLE_PIE","Value of ordered transfers in the last year by purchaser");
+define("TITLE_BAR","Value of ordered transfers in the last year by months");
+define("GET_TRANSFER_ORDER","Get transfer order");
