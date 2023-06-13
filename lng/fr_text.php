@@ -189,712 +189,720 @@ define("SAVE_CHANGES", "Sauvegarder les modifications");
 define("COLUMN", "colonne(s)");
 define("COMPANY_ADDRESS", "Adresse du partenaire");
 define("COMPANY_DESC", "Descriptif du partenaire");
-define("COMPANY_INFO", "Partner Info");
-define("COMPANY_NAME", "Partner name");
-define("COMPANY_TEXTS", "Various articles");
-define("COMPANY_WEB", "Partner web");
-define("COMPLETED", "Completed");
-define("CONFIRMED", "Confirmed");
-define("READY", "Ready");
-define("CONTACT_PERSON", "Contact person");
-define("CONTENT", "Content");
-define("CONTRACT_FILE", "Contract file");
-define("CONTRACT_DATE", "Contract date");
-define("CONTRACT_SIGNATURE", "Contract signature");
-define("COUNTRIES", "Countries");
-define("COUNTRY_CURRENCY", "Country currency");
-define("COUNTRY_NAME", "Country name(EN)");
-define("COUNTRY_NAME_RU", "Country name in Russian");
+define("COMPANY_INFO", "Informations du partenaire");
+define("COMPANY_NAME", "Nom du partenaire");
+define("COMPANY_TEXTS", "Articles divers");
+define("COMPANY_WEB", "Site partenaire");
+define("COMPLETED", "Complété");
+define("CONFIRMED", "Confirmé");
+define("READY", "Prêt");
+define("CONTACT_PERSON", "Personne de contact");
+define("CONTENT", "Contenu");
+define("CONTRACT_FILE", "Dossier contractuel");
+define("CONTRACT_DATE", "Date de contrat");
+define("CONTRACT_SIGNATURE", "Signature du contrat");
+define("COUNTRIES", "Pays");
+define("COUNTRY_CURRENCY", "Devise du pays");
+define("COUNTRY_NAME", "Le nom du pays (EN)");
+define("COUNTRY_NAME_RU", "Nom du pays en Russe");
 define("COUPONS", "Coupons");
-define("COUPON_DISCOUNT", "Coupon discount");
-define("CURRENCY", 'Eur');
-define("CURRENCYTYPE", 'Currency');
-define("CURRENT_PRICE", "Active Price");
-define("CUSTOM", "Custom");
-define("CUSTOMER", "Customer");
-define("COUNTRYID", "Country ID");
-define("CUSTOMER_ID", "ID");
+define("COUPON_DISCOUNT", "Coupon de réduction");
+define("CURRENCY", '€');
+define("CURRENCYTYPE", 'Devise');
+define("CURRENT_PRICE", "Prix actif");
+define("CUSTOM", "Personnalisé");
+define("CUSTOMER", "Client");
+define("COUNTRYID", "Identifiant du pays");
+define("CUSTOMER_ID", "Identifiant");
 define("CUSTOMER_TYPE", "Type");
-define("CUSTOMER_FIRST_NAME", "First Name");
-define("CUSTOMER_LAST_NAME", "Last Name");
-define("CUSTOMER_COUNTRY", "Country");
-define("CUSTOMER_LANGUAGE", "Language");
-define("CUSTOMER_EMAIL", "Email");
-define("CUSTOMER_ADDRESS", "Address");
-define("CUSTOMER_CITY", "City");
-define("CUSTOMER_ZIP", "Zip");
-define("CUSTOMER_MOBILE", "Mobile");
+define("CUSTOMER_FIRST_NAME", "Prénom");
+define("CUSTOMER_LAST_NAME", "Nom");
+define("CUSTOMER_COUNTRY", "Pays");
+define("CUSTOMER_LANGUAGE", "Langue");
+define("CUSTOMER_EMAIL", "E-mail");
+define("CUSTOMER_ADDRESS", "Adresse");
+define("CUSTOMER_CITY", "Ville");
+define("CUSTOMER_ZIP", "Code postal");
+define("CUSTOMER_MOBILE", "Téléphone portable");
 define("CUSTOMER_PASS", "Pass");
-define("CUSTOMER_SUBSCRIBED", "Subscribed");
-define("CUSTOMER_ACTIVE", "Active");
+define("CUSTOMER_SUBSCRIBED", "Abonné");
+define("CUSTOMER_ACTIVE", "Actif");
 define("CUSTOMER_IMAGE", "Image");
-define("CUSTOMER_IMAGE_TYPE", "Image Type");
+define("CUSTOMER_IMAGE_TYPE", "Le type d’image");
 define("CUSTOMER_TYPE", "Type");
-define("CREATE_TIME", "Create Time");
-define("CREATOR_ID", "Creator ID");
+define("CREATE_TIME", "L’heure de création");
+define("CREATOR_ID", "Identifiant du créateur");
 
-define("DASHBOARD", "Dashboard");
+define("DASHBOARD", "Tableau de bord");
 define("DATE", "Date");
-define("DATE_ADDED", "Date added");
-define("DATA", "data");
-define("DATA_CHECKED", "Data checked");
-define("DATE_SETTINGS", "Off-Duty Dates");
-define("DAY_SETTINGS", "Days of the week");
-define("DECLINED", "Declined");
-define("DELETE_COUNTRY", "Delete Country");
-define("DELETE", "Delete");
-define("DELETE_CACHE", "Delete cache");
-define("DELETE_IMAGE", "Delete image");
-define("DELETE_TRANSFER", "Delete transfer");
-define("DELETE_USER", "Delete User");
-define("DESCENDING", "Descending");
-define("DETAIL_DESCRIPTION", "Please enter detailed description");
-define("DISCOUNT", "Return Discount");
-define("DISPLAY_ALL", "Display all");
-define("DISPLAY_NOT_CHECKED", "Display not checked");
-define("DRIVER", "Transport company");
-define("DRIVER_EMAIL", "Partner's Email");
-define("DRIVER_ERROR", "Partner Error");
-define("DRIVER_NAME", "Partner's Name");
-define("DRIVER_PAID_AMOUNT", "Amount");
-define("DRIVER_PAYMENT", "Partner Payment");
-define("DRIVERS_BALANCE", "Partner's Balance");
-define("DRIVERS_WITH_TRANSFERS", "Partners with transfers");
-define("DRIVERS_PRICE", "Partner's Price");
-define("DRIVER_ROUTES", "Partner's Routes");
-define("DRIVERS", "Partners");
-define("DRIVER_STATUS", "Transfer status");
-define("DRIVER_TEL", "Partner's Tel");
-define("DROPOFF_ADDRESS", "Drop-Off Address");
-define("DROPOFF_NAME", "Drop-Off Name");
-define("DURATION", "Duration");
-define("DISPLAYED_KM","Displayed km");
-define("DISPLAY_ORDER","Display order");
+define("DATE_ADDED", "Date ajoutée");
+define("DATA", "Données");
+define("DATA_CHECKED", "Données vérifiées");
+define("DATE_SETTINGS", "Dates de congés");
+define("DAY_SETTINGS", "Jours de la semaine");
+define("DECLINED", "Refusé");
+define("DELETE_COUNTRY", "Supprimer le pays");
+define("DELETE", "Supprimer");
+define("DELETE_CACHE", "Supprimer le cache");
+define("DELETE_IMAGE", "Supprimer l’image");
+define("DELETE_TRANSFER", "Supprimer le transfert");
+define("DELETE_USER", "Supprimer l’utilisateur");
+define("DESCENDING", "Descendant");
+define("DETAIL_DESCRIPTION", "Veuillez entrer une description détaillée");
+define("DISCOUNT", "Remise sur le retour");
+define("DISPLAY_ALL", "Tout afficher");
+define("DISPLAY_NOT_CHECKED", "Affichage pas validé");
+define("DRIVER", "Compagnie de transport");
+define("DRIVER_EMAIL", "Email du partenaire");
+define("DRIVER_ERROR", "Erreur du partenaire");
+define("DRIVER_NAME", "Le nom du partenaire");
+define("DRIVER_PAID_AMOUNT", "Montant");
+define("DRIVER_PAYMENT", "Paiement partenaire");
+define("DRIVERS_BALANCE", "Solde du partenaire");
+define("DRIVERS_WITH_TRANSFERS", "Les transferts du partenaire");
+define("DRIVERS_PRICE", "Les prix du partenaire");
+define("DRIVER_ROUTES", "Les itinéraires des partenaires");
+define("DRIVERS", "Partenaires");
+define("DRIVER_STATUS", "Le statut du partenaire");
+define("DRIVER_TEL", "Le téléphone du partenaire");
+define("DROPOFF_ADDRESS", "Adresse d’arrivée");
+define("DROPOFF_NAME", "Nom de la destination");
+define("DURATION", "Durée");
+define("DISPLAYED_KM","Kilométrage affiché");
+define("DISPLAY_ORDER","Ordre d’affichage");
 define("DISTRIBUTION","Distribution");
 
-define("EDIT", "Edit");
+define("EDIT", "Editer");
 define("EMAIL", "E-mail");
-define("EMAIL_TO", "E-mail to");
-define("EMERGENCY_PHONE", "Emergency phone");
-define("EXTRAS", "Extra services");
-define("EXPANCE_TITLE", "Title");
-define("EXPANCE_AMOUNT", "Amount");
-define("EXPANCE_APPROVED", "Approved");
-define("EXPENSES", "Expenses");
+define("EMAIL_TO", "Envoyer l’e-mail à");
+define("EMERGENCY_PHONE", "Téléphone d’urgence");
+define("EXTRAS", "Services supplémentaires");
+define("EXPANCE_TITLE", "Titre");
+define("EXPANCE_AMOUNT", "Montant");
+define("EXPANCE_APPROVED", "Approuvé");
+define("EXPENSES", "Dépenses");
 
 define("FACEBOOK", "Facebook");
-define("FINDER", "Finder");
-define("FLIGHT_NO", "Flight Number");
-define("FLIGHT_TIME", "Flight Time");
-define("FREEFORM", "Free form transfer");
-define("FRIAMOUNT", "Fri (amt)");
-define("FRIPERCENT", "Fri (%)");
-define("FROM", "From");
+define("FINDER", "Rechercher");
+define("FLIGHT_NO", "Le numéro du vol");
+define("FLIGHT_TIME", "Durée du vol");
+define("FREEFORM", "Formulaire de transfert gratuit");
+define("FRIAMOUNT", "Montant");
+define("FRIPERCENT", "Pourcentage");
+define("FROM", "De");
 
-define("GOOGLE_PLUS", "Google+");
-define("GRAPH", "Graph");
-define("HEADER_IMAGES", "Header Images");
-define("HELLO", "Hello");
-define("HELP", "Help");
+define("GOOGLE_PLUS", "Google +");
+define("GRAPH", "Graphique");
+define("HEADER_IMAGES", "Images d'en-tête");
+define("HELLO", "Bonjour");
+define("HELP", "Aide");
 
-define("ID", "ID");
+define("ID", "Identifiant");
 define("IMAGE", "Image");
-define("IMAGE_MANAGER", "Image manager");
-define("ISLAND", "On island");
-define("IMAGE_MP","Image Most Popular");
-define("IMAGE_BG","Beckground Image");
-define("IMAGE_DESCRIPTION","Image Description");
+define("IMAGE_MANAGER", "Gestionnaire d'images");
+define("ISLAND", "Sur l’île");
+define("IMAGE_MP","Image la plus populaire");
+define("IMAGE_BG","Image de fond");
+define("IMAGE_DESCRIPTION","Description de l'image");
 
-define("KEY", "Key");
-define("LANGUAGE", "Language");
-define("LASTCHANGE", "Last Change");
-define("LAST_VISIT", "Last visit");
-define("LEVEL", "Level");
-define("LINKEDIN", "LinkedIn");
-define("LIST", "List");
-define("LOADING", "Loading...");
-define("LOCATION", "Location");
-define("LOCATIONS", "Locations");
-define("LOCATION_TYPES", "Location Types");
-define("LOGIN_FAILED", "Login failed!");
+define("KEY", "Clé");
+define("LANGUAGE", "Langue");
+define("LASTCHANGE", "Dernier changement");
+define("LAST_VISIT", "Dernière visite");
+define("LEVEL", "Niveau");
+define("LINKEDIN", "Linkedin");
+define("LIST", "Liste");
+define("LOADING", "Chargement...");
+define("LOCATION", "La localisation");
+define("LOCATIONS", "Localisations");
+define("LOCATION_TYPES", "Types d'emplacement");
+define("LOGIN_FAILED", "La connexion a échoué!");
 
-define("MARK_ACTIVE", "Mark Active");
-define("MARK_COMPLETED", "Mark Completed");
+define("MARK_ACTIVE", "Marquer comme actif");
+define("MARK_COMPLETED", "Marquer terminé");
 define("MARK_NOSHOW", "No-Show");
-define("MARK_ERROR", "Errors");
-define("MARK_DRIVER_ERROR", "Partner Error");
-define("MARK_OPERATOR_ERROR", "Operator Error");
-define("MARK_DISPATCHER_ERROR", "Dispatcher Error");
-define("MARK_AGENT_ERROR", "Agent Error");
-define("MARK_FORCE_MAJEURE", "Force majeure");
-define("MARK_PENDING", "Pending");
-define("MEMBER_SINCE", "Member since");
-define("MENUTITLE", "Link slug");
+define("MARK_ERROR", "Erreur");
+define("MARK_DRIVER_ERROR", "Erreur du partenaire");
+define("MARK_OPERATOR_ERROR", "Erreur de l’opérateur");
+define("MARK_DISPATCHER_ERROR", "Erreur du dispatcher");
+define("MARK_AGENT_ERROR", "Erreur de l’agent");
+define("MARK_FORCE_MAJEURE", "Cas de force majeure");
+define("MARK_PENDING", "En attente");
+define("MEMBER_SINCE", "Membre depuis");
+define("MENUTITLE", "Connexion via le lien");
 define("MESSAGE", "Message");
-define("MESSAGE_FOR_USER", "Message for user");
-define("METHOD", "Method");
-define("MOB", "Mobile");
-define("MONAMOUNT", "Mon (amt)");
-define("MONPERCENT", "Mon (%)");
-define("MY_DRIVERS", "My Partners");
-define("MY_VEHICLES", "My Vehicles");
-define("MENUORDER", "Menu Order");
-define("MP", "Most Popular");
-define("MP_ORDER", "Most Popular Order");
-define("MESSAGE_ID", "ID");
-define("MSG_FORM", "Msq Form");
-define("FROM_NAME", "From Name");
-define("MSG", "Msq");
-define("MAIN", "Main");
-define("MAILID", "MailID");
+define("MESSAGE_FOR_USER", "Message pour l'utilisateur");
+define("METHOD", "Méthode");
+define("MOB", "Numéro mobile");
+define("MONAMOUNT", "Montant");
+define("MONPERCENT", "Pourcentage %");
+define("MY_DRIVERS", "Mes partenaires");
+define("MY_VEHICLES", "Mes véhicules");
+define("MENUORDER", "Commande du menu");
+define("MP", "Les plus populaires");
+define("MP_ORDER", "Commande la plus populaire");
+define("MESSAGE_ID", "Identifiant");
+define("MSG_FORM", "Message de");
+define("FROM_NAME", "A partir du nom");
+define("MSG", "Message");
+define("MAIN", "Principal");
+define("MAILID", "Email");
 
 
-define("BODY", "Body");
-define("USER_ID", "User ID");
-define("DATE_TIME", "Date Time");
-define("USER_LEVEL", "User Level");
-define("STATUS", "Status");
+define("BODY", "Organisme");
+define("USER_ID", "Identifiant de l’utilisateur");
+define("DATE_TIME", "La date");
+define("USER_LEVEL", "Niveau de l’utilisateur");
+define("STATUS", "Statut");
 
-define("NAME", "Name");
-define("NET_INCOME", "Commision");
-define("NETTO_PRICE", "Netto Price");
-define("NEW_ROUTE", "New Route");
-define("NEW_TRANSFER", "New transfer");
-define("NEW_USER", "Add new User");
-define("NEW_PASSWORD", "New Password");
-define("NEWW", "New");
-define("NNEW", "New");
-define("NIGHTAMOUNT", "or fixed Amount");
-define("NIGHTEND", "Night ends at");
-define("NIGHTPERCENT", 'Percent (%)');
-define("NIGHT_SETTINGS", "Night trips");
-define("NIGHTSTART", "Night starts at");
-define("NO_DATA", "Nothing available");
-define("NO_DRIVER", "No Partner");
-define("NO", "No");
+define("NAME", "Nom");
+define("NET_INCOME", "Commission");
+define("NETTO_PRICE", "Le prix net");
+define("NEW_ROUTE", "Nouveau itinéraire");
+define("NEW_TRANSFER", "Nouveau transfer");
+define("NEW_USER", "Ajouter un nouveau utilisateur");
+define("NEW_PASSWORD", "Nouveau mot de passe");
+define("NEWW", "Nouveau");
+define("NNEW", "Nouveau");
+define("NIGHTAMOUNT", "Ou le montant fixe");
+define("NIGHTEND", "La nuit se termine àt");
+define("NIGHTPERCENT", 'Pourcentage (%)');
+define("NIGHT_SETTINGS", "Trajets de nuit");
+define("NIGHTSTART", "La nuit commence à");
+define("NO_DATA", "Rien de disponible");
+define("NO_DRIVER", "Pas de partenaire");
+define("NO", "Non");
 define("NO_SHOW", "No Show");
-define("NO_SURCHARGES", "No Rules");
-define("NOT_ACTIVE", "Not active");
-define("NOT_CONFIRMED", "Not confirmed");
-define("NOT_READY","Not ready");
+define("NO_SURCHARGES", "Aucune règle");
+define("NOT_ACTIVE", "Pas actif");
+define("NOT_CONFIRMED", "Pas confirmé");
+define("NOT_READY","Pas prêt");
 define("NOTE", "Note");
-define("NOTES", "Pickup Notes");
+define("NOTES", "Remarques");
 define("NOTESS", "Notes");
-define("NOTE_TO_DRIVER", "Note to Partner");
+define("NOTE_TO_DRIVER", "Notes pour le partenaire");
 define("NO_TRANSFERS", "No transfers to show.");
 define("NUMBER", "Number");
-define("ONETOTWO", "A &rarr; B");
-define("ONLINE", "Online");
-define("OPERATOR", "Operator");
-define("OPERATOR_ORDERS", "Operator orders");
-define("ORDER_KEY", "Order Key");
-define("ORDER_DATE", "Order date");
-define("ORDER_LOG", "Timeline");
-define("ORDER", "Order");
+define("NO_TRANSFERS", "Aucun transfert à afficher.");
+define("NUMBER", "Numéro");
+define("ONETOTWO", "Du point A  au point B "); 
+define("ONLINE", "En ligne");
+define("OPERATOR", "Opérateur");
+define("OPERATOR_ORDERS", "Commandes de l’opérateur");
+define("ORDER_KEY", "Clé de commande");
+define("ORDER_DATE", "Date de la commande");
+define("ORDER_LOG", "Calendrier");
+define("ORDER", "Commande");
 define("ORDERS", "Commandes");
-define("ORDERS_BY_B_DATE", "by booking date");
-define("ORDERS_BY_TR_DATE", "by transfer date");
-define("OWNERID", "Owner ID");
+define("ORDERS_BY_B_DATE", "Par date de réservation");
+define("ORDERS_BY_TR_DATE", "Par date de transfert");
+define("OWNERID", "Titulaire de l’identifiant");
 
-define("PARENT_ID", "Parent ID");
-define("PAGE_NOT_FOUND", "Page not found!");
+define("PARENT_ID", "Identifiant parental");
+define("PAGE_NOT_FOUND", "Page pas trouvée!");
 define("PAGE", "Page");
 define("PAGES", "Pages");
-define("PAID_ONLINE", "Paid Online");
-define("PAID", "Paid");
-define("PASSENGER", "Passenger");
-define("PASSWORD", "Password");
-define("PAX_EMAIL", "Passenger's Email");
-define("PAX_TEL", "Passenger's Phone");
-define("PAX_NAME", "Passenger's Name");
-define("PAX_FIRST_NAME", "Pax First Name");
-define("PAX_LAST_NAME", "Pax Last Name");
-define("PAX", "Pax");
-define("PAYMENT_FOR", "For payment");
-define("PAYMENT_METHOD", "Payment method");
-define("PAYMENT_STATUS", "Payment status");
-define("PICKUP_ADDRESS", "Pickup Address");
-define("PICKUP_DATE", "Pickup Date");
-define("PICKUP_NAME", "Pickup Name");
-define("PICKUP_TIME", "Pickup Time");
+define("PAID_ONLINE", "Payé en ligne");
+define("PAID", "Payé");
+define("PASSENGER", "Passager");
+define("PASSWORD", "Mot de passe");
+define("PAX_EMAIL", "E-mail du passager");
+define("PAX_TEL", "Téléphone du passager");
+define("PAX_NAME", "Nom du passager");
+define("PAX_FIRST_NAME", "Le prénom de la personne");
+define("PAX_LAST_NAME", "Le nom de la personne");
+define("PAX", "Personne");
+define("PAYMENT_FOR", "Pour le paiement");
+define("PAYMENT_METHOD", "Mode de paiement");
+define("PAYMENT_STATUS", "Statut de paiement");
+define("PICKUP_ADDRESS", "L’adresse de prise en charge");
+define("PICKUP_DATE", "La date de prise en charge");
+define("PICKUP_NAME", "Nom du lieu");
+define("PICKUP_TIME", "Heure de prise en charge");
 define("PLACETYPE_ID", "ID");
-define("PLACETYPEEN", "Location Type (EN)");
-define("PLACECOUNTRY", "Country");
-define("PLACENAMEEN", "Location name (EN)");
-define("PLACENAMESEO", "SEO name");
-define("PLACETYPE", "Location type");
-define("PLACECITY", "City");
-define("PLACEADDRESS", "Address");
+define("PLACETYPEEN", "Type d'emplacement (EN)");
+define("PLACECOUNTRY", "Pays");
+define("PLACENAMEEN", "Nom de la localisation (EN)");
+define("PLACENAMESEO", "Nom du référencement");
+define("PLACETYPE", "Type de lieu");
+define("PLACECITY", "Ville");
+define("PLACEADDRESS", "Adresse");
 define("PLACEDESC", "Description");
-define("PLACEACTIVE", "Active");
+define("PLACEACTIVE", "Actif");
 define("POSITION", "Position");
-define("PICKUP_POINT", "Pickup Point");
-define("PRICE", "Price");
-define("PRICES", "All Prices");
-define("PRICES_EXPORT", "Export Partner prices");
-define("ALL_PRICES_EXPORT", "All prices export");
-define("PRICES_IMPORT", "Import Partner prices");
-define("PRICE_SETTINGS", "Price settings");
-define("PRINT_CONFIRMATION", "Print");
-define("PRINT", "Print");
-define("PRINTIT", "Print it");
-define("PROVISION", "Discount");
-define("PROFILE", "Profile");
-define("PUBLISHED", "Published");
-define("PHONE", "Phone");
+define("PICKUP_POINT", "Point de prise en charge");
+define("PRICE", "Prix");
+define("PRICES", "Tous les prix");
+define("PRICES_EXPORT", "Tarifs partenaire export");
+define("ALL_PRICES_EXPORT", "Tous les prix export");
+define("PRICES_IMPORT", "Prix import des partenaires");
+define("PRICE_SETTINGS", "Paramètres de prix");
+define("PRINT_CONFIRMATION", "Imprimer la confirmation");
+define("PRINT", "Imprimer");
+define("PRINTIT", "Imprime le");
+define("PROVISION", "Promotion");
+define("PROFILE", "Profil");
+define("PUBLISHED", "Publié");
+define("PHONE", "Téléphone");
 
 
-define("QUICK_EMAIL", "Quick Email");
+define("QUICK_EMAIL", "E-mail rapide");
 
-define("READY_FINISHED","Ready&Finished");
-define("REAL_NAME", "Real name");
-define("REMOVE_ROUTES_FROM_TO", "Remove all routes that <strong>begin</strong> or <strong>end</strong> at:");
-define("REPORTS", "Reports");
-define("RESEND_VOUCHER", "Resend Voucher");
-define("RETURNDISCOUNT", "Return Discount");
-define("ROUTEID", "Route ID");
-define("ROUTENAME", "Route name");
-define("ROUTENAMEEN", "Route name EN");
+define("READY_FINISHED","Prêt et fini");
+define("REAL_NAME", "Véritable nom");
+define("REMOVE_ROUTES_FROM_TO", "Supprimez tous les itinéraires qui se terminent:");
+define("REPORTS", "Rapports");
+define("RESEND_VOUCHER", "Renvoyer le voucher");
+define("RETURNDISCOUNT", "Remise pour le retour");
+define("ROUTEID", "Identifiant de l’itinéraire");
+define("ROUTENAME", "Nom de l’itinéraire");
+define("ROUTENAMEEN", "Nom de l’itinéraire EN");
 define("ROUTE", "Route");
-define("ROUTE_SETTINGS", "Route settings");
+define("ROUTE_SETTINGS", "Paramètres d'itinéraire");
 define("ROUTE_SPECIFIC", "Route");
 define("ROUTES", "Routes");
-define("REQUEST_ID", "Request ID");
-define("REQUEST_TITLE", "Request Title");
-define("REPLY_TO", "ReplyTo");
+define("REQUEST_ID", "Identifiant de la demande");
+define("REQUEST_TITLE", "Intitulé de la demande");
+define("REPLY_TO", "Répondre à");
 define("RAPTOR", "RAPTOR");
-define("RECIEVER_ID","Reciever ID");
+define("RECIEVER_ID","identifiant du destinataire");
 
-define("S1END", "Season 1 ends on");
+define("S1END", "La saison 1 se termine le");
 define("S1PERCENT", "(%)");
-define("S1START", "Season 1 starts on");
-define("S2END", "Season 2 ends on");
+define("S1START", "La saison 2 se termine le");
+define("S2END", "La saison 2 se termine le");
 define("S2PERCENT", "(%)");
-define("S2START", "Season 2 starts on");
-define("S3END", "Season 3 ends on");
+define("S2START", "La saison 2 commence le");
+define("S3END", "La saison 3 se termine le");
 define("S3PERCENT", "(%)");
-define("S3START", "Season 3 starts on");
-define("S4END", "Season 4 ends on");
+define("S3START", "La saison 3 commence le");
+define("S4END", "La saison 4 se termine le");
 define("S4PERCENT", "(%)");
-define("S4START", "Season 4 starts on");
-define("S5END", "Season 5 ends on");
+define("S4START", "La saison 4 commence le");
+define("S5END", "La saison 5 se termine le");
 define("S5PERCENT", "(%)");
-define("S5START", "Season 5 starts on");
-define("S6END", "Season 6 ends on");
+define("S5START", "La saison 5 commence le");
+define("S6END", "La saison 6 se termine le");
 define("S6PERCENT", "(%)");
-define("S6START", "Season 6 starts on");
-define("S7END", "Season 7 ends on");
+define("S6START", "La saison 6 commence le");
+define("S7END", "La saison 7 se termine le");
 define("S7PERCENT", "(%)");
-define("S7START", "Season 7 starts on");
-define("S8END", "Season 8 ends on");
+define("S7START", "La saison 7 commence le");
+define("S8END", "La saison 8 se termine le");
 define("S8PERCENT", "(%)");
-define("S8START", "Season 8 starts on");
-define("S9END", "Season 9 ends on");
+define("S8START", "La saison 8 commence le");
+define("S9END", "La saison 9 se termine le");
 define("S9PERCENT", "(%)");
-define("S9START", "Season 9 starts on");
-define("S10END", "Season 10 ends on");
+define("S9START", "La saison 9 commence le");
+define("S10END", "La saison 10 se termine le");
 define("S10PERCENT", "(%)");
-define("S10START", "Season 10 starts on");
-define("STARTSEASON", "Season start at");
-define("ENDSEASON", "Season end at");
-define("WEEKDAYS", "Weekdays");
+define("S10START", "La saison 10 commence le");
+define("STARTSEASON", "Début de saison à");
+define("ENDSEASON", "Fin de saison à");
+define("WEEKDAYS", "Jours de la semaine");
 
 
-define("SALES", "Sales");
-define("SATAMOUNT", "Sat (amt)");
-define("SATPERCENT", "Sat (%)");
-define("SAVE", "Save");
-define("SEND_EMAIL_TO_DRIVER", "Send e-mail to Partner");
-define("SEND", "Send");
+define("SALES", "Ventes");
+define("SATAMOUNT", "Samedi (mnt)");
+define("SATPERCENT", "Samedi (%)");
+define("SAVE", "Sauvegarder");
+define("SEND_EMAIL_TO_DRIVER", "Envoyer un e-mail au partenaire");
+define("SEND", "Envoyer");
 define("SERVICE", "Service");
-define("SIGN_OUT", "Sign Out");
+define("SIGN_OUT", "Se déconnecter");
 define("SITE", "Site");
-define("SITE_CONTENT", "Site content");
-define("SITEID", "Site ID");
-define("SITE_SETTINGS", "Site settings");
-define("STATUS", "Status");
-define("SUBJECT", "Subject");
-define("SUNAMOUNT", "Sun (amt)");
-define("SUNPERCENT", "Sun (%)");
-define("SUMMARY_INVOICE_DRIVER", "Summary Invoice - Partner");
-define("SURCATEGORY", "Price Rules");
-define("SURCHARGES", "Price Rules");
-define("SYSTEM_MESSAGES", "System messages");
-define("SENT_TIME", "Sent Time");
+define("SITE_CONTENT", "Contenu du site");
+define("SITEID", "Identifiant du site");
+define("SITE_SETTINGS", "Paramètres du site");
+define("STATUS", "Statut");
+define("SUBJECT", "Sujet");
+define("SUNAMOUNT", "Dimanche (mnt)");
+define("SUNPERCENT", "Dimanche (%)");
+define("SUMMARY_INVOICE_DRIVER", "Facture récapitulative - Partenaire");
+define("SURCATEGORY", "Règles de prix");
+define("SURCHARGES", "Règles de prix");
+define("SYSTEM_MESSAGES", "Messages système");
+define("SENT_TIME", "Heure d’envoi");
 
-define("TAXISITE", "Taxi Site");
+define("TAXISITE", "Station de taxi");
 define("TEL", "Tel");
-define("THANK_YOU", "Thank You");
+define("THANK_YOU", "Merci");
 define("THERE_ARE_NO_DATA", '<i class="fa fa-circle-o-notch fa-spin fa-5x"></i>');
-define("THERE_ARE_NO", "Loading ");
-define("THERE_ARE", "Loading ");
-define("THIS_WEEK", "This week");
-define("THUAMOUNT", "Thu (amt)");
-define("THUPERCENT", "Thu (%)");
-define("TIME", "Time");
-define("TITLE", "Title");
-define("TODO", "To do");
-define("TODAY", "Today");
-define("TOMORROW", "Tomorrow");
+define("THERE_ARE_NO", "Chargement ");
+define("THERE_ARE", "Chargement ");
+define("THIS_WEEK", "Cette semaine");
+define("THUAMOUNT", "Jeu (mnt)");
+define("THUPERCENT", "Jeu (%)");
+define("TIME", "L’horaire");
+define("TITLE", "Titre");
+define("TODO", "Faire");
+define("TODAY", "Aujourd’hui");
+define("TOMORROW", "Demain");
 define("TOTAL", "Total");
-define("TO", "To");
-define("TO_DRIVER", "To Driver");
-define("TO_PAX", "To Pax");
-define("TRANSFER_DATA", "Transfer data");
+define("TO", "Pour");
+define("TO_DRIVER", "Au conducteur");
+define("TO_PAX", "A pax");
+define("TRANSFER_DATA", "Transférer des données");
 define("TRANSFER_FOR_YOU","
-		We have new transfer(s) for you.<br>
-		Please Confirm or Decline these transfers immediately using the link(s) below:<br><br>
+		Nous avons de nouveaux transferts pour vous.<br>
+		Veuillez svp confirmer ou refuser ces transferts dès à présent en utilisant le(s) lien(s) ci-dessous:<br><br>
 ");
-define("THIS_INFO_WILL_BE_SENT_TO_CUSTOMER", "Please fill-in the following data.<br>
-												If you Confirm this transfer,
-												this info will be sent to customer.");
-define("TRANSFER_STATUS", "Status");
-define("TRANSFERS", "Transfers");
-define("TRANSFER", "Transfer");
-define("TUEAMOUNT", "Tue (amt)");
-define("TUEPERCENT", "Tue (%)");
-define("TURNOVER", "Turnover");
-define("TWOTOONE", "B &rarr; A");
+define("THIS_INFO_WILL_BE_SENT_TO_CUSTOMER", "Veuillez remplir les données suivantes.<br>
+Si vous confirmez ce transfert,
+cette information sera envoyée au client.");
+
+define("TRANSFER_STATUS", "Statut");
+define("TRANSFERS", "Transferts");
+define("TRANSFER", "Transfert");
+define("TUEAMOUNT", "Mardi (mnt)");
+define("TUEPERCENT", "Mar (%)");
+define("TURNOVER", "Chiffre d’affaires");
+define("TWOTOONE", "Du point B au point A"); 
 define("TYPE", "Type");
 define("TASK_DATE", "Date");
 define("TOP_ROUTE_ID", "ID");
-define("TO_NAME", "To Name");
-define("TASKS", "Tasks");
-define("TASK", "Task");
+define("TO_NAME", "Nom");
+define("TASKS", "Missions");
+define("TASK", "Mission");
 
-define("UPDATED", "Updated");
-define("UPLOAD_IMAGES", "Drop Images Here");
-define("UPLOAD_NEW_IMAGE", "Upload new image");
-define("UPLOAD", "Upload");
-define("USE_BOTH", "Both Username and Password are required!");
+define("UPDATED", "Mis à jour");
+define("UPLOAD_IMAGES", "Déposer des images ici");
+define("UPLOAD_NEW_IMAGE", "Télécharger une nouvelle image");
+define("UPLOAD", "Télécharger");
+define("USE_BOTH", "Le nom d'utilisateur et le mot de passe sont requis!");
 define("USE_GLOBAL", "Global");
-define("USERID", "User ID");
-define("USER_NAME", "User name");
+define("USERID", "ID de l’utilisateur");
+define("USER_NAME", "Nom de l’utilisateur");
 define("USERS", "Users");
-define("USER", "User");
-define("VEHICLE", "Vehicle");
-define("VEHICLES", "Vehicles");
-define("VEHICLECAPACITY", "Max. Pax");
-define("VEHICLEDESCRIPTION", "Veh.Description");
-define("VEHICLENAME", "Vehicle name");
-define("VEHICLETYPEID", "Vehicle type ID");
-define("VEHICLE_TYPE", "Vehicle Type Name");
-define("VEHICLE_TYPES", "Vehicle Types");
-define("VEHICLEID", "Vehicle ID");
-define("VEHICLE_IMAGES_NOTE", "Only .jpg files smaller than 200Kb are allowed. Preferred dimensions 200x150px.");
-define("VEHICLE_IMAGES", "Vehicle images");
-define("WAITING", "Waiting");
-define("WEDAMOUNT", "Wed (amt)");
-define("WEDPERCENT", "Wed (%)");
-define("YES", "Yes");
-define("AFTER_INCLUDING", "after and including");
-define("AFTER", "after");
-define("BEFORE", "before");
-define("ON", "on");
-define("SHOW_BOOKED", "Show transfers booked");
-define("AND_PICKUP_DATE_IS", "AND Pickup date is");
-define("AND_DRIVER_IS", "AND Partner is");
-define("APPLY", "Apply filter");
-define("SORT_BY_PICKUP_DATE", "Sort by Pickup date");
-define("NO_ROUTE_RULES_DEFINED", "There are no Route Rules defined.");
+define("USERS", "Utilisateurs");
+define("USER", "Utilisateur");
+define("VEHICLE", "Véhicule");
+define("VEHICLES", "Véhicules");
+define("VEHICLECAPACITY", "Max de per");
+define("VEHICLEDESCRIPTION", "Véh. Description");
+define("VEHICLENAME", "Le nom du véhicule");
+define("VEHICLETYPEID", "Identification du type de véhicule");
+define("VEHICLE_TYPE", "Nom du type de véhicule");
+define("VEHICLE_TYPES", "Le type de véhicules");
+define("VEHICLEID", "Véhicule ID");
+define("VEHICLE_IMAGES_NOTE", "Seuls les fichiers .jpg inférieurs à 200 Ko sont autorisés. Dimensions préférées 200x150px.");
+define("VEHICLE_IMAGES", "Images de véhicules");
+define("WAITING", "En attendant");
+define("WEDAMOUNT", "Mer (mnt)");
+define("WEDPERCENT", "Mer (%)");
+define("YES", "Oui");
+define("AFTER_INCLUDING", "après et inclus");
+define("AFTER", "après");
+define("BEFORE", "avant");
+define("ON", "sur");
+define("SHOW_BOOKED", "Afficher les transferts réservés");
+define("AND_PICKUP_DATE_IS", "ET la date de prise en charge est");
+define("AND_DRIVER_IS", "ET le partenaire est");
+define("APPLY", "Appliquer le filtre");
+define("SORT_BY_PICKUP_DATE", "Trier par date de prise en charge");
+define("NO_ROUTE_RULES_DEFINED", "Aucune règle d’itinéraire n’est définie.");
 define("SERVICE_SPECIFIC", "Service");
-define("VEHICLE_SPECIFIC", "Vehicle");
-define("DEFINE_GLOBAL", "Global Rules");
-define("MOST_DECLINES", "Partners with most declines");
-define("TOP_DRIVERS", "Top Partners");
-define("TOP_DEBTORS", "Largest debtors");
+define("VEHICLE_SPECIFIC", "Véhicule");
+define("DEFINE_GLOBAL", "Règles globales");
+define("MOST_DECLINES", "Partenaires avec le plus des refus");
+define("TOP_DRIVERS", "Top Partenaire");
+define("TOP_DEBTORS", "Principaux débiteurs");
 
-define("CONFIRM", "Confirm");
-define("DECLINE", "Decline");
-define("CONFIRM_DECLINE_INSTRUCTIONS", "You can Confirm or Decline this transfer according to T&C. If you decline this transfer, it will be assigned to the next available Partner. You cannot change your decision later on!");
+define("CONFIRM", "Confirmé");
+define("DECLINE", "Refusé");
+define("CONFIRM_DECLINE_INSTRUCTIONS", "Vous pouvez confirmer ou refuser ce transfert selon les CG. Si vous refusez ce transfert, il sera attribué au prochain partenaire disponible. Vous ne pouvez pas changer votre décision plus tard!");
 
-define("IMPORTANT_UPDATE", "Important update");
-define("YOUR_NEW_DRIVER_NAME", "Your new Driver name");
-define("YOUR_NEW_DRIVER_TEL", "Your new Driver phone");
+define("IMPORTANT_UPDATE", "Mise à jour importante");
+define("YOUR_NEW_DRIVER_NAME", "Votre nouveau nom de conducteur");
+define("YOUR_NEW_DRIVER_TEL", "Votre nouveau numéro de téléphone");
 
-define("VIEW_SITE", "View site");
+define("VIEW_SITE", "Voir le site");
 
-define("ADD_ROUTES_FROM_TO", "Add Routes that <strong>begin</strong> or <strong>end</strong> at selected location");
-define("PLEASE_REFRESH", "Please refresh this page.");
 
-define("SERVICEPRICE1", "Active Price");
-define("SERVICEPRICE2", "New Price");
-define("SERVICEETA", "Duration");
-define("VEHICLEAVAILABLE", "Vehicle Available");
-define("SUBMIT_NEW_PRICES", "Submit new prices for Admin approval");
-define("NEW_PRICES_INFO", "When you finish entering new prices, click the button below to inform Admin and ask for the approval for the new prices. <br>New prices will become active when approved.");
+define("ADD_ROUTES_FROM_TO", "Ajouter des itinéraires qui commencent ou se terminent à l'emplacement sélectionné");
+define("PLEASE_REFRESH", "Veuillez actualiser cette page.");
 
-define("CONFIRM_TRANSFER", 'Please confirm this transfer:');
+define("SERVICEPRICE1", "Prix actif");
+define("SERVICEPRICE2", "Nouveau prix");
+define("SERVICEETA", "Durée");
+define("VEHICLEAVAILABLE", "Véhicule disponible");
+define("SUBMIT_NEW_PRICES", "Soumettre de nouveaux prix pour approbation par l'administrateur");
+define("NEW_PRICES_INFO", "Lorsque vous avez fini d'entrer de nouveaux prix, cliquez sur le bouton ci-dessous pour informer l'administrateur et demander l'approbation des nouveaux prix. Les nouveaux prix deviendront actifs une fois approuvés.");
 
-define("VEHICLETYPENAME", "Vehicle Type Name");
+define("CONFIRM_TRANSFER", 'Merci de confirmer ce transfert:');
+
+define("VEHICLETYPENAME", "Type de véhicule");
 define("MIN", "Min");
 define("MAX", "Max");
-define("VEHICLECLASS", "Vehicle Class");
+define("VEHICLECLASS", "Véhicule Class");
 define("DESCRIPTION", "Description");
-define("DESCRIPTIONEN", "Description (EN)");
+define("DESCRIPTIONEN", "Description (AN)");
 define("DESCRIPTIONRU", "Description (RU)");
 define("DESCRIPTIONFR", "Description (FR)");
-define("DESCRIPTIONDE", "Description (DE)");
+define("DESCRIPTIONDE", "Description (ALL)");
 define("DESCRIPTIONIT", "Description (IT)");
-define("AIRCONDITION", "Free WiFi");
+define("AIRCONDITION", "Wifi offert");
 
 // agent
-define("LAST_BOOKINGS", "Recent Bookings");
-define("CLICK_TO_BOOK_AGAIN", "Click on a link to book again");
-define("THIS_YEAR", "This year");
-define("UNPAID_INVOICES", "Amount due");
-define("PAID_INVOICES", "Amount paid");
-define("INVOICES", "Invoices total");
-define("INVOICE", "Invoice");
+define("LAST_BOOKINGS", "Réservations récentes");
+define("CLICK_TO_BOOK_AGAIN", "Cliquez sur un lien pour réserver à nouveau");
+define("THIS_YEAR", "Cette année");
+define("UNPAID_INVOICES", "Montant dû");
+define("PAID_INVOICES", "Le montant payé");
+define("INVOICES", "Total des factures");
+define("INVOICE", "Facture");
 
 // user
 define("COUNTRY_ID","ID");
-define("COUNTRY", "Country");
-define("COUNTRY_SHORT", "Country Short");
-define("CITY", "City");
+define("COUNTRY", "Pays");
+define("COUNTRY_SHORT", "Abréviation pour les pays");
+define("CITY", "Ville");
 define("TERMINAL_ID", "Terminal ID");
 define("TERMINAL", "Terminal");
-define("TERMINAL_NAME", "Terminal Name");
-define("TAX_NUMBER", "Tax Number");
-define("ACCOUNT_OWNER", "Account owner");
-define("ACCOUNT_BANK", "Account Bank");
+define("TERMINAL_NAME", "Le nom du terminal");
+define("TAX_NUMBER", "Numéro de TVA");
+define("ACCOUNT_OWNER", "Propriétaire du compte");
+define("ACCOUNT_BANK", "Compte bancaire");
 define("IBAN", "IBAN");
 define("SWIFT", "SWIFT");
 define("FAX", "Fax");
-define("PRICE_RANGE1", "Price range");
-define("PRICE_RANGE2", "Price range");
-define("PRICE_RANGE3", "Price range");
-define("PREMIUM_PRICE_RANGE1", "Premium price range");
-define("PREMIUM_PRICE_RANGE2", "Premium price range");
-define("PREMIUM_PRICE_RANGE3", "Premium price range");
-define("FCLASS_PRICE_RANGE1", "First Class price range");
-define("FCLASS_PRICE_RANGE2", "First Class price range");
-define("FCLASS_PRICE_RANGE3", "First Class price range");
-define("OUR_COMMISION", "Our commission");
-define("READ_ONLY_FLD","READ ONLY FLD");
+define("PRICE_RANGE1", "Gamme de prix");
+define("PRICE_RANGE2", "Gamme de prix");
+define("PRICE_RANGE3", "Gamme de prix");
+define("PREMIUM_PRICE_RANGE1", "Gamme de prix Premium");
+define("PREMIUM_PRICE_RANGE2", "Gamme de prix Premium");
+define("PREMIUM_PRICE_RANGE3", "Gamme de prix Premium");
+define("FCLASS_PRICE_RANGE1", "Gamme de prix First Class");
+define("FCLASS_PRICE_RANGE2", "Gamme de prix First Class");
+define("FCLASS_PRICE_RANGE3", "Gamme de prix First Class");
+define("OUR_COMMISION", "Notre comission");
+define("READ_ONLY_FLD","Champs en lecture seule");
 define("ZIP","ZIP");
 
 // timetable
-define("TIMETABLE", "Timetable");
-define("TRANSFER_LIST", "Transfer List");
-define("SHOW_TRANSFERS", "Show Transfers");
-define("REQUIRED", "Required");
-define("SORT", "Sort");
-define("NO_EXTRAS", "No extras");
-define("PICKUP_NOTE", "Pickup Notes");
-define("STAFF_NOTE", "Staff Notes");
-define("NOTES_TO_DRIVER", "Notes to Partner");
-define("FINAL_NOTE", "Final Note");
-define("RECIVE_CASH", "Recive - Cash");
-define("MAKE_BILL", "Make a bill!");
-define("UPLOAD_PDF_RECEIPT", "Upload PDF Receipt");
-define("DOWNLOAD_RECEIPT", "Download Receipt");
-define("DELETE_RECEIPT", "Delete Receipt");
-define("SUBDRIVERS", "SubDrivers");
-define("MY_EXPENSES", "My Expenses");
-define("EXPENSE", "Expense");
+define("TIMETABLE", "Tableau de bord");
+define("TRANSFER_LIST", "La liste de transferts");
+define("SHOW_TRANSFERS", "Afficher les transferts");
+define("REQUIRED", "Requis");
+define("SORT", "Trier");
+define("NO_EXTRAS", "Pas de suppléments");
+define("PICKUP_NOTE", "Notes pour la prise en charge");
+define("STAFF_NOTE", "Notes du personnel");
+define("NOTES_TO_DRIVER", "Notes pour le partenaire");
+define("FINAL_NOTE", "Note finale");
+define("RECIVE_CASH", "Reçu - Espèces");
+define("MAKE_BILL", "Faire une facture!");
+define("UPLOAD_PDF_RECEIPT", "Télécharger le reçu PDF");
+define("DOWNLOAD_RECEIPT", "Télécharger le reçu");
+define("DELETE_RECEIPT", "Supprimer le reçu");
+define("SUBDRIVERS", "Subdrivers");
+define("MY_EXPENSES", "Mes dépenses");
+define("EXPENSE", "Dépenses");
 define("DATUM", "Date");
-define("AMOUNT", "Amount");
-define("CO_EMAIL", "Partner Email");
-define("CO_NAME", "Partner Name");
-define("CO_ADDRESS", "Partner Address");
-define("TELEPHONE", "Telephone");
-define("EXPENSES_REPORT", "Expenses - Report");
-define("SHOW_EXPENSES", "Show Expenses");
-define("OPTIONAL", "optional");
-define("TOTAL_CARD", "Total Card");
-define("TOTAL_CASH", "Total Cash");
-define("TOTAL_PAID", "Total Paid");
-define("TOTAL_VALUE", "Total Value");
+define("AMOUNT", "Montant");
+define("CO_EMAIL", "L’e-mail du partenairel");
+define("CO_NAME", "Le nom du partenaire");
+define("CO_ADDRESS", "L'adresse du partenaire");
+define("TELEPHONE", "Téléphone");
+define("EXPENSES_REPORT", "Dépenses - Rapport");
+define("SHOW_EXPENSES", "Afficher les dépenses");
+define("OPTIONAL", "facultatif");
+define("TOTAL_CARD", "Total Carte");
+define("TOTAL_CASH", "Total Espèces");
+define("TOTAL_PAID", "Total payé");
+define("TOTAL_VALUE", "Valeur totale");
 
-// reports
-define("TRANSFERS_SUMMARY", "Transfers Summary");
-define("TRANSFERS_SUMMARY_BOOKING", "Transfers Summary by Booking Date");
+
+// repport
+define("TRANSFERS_SUMMARY", "Résumé des transferts");
+define("TRANSFERS_SUMMARY_BOOKING", "Récapitulatif des transferts par date de réservation");
 define("TRANSFERS_SUMMARY_DESCRIPTION","
-&middot; canceled transfers excluded <br>
-&middot; Temp transfers excluded <br>
-&middot; all prices in EUR <br>
-&middot; ordered by Date <br>
+&middot; Transferts annulés exclus<br>
+&middot; Transferts temporaires exclus <br>
+&middot; tous les prix en EUR <br>
+&middot; trié par Date <br>
 ");
-define("BOOKING_DATE", "Booking Date");
-define("SHOW_DETAILS", "Show details");
-define("SUBMIT", "Submit");
-define("TOTAL_TRANSFERS", "Total number of transfers");
-define("CARD", "Card");
-define("NETTO", "Net Income");
-define("ADMIN_ORDERS", "Admin orders");
-define("AGENT_ORDERS", "Agent orders");
-define("API_ORDERS", "API orders");
-define("TAXI_SITE_ORDERS", "Taxi site orders");
-define("SITE_ORDERS", "Site orders");
-define("LEGEND", "Legend");
-define("PRICE_LIST", "Price list");
-define("SUMMARY_INVOICE_AGENT", "Summary Invoice Agent");
-define("AGENTS_WITH_TRANSFERS", "Agents with transfers");
-define("AGENTS_BALANCE", "Agent transfers");
-define("EXCHANGE_RATE", "Exchange Rate");
+define("BOOKING_DATE", "Date de réservation");
+define("SHOW_DETAILS", "Afficher les détails");
+define("SUBMIT", "Envoyer");
+define("TOTAL_TRANSFERS", "Nombre total de transferts");
+define("CARD", "Carte");
+define("NETTO", "Prix net");
+define("ADMIN_ORDERS", "Commandes administratives");
+define("AGENT_ORDERS", "Commandes d'agents");
+define("API_ORDERS", "Commandes d’applications");
+define("TAXI_SITE_ORDERS", "Commandes de sites de taxis");
+define("SITE_ORDERS", "Comamndes du site");
+define("LEGEND", "Légende");
+define("PRICE_LIST", "La liste des prix");
+define("SUMMARY_INVOICE_AGENT", "Agent de facturation récapitulative");
+define("AGENTS_WITH_TRANSFERS", "Agents avec virements");
+define("AGENTS_BALANCE", "Agent virement");
+define("EXCHANGE_RATE", "Taux de change");
 define("EUR_TO_RSD", "1 EUR = ");
-define("SET_NEW_RATE", "Save New Rate");
-define("INVOICES_AGENTS", "Invoices");
-define("NEW_AGENT_INVOICE", "New Agent Invoice");
-define("NEW_DRIVER_INVOICE", "New Partner Invoice");
-define("STARTDATE", "Start date");
-define("ENDDATE", "End date");
-define("INVOICENUMBER", "Invoice Number");
-define("INVOICEDATE", "Invoice Date");
-define("AMOUNTEUR", "Total EUR");
-define("VATTOTAL", "Total VAT");
-define("CLIENT_EMAILS", "Client Emails");
-define("CLIENT_EMAIL_LIST", "Client Email List");
-define("DRIVERS_EMAIL_LIST", "Partners Email List");
-define("SHOW_CLIENTS", "Show Clients");
-define("SHOW_EMAILS", "Show Emails");
-define("USER_TYPE", "User Type");
-define("AGENT_REPORT", "Agent Report");
+define("SET_NEW_RATE", "Enregistrer le nouveau prix");
+define("INVOICES_AGENTS", "Factures");
+define("NEW_AGENT_INVOICE", "Nouvelle facture d'agent");
+define("NEW_DRIVER_INVOICE", "Nouvelle facture du partenaire");
+define("STARTDATE", "Date de début");
+define("ENDDATE", "Date de fin");
+define("INVOICENUMBER", "Le numéro de facture");
+define("INVOICEDATE", "La date de la facture");
+define("AMOUNTEUR", "Total €");
+define("VATTOTAL", "Total TVA");
+define("CLIENT_EMAILS", "E-mails clients");
+define("CLIENT_EMAIL_LIST", "Liste des e-mails des clients");
+define("DRIVERS_EMAIL_LIST", "Liste des e-mails des partenaires");
+define("SHOW_CLIENTS", "Afficher les clients");
+define("SHOW_EMAILS", "Afficher les emails");
+define("USER_TYPE", "Type d’utilisateur");
+define("AGENT_REPORT", "Rapport d’agent");
 
-// driver confirmation
+// confirmation du conducteur
 	define("SERVICES_DESC1", "
-		Service includes vehicle and driver
+		Le service comprend le véhicule et le chauffeur
 	");
 
 	define("SERVICES_DESC2", "
-		Prices are per vehicle, not per person
+		Les prix s’entendent par véhicule et non par personne
 	");
 
 	define("SERVICES_DESC5", "
-		One piece of medium luggage and one piece of hand luggage per passenger are free of charge
+		Un bagage moyen et un bagage à main par passager sont gratuits
 	");
 
 	define("SERVICES_DESC6", "
-		We will send you driver`s contact information by email
+		Nous vous enverrons les coordonnées du chauffeur par e-mail
 	");
 
 	define("SERVICES_DESC7", "
-			Your driver will meet you with the nameplate at the pick up point. Keep your phone turned on
+			Votre chauffeur vous attendra avec la plaque signalétique au point de prise en charge. Gardez votre téléphone allumé
 	");
 
 	define("SERVICES_DESC3", "
-			Waiting at the airports up to one hour after landing time is free
+			L'attente dans les aéroports jusqu'à une heure après l'heure d'atterrissage est gratuite
 	");
 
 	define("SERVICES_DESC4", "
-			 Flight delays are monitored
+			Les retards de vol sont surveillés
 	");
 
 	define("SERVICES_DESC8", "
-			 In case of delay, cancellation or other unforeseen circumstances,
-			 you are obligated to inform your driver (local operator) or in case
-			 of emergency our Call Centre +381646597200
+			En cas de retard, d'annulation ou d'autres circonstances imprévues,
+veuillez obligatoirement en informer votre chauffeur (opérateur local) ou en cas
+d'urgence téléphonez à  notre Call Center +381646597200
+
 	");
 
 	define("SERVICES_DESC9", "
-			In case that you have not received driver's contact
-			information by e-mail 24 hours before the transfer, please contact us.
+			Si vous n'avez pas reçu le contact du conducteur
+par e-mail 24h avant le transfert, merci de nous contacter
+.
 	");
 
 
 // translator
-define("POLICIES", "Policies");
-define("ENGLISH", "English");
-define("RUSSIAN", "Russian");
-define("FRENCH", "French");
-define("GERMAN", "German");
-define("ITALIAN", "Italian");
+define("POLICIES", "Règles");
+define("ENGLISH", "Anglais");
+define("RUSSIAN", "Russe");
+define("FRENCH", "Français");
+define("GERMAN", "Allemand");
+define("ITALIAN", "Italien");
 define("LEN", " (EN)");
 define("LRU", " (RU)");
 define("LFR", " (FR)");
-define("LDE", " (DE)");
+define("LDE", " (ALL)");
 define("LIT", " (IT)");
-define("COUNTRYNAME", "Country name");
-define("COUNTRYDESC", "Country description");
-define("PLACENAME", "Location name");
+define("COUNTRYNAME", "Le nom du pays");
+define("COUNTRYDESC", "La description du pays");
+define("PLACENAME", "Nom de la localisation");
 define("PLACE_ID","ID");
 
-define("DRIVER_PRICE", "Partner Price");
-define("PROVISIONPERC", "Provision %");
+define("DRIVER_PRICE", "Le prix du chauffeur");
+define("PROVISIONPERC", "Commission %");
 
-define("COUNTRYISO", "Country ISO");
-define("COUNTRYCODE", "Country code");
-define("COUNTRYCODE3", "Country code 3");
-define("PHONEPREFIX", "Phone prefix");
+define("COUNTRYISO", "Code Pays");
+define("COUNTRYCODE", "Code Pays");
+define("COUNTRYCODE3", "Code Pays 3");
+define("PHONEPREFIX", "Préfixe téléphonique");
 
 // coupons
 define("CODE_ID","Code ID");
 define("CODE", "Code");
-define("VALIDFROM", "Valid From");
-define("VALIDTO", "Valid To");
-define("TRANSFERFROMDATE", "From Date");
-define("TRANSFERTODATE", "To Date");
-define("LIMITLOCATIONID", "Limit Location");
-define("WEEKDAYSONLY", "Weekdays Only");
-define("RETURNONLY", "Return Only");
-define("TIMESUSED", "Times Used");
-define("REFRESH_CACHE", "Refresh Cache");
+define("VALIDFROM", "Valide à partir de");
+define("VALIDTO", "Valable pour");
+define("TRANSFERFROMDATE", "Valable pour");
+define("TRANSFERTODATE", "A cette date");
+define("LIMITLOCATIONID", "Limiter les localisations");
+define("WEEKDAYSONLY", "Jours de semaine seulement");
+define("RETURNONLY", "Retour uniquement");
+define("TIMESUSED", "Horaires utilisés");
+define("REFRESH_CACHE", "Rafraîchir le cache");
 
 
-// reviews
-define("SURVEY", "Survey");
-define("SEND_EMAIL_SURVEY", "Send Email Survey");
+// Les avis
+define("SURVEY", "Enquête");
+define("SEND_EMAIL_SURVEY", "Envoyer l'enquête par e-mail");
 define("SURVEY_SENT", "Survey sent at");
-define("ROUTE_REVIEWS", "Reviews");
-define("ORDERID", "Order ID");
-define("USEREMAIL", "User Email");
-define("USERNAME", "User Name");
-define("COMMENT", "Comment");
-define("SCORESERVICE", "Score - Service");
-define("SCOREDRIVER", "Score - Driver");
-define("SCORECLEAN", "Score - Cleanliness");
-define("SCOREVALUE", "Score - Value for money");
-define("SCOREWEBSITE", "Score - Website");
-define("SCORETOTAL", "Score - Total");
-define("DRIVERONTIME", "Was driver on time");
-define("RECOMMEND", "Would recommend");
-define("BOOKAGAIN", "Would book again");
-define("SURVEY_REPORT", "Survey - Report");
-define("SHOW_REVIEWS", "Show results");
-define("SURVEY_RESULTS_LIST", "Survey results - List");
+define("ROUTE_REVIEWS", "Les avis");
+define("ORDERID", "Commande ID");
+define("USEREMAIL", "Email de l’utilisateur");
+define("USERNAME", "Le nom de l’utilisateur");
+define("COMMENT", "Commentaire");
+define("SCORESERVICE", "Note - Service");
+define("SCOREDRIVER", "Note-conducteur");
+define("SCORECLEAN", "Note - Propreté");
+define("SCOREVALUE", "Note - Rapport qualité prix");
+define("SCOREWEBSITE", "Note - Site Web");
+define("SCORETOTAL", "Note - Total");
+define("DRIVERONTIME", "Le chauffeur était il à l'heure");
+define("RECOMMEND", "Je recommanderais");
+define("BOOKAGAIN", "Souhaitez-vous réserver de nouveau ?");
+define("SURVEY_REPORT", "Sondage - Rapport");
+define("SHOW_REVIEWS", "Afficher les résultats");
+define("SURVEY_RESULTS_LIST", "Résultats du sondage - Liste");
 
-define("EXTRA_SERVICES", "Extras Master");
-define("ANY", "All");
-define("ONLY_EXTRAS", "Only with extras");
+define("EXTRA_SERVICES", "Services supplémentaires");
+define("ANY", "Tout");
+define("ONLY_EXTRAS", "Seulement les extras");
 
-define("PAY_CASH", "Cash");
-define("PAY_INVOICE", "Bank transfer");
-define("PAY_ONLINE", "Online");
+define("PAY_CASH", "Espèces");
+define("PAY_INVOICE", "Virement");
+define("PAY_ONLINE", "En ligne");
 
-// Josip Special Dates
+// Josip Dates spéciales
 define("SPECIALDATE", "Date");
-define("SPECIALDATES", "Special Dates");
-define("SPECIALTIMES", "Special Times");
-define("STARTTIME", "Start Time");
-define("ENDTIME", "End Time");
-define("CORRECTIONPERCENT", "Percent");
+define("SPECIALDATES", "Dates spéciales");
+define("SPECIALTIMES", "Horaires spéciaux");
+define("STARTTIME", "Heure de début");
+define("ENDTIME", "Heure de fin");
+define("CORRECTIONPERCENT", "Pourcentage");
 
 //Company info - Leo
-define("CO_TEL", "Partner phone");
-define("CO_FAX", "Partner fax");
-define("CO_CITY", "Partner city");
-define("CO_COUNTRY", "Partner country");
-define("CO_ZIP", "Partner ZIP Code");
-define("CO_TAXNO", "Partner tax number");
-define("CO_BANK", "Partner bank");
-define("CO_ACCOUNTNO", "Partner account number");
-define("CO_IBAN", "Partner IBAN");
-define("CO_SWIFT", "Partner SWIFT code");
-define("CO_DOMESTICTAX", "Partner domestic tax");
-define("CO_FOREIGNTAX", "Partner foreign tax");
+define("CO_TEL", "Téléphone du partenaire");
+define("CO_FAX", "Fax du partenaire");
+define("CO_CITY", "La ville du partenaire");
+define("CO_COUNTRY", "Le pays du partenaire");
+define("CO_ZIP", "Le code postal du partenaire");
+define("CO_TAXNO", "Numéro de TVA du partenaire");
+define("CO_BANK", "La banque du partenaire");
+define("CO_ACCOUNTNO", "Numéro de compte du partenaire");
+define("CO_IBAN", "IBAN du partenaire");
+define("CO_SWIFT", "SWIFT code du partenaire");
+define("CO_DOMESTICTAX", "Les impôts du partenaire dans le pays d’origine");
+define("CO_FOREIGNTAX", "Les impôts du parentaire à l’étranger");
 define("CO_EURINFO", "Partner EUR info");
-define("CO_PAYMENTINFO", "Partner payment info");
+define("CO_PAYMENTINFO", "Informations de paiement du partenaire");
 define("CO_FACEBOOK", "Facebook");
 define("CO_TWITTER", "Twitter");
 define("CO_LINKEDIN", "LinkedIn");
 define("CO_YOUTUBE", "Youtube");
 define("CO_GOOGLEPLUS", "Google+");
 
-// Services - Extra Services
+// Services - Les services supplémentaires
 define("SERVICE_ID","ID");
-define("CONNECTED","Connected");
-define("DISPLAYORDER", "Service Display order");
+define("CONNECTED","Relié");
+define("DISPLAYORDER", "Affichage du planning");
 define("SERVICEEN", "Extra service (EN)");
 define("SERVICEDE", "Extra service (DE)");
 define("SERVICERU", "Extra service (RU)");
@@ -914,49 +922,49 @@ define("DESCRIPTIONSE", "Description (SE)");
 define("DESCRIPTIONNO", "Description (NO)");
 define("DESCRIPTIONES", "Description (ES)");
 define("DESCRIPTIONNL", "Description (NL)");
-define("SUBDRIVER_HISTORY", "Subdriver History");
-define("AGENT_TRANSFERS", "Agent transfers");
-define("DEPOSIT", "Deposit (EUR)");
+define("SUBDRIVER_HISTORY", "Historique Subdriver");
+define("AGENT_TRANSFERS", "Transferts d’agent");
+define("DEPOSIT", "Dépôt (EUR)");
 
 
-// Vehice types
-define("DRIVER_VEHICLE","Partner Vehicle");
+// Le type de véhicules
+define("DRIVER_VEHICLE","Véhicule du partenaire");
 
 // Master - location
 define("LONGITUDE","Longitude");
 define("LATITUDE","Latitude");
-define("ELEVATION","Elevation");
+define("ELEVATION","Elévation");
 
-// Services - Routes
-define("TOP_ROUTE","Top Route");
+// Services - Itinéraires
+define("TOP_ROUTE","Le meilleur itinéraire");
 define("KM","km");
 
-// Services - Extras Services - (folder ExtrasMaster)
-define("DRIVER_EXTRAS","Partner Extras");
+// Services - Services d’extras - (dossier ExtrasMaster)
+define("DRIVER_EXTRAS","Suppléments partenaires");
 
-// Pricing - Coupons - (folder Coupons)
-define("DRIVER_ID","DriverID");
+// Pricing - Coupons - (dossier Coupons)
+define("DRIVER_ID","Chauffeur ID");
 
 
-// Masters User - folder AuthUser
+// Utilisateur Masters  - dossier AuthUser
 define("AUTHUSER_ID","ID");
-define("AUTHUSER_LEVEL","Level");
+define("AUTHUSER_LEVEL","Niveau");
 define("AUTHUSER_IMAGE","Image");
-define("AUTHUSER","Auth User");
-define("AUTHUSERCOMPANY","Auth User Partner");
-define("AUTHUSERNOTE","Auth User Note");
-define("SETASDRIVER","Set as Partner");
+define("AUTHUSER","Utilisateur Auth");
+define("AUTHUSERCOMPANY","Auth Utilisateur Partenaire");
+define("AUTHUSERNOTE","Auth Utilisateur Remarques");
+define("SETASDRIVER","Définir comme partenaire");
 define("CONTACT","Contact");
 
-// Pricing - Services
-define("BUTTONS","Buttons");
+// Tarification - Services
+define("BUTTONS","Boutons");
 
-// Settings - off duty dates
+// Paramètres - dates de repos
 define("OFF_DUTY_ID","ID");
-define("OFF_DUTY","Off duty dates");
-define("REASON","Reason");
+define("OFF_DUTY","Dates de repos");
+define("REASON","Raison");
 
-// Settings - Vehicles
+// Paramètres - Véhicules
 define("RAPTORID","Raptor ID");
 
 // ================================================
@@ -966,171 +974,162 @@ define("RAPTORID","Raptor ID");
 define("ICON","ICON");
 define("KEYS","Keys");
 
-// Language Lines
+//critère linguistique
 define("TEXT","Text");
 
 // Articles
-define("HTMLBEFORE"," HTML Before");
+define("HTMLBEFORE"," HTML Avant");
 // =================================================
 
-define("PERSONAL_CODE","Personal code:");
-define("NUMBER_OF_RESERVATION","Number of reservations");
-define("VALUE_OF_RESERVATION","Value of reservations");
+define("PERSONAL_CODE","Le code personnel");
+define("NUMBER_OF_RESERVATION","Nombre de réservations");
+define("VALUE_OF_RESERVATION","Valeur des réservations");
 
 
 define("DISTRIBUTION","Distribution");
-define("NO_OF_TRANSFERS","No of transfers:");
-define("NO_OF","No of:");
-define("TRANSFER_STATUS_2","Transfer status:");
-define("ACTIVE","Active");
-define("CHANGED","Changed");
-define("TEMP","Temp");
-define("CANCELLED","Cancelled");
-define("COMPLETED","Completed");
-define("DRIVER_CONFIRMATION_STATUS","Driver confirmation status:");
-define("NO_DRIVER","No Driver");
-define("NOT_CONFIRMED","Not Confirmed");
-define("CONFIRMED","Confirmed");
-define("READY","ready");
-define("DECLINED","Declined");
+define("NO_OF_TRANSFERS","Nombre de transferts");
+define("NOT_CONFIRMED","Pas confirmé");
+define("CONFIRMED","Confirmé");
+define("READY","Prêt");
+define("DECLINED","Decliné");
 define("NO_SHOW","No-show");
-define("DRIVER_ERROR","Driver error");
-define("COMPLETED","Completed");
+define("DRIVER_ERROR","Erreur du chauffeur");
+define("COMPLETED","Complété");
 
-define("ACTUAL_TRANSFERS","Actual transfers");
+define("ACTUAL_TRANSFERS","Les transferts effectifs");
 
 define("GET_TRANSFER_ORDER","GET TRANSFER ORDER");
-define("TRANSFER_ORDER_NUMBER","Transfer order number:");
-define("VIEW","View");
+define("TRANSFER_ORDER_NUMBER","Numéro d’ordre de transfert:");
+define("VIEW","Vue");
 
-define("UNFINISHED_ONLINE_PAYMENT","Unfinished online payment");
-define("NUMBER_KEY","number_key");
-define("NAME","Name");
+define("UNFINISHED_ONLINE_PAYMENT","Paiement en ligne non terminé");
+define("NUMBER_KEY","Clé numérique");
+define("NAME","Nom");
 define("EMAIL","Email");
-define("TIME","Time");
-define("EUR","Eur");
+define("TIME","Horaire");
+define("EUR","€");
 
-define("TRANSLATOR_PANEL_FOR","Translator panel for");
+define("TRANSLATOR_PANEL_FOR","Panneau de traduction pour");
 
-define("MORE_INFO","More info");
-define("ALL","All");
-define("TODAY_UNCONFIRMED_DECLINED","Today unconfirmed/declined");
-define("TOMORROW_UNCORFIRMED_DECLINED","Tomorrow unconfirmed/declined");
+define("MORE_INFO","Plus d’infos");
+define("ALL","Tout");
+define("TODAY_UNCONFIRMED_DECLINED","Aujourd’hui non confirmé/refusé");
+define("TOMORROW_UNCORFIRMED_DECLINED","Demain, non confirmé/refusé");
 
-define("DRIVERS","Drivers");
-define("DRIVER","Driver");
-define("ROUTES","Routes");
-define("ROUTE","Route");
+define("DRIVERS","Chauffeurs");
+define("DRIVER","Chauffeur");
+define("ROUTES","Itinéraires");
+define("ROUTE","Itinéraire");
 
-define("PROVISION","Provision");
+define("PROVISION","Commission");
 
-define("ORDER","Order");
-define("BOOKED_DRIVER","Booked driver");
-define("BOOKED_PRICE","Booked price");
-define("BOOKED_VEHICLE","Booked vehicle");
-define("DRIVERS_PRICE","Driver's price");
-define("OTHER_DRIVER_FOR_THIS_ROUTE","Other drivers for this route");
-define("VEHICLE_TYPE","Vehicle type");
-define("FIRST_CONFIRM_REQUEST","First confirm Request");
-define("LOW_OFFER_REQUEST","Low offer Request");
-define("SELECT_TERMINAL_FOR_THIS_TRANSFER","Select Terminal for this transfer");
+define("ORDER","Commande");
+define("BOOKED_DRIVER","Chauffeur réservé");
+define("BOOKED_PRICE","Prix réservé");
+define("BOOKED_VEHICLE","Véhicule réservé");
+define("DRIVERS_PRICE","Prix du chauffeur");
+define("OTHER_DRIVER_FOR_THIS_ROUTE","Autres chauffeurs pour cet itinéraire");
+define("VEHICLE_TYPE","Type de véhicule");
+define("FIRST_CONFIRM_REQUEST","Confirmer d’abord la demande");
+define("LOW_OFFER_REQUEST","Demander une offre plus basse");
+define("SELECT_TERMINAL_FOR_THIS_TRANSFER","Sélectionnez le terminal pour ce transfert");
 
 define("DATES","Dates");
 
-define("APPROVED_FUEL_PRICE","Approved Fuel price");
+define("APPROVED_FUEL_PRICE","Prix approuvé du carburant");
 
-define("SELECT_OR","Select or");
-define("UPLAD_PROGRESS","Upload progress");
-define("UPLOADED","Uploaded");
-define("IMAGES_ON_SERVER","Images on Server");
+define("SELECT_OR","Sélectionnez ou");
+define("UPLAD_PROGRESS","Progression du téléchargement");
+define("UPLOADED","Télécharger");
+define("IMAGES_ON_SERVER","Images sur le serveur");
 
-define("PAGE_LINK","Page Link");
-define("ANSWER","Answer");
-define("SEND_MAIL","Send Mail");
-define("SLOVER","Solver");
-define("SOLVED","Solved");
-define("NOT_SOLVED","Not Solved");
-define("SOLVED_DATE","Solved Date");
+define("PAGE_LINK","Lien vers la page");
+define("ANSWER","Répondre");
+define("SEND_MAIL","Envoyer un e-mail");
+define("SLOVER","Résoudre");
+define("SOLVED","Résolu");
+define("NOT_SOLVED","Non résolu");
+define("SOLVED_DATE","Date de résolution");
 
-define("IS_NEW_ENTRY","Is New entry");
+define("IS_NEW_ENTRY","C’est une nouvelle entrée");
 define("PHASE","Phase");
 
-define("ADD_RETURN_TRANSFER","Add Return Transfer");
-define("DRIVER_S","Driver`s");
-define("DISCOUNT","Discount");
-define("DUE_DATE","Due Date");
-define("AND_","And");
-define("NO_ROUTE","No route");
-define("SERVICE_NAME","Service Name");
-define("DRIVERS_PRICE","Drivers Price");
-define("QUANTITY","Quantity");
-define("PARTNER_S","Partner's");
-define("SCHEDULE_FOR","Schedule for");
+define("ADD_RETURN_TRANSFER","Ajouter le transfert du retour");
+define("DRIVER_S","Le chauffeur");
+define("DISCOUNT","Réduction");
+define("DUE_DATE","Date d'échéance");
+define("AND_","Et");
+define("NO_ROUTE","Pas d'itinéraire");
+define("SERVICE_NAME","Nom du service");
+define("DRIVERS_PRICE","Prix des chauffeurs");
+define("QUANTITY","Quantité");
+define("PARTNER_S","Les partenaires");
+define("SCHEDULE_FOR","Programmer pour");
 define("SUB_DRIVER","SubDriver");
-define("MESSAGE_FOR_DRIVER","Message for driver");
-define("MESSAGE_FROM_DRIVER","Message from driver");
-define("RECEIVED_CASH","Received cash");
-define("AGENT_REFERENCE","Agent Reference");
-define("OTHER_BOOKINGS","Other bookings");
-define("PARTNER","Partner");
-define("DRIVER_COMPANY","Driver company");
-define("PURCHASER","Purchaser");
+define("MESSAGE_FOR_DRIVER","Message pour le chauffeur");
+define("MESSAGE_FROM_DRIVER","Message du chauffeur");
+define("RECEIVED_CASH","Espèces reçues");
+define("AGENT_REFERENCE","Référence de l'agent");
+define("OTHER_BOOKINGS","Autres réservations");
+define("PARTNER","Partenaire");
+define("DRIVER_COMPANY","La compagnie du chauffeur");
+define("PURCHASER","L’acheteur");
 
-define("PLACEID","Place ID");
-define("PLACETYPEID","Place Type ID");
+define("PLACEID","ID du lieu");
+define("PLACETYPEID","ID du type de lieu");
 
-define("NO_TRANSFERS_FOR_THIS_PERIOD","No transfers for this period");
-define("NO_CHOOSEN_SCHEDULE","No Choosen Schedule");
-define("REF_NO","Ref.No");
-define("EMERGENCY","Emergency");
-define("GO","Go");
-define("SHOW_FILTERS","Show Filters");
-define("HIDE_FILTERS","Hide Filters");
+define("NO_TRANSFERS_FOR_THIS_PERIOD","Aucun transfert pour cette période");
+define("NO_CHOOSEN_SCHEDULE","Aucun horaire choisi");
+define("REF_NO","Référence numéro");
+define("EMERGENCY","Urgence");
+define("GO","Aller");
+define("SHOW_FILTERS","Afficher les filtres");
+define("HIDE_FILTERS","Masquer les filtres");
 
-define("FLAT_PLACE_ID","Flat Place ID");
+define("FLAT_PLACE_ID","ID d’un lieu plat ");
 define("SEMI","Semi");
 
-define("PARALEL","Paralel");
+define("PARALEL","Parallèle");
 
-define("DISCARD","Discard");
+define("DISCARD","Annuler");
 
-define("ZADUZENJE","Zaduženje");
-define("RAZDUZENJE","Razduženje");
+define("ZADUZENJE","Réception");
+define("RAZDUZENJE","Acquitter");
 
-define("DATE_AND_TIME","Date & Time");
+define("DATE_AND_TIME","Date et heure");
 
-define("FINISHED","Finished");
-define("MARK","Mark");
+define("FINISHED","Terminé");
+define("MARK","Marquer");
 
-define("SHOW_FOOTER","Show Footer");
-define("HIDE_FOOTER","Hide Footer");
-define("POWERED_BY","Powered by");
-define("TAXI_CMS","TaxiCMS");
-define("LOGOUT","Logout");
-define("SETED_AS","Seted as");
-define("SETOUT","Setout");
-define("SET_AS","Set as");
-define("A_ACTIVE","A - Active");
-define("T_TEST","T - Test");
-define("D_DEVELOPMENT","D - Development");
+define("SHOW_FOOTER","Afficher le pied de page");
+define("HIDE_FOOTER","Masquer le pied de page");
+define("POWERED_BY","Alimenté par");
+define("TAXI_CMS","Taxi CMS");
+define("LOGOUT","Se déconnectert");
+define("SETED_AS","Défini comme");
+define("SETOUT","Plan");
+define("SET_AS","Définir comme");
+define("A_ACTIVE","A - Actif");
+define("T_TEST","T - Tester");
+define("D_DEVELOPMENT","D - Développement");
 define("P_PLAN","P - Plan");
 define("RULE","Rule");
-define("NOT_MODEL_VIEW_CONTROL","NOT MODEL VIEW CONTROL");
+define("NOT_MODEL_VIEW_CONTROL","Pas de contrôle de la vue du modèle");
+define("SIGN_IN","S’identifier");
+define("PASSWORD_FOR_TEST","Mot de passe pour tester");
+define("YOUR_ACCOUT_HAS_BEEN_BLOCKED","Votre compte a été bloqué.");
+define("PLEASE_CONTACT_US_IMMEDIATELY","Veuillez nous contacter immédiatement!");
 
-define("SIGN_IN","Sign in");
-define("PASSWORD_FOR_TEST","Password for test");
-define("YOUR_ACCOUT_HAS_BEEN_BLOCKED","Your account has been blocked.");
-define("PLEASE_CONTACT_US_IMMEDIATELY","Please contact us immediately!");
-
-define("SEMI_ACTIVE","Semi Active");
-define("SORT_BY","Sort by");
-define("ASC","ASC");
-define("DESC","DESC");
-define("ALL_YEARS","All years");
-define("PAYMENT","Payment");
-define("TRANSFER","Transfer");
+define("SEMI_ACTIVE","Semi-actif");
+define("SORT_BY","Trier par");
+define("ASC","Ascendent");
+define("DESC","Descent");
+define("ALL_YEARS","Toutes les années");
+define("PAYMENT","Paiement");
+define("TRANSFER","Transfert");
 
 define("AGENT","Agent");
 
-define("CONNECTION_TRANSFER","Connection transfer");
-define("ON_TRANSFER","On transfer");
+define("CONNECTION_TRANSFER","Transfert de connexion");
+define("ON_TRANSFER","Concernant le transfert");
+
