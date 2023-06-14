@@ -195,6 +195,7 @@
 		
 
 	</head>
+	{* End of HEAD =============================================================================================================================*}
 
 {* TPL INCLUDE: *}
 {include file="{$root}/templates/default-style.tpl"}
@@ -202,21 +203,19 @@
 {include file="{$root}/templates/add-style.tpl"}
 
 
-{* BODY ============================================================================================= *}
-
+	{* BODY ================================================================================================================================== *}
 	<body class="fixed-top body-edit">
-		{* main wrapper class*}
+		{* WRAPPER: ==================================================================================================================*}
 		<div class="wrapper wrapper-edit">
 
-{* NAVBAR: ====================================================================================================================================== *}
-			
-			<!-- Start with navbar -->
+			{* NAVBAR: ==================================================================================================== *}
 			<nav class="navbar-default navbar-default-edit navbar-static-side additional-class" role="navigation">
 				<i class="lab la-accessible-icon"></i>
-				<!-- sidebar-collapse -->
+
+				<!-- SIDEBAR COLLAPSE: -->
 				<div class="sidebar-collapse">
 					<ul class="nav metismenu" id="side-menu">
-						<!-- Profile =================================================================== -->
+						<!-- PROFILE: =================================================================== -->
 						<!-- Header in navbar - nav-header-top-edit -->
 						<li class="nav-header nav-header-top-edit">
 							<div class="dropdown profile-element" style="text-align:center;">
@@ -240,10 +239,9 @@
 
 							</div>
 						</li>
+						<!-- End of PROFILE ======================================================================== -->
 
-						<!-- End of profile ======================================================================== -->
-
-						<!-- Setting Driver ======================================================================== -->
+						<!-- SETTING DRIVER: ======================================================================== -->
 						{if $setasdriver}
 							
 							{if isset($smarty.session.UseDriverName)}
@@ -266,7 +264,7 @@
 							{/if}
 							
 						{/if}
-						<!-- End of setting driver ====================================================================================== -->
+						<!-- End of SETTING DRIVER ====================================================================================== -->
 
 						<!-- Items of sidebar -->
 						{section name=index loop=$menu1}
@@ -279,15 +277,13 @@
 
 								
 								{if $menu1[index].menu}
-									<!-- collapse ul: -->
+									<!-- collapse sidebar: -->
 									<ul class="nav nav-second-level collapse">
-
-										{section name=index1 loop=$menu1[index].menu}	
+										{section name=index1 loop=$menu1[index].menu}
 											<li class="{$menu1[index].menu[index1].active}">
 												<a href="{$menu1[index].menu[index1].link}"><span class="nav-label nav-label-edit-2" title="{$menu1[index].menu[index1].description}">{$menu1[index].menu[index1].title} <span class='badge'>{{$menu1[index].menu[index1].phasestatus}}</span></span></a>
 											</li>
 										{/section}
-
 									</ul> <!-- End of collapse: ul -->
 								{/if}
 
@@ -297,7 +293,7 @@
 				   </ul> <!-- End of nav metismenu -->
 				   
 				   
-				   <!-- developing status -->
+				   <!-- Developing status: -->
 				   <ul id="status" style="list-style-type:none;">
 						<li>{$A_ACTIVE}</li>
 						<li>{$T_TEST}</li>
@@ -309,13 +305,10 @@
 				
 			</nav> <!-- End of navbar-default navbar-static-side -->
 			
-{* PAGE WRAPPER ====================================================================================================================================== *}
-
+			{* PAGE WRAPPER ================================================================================================================== *}
 			<div id="page-wrapper" class="content gray-bg dashbard-1 page-wrapper-edit">
 
-{* HEADER ====================================================================================================================================== *}
-
-				<!-- ******************************************************************************** -->
+				{* HEADER ============================================================================================================= *}
 				<!-- Main header - border-bottom-edit: -->
 				<div class="header row border-bottom border-bottom-edit">
 					<!-- navbar -->	
@@ -369,7 +362,7 @@
 					<div class="header header-edit 
 						{if $orderid gt 0}hidden{/if}
 					">  
-						{if $pageList ne $ORDERS}
+						{if $pageList ne 'Orders'}
 							{include file="pageListHeader.tpl"} <!-- Second header -->		
 						{else}
 							{include file="pageListHeader2.tpl"} 
@@ -390,8 +383,7 @@
 					</div> <!-- /.header row -->
 				{/if}
 
-{* MAIN CONTENT ================================================================================================================= *}
-
+				{* MAIN CONTENT ========================================================================================================== *}
 				<div class="body row white-bg white-bg-edit">
 
 					{if isset($pageOLD)}
@@ -409,8 +401,7 @@
 
 				</div> <!-- / .body row white-bg -->
 
-{* FOOTER ======================================================================================================================== *}
-				
+				{* FOOTER ===============================================================================================================*}
 				<div class="footer row footer-edit">
 
 					<!-- Show and Hide Filters buttons: -->
@@ -459,13 +450,12 @@
 					<div class="backdrop"><div class="spiner"></div></div>
 
 				</div><!-- /.footer row -->
-
-
-{* END OF FOOTER ======================================================================================================================== *}
+				{* END OF FOOTER =================================================================================*}
 
 			</div> <!-- End of page-wrapper -->
 
 		</div> <!-- End of wrapper -->
+		{* END OF WRAPPER ==================================================================================================*}
 
 		<input type="hidden" id="fieldsSettings" name="fieldsSettings" value="{$fieldsSettings}">
 		<input type="hidden" id="levelID" name="levelID" value="{$levelID}">
@@ -476,16 +466,16 @@
 		<input type='hidden' id='delete' value='{$DELETE_ROW}' name='delete'>
 		
 		<div style="display:none;" id="fsBlock" data-attr="">
-			<span><label>Required</label> <input type="checkbox" class="" name="required" value="" data-attr=""/></span>
-			<span><label>Disabled</label> <input type="checkbox" class="" name="disabled" value="" data-attr=""/></span>
-			<span><label>Hidden</label> <input type="checkbox" class="" name="hidden" value="" data-attr=""/></span>
+			<span><label>{$REQUIRED}</label> <input type="checkbox" class="" name="required" value="" data-attr=""/></span>
+			<span><label>{$DISABLED}</label> <input type="checkbox" class="" name="disabled" value="" data-attr=""/></span>
+			<span><label>{$HIDDEN}</label> <input type="checkbox" class="" name="hidden" value="" data-attr=""/></span>
 		</div>
 
 	</body>
 </html>
 
 
-{* SCRIPTS =========================================================================================================================== *}
+{* SCRIPTS ================================================================================================================== *}
 
 {literal}
 	<script>
