@@ -1158,3 +1158,7 @@ $monthNames = array(
 define("TITLE_PIE","Value of ordered transfers in the last year by purchaser");
 define("TITLE_BAR","Value of ordered transfers in the last year by months");
 define("GET_TRANSFER_ORDER","Get transfer order");
+define("UNSUCCESS","Unsuccess");
+define("SUCCESS","Success");
+define("DISABLED","Disabled");
+define("HIDDEN","Hidden");
