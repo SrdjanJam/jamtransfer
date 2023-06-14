@@ -18,6 +18,13 @@ require_once 'Initial.php';
 	}
 	
 	$arr=json_decode($detailFlds['Description']);
+	if (gettype($arr)!="object") {
+		$arr=array();
+		$arr['en']="";
+		$arr['de']="";
+		$arr['fr']="";
+		$arr['ru']="";
+	}	
 	$detailFlds['des_arr']= (array) $arr;	
 	if (in_array($_SESSION['BrandName'],array('EN','FR','RU','DE'))) {
 		$detailFlds['language']=strtolower($_SESSION['BrandName']);
