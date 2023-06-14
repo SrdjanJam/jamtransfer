@@ -3,7 +3,7 @@
                             <div class="box box-primary">
                                 <div class="box-header">
                                     <i class="ion ion-clipboard"></i>
-                                    <h3 class="box-title">To Do List</h3>
+                                    <h3 class="box-title"><?=TO_DO_LIST;?></h3>
                                     <!-- tools box -->
                                     <div class="pull-right box-tools">
                                         
@@ -50,11 +50,11 @@
                                     placeholder="New Item Text">
 
                                     <button class="btn btn-default pull-right" onclick="todoItem('add','');" >
-                                    	<i class="fa fa-plus"></i> Save
+                                    	<i class="fa fa-plus"></i> <?=SAVE;?>
                                     </button>
                                                                         
                                     <button class="btn btn-default btn-xs" style="margin-top:5px;" onclick="todoItem('deleteCompleted','');" >
-                                    	<i class="fa fa-times"></i> Delete Completed
+                                    	<i class="fa fa-times"></i> <?=DELETE_COMPLETED;?>
                                     </button>
                                     
 
