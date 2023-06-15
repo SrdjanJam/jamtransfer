@@ -614,7 +614,9 @@
 		$('#DriverID').change(function(){
 			$('#DriverTel').val($('#DriverID :selected').attr('data-tel'));
 			$('#DriverEmail').val($('#DriverID :selected').attr('data-email'));
-			$('#VehicleType').val($('#DriverID :selected').attr('data-vehicletype'));
+			//$('#VehicleType').val($('#DriverID :selected').attr('data-vehicletype'));
+			$('#DriversPrice').val($('#DriverID :selected').attr('data-driverprice'));
+			$('#DriverPaymentAmt').val($('#DriverID :selected').attr('data-driverprice'));
 			var vtid = $('#DriverID :selected').attr('data-vehicletype');
 			$('#VehicleType').val(vtid);
 

@@ -1107,12 +1107,13 @@ Handlebars.registerHelper("driverSelect", function(id,routeId,vehicleTypeId) {
 					selector += 'data-email="'+val.Email +'" ';
 					selector += 'data-realname="'+val.RealName +'" ';
 					selector += 'data-vehicletype="'+val.VehicleType +'" ';
+					selector += 'data-driverprice="'+val.DriverPrice +'" ';
 					
 					if (val.UserID == id && val.VehicleType == vehicleTypeId) {
 						selector += ' selected="selected" ';
 					}
 
-					selector += '>' + val.Country + ' - '  + val.Company + ' / '  + val.VehicleType + ' / ' + val.DriverPrice;
+					selector += '>' + val.Country + ' - '  + val.Company + ' / '  + val.VehicleType + ' / ' + val.DriverPrice + ' EUR';
 					selector += '</option>';
 				});
 

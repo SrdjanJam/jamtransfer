@@ -8,40 +8,23 @@ $data = array();
 $icon = 'fa fa-cloud-upload bg-blue';
 $logDescription = '';
 $logAction = 'Update';
-$logTitle = 'Order Updated by ' . $_SESSION['UserName'];
+$logTitle = 'Order Updated by ' . $_SESSION['UserRealName'];
 $showToCustomer = 0;
 $customerDescription = '';
-
-//cuvanje extrasa
-$sumDriverPrice=0;
-$sumPrice=0;
-foreach ($_REQUEST['ServiceID'] as $key=>$serviceid) {
-	if ($serviceid>0) {
-		if ($key>0) $oe->getRow($key);
-		// za naziv servisa
-		$ex->getRow($serviceid);
-		$oe->setServiceName($ex->getServiceEN());
-		$oe->setServiceID($_REQUEST['ServiceID'][$key]);
-		$sumDriverPrice+=$_REQUEST['DriverPrice'][$key]*$_REQUEST['Qty'][$key];
-		$sumPrice+=$_REQUEST['Price'][$key]*$_REQUEST['Qty'][$key];
-		$oe->setDriverPrice($_REQUEST['DriverPrice'][$key]);
-		$oe->setPrice($_REQUEST['Price'][$key]);
-		$oe->setQty($_REQUEST['Qty'][$key]);
-		$oe->setOrderDetailsID($_REQUEST['DetailsID']);
-		if ($key>0) $oe->saveRow();	
-		else $oe->saveAsNew();
-	}
-	elseif ($key>0) $oe->deleteRow($key);
-}
 
 
 $keyValue = $_REQUEST['id'];
 $nameList = array();
 $out = array();
-if ($keyName != '' and $keyValue != '') {
+if ($keyName != '' && $keyValue != ''){
 	$db->getRow($keyValue);
 	$om->getRow($db->getOrderID());
 }	
+else {
+	$logAction = 'Insert';
+	$logDescription="Insert new transfer";
+	$logTitle = 'Order Inserted by ' . $_SESSION['UserRealName'];
+}		
 // user data
 $isAgent = false;
 $MAgentCommisionPercent = 0;
@@ -60,6 +43,94 @@ foreach ($db->fieldNames() as $name) {
 		if(gettype($old_content)==gettype($content) && $old_content != $content) {
 			$logDescription .= 'Changed: '. $name . ' <b>from:</b> ' . $old_content . ' <b>to:</b> ' . 
 								$content . '<br>';
+			// ako se promenio status transfera
+			if ($name == 'TransferStatus') {
+				switch ($content) {
+					case 1:
+						$icon = 'fa fa-times bg-green';
+						$logDescription = 'Order status is now ACTIVATED';
+						$logAction = 'Active';
+						$logTitle = 'Order activated by ' . $_SESSION['UserRealName'];
+						$showToCustomer = 1;
+						break;
+					case 3:
+						$icon = 'fa fa-times bg-red';
+						$logDescription = 'Order status is now CANCELLED';
+						$logAction = 'Cancel';
+						$logTitle = 'Order cancelled by ' . $_SESSION['UserRealName'];
+						$showToCustomer = 1;
+						break;					
+					case 5:
+						$icon = 'fa fa-cloud-upload bg-blue';
+						$logDescription = 'Order status is now FINISHED';
+						$logAction = 'Finished';
+						$logTitle = 'Order finished by ' . $_SESSION['UserRealName'];
+						$showToCustomer = 0;
+						break;
+					case 9:
+						$icon = 'fa fa-times bg-red';
+						$logDescription = 'Order status is now DELETED';
+						$logAction = 'Delete';
+						$logTitle = 'Order Deleted by ' . $_SESSION['UserRealName'];
+						$showToCustomer = 0;
+						break;
+				}
+			}
+			if ($name == 'DriverConfStatus') {
+				$DriverNotes = $_REQUEST['DriverNotes'];
+				switch ($content) {
+					case 5:
+						$icon = 'fa fa-minus-square bg-red';
+						$logDescription = 'Order status is now NO SHOW<br>'.$DriverNotes.'<br>';
+						$logAction = 'NoShow';
+						$logTitle = 'No-Show reported by ' . $_SESSION['UserRealName'];
+						$showToCustomer = 0;
+						break;
+					case 6:				
+						$icon = 'fa fa-taxi bg-red';
+						$logDescription = 'Order status is now Driver Error<br>'.$DriverNotes.'<br>';
+						$logAction = 'DriverError';
+						$logTitle = 'Driver Error reported by ' . $_SESSION['UserRealName'];
+						$showToCustomer = 0;
+						break;
+					case 8:
+						$icon = 'fa fa-tasks bg-red';
+						$logDescription = 'Order status is now Operator Error<br>'.$DriverNotes.'<br>';
+						$logAction = 'OperatorError';
+						$logTitle = 'Operator Error reported by ' . $_SESSION['UserRealName'];
+						$showToCustomer = 0;
+						break;
+					case 9:
+						$icon = 'fa fa-road bg-red';
+						$logDescription = 'Order status is now Dispatcher Error<br>'.$DriverNotes.'<br>';
+						$logAction = 'DispatcherError';
+						$logTitle = 'Dispatcher Error reported by ' . $_SESSION['UserRealName'];
+						$showToCustomer = 0;
+						break;
+					case 10:						
+						$icon = 'fa fa-road bg-red';
+						$logDescription = 'Order status is now Agent Error<br>'.$DriverNotes.'<br>';
+						$logAction = 'AgentError';
+						$logTitle = 'Agent Error reported by ' . $_SESSION['UserRealName'];
+						$showToCustomer = 0;
+						break;
+					case 11:							
+						$icon = 'fa fa-road bg-red';
+						$logDescription = 'Order status is now Force majeure<br>'.$DriverNotes.'<br>';
+						$logAction = 'Force majeure';
+						$logTitle = 'Force majeure reported by ' . $_SESSION['UserRealName'];
+						$showToCustomer = 0;
+						break;
+					case 12:						
+						$icon = 'fa fa-road bg-red';
+						$logDescription = 'Order status is now Pending<br>'.$DriverNotes.'<br>';
+						$logAction = 'Pending';
+						$logTitle = 'Pending reported by ' . $_SESSION['UserRealName'];
+						$showToCustomer = 0;
+						break;
+				}
+			}	
+			
 			// ako se promijenio vozac
 			if ($name == 'DriverID') {
 				// obavijesti starog vozaca
@@ -96,13 +167,37 @@ foreach ($db->fieldNames() as $name) {
 if ($priceChanged) $logDescription .= '<b>PAYMENT DATA CHANGE</b>';  
 $au->getRow($db->getDriverID());
 $db->setDriverName($au->getAuthUserRealName());
-$db->setDriverExtraCharge(number_format($sumDriverPrice));
-$db->setExtraCharge(number_format($sumPrice));
-$db->setPaxName($_REQUEST['MPaxFirstName'] . ' ' . $_REQUEST['MPaxLastName']);
+
+if (isset($_REQUEST['ServiceID'])) {
+	//cuvanje extrasa
+	$sumDriverPrice=0;
+	$sumPrice=0;
+	foreach ($_REQUEST['ServiceID'] as $key=>$serviceid) {
+		if ($serviceid>0) {
+			if ($key>0) $oe->getRow($key);
+			// za naziv servisa
+			$ex->getRow($serviceid);
+			$oe->setServiceName($ex->getServiceEN());
+			$oe->setServiceID($_REQUEST['ServiceID'][$key]);
+			$sumDriverPrice+=$_REQUEST['DriverPrice'][$key]*$_REQUEST['Qty'][$key];
+			$sumPrice+=$_REQUEST['Price'][$key]*$_REQUEST['Qty'][$key];
+			$oe->setDriverPrice($_REQUEST['DriverPrice'][$key]);
+			$oe->setPrice($_REQUEST['Price'][$key]);
+			$oe->setQty($_REQUEST['Qty'][$key]);
+			$oe->setOrderDetailsID($_REQUEST['DetailsID']);
+			if ($key>0) $oe->saveRow();	
+			else $oe->saveAsNew();
+		}
+		elseif ($key>0) $oe->deleteRow($key);
+	}
+	$db->setDriverExtraCharge(number_format($sumDriverPrice));
+	$db->setExtraCharge(number_format($sumPrice));
+}
+if (isset($_REQUEST['MPaxFirstName']) && isset($_REQUEST['MPaxLastName']) ) $db->setPaxName($_REQUEST['MPaxFirstName'] . ' ' . $_REQUEST['MPaxLastName']);
 $OrderID=$db->getOrderID();
 
 $upd = '';
-$newID = '';
+$dID = '';
 foreach ($om->fieldNames() as $name) {
 	if(isset($_REQUEST[$name]) && gettype($_REQUEST[$name])!='array') {
 		$content=$om->myreal_escape_string($_REQUEST[$name]);
@@ -152,10 +247,58 @@ if($priceChanged) {
 	$om->saveRow();
 }
 
+if ($keyName != '' and $keyValue != '') {
+	$res = $db->saveRow();
+	$resOM = $om->saveRow();
+	$upd = 'Updated';
+	if($res !== true) $upd = $res;
+}
+if ($keyName != '' && $keyValue != '') {
+	$dID=$db->getDetailsID();
+	$mID=$db->getOrderID();
+}
+if ($_REQUEST['return']==1) {
+	$db->setTNo(2);	
+	$pickupid=$db->getPickupID();
+	$pickupname=$db->getPickupName();
+	$db->setPickupID($db->getDropID());	
+	$db->setPickupName($db->getDropName());	
+	$db->setDropID($pickupid);	
+	$db->setDropName($pickupname);	
+	$db->setDropPlace('');	
+	$mID=$db->getOrderID();	
+	$dID = $db->saveAsNew();	
+	$logAction = 'Insert';
+	$logDescription="Insert return transfer";
+	$logTitle = 'Order Inserted by ' . $_SESSION['UserRealName'];
+}	
+if ($keyName != '' && $keyValue == '') {
+	$om->setSiteID(2);
+	$om->setMOrderDate(date("Y-m-d"));
+	$om->setMOrderTime(date("H:i:s"));
+	$om->setMUserLevelID($_SESSION["AuthLevelID"]);
+	$om->setMUserID($_SESSION["AuthUserID"]);
+	
+	$om->setMOrderKey(create_order_key()); // pravi OrderKey
+	$mID = $om->saveAsNew();
+	$db->setSiteID(2);	
+	$db->setOrderID($mID);
+	$db->setTNo(1);	
+	$db->setOrderDate(date("Y-m-d"));
+	$db->setPickupDate(date("Y-m-d"));
+	$db->setUserLevelID($_SESSION["AuthLevelID"]);
+	if (isset($_SESSION['UseDriverID'])) $db->setDriverID($_SESSION["UseDriverID"]);
+	$db->setUserID($_SESSION["AuthUserID"]);
+	$db->setTransferStatus(4);	
+	$db->setVehicleType(0);
+	$db->setVehiclesNo(1);	
+	
+	$dID = $db->saveAsNew();
+}
 if($logDescription != '') { // ako nema promjena u podacima, ne treba nista upisivati
 
-	$ol->setOrderID($db->getOrderID());
-	$ol->setDetailsID($db->getDetailsID());
+	$ol->setOrderID($mID);
+	$ol->setDetailsID($dID);
 	$ol->setAction($logAction);
 	$ol->setTitle($logTitle);
 	$ol->setDescription($logDescription);
@@ -167,8 +310,8 @@ if($logDescription != '') { // ako nema promjena u podacima, ne treba nista upis
 	$ol->saveAsNew();
 }
 if($customerDescription != '') {
-	$ol->setOrderID($db->getOrderID());
-	$ol->setDetailsID($db->getDetailsID());
+	$ol->setOrderID($mID);
+	$ol->setDetailsID($dID);
 	$ol->setAction($logAction);
 	$ol->setTitle(IMPORTANT_UPDATE);
 	$ol->setDescription($customerDescription);
@@ -180,56 +323,13 @@ if($customerDescription != '') {
 	$ol->saveAsNew(); 
 }
 
-if ($keyName != '' and $keyValue != '') {
-	$res = $db->saveRow();
-	$resOM = $om->saveRow();
-	$upd = 'Updated';
-	if($res !== true) $upd = $res;
-}
-if ($_REQUEST['return']==1) {
-	$db->setTNo(2);	
-	$pickupid=$db->getPickupID();
-	$pickupname=$db->getPickupName();
-	$db->setPickupID($db->getDropID());	
-	$db->setPickupName($db->getDropName());	
-	$db->setDropID($pickupid);	
-	$db->setDropName($pickupname);	
-	$db->setDropPlace('');	
-	$newIDOM=$db->getOrderID();	
-	$newID = $db->saveAsNew();	
-}	
-if ($keyName != '' and $keyValue == '') {
-	$om->setSiteID(2);
-	$om->setMOrderDate(date("Y-m-d"));
-	$om->setMOrderTime(date("H:i:s"));
-	$om->setMUserLevelID($_SESSION["AuthLevelID"]);
-	$om->setMUserID($_SESSION["AuthUserID"]);
-	
-	$om->setMOrderKey(create_order_key()); // pravi OrderKey
-	$newIDOM = $om->saveAsNew();
-	$db->setSiteID(2);	
-	$db->setOrderID($newIDOM);
-	$db->setTNo(1);	
-	$db->setOrderDate(date("Y-m-d"));
-	$db->setPickupDate(date("Y-m-d"));
-	$db->setUserLevelID($_SESSION["AuthLevelID"]);
-	if (isset($_SESSION['UseDriverID'])) $db->setDriverID($_SESSION["UseDriverID"]);
-	$db->setUserID($_SESSION["AuthUserID"]);
-	$db->setTransferStatus(4);	
-	
-	$newID = $db->saveAsNew();
-}
 $out = array(
 	'update' => $upd,
-	'insert' => $newID,
+	'insert' => $dID,
 	'page' => 'orders',
-	'orderid' => $newIDOM,
+	'orderid' => $mID,
 	'returnT' => $_REQUEST['return']
 );
-
-
-
-
 
 # send output back
 $output = json_encode($out);

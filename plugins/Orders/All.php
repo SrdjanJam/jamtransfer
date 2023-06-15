@@ -200,6 +200,7 @@ $sortDirection 	= $_REQUEST['sortDirection'];
 $listExtras 	= $_REQUEST['listExtras'];
 $paymentChecker = $_REQUEST['paymentChecker'];
 $flightTimeChecker = $_REQUEST['flightTimeChecker'];
+$timeLineChecker = $_REQUEST['timeLineChecker'];
 
 $start = ((int)$page * (int)$length) - (int)$length;
 // var_dump($start);
@@ -444,12 +445,23 @@ if ($paymentChecker==1) {
 		$payment_conflict = substr($payment_conflict,0,strlen($payment_conflict)-1);
 		$dbWhere .= " AND DetailsID in (".$payment_conflict.")";		
 	}
+}
+if ($timeLineChecker>0) {
+	//niz order logova sa datom akcijom
+	$sql="SELECT `DetailsID`  FROM `v4_OrderLog` WHERE `Action` = 'Insert' group by `DetailsID`";
+	$query=mysqli_query($dbT->conn, $sql) or die('Error in query' . mysqli_connect_error());
+	while( $lTL = mysqli_fetch_object($query) ) {
+		$list_tl  .= $lTL->DetailsID. ",";
+	}
+	$list_tl = substr($list_tl,0,strlen($list_tl)-1);
+	$dbWhere .= " AND DetailsID in (".$list_tl.")";
 }	
-
 	
 $odTotalRecords = $od->getFullOrderByDetailsID($sortField, $sortDirection, '' , $dbWhere);
 
 $dbk = $od->getFullOrderByDetailsID($sortField, $sortDirection, ''  , $dbWhere);
+
+
 $sum=array();
 $sql = "Select count(*) as ItemNumber,
 	sum(DriversPrice) as DriversPrice,

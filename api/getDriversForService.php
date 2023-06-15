@@ -14,8 +14,7 @@ $sr = new v4_Services();
 
 $rid=$_REQUEST['RouteID'];
 $vtid=$_REQUEST['VehicleTypeID'];
-$srWhere = ' WHERE RouteID = ' . $rid . ' AND VehicleTypeID = ' . $vtid . ' AND Active =1 and ServicePrice1>0';
-//$srWhere = ' WHERE RouteID = ' . $rid . ' AND Active =1 and ServicePrice1>0';
+$srWhere = ' WHERE RouteID = ' . $rid . ' AND VehicleTypeID = ' . $vtid . ' AND Active =1';
 $srKeys = $sr->getKeysBy('OwnerID', 'asc', $srWhere);
 $i=0;
 //ista ruta i tip vozila
@@ -24,7 +23,7 @@ foreach($srKeys as $n => $ID) {
 	$sr->getRow($ID);
 	$serviceID[]=$sr->getServiceID();
 	$driverID[]=$sr->getOwnerID();
-	$dprice[]=$sr->getServicePrice1().' EUR';
+	$dprice[]=$sr->getServicePrice1();
 	$dvt[]=$sr->getVehicleTypeID();
 }
 $srWhere2 = ' WHERE RouteID = ' . $rid . ' AND Active=1 ';
@@ -35,26 +34,27 @@ foreach($srKeys2 as $n => $ID) {
 	if(!in_array($sr->getServiceID(),$serviceID)) {
 		$serviceID[]=$sr->getServiceID();
 		$driverID[]=$sr->getOwnerID();
-		$dprice[]=$sr->getServicePrice1().' EUR';
+		$dprice[]=$sr->getServicePrice1();
 		$dvt[]=$sr->getVehicleTypeID();
 	}
 }
-
 $j=0;
 foreach($driverID as $n => $ID) {
-	$j++;
-	$u=$users[$ID];
-	$out[] = array(
-				'UserID'		=> $u->AuthUserID, 
-				'RealName' 		=> $u->AuthUserRealName,
-				'Company' 		=> $u->AuthUserCompany,
-				'Tel' 			=> $u->AuthUserTel,
-				'Email'			=> $u->AuthUserMail,
-				'Country'       => $u->Country,
-				'Terminal'      => "",
-				'DriverPrice'   => $dprice[$j],
-				'VehicleType'   => $dvt[$j]
-	);
+	if (array_key_exists($ID, $users)) {
+		$u=$users[$ID];
+		$out[] = array(
+					'UserID'		=> $u->AuthUserID, 
+					'RealName' 		=> $u->AuthUserRealName,
+					'Company' 		=> $u->AuthUserCompany,
+					'Tel' 			=> $u->AuthUserTel,
+					'Email'			=> $u->AuthUserMail,
+					'Country'       => $u->Country,
+					'Terminal'      => "",
+					'DriverPrice'   => $dprice[$j],
+					'VehicleType'   => $dvt[$j]
+		);
+	}
+	$j++;		
 }
 foreach($users as $u) {
 	if (!in_array($u->AuthUserID,$driverID) && $u->AuthLevelID==31) {
@@ -67,11 +67,10 @@ foreach($users as $u) {
 					'Country'       => $u->Country,
 					'Terminal'      => $u->Terminal,
 					'DriverPrice'   => "",
-					'VehicleType'   => ""
+					'VehicleType'   => "0"
 		);
 	}
 }
-
 # send output back
 $output = json_encode($out);
 
