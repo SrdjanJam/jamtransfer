@@ -76,10 +76,24 @@
 	.sum-edit div{
 		padding: 5px;
 		flex-basis: 100%;
-		text-align: center;
+		/* text-align: center; */
 	}
-	.sum-edit div p{
+
+	.sum-edit-labels{
+		padding: 5px;
+	}
+	.sum-edit-labels p{
 		margin-bottom: 0;
+		color: #626161;
+    	font-weight: bold;
+	}
+
+	.sum-edit-2{
+		padding: 5px;
+	}
+
+	.sum-edit-2:nth-of-type(2n){
+		background: #ebf0f5;
 	}
 /* -------------------------------- */
 
@@ -219,7 +233,7 @@
 
 		<!-- Reporter: -->
 		<div class="tab-pane" id="tab_2">
-			<div id="sum" class="sum-edit">
+			<div id="sum" class="sum-edit sum-edit-labels">
 				<div>
 					<p>Name</p>
 				</div>				
@@ -248,13 +262,13 @@
 					<p>GrossMargin</p> 
 				</div>
 				<div>
-					<p>Ratio</p> 
+					<p style="color:#0f5b89;">Ratio</p> 
 				</div>
 
 			</div> <!-- End of #sum -->
 		
 			{{#each Item2}}
-				<div id="sum" class="sum-edit">
+				<div id="sum" class="sum-edit sum-edit-2">
 					<div>
 						{{Name}}
 					</div>					
