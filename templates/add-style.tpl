@@ -723,6 +723,10 @@ textarea{ width:90% !important; }
         width:100% !important;
     }
 
+    .sum-edit div{
+		text-align: center;
+	}
+
 }
 
 
@@ -849,7 +853,8 @@ textarea{ width:90% !important; }
 		pointer-events: none; /* Turn off hover effect */
 
 		/* Testing for stretched on mobile: */
-		height: auto !important; 
+		/* height: auto !important; */
+        /* object-fit: cover !important; */
 	}
 
 
