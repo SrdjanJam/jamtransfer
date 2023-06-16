@@ -74,8 +74,9 @@ value=" WHERE {$ItemID} > 0">
 	
 	<div class="filter">
 
-		<!-- Sort by: -->
+		<!-- Sorting: -->
 		<div class="filterOlderAdd" style="padding:5px;float:left;margin-left:20px;">
+			<!-- Sort by: -->
 			<b style="color:#157bff;">{$SORT_BY}:</b>
 			<select id='sortField' class="select-top-edit" name='sortField' onchange="allItems();">
 				<option value="OrderDate">{$ORDER_DATE}</option>	
@@ -85,19 +86,22 @@ value=" WHERE {$ItemID} > 0">
 				<option value="ASC">{$ASC}</option>	
 				<option value="DESC">{$DESC}</option>		
 			</select>
-			<b style="color:#157bff;">{$REPORT_BY}:</b>
+			<!-- Report By: -->
+			<b style="color:#157bff; margin-left:20px;">{$REPORT_BY}:</b>
 			<select id='reportBy' class="select-top-edit" name='reportBy' onchange="allItems();">
 				{foreach from=$ReportBy item=label key=key}
 					<option value="{$key}" {if $data.key == $key} selected="selected" {/if}>{$label}</option>
 				{/foreach}	
-			</select>			
-			<b style="color:#157bff;">{$FILTER_BY}:</b>
+			</select>
+			<!-- Filter By: -->			
+			<b style="color:#157bff; margin-left:20px;">{$FILTER_BY}:</b>
 			<select id='action' class="select-top-edit" name='action' onchange="allItems();">
 				{foreach from=$Action item=label key=key}
 					<option value="{$key}" {if $data.key == $key} selected="selected" {/if}>{$label}</option>
 				{/foreach}	
-			</select>			
-		</div>		
+			</select>
+
+		</div>	<!-- End of sorting -->	
 		<br><br>
 
 		<!-- Order: -->
