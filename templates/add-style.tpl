@@ -450,9 +450,9 @@ textarea{ width:90% !important; }
 /* -------------------------------------------------------------------------------------- */
 /* SCROLL BAR: */
 /* width */
-::-webkit-scrollbar { width: 14px; }
+::-webkit-scrollbar { width: 14px;}
 /* Track */
-::-webkit-scrollbar-track { background: #f1f1f1; margin-right: 5px; }
+::-webkit-scrollbar-track { background: #f1f1f1; margin-right: 5px;}
 /* Handle */
 ::-webkit-scrollbar-thumb { 
     background: #aaa; border: 1px solid #050505;
@@ -844,6 +844,13 @@ textarea{ width:90% !important; }
     }
 
     .form-group.group-edit{ width:90%; }
+
+    .expenses-image{
+		pointer-events: none; /* Turn off hover effect */
+
+		/* Testing for stretched on mobile: */
+		height: auto !important; 
+	}
 
 
 }
