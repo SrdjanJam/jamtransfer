@@ -134,9 +134,9 @@
 								<div class="inner inner-edit">
 									{{MOrderKey}}<br>
 									{{MConfirmFile}}<br>						
-									{{#compare AgentID '>' 0}}
+									{{#if Image}}
 										<img src='i/agents/{{Image}}'>	 
-									{{/compare}}	
+									{{/if}}	
 									<strong>{{UserName}}</strong>
 								</div>	
 								<div class="icon">
