@@ -120,6 +120,7 @@
 		'3' => 'Compensated'
 	);
 
+	
 	# Transfers Filters
 	$transfersFilters = array(
 		array ("id" => "noPartner", "name" => "No Partner"),
@@ -1154,7 +1155,33 @@ $monthNames = array(
 	"12"=>"December"
 );
 
-
+	# Report by
+	$ReportBy = array(
+		'UserID' => 'User',
+		'PaymentMethod' => 'Payment Method',
+		'TransferStatus'	=> 'Transfer Status',
+		'DriverConfStatus' => 'Driver Conf. Status'
+	);	
+	
+	# Action
+	$Action = array(		
+		'0' => 'No Action',
+		'Insert' => 'Insert',		
+		'Update' => 'Update',		
+		'Cancel' => 'Cancel',
+		'Active' => 'Active',
+		'Delete' => 'Delete',
+		'Finished' => 'Finished',		
+		'NoShow' => 'No Show',		
+		'DriverError' => 'Driver Error',		
+		'DispatcherError' => 'Dispatcher Error',
+		'OperatorError' => 'Operator Error',		
+		'Force majeure' => 'Force majeure',		
+		'Email' => 'Email',
+		'Pending' => 'Pending',		
+		'Driver' => 'Driver'
+	);
+	
 define("TITLE_PIE","Value of ordered transfers in the last year by purchaser");
 define("TITLE_BAR","Value of ordered transfers in the last year by months");
 define("GET_TRANSFER_ORDER","Get transfer order");
@@ -1164,3 +1191,5 @@ define("DISABLED","Disabled");
 define("HIDDEN","Hidden");
 define("TO_DO_LIST","To Do List");
 define("DELETE_COMPLETED","Delete Completed");
+define("REPORT_BY","Report By");
+define("FILTER_BY","Filter By");

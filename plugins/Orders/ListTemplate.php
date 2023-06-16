@@ -221,43 +221,72 @@
 		<div class="tab-pane" id="tab_2">
 			<div id="sum" class="sum-edit">
 				<div>
-					<p>Item Number</p>
-					<b>{{Item2.ItemNumber}}</b>
+					<p>Name</p>
+				</div>				
+				<div>
+					<p>Number</p>
 				</div>
 				<div>
 					<p>Discount</p> 
-					<b>{{Item2.Discount}}</b>
 				</div>
 				<div>
 					<p>DetailPrice</p> 
-					<b>{{Item2.DetailPrice}}</b> 
 				</div>
 				<div>
 					<p>ExtraCharge</p> 
-					<b>{{Item2.ExtraCharge}}</b>  
 				</div>
 				<div>
 					<p>Provision</p>
-					<b>{{Item2.Provision}}</b> 
 				</div>
 				<div>
 					<p>DriversPrice</p>
-					<b>{{Item2.DriversPrice}}</b>  
 				</div>
 				<div>
 					<p>DriverExtraCharge</p>
-					<b>{{Item2.DriverExtraCharge}}</b>  
 				</div>
 				<div>
 					<p>GrossMargin</p> 
-					<b>{{Item2.GrossMargin}}</b> 
 				</div>
 				<div>
 					<p>Ratio</p> 
-					<b style="color:#0f5b89;">{{Item2.Ratio}}</b> 
 				</div>
 
 			</div> <!-- End of #sum -->
+		
+			{{#each Item2}}
+				<div id="sum" class="sum-edit">
+					<div>
+						{{Name}}
+					</div>					
+					<div>
+						{{ItemNumber}}
+					</div>
+					<div>
+						{{Discount}}
+					</div>
+					<div>
+						{{DetailPrice}} 
+					</div>
+					<div>
+						{{ExtraCharge}}  
+					</div>
+					<div>
+						{{Provision}} 
+					</div>
+					<div>
+						{{DriversPrice}}  
+					</div>
+					<div>
+						{{DriverExtraCharge}}  
+					</div>
+					<div>
+						{{GrossMargin}} 
+					</div>
+					<div>
+						<b style="color:#0f5b89;">{{Ratio}}</b> 
+					</div>
+				</div> <!-- End of #sum -->
+			{{/each}}
 		</div>	
 
 	</div>

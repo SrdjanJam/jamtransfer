@@ -200,7 +200,6 @@ $sortDirection 	= $_REQUEST['sortDirection'];
 $listExtras 	= $_REQUEST['listExtras'];
 $paymentChecker = $_REQUEST['paymentChecker'];
 $flightTimeChecker = $_REQUEST['flightTimeChecker'];
-$timeLineChecker = $_REQUEST['timeLineChecker'];
 
 $start = ((int)$page * (int)$length) - (int)$length;
 // var_dump($start);
@@ -340,7 +339,7 @@ if ($_REQUEST['orderid']<>"0") {
 }
 	
 	
-// ove checkere tek treba definisati
+// checkers
 if ($flightTimeChecker==1) {
 	$dbk = $od->getFullOrderByDetailsID($sortField, $sortDirection, ''  , $dbWhere);
 	if (count($dbk) != 0) {
@@ -446,44 +445,93 @@ if ($paymentChecker==1) {
 		$dbWhere .= " AND DetailsID in (".$payment_conflict.")";		
 	}
 }
-if ($timeLineChecker>0) {
-	//niz order logova sa datom akcijom
-	$sql="SELECT `DetailsID`  FROM `v4_OrderLog` WHERE `Action` = 'Insert' group by `DetailsID`";
+
+//$_REQUEST["action"]="Insert";
+//$_REQUEST["action"]="Cancel";
+
+if ($_REQUEST["action"]<>"0") {
+	//niz order logova sa datom timeline akcijom
+	$sql="SELECT `DetailsID`,`UserID`  FROM `v4_OrderLog` WHERE `Action` = '".$_REQUEST["action"]."' group by `DetailsID`";
 	$query=mysqli_query($dbT->conn, $sql) or die('Error in query' . mysqli_connect_error());
 	while( $lTL = mysqli_fetch_object($query) ) {
 		$list_tl  .= $lTL->DetailsID. ",";
 	}
 	$list_tl = substr($list_tl,0,strlen($list_tl)-1);
 	$dbWhere .= " AND DetailsID in (".$list_tl.")";
-}	
+}
 	
 $odTotalRecords = $od->getFullOrderByDetailsID($sortField, $sortDirection, '' , $dbWhere);
 
-$dbk = $od->getFullOrderByDetailsID($sortField, $sortDirection, ''  , $dbWhere);
+//$dbk = $od->getFullOrderByDetailsID($sortField, $sortDirection, ''  , $dbWhere);
 
-
+// report
 $sum=array();
-$sql = "Select count(*) as ItemNumber,
+$dbWhere=str_replace('DetailsID','v4_OrderDetails.DetailsID',$dbWhere);
+$sql = "Select count(*) as ItemNumber,";
+if ($_REQUEST["action"]<>"0") $sql .="v4_OrderLog.UserID";
+else $sql .=$_REQUEST["reportBy"];	
+$sql .=" as Name,
 	sum(DriversPrice) as DriversPrice,
 	sum(DetailPrice) as DetailPrice,
 	sum(ExtraCharge) as ExtraCharge,
 	sum(DriverExtraCharge) as DriverExtraCharge,
 	sum(Provision) as Provision,
 	sum(Discount*DetailPrice/100) as Discount
-FROM v4_OrderDetails " . $dbWhere;
+FROM v4_OrderDetails";
+if ($_REQUEST["action"]<>"0") $sql .=",v4_OrderLog ";
+$sql .=$dbWhere;
+if ($_REQUEST["action"]<>"0") {
+	$sql .= " AND v4_OrderLog.DetailsID=v4_OrderDetails.DetailsID ";
+	$sql .= " AND Action='".$_REQUEST["action"]."'";
+}
+$sql .= " GROUP by Name";
 $r = $dbT->RunQuery($sql);
-$result=$r->fetch_object();
-$sum['ItemNumber']=$result->ItemNumber;
-$sum['DriversPrice']=number_format($result->DriversPrice*$_SESSION['CurrencyRate'],2);
-$sum['DetailPrice']=number_format($result->DetailPrice*$_SESSION['CurrencyRate'],2);
-$sum['ExtraCharge']=number_format($result->ExtraCharge*$_SESSION['CurrencyRate'],2);
-$sum['DriverExtraCharge']=number_format($result->DriverExtraCharge*$_SESSION['CurrencyRate'],2);
-$sum['Provision']=number_format($result->Provision*$_SESSION['CurrencyRate'],2);
-$sum['Discount']=number_format($result->Discount*$_SESSION['CurrencyRate'],2);
-$gm=$result->DetailPrice+$result->ExtraCharge-$result->Provision-$result->DriversPrice-$result->DriverExtraCharge;
-$sum['GrossMargin'] = number_format($gm**$_SESSION['CurrencyRate'],2);
-$sum['Ratio']=number_format(($gm*100/($result->DriversPrice+$result->DriverExtraCharge))*$_SESSION['CurrencyRate'],2);
+//$result=$r->fetch_object();
+while ($result = $r->fetch_object()) {	
+	$row=array();
+	if ($_REQUEST["action"]<>"0") $row['Name']=$users[$result->Name]->AuthUserRealName;
+	else {	
+		if ($_REQUEST["reportBy"]=="UserID") $row['Name']=$users[$result->Name]->AuthUserRealName;
+		if ($_REQUEST["reportBy"]=="PaymentMethod") $row['Name']=$PaymentMethod[$result->Name];
+		if ($_REQUEST["reportBy"]=="DriverConfStatus") $row['Name']=$DriverConfStatus[$result->Name];
+		if ($_REQUEST["reportBy"]=="TransferStatus") $row['Name']=$StatusDescription[$result->Name];
+	}	
+	$row['ItemNumber']=$result->ItemNumber;
+	$ItemNumberSum+=$row['ItemNumber'];
+	$row['DriversPrice']=number_format($result->DriversPrice*$_SESSION['CurrencyRate'],2);
+	$DriversPriceSum+=$result->DriversPrice;
+	$row['DetailPrice']=number_format($result->DetailPrice*$_SESSION['CurrencyRate'],2);
+	$DetailPriceSum+=$result->DetailPrice;
+	$row['ExtraCharge']=number_format($result->ExtraCharge*$_SESSION['CurrencyRate'],2);
+	$ExtraChargeSum+=$result->ExtraCharge;
+	$row['DriverExtraCharge']=number_format($result->DriverExtraCharge*$_SESSION['CurrencyRate'],2);
+	$DriverExtraChargeSum+=$result->DriverExtraCharge;	
+	$row['Provision']=number_format($result->Provision*$_SESSION['CurrencyRate'],2);
+	$ProvisionSum+=$result->Provision;	
+	$row['Discount']=number_format($result->Discount*$_SESSION['CurrencyRate'],2);
+	$DiscountSum+=$result->Discount;		
+	$gm=$result->DetailPrice+$result->ExtraCharge-$result->Provision-$result->DriversPrice-$result->DriverExtraCharge;
+	$row['GrossMargin'] = number_format($gm*$_SESSION['CurrencyRate'],2);
+	$row['Ratio']=number_format(($gm*100/($result->DriversPrice+$result->DriverExtraCharge))*$_SESSION['CurrencyRate'],2);
+	$sum[]=$row;
 	
+}	
+
+$row['Name']="TOTAL";
+$row['ItemNumber']=$ItemNumberSum;
+$row['DriversPrice']=number_format($DriversPriceSum*$_SESSION['CurrencyRate'],2);
+$row['DetailPrice']=number_format($DetailPriceSum*$_SESSION['CurrencyRate'],2);
+$row['ExtraCharge']=number_format($ExtraChargeSum*$_SESSION['CurrencyRate'],2);
+$row['DriverExtraCharge']=number_format($DriverExtraChargeSum,2);
+$row['Provision']=number_format($ProvisionSum*$_SESSION['CurrencyRate'],2);
+$row['Discount']=number_format($DiscountSum*$_SESSION['CurrencyRate'],2);
+$gm=$DetailPriceSum+$ExtraChargeSum-$ProvisionSum-$DriversPriceSum-$DriverExtraChargeSum;
+$row['GrossMargin'] = number_format($gm,2);
+$row['Ratio']=number_format(($gm*100/($DriversPriceSum+$DriverExtraChargeSum))*$_SESSION['CurrencyRate'],2);
+$sum[]=$row;
+usort($sum,function($first,$second){
+	return $first["ItemNumber"] < $second["ItemNumber"];
+});
 $dbk = $od->getFullOrderByDetailsID($sortField, $sortDirection, $limit  , $dbWhere);
 
 if (count($dbk) != 0) {
@@ -586,6 +634,8 @@ $output = array(
 'yearsPickup' => $odYearsPickup,
 'recordsTotal' => count($odTotalRecords),
 'recordsFiltered' => $length,
+'reportBy' => $_REQUEST["reportBy"],
+'action' => $_REQUEST["action"],
 'data' =>$out
 );
 echo $_GET['callback'] . '(' . json_encode($output) . ')';	

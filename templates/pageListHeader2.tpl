@@ -85,8 +85,19 @@ value=" WHERE {$ItemID} > 0">
 				<option value="ASC">{$ASC}</option>	
 				<option value="DESC">{$DESC}</option>		
 			</select>
-		</div>
-
+			<b style="color:#157bff;">{$REPORT_BY}:</b>
+			<select id='reportBy' class="select-top-edit" name='reportBy' onchange="allItems();">
+				{foreach from=$ReportBy item=label key=key}
+					<option value="{$key}" {if $data.key == $key} selected="selected" {/if}>{$label}</option>
+				{/foreach}	
+			</select>			
+			<b style="color:#157bff;">{$FILTER_BY}:</b>
+			<select id='action' class="select-top-edit" name='action' onchange="allItems();">
+				{foreach from=$Action item=label key=key}
+					<option value="{$key}" {if $data.key == $key} selected="selected" {/if}>{$label}</option>
+				{/foreach}	
+			</select>			
+		</div>		
 		<br><br>
 
 		<!-- Order: -->

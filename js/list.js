@@ -68,6 +68,10 @@
 		else var paymentChecker=0;		
 		if ($("#flightTimeChecker").is(':checked')) var flightTimeChecker=1;
 		else var flightTimeChecker=0;
+		var reportBy = $("#reportBy").val();
+		if (typeof reportBy=='undefined') reportBy='UserID';			
+		var action = $("#action").val();
+		if (typeof action=='undefined') action='0';		
 		var callFunction = 'allItems()'; // funkcija koju paginator poziva kod promjene stranice
 	
 		// ovo koristi i paginator funkcija!
@@ -114,6 +118,8 @@
 		'&vehicleID='+vehicleID+
 		'&subdriverID='+subdriverID+
 		'&actionID='+actionID+
+		'&reportBy='+reportBy+
+		'&action='+action+
 		'&callback=?';
 		console.log(url+'?'+data);
 		$.ajax({
@@ -198,6 +204,12 @@
 			  }				  
 			  if (ItemsData.passengerData ) {
 				  $("#passengerData").val(ItemsData.passengerData);
+			  }				  
+			  if (ItemsData.reportBy ) {
+				  $("#reportBy").val(ItemsData.reportBy);
+			  }			  
+			  if (ItemsData.action ) {
+				  $("#action").val(ItemsData.action);
 			  }				  
 			  if (ItemsData.yearsPickup ) {
 				  var yearsPickupArr = ItemsData.yearsPickup;
