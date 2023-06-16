@@ -1162,3 +1162,5 @@ define("UNSUCCESS","Unsuccess");
 define("SUCCESS","Success");
 define("DISABLED","Disabled");
 define("HIDDEN","Hidden");
+define("TO_DO_LIST","To Do List");
+define("DELETE_COMPLETED","Delete Completed");

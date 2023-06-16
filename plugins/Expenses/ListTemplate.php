@@ -13,6 +13,23 @@ $smarty->assign('date2',true);
   -ms-transform: rotate(90deg);
   transform: rotate(90deg);
 }
+
+
+/* ------------------------------------------------------------- */
+/* Envelop: */
+.fa-envelope-edit{
+	font-size: 25px !important;
+	color: #47afe9;
+	
+}
+
+.envelop-note{
+	padding: 5px;
+	background: #b3ccff;
+	box-shadow: 2px 1px 6px 2px #888888;
+}
+/* ------------------------------------------------------------- */
+
  </style>
   
 <script type="text/x-handlebars-template" id="ItemListTemplate">
@@ -88,7 +105,7 @@ $smarty->assign('date2',true);
 							</div>
 
 							<div class="col-md-1">
-								<img  src="{{DocumentImage}}" alt="" style="width:30%">
+								<img class="expenses-image" src="{{DocumentImage}}" alt="" style="width:30%">
 							</div>
 							
 							<div class="col-md-2">
@@ -109,14 +126,20 @@ $smarty->assign('date2',true);
 							
 							<div class="col-md-1">
 								{{#if Note}}
-									<i class="fa fa-envelope" aria-hidden="true"></i>
-									<div class="yellow" style="display:none;">{{Note}}</div>
+									<!-- Previous: -->
+									<!-- <i class="fa fa-envelope" aria-hidden="true"></i> -->
+									<!-- <div class="yellow" style="display:none;">{{Note}}</div> -->
+									
+									<i class="fa fa-envelope fa-envelope-edit" aria-hidden="true"></i>
+									<div class="envelop-note" style="display:none;">{{Note}}</div>
+
 								{{/if}}
 							</div>					
 												
-							<div class="col-md-1" data-id="{{ID}}">
+							<div class="col-md-1 approved" data-id="{{ID}}">
 								{{yesNoSliderEdit Approved 'Approved' }}
 							</div>
+
 					</div>
 
 				</div>
@@ -133,12 +156,19 @@ $smarty->assign('date2',true);
 	</div>
 </div>	
 	<script>
-		$('i').on("mouseenter",function() {
-			$(this).next().show();
-		})		
-		$('i').on("mouseout",function() {
-			$(this).next().hide();
-		})			
+		// Previous:
+		// $('i').on("mouseenter",function() {
+		// 	$(this).next().show();
+		// })		
+		// $('i').on("mouseout",function() {
+		// 	$(this).next().hide();
+		// })
+
+		$('i').on("click",function() {
+			$(".envelop-note").toggle("slow");
+		});
+
+
 		$('img').on("mouseenter", function() {
 			$(this).css('width','800%');
 			$(this).css('margin-left','-300%');
@@ -150,7 +180,7 @@ $smarty->assign('date2',true);
 		$('img').on( "dblclick", function() {
 			$(this).toggleClass("rotate");
 		})
-		$('input').change(function(){
+		$('.approved input').change(function(){
 			var id=$(this).parent().attr('data-id');
 
 			var app=$(this).val();
