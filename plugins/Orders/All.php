@@ -446,9 +446,6 @@ if ($paymentChecker==1) {
 	}
 }
 
-//$_REQUEST["action"]="Insert";
-//$_REQUEST["action"]="Cancel";
-
 if ($_REQUEST["action"]<>"0") {
 	//niz order logova sa datom timeline akcijom
 	$sql="SELECT `DetailsID`,`UserID`  FROM `v4_OrderLog` WHERE `Action` = '".$_REQUEST["action"]."' group by `DetailsID`";
@@ -462,7 +459,6 @@ if ($_REQUEST["action"]<>"0") {
 	
 $odTotalRecords = $od->getFullOrderByDetailsID($sortField, $sortDirection, '' , $dbWhere);
 
-//$dbk = $od->getFullOrderByDetailsID($sortField, $sortDirection, ''  , $dbWhere);
 
 // report
 $sum=array();

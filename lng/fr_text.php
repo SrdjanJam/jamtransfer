@@ -1132,4 +1132,92 @@ define("AGENT","Agent");
 
 define("CONNECTION_TRANSFER","Transfert de connexion");
 define("ON_TRANSFER","Concernant le transfert");
+define("CHECK_BOX","Case à cocher ");
+define("PHOTO","Photo");
+define("VIDEO","Vidéo");
+
+define("ACTIVITY","Activité<");
+define("EXPENSE","Dépense");
+define("NOT_SELECTED","Pas séléctionné");
+define("TITLE_PIE","Montant des transferts réservés au cours de la dernière année par client ");
+define("TITLE_BAR","Montant des transferts réservés au cours de la dernière année par mois");
+define("GET_TRANSFER_ORDER","Obtenir l’ordre de transfert");
+define("UNSUCCESS","Echec");
+define("SUCCESS","Succès");
+define("DISABLED","Désactivé");
+define("HIDDEN","Caché");
+define("TO_DO_LIST","Liste de tâches");
+define("DELETE_COMPLETED","Suppression terminé");
+define("REPORT_BY","Signalé par");
+define("FILTER_BY","Filtré par");
+
+// Levels:
+$levels_array = array(
+	'2' => 'Agent',
+	'3'=>'Client',
+	'4'=>'Affilier',
+	'5'=>'Utilisateur de l’iFrame',
+	'6'=>'Utilisateur de l’API',
+	'31'=>'Conducteur',
+	'41'=>'Opérateur',
+	'91'=>'Administrateur',
+	'99'=>'Administrateur du système',
+	'12'=>'L’emplacement du taxi',
+	'92'=>'Directeur',
+	'42'=>'Traducteur',
+	'43'=>'Administrateur des itinéraires',
+	'32'=>'Subdriver',
+	'44'=>'Comptable',
+	'45'=>'Dispatcher'
+);
+
+// Months:
+$monthNames = array(
+	"1"=>"Janvier", 
+	"2"=>"Février", 
+	"3"=>"Mars", 
+	"4"=>"Avril", 
+	"5"=>"Mai",
+	"6"=>"Juin",
+	"7"=>"Juillet",
+	"8"=>"Août", 
+	"9"=>"Septembre", 
+	"10"=>"Octobre", 
+	"11"=>"Novembre", 
+	"12"=>"Decembre"
+);
+
+	# Signaler par
+	$ReportBy = array(
+		'UserID' => 'Utilisateur',
+		'PaymentMethod' => 'Mode de paiement',
+		'TransferStatus'	=> 'Statut du transfert',
+		'DriverConfStatus' => 'Statut de configuration du chauffeur',
+		'DriverID' => 'Driver',
+		'SubDriver' => 'SubDriver',
+		'monthOrderDate' => 'Order month',
+		'monthPickupDate' => 'Pickup month',
+		'RouteID' => 'Route',
+		'PickupID' => 'Pickup place',
+		'DropID' => 'Drop place'		
+	);	
+	
+	# Action
+	$Action = array(		
+		'0' => 'Pas d’action',
+		'Insert' => 'Insérer',		
+		'Update' => 'Mise à jour',		
+		'Cancel' => 'Annuler',
+		'Active' => 'Actif',
+		'Delete' => 'Supprimer',
+		'Finished' => 'Terminé',		
+		'NoShow' => 'No Show',		
+		'DriverError' => 'Erreur du chauffeur',		
+		'DispatcherError' => 'Erreur du dispatcher',
+		'OperatorError' => 'Erreur de l’opérateur',		
+		'Force majeure' => 'Force majeure',		
+		'Email' => 'Email',
+		'Pending' => 'En attente',		
+		'Driver' => 'Chauffeur’'
+	);
 
