@@ -1158,9 +1158,17 @@ $monthNames = array(
 	# Report by
 	$ReportBy = array(
 		'UserID' => 'User',
+		'UserLevelID' => 'Admin level',
 		'PaymentMethod' => 'Payment Method',
 		'TransferStatus'	=> 'Transfer Status',
-		'DriverConfStatus' => 'Driver Conf. Status'
+		'DriverConfStatus' => 'Driver Conf. Status',
+		'DriverID' => 'Driver',
+		'SubDriver' => 'SubDriver',
+		'monthOrderDate' => 'Order month',
+		'monthPickupDate' => 'Pickup month',
+		'RouteID' => 'Route',
+		'PickupID' => 'Pickup place',
+		'DropID' => 'Drop place'
 	);	
 	
 	# Action

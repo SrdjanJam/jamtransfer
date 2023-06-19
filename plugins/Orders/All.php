@@ -468,6 +468,8 @@ $odTotalRecords = $od->getFullOrderByDetailsID($sortField, $sortDirection, '' , 
 $sum=array();
 $dbWhere=str_replace('DetailsID','v4_OrderDetails.DetailsID',$dbWhere);
 $sql = "Select count(*) as ItemNumber,";
+if ($_REQUEST["reportBy"]=="monthOrderDate") $_REQUEST["reportBy"]="month(OrderDate)";
+if ($_REQUEST["reportBy"]=="monthPickupDate") $_REQUEST["reportBy"]="month(PickupDate)";
 if ($_REQUEST["action"]<>"0") $sql .="v4_OrderLog.UserID";
 else $sql .=$_REQUEST["reportBy"];	
 $sql .=" as Name,
@@ -492,9 +494,23 @@ while ($result = $r->fetch_object()) {
 	if ($_REQUEST["action"]<>"0") $row['Name']=$users[$result->Name]->AuthUserRealName;
 	else {	
 		if ($_REQUEST["reportBy"]=="UserID") $row['Name']=$users[$result->Name]->AuthUserRealName;
+		if ($_REQUEST["reportBy"]=="UserLevelID") $row['Name']=$levels_array[$result->Name];
 		if ($_REQUEST["reportBy"]=="PaymentMethod") $row['Name']=$PaymentMethod[$result->Name];
 		if ($_REQUEST["reportBy"]=="DriverConfStatus") $row['Name']=$DriverConfStatus[$result->Name];
 		if ($_REQUEST["reportBy"]=="TransferStatus") $row['Name']=$StatusDescription[$result->Name];
+		if ($_REQUEST["reportBy"]=="DriverID") $row['Name']=$users[$result->Name]->AuthUserRealName;	
+		if ($_REQUEST["reportBy"]=="SubDriver") $row['Name']=$users[$result->Name]->AuthUserRealName;	
+		if ($_REQUEST["reportBy"]=="month(OrderDate)") $row['Name']=$monthNames[$result->Name];	
+		if ($_REQUEST["reportBy"]=="month(PickupDate)") $row['Name']=$monthNames[$result->Name];	
+		if ($_REQUEST["reportBy"]=="RouteID") {
+			$rt->getRow($result->Name);
+			$row['Name']=$rt->getRouteNameEN();	
+		}		
+		if ($_REQUEST["reportBy"]=="PickupID" || $_REQUEST["reportBy"]=="DropID") {
+			$pl->getRow($result->Name);
+			$row['Name']=$pl->getPlaceNameEN();	
+		}	
+		if (empty($row['Name']))	$row['Name']="ID ".$result->Name;
 	}	
 	$row['ItemNumber']=$result->ItemNumber;
 	$ItemNumberSum+=$row['ItemNumber'];
@@ -516,6 +532,8 @@ while ($result = $r->fetch_object()) {
 	$sum[]=$row;
 	
 }	
+if ($_REQUEST["reportBy"]=="month(OrderDate)") $_REQUEST["reportBy"]="monthOrderDate";
+if ($_REQUEST["reportBy"]=="month(PickupDate)") $_REQUEST["reportBy"]="monthPickupDate";
 
 $row['Name']="TOTAL";
 $row['ItemNumber']=$ItemNumberSum;
@@ -551,6 +569,7 @@ if (count($dbk) != 0) {
 		# get fields and values
 		$detailFlds = $od->fieldValues();
 
+		
 		$detailFlds['DriversPrice'] = number_format($od->getDriversPrice()*$_SESSION['CurrencyRate'],2);
 		$detailFlds['DetailPrice'] = number_format($od->getDetailPrice()*$_SESSION['CurrencyRate'],2);
 		$detailFlds['ExtraCharge'] = number_format($od->getExtraCharge()*$_SESSION['CurrencyRate'],2);
