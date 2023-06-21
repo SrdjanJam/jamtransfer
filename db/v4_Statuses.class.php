@@ -39,7 +39,7 @@ Class v4_Statuses {
      *
      */
 	public function getRow($key_row){
-		$result = $this->connection->RunQuery("Select * from v4_Statuses where ID = \"$key_row\" ");
+		$result = $this->connection->RunQuery("Select * from ". $this->table." where ID = \"$key_row\" ");
 		if($result->num_rows < 1) return false;
 		while($row = $result->fetch_array(MYSQLI_ASSOC)){
 			$this->ID = $row["ID"];
@@ -56,14 +56,14 @@ Class v4_Statuses {
      *
      */
 	public function deleteRow($key_row){
-		$this->connection->RunQuery("DELETE FROM v4_Statuses WHERE ID = $key_row");
+		$this->connection->RunQuery("DELETE FROM ". $this->table." WHERE ID = $key_row");
 	}
 
     /**
      * Update the active row table on table
      */
 	public function saveRow(){
-		$result = $this->connection->RunQuery("UPDATE v4_Statuses set
+		$result = $this->connection->RunQuery("UPDATE ". $this->table." set
 ID = '".$this->myreal_escape_string($this->ID)."',
 Type = '".$this->myreal_escape_string($this->Type)."',
 Value = '".$this->myreal_escape_string($this->Value)."',
@@ -76,7 +76,7 @@ Description = '".$this->myreal_escape_string($this->Description)."',
      * Save the active var class as a new row on table
      */
 	public function saveAsNew(){
-		$this->connection->RunQuery("INSERT INTO v4_Actions (ID, Type, Value, Description) values ('".$this->myreal_escape_string($this->ID)."',
+		$this->connection->RunQuery("INSERT INTO ". $this->table." (ID, Type, Value, Description) values ('".$this->myreal_escape_string($this->ID)."',
 		'".$this->myreal_escape_string($this->Type)."',
 		'".$this->myreal_escape_string($this->Value)."',
 		'".$this->myreal_escape_string($this->Description)."',
@@ -92,7 +92,7 @@ Description = '".$this->myreal_escape_string($this->Description)."',
      */
 	public function getKeysBy($column, $order, $where = NULL){
 		$keys = array(); $i = 0;
-		$result = $this->connection->RunQuery("SELECT ID from v4_Statuses $where ORDER BY $column $order");
+		$result = $this->connection->RunQuery("SELECT ID from ". $this->table." $where ORDER BY $column $order");
 			while($row = $result->fetch_array(MYSQLI_ASSOC)){
 				$keys[$i] = $row["ID"];
 				$i++;
