@@ -1,145 +1,21 @@
 <?
 	define("B", ' ');
 
-/*
-	# TransferStatus taxido - trenutni
-	$StatusDescription = array(
-		'1' =>    'New',	// brise se
-		'2' =>    'Active',
-		'3' =>    'Canceled',
-		'4' =>    'Refunded', // u PaymentStatus
-		'5' =>    'No-Show', // u DriverConfStatus
-		'6' =>    'DriverError', // u DriverConfStatus
-		'7' =>    'Completed',
-		'8' =>    'Comm.Paid'
-	);
-*/
-
-	# Payment Status
-	/* prva ideja
-	$PaymentStatus = array(
-		'0'	=>	'Not Paid',
-		'1'	=>	'Paid Full Online',
-		'2'	=>	'Paid Full Cash',
-		'3'	=> 	'Paid Online Part',
-		'4'	=> 	'Paid Cash Part',
-		'5'	=>	'Invoice sent - Not paid',
-		'6'	=>	'Invoice Paid',
-		'7'	=>	'Warning sent',
-		'8'	=> 	'Paid after Warning',
-		'9'	=>	'Compensated',
-		'10'=>	'Sued',
-		'98'=>	'Paid - Closed',
-		'99'=>	'Lost - will not be paid'
-	);
-	*/
-
-	// # TransferStatus - novi
-	// $StatusDescription = array(
-	// 	'1' =>    'Active',
-	// 	'2' =>    'Changed',
-	// 	'3' =>    'Canceled',
-	// 	'4' =>    'TEMP',
-	// 	'5'	=>	  'Completed',
-	// 	'6'	=>	  'PreOrder'
-	// );
-
-	// # Change Transfer Reason Method
-	// $ChangeTransferReason = array(
-	// 	'1'	=>	'Pax FirstLast Name',
-	// 	'2'	=>	'Pax Phone',
-	// 	'3'	=>	'Pax Email',
-	// 	'4'	=>	'Pickup Date',
-	// 	'5'	=>	'Pickup Time',
-	// 	'6'	=>	'Flight Time',
-	// 	'7'	=>	'Flight Number',
-	// 	'8'	=>	'Pickup Address',
-	// 	'9'	=>	'Drop-Off Address',
-	// 	'10'	=>	'Pax Number',
-	// 	'11'	=>	'Payment method',
-	// 	'12'	=>	'Partners Price',
-	// 	'13'	=>	'Extras',
-	// 	'14'	=>	'Pickup Notes',
-	// 	'15'	=>	'Message'
-	// );
-
-
-	// # Payment Method
-	// $PaymentMethod = array(
-	// 	'1'	=>	'Online',
-	// 	'2'	=>	'Cash',
-	// 	'3'	=>	'Combined',
-	// 	'4'	=>	'Bank transfer',
-	// 	'5'	=>	'Compensation',
-	// 	'6'	=>	'Bank transfer 2',
-	// 	'9'	=>  'Other'
-	// );
-
-	// # Payment Method
-	// $AcceptedPayment = array(
-	// 	'0'		=>	'Not selected',
-	// 	'1'		=>	'All',
-	// 	'2'		=>	'Online',
-	// 	'3'		=>	'Cash',
-	// 	'10'	=>	'Invoice',
-	// 	'11'	=>	'Online',
-	// 	'12'	=>	'Invoice 2',
-	// 	'13'	=>	'Cash'
-	// );
-
-	// $PaymentStatus = array(
-	// 	'0'	=>	'Not Paid',
-	// 	'1'	=>	'Warning sent',
-	// 	'2' =>	'Sued',
-	// 	'3' =>  'Refunded',
-	// 	'10'=>	'Lost - will not be paid',
-	// 	'91'=>	'Compensated',
-	// 	'99'=>	'Paid'
-	// );
-
-	// # DriverConfStatus
-	// $DriverConfStatus = array(
-	// 	'0'	=> 'No Partner',
-	// 	'1'	=> 'Not Confirmed',
-	// 	'2'	=> 'Partner Confirmed',
-	// 	'3' => 'Partner Assigned',
-	// 	'4'	=> 'Partner Declined',
-	// 	'5'	=> 'No-Show',
-	// 	'6' => 'Partner Error',
-	// 	'7' => 'Transfer Completed',
-	// 	'8' => 'Operator Error',
-	// 	'9' => 'Dispatcher Error',
-	// 	'10' => 'Agent Error',
-	// );
-
-	// # Driver Payment
-	// $DriverPayment = array(
-	// 	'0' => 'Not Paid',
-	// 	'1' => 'Partly paid',
-	// 	'2'	=> 'Paid',
-	// 	'3' => 'Compensated'
-	// );
-
 	
-	// # Transfers Filters ne koristi se u novom cms-u
-	// $transfersFilters = array(
-	// 	array ("id" => "noPartner", "name" => "No Partner"),
-	// 	array ("id" => "notConfirmed", "name" => "Not Confirmed"),
-	// 	array ("id" => "confirmed", "name" => "Confirmed"),
-	// 	array ("id" => "declined", "name" => "Declined"),
-	// 	array ("id" => "canceled", "name" => "Canceled"),
-	// 	array ("id" => "noShow", "name" => "No Show"),
-	// 	array ("id" => "PartnerError", "name" => "Partner Error"),
-	// 	array ("id" => "agent", "name" => "Agent transfers"),
-	// 	array ("id" => "notConfirmedAgent", "name" => "Agent transfers Not Confirmed"),
-	// 	array ("id" => "notCompleted", "name" => "Not Completed"),
-	// 	array ("id" => "invoice2", "name" => "Invoice 2"),
-	// ) ;
-
-	
-
-	// $dayNames = array("Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat");
-
+	# Transfers Filters
+	$transfersFilters = array(
+		array ("id" => "noPartner", "name" => "No Partner"),
+		array ("id" => "notConfirmed", "name" => "Not Confirmed"),
+		array ("id" => "confirmed", "name" => "Confirmed"),
+		array ("id" => "declined", "name" => "Declined"),
+		array ("id" => "canceled", "name" => "Canceled"),
+		array ("id" => "noShow", "name" => "No Show"),
+		array ("id" => "PartnerError", "name" => "Partner Error"),
+		array ("id" => "agent", "name" => "Agent transfers"),
+		array ("id" => "notConfirmedAgent", "name" => "Agent transfers Not Confirmed"),
+		array ("id" => "notCompleted", "name" => "Not Completed"),
+		array ("id" => "invoice2", "name" => "Invoice 2"),
+	) ;
 
 
 define("ACCEPTED_PAYMENT", "Accepted Payment");
@@ -1201,5 +1077,3 @@ define("TO_DO_LIST","To Do List");
 define("DELETE_COMPLETED","Delete Completed");
 define("REPORT_BY","Report By");
 define("FILTER_BY","Filter By");
-
-define("PAYMENT_METHOD_STATUS","5");

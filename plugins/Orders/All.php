@@ -446,7 +446,7 @@ if ($paymentChecker==1) {
 	}
 }
 
-if ($_REQUEST["action"]<>"0") {
+if ($_REQUEST["action"]<>"null" && $_REQUEST["action"]<>"0") {
 	//niz order logova sa datom timeline akcijom
 	$sql="SELECT `DetailsID`,`UserID`  FROM `v4_OrderLog` WHERE `Action` = '".$_REQUEST["action"]."' group by `DetailsID`";
 	$query=mysqli_query($dbT->conn, $sql) or die('Error in query' . mysqli_connect_error());
