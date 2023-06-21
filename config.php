@@ -57,6 +57,9 @@ require_once ROOT.'/common/class/adminTable.php';
 require_once ROOT.'/common/class/factoryBase.php';
 require_once ROOT.'/common/class/ObjectFactory.class.php';
 
+require_once ROOT.'/db/v4_Statuses.class.php';
+
+
 
 
 $smarty = new Smarty;
@@ -65,6 +68,31 @@ $smarty->debugging =false;
 $modulesPath = ROOT . '/plugins'; // base folder for modules
 $smarty->assign('root_home',ROOT_HOME);
 $smarty->assign('root',ROOT);
+
+
+// v4_Statuses =====================================================================
+$st = new v4_Statuses;
+$where = " WHERE Type = 0 ";
+
+$keys = $st->getKeysBy("ID", "ASC", $where);
+
+foreach($keys as $key){
+	$st->getRow($key);
+	$type = $st->getValue();
+	$arr_name = $st->getDescription();
+	$where = " WHERE Type = $type ";
+
+	$keys2 = $st->getKeysBy("ID", "ASC", $where);
+	$$arr_name = array();
+	foreach($keys2 as $key2){
+		$st->getRow($key2);
+		$type = $st->getValue();
+		$$arr_name[$type] = $st->getDescription();
+	}
+
+}
+// =====================================================================================
+
 
 // LANGUAGES
 if ( isset($_SESSION['CMSLang']) and $_SESSION['CMSLang'] != '') {
@@ -84,7 +112,11 @@ $defvar=get_defined_vars();
 foreach ($defvar as $key => $dv) {
 	if (gettype($dv)=='string' or gettype($dv)=='array') $smarty->assign($key,$dv);
 }	
+
+
+
 $defcon=get_defined_constants();
+
 foreach ($defcon as $key => $dc) {
 	$smarty->assign($key,$dc);
 }	
