@@ -10,10 +10,14 @@ Class v4_Statuses {
 	public $Description; //varchar(255)
 
 	public $connection;
+	public $table;
 
 	function __construct(){
 		$this->connection = new DataBaseMysql();
-	}	public function myreal_escape_string($string){
+		$this->table = "v4_Statuses_".$_COOKIE['CMSLang'];
+	}	
+	
+		public function myreal_escape_string($string){
 		return $this->connection->real_escape_string($string);
 	}
 
