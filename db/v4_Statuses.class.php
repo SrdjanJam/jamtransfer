@@ -14,7 +14,8 @@ Class v4_Statuses {
 
 	function __construct(){
 		$this->connection = new DataBaseMysql();
-		$this->table = "v4_Statuses_".$_COOKIE['CMSLang'];
+		if (isset($_COOKIE['CMSLang']))  $this->table = "v4_Statuses_".$_COOKIE['CMSLang'];
+		else $this->table = "v4_Statuses_en";
 	}	
 	
 		public function myreal_escape_string($string){

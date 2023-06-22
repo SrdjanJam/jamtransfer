@@ -78,16 +78,16 @@ $keys = $st->getKeysBy("ID", "ASC", $where);
 
 foreach($keys as $key){
 	$st->getRow($key);
-	$type = $st->getValue();
+	$typeStatus = $st->getValue();
 	$arr_name = $st->getDescription();
-	$where = " WHERE Type = $type ";
+	$where = " WHERE Type = $typeStatus ";
 
 	$keys2 = $st->getKeysBy("ID", "ASC", $where);
 	$$arr_name = array();
 	foreach($keys2 as $key2){
 		$st->getRow($key2);
-		$type = $st->getValue();
-		$$arr_name[$type] = $st->getDescription();
+		$typeStatus = $st->getValue();
+		$$arr_name[$typeStatus] = $st->getDescription();
 	}
 
 }

@@ -1,23 +1,4 @@
 <?
-	define("B", ' ');
-
-	
-	# Transfers Filters
-	$transfersFilters = array(
-		array ("id" => "noPartner", "name" => "No Partner"),
-		array ("id" => "notConfirmed", "name" => "Not Confirmed"),
-		array ("id" => "confirmed", "name" => "Confirmed"),
-		array ("id" => "declined", "name" => "Declined"),
-		array ("id" => "canceled", "name" => "Canceled"),
-		array ("id" => "noShow", "name" => "No Show"),
-		array ("id" => "PartnerError", "name" => "Partner Error"),
-		array ("id" => "agent", "name" => "Agent transfers"),
-		array ("id" => "notConfirmedAgent", "name" => "Agent transfers Not Confirmed"),
-		array ("id" => "notCompleted", "name" => "Not Completed"),
-		array ("id" => "invoice2", "name" => "Invoice 2"),
-	) ;
-
-
 define("ACCEPTED_PAYMENT", "Accepted Payment");
 define("ACTIONS", "Actions");
 define("ACTIONS_ID", "Actions ID");
@@ -990,82 +971,6 @@ define("ACTIVITY","Activity");
 define("EXPENSE","Expense");
 
 define("NOT_SELECTED","Not selected");
-
-
-// =====================================================================================
-// NEW:
-
-// Levels:
-$levels_array = array(
-	'2' => 'Agent',
-	'3'=>'Client',
-	'4'=>'Affiliate',
-	'5'=>'iFrame User',
-	'6'=>'API User',
-	'31'=>'Driver',
-	'41'=>'Operator',
-	'91'=>'Admin',
-	'99'=>'SystemAdmin',
-	'12'=>'Taxi Site',
-	'92'=>'Manager',
-	'42'=>'Translator',
-	'43'=>'RoutesAdmin',
-	'32'=>'Subdriver',
-	'44'=>'Accountant',
-	'45'=>'Dispatcher'
-);
-
-// Months:
-$monthNames = array(
-	"1"=>"January", 
-	"2"=>"February", 
-	"3"=>"March", 
-	"4"=>"April", 
-	"5"=>"May",
-	"6"=>"June",
-	"7"=>"July",
-	"8"=>"August", 
-	"9"=>"September", 
-	"10"=>"October", 
-	"11"=>"November", 
-	"12"=>"December"
-);
-
-	# Report by
-	$ReportBy = array(
-		'UserID' => 'User',
-		'UserLevelID' => 'Admin level',
-		'PaymentMethod' => 'Payment Method',
-		'TransferStatus'	=> 'Transfer Status',
-		'DriverConfStatus' => 'Driver Conf. Status',
-		'DriverID' => 'Driver',
-		'SubDriver' => 'SubDriver',
-		'monthOrderDate' => 'Order month',
-		'monthPickupDate' => 'Pickup month',
-		'RouteID' => 'Route',
-		'PickupID' => 'Pickup place',
-		'DropID' => 'Drop place'
-	);	
-	
-	# Action
-	$Action = array(		
-		'0' => 'No Action',
-		'Insert' => 'Insert',		
-		'Update' => 'Update',		
-		'Cancel' => 'Cancel',
-		'Active' => 'Active',
-		'Delete' => 'Delete',
-		'Finished' => 'Finished',		
-		'NoShow' => 'No Show',		
-		'DriverError' => 'Driver Error',		
-		'DispatcherError' => 'Dispatcher Error',
-		'OperatorError' => 'Operator Error',		
-		'Force majeure' => 'Force majeure',		
-		'Email' => 'Email',
-		'Pending' => 'Pending',		
-		'Driver' => 'Driver'
-	);
-	
 define("TITLE_PIE","Value of ordered transfers in the last year by purchaser");
 define("TITLE_BAR","Value of ordered transfers in the last year by months");
 define("GET_TRANSFER_ORDER","Get transfer order");
