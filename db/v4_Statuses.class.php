@@ -19,7 +19,7 @@ Class v4_Statuses {
 	}	
 	
 		public function myreal_escape_string($string){
-		return $this->connection->real_escape_string($string);
+			return $this->connection->real_escape_string($string);
 	}
 
     /**
@@ -80,7 +80,7 @@ Description = '".$this->myreal_escape_string($this->Description)."',
 		$this->connection->RunQuery("INSERT INTO ". $this->table." (ID, Type, Value, Description) values ('".$this->myreal_escape_string($this->ID)."',
 		'".$this->myreal_escape_string($this->Type)."',
 		'".$this->myreal_escape_string($this->Value)."',
-		'".$this->myreal_escape_string($this->Description)."',
+		'".$this->myreal_escape_string($this->Description)."'
 		)");
 		return $this->connection->insert_id(); //return insert_id
 	}
@@ -101,6 +101,8 @@ Description = '".$this->myreal_escape_string($this->Description)."',
 	return $keys;
 	}
 
+
+	// Get methods:
 	/**
 	 * @return ID - int(10)
 	 */
@@ -129,6 +131,23 @@ Description = '".$this->myreal_escape_string($this->Description)."',
 		return $this->Description;
 	}
 
+
+	// Set methods:
+	public function setID($ID){
+		$this->ID = $ID;
+	}
+
+	public function setType($Type){
+		$this->Type = $Type;
+	}
+
+	public function setValue($Value){
+		$this->Value = $Value;
+	}
+
+	public function setDescription($Description){
+		$this->Description = $Description;
+	}
 
     /**
      * fieldValues - Load all fieldNames and fieldValues into Array.
