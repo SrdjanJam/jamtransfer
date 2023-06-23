@@ -1,9 +1,12 @@
-<img alt="Geneve lake" src="https://wis.jamtransfer.com/i/website/geneva1.webp" style="width:50%" title="Geneve lak" />
-<img alt="Geneve" src="https://wis.jamtransfer.com/i/website/geneva2.webp" style="width:50%" title="Geneve" />
-<img alt="Geneve UN" src="https://wis.jamtransfer.com/i/website/geneva3.webp" style="width:50%" title="Geneve UN" />
+<img alt="Faro cathedral" title="Faro cathedral" src="https://wis.jamtransfer.com/i/website/faro1.webp" style="width:50%"/>
+<img alt="Faro wall" title="Faro wall" src="https://wis.jamtransfer.com/i/website/faro2.webp" style="width:50%"/>
+<img alt="Faro marina" title="Faro marina" src="https://wis.jamtransfer.com/i/website/faro3.webp" style="width:50%"/>
 
-JAM Transfer
+JAM
 <a href="https://jamtransfer.com//" style="text-decoration:none"><span style="color:#000000">JAM transfers</span></a>
+
+Nice Airport
+<a href="https://www.nice.aeroport.fr/en" style="text-decoration:none"><span style="color:#000000">Nice Airport (NCE)</span></a>
 
 Split International Airport (SPU)
 <a href="https://split-airport.hr/" style="text-decoration:none"><span style="color:#000000">Split International Airport (SPU)</span></a>
@@ -16,3 +19,12 @@ Milan Malpensa Airport (MXP)
 
 Geneva Airport (GVA)
 <a href="https://www.gva.ch/en/" style="text-decoration:none"><span style="color:#000000">Geneva Airport (GVA)</span></a>
+
+AERO
+<a href="https://www.flughafen-zuerich.ch/en/" style="text-decoration:none"><span style="color:#000000">Zurich Airport (ZRH)</span></a>
+
+AERO
+<a href="https://www.aeroportoditorino.it/en" style="text-decoration:none"><span style="color:#000000">Turin Airport (TRN)</span></a>
+
+AERO
+<a href="https://www.aeroportofaro.pt/en/fao/home" style="text-decoration:none"><span style="color:#000000">Faro Airport (FAO)</span></a>
