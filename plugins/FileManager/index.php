@@ -1,4 +1,5 @@
 <?
+
 $dir = 'i/website/';
 $validTypes = array('jpg', 'jpeg', 'JPG', 'png', 'PNG', 'webp', 'WEBP');
 $file_arr=array();
@@ -17,6 +18,7 @@ if (is_dir($dir)) {
 		closedir($dh);
 	}
 } 
+array_multisort( array_column($file_arr, "file"), SORT_ASC, $file_arr );
 $smarty->assign('dir',$dir);
 $smarty->assign('file_arr',$file_arr);
  
