@@ -11,24 +11,17 @@ foreach ($db->fieldNames() as $name) {
 	if(isset($_REQUEST[$name])) {
 		eval("\$db->set".$name."(\$content);");	
 	}	
-}	
+}
+
 $upd = '';
 $newID = '';
 if ($keyName != '' and $keyValue != '') {
 	$res = $db->saveRow();
 	$upd = 'Updated';
 	if($res !== true) $upd = $res;
-	$result = $dbT->RunQuery("DELETE FROM `v4_ModulesLevel` WHERE `ModulID`=".$keyValue);
 }
 if ($keyName != '' and $keyValue == '') {
 	$newID = $db->saveAsNew();
-}
-if ($_REQUEST['levels']<>'') {
-	$levels=explode(',',$_REQUEST['levels']);
-	foreach ($levels as $l)
-	{
-		$result = $dbT->RunQuery("INSERT IGNORE INTO `v4_ModulesLevel`(`ModulID`,`AuthLevelID`) VALUES (".$keyValue.",".$l.")");
-	}	
 }
 $out = array(
 	'update' => $upd,
@@ -37,4 +30,3 @@ $out = array(
 # send output back
 $output = json_encode($out);
 echo $_REQUEST['callback'] . '(' . $output . ')';
-	

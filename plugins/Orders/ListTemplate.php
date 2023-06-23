@@ -86,6 +86,11 @@
 		margin-bottom: 0;
 		color: #626161;
     	font-weight: bold;
+		direction: rtl;
+	}
+
+	.sum-edit-labels p, .sum-edit-2 div{
+		direction: rtl; /* from right to left position*/
 	}
 
 	.sum-edit-2{
@@ -95,6 +100,15 @@
 	.sum-edit-2:nth-of-type(2n){
 		background: #ebf0f5;
 	}
+
+	.no-style{
+		all: unset; /* No style for this element */
+	}
+
+	.add-direction{
+		direction: ltr !important;
+	}
+
 /* -------------------------------- */
 
 </style>
@@ -235,7 +249,7 @@
 		<div class="tab-pane" id="tab_2">
 			<div id="sum" class="sum-edit sum-edit-labels">
 				<div>
-					<p>Name</p>
+					<p class="no-style">Name</p>
 				</div>				
 				<div>
 					<p>Number</p>
@@ -269,7 +283,7 @@
 		
 			{{#each Item2}}
 				<div id="sum" class="sum-edit sum-edit-2">
-					<div>
+					<div class="add-direction">
 						{{Name}}
 					</div>					
 					<div>
