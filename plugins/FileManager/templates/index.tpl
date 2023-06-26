@@ -1,27 +1,41 @@
+<style>
+	.upload-edit{
+		background:rgb(227 231 241);
+	}
+	.upload-edit:hover{
+		background:rgb(191 202 231);
+	}
+
+	#flex-container{
+		display: flex;
+		flex-wrap: wrap;
+	}
+
+	@media screen and (max-width:768px){
+		img{
+			width:100% !important;
+			padding:5px;
+		}
+	}
+</style>
+
+
+
 <link rel="stylesheet" href="css/progress.css">
 <br><br>
 <div class="container"> 
 
-<div class="upload-edit">
-	<div class="row btn blue fileinput-button"  style="height:200px;padding-top:50px;display: block;border:none;">
-		<!-- Button to select & upload files -->
-		{* <span class="btn blue fileinput-button"> *}
-			<div style="font-size:30px;color:#2d84f1;"><i class="fa fa-cloud-upload xl" ></i><b> {$SELECT_OR} {$UPLOAD_IMAGES }</b></div>
-			<!-- The file input field used as target for the file upload widget -->
-			<input id="fileupload" type="file" name="files[]" multiple > 
-		{* </span> *}
-		
+	<div class="upload-edit">
+		<div class="row btn blue fileinput-button"  style="height:200px;padding-top:50px;display: block;border:none;">
+			<!-- Button to select & upload files -->
+			{* <span class="btn blue fileinput-button"> *}
+				<div style="font-size:20px;color:#2d84f1;"><i class="fa fa-cloud-upload xl" ></i><b> {$SELECT_OR} {$UPLOAD_IMAGES }</b></div>
+				<!-- The file input field used as target for the file upload widget -->
+				<input id="fileupload" type="file" name="files[]" multiple > 
+			{* </span> *}
+			
+		</div>
 	</div>
-</div>
-
-	<style>
-		.upload-edit{
-			background:rgb(227 231 241);
-		}
-		.upload-edit:hover{
-			background:rgb(191 202 231);
-		}
-	</style>
 
 	<div class="row">
 		<!-- The global progress bar -->
@@ -41,13 +55,14 @@
 	<div class="row">
 		<div class="col-md-12"id="files"></div>
 	</div>
-  
-	<div class="row">
-		<br><br>
-		<h2>{$IMAGES_ON_SERVER}</h2>
-		<br>
+
+	<br><br>
+	<h2>{$IMAGES_ON_SERVER}:</h2>
+	<br>
+
+	<div id="flex-container">
 		{section name=pom loop=$file_arr}		
-			<div class="col-md-12" id="{$file_arr[pom].count}" >
+			<div class="col-md-4" id="{$file_arr[pom].count}" >
 				<button class="btn red" onclick="DeleteFile('{$file_arr[pom].file}','{$file_arr[pom].count}');">
 					<i class="fa fa-times-circle l"></i>
 				</button>
