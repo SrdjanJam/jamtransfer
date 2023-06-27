@@ -274,7 +274,7 @@
 											<input type="text" class="w25 Price" name="Price[{{ID}}]" id="Price[{{ID}}]" value="{{Price}}">
 										</div>										
 										<div class="col-md-2">
-											<input type="number" class="w25" name="Qty[{{ID}}]" id="Qty[{{ID}}]" value="{{Qty}}" style="width:100% !important;">
+											<input type="number" class="w25" name="Qty[{{ID}}]" id="Qty[{{ID}}]" value="{{Qty}}">
 										</div>
 									</div>
 								{{/each}}
