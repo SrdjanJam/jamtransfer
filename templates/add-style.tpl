@@ -491,6 +491,35 @@ textarea{ width:90% !important; }
 		
 }
 
+@media screen and (min-width: 1551px){
+    .col-md-2 input[type="number"]{
+        width:100%;
+    }
+}
+
+@media screen (min-width: 1280px) and (max-width: 1549px){
+
+    .clock-timepicker{
+		/* width:100% !important; */
+		margin: 0;
+		padding: 0;
+	}
+	.clock-timepicker input[type=text]{
+		/* width:100% !important; */
+		margin: 0;
+		padding: 0;
+	}
+
+    select{
+		/* width:90%; */
+		margin-bottom: 5px;
+	}
+
+    .col-md-9 input[type="text"]{ margin-bottom: 5px;}
+
+}
+
+
 /* ===================================== */
 @media screen and (max-width: 1550px) {
 
@@ -523,7 +552,6 @@ textarea{ width:90% !important; }
         text-align: center;
     }
 
-    
     #show, #hide{
         display: inline-block;
     }
@@ -563,7 +591,7 @@ textarea{ width:90% !important; }
     
     [class*="col-"] input[type="range"]{ display:inline-block !important;float:none !important;}
 
-    .col-md-9 input[type="text"]{ width:90% !important; margin-bottom: 5px;}
+    
 
     .col-md-9 .wysihtml5-toolbar{ 
         display: inline-flex;
@@ -611,22 +639,6 @@ textarea{ width:90% !important; }
     #DriverID{
         width:100% !important;
     }
-
-    .clock-timepicker{
-		width:100% !important;
-		margin: 0;
-		padding: 0;
-	}
-	.clock-timepicker input[type=text]{
-		width:100% !important;
-		margin: 0;
-		padding: 0;
-	}
-
-    select{
-		width:90%;
-		margin-bottom: 5px;
-	}
 
     .input-edit {
         width: 100% !important;
@@ -862,6 +874,8 @@ textarea{ width:90% !important; }
 
 
 </style>
+
+
 
 <script>
     function resize(){
