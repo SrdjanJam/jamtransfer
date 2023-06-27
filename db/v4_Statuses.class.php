@@ -68,7 +68,7 @@ Class v4_Statuses {
 ID = '".$this->myreal_escape_string($this->ID)."',
 Type = '".$this->myreal_escape_string($this->Type)."',
 Value = '".$this->myreal_escape_string($this->Value)."',
-Description = '".$this->myreal_escape_string($this->Description)."',
+Description = '".$this->myreal_escape_string($this->Description)."'
  WHERE ID = '".$this->ID."'");
 	return $result;
 }

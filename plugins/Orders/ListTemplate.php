@@ -123,8 +123,8 @@
 
 <div class="nav-tabs-custom nav-tabs-custom-edit">
 	<ul class="nav nav-tabs dorder">
-					<li class="active"><a href="#tab_1" data-toggle="tab">List</a></li>
-					<li><a href="#tab_2" data-toggle="tab">Reporter</a></li>
+		<li class="active"><a href="#tab_1" data-toggle="tab"><?=LIST_ORDER;?></a></li>
+		<li><a href="#tab_2" data-toggle="tab"><?=REPORTER;?></a></li>
 	</ul>
 	<div class="tab-content tab-content-edit">	
 		<div class="tab-pane active" id="tab_1">
@@ -249,34 +249,34 @@
 		<div class="tab-pane" id="tab_2">
 			<div id="sum" class="sum-edit sum-edit-labels">
 				<div>
-					<p class="no-style">Name</p>
+					<p class="no-style"><?=NAME;?></p>
 				</div>				
 				<div>
-					<p>Number</p>
+					<p><?=NUMBER;?></p>
 				</div>
 				<div>
-					<p>Discount</p> 
+					<p><?=PROVISION;?></p> 
 				</div>
 				<div>
-					<p>DetailPrice</p> 
+					<p><?=DETAIL_PRICE;?></p> 
 				</div>
 				<div>
-					<p>ExtraCharge</p> 
+					<p><?=EXTRA_CHARGE;?></p> 
 				</div>
 				<div>
-					<p>Provision</p>
+					<p><?=PROVISION;?></p>
 				</div>
 				<div>
-					<p>DriversPrice</p>
+					<p><?=DRIVERS_PRICE;?></p>
 				</div>
 				<div>
-					<p>DriverExtraCharge</p>
+					<p><?=DRIVER_EXTRA_CHARGE;?></p>
 				</div>
 				<div>
-					<p>GrossMargin</p> 
+					<p><?=GROSS_MARGIN;?></p> 
 				</div>
 				<div>
-					<p style="color:#0f5b89;">Ratio</p> 
+					<p style="color:#0f5b89;"><?=RATIO;?></p> 
 				</div>
 
 			</div> <!-- End of #sum -->

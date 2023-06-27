@@ -1,6 +1,7 @@
 <style>
 
-/* Old: */
+/* OLD: */
+
 /* .datepicker {
 	width: 10em;
 	text-align: center;
@@ -35,15 +36,17 @@ hr {
 	to { opacity: 1.0; }
 }
 
+======================================================================================
 */
 
-/* new */
+/* NEW: */
+
 .row-header{
 	/* background: rgb(205 216 243);  */ /* Old */
-	background-image: linear-gradient(#a8beef, #96a0a99e);
-	/* background-image: linear-gradient(#88b7ed, #d0dff1); old */
-	box-shadow: 5px 5px 8px #6c9bb6;
-	/* box-shadow: 5px 5px 8px #616060 old; */
+	background-image: linear-gradient(#6c93eb, #828d979e);
+	/* background-image: linear-gradient(#a8beef, #96a0a99e); old */
+	box-shadow: 5px 5px 8px #525a5e;
+	/* box-shadow: 5px 5px 8px #6c9bb6; old */
 	padding: 10px;
 	position: sticky;
 	top: 0;
@@ -155,16 +158,20 @@ hr {
 }
 
 .input-edit{
-	box-shadow: 1px 1px 5px 2px #4f7ab4;
+	box-shadow: 3px 2px 4px 1px #6a6e76;
+	/* box-shadow: 1px 1px 5px 2px #4f7ab4; old */
 }
 
 .btn-primary-edit{
-	box-shadow: 1px 1px 4px 1px #4d5077;
+	box-shadow: 2px 1px 5px 1px #3e7ed9;
+	/* box-shadow: 1px 1px 4px 1px #4d5077; old */
 }
 
 .datepicker{
-	background: #e9f2f7;
+	background: #ddf3ff;
+	/* background: #e9f2f7; old */
 	color: #0082ff;
+	font-weight: bold;
 }
 
 /* Filters: */
@@ -259,11 +266,7 @@ hr {
 
 					<div class="row orange white-text">
 						<strong>{$sdArray[pom].DriverName}</strong>	
-						<a href="tel:{$sdArray[pom].Mob}">{$sdArray[pom].Mob}</a>
-						<input type="text" class="timepicker readytime" name="readytime" value="{$sdArray[pom].TimeToSend}" placeholder="ready time"
-							data-sdid="{$sdArray[pom].DriverID}" data-nid="{$sdArray[pom].NotificationID}"
-						/>
-						<br>
+						<a href="tel:{$sdArray[pom].Mob}">{$sdArray[pom].Mob}</a><br>
 						<div class='{$todayshow}'>
 							<i class="{$sdArray[pom].IconPositon}" aria-hidden="true"></i> <small>{$sdArray[pom].Device} {$sdArray[pom].Location}</small>
 						</div>
@@ -335,22 +338,5 @@ $('#hide').click(function() {
 resize();
 $(window).resize(resize);
 
-$('.readytime').change(function(){
-	var ReadyTime = $(this).val();
-	var ReadyDate = $("#DateFrom").val();
-	var sdid = $(this).attr('data-sdid');
-	var nid = $(this).attr('data-nid');
-	var url = "plugins/Schedule/readyTime.php";
-	var param = "TimeToSend="+ReadyTime+"&DateToSend="+ReadyDate+"&SubDriverID="+sdid+"&NotificationID="+nid;
-	console.log(url+'?'+param);
-	$.ajax({
-		url: url,
-		type: "POST",
-		data: param,
-		success: function (data) {
-			toastr['success'](window.success);	
-		}
-	})	
-})
 
 </script>

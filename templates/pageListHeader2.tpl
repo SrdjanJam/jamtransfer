@@ -3,6 +3,7 @@
 	[class*="col-"] > *{ /* Target all child elements in the parent */
 		margin-top:3px;
 	}
+
 	[class*="col-"] > *:first-child{
 		margin-top:0px;
 	}
@@ -107,13 +108,13 @@ value=" WHERE {$ItemID} > 0">
 		<!-- Order: -->
 		<div class="col-md-2 col-md-2-edit order-edit">
 			<small class="badge blue text-black badge-edit">{$ORDER}</small><br>
-			<input id='order' class="input-one" name='order'  placeholder="Order ID" onchange="allItems();"/><br>
+			<input id='order' class="input-one" name='order'  placeholder="{$ORDERID}" onchange="allItems();"/><br>
 						
 			<select id='yearsOrder' class="form-control select-top-edit addon" name='yearsOrder' value='0' onchange="allItems();">
 				<option value='0'>{$ALL_YEARS}</option>
 			</select>
 			
-			<input id='orderFromDate' class="datepicker datepicker-edit" name='orderFromDate'  placeholder="From Date" onchange="allItems();" /><br>
+			<input id='orderFromDate' class="datepicker datepicker-edit" name='orderFromDate'  placeholder="{$FROM_DATE}" onchange="allItems();" /><br>
 			
 			<select id="Type" class="form-control select-top-edit addon" onchange="allItems();">
 				<option value="0">{$ALL} {$STATUS}</option>
@@ -122,15 +123,15 @@ value=" WHERE {$ItemID} > 0">
 				{/section}
 			</select>
 			
-			<input id='orderToDate' class="datepicker datepicker-edit" name='orderToDate'  placeholder="To Date" onchange="allItems();" /><br>
+			<input id='orderToDate' class="datepicker datepicker-edit" name='orderToDate'  placeholder="{$TRANSFERTODATE}" onchange="allItems();" /><br>
 
 		</div>
 
 		<!-- Client/Agent purchaser: -->
 		<div class="col-md-2 col-md-2-edit">
 			<small class="badge blue text-black badge-edit">{$PURCHASER}</small><br>
-			<input id='agentName' class="input-one" name='agentName'  placeholder="Name/ID" onchange="allItems();"/><br>				
-			<input id='agentOrder' class="input-one" name='agentOrder'  placeholder="Order Key / Agent Order" onchange="allItems();"/><br>				
+			<input id='agentName' class="input-one" name='agentName'  placeholder="{$NAME_ID}" onchange="allItems();"/><br>				
+			<input id='agentOrder' class="input-one" name='agentOrder'  placeholder="{$ORDER_KEY_AGENT_ORDER}" onchange="allItems();"/><br>				
 			
 				<select id="Type2" class="w75 form-control select-top-edit" onchange="allItems();">
 					<option value="0">{$ALL} {$USERS}</option>
@@ -143,21 +144,21 @@ value=" WHERE {$ItemID} > 0">
 		<!-- Transfer: -->
 		<div class="col-md-2 col-md-2-edit"> 
 			<small class="badge blue text-black badge-edit">{$TRANSFER}</small><br>
-			<input id='locationName' class="input-one" name='locationName'  placeholder="Location Name" onchange="allItems();"/>
+			<input id='locationName' class="input-one" name='locationName'  placeholder="{$LOCATION_NAME}" onchange="allItems();"/>
 			
-				<input id='pickupFromDate' class="datepicker datepicker-edit-2 datepicker-edit-2-small" name='pickupFromDate'  placeholder="From Date" onchange="allItems();" style="width:80%;"/>
+				<input id='pickupFromDate' class="datepicker datepicker-edit-2 datepicker-edit-2-small" name='pickupFromDate'  placeholder="{$TRANSFERFROMDATE}" onchange="allItems();" style="width:80%;"/>
 				<!--<select id='yearsPickup' class="select-top-edit" name='yearsPickup' value='0' onchange="allItems();">
 					<option value='0'>All years</option>
 				</select>!-->
 				<i class="fa fa-cubes" style="color:#900"></i><input type="checkbox" id="listExtras" name="listExtras"  value="" onchange="allItems();" />
 				</br>
-				<input id='pickupToDate' class="datepicker datepicker-edit-2 datepicker-edit-2-small" name='pickupToDate'  placeholder="To Date" onchange="allItems();" style="width:80%;"/>				
+				<input id='pickupToDate' class="datepicker datepicker-edit-2 datepicker-edit-2-small" name='pickupToDate'  placeholder="{$TRANSFERTODATE}" onchange="allItems();" style="width:80%;"/>				
 		</div>
 
 		<!-- Driver: -->
 		<div class="col-md-2 col-md-2-edit">
 			<small class="badge blue text-black badge-edit">{$PARTNER}</small><br>
-			<input id='driverName' class="input-one" name='driverName'  placeholder="Name/ID" onchange="allItems();"/><br>
+			<input id='driverName' class="input-one" name='driverName'  placeholder="{$NAME_ID}" onchange="allItems();"/><br>
 			
 				<select id="DriverConfStatusChoose" class="w75 form-control select-top-edit" onchange="allItems();">		
 					<option value="-1">{$ALL} {$STATUS}</option>
@@ -170,14 +171,14 @@ value=" WHERE {$ItemID} > 0">
 		<!-- Passenger: -->
 		<div class="col-md-2 col-md-2-edit">
 			<small class="badge blue text-black badge-edit">{$PASSENGER}</small><br>
-			<input id='passengerData' class="input-one" name='passengerData'  placeholder="Passenger Data" onchange="allItems();"/>					
-			<i class="fa fa-plane" style="color:#900"></i><input type="checkbox" id="flightTimeChecker" name="flightTimeChecker"  value="" onchange="allItems();" />Flight Time Checker		
+			<input id='passengerData' class="input-one" name='passengerData'  placeholder="{$PASSENGER_DATA}" onchange="allItems();"/>					
+			<i class="fa fa-plane" style="color:#900"></i><input type="checkbox" id="flightTimeChecker" name="flightTimeChecker"  value="" onchange="allItems();" />{$FLIGHT_TIME_CHECKER}
 		</div>	
 
 		<!-- Payment: -->
 		<div class="col-md-2 col-md-2-edit"> 
 			<small class="badge blue text-black badge-edit">{$PAYMENT}</small><br>
-			<input id='paymentNumber' class="input-one" name='paymentNumber'  placeholder="Payment / Invoice No" onchange="allItems();"/>	
+			<input id='paymentNumber' class="input-one" name='paymentNumber'  placeholder="{$PAYMENT_INVOICE_NO}" onchange="allItems();"/>	
 			
 				<select id="PaymentMethod" class="w75 form-control select-top-edit" onchange="allItems();">		
 					<option value="-1">{$ALL} {$PAYMENT}</option>
@@ -185,7 +186,7 @@ value=" WHERE {$ItemID} > 0">
 						<option value="{$options3[pom].id}">{$options3[pom].name}</option>
 					{/section}
 				</select>
-				<i class="fa fa-money" style="color:#900"></i><input type="checkbox" id="paymentChecker" name="paymentChecker"  value="" onchange="allItems();" />Checker				
+				<i class="fa fa-money" style="color:#900"></i><input type="checkbox" id="paymentChecker" name="paymentChecker"  value="" onchange="allItems();" />{$CHECKER}
 		</div>
 
 	</div> <!-- End of .filter -->
