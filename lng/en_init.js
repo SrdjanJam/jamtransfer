@@ -26,6 +26,7 @@ userLevels[91] = 'Admin';
 userLevels[92] = 'Menager';
 userLevels[99] = 'System Administrator';
 
+// Add to the database:
 var languages = {};
 languages['en'] = 'English';
 languages['ru'] = 'Rусский';
@@ -37,6 +38,7 @@ languages['no'] = 'Norsk';
 languages['es'] = 'Español';
 languages['nl'] = 'Nederlands';
 
+// Add to the database:
 var customers = {};
 customers[0] = 'Normal';
 customers[1] = 'Premium';
@@ -44,10 +46,12 @@ customers[2] = 'Silver';
 customers[3] = 'Gold';
 customers[4] = 'Platinum';
 
+// Add to the database:
 var yesNo = {};
 yesNo[0] = 'No';
 yesNo[1] = 'Yes';
 
+// Add to the database:
 // surCategory price rules
 var surCategory = {};
 surCategory[0] = 'No rules';
@@ -67,7 +71,7 @@ paymentStatus [10] = 	'Lost - will not be paid';
 paymentStatus [91] = 	'Compensated';
 paymentStatus [99] = 	'Paid';
 
-var paymentMethod = {};
+// var paymentMethod = {};
 paymentMethod[0] =  'Undefined';
 paymentMethod[1] = 	'Online';
 paymentMethod[2] = 	'Cash';
@@ -77,14 +81,15 @@ paymentMethod[5] = 	'Compensation';
 paymentMethod[6] = 	'Bank transfer 2';
 paymentMethod[9] = 	'Other';
 
-var documentType = {};
-documentType[0] =  'Choose type';
-documentType[1] = 	'Proforma',
-documentType[2] = 	'Prepayment Invoice',
-documentType[3] = 	'Invoice',
-documentType[4] = 	'Invoice Item'
-documentType[5] = 	'Cancellation Invoice',
-documentType[6] = 	'Credit Note';
+// It's not used:
+// var documentType = {};
+// documentType[0] =  'Choose type';
+// documentType[1] = 	'Proforma',
+// documentType[2] = 	'Prepayment Invoice',
+// documentType[3] = 	'Invoice',
+// documentType[4] = 	'Invoice Item'
+// documentType[5] = 	'Cancellation Invoice',
+// documentType[6] = 	'Credit Note';
 
 var changeTransferReason = {};
 changeTransferReason[0] =  'Pax FirstLast Name';
@@ -118,15 +123,16 @@ driverConfStatus[10] = 'Agent Error';
 driverConfStatus[11] = 'Force majeure';
 driverConfStatus[12] = 'Pending';	
 
-var driverConfClass = {};
-driverConfClass[0] = 'badge bg-red';
-driverConfClass[1] = 'badge bg-red';
-driverConfClass[2] = 'badge bg-blue';
-driverConfClass[3] = 'badge bg-green';
-driverConfClass[4] = 'badge bg-red';
-driverConfClass[5] = '';
-driverConfClass[6] = '';
-driverConfClass[7] = '';
+// It's not used:
+// var driverConfClass = {};
+// driverConfClass[0] = 'badge bg-red';
+// driverConfClass[1] = 'badge bg-red';
+// driverConfClass[2] = 'badge bg-blue';
+// driverConfClass[3] = 'badge bg-green';
+// driverConfClass[4] = 'badge bg-red';
+// driverConfClass[5] = '';
+// driverConfClass[6] = '';
+// driverConfClass[7] = '';
 
 var driverPayment = {};
 driverPayment[0] = 'Not paid';
@@ -134,6 +140,7 @@ driverPayment[1] = 'Partly paid';
 driverPayment[2] = 'Paid';
 driverPayment[3] = 'Compensated';
 
+// Add to the database:
 var vehicleClass = {};
 vehicleClass[1] = 'Sedan';
 vehicleClass[2] = 'Mini-van';
@@ -143,21 +150,25 @@ vehicleClass[5] = 'Bus';
 vehicleClass[6] = 'Bus';
 
 /* survey */
+// Add to the database:
 var bookAgain = {};
 bookAgain[1] = 'No';
 bookAgain[2] = 'Maybe';
 bookAgain[3] = 'Yes';
 
+// Add to the database:
 var recommend = {};
 recommend[1] = "I wouldn't feel comfortable recommending JamTransfer";
 recommend[2] = 'I would recommend JamTransfer if asked';
 recommend[3] = 'I would go out of my way to recommend JamTransfer';
 
+// Add to the database:
 var approved = {};
 approved[0] = 'Not approved';
 approved[1] = 'Approved';
 approved[2] = 'Discarded';
 
+// Add to the database:
 var scores = {};
 scores[2] = 2;
 scores[4] = 4;
