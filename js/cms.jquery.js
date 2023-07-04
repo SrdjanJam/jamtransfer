@@ -904,28 +904,29 @@ DocumentType select
 uzima podatke iz languages u lng/en_init.js
 */
 
-Handlebars.registerHelper("documentTypeSelect", function(currentValue) {
-	function documentTypeDropdown() {
-		var pm = $("#pm").val();
-		var dm = $("#documenttype").val();
-		var advance = $("#advance").val();
-		var documentTypeSelect = '<select name="DocumentType" id="DocumentType">';
-		$.each (documentType, function(i, val) {
-			if ((((pm==1 || pm==3) && (i==0 || i>2)) || pm==2 || pm>3) && (i>dm) && (i!=advance)) {
-				documentTypeSelect += '<option value="'+i+'" ';
-				if (i == currentValue) {
-					documentTypeSelect += 'selected="selected" ';
-				}
-				documentTypeSelect += '>' + val + '</option>';
-			}
-		});
-		documentTypeSelect += '</select>';
-		return  documentTypeSelect;
-	}
+// It's not used:
+// Handlebars.registerHelper("documentTypeSelect", function(currentValue) {
+// 	function documentTypeDropdown() {
+// 		var pm = $("#pm").val();
+// 		var dm = $("#documenttype").val();
+// 		var advance = $("#advance").val();
+// 		var documentTypeSelect = '<select name="DocumentType" id="DocumentType">';
+// 		$.each (documentType, function(i, val) {
+// 			if ((((pm==1 || pm==3) && (i==0 || i>2)) || pm==2 || pm>3) && (i>dm) && (i!=advance)) {
+// 				documentTypeSelect += '<option value="'+i+'" ';
+// 				if (i == currentValue) {
+// 					documentTypeSelect += 'selected="selected" ';
+// 				}
+// 				documentTypeSelect += '>' + val + '</option>';
+// 			}
+// 		});
+// 		documentTypeSelect += '</select>';
+// 		return  documentTypeSelect;
+// 	}
 
-return new Handlebars.SafeString(documentTypeDropdown());
+// return new Handlebars.SafeString(documentTypeDropdown());
 
-});
+// });
 
 
 /*
@@ -1106,14 +1107,12 @@ Handlebars.registerHelper("driverSelect", function(id,routeId,vehicleTypeId) {
 					selector += 'data-co="'+val.Company +'" ';
 					selector += 'data-email="'+val.Email +'" ';
 					selector += 'data-realname="'+val.RealName +'" ';
-					selector += 'data-vehicletype="'+val.VehicleType +'" ';
-					selector += 'data-driverprice="'+val.DriverPrice +'" ';
 					
-					if (val.UserID == id && val.VehicleType == vehicleTypeId) {
+					if (val.UserID == id) {
 						selector += ' selected="selected" ';
 					}
 
-					selector += '>' + val.Country + ' - '  + val.Company + ' / '  + val.VehicleType + ' / ' + val.DriverPrice + ' EUR';
+					selector += '>' + val.Country + ' - '  + val.Company + ' / '  + val.VehicleType + ' / ' + val.DriverPrice;
 					selector += '</option>';
 				});
 
