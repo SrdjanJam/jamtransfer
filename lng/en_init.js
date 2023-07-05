@@ -71,7 +71,7 @@ paymentStatus [10] = 	'Lost - will not be paid';
 paymentStatus [91] = 	'Compensated';
 paymentStatus [99] = 	'Paid';
 
-// var paymentMethod = {};
+var paymentMethod = {};
 paymentMethod[0] =  'Undefined';
 paymentMethod[1] = 	'Online';
 paymentMethod[2] = 	'Cash';
@@ -123,16 +123,15 @@ driverConfStatus[10] = 'Agent Error';
 driverConfStatus[11] = 'Force majeure';
 driverConfStatus[12] = 'Pending';	
 
-// It's not used:
-// var driverConfClass = {};
-// driverConfClass[0] = 'badge bg-red';
-// driverConfClass[1] = 'badge bg-red';
-// driverConfClass[2] = 'badge bg-blue';
-// driverConfClass[3] = 'badge bg-green';
-// driverConfClass[4] = 'badge bg-red';
-// driverConfClass[5] = '';
-// driverConfClass[6] = '';
-// driverConfClass[7] = '';
+var driverConfClass = {};
+driverConfClass[0] = 'badge bg-red';
+driverConfClass[1] = 'badge bg-red';
+driverConfClass[2] = 'badge bg-blue';
+driverConfClass[3] = 'badge bg-green';
+driverConfClass[4] = 'badge bg-red';
+driverConfClass[5] = '';
+driverConfClass[6] = '';
+driverConfClass[7] = '';
 
 var driverPayment = {};
 driverPayment[0] = 'Not paid';
