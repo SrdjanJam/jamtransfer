@@ -28,6 +28,9 @@
 				onclick="return editSaveItem('{{details.DetailsID}}');">
 				<i class="fa fa-save"></i>
 				</button>
+				<a href="plugins/Orders/printTransfer.php?OrderID={{details.OrderID}}" class="btn btn-danger" title="<?= PRINT_CONFIRMATION ?>" target="_blank">
+					<i class="fa fa-print l"></i>
+				</a>				
 			</div>
 		</div>
 
@@ -425,15 +428,35 @@
 						<input type="hidden" name="VehicleType" id="VehicleType" value="{{details.VehicleType}}" >
 						
 						{{/compare}}
-						{{#compare tab "==" "agent"}}						
+						{{#compare tab "==" "agent"}}	
+						<div class="row dagent">
+							<div class="col-md-3 "><label><?= LEVEL?></label></div>
+							<div class="col-md-9">
+								{{userLevelSelect details.UserLevelID}}
+							</div>
+						</div>						
 						<div class="row dagent">
 							<div class="col-md-3 "><label><?= BOOKED_BY?></label></div>
 							<div class="col-md-9">
-								<strong>{{userName details.UserID "AuthUserCompany"}}</strong>
+								<strong>{{userName details.UserID "AuthUserCompany"}}-{{userName details.UserID "AuthUserRealName"}}</strong>
+								{{userSelect details.UserID "0" "UserIDeX"}}
+								
 								({{details.UserID}})
-								<input style="display:none" type="text" id="UserID" name="UserID" class="w25" value="{{details.UserID}}" />	
+
 							</div>
+						</div>	
+						<div class="row dagent">	
+							<div class="col-md-3 "><label><?= AGENT?></label></div>
+							<div class="col-md-9">
+								<strong>{{userName details.AgentID "AuthUserCompany"}} {{userName details.AgentID "AuthUserRealName"}}</strong>
+								{{userSelect details.AgentID "0" "AgentIDeX"}}
+								({{details.AgentID}})
+							</div>													
 						</div>
+						<input type="hidden" name="UserID" id="UserID" value="{{details.UserID}}">		
+						<input type="hidden" name="AgentID" id="AgentID" value="{{details.AgentID}}">	
+						<input type="hidden" name="UserLevelID" id="UserLevelID"  value="{{details.UserLevelID}}">
+						
 						{{#compare master.MConfirmFile "!=" ''}}
 						<div class="row dagent">
 							<div class="col-md-3 "><label><?= AGENT_REFERENCE ?></label></div>
@@ -565,7 +588,7 @@
 
 
 		<input type="hidden" name="DetailsID" id="DetailsID" value="{{details.DetailsID}}">
-		<input type="hidden" name="AgentID" id="AgentID" value="{{details.AgentID}}">		
+		<!--<input type="hidden" name="AgentID" id="AgentID" value="{{details.AgentID}}">!-->		
 		<input type="hidden" name="DriverName" id="DriverName" value="{{details.DriverName}}">
 		<input type="hidden" name="DriverTel" id="DriverTel" value="{{details.DriverTel}}">
 		<input type="hidden" name="DriverEmail" id="DriverEmail" value="{{details.DriverEmail}}">
@@ -574,7 +597,7 @@
 		<input type="hidden" name="UserName" id="UserName" value="<?= $_SESSION['UserName']?>">
 		<input type="hidden" name="AuthUserID" id="AuthUserID" value="<?= $_SESSION['AuthUserID']?>">
 		<input type="hidden" name="OrderID" id="OrderID"   value="{{details.OrderID}}">
-		<input type="hidden" name="UserLevelID" id="UserLevelID"  value="{{details.UserLevelID}}">
+		<!--<input type="hidden" name="UserLevelID" id="UserLevelID"  value="{{details.UserLevelID}}">!-->
 		<input type="hidden" name="PickupType" id="PickupType" value="{{details.PlaceType}}" >
 		<input type="hidden" name="PickupID" id="PickupID" value="{{details.PickupID}}" >
 		<input type="hidden" name="DropID" id="DropID" value="{{details.DropID}}" >
@@ -722,7 +745,24 @@
 		$('#ChangeTransferReason').click(function() {
 			$('#todriver').show(300);
 			$('#topax').show(300);		
+		})
+		$('#UserIDeX').change(function() {
+			$('#UserID').val($(this).val());
 		})			
+		$('#AgentIDeX').change(function() {
+			$('#AgentID').val($(this).val());
+		})			
+		$('#AuthLevelID').change(function() {
+			$('#UserLevelID').val($(this).val());
+			$('#UserIDeX option').hide();
+			$('#AgentIDeX option').hide();
+			$('*[data-levelid="'+$(this).val()+'"]').show();
+		})	
+		$('document').ready(function() {
+			$('#UserIDeX option').hide();
+			$('#AgentIDeX option').hide();			
+			$('*[data-levelid="'+$('#UserLevelID').val()+'"]').show();
+		})	
 	</script>
 	<? } ?>
 </script>

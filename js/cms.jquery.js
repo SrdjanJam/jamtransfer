@@ -1155,7 +1155,7 @@ Handlebars.registerHelper("userSelect", function(id,levelId,field) {
 			},
 			success: function(data) {
 				$.each(data, function(i,val) {
-					selector += '<option value="' + val.UserID + '" ';
+					selector += '<option data-levelid="' + val.LevelID+'" value="' + val.UserID + '" ';
 					if (val.UserID == id) {
 						selector += ' selected="selected" ';
 					}

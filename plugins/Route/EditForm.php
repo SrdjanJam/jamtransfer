@@ -189,7 +189,7 @@
 				$.ajax({
 					type: 'POST',
 					url: link,
-					data: param,
+					//data: param,
 					async: false,
 					dataType: 'jsonp',
 

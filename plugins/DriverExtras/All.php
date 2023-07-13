@@ -33,7 +33,7 @@ if(empty($sortOrder)) $sortOrder = 'ASC';
 # init vars
 $out = array();
 $flds = array();
-
+$extras_arr="0,";
 # kombinacija where i filtera
 $DB_Where = " " . $_REQUEST['where'];
 $DB_Where .= $filter;

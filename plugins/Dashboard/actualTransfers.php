@@ -1,6 +1,5 @@
 <?
 	$data = '';
-
 	$db = new DataBaseMysql();
 	
 	date_default_timezone_set("Europe/Paris");		

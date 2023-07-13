@@ -12,8 +12,8 @@ foreach ($db->fieldNames() as $name) {
 		eval("\$db->set".$name."(\$content);");	
 	}	
 }	
-$db->setVehicleTypeNameEN($_REQUEST['VehicleTypeName']);
-$db->setDescriptionEN($_REQUEST['Description']);
+$db->setVehicleTypeNameEN($db->myreal_escape_string($_REQUEST['VehicleTypeName']));
+$db->setDescriptionEN($db->myreal_escape_string($_REQUEST['Description']));
 $upd = '';
 $newID = '';
 if ($keyName != '' and $keyValue != '') {

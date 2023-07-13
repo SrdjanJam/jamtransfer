@@ -35,6 +35,7 @@ $flds = array();
 $DB_Where = " " . $_REQUEST['where'];
 $DB_Where .= $filter;
 // filter za ulogovane vozace
+$vehicles_arr="0,";
 if (isset($_SESSION['UseDriverID']) && $_REQUEST['Type']>0) { 
 	$sql="SELECT VehicleTypeID FROM `v4_Vehicles` WHERE `OwnerID`=".$_SESSION['UseDriverID'];	
 	$result = $dbT->RunQuery($sql);

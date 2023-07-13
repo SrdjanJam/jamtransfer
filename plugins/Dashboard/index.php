@@ -25,9 +25,13 @@
 		require_once 'getOrder.php';
 		$smarty->assign('getOrder',true);				
 	}	
-	/*if (in_array($_SESSION['AuthLevelID'],array(41,44,91,92,99))) {
+	if (in_array($_SESSION['AuthLevelID'],array(41,44,91,92,99))) {
 		require_once 'getUnfinishedPayment.php';
 		$smarty->assign('getUnfinishedPayment',true);							
+	}	
+	/*if (in_array($_SESSION['AuthLevelID'],array(41,44,91,92,99))) {
+		require_once 'getUnfinishedPayment.php';
+		$smarty->assign('problemPayment',true);							
 	}*/		
 	if (in_array($_SESSION['AuthLevelID'],array(31,41,43,45,91,92,99))) {
 		require_once 'actualTransfers.php';

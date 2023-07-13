@@ -236,6 +236,7 @@ if($priceChanged) {
 		$MOrderCurrencyPrice+= ($db2->getDetailPrice() + $db2->getExtraCharge() ) * $MEurToCurrencyRate;
 	}
 	$om->getRow($OrderID);	
+	$om->setMUserID($MUserID);
 	$om->setMTransferPrice($MTransferPrice);
 	$om->setMExtrasPrice($MExtrasPrice);
 	$om->setMOrderPriceEUR($MOrderPriceEUR);
@@ -246,7 +247,9 @@ if($priceChanged) {
 	$om->setMOrderCurrencyPrice($MOrderCurrencyPrice);
 	$om->saveRow();
 }
-
+$MUserID = $_REQUEST['UserID'];
+$om->setMUserID($MUserID);
+// dodati i cuvanje povratnog transfera 
 if ($keyName != '' and $keyValue != '') {
 	$res = $db->saveRow();
 	$resOM = $om->saveRow();

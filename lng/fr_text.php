@@ -1010,3 +1010,21 @@ define("REPORT_BY","Signalé par");
 define("FILTER_BY","Filtré par");
 
 
+// 26.6.23 =======================================================
+define("VALUE","Valeur");
+define("FLIGHT_TIME_CHECKER","Checker l’heure du vol");
+define("CHECKER","Checker");
+define("LIST_ORDER", "La liste des commandes");
+define("REPORTER", "Reporter");
+define("FROM_DATE", "A partir de la date");
+define("NAME_ID", "Nom/ID");
+define("ORDER_KEY_AGENT_ORDER", "La clé de la commande/La commande de l’agent");
+define("LOCATION_NAME", "Le nom de la localisation");
+define("PASSENGER_DATA", "Les données des passagers");
+define("PAYMENT_INVOICE_NO", "Paiement / N° de facture");
+define("DETAIL_PRICE", "Le détail du prix");
+define("EXTRA_CHARGE", "Supplément");
+define("DRIVER_EXTRA_CHARGE", "Les frais supplémentaires pour le conducteur ");
+define("GROSS_MARGIN", "Marge brute");
+define("RATIO", "Ratio");
+

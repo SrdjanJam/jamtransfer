@@ -22,8 +22,9 @@ $tID=$_REQUEST['tID'];
 $pl->getRow($tID);
 $tLon=$pl->getLongitude();
 $tLat=$pl->getLatitude();
+
 // selektovanje i belezenje najblizeg terminala lokacijama iz rute ako su do 500km
-if ($fLon>0 && $fLat>0 && $tLon>0 && $tLat>0) {
+if ($fLon<>0 && $fLat<>0 && $tLon<>0 && $tLat<>0) {
 	$distanceMin=200000;
 	$terminalID=array();			
 	foreach($terminals as $t) {

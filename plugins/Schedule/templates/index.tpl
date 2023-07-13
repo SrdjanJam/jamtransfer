@@ -266,7 +266,9 @@ hr {
 
 					<div class="row orange white-text">
 						<strong>{$sdArray[pom].DriverName}</strong>	
-						<a href="tel:{$sdArray[pom].Mob}">{$sdArray[pom].Mob}</a><br>
+						<a href="tel:{$sdArray[pom].Mob}">{$sdArray[pom].Mob}</a>
+							<input type="text" class="timepicker readytime" name="readytime" value="{$sdArray[pom].TimeToSend}" placeholder="ready time"
+							data-sdid="{$sdArray[pom].DriverID}" data-nid="{$sdArray[pom].NotificationID}"/>
 						<div class='{$todayshow}'>
 							<i class="{$sdArray[pom].IconPositon}" aria-hidden="true"></i> <small>{$sdArray[pom].Device} {$sdArray[pom].Location}</small>
 						</div>

@@ -11,7 +11,7 @@ define("NL", '<br/>'); // newline char for tooltips
 define("JNL", '\\r\\n'); // newline char for tooltips
 define("SITE_URL","http://".$_SERVER['SERVER_NAME']);
 define("DB_PREFIX","v4_");
-define("ZADUZIVANJE","1");
-define("RAZDUZIVANJE","2");
+define("ZADUZIVANJE","109");
+define("RAZDUZIVANJE","127");
 
 ?>
