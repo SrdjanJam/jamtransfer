@@ -655,8 +655,12 @@
 		$('#SubDriver').change(function(){changesubdriver ('');})	
 		$('#SubDriver2').change(function(){changesubdriver ('2');})	
 		$('#SubDriver3').change(function(){changesubdriver ('3');})	
-		// promena lokacija		
+		// promena lokacija	
 		$('#PickupName,#DropName').on('click keyup', function(event) {
+			 if($(this).val() == "") {
+				if($(this).attr('id') == "PickupName") $('#PickupID').val(0);
+				if($(this).attr('id') == "DropName") $('#DropID').val(0);
+			}
 			var clicked_id='#'+$(this).attr('id');
 
 			var loc=$(this).attr('id').replace("Name", "");

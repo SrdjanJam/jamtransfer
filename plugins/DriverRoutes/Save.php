@@ -21,7 +21,7 @@ if ($_REQUEST['DriverRoute']==0) {
 }	
 if ($_REQUEST['DriverRoute']==1) {
 	$result = $dbT->RunQuery("INSERT IGNORE INTO `v4_DriverRoutes`(`RouteID`,`OwnerID`,`Active`, `Approved`,`OneToTwo`,`TwoToOne`,`SurCategory`) VALUES (".$_REQUEST['RouteID'].",".$_SESSION['UseDriverID'].",1,1,1,1,1)");
-	//require_once ("InsertServices.php");
+	require_once ("InsertServices.php");
 }
 echo $_REQUEST['DriverRoute'];
 

@@ -8,10 +8,10 @@ accordian
 </div>
 
 images
-<img alt="zip line on mountain at winter season" title="Snow covered ski lift" src="https://wis.jamtransfer.com/i/website/tignes1.webp" style="width:50%"/>
-<img alt="man snowboarding on mountain under cloudy sky" title="Snowboarder in the clouds" src="https://wis.jamtransfer.com/i/website/tignes2.webp" style="width:50%"/>
-<img alt="snow-covered rock mountain under clods" title="Rocky outcrop of Tigne" src="https://wis.jamtransfer.com/i/website/tignes3.webp" style="width:50%"/>
-<img alt="snow on top of houses roofs at night" title="Snow mountain and houses in Tignes, french alps by night" src="https://wis.jamtransfer.com/i/website/tignes4.webp" style="width:50%"/>
+<img alt="a ski lift going up a snowy mountain" title="La Tania Bubble Lift, Snow covered Mountains, trees and wooden Chalets" src="https://wis.jamtransfer.com/i/website/la_tania1.webp" style="width:50%"/>
+<img alt="blue and black ski blades on white snow" title="Ski blades" src="https://wis.jamtransfer.com/i/website/la_tania2.webp" style="width:50%"/>
+<img alt="a group of young children riding skis down a snow covered slope" title="Young children riding skis" src="https://wis.jamtransfer.com/i/website/la_tania3.webp" style="width:50%"/>
+<img alt="high-angle photography of mountains" title="View on the Mont Blanc from Aiguille du Midi" src="https://wis.jamtransfer.com/i/website/la_tania4.webp" style="width:50%"/>
 
 JAM
 <a href="https://jamtransfer.com/" style="text-decoration:none"><span style="color:#000000">JAM transfer</span></a>
