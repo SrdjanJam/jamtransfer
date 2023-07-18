@@ -6,6 +6,7 @@ require_once ROOT . '/db/v4_Actions.class.php';
 
 $db = new v4_SubExpenses();
 $ac = new v4_Actions();
+$dbT = new DataBaseMysql();
 
 $keyName = 'ID';
 $ItemName='Datum ';

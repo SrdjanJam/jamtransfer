@@ -63,6 +63,8 @@ $flds = array();
 # kombinacija where i filtera
 $DB_Where = " " . $_REQUEST['where'];
 $DB_Where .= $filter;
+if (isset($_SESSION['UseDriverID']))  $DB_Where .=	" AND OwnerID = '".$_SESSION['UseDriverID']."' ";
+
 if (isset($_REQUEST['vehicleID']) && $_REQUEST['vehicleID']>0) $DB_Where .= " AND VehicleID=".$_REQUEST['vehicleID'];
 if (isset($_REQUEST['subdriverID']) && $_REQUEST['subdriverID']>0) $DB_Where .= " AND v4_SubExpenses.DriverID=".$_REQUEST['subdriverID'];
 if (isset($_REQUEST['actionID']) && $_REQUEST['actionID']>0) $DB_Where .= " AND Expense=".$_REQUEST['actionID'];
@@ -119,6 +121,8 @@ if (count($dbk) != 0) {
 
 		// ako treba neki lookup, onda to ovdje
 		
+		
+		
 		# get all fields and values
 		$detailFlds = $db->fieldValues();
 		
@@ -129,11 +133,13 @@ if (count($dbk) != 0) {
 		$detailFlds["ExpanceTitle"] = $ac->getTitle();
 		
 		$out[] = $detailFlds;
-    }
+	}
 }
+require_once("subDriverBalance.php");
 
 # send output back
 $output = array(
+'sum' =>$sum,
 'recordsTotal' => count($dbTotalRecords),
 'data' =>$out
 );

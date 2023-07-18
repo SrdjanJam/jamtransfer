@@ -8,10 +8,10 @@ accordian
 </div>
 
 images
-<img alt="a ski lift going up a snowy mountain" title="La Tania Bubble Lift, Snow covered Mountains, trees and wooden Chalets" src="https://wis.jamtransfer.com/i/website/la_tania1.webp" style="width:50%"/>
-<img alt="blue and black ski blades on white snow" title="Ski blades" src="https://wis.jamtransfer.com/i/website/la_tania2.webp" style="width:50%"/>
-<img alt="a group of young children riding skis down a snow covered slope" title="Young children riding skis" src="https://wis.jamtransfer.com/i/website/la_tania3.webp" style="width:50%"/>
-<img alt="high-angle photography of mountains" title="View on the Mont Blanc from Aiguille du Midi" src="https://wis.jamtransfer.com/i/website/la_tania4.webp" style="width:50%"/>
+<img alt="snow covered mountain under blue sky during daytime" title="Mountain, snow and snowing in Mâcot-la-Plagne, France" src="https://wis.jamtransfer.com/i/website/belle_plagne1.webp" style="width:50%"/>
+<img alt="man skiing under clear blue sky" title="Flaine ski resort top" src="https://wis.jamtransfer.com/i/website/belle_plagne2.webp" style="width:50%"/>
+<img alt="snow mountains during daytime" title="Ski lift people on snow mountains" src="https://wis.jamtransfer.com/i/website/belle_plagne3.webp" style="width:50%"/>
+<img alt="mountain covered with snows under white cloudy sky" title="Mountain and blue in Courmayeur, Italy" src="https://wis.jamtransfer.com/i/website/belle_plagne4.webp" style="width:50%"/>
 
 JAM
 <a href="https://jamtransfer.com/" style="text-decoration:none"><span style="color:#000000">JAM transfer</span></a>
