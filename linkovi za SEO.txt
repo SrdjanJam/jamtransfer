@@ -8,10 +8,10 @@ accordian
 </div>
 
 images
-<img alt="snow covered mountain under blue sky during daytime" title="Mountain, snow and snowing in Mâcot-la-Plagne, France" src="https://wis.jamtransfer.com/i/website/belle_plagne1.webp" style="width:50%"/>
-<img alt="man skiing under clear blue sky" title="Flaine ski resort top" src="https://wis.jamtransfer.com/i/website/belle_plagne2.webp" style="width:50%"/>
-<img alt="snow mountains during daytime" title="Ski lift people on snow mountains" src="https://wis.jamtransfer.com/i/website/belle_plagne3.webp" style="width:50%"/>
-<img alt="mountain covered with snows under white cloudy sky" title="Mountain and blue in Courmayeur, Italy" src="https://wis.jamtransfer.com/i/website/belle_plagne4.webp" style="width:50%"/>
+<img alt="reflection of man holding camera on person's goggles" title="Clothing and apparel in Montvalezan" src="https://wis.jamtransfer.com/i/website/la_rosiere1.webp" style="width:50%"/>
+<img alt="snow covered mountain under white sky during daytime" title="Montvalezan, France" src="https://wis.jamtransfer.com/i/website/la_rosiere2.webp" style="width:50%"/>
+<img alt="green leaf plants" title="Great things are so small while hiking" src="https://wis.jamtransfer.com/i/website/la_rosiere3.webp" style="width:50%"/>
+<img alt="snow covered mountain during sunset" title="La Rosière, Montvalezan, France" src="https://wis.jamtransfer.com/i/website/la_rosiere4.webp" style="width:50%"/>
 
 JAM
 <a href="https://jamtransfer.com/" style="text-decoration:none"><span style="color:#000000">JAM transfer</span></a>

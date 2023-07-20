@@ -64,6 +64,8 @@ $DB_Where .= $filter;
 if (isset($_REQUEST['vehicleID']) && $_REQUEST['vehicleID']>0) $DB_Where .= " AND VehicleID=".$_REQUEST['vehicleID'];
 if (isset($_REQUEST['subdriverID']) && $_REQUEST['subdriverID']>0) $DB_Where .= " AND v4_SubActivity.DriverID=".$_REQUEST['subdriverID'];
 if (isset($_REQUEST['actionID']) && $_REQUEST['actionID']>0) $DB_Where .= " AND Expense=".$_REQUEST['actionID'];
+if (isset($_REQUEST['orderFromDate']) && $_REQUEST['orderFromDate']>0) $DB_Where .= " AND Datum >='".$_REQUEST['orderFromDate']."'";
+if (isset($_REQUEST['orderToDate']) && $_REQUEST['orderToDate']>0) $DB_Where .= " AND Datum <='".$_REQUEST['orderToDate']."'";
 
 #********************************
 # kolone za koje je moguc Search 

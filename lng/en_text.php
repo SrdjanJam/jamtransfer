@@ -839,7 +839,7 @@ define("NO_OF","No of:");
 define("TRANSFER_STATUS_2","Transfer status:");
 define("CHANGED","Changed");
 define("TEMP","Temp");
-define("DRIVER_CONFIRMATION_STATUS","Driver confirmation status:");
+define("DRIVER_CONFIRMATION_STATUS","Driver confirmation status");
 
 
 define("ACTUAL_TRANSFERS","Actual transfers");
