@@ -52,6 +52,7 @@ if ((isset($_SESSION['UseDriverID']) && $_SESSION['UseDriverID']>0) || $_REQUEST
 		$terminals_arr = substr($terminals_arr,0,strlen($terminals_arr)-1);	
 		$DB_Where .= " AND PlaceID in (".$terminals_arr.")";
 	}
+	else $DB_Where .= " AND PlaceID = 0";
 }
 # dodavanje search parametra u qry
 # DB_Where sad ima sve potrebno za qry

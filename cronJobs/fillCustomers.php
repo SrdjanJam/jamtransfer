@@ -6,9 +6,12 @@
 
  */
 $root='/home/jamtrans/laravel/public/wis.jamtransfer.com';
-
-require_once $root . '/config.php';
-
+$cronjob=true;
+//require_once $root . '/config.php';
+define("DB_HOST", "127.0.0.1");
+$DB_USER="jamtrans_cms";
+$DB_PASSWORD="~5%OuH{etSL)";
+$DB_NAME="jamtrans_touradria";
 require_once $root . '/db/db.class.php';
 require_once $root . '/db/v4_OrdersMaster.class.php';
 require_once $root . '/db/v4_Customers.class.php';

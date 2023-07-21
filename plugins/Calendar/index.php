@@ -28,7 +28,7 @@
 	for ($i=1; $i<13; $i++)
 	{
 		$shmonth->AddValue($i);
-		$shmonth->AddOutput($monthNames[$i-1]);
+		$shmonth->AddOutput($monthNames[$i]);
 		if ($i == $cMonth) $shmonth->AddSelected($i);
 	}
 	$shmonth->SmartyAssign();

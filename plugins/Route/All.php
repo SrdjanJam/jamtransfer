@@ -37,7 +37,7 @@ $flds = array();
 $DB_Where = " " . $_REQUEST['where'];
 $DB_Where .= $filter;
 
-$routes_arr = "";
+$routes_arr = "0,";
 
 if (isset($_SESSION['UseDriverID'])) {
 	$sql="SELECT RouteID FROM `v4_DriverTerminals`,v4_RoutesTerminals WHERE `DriverID`=".$_SESSION['UseDriverID']." and v4_DriverTerminals.TerminalID=v4_RoutesTerminals.TerminalID";		
@@ -59,6 +59,7 @@ if (isset($_SESSION['UseDriverID'])) {
 		$routes_arr = substr($routes_arr,0,strlen($routes_arr)-1);	
 		$DB_Where .= " AND RouteID in (".$routes_arr.")";
 	}
+	else $DB_Where .= " AND RouteID=0 ";
 }
 else if ($_REQUEST['Type']>0) {
 	$sql="SELECT TopRouteID FROM `v4_TopRoutes` WHERE 1=1";

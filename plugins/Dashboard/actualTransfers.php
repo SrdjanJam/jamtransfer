@@ -1,6 +1,5 @@
 <?
 	$data = '';
-
 	$db = new DataBaseMysql();
 	
 	date_default_timezone_set("Europe/Paris");		
@@ -80,7 +79,7 @@
 
 
         # Link & Tooltip
-        $data .=    '<a href="index.php?p=editActiveTransfer&rec_no='.
+        $data .=    '<a href="orders/detail/'.
 		            $row['DetailsID'].
 		            '" title="<b>'.$row['OrderID'] . '-'.$row['TNo'] .' - '. $row['PaxName'] . '</b>" 
 		            data-content="'. str_replace('"', '',$ttip) .'" 

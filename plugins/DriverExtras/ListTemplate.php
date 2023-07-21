@@ -31,7 +31,7 @@ if (isset($_SESSION['UseDriverID']) && $_SESSION['UseDriverID']>0) {
 		</div>		
 		
 		<div class="col-md-1">
-			<?=PROVISION;?> (%)
+			Provision (%)
 		</div>		
 		
 		<div class="col-md-1">
@@ -60,18 +60,18 @@ if (isset($_SESSION['UseDriverID']) && $_SESSION['UseDriverID']>0) {
 			</div>
 
 			<!-- DriverPrice -->
-			<div class="col-md-1 extras" data-id="{{ID}}">
+			<div class="col-md-1 extras" data-id="{{ID}}" data-name="{{ServiceEN}}">
 				<input type="text" name="DriverPrice" id="DriverPrice"  class="w10 show_hide" value="{{DriverPrice}}" style="width:100%;" >
 			</div>			
 			
 			<!-- Provisoin -->
-			<div class="col-md-1 extras" data-id="{{ID}}">
+			<div class="col-md-1 extras" data-id="{{ID}}" data-name="{{ServiceEN}}">
 				<input type="text" name="Provision" id="Provision"  class="w10 show_hide" value="{{Provision}}" style="width:100%;" >
 			</div>		
 			
 			<!-- Price -->
 			<div class="col-md-1 extras" data-id="{{ID}}">
-				<span>{{Price}}</span>
+				<span id="Price">{{Price}}</span>
 			</div>
 
 		</div>
@@ -86,20 +86,21 @@ if (isset($_SESSION['UseDriverID']) && $_SESSION['UseDriverID']>0) {
 		});	
 		
 		$('.extras input').change(function(){
-			
+			var driverprice=0;
+			var provision=0;
 			var extrasid=$(this).parent().attr('data-id');
 			var extrasname=$(this).parent().attr('data-name');
 			var driverextras=$(this).val();				
 			if ($(this).attr('name')=='DriverPrice') {
 				var driverprice=$(this).val();
+				var provision=$(this).parent().parent().find('#Provision').val(); 
 				driverextras=1;
 			}
-			else var driverprice=0;				
 			if ($(this).attr('name')=='Provision') {
 				var provision=$(this).val();
+				var driverprice=$(this).parent().parent().find('#DriverPrice').val(); 				
 				driverextras=1;
 			}	
-			else var provision=0;	
 			var base=window.rootbase;
 
 			if (window.location.host=='localhost') base=base+'/jamtransfer';
@@ -108,13 +109,17 @@ if (isset($_SESSION['UseDriverID']) && $_SESSION['UseDriverID']>0) {
 			var $t = $(this);
 			console.log(link+'?'+param);
 			$.ajax({
-				type: 'POST',
-				url: link,
+				type: 'GET',
+				url: (link+'?'+param),
 				data: param,
+				contentType: "application/json",
+				dataType: 'jsonp',
+				
 				success: function(data) {
-					if (data==0) $t.parent().parent().find('.show_hide').hide(500);
-					if (data==1) $t.parent().parent().find('.show_hide').show(500);
-					
+					var de = data.driverextras;
+					if (de==0) $t.parent().parent().find('.show_hide').hide(500);
+					if (de==1) $t.parent().parent().find('.show_hide').show(500);
+					$t.parent().parent().find('#Price').text(data.price);
 					toastr['success'](window.success);	
 				}				
 			});

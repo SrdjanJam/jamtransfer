@@ -7,6 +7,7 @@
 		var where  = $("#whereCondition").val(); // glavni filter koji uvijek radi
 	 	var status = $("#Type").val(); // prikazuje po tipu	
 	 	var status2 = $("#Type2").val(); // prikazuje po tipu	
+	 	var status3 = $("#Type3").val(); // prikazuje po tipu	
 		
 	 	var active = $("#Active").val(); // prikazuje samo aktivne	
 	 	var approved = $("#Approved").val(); // prikazuje samo aktivne	
@@ -84,6 +85,7 @@
 		'where='+where+
 		'&Type='+status+
 		'&Type2='+status2+
+		'&Type3='+status3+
 		'&Active='+active+
 		'&Approved='+approved+
 	 	'&Search='+filter+

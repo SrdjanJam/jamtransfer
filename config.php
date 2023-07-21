@@ -70,6 +70,7 @@ $smarty->assign('root_home',ROOT_HOME);
 $smarty->assign('root',ROOT);
 
 
+
 // v4_Statuses =====================================================================
 $st = new v4_Statuses;
 $where = " WHERE Type = 0 ";
@@ -92,7 +93,6 @@ foreach($keys as $key){
 
 }
 // =====================================================================================
-
 
 // LANGUAGES
 if ( isset($_SESSION['CMSLang']) and $_SESSION['CMSLang'] != '') {
@@ -194,7 +194,7 @@ $vehicletypes=$_SESSION['vehicletypes'];*/
 		$rEx = $db->RunQuery($qEx);
 		while ($ex = $rEx->fetch_object()) {
 			$extras[$ex->ID]=$ex;
-		}		
+		}	
 		// vehicleType
 		$qVT = "SELECT 
 			`VehicleTypeID`, 

@@ -1,5 +1,7 @@
 <?
 $smarty->assign('selectapproved',true);
+$smarty->assign('date1',true);
+$smarty->assign('date2',true);
 ?>
 
 <script type="text/x-handlebars-template" id="ItemListTemplate">

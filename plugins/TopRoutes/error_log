@@ -1,0 +1,2 @@
+[05-Jul-2023 09:11:31 UTC] PHP Fatal error:  Out of memory (allocated 4194304) (tried to allocate 4096 bytes) in /home/jamtrans/laravel/public/wis.jamtransfer.com/config.php on line 181
+[05-Jul-2023 10:56:46 UTC] PHP Fatal error:  Out of memory (allocated 2097152) (tried to allocate 147456 bytes) in /home/jamtrans/laravel/public/wis.jamtransfer.com/config.php on line 46

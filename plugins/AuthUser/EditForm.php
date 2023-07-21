@@ -169,16 +169,14 @@
 							<div class="row">
 								<div class="col-md-3 "><label><?= CITY ?></label></div>
 								<div class="col-md-9">
-									<input id="City" name="City" type="text"  class="w100"
-									required value="{{City}}"
+									<input id="City" name="City" type="text"  class="w100" value="{{City}}"
 									<?= READ_ONLY_FLD ?>>
 								</div>
 							</div>
 							<div class="row">
 								<div class="col-md-3 "><label><?= ZIP ?></label></div>
 								<div class="col-md-9">
-									<input id="Zip" name="Zip" type="text"  class="w25"
-									required value="{{Zip}}"
+									<input id="Zip" name="Zip" type="text"  class="w25" value="{{Zip}}"
 									<?= READ_ONLY_FLD ?>>
 								</div>
 							</div>

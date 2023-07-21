@@ -25,8 +25,9 @@ $StatusDescription = array(
 	$timeBeginD=date('d',$timeBegin);
 	$timeBeginF="'".$timeBeginY."-".$timeBeginM."-".$timeBeginD."'";
 	$q = "SELECT v4_AuthLevels.AuthLevelID as level,count(*) as value FROM `v4_OrderDetails`,v4_AuthLevels 
-		WHERE `TransferStatus` <9 and  v4_AuthLevels.AuthLevelID=`UserLevelID` AND OrderDate>=(".$timeBeginF.")
-		 GROUP BY `UserLevelID`";
+		WHERE `TransferStatus` <9 and  v4_AuthLevels.AuthLevelID=`UserLevelID` AND OrderDate>=(".$timeBeginF.")";
+	if (isset($_SESSION['UseDriverID'])) $q .= " AND DriverID = ".$_SESSION['UseDriverID'];	
+	$q .= " GROUP BY `UserLevelID`";
 	$r = $db->RunQuery($q);
 	$levels="[";
 	$values="[";
@@ -48,9 +49,10 @@ $StatusDescription = array(
 	$timeEndY=date('Y',time());
 	$timeBeginF="'".$timeBeginY."-".$timeBeginM."-01'";
 	$timeEndF="'".$timeEndY."-".$timeEndM."-01'";
-	$q2 = "SELECT MONTH(`MOrderDate`) as month, YEAR(`MOrderDate`) as year, sum(`MOrderPriceEUR`) as value FROM `v4_OrdersMaster` 
-		WHERE `MOrderStatus` not in (3,9) and MOrderDate>=(".$timeBeginF.") and  MOrderDate<(".$timeEndF.")
-		GROUP BY MONTH(`MOrderDate`) ORDER BY MOrderDate";
+	$q2 = "SELECT MONTH(`OrderDate`) as month, YEAR(`OrderDate`) as year, sum(`DetailPrice`) as value FROM `v4_OrderDetails` 
+		WHERE `TransferStatus` not in (3,9) and OrderDate>=(".$timeBeginF.") and  OrderDate<(".$timeEndF.") ";
+	if (isset($_SESSION['UseDriverID'])) $q2 .= " AND DriverID = ".$_SESSION['UseDriverID'];			
+	$q2 .= "	GROUP BY MONTH(`OrderDate`) ORDER BY OrderDate";
 	$r2 = $db->RunQuery($q2);
 	$months2="[";
 	$values2="[";

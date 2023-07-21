@@ -1107,7 +1107,7 @@ Handlebars.registerHelper("driverSelect", function(id,routeId,vehicleTypeId) {
 					selector += 'data-email="'+val.Email +'" ';
 					selector += 'data-realname="'+val.RealName +'" ';
 					
-					if (val.UserID == id) {
+					if (val.UserID == id && val.VehicleType==vehicleTypeId) {
 						selector += ' selected="selected" ';
 					}
 
@@ -1154,7 +1154,7 @@ Handlebars.registerHelper("userSelect", function(id,levelId,field) {
 			},
 			success: function(data) {
 				$.each(data, function(i,val) {
-					selector += '<option value="' + val.UserID + '" ';
+					selector += '<option data-levelid="' + val.LevelID+'" value="' + val.UserID + '" ';
 					if (val.UserID == id) {
 						selector += ' selected="selected" ';
 					}
@@ -1284,7 +1284,7 @@ Handlebars.registerHelper("listDriversByRoute", function(RouteID, PickupDate, Pi
 		var url = 'api/getCarsAjax.php?RouteID='+RouteID+'&TransferDate='+PickupDate+'&TransferTime='+PickupTime+'&callback=';
 		var list = '';
 		var funcArgs = '';
-
+		console.log(url);
 		$.ajax({
 			type: 'POST',
 			url: url,

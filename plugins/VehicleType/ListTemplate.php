@@ -15,19 +15,19 @@ if (isset($_SESSION['UseDriverID']) && $_SESSION['UseDriverID']>0) {
 
 	<div class="row row-edit">
 		
-		<div class="col-md-3">
+		<div class="col-md-1">
 			<?=VEHICLETYPEID;?>
 		</div>
 
-		<div class="col-md-3">
+		<div class="col-md-2">
 			<?=VEHICLE_TYPE;?>
 		</div>
 
-		<div class="col-md-3">
+		<div class="col-md-1">
 			<?=MAX;?>
 		</div>	
 
-		<div class="col-md-3">
+		<div class="col-md-8">
 			<?=DESCRIPTION;?>
 		</div>
 					
@@ -40,19 +40,19 @@ if (isset($_SESSION['UseDriverID']) && $_SESSION['UseDriverID']>0) {
 			style="border-top:1px solid #ddd" 
 			id="t_{{VehicleTypeID}}">
 		
-					<div class="col-md-3">
+					<div class="col-md-1">
 						<strong>{{VehicleTypeID}}</strong>
 					</div>
 
-					<div class="col-md-3">
+					<div class="col-md-2">
 						{{VehicleTypeName}}
 					</div>
 
-					<div class="col-md-3">
+					<div class="col-md-1">
 						<i class="fa fa-user"></i> {{Max}}
 					</div>
 
-					<div class="col-md-3">
+					<div class="col-md-8">
 						{{{Description}}}
 					</div>
 			</div>

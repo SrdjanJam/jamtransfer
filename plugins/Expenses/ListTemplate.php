@@ -28,7 +28,92 @@ $smarty->assign('date2',true);
 	background: #b3ccff;
 	box-shadow: 2px 1px 6px 2px #888888;
 }
-/* ------------------------------------------------------------- */
+
+.right-edit{
+	border-bottom: 1px solid #1b8aab;
+	font-size: 22px;
+	background: #c8dff3;
+	padding: 1px 5px;
+	border-radius: 5px;
+	box-shadow: 2px 1px 3px 0px #6ba4e3;
+	/* box-shadow: 2px 1px 3px 0px #4a4848; old */
+	text-shadow: #4ba7e1 1px 0 2px;
+}
+
+.right-edit a{
+	color: #1186e0;
+	/* Old:
+	color: #0c81e5;
+	background: #dbdbdb; 
+	*/
+}
+
+.right-edit a:hover{
+	color: #009efb;
+}
+
+.inner-edit{
+	border-style: none !important;
+}
+
+.icon h4{
+	color: cornflowerblue;
+}
+
+.grey{
+	background-color: #6cd7f3 !important;
+}
+
+.green-text{
+	color: green !important;
+}
+
+.red-text{
+	color: red !important;
+}
+
+/* Sum edit for report: */
+.sum-edit{
+	display: flex;
+}
+.sum-edit div{
+	padding: 5px;
+	flex-basis: 100%;
+	/* text-align: center; */
+}
+
+.sum-edit-labels{
+	padding: 5px;
+}
+.sum-edit-labels p{
+	margin-bottom: 0;
+	color: #626161;
+	font-weight: bold;
+	direction: rtl;
+}
+
+.sum-edit-labels p, .sum-edit-2 div{
+	direction: rtl; /* from right to left position*/
+}
+
+.sum-edit-2{
+	padding: 5px;
+}
+
+.sum-edit-2:nth-of-type(2n){
+	background: #ebf0f5;
+}
+
+.no-style{
+	all: unset; /* No style for this element */
+}
+
+.add-direction{
+	direction: ltr !important;
+}
+
+/* -------------------------------- */
+
 
  </style>
   
@@ -37,7 +122,7 @@ $smarty->assign('date2',true);
 <div class="nav-tabs-custom nav-tabs-custom-edit">
 	<ul class="nav nav-tabs dorder">
 					<li class="active"><a href="#tab_1" data-toggle="tab">List</a></li>
-					<li><a href="#tab_2" data-toggle="tab">Reporter</a></li>
+					<li><a href="#tab_2" data-toggle="tab">SubDriver Balance</a></li>
 	</ul>
 	<div class="tab-content tab-content-edit">	
 		<div class="tab-pane active" id="tab_1">
@@ -146,11 +231,94 @@ $smarty->assign('date2',true);
 			{{/each}}
 		</div>
 
-		<!-- Reporter: -->
+		<!-- SubDriver Balance: -->
 		<div class="tab-pane" id="tab_2">
 			<div id="sum" class="sum-edit">
+				<div class="row" style="border-bottom:1px solid #000;">
+					<div class="col-md-2">
+						<strong>ID - Subdriver</strong>
+					</div>
+					<div class="col-md-1">
+						<strong>Deposit </strong>
+					</div>
+					<div class="col-sm-3 ">
+						<div class="col-sm-12 ">
+							<strong>Cash</strong>				
+						</div>
+						<div class="col-sm-4 ">
+							<strong>Drives</strong>
+						</div>	
+						<div class="col-sm-4 ">
+							<strong>Received</strong>
+						</div>		
+						<div class="col-sm-4 ">
+							<strong>Expenses</strong>
+						</div>			
 
+					</div>	
+					<div class="col-sm-1 ">
+						<strong>Balance</strong>
+					</div>				
+					<div class="col-sm-3 ">
+						<div class="col-sm-12 ">
+							<strong>Cash - last day</strong>
+						</div>					
+						<div class="col-sm-4 ">
+							<strong>Plan</strong>
+						</div>				
+						<div class="col-sm-4 ">
+							<strong>In</strong>
+						</div>				
+						<div class="col-sm-4 ">
+							<strong>Expenses</strong>
+						</div>		
+					</div>
+					<div class="col-sm-1">
+						<strong>Unapproved Expenses </strong> 
+					</div>
+					<div class="col-sm-1 ">
+						<strong>Balance total</strong>
+					</div>						
+				</div>
 			</div> <!-- End of #sum -->
+			{{#each Item2}}
+				<div id="sum" class="sum-edit sum-edit-2">
+					<div class="add-direction {{#compare Active "==" 1}}green-text{{/compare}} {{#compare Active "!=" 1}}red-text{{/compare}}">
+						{{SubDriver}}
+					</div>					
+					<div>
+						{{Depostit}}
+					</div>
+					<div>
+						{{Primljeno}}
+					</div>
+					<div>
+						{{RCash}} 
+					</div>
+					<div>
+						{{Trosak}}  
+					</div>					
+					<div>
+						{{Balance}}  
+					</div>
+					<div>
+						{{CashPlan}} 
+					</div>
+					<div>
+						{{Primljeno2}}  
+					</div>
+					<div>
+						{{Trosak3}}  
+					</div>
+					<div>
+						{{UnapprovedExpenses}} 
+					</div>
+					<div>
+						<b style="color:#0f5b89;">{{BalanceT}}</b> 
+					</div>
+				</div> <!-- End of #sum -->
+			{{/each}}
+
 		</div>	
 
 	</div>

@@ -69,6 +69,20 @@ value=" WHERE {$ItemID} > 0">
 				</select>
 			</div>
 		</div>
+		{/if}		
+		{if isset($selecttype3)}
+		<div class="col-md-2">
+			<i class="fa fa-list-ul edit-fa"></i>
+			<div class="form-group group-edit">
+			
+				<select id="Type3" class="w75 form-control control-edit" onchange="allItems();">
+					<option value="0">{$ALL} {$STATUS}</option>
+					{section name=pom3 loop=$options3}
+						<option value="{$options3[pom3].id}">{$options3[pom3].name}</option>
+					{/section}
+				</select>
+			</div>
+		</div>
 		{/if}
 
 		<div class="col-md-2">
@@ -129,6 +143,13 @@ value=" WHERE {$ItemID} > 0">
 		</div>
 		{/if}
 
+		{if isset($date1)}	
+			<input id='orderFromDate' class="datepicker datepicker-edit" name='orderFromDate'  placeholder="From Date" onchange="allItems();" />		
+		{/if}		
+		{if isset($date2)}	
+			<input id='orderToDate' class="datepicker datepicker-edit" name='orderToDate'  placeholder="To Date" onchange="allItems();" />
+		{/if}
+		
 	</div> <!-- /.filter -->
 </div>
 
