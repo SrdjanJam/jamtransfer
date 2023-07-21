@@ -102,7 +102,7 @@
 					<!-- Bootstrap: -->
 					<!-- <script src="js/bootstrap.js" type="text/javascript"></script> -->
 					<!-- cdn: -->
-					<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+					{* <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script> *}
 			<!-- ======================================================================================== -->
 					<!-- Jquery ui css: -->
 					<!-- <link rel="stylesheet" href="css/jquery-ui-1.8.9.custom.css" type="text/css" /> -->
