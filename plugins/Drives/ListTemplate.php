@@ -39,30 +39,23 @@
 		<div class="tab-pane active" id="tab_1">
 			<div class="row row-edit">
 
+				
 				<div class="col-md-1">
-					<?=ORDERID;?>
-				</div>					
-				<div class="col-md-1">
-					<?=PICKUP_DATE;?>
-				</div>				
-				<div class="col-md-1">
-					<?=PICKUP_TIME;?>
+					<?=ID;?>
 				</div>					
 				<div class="col-md-2">
 					<?=SUBDRIVERS;?>
 				</div>					
 				<div class="col-md-2">
-					<?=VEHICLES;?>
-				</div>							
+					Number of Drives
+				</div>					
 				<div class="col-md-2">
-					<?=ROUTES;?>
-				</div>					
-				<div class="col-md-1">
-					<?=STATUS;?>
-				</div>					
-				<div class="col-md-1">
-					<?=CASH;?>
-				</div>	
+					Total Value
+				</div>				
+				<div class="col-md-2">
+					FreeDays (now Working Days)
+				</div>							
+	
 			</div>	
 			{{#each Item}}
 				<div>
@@ -70,31 +63,20 @@
 					<div class="row {{color}} pad1em listTile listTile-edit orders-edit" 
 					id="t_{{DetailsID}}">
 						<div class="col-md-1">
-							<a href="orders/detail/{{DetailsID}}" target="_blank">{{OrderID}}-{{TNo}}</a>
+							{{AuthUserID}}
 						</div>
-						<div class="col-md-1">						
-							{{SubPickupDate}} 
-						</div>						
-						<div class="col-md-1">						
-							{{SubPickupTime}} 
-						</div>						
 						<div class="col-md-2">						
 							{{SubDriverName}}
 						</div>						
 						<div class="col-md-2">						
-							{{Vehicle}} {{#compare VehicleNo ">" 1}}{{VehicleNo}} <i class="fa fa-car" aria-hidden="true"></i>{{/compare}}
+							{{NoT}} 
 						</div>						
 						<div class="col-md-2">						
-							{{PickupName}}-{{DropName}}
+							{{Value}} 
 						</div>						
-						<div class="col-md-1">						
-							{{displayDriverConfStatusText DriverConfStatus}}
-						</div>							
-						{{#compare PayLater ">" 0}}
-						<div class="col-md-1">
-							{{PayLater}}/{{CashIn}}
-						</div>		
-						{{/compare}}
+						<div class="col-md-2">						
+							{{FreeDays}} 
+						</div>						
 					</div>
 
 				</div>

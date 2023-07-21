@@ -28,7 +28,6 @@ if(!isset($_REQUEST['sortField'])) $_REQUEST['sortField']="";
 if(!isset($_REQUEST['sortDirection'])) $_REQUEST['sortDirection']="";
 $page 		= $_REQUEST['page'];
 $length 	= $_REQUEST['length'];
-$driverConfStatus 	= $_REQUEST['driverConfStatus'];
 $sortField 	= $_REQUEST['sortField'];
 $sortDirection 	= $_REQUEST['sortDirection'];
 
@@ -50,13 +49,46 @@ $flds = array();
 $sum=array();
 
 $dbWhere = " " . $_REQUEST['where'];
-$dbWhere .= $filter;
 
-$dbWhere .=	" AND v4_OrderDetails.DriverConfStatus not in (0,1,2,4) AND v4_OrderDetails.SubDriver>0 AND v4_OrderDetails.DriverID = '".$_SESSION['UseDriverID']."' ";
-if (isset($_REQUEST['orderFromDate']) && $_REQUEST['orderFromDate']>0) $dbWhere .= " AND PickupDate >='".$_REQUEST['orderFromDate']."'";
-if (isset($_REQUEST['orderToDate']) && $_REQUEST['orderToDate']>0) $dbWhere .= " AND PickupDate <='".$_REQUEST['orderToDate']."'";
-
-
+$sql="SELECT `SubDriver`,count(*) as quant, sum(DriversPrice) as price FROM `v4_OrderDetails` WHERE `TransferStatus` not in (3,9) AND `SubDriver`>0 AND DriverConfStatus not in (0,1,2,4)  AND DriverID = '".$_SESSION['UseDriverID']."'";
+if (isset($_REQUEST['orderFromDate']) && $_REQUEST['orderFromDate']>0) $sql .= " AND PickupDate >='".$_REQUEST['orderFromDate']."'";
+if (isset($_REQUEST['orderToDate']) && $_REQUEST['orderToDate']>0) $sql .= " AND PickupDate <='".$_REQUEST['orderToDate']."'";
+$sql .= $filter;
+$sql .=" GROUP BY subdriver ";
+$result = $dbT->RunQuery($sql);
+while($row = $result->fetch_array(MYSQLI_ASSOC)){
+	$sdid=$row['SubDriver'];
+	$sd_not[$sdid]=$row['quant'];
+	$sd_price[$sdid]+=$row['price'];
+}
+	
+$sql="SELECT `SubDriver2`,count(*) as quant, sum(DriversPrice) as price FROM `v4_OrderDetails` WHERE `TransferStatus` not in (3,9) AND `SubDriver2`>0 AND DriverConfStatus not in (0,1,2,4)  AND DriverID = '".$_SESSION['UseDriverID']."'";
+if (isset($_REQUEST['orderFromDate']) && $_REQUEST['orderFromDate']>0) $sql .= " AND PickupDate >='".$_REQUEST['orderFromDate']."'";
+if (isset($_REQUEST['orderToDate']) && $_REQUEST['orderToDate']>0) $sql .= " AND PickupDate <='".$_REQUEST['orderToDate']."'";
+$sql .= $filter;
+$sql .=" GROUP BY subdriver2 ";
+	$result = $dbT->RunQuery($sql);
+	while($row = $result->fetch_array(MYSQLI_ASSOC)){
+		$sdid=$row['SubDriver2'];
+		$sd_not[$sdid]+=$row['quant'];
+		$sd_price[$sdid]+=$row['price'];		
+	}
+$sql="SELECT `SubDriver3`,count(*) as quant, sum(DriversPrice) as price FROM `v4_OrderDetails` WHERE `TransferStatus` not in (3,9) AND `SubDriver3`>0 AND DriverConfStatus not in (0,1,2,4)  AND DriverID = '".$_SESSION['UseDriverID']."'";
+if (isset($_REQUEST['orderFromDate']) && $_REQUEST['orderFromDate']>0) $sql .= " AND PickupDate >='".$_REQUEST['orderFromDate']."'";
+if (isset($_REQUEST['orderToDate']) && $_REQUEST['orderToDate']>0) $sql .= " AND PickupDate <='".$_REQUEST['orderToDate']."'";
+$sql .= $filter;
+$sql .=" GROUP BY subdriver3 ";
+	$result = $dbT->RunQuery($sql);
+	while($row = $result->fetch_array(MYSQLI_ASSOC)){
+		$sdid=$row['SubDriver3'];
+		$sd_not[$sdid]+=$row['quant'];
+		$sd_price[$sdid]+=$row['price'];
+	}	
+foreach ($sd_not as $nn => $key) {
+	$sdids .= $nn.",";
+}	
+$sdids = substr($sdids,0,strlen($sdids)-1);	
+$dbWhere .= " AND AuthUserID in (".$sdids.") ";
 # dodavanje search parametra u qry
 # DB_Where sad ima sve potrebno za qry
 if ( $_REQUEST['Search'] != "" )
@@ -68,84 +100,46 @@ if ( $_REQUEST['Search'] != "" )
 		# If column name exists
 		if ($aColumns[$i] != " ")
 		$dbWhere .= $aColumns[$i]." LIKE '%"
-		.$od->myreal_escape_string( $_REQUEST['Search'] )."%' OR ";
+		.$db->myreal_escape_string( $_REQUEST['Search'] )."%' OR ";
 	}
 	$dbWhere = substr_replace( $dbWhere, "", -3 );
 	$dbWhere .= ')';
 }
 
 
-$odTotalRecords = $od->getFullOrderByDetailsID($sortField, $sortDirection, '' , $dbWhere);
-	
-$dbk = $od->getFullOrderByDetailsID($sortField, $sortDirection, $limit  , $dbWhere);
-//$dbWhere .= " GROUP BY SubDriver "; 
-//$odSD1 = $od->getFullOrderByDetailsID("SubDriver", $sortDirection, '' , $dbWhere);
 
-/*$subdrivers=array();
-foreach ($odTotalRecords as $nn => $key)
-{
-	$od->getRow($key);  
-	$subdrivers[$od->getSubDriver()]+=1;	
-	if ($od->getSubDriver2()>0) $subdrivers[$od->getSubDriver2()]+=1;
-	if ($od->getSubDriver3()>0) $subdrivers[$od->getSubDriver3()]+=1;
-}	
-foreach ($subdrivers as $nn => $key) {
-	$row['sdid']=$nn;
-	$row['not']=$key;
-	$sum[]=$row;
-}*/
+$dbTotalRecords = $db->getKeysBy($keyName. ' ASC', '',$dbWhere);
+$dbk = $db->getKeysBy($keyName .' '. $sortOrder, $limit , $dbWhere);
+
+
 if (count($dbk) != 0) {
     foreach ($dbk as $nn => $key)
     {
-    	$od->getRow($key);    	
+    	$db->getRow($key);    	
     	# get fields and values
-		$detailFlds = $od->fieldValues();
-
-		$detailFlds['VehicleTypeName'] = $vehicletypes[$od->getVehicleType()]->VehicleTypeName;
-
-		//zamena naziva mesta sa engleskim nazivom iz tabele places
-		$PickupID=$od->getPickupID();
-		$DropID=$od->getDropID();
-		if ($PickupID!=0) {
-			$pl->getRow($PickupID);
-			$detailFlds["PickupName"]=$pl->getPlaceNameEN(); 
+		$detailFlds = $db->fieldValues();
+		$detailFlds["SubDriverName"]=$db->getAuthUserRealName();
+		$detailFlds["NoT"]=$sd_not[$key];
+		$detailFlds["Value"]=number_format($sd_price[$key],2);
+		if (!empty($_REQUEST['orderFromDate']) ) {
+			if (empty($_REQUEST['orderToDate'])) $_REQUEST['orderToDate']=date('Y-m-d');
+			$workingDaysAll=((strtotime($_REQUEST['orderToDate'])-strtotime($_REQUEST['orderFromDate']))/(3600*24))+1;
 		}
-		if ($DropID!=0) {
-			$pl->getRow($DropID);
-			$detailFlds["DropName"]=$pl->getPlaceNameEN();
-		}
-		$au->getRow($od->getSubDriver());
-		$detailFlds["SubDriverName"]=$au->getAuthUserRealName();
-		$sv->getRow($od->getCar());
-		$detailFlds["Vehicle"]=$sv->getVehicleDescription();
-		$detailFlds["VehicleNo"]="1";
+		else $workingDaysAll="";
+		$detailFlds["FreeDays"]=$workingDaysAll;
+
 		$out[] = $detailFlds; 
-		if ($od->getSubDriver2()>0) {
-			$au->getRow($od->getSubDriver2());
-			$detailFlds["SubDriverName"]=$au->getAuthUserRealName();
-			$sv->getRow($od->getCar2());
-			$detailFlds["Vehicle"]=$sv->getVehicleDescription();
-			$detailFlds["VehicleNo"]="2";
-			$out[] = $detailFlds; 
-		}		
-		if ($od->getSubDriver3()>0) {
-			$au->getRow($od->getSubDriver3());
-			$detailFlds["SubDriverName"]=$au->getAuthUserRealName();
-			$sv->getRow($od->getCar3());
-			$detailFlds["Vehicle"]=$sv->getVehicleDescription();
-			$detailFlds["VehicleNo"]="3";
-			$out[] = $detailFlds; 
-		}
+
     }	
+	
 }
 	
 
 # send output back
 $output = array(
-'sum' =>$sum,
 'sortField' => $sortField,
 'sortDirection' => $sortDirection,
-'recordsTotal' => count($odTotalRecords),
+'recordsTotal' => count($dbTotalRecords),
 'data' =>$out
 );
 echo $_GET['callback'] . '(' . json_encode($output) . ')';	
