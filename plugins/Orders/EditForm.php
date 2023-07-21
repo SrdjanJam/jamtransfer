@@ -287,10 +287,41 @@
 						{{#compare tab "==" "pdriver"}}						
 						<div class="row dpdriver">
 							<div class="col-md-3 "><label><?= DRIVER_NAME ?></label></div>
-							<div class="col-md-9 driver" id="newDriverName">	
+							<div class="col-md-8 driver" id="newDriverName">	
 								{{driverSelect details.DriverID details.RouteID details.VehicleType}}
 							</div>
+							<div class="col-md-1">
+								<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#routeDriversModal">
+								<i class="fa fa-search"></i></button>
+							</div>							
 						</div>	
+						
+								<div class="modal fade"  id="routeDriversModal">
+									<div class="modal-dialog" style="width:800px">
+										<div class="modal-content">
+											<div class="modal-header">
+												<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+													<span aria-hidden="true">&times;</span>
+												</button>
+												<h4 class="modal-title">Drivers for route {{details.RouteID}}</h4>
+											</div>
+											<div class="modal-body" style="padding:10px">
+												<strong>
+												<div class="col-md-5">Driver Company</div>
+												<div class="col-md-1">Pax</div>
+												<div class="col-md-2 right">Base</div>
+												<div class="col-md-2 right">FinalPrice</div>
+												<div class="col-md-2 right">Neto</div>
+												</strong><br>
+												{{listDriversByRoute details.RouteID details.PickupDate details.PickupTime}}
+											</div>
+											<div class="modal-footer">
+												<button type="button" class="btn btn-primary col-md-12" data-dismiss="modal">Close</button>
+											</div>
+										</div>
+									</div>
+								</div>	
+								
 						<div class="row dpdriver">
 							<div class="col-md-4">
 								<div class="row">
@@ -640,8 +671,8 @@
 			//$('#VehicleType').val($('#DriverID :selected').attr('data-vehicletype'));
 			$('#DriversPrice').val($('#DriverID :selected').attr('data-driverprice'));
 			$('#DriverPaymentAmt').val($('#DriverID :selected').attr('data-driverprice'));
-			var vtid = $('#DriverID :selected').attr('data-vehicletype');
-			$('#VehicleType').val(vtid);
+			//var vtid = $('#DriverID :selected').attr('data-vehicletype');
+			//$('#VehicleType').val(vtid);
 
 		})			
 		// promena mobilnog nakon promene subdrivera
