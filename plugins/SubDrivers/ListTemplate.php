@@ -3,6 +3,9 @@
 	$smarty->assign('selectactive2',true);
 ?>	
 <script type="text/x-handlebars-template" id="ItemListTemplate">
+	<div>
+		<a target='_blank' href='plugins/SubDrivers/getRaptorDrivers.php' style="color:blue;background:silver;"><i class="fas fa-external-link"></i>&nbsp;<u><?=RAPTOR;?></u></a>
+	</div>				
 
 	<div class="row row-edit">
 		
@@ -38,11 +41,12 @@
 		
 		<div class="col-md-1">
 			<?=TASKS;?>
+		</div>		
+		
+		<div class="col-md-1">
+			DRIVES
 		</div>
 				
-		<div class="col-md-1">
-			<a target='_blank' href='plugins/SubDrivers/getRaptorDrivers.php' style="color:blue;background:silver;"><i class="fas fa-external-link"></i>&nbsp;<u><?=RAPTOR;?></u></a>
-		</div>				
 	</div>
 
 
@@ -113,6 +117,11 @@
 				<!-- Tasks: -->
 				<div class="col-md-1 col-xs-6">
 					<span><a target='_blank' href='tasks/subdrivers/{{AuthUserID}}'><?=TASKS;?></a></span>
+				</div>	
+				
+				<!-- Drives: -->
+				<div class="col-md-1 col-xs-6">
+					<span><a target='_blank' href='drives/subdrivers/{{AuthUserID}}'>Drives</a></span>
 				</div>
 				
 

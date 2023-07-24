@@ -62,7 +62,7 @@ select{
 
 		<!-- row second -->
 		<div class="row">
-			<h4>{$sdArray[pom].Transfers[pom2].PickupName} - {$sdArray[pom].Transfers[pom2].DropName}</h4>
+			<h4>{$sdArray[pom].Transfers[pom2].PickupDate} {$sdArray[pom].Transfers[pom2].PickupName} - {$sdArray[pom].Transfers[pom2].DropName}</h4>
 		</div>
 
 		<!-- row third -->

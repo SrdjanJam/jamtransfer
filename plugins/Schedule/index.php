@@ -4,7 +4,8 @@
 
 if (isset($_REQUEST["ScheduleDate"])) {
 	$DateFrom	= $_REQUEST["ScheduleDate"];
-	$DateTo	= $_REQUEST["ScheduleDate"];
+	if (isset($_REQUEST["ScheduleDate2"])) $DateTo=$_REQUEST["ScheduleDate2"];
+	else $DateTo	= $_REQUEST["ScheduleDate"];
 }
 else {	
 	//if (!isset($_POST["DateFrom"])) $DateFrom = "2022-09-04";
@@ -112,6 +113,7 @@ $q .= " AND TransferStatus < '6'";
 $q .= " AND TransferStatus != '4'"; 
 if ($DriverStatus==2) $q .= "	AND DriverConfStatus > 2 ";
 if ($DriverStatus==1) $q .= "	AND DriverConfStatus < 3 ";	
+if (isset($_REQUEST["subDriverID"])) $q .= " AND (SubDriver = ". $_REQUEST["subDriverID"] . " OR SubDriver2=". $_REQUEST["subDriverID"] . " OR SubDriver3=" . $_REQUEST["subDriverID"] .")";
 $q .= " AND AuthUserID=UserID ";
 $q .= " AND MorderID=OrderID ";
 $q .= " ORDER BY PickupDate ASC, PickupTime ASC";
@@ -159,13 +161,15 @@ if ($r->num_rows>0) {
 		$extras[]=$extras_row;
 	}
 	// $t
-	foreach ($tx as $t) {
-		//niz vozaca koji imaju transfere u zadatom vremenu
-		if ($t->SubDriver != 0) $subDArray[] = $t->SubDriver;
-		if ($t->SubDriver2 != 0) $subDArray[] = $t->SubDriver2;
-		if ($t->SubDriver3 != 0) $subDArray[] = $t->SubDriver3;	
+	if (!isset($_REQUEST["subDriverID"])) {	
+		foreach ($tx as $t) {
+			//niz vozaca koji imaju transfere u zadatom vremenu
+			if ($t->SubDriver != 0) $subDArray[] = $t->SubDriver;
+			if ($t->SubDriver2 != 0) $subDArray[] = $t->SubDriver2;
+			if ($t->SubDriver3 != 0) $subDArray[] = $t->SubDriver3;	
+		}
 	}
-
+	else $subDArray[]= $_REQUEST["subDriverID"];	
 
 	$subDArray = array_unique($subDArray); // ostavi samo jedinstvene subdrivere u nizu
 	$sdd="";

@@ -52,8 +52,11 @@
 				<div class="col-md-2">
 					Total Value
 				</div>				
-				<div class="col-md-2">
-					FreeDays (now Working Days)
+				<div class="col-md-1">
+					Free Days
+				</div>							
+				<div class="col-md-1">
+					Schedule
 				</div>							
 	
 			</div>	
@@ -74,8 +77,11 @@
 						<div class="col-md-2">						
 							{{Value}} 
 						</div>						
-						<div class="col-md-2">						
+						<div class="col-md-1">						
 							{{FreeDays}} 
+						</div>						
+						<div class="col-md-1">						
+							<span><a target='_blank' href='schedule/{{Date1}}/{{Date2}}/{{AuthUserID}}'>Schedule</a></span>
 						</div>						
 					</div>
 

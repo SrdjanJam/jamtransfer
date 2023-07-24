@@ -132,7 +132,13 @@ switch ($activePage) {
 		
 		if ($pathVars->fetchByIndex($indexStart + 1)) { 
 			$_REQUEST['ScheduleDate']=$pathVars->fetchByIndex($indexStart + 1);
+		}			
+		if ($pathVars->fetchByIndex($indexStart + 2)) { 
+			$_REQUEST['ScheduleDate2']=$pathVars->fetchByIndex($indexStart + 2);
 		}	
+		if ($pathVars->fetchByIndex($indexStart + 3)) {		
+			$_REQUEST['subDriverID']=$pathVars->fetchByIndex($indexStart + 3);
+		}
 		break;	
 		
 	case 'driversTransfers':

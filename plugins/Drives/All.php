@@ -49,40 +49,46 @@ $flds = array();
 $sum=array();
 
 $dbWhere = " " . $_REQUEST['where'];
-
-$sql="SELECT `SubDriver`,count(*) as quant, sum(DriversPrice) as price FROM `v4_OrderDetails` WHERE `TransferStatus` not in (3,9) AND `SubDriver`>0 AND DriverConfStatus not in (0,1,2,4)  AND DriverID = '".$_SESSION['UseDriverID']."'";
+$sql="SELECT min(`PickupDate`) as min,`SubDriver`,`PickupDate`,count(*) as quant, sum(DriversPrice) as price FROM `v4_OrderDetails` WHERE `TransferStatus` not in (3,9) AND `SubDriver`>0 AND DriverConfStatus not in (0,1,2,4)  AND DriverID = '".$_SESSION['UseDriverID']."'";
+if (isset($_REQUEST['subdriverID']) && $_REQUEST['subdriverID']>0) $sql .= " AND SubDriver = ".$_REQUEST['subdriverID'];
 if (isset($_REQUEST['orderFromDate']) && $_REQUEST['orderFromDate']>0) $sql .= " AND PickupDate >='".$_REQUEST['orderFromDate']."'";
 if (isset($_REQUEST['orderToDate']) && $_REQUEST['orderToDate']>0) $sql .= " AND PickupDate <='".$_REQUEST['orderToDate']."'";
 $sql .= $filter;
-$sql .=" GROUP BY subdriver ";
+$sql .=" GROUP BY PickupDate,SubDriver ";
 $result = $dbT->RunQuery($sql);
+$min=$result->fetch_array(MYSQLI_ASSOC)['min'];
 while($row = $result->fetch_array(MYSQLI_ASSOC)){
 	$sdid=$row['SubDriver'];
-	$sd_not[$sdid]=$row['quant'];
+	$sd_not[$sdid]+=$row['quant']."<br>";
 	$sd_price[$sdid]+=$row['price'];
+	$sd_workingdates[$sdid][]=$row['PickupDate'];
 }
 	
 $sql="SELECT `SubDriver2`,count(*) as quant, sum(DriversPrice) as price FROM `v4_OrderDetails` WHERE `TransferStatus` not in (3,9) AND `SubDriver2`>0 AND DriverConfStatus not in (0,1,2,4)  AND DriverID = '".$_SESSION['UseDriverID']."'";
+if (isset($_REQUEST['subdriverID']) && $_REQUEST['subdriverID']>0) $sql .= " AND SubDriver2 = ".$_REQUEST['subdriverID'];
 if (isset($_REQUEST['orderFromDate']) && $_REQUEST['orderFromDate']>0) $sql .= " AND PickupDate >='".$_REQUEST['orderFromDate']."'";
 if (isset($_REQUEST['orderToDate']) && $_REQUEST['orderToDate']>0) $sql .= " AND PickupDate <='".$_REQUEST['orderToDate']."'";
 $sql .= $filter;
-$sql .=" GROUP BY subdriver2 ";
+$sql .=" GROUP BY PickupDate,SubDriver2 ";
 	$result = $dbT->RunQuery($sql);
 	while($row = $result->fetch_array(MYSQLI_ASSOC)){
 		$sdid=$row['SubDriver2'];
 		$sd_not[$sdid]+=$row['quant'];
-		$sd_price[$sdid]+=$row['price'];		
+		$sd_price[$sdid]+=$row['price'];	
+		$sd_workingdates[$sdid][]=$row['PickupDate'];
 	}
 $sql="SELECT `SubDriver3`,count(*) as quant, sum(DriversPrice) as price FROM `v4_OrderDetails` WHERE `TransferStatus` not in (3,9) AND `SubDriver3`>0 AND DriverConfStatus not in (0,1,2,4)  AND DriverID = '".$_SESSION['UseDriverID']."'";
+if (isset($_REQUEST['subdriverID']) && $_REQUEST['subdriverID']>0) $sql .= " AND SubDriver3 = ".$_REQUEST['subdriverID'];
 if (isset($_REQUEST['orderFromDate']) && $_REQUEST['orderFromDate']>0) $sql .= " AND PickupDate >='".$_REQUEST['orderFromDate']."'";
 if (isset($_REQUEST['orderToDate']) && $_REQUEST['orderToDate']>0) $sql .= " AND PickupDate <='".$_REQUEST['orderToDate']."'";
 $sql .= $filter;
-$sql .=" GROUP BY subdriver3 ";
+$sql .=" GROUP BY PickupDate,SubDriver3 ";
 	$result = $dbT->RunQuery($sql);
 	while($row = $result->fetch_array(MYSQLI_ASSOC)){
 		$sdid=$row['SubDriver3'];
 		$sd_not[$sdid]+=$row['quant'];
 		$sd_price[$sdid]+=$row['price'];
+		$sd_workingdates[$sdid][]=$row['PickupDate'];
 	}	
 foreach ($sd_not as $nn => $key) {
 	$sdids .= $nn.",";
@@ -121,12 +127,13 @@ if (count($dbk) != 0) {
 		$detailFlds["SubDriverName"]=$db->getAuthUserRealName();
 		$detailFlds["NoT"]=$sd_not[$key];
 		$detailFlds["Value"]=number_format($sd_price[$key],2);
-		if (!empty($_REQUEST['orderFromDate']) ) {
-			if (empty($_REQUEST['orderToDate'])) $_REQUEST['orderToDate']=date('Y-m-d');
-			$workingDaysAll=((strtotime($_REQUEST['orderToDate'])-strtotime($_REQUEST['orderFromDate']))/(3600*24))+1;
-		}
-		else $workingDaysAll="";
-		$detailFlds["FreeDays"]=$workingDaysAll;
+		if (empty($_REQUEST['orderFromDate']) ) $_REQUEST['orderFromDate']=$min;
+		if (empty($_REQUEST['orderToDate'])) $_REQUEST['orderToDate']=date('Y-m-d');
+		$workingDaysAll=((strtotime($_REQUEST['orderToDate'])-strtotime($_REQUEST['orderFromDate']))/(3600*24))+1;
+		
+		$detailFlds["FreeDays"]=$workingDaysAll-count(array_filter(array_unique($sd_workingdates[$key])));
+		$detailFlds["Date1"]= $_REQUEST['orderFromDate'];
+		$detailFlds["Date2"]= $_REQUEST['orderToDate'];
 
 		$out[] = $detailFlds; 
 
