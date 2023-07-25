@@ -94,15 +94,7 @@ $carsErrorMessage = array(); // greske
                 if($au->getRow($OwnerID)===false) break;
 
                 // Driver Profiles iz v4_AuthUsers
-                //$Driver = $au->getAuthUserName();
                 $DriverCompany = $au->getAuthUserCompany();
-
-                // ovo je sranje, jer se izgleda ne moze vjerovati getRow funkciji
-                // ona ne vraca false ako ne nadje pravi slog!
-                // zato ova usporedba
-                //if($OwnerID !== $au->getAuthUserID()) break;
-
-
 
                 // check for Services
                 $serviceKeys = $s->getKeysBy("ServiceID", "ASC", "WHERE RouteID = {$RouteID} AND OwnerID = {$OwnerID} AND Active = '1'");
@@ -179,39 +171,15 @@ $carsErrorMessage = array(); // greske
                                             $sur['S10Price'] +
                                             $sur['NightPrice'];
 
- //RETURN NE TRIBA
-/*
-                            if($returnTransfer) {
-                                // vozaceva osnovna cijena za jedan smjer
-                                $DriversPrice = $s->getServicePrice1();
-
-                                // izracun popusta na Return transfer
-                                $DiscountPrice = $DriversPrice - ($DriversPrice * $ReturnDiscount / 100);
-
-                                // finalna cijena vozaca za Return transfer sa svim odbicima i dodacima
-                                $DriversPrice = $DriversPrice + $DiscountPrice + $addToPrice;
-
-                                // OneWay Price
-                                $OneWayPrice = ($DriversPrice) / 2;
-                                $OneWayPrice = calculateBasePrice($OneWayPrice, $s->getOwnerID(), $VehicleClass);
-
-                                // na finalnu cijenu vozaca dodaj proviziju
-                                $FinalPrice = calculateBasePrice($DriversPrice, $s->getOwnerID(), $VehicleClass);
-                            }
-
-// SVE JE ONE_WAY
-                            else {
-*/
-                                // inace je jedan smjer, pa dodaci idu odmah
-                                $DriversPrice = $s->getServicePrice1();
-                                $BasePrice = calculateBasePrice($DriversPrice, $s->getOwnerID(), $VehicleClass);
-                                $DriversPrice = $DriversPrice + $addToPrice;
-                                $OneWayPrice = calculateBasePrice($DriversPrice, $s->getOwnerID(), $VehicleClass);
-                                $FinalPrice = $OneWayPrice;
-//                            }
+							$DriversPrice = $s->getServicePrice1();
+							$DriversPriceAdd = $DriversPrice + $addToPrice;
+                            $specialDatesPrice = calculateSpecialDates($OwnerID,$DriversPriceAdd,$transferDate, $transferTime);
+							$DriversPriceAdd2 = $DriversPriceAdd+$specialDatesPrice;
+							$addToPrice=$addToPrice+$specialDatesPrice;
+							$Provision = returnProvision($DriversPriceAdd, $s->getOwnerID(), $VehicleClass);
+							$FinalPrice = $DriversPriceAdd+$DriversPriceAdd*$Provision/100;
 
                             // zaokruzenje cijena
-                            //$FinalPrice = nf( round($FinalPrice,0,PHP_ROUND_HALF_UP) );
                             $FinalPrice = nf( round($FinalPrice,2) );
 
                         /*
@@ -231,17 +199,7 @@ $carsErrorMessage = array(); // greske
                                 if(isVehicleOffDuty($VehicleID, $returnDate)) $okToAdd = false;
                             }
 
-
-
-                        // sortiranje top drivera ispred ostalih
-                        // kako mora biti sortirano i po cijeni
-                        // onda se cijena mnozi sa 11-rating (tako da ako je rating 10, mnozi se sa 1)
-                        // znaci ako je rating veci, rating cijena je manja
-                        // pa vozac izlazi ispred
-                        //$Rating = $FinalPrice * (11 - ShowRatings($OwnerID));
-
-                        // ako je vozilo dovoljno veliko,
-                        // spremi podatke i profil
+                        // spremi podatke i 
 
                         if( $okToAdd == true) {
 
@@ -249,9 +207,6 @@ $carsErrorMessage = array(); // greske
 
                             if($FinalPrice == 0) $okToAdd = false;
                             if($okToAdd) {
-                                $sortHelpClass      = 1000+$VehicleClass;
-                                $sortHelpCapacity   = 1000+$VehicleCapacity;
-                                $sortBy = $sortHelpCapacity.$sortHelpClass;
 
                                 $cars[] = array(
                                     'RouteID'           => $RouteID,
@@ -266,11 +221,12 @@ $carsErrorMessage = array(); // greske
                                     'VehicleCapacity'   => $VehicleCapacity,
                                     'VehicleClass'      => $VehicleClass,
                                     'WiFi'              => $WiFi,
-                                    'VehicleSort'       => $sortBy,
                                     'VehicleDescription'=> $VehicleDescription,
                                     'FinalPrice'        => nf($FinalPrice), // cijena sa svim dodacima
                                     'DriversPrice'      => nf($DriversPrice), // cista vozacka cijena
                                     'OneWayPrice'       => nf($OneWayPrice), // cijena za jedan smjer sa dodacima
+                                    'AddToPrice'       => nf($addToPrice), // dodaci na cenu
+                                    'Provision'       => nf($Provision), // dodaci na cenu
                                     'Rating'            => $Rating,
                                     'NightPrice'        => $sur['NightPrice'],
                                     'MonPrice'          => $sur['MonPrice'],
@@ -290,6 +246,7 @@ $carsErrorMessage = array(); // greske
                                     'S8Price'           => $sur['S8Price'],
                                     'S9Price'           => $sur['S9Price'],
                                     'S10Price'          => $sur['S10Price'],
+                                    'SpecialDatesPrice'  => $specialDatesPrice,
                                     'Km'                => $Km,
                                     'Duration'          => $Duration,
                                     'BasePrice'         => nf( round($BasePrice,2) )
@@ -318,57 +275,11 @@ $carsErrorMessage = array(); // greske
 
         }
 
-
-
-//echo '<pre>'; print_r($cars); echo '</pre>';
-
-if(count($cars) == 0) {
-    $carsErrorMessage['title'] = $NO_VEHICLES;
-    $carsErrorMessage['text'] =  $TOO_SMALL;
-} else {
-
-    $carsErrorMessage = array(); // reset arraya za greske
-
-    $sort1 = subval_sort($cars,'VehicleSort');
-    $sort2 = subval_sort($cars,'FinalPrice');
-
-    $bestPrice = $sort2[0]['ServiceID'];
-
-    $cars = array();
-
-    $cars[] = $sort2[0];
-
-    foreach($sort1 as $key => $arr) {
-        if($sort1[$key]['ServiceID'] != $bestPrice) {
-            $cars[] = $sort1[$key];
-        }
-    }
-
-    //@Blogit($cars);
-}
-
-
 $cars = json_encode($cars);
 echo $_GET['callback'] . '(' . $cars. ')';
 
-
-
-function ShowRatings($userId) {
-    require_once '../db/v4_Ratings.class.php';
-
-    $r = new v4_Ratings();
-
-    $r->getRow($userId);
-
-    if($r->getVotes() > 0)  return $r->getAverage() / $r->getVotes();
-    else return '0';
-
-
-}
-
-
 // Dodavanje dogovorene provizije na osnovnu cijenu
-function calculateBasePrice($price, $ownerid, $VehicleClass = 1) {
+function returnProvision($price, $ownerid, $VehicleClass = 1) {
     require_once '../db/db.class.php';
     $dbT = new DataBaseMysql();
 
@@ -391,25 +302,25 @@ function calculateBasePrice($price, $ownerid, $VehicleClass = 1) {
 
             // STANDARD CLASS
             if($VehicleClass < 11) {
-                if      ($priceR >= $d->R1Low and $priceR <= $d->R1Hi) return $price + ($price*$d->R1Percent / 100);
-                else if ($priceR >= $d->R2Low and $priceR <= $d->R2Hi) return $price + ($price*$d->R2Percent / 100);
-                else if ($priceR >= $d->R3Low and $priceR <= $d->R3Hi) return $price + ($price*$d->R3Percent / 100);
+                if      ($priceR >= $d->R1Low and $priceR <= $d->R1Hi) return $d->R1Percent ;
+                else if ($priceR >= $d->R2Low and $priceR <= $d->R2Hi) return $d->R2Percent ;
+                else if ($priceR >= $d->R3Low and $priceR <= $d->R3Hi) return $d->R3Percent ;
                 else return $price;
             }
 
             // PREMIUM CLASS
             if($VehicleClass >= 11 and $VehicleClass < 21) {
-                if      ($priceR >= $d->PR1Low and $priceR <= $d->PR1Hi) return $price + ($price*$d->PR1Percent / 100);
-                else if ($priceR >= $d->PR2Low and $priceR <= $d->PR2Hi) return $price + ($price*$d->PR2Percent / 100);
-                else if ($priceR >= $d->PR3Low and $priceR <= $d->PR3Hi) return $price + ($price*$d->PR3Percent / 100);
+                if      ($priceR >= $d->PR1Low and $priceR <= $d->PR1Hi) return $d->PR1Percent ;
+                else if ($priceR >= $d->PR2Low and $priceR <= $d->PR2Hi) return $d->PR2Percent ;
+                else if ($priceR >= $d->PR3Low and $priceR <= $d->PR3Hi) return $d->PR3Percent ;
                 else return $price;
             }
 
             // FIRST CLASS
             if($VehicleClass >= 21) {
-                if      ($priceR >= $d->FR1Low and $priceR <= $d->FR1Hi) return $price + ($price*$d->FR1Percent / 100);
-                else if ($priceR >= $d->FR2Low and $priceR <= $d->FR2Hi) return $price + ($price*$d->FR2Percent / 100);
-                else if ($priceR >= $d->FR3Low and $priceR <= $d->FR3Hi) return $price + ($price*$d->FR3Percent / 100);
+                if      ($priceR >= $d->FR1Low and $priceR <= $d->FR1Hi) return $d->FR1Percent ;
+                else if ($priceR >= $d->FR2Low and $priceR <= $d->FR2Hi) return $d->FR2Percent ;
+                else if ($priceR >= $d->FR3Low and $priceR <= $d->FR3Hi) return $d->FR3Percent ;
                 else return $price;
             }
 
@@ -421,7 +332,7 @@ function calculateBasePrice($price, $ownerid, $VehicleClass = 1) {
 }
 
 function vehicleTypeName($vehicleTypeID) {
-    require_once $_SERVER['DOCUMENT_ROOT'] . '/db/db.class.php';
+    require_once '../db/db.class.php';
     $dbT = new DataBaseMysql();
 
     $w = $dbT->RunQuery("SELECT * FROM v4_VehicleTypes WHERE VehicleTypeID = '{$vehicleTypeID}'");
@@ -432,7 +343,7 @@ function vehicleTypeName($vehicleTypeID) {
 
 function isVehicleOffDuty($vehicleID, $transferDate) {
     $cnt = 0;
-    require_once $_SERVER['DOCUMENT_ROOT'] . '/db/db.class.php';
+    require_once '../db/db.class.php';
     $dbT = new DataBaseMysql();
 
     $r = $dbT->RunQuery("SELECT * FROM v4_OffDuty WHERE VehicleID = '".$vehicleID."' ORDER BY ID ASC");
@@ -450,3 +361,32 @@ function isVehicleOffDuty($vehicleID, $transferDate) {
     else return false;
 }
 
+function calculateSpecialDates($OwnerID, $amount, $transferDate, $transferTime, $returnDate='', $returnTime='') {
+
+    if( empty($OwnerID) or empty($amount) or empty($transferDate)  or empty($transferTime) ) return 0;
+
+    require_once '../db/db.class.php';
+    require_once '../db/v4_SpecialDates.class.php';
+    $sd = new v4_SpecialDates();
+
+    $add1 = 0;
+    $add2 = 0;
+    
+    $keys = $sd->getKeysBy("ID", "ASC", " WHERE OwnerID = '" . $OwnerID ."'");
+    if( count($keys) > 0) {
+        foreach($keys as $nn => $ID) {
+            $sd->getRow($ID);
+
+            if( inDateTimeRange($sd->getSpecialDate(), $sd->getStartTime(), $sd->getSpecialDate(), $sd->getEndTime(), $transferDate, $transferTime) ) {
+                $add1 = nf($amount * $sd->getCorrectionPercent() / 100);
+            }
+            if($returnDate != '' and $returnTime != '') {
+                if( inDateTimeRange($sd->getSpecialDate(), $sd->getStartTime(), $sd->getSpecialDate(), $sd->getEndTime(), $returnDate, $returnTime) ) {
+                 $add2 = nf($amount * $sd->getCorrectionPercent() / 100);
+                }
+            }
+        }
+    }
+    // zbroji oba transfera
+    return $add1 + $add2;
+}

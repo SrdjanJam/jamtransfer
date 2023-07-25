@@ -1280,8 +1280,8 @@ Handlebars.registerHelper("myDriverSelect", function(id,routeId) {
 Ispis vozaca i cijena po ruti
 */
 
-Handlebars.registerHelper("listDriversByRoute", function(RouteID, PickupDate, PickupTime) {
-	function listDrivers(RouteID, PickupDate, PickupTime) {
+Handlebars.registerHelper("listDriversByRoute", function(RouteID, PickupDate, PickupTime, VehicleType) {
+	function listDrivers(RouteID,  PickupDate, PickupTime, VehicleType) {
 		var url = 'api/getCarsAjax.php?RouteID='+RouteID+'&TransferDate='+PickupDate+'&TransferTime='+PickupTime+'&callback=';
 		var list = '';
 		var funcArgs = '';
@@ -1296,13 +1296,36 @@ Handlebars.registerHelper("listDriversByRoute", function(RouteID, PickupDate, Pi
 			success: function(data) {
 				$.each(data, function(i,val) {
 					funcArgs = "'" + val.OwnerID + "', '" + val.VehicleTypeID + "', '" + val.VehicleTypeName + "', '" + val.DriverEmail + "', '" + val.DriverTel + "'";
-					funcArgs += ", '" + val.BasePrice + "', '" + val.FinalPrice + "', '" + val.DriversPrice + "'";
-					list += '<div class="row selectable selectable-edit" onclick="select(' + funcArgs + ')">';
-					list += '<div class="col-md-5">' + val.DriverCompany + '</div>';
+					funcArgs += ", '" + val.FinalPrice + "', '" + val.DriversPrice + "'";
+					var surcharges ='';
+					if (val.NightPrice>0) surcharges = '<br>Night: '+val.NightPrice;
+					if (val.MonPrice>0) surcharges += '<br>Monday: '+ val.MonPrice;
+					if (val.TuePrice>0) surcharges += '<br>Tueday: '+ val.TuePrice;
+					if (val.WedPrice>0) surcharges += '<br>Wednesday: '+ val.WedPrice;
+					if (val.ThuPrice>0) surcharges += '<br>Thusday: '+ val.ThuPrice;
+					if (val.FriPrice>0) surcharges += '<br>Friday: '+ val.FriPrice;
+					if (val.SatPrice>0) surcharges += '<br>Saterday: '+  val.SatPrice;
+					if (val.SunPrice>0) surcharges += '<br>Sunday: '+ val.SunPrice;
+					if (val.S1Price>0) surcharges += '<br>Season1: '+  val.S1Price;
+					if (val.S2Price>0) surcharges += '<br>Season2: '+  val.S2Price;
+					if (val.S3Price>0) surcharges += '<br>Season3: '+  val.S3Price;
+					if (val.S4Price>0) surcharges += '<br>Season4: '+  val.S4Price;
+					if (val.S5Price>0) surcharges += '<br>Season5: '+  val.S5Price;
+					if (val.S6Price>0) surcharges += '<br>Season6: '+  val.S6Price;
+					if (val.S7Price>0) surcharges += '<br>Season7: '+  val.S7Price;
+					if (val.S8Price>0) surcharges += '<br>Season8: '+  val.S8Price;
+					if (val.S9Price>0) surcharges += '<br>Season9: '+  val.S9Price;
+					if (val.S10Price>0) surcharges += '<br>Season10: '+ val.S10Price;
+					if (val.SpecialDatesPrice>0) surcharges += '<br>Special Date: '+ val.SpecialDatesPrice;
+					if (val.VehicleTypeID==VehicleType) var select='blue';
+					else var select='';
+					list += '<div class="row selectable blue-text" onclick="select(' + funcArgs + ')">';
+					list += '<div class="col-md-3">' + val.DriverCompany + '</div>';
 					list += '<div class="col-md-1">' + val.VehicleTypeID + '</div>';
-					list += '<div class="col-md-2 right">' + val.BasePrice + '</div>';		  /* Base */
+					list += '<div class="col-md-2 right">' + val.DriversPrice + '</div>';	   /* Neto */					
+					list += '<div title="Surcharges" data-content="' +surcharges + '" class="col-md-2 right mytooltip">' + val.AddToPrice + '</div>';		  /* Additions */
+					list += '<div class="col-md-2 right">' + val.Provision + '</div>';		  /* Provision */
 					list += '<div class="col-md-2 right">' + val.FinalPrice + '</div>';		 /* FinalPrice */
-					list += '<div class="col-md-2 right">' + val.DriversPrice + '</div>';	   /* Neto */
 					list += '</div>';
 				});
 
