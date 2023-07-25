@@ -1282,6 +1282,7 @@ Ispis vozaca i cijena po ruti
 
 Handlebars.registerHelper("listDriversByRoute", function(RouteID, PickupDate, PickupTime, VehicleType) {
 	function listDrivers(RouteID,  PickupDate, PickupTime, VehicleType) {
+		alert(VehicleType);
 		var url = 'api/getCarsAjax.php?RouteID='+RouteID+'&TransferDate='+PickupDate+'&TransferTime='+PickupTime+'&callback=';
 		var list = '';
 		var funcArgs = '';
@@ -1317,9 +1318,11 @@ Handlebars.registerHelper("listDriversByRoute", function(RouteID, PickupDate, Pi
 					if (val.S9Price>0) surcharges += '<br>Season9: '+  val.S9Price;
 					if (val.S10Price>0) surcharges += '<br>Season10: '+ val.S10Price;
 					if (val.SpecialDatesPrice>0) surcharges += '<br>Special Date: '+ val.SpecialDatesPrice;
-					if (val.VehicleTypeID==VehicleType) var select='blue';
+					if (val.VehicleTypeID==VehicleType) var select='blue-123';
 					else var select='';
-					list += '<div class="row selectable blue-text" onclick="select(' + funcArgs + ')">';
+					// Test:
+					// alert(val.VehicleTypeID+'/'+VehicleType);
+					list += '<div class="row selectable selectable-edit '+select+'" onclick="select(' + funcArgs + ')">';
 					list += '<div class="col-md-3">' + val.DriverCompany + '</div>';
 					list += '<div class="col-md-1">' + val.VehicleTypeID + '</div>';
 					list += '<div class="col-md-2 right">' + val.DriversPrice + '</div>';	   /* Neto */					
