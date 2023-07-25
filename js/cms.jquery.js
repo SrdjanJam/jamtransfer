@@ -1297,7 +1297,7 @@ Handlebars.registerHelper("listDriversByRoute", function(RouteID, PickupDate, Pi
 				$.each(data, function(i,val) {
 					funcArgs = "'" + val.OwnerID + "', '" + val.VehicleTypeID + "', '" + val.VehicleTypeName + "', '" + val.DriverEmail + "', '" + val.DriverTel + "'";
 					funcArgs += ", '" + val.BasePrice + "', '" + val.FinalPrice + "', '" + val.DriversPrice + "'";
-					list += '<div class="row selectable" onclick="select(' + funcArgs + ')">';
+					list += '<div class="row selectable selectable-edit" onclick="select(' + funcArgs + ')">';
 					list += '<div class="col-md-5">' + val.DriverCompany + '</div>';
 					list += '<div class="col-md-1">' + val.VehicleTypeID + '</div>';
 					list += '<div class="col-md-2 right">' + val.BasePrice + '</div>';		  /* Base */
