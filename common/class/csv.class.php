@@ -25,10 +25,9 @@ class ExportCSV
 	}	
 
 	public function addRow($row) {
-
 		foreach($row as $key => $value) {
 			if(in_array($key+1, $this->totalOnCols)) {
-				$this->totals[$key] += $value;
+				(int)$this->totals[$key] += (int)$value;
 			}
 			$this->csv .= $value . $this->delimiter;
 		}
