@@ -1,3 +1,13 @@
+<style>
+	.selectable-edit{
+		margin-left:0 !important;
+		margin-right:0 !important;
+	}
+	.blue-123{
+		color: blue;
+	}
+</style>
+
 <?= $newID ?>
 <script type="text/x-handlebars-template" id="ItemEditTemplate">
 
