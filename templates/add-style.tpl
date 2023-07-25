@@ -90,8 +90,8 @@
 }
 
 .nav-header-top-edit{
-    background-image: linear-gradient(#ff00002b, #4b494961) !important;
-    /* background-image: linear-gradient(#ff00002b, #04040461) !important; old */
+    background-image: linear-gradient(#ff00002b, #00000030) !important;
+    /* background-image: linear-gradient(#ff00002b, #4b494961) !important; old */
     margin: 5px 5px 10px 5px;
     border-radius: 10px;
     /* box-shadow: 5px 5px 16px #232328 inset; */
