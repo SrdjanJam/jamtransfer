@@ -26,7 +26,7 @@
 </IfModule>
 # END cPanel-generated php ini directives, do not edit
 RewriteEngine on
-RewriteCond $1 !^(index\.php|test\.php|testPDF\.php|i|css|js|fonts|api|cms|plugins|lng|login\.php|logout\.php|setout\.php|favicon\.ico)
+RewriteCond $1 !^(index\.php|test\.php|finder\.php|i|css|js|cronJobs|fonts|api|plugins|pdf|lng|login\.php|logout\.php|setout\.php|favicon\.ico)
 RewriteRule ^(.*)$ index.php/$1 [L]
 <Files 403.shtml>
 order allow,deny

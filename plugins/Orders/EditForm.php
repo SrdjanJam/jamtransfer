@@ -5,6 +5,12 @@
 	}
 	.blue-123{
 		color: blue;
+	}	
+	.green-123{
+		color: green;
+	}	
+	.red-123{
+		color: red;
 	}
 </style>
 
@@ -314,21 +320,23 @@
 												<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 													<span aria-hidden="true">&times;</span>
 												</button>
-												<h4 class="modal-title">Drivers for route {{details.RouteID}}</h4>
+												<h4 class="modal-title">Prices for route {{details.RouteID}}</h4>
 											</div>
 											<div class="modal-body" style="padding:10px">
 												<strong>
 												<div class="col-md-3">Driver Company</div>
-												<div class="col-md-1">Pax</div>
-												<div class="col-md-2 right">Neto</div>												
-												<div class="col-md-2 right">Additions</div>
-												<div class="col-md-2 right">Provision (%)</div>
-												<div class="col-md-2 right">FinalPrice</div>
+												<div class="col-md-1">Type</div>
+												<div class="col-md-1 right">Neto</div>												
+												<div class="col-md-1 right">Adds</div>
+												<div class="col-md-1 right">Provision (%)</div>
+												<div class="col-md-2 right">Final</div>
+												<div class="col-md-1 right">Provision2 (%)</div>
+												<div class="col-md-2 right">Final2</div>
 												</strong><br>
 												{{listDriversByRoute details.RouteID details.PickupDate details.PickupTime details.VehicleType}}
 											</div>
 											<div class="modal-footer">
-												<button type="button" class="btn btn-primary col-md-12" data-dismiss="modal">Close</button>
+												<button type="button" class="btn btn-primary col-md-12 modalbutton" data-dismiss="modal">Close</button>
 											</div>
 										</div>
 									</div>
@@ -679,8 +687,17 @@
 				$('#SubDriver3').prop( "disabled", true );
 			}			
 		}
-		// promena telefona i email-a nakon promene drivera
+		// promena DriverID nakon klika na button u modalu
+		$('.selectowner').click(function(){
+			$('#DriverID').val($(this).attr('data-ownerid'));
+			changedriver ();
+			$('.modalbutton').trigger('click');
+		})	
 		$('#DriverID').change(function(){
+			changedriver ();
+		})	
+		// promena telefona i email-a nakon promene drivera
+		function changedriver () {	
 			$('#DriverTel').val($('#DriverID :selected').attr('data-tel'));
 			$('#DriverEmail').val($('#DriverID :selected').attr('data-email'));
 			//$('#VehicleType').val($('#DriverID :selected').attr('data-vehicletype'));
@@ -688,8 +705,7 @@
 			$('#DriverPaymentAmt').val($('#DriverID :selected').attr('data-driverprice'));
 			//var vtid = $('#DriverID :selected').attr('data-vehicletype');
 			//$('#VehicleType').val(vtid);
-
-		})			
+		}			
 		// promena mobilnog nakon promene subdrivera
 		function changesubdriver (i) {
 			$('#SubDriver'+i+'Mob').attr('href','tel:'+($('#SubDriver'+i+' :selected').attr('data-tel')));

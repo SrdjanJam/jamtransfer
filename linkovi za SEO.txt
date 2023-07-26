@@ -8,9 +8,9 @@ accordian
 </div>
 
 images
-<img alt="snow covered mountain under blue sky during daytime" title="Grand massif Domaines Skiables, Flaine, France" src="https://wis.jamtransfer.com/i/website/les_carroz1.webp" style="width:50%"/>
-<img alt="person using parachute near mountain" title="Flying above the Flaine ski resort" src="https://wis.jamtransfer.com/i/website/flaine_grand_massif2.webp" style="width:50%"/>
-<img alt="landscape photography of mountain" title="Nature and landscape in Arâches-la-Frasse" src="https://wis.jamtransfer.com/i/website/flaine_grand_massif3.webp" style="width:50%"/>
+<img alt="person wearing green jacket riding snow skis" title="Ski Jump" src="https://wis.jamtransfer.com/i/website/morillon_grand_massif1.webp" style="width:50%"/>
+<img alt="a person skiing down a mountain" title="Skiing on the slopes" src="https://wis.jamtransfer.com/i/website/morillon_grand_massif2.webp" style="width:50%"/>
+<img alt="house on snow plain near forest at night" title="Beauty of the French Alps" src="https://wis.jamtransfer.com/i/website/flaine_grand_massif3.webp" style="width:50%"/>
 <img alt="house covered with snow" title="Arâches La Frasse and building in Arâches La Frasse" src="https://wis.jamtransfer.com/i/website/flaine_grand_massif4.webp" style="width:50%"/>
 
 JAM

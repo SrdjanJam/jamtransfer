@@ -70,210 +70,160 @@ $carsErrorMessage = array(); // greske
 
 // ODAVDE KRECE
 
-        $drWhere = "WHERE RouteID = '".$RouteID."' AND Active = '1'";
-        // check for drivers for the route 
-        $driverRouteKeys = $dr->getKeysBy('OwnerID', "ASC", $drWhere);
-        if (count($driverRouteKeys) == 0) {
-            //$carsErrorMessage['title'] = $NO_DRIVERS;
-            //$carsErrorMessage['text'] = $NO_DRIVERS_EXT;
-        }
-        else {
-            // ako su pronadjene DriverRoutes, obradi svaku
-            foreach($driverRouteKeys as $dri => $rowId) {
-                
-                $dr->getRow($rowId);
-                //if($dr->getRow($rowId)===false) {
-                //    break;
-                //}
+$drWhere = "WHERE RouteID = '".$RouteID."' AND Active = '1'";
+// check for drivers for the route 
+$driverRouteKeys = $dr->getKeysBy('OwnerID', "ASC", $drWhere);
+if (count($driverRouteKeys) == 0) {
+	//$carsErrorMessage['title'] = $NO_DRIVERS;
+	//$carsErrorMessage['text'] = $NO_DRIVERS_EXT;
+}
+else {
+	// ako su pronadjene DriverRoutes, obradi svaku
+	foreach($driverRouteKeys as $dri => $rowId) {
+		$dr->getRow($rowId);
+		if($dr->getFromID() == $FromID  and $dr->getOneToTwo() == '0') break;
+		if($dr->getFromID() == $ToID  and $dr->getTwoToOne() == '0') break;
+		$OwnerID = $dr->getOwnerID();
+		if($au->getRow($OwnerID)===false) break;
+		// Driver Profiles iz v4_AuthUsers
+		$DriverCompany = $au->getAuthUserCompany();
+		// check for Services
+		$serviceKeys = $s->getKeysBy("ServiceID", "ASC", "WHERE RouteID = {$RouteID} AND OwnerID = {$OwnerID} AND Active = '1'");
+		if(count($serviceKeys) == 0) { // not found
+			$carsErrorMessage['title'] = $NO_VEHICLES;
+			$carsErrorMessage['text'] =  $NO_VEHICLES_EXT;
+		}
+		else { // found
+			foreach($serviceKeys as $si => $sId) {
+				$s->getRow($sId);
+				$ServiceID = $s->getServiceID();
+				$Correction= $s->getCorrection();
+				$v->getRow($s->getVehicleID());
+				$VehicleName    = getVehicleTypeName( $v->getVehicleTypeID() );
+				$VehicleTypeID  = $v->getVehicleTypeID();
+				$VehicleCapacity= $v->getVehicleCapacity();
+				$WiFi           = $v->getAirCondition();
+				$VehicleID      = $v->getVehicleID();
+				$ReturnDiscount = $v->getReturnDiscount();
+				$vt->getRow($VehicleTypeID);
+				$VehicleClass   = $vt->getVehicleClass();
+				$VehicleDescription = getVehicleDescription( $v->getVehicleTypeID() ); // do 2017-11-23 je bilo $vt->getDescription(); -R
+				$VehicleImage = '';
+				/*
 
-                if($dr->getFromID() == $FromID  and $dr->getOneToTwo() == '0') break;
-                if($dr->getFromID() == $ToID  and $dr->getTwoToOne() == '0') break;
+					Ovdje upada dio sa izracunavanjem cijena ovisno o:
+					- return discount
+					- danu u tjednu
+					- sezoni
+					- je li nocna voznja
 
-                $OwnerID = $dr->getOwnerID();
+					Sve te faktore treba prikazati kupcu kao dodatak na osnovnu cijenu.
+					Ako je Return transfer, Surcharges vraca zbrojene dodatke za oba transfera!
 
-                if($au->getRow($OwnerID)===false) break;
+				*/
+				$SurCategory    = $s->getSurCategory();
+				$DRSurCategory  = $dr->getSurCategory();
+				$VSurCategory   = $v->getSurCategory();
+				$sur = array();
+				$sur = Surcharges($OwnerID, $SurCategory, $s->getServicePrice1(),
+								  $transferDate, $transferTime,
+								  $returnDate, $returnTime,
+								  $dr->getID(), $VehicleID, $ServiceID,
+								  $VSurCategory, $DRSurCategory
+								  );
+				$addToPrice =   $sur['MonPrice'] +
+								$sur['TuePrice'] +
+								$sur['WedPrice'] +
+								$sur['ThuPrice'] +
+								$sur['FriPrice'] +
+								$sur['SatPrice'] +
+								$sur['SunPrice'] +
+								$sur['S1Price'] +
+								$sur['S2Price'] +
+								$sur['S3Price'] +
+								$sur['S4Price'] +
+								$sur['S5Price'] +
+								$sur['S6Price'] +
+								$sur['S7Price'] +
+								$sur['S8Price'] +
+								$sur['S9Price'] +
+								$sur['S10Price'] +
+								$sur['NightPrice'];
 
-                // Driver Profiles iz v4_AuthUsers
-                $DriverCompany = $au->getAuthUserCompany();
+				$DriversPrice = $s->getServicePrice1();
+				$DriversPriceAdd = $DriversPrice + $addToPrice;
+				$specialDatesPrice = calculateSpecialDates($OwnerID,$DriversPriceAdd,$transferDate, $transferTime);
+				$DriversPriceAdd2 = $DriversPriceAdd+$specialDatesPrice;
+				$addToPrice=$addToPrice+$specialDatesPrice;
+				$Provision = returnProvision($DriversPriceAdd, $s->getOwnerID(), $VehicleClass);
+				$Provision2 = returnProvision2($DriversPriceAdd, $s->getOwnerID(), $VehicleClass);
+				$FinalPrice = $DriversPriceAdd+$DriversPriceAdd*$Provision/100;
+				$FinalPrice2 = $DriversPriceAdd+$DriversPriceAdd*$Provision2/100;
+				// zaokruzenje cijena
+				$FinalPrice = nf( round($FinalPrice,2) );
+				$FinalPrice2 = nf( round($FinalPrice2,2) );
 
-                // check for Services
-                $serviceKeys = $s->getKeysBy("ServiceID", "ASC", "WHERE RouteID = {$RouteID} AND OwnerID = {$OwnerID} AND Active = '1'");
+				/*
+				** KRAJ OBRADE CIJENA
+				*/
 
-                if(count($serviceKeys) == 0) { // not found
-                    $carsErrorMessage['title'] = $NO_VEHICLES;
-                    $carsErrorMessage['text'] =  $NO_VEHICLES_EXT;
-                }
-                else { // found
-                    foreach($serviceKeys as $si => $sId) {
-                        $s->getRow($sId);
-                        $ServiceID = $s->getServiceID();
-
-                        $Correction= $s->getCorrection();
-
-                        $v->getRow($s->getVehicleID());
-
-                        //$VehicleName  = $v->getVehicleName();
-                        $VehicleName    = getVehicleTypeName( $v->getVehicleTypeID() );
-                        $VehicleTypeID  = $v->getVehicleTypeID();
-                        $VehicleCapacity= $v->getVehicleCapacity();
-                        $WiFi           = $v->getAirCondition();
-
-                        $VehicleID      = $v->getVehicleID();
-                        $ReturnDiscount = $v->getReturnDiscount();
-
-                        $vt->getRow($VehicleTypeID);
-                        $VehicleClass   = $vt->getVehicleClass();
-                        $VehicleDescription = getVehicleDescription( $v->getVehicleTypeID() ); // do 2017-11-23 je bilo $vt->getDescription(); -R
-
-
-                        $VehicleImage = '';
-
-                        /*
-
-                            Ovdje upada dio sa izracunavanjem cijena ovisno o:
-                            - return discount
-                            - danu u tjednu
-                            - sezoni
-                            - je li nocna voznja
-
-                            Sve te faktore treba prikazati kupcu kao dodatak na osnovnu cijenu.
-                            Ako je Return transfer, Surcharges vraca zbrojene dodatke za oba transfera!
-
-                        */
-                            $SurCategory    = $s->getSurCategory();
-                            $DRSurCategory  = $dr->getSurCategory();
-                            $VSurCategory   = $v->getSurCategory();
-                            $sur = array();
-                            $sur = Surcharges($OwnerID, $SurCategory, $s->getServicePrice1(),
-                                              $transferDate, $transferTime,
-                                              $returnDate, $returnTime,
-                                              $dr->getID(), $VehicleID, $ServiceID,
-                                              $VSurCategory, $DRSurCategory
-                                              );
-
-
-                            $addToPrice =   $sur['MonPrice'] +
-                                            $sur['TuePrice'] +
-                                            $sur['WedPrice'] +
-                                            $sur['ThuPrice'] +
-                                            $sur['FriPrice'] +
-                                            $sur['SatPrice'] +
-                                            $sur['SunPrice'] +
-                                            $sur['S1Price'] +
-                                            $sur['S2Price'] +
-                                            $sur['S3Price'] +
-                                            $sur['S4Price'] +
-                                            $sur['S5Price'] +
-                                            $sur['S6Price'] +
-                                            $sur['S7Price'] +
-                                            $sur['S8Price'] +
-                                            $sur['S9Price'] +
-                                            $sur['S10Price'] +
-                                            $sur['NightPrice'];
-
-							$DriversPrice = $s->getServicePrice1();
-							$DriversPriceAdd = $DriversPrice + $addToPrice;
-                            $specialDatesPrice = calculateSpecialDates($OwnerID,$DriversPriceAdd,$transferDate, $transferTime);
-							$DriversPriceAdd2 = $DriversPriceAdd+$specialDatesPrice;
-							$addToPrice=$addToPrice+$specialDatesPrice;
-							$Provision = returnProvision($DriversPriceAdd, $s->getOwnerID(), $VehicleClass);
-							$FinalPrice = $DriversPriceAdd+$DriversPriceAdd*$Provision/100;
-
-                            // zaokruzenje cijena
-                            $FinalPrice = nf( round($FinalPrice,2) );
-
-                        /*
-                        ** KRAJ OBRADE CIJENA
-                        */
-
-                            // premjesteno od dole, tako da se upoce ne uzimaju u obzir podaci
-                            // ako vozac nije aktivan ili ne vozi odredjene datume
-                            $okToAdd = true;
-
-                            # nemoj dodati cijene ako driver nije Active!!!
-                            if($au->getActive() == 0) $okToAdd = false;
-
-                           // if(isVehicleOffDuty($VehicleID, $transferDate)) $okToAdd = false;
-
-                            if($returnDate != '') {
-                                if(isVehicleOffDuty($VehicleID, $returnDate)) $okToAdd = false;
-                            }
-
-                        // spremi podatke i 
-
-                        if( $okToAdd == true) {
-
-
-
-                            if($FinalPrice == 0) $okToAdd = false;
-                            if($okToAdd) {
-
-                                $cars[] = array(
-                                    'RouteID'           => $RouteID,
-                                    'OwnerID'           => $OwnerID,
-                                    'DriverCompany'     => $DriverCompany,
-                                    'ProfileImage'      => $ProfileImage,
-                                    'ServiceID'         => $ServiceID,
-                                    'VehicleID'         => $VehicleID,
-                                    'VehicleTypeID'     => $VehicleTypeID,
-                                    'VehicleName'       => $VehicleName,
-                                    'VehicleImage'      => $VehicleImage,
-                                    'VehicleCapacity'   => $VehicleCapacity,
-                                    'VehicleClass'      => $VehicleClass,
-                                    'WiFi'              => $WiFi,
-                                    'VehicleDescription'=> $VehicleDescription,
-                                    'FinalPrice'        => nf($FinalPrice), // cijena sa svim dodacima
-                                    'DriversPrice'      => nf($DriversPrice), // cista vozacka cijena
-                                    'OneWayPrice'       => nf($OneWayPrice), // cijena za jedan smjer sa dodacima
-                                    'AddToPrice'       => nf($addToPrice), // dodaci na cenu
-                                    'Provision'       => nf($Provision), // dodaci na cenu
-                                    'Rating'            => $Rating,
-                                    'NightPrice'        => $sur['NightPrice'],
-                                    'MonPrice'          => $sur['MonPrice'],
-                                    'TuePrice'          => $sur['TuePrice'],
-                                    'WedPrice'          => $sur['WedPrice'],
-                                    'ThuPrice'          => $sur['ThuPrice'],
-                                    'FriPrice'          => $sur['FriPrice'],
-                                    'SatPrice'          => $sur['SatPrice'],
-                                    'SunPrice'          => $sur['SunPrice'],
-                                    'S1Price'           => $sur['S1Price'],
-                                    'S2Price'           => $sur['S2Price'],
-                                    'S3Price'           => $sur['S3Price'],
-                                    'S4Price'           => $sur['S4Price'],
-                                    'S5Price'           => $sur['S5Price'],
-                                    'S6Price'           => $sur['S6Price'],
-                                    'S7Price'           => $sur['S7Price'],
-                                    'S8Price'           => $sur['S8Price'],
-                                    'S9Price'           => $sur['S9Price'],
-                                    'S10Price'          => $sur['S10Price'],
-                                    'SpecialDatesPrice'  => $specialDatesPrice,
-                                    'Km'                => $Km,
-                                    'Duration'          => $Duration,
-                                    'BasePrice'         => nf( round($BasePrice,2) )
-                                );
-
-                                // ako Driver ima odgovarajuce vozilo,
-                                // popuni podatke o profilu
-                                // Driver Profiles iz v4_AuthUsers
-                                $drivers[$OwnerID] = array(
-                                            'DriverCompany'     => $DriverCompany,
-                                            'ProfileImage'      => $ProfileImage,
-                                            'RealName'          => $au->getAuthUserRealName(),
-                                            'Company'           => $au->getAuthUserCompany(),
-                                            'Address'           => $au->getAuthCoAddress()
-                                );
-
-
-                            }
-                        }
-
-                    } // end foreach services
-
-                }// end else
-
-            } // end foreach DriverRoutes
-
-        }
+				$statusComp="";	
+				if($au->getActive() == 0) $statusComp="<i>-Not active</i>";
+				if($DriversPrice < 1) $statusComp="<i>-No price</i>";
+				if(isVehicleOffDuty($VehicleID, $transferDate)) $statusComp="<i>-Off duty</i>";
+				if ($statusComp=="") $DriverCompanyFormated="<button data-ownerid='".$OwnerID."' class='selectowner' type='button'>".$DriverCompany."</button>";
+				else $DriverCompanyFormated=$DriverCompany;
+				
+				$cars[] = array(
+					'RouteID'           => $RouteID,
+					'OwnerID'           => $OwnerID,
+					'DriverCompany'     => $DriverCompanyFormated,
+					'StatusCompany'     => $statusComp,
+					'ProfileImage'      => $ProfileImage,
+					'ServiceID'         => $ServiceID,
+					'VehicleID'         => $VehicleID,
+					'VehicleTypeID'     => $VehicleTypeID,
+					'VehicleName'       => $VehicleName,
+					'VehicleImage'      => $VehicleImage,
+					'VehicleCapacity'   => $VehicleCapacity,
+					'VehicleClass'      => $VehicleClass,
+					'WiFi'              => $WiFi,
+					'VehicleDescription'=> $VehicleDescription,
+					'FinalPrice'        => nf($FinalPrice), // cijena sa svim dodacima
+					'FinalPrice2'        => nf($FinalPrice2), // cijena sa svim dodacima
+					'DriversPrice'      => nf($DriversPrice), // cista vozacka cijena
+					'OneWayPrice'       => nf($OneWayPrice), // cijena za jedan smjer sa dodacima
+					'AddToPrice'       => nf($addToPrice), // dodaci na cenu
+					'Provision'       => nf($Provision), // dodaci na cenu
+					'Provision2'       => nf($Provision2), // dodaci na cenu
+					'Rating'            => $Rating,
+					'NightPrice'        => $sur['NightPrice'],
+					'MonPrice'          => $sur['MonPrice'],
+					'TuePrice'          => $sur['TuePrice'],
+					'WedPrice'          => $sur['WedPrice'],
+					'ThuPrice'          => $sur['ThuPrice'],
+					'FriPrice'          => $sur['FriPrice'],
+					'SatPrice'          => $sur['SatPrice'],
+					'SunPrice'          => $sur['SunPrice'],
+					'S1Price'           => $sur['S1Price'],
+					'S2Price'           => $sur['S2Price'],
+					'S3Price'           => $sur['S3Price'],
+					'S4Price'           => $sur['S4Price'],
+					'S5Price'           => $sur['S5Price'],
+					'S6Price'           => $sur['S6Price'],
+					'S7Price'           => $sur['S7Price'],
+					'S8Price'           => $sur['S8Price'],
+					'S9Price'           => $sur['S9Price'],
+					'S10Price'          => $sur['S10Price'],
+					'SpecialDatesPrice'  => $specialDatesPrice,
+					'Km'                => $Km,
+					'Duration'          => $Duration,
+					'BasePrice'         => nf( round($BasePrice,2) )
+				);
+			} // end foreach services
+		}// end else
+	} // end foreach DriverRoutes
+}
 
 $cars = json_encode($cars);
 echo $_GET['callback'] . '(' . $cars. ')';
@@ -295,11 +245,9 @@ function returnProvision($price, $ownerid, $VehicleClass = 1) {
                     WHERE AuthUserID = '" .$ownerid."'
                     ";
         $w = $dbT->RunQuery($q);
-
         $d = mysqli_fetch_object($w);
 
         if($d->AuthUserID == $ownerid) {
-
             // STANDARD CLASS
             if($VehicleClass < 11) {
                 if      ($priceR >= $d->R1Low and $priceR <= $d->R1Hi) return $d->R1Percent ;
@@ -307,7 +255,6 @@ function returnProvision($price, $ownerid, $VehicleClass = 1) {
                 else if ($priceR >= $d->R3Low and $priceR <= $d->R3Hi) return $d->R3Percent ;
                 else return $price;
             }
-
             // PREMIUM CLASS
             if($VehicleClass >= 11 and $VehicleClass < 21) {
                 if      ($priceR >= $d->PR1Low and $priceR <= $d->PR1Hi) return $d->PR1Percent ;
@@ -315,7 +262,6 @@ function returnProvision($price, $ownerid, $VehicleClass = 1) {
                 else if ($priceR >= $d->PR3Low and $priceR <= $d->PR3Hi) return $d->PR3Percent ;
                 else return $price;
             }
-
             // FIRST CLASS
             if($VehicleClass >= 21) {
                 if      ($priceR >= $d->FR1Low and $priceR <= $d->FR1Hi) return $d->FR1Percent ;
@@ -323,14 +269,15 @@ function returnProvision($price, $ownerid, $VehicleClass = 1) {
                 else if ($priceR >= $d->FR3Low and $priceR <= $d->FR3Hi) return $d->FR3Percent ;
                 else return $price;
             }
-
         }
-
         return '0';
-
-
 }
-
+// proviyija prema funkciji
+function returnProvision2($price, $ownerid, $VehicleClass = 1) {
+	$priceCalc= 25.5-$price*0.0125+$price*$price*0.00000242;
+	if ($priceCalc<10) $priceCalc=10;
+	return $priceCalc;		
+}
 function vehicleTypeName($vehicleTypeID) {
     require_once '../db/db.class.php';
     $dbT = new DataBaseMysql();

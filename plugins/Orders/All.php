@@ -475,13 +475,15 @@ $sql .=" as Name,
 	sum(DriverExtraCharge) as DriverExtraCharge,
 	sum(Provision) as Provision,
 	sum(Discount*DetailPrice/100) as Discount
-FROM v4_OrderDetails";
+FROM v4_OrderDetails,v4_OrdersMaster";
 if ($_REQUEST["action"]<>"0") $sql .=",v4_OrderLog ";
 $sql .=$dbWhere;
 if ($_REQUEST["action"]<>"0") {
 	$sql .= " AND v4_OrderLog.DetailsID=v4_OrderDetails.DetailsID ";
 	$sql .= " AND Action='".$_REQUEST["action"]."'";
 }
+$sql .= " AND v4_OrderDetails.OrderID=v4_OrdersMaster.MOrderID ";
+
 $sql .= " GROUP by Name";
 $r = $dbT->RunQuery($sql);
 //$result=$r->fetch_object();

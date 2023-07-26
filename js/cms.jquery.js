@@ -1106,6 +1106,7 @@ Handlebars.registerHelper("driverSelect", function(id,routeId,vehicleTypeId) {
 					selector += 'data-tel="'+val.Tel +'" ';
 					selector += 'data-co="'+val.Company +'" ';
 					selector += 'data-email="'+val.Email +'" ';
+					selector += 'data-driverprice="'+val.DriverPrice +'" ';
 					selector += 'data-realname="'+val.RealName +'" ';
 					
 					if (val.UserID == id && val.VehicleType==vehicleTypeId) {
@@ -1281,8 +1282,7 @@ Ispis vozaca i cijena po ruti
 */
 
 Handlebars.registerHelper("listDriversByRoute", function(RouteID, PickupDate, PickupTime, VehicleType) {
-	function listDrivers(RouteID,  PickupDate, PickupTime, VehicleType) {
-		alert(VehicleType);
+	function listDrivers(RouteID,  PickupDate, PickupTime) {
 		var url = 'api/getCarsAjax.php?RouteID='+RouteID+'&TransferDate='+PickupDate+'&TransferTime='+PickupTime+'&callback=';
 		var list = '';
 		var funcArgs = '';
@@ -1296,8 +1296,8 @@ Handlebars.registerHelper("listDriversByRoute", function(RouteID, PickupDate, Pi
 
 			success: function(data) {
 				$.each(data, function(i,val) {
-					funcArgs = "'" + val.OwnerID + "', '" + val.VehicleTypeID + "', '" + val.VehicleTypeName + "', '" + val.DriverEmail + "', '" + val.DriverTel + "'";
-					funcArgs += ", '" + val.FinalPrice + "', '" + val.DriversPrice + "'";
+					//funcArgs = "'" + val.OwnerID + "', '" + val.VehicleTypeID + "', '" + val.VehicleTypeName + "', '" + val.DriverEmail + "', '" + val.DriverTel + "'";
+					//funcArgs += ", '" + val.FinalPrice + "', '" + val.DriversPrice + "'";
 					var surcharges ='';
 					if (val.NightPrice>0) surcharges = '<br>Night: '+val.NightPrice;
 					if (val.MonPrice>0) surcharges += '<br>Monday: '+ val.MonPrice;
@@ -1318,17 +1318,18 @@ Handlebars.registerHelper("listDriversByRoute", function(RouteID, PickupDate, Pi
 					if (val.S9Price>0) surcharges += '<br>Season9: '+  val.S9Price;
 					if (val.S10Price>0) surcharges += '<br>Season10: '+ val.S10Price;
 					if (val.SpecialDatesPrice>0) surcharges += '<br>Special Date: '+ val.SpecialDatesPrice;
-					if (val.VehicleTypeID==VehicleType) var select='blue-123';
+					if (val.StatusCompany!="") var select='red-123';					
+					else if (val.VehicleTypeID==VehicleType) var select='green-123';
 					else var select='';
-					// Test:
-					// alert(val.VehicleTypeID+'/'+VehicleType);
-					list += '<div class="row selectable selectable-edit '+select+'" onclick="select(' + funcArgs + ')">';
-					list += '<div class="col-md-3">' + val.DriverCompany + '</div>';
+					list += '<div class="row selectable selectable-edit '+select+'">';
+					list += '<div class="col-md-3">' + val.DriverCompany + val.StatusCompany + '</div>';
 					list += '<div class="col-md-1">' + val.VehicleTypeID + '</div>';
-					list += '<div class="col-md-2 right">' + val.DriversPrice + '</div>';	   /* Neto */					
-					list += '<div title="Surcharges" data-content="' +surcharges + '" class="col-md-2 right mytooltip">' + val.AddToPrice + '</div>';		  /* Additions */
-					list += '<div class="col-md-2 right">' + val.Provision + '</div>';		  /* Provision */
+					list += '<div class="col-md-1 right">' + val.DriversPrice + '</div>';	   /* Neto */					
+					list += '<div title="Surcharges" data-content="' +surcharges + '" class="col-md-1 right mytooltip">' + val.AddToPrice + '</div>';		  /* Additions */
+					list += '<div class="col-md-1 right">' + val.Provision + '</div>';		  /* Provision */
 					list += '<div class="col-md-2 right">' + val.FinalPrice + '</div>';		 /* FinalPrice */
+					list += '<div class="col-md-1 right">' + val.Provision2 + '</div>';		  /* Provision */
+					list += '<div class="col-md-2 right">' + val.FinalPrice2 + '</div>';		 /* FinalPrice */
 					list += '</div>';
 				});
 
