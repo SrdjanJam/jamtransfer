@@ -57,7 +57,7 @@
 			<div class="col-md-6">
 				<div class="row">
 					<div class="col-md-4">
-						<label for="Datum">Date & Time</label>
+						<label for="Datum"><?= DATE_AND_TIME ?></label>
 					</div>
 					<div class="col-md-4">
 						<input type="text" name="Datum1" id="Datum1" class="w100 datepicker" value="{{Datum1}}">
@@ -69,7 +69,7 @@
 				<? if ($isNew) { ?>
 				<div class="row">
 					<div class="col-md-4">
-						<label for="Task">Task</label>
+						<label for="Task"><?= TASK ?></label>
 					</div>
 					<div class="col-md-8">
 						<select class="w100" name="Expense" id='actionsselect' value="{{Expense}}">
@@ -105,7 +105,7 @@
 				
 				<div class="row">
 					<div class="col-md-4">
-						<label for="Vehicle">Vehicle</label>
+						<label for="Vehicle"><?= VEHICLE ?></label>
 					</div>
 					<div class="col-md-8">
 						<select class="w100" name="VehicleID" <? if (!$isNew) { ?> disabled<? } ?> >
@@ -131,7 +131,7 @@
 				<? if (!$isNew) { ?>				
 				<div class="row">
 					<div class="col-md-4">
-						<label for="Vreme">Finished</label>
+						<label for="Vreme"><?= FINISHED ?></label>
 					</div>
 					<div class="col-md-8">
 						{{Vreme}}
@@ -147,7 +147,7 @@
 				</div>
 				<div class="row">
 					<div class="col-md-4">
-						<label for="Mark">Mark</label>
+						<label for="Mark"><?= MARK ?></label>
 					</div>
 					<div class="col-md-1">
 						<span id="MarkDisplay">{{Mark}}</span> 
@@ -158,7 +158,7 @@
 				</div>					
 				<div class="row">
 					<div class="col-md-4">
-						<label for="Approved">Approved</label>
+						<label for="Approved"><?= APPROVED ;?></label>
 					</div>
 					<div class="col-md-8 approved">
 						<large>{{yesNoSliderEdit Approved 'Approved' }}</large>

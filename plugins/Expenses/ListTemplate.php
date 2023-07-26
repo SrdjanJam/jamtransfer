@@ -121,8 +121,8 @@ $smarty->assign('date2',true);
 
 <div class="nav-tabs-custom nav-tabs-custom-edit">
 	<ul class="nav nav-tabs dorder">
-					<li class="active"><a href="#tab_1" data-toggle="tab">List</a></li>
-					<li><a href="#tab_2" data-toggle="tab">SubDriver Balance</a></li>
+					<li class="active"><a href="#tab_1" data-toggle="tab"><?=LIST123;?></a></li>
+					<li><a href="#tab_2" data-toggle="tab"><?=SUBDRIVER_BALANCE;?></a></li>
 	</ul>
 	<div class="tab-content tab-content-edit">	
 		<div class="tab-pane active" id="tab_1">
@@ -236,48 +236,48 @@ $smarty->assign('date2',true);
 			<div id="sum" class="sum-edit">
 				<div class="row" style="border-bottom:1px solid #000;">
 					<div class="col-md-2">
-						<strong>ID - Subdriver</strong>
+						<strong><?=ID;?> - <?=SUB_DRIVER;?></strong>
 					</div>
 					<div class="col-md-1">
-						<strong>Deposit </strong>
+						<strong><?=DEPOSIT;?> </strong>
 					</div>
 					<div class="col-sm-3 ">
 						<div class="col-sm-12 ">
-							<strong>Cash</strong>				
+							<strong><?=CASH;?></strong>				
 						</div>
 						<div class="col-sm-4 ">
-							<strong>Drives</strong>
+							<strong><?=DRIVERS;?></strong>
 						</div>	
 						<div class="col-sm-4 ">
-							<strong>Received</strong>
+							<strong><?=RECIEVED;?></strong>
 						</div>		
 						<div class="col-sm-4 ">
-							<strong>Expenses</strong>
+							<strong><?=EXPENSES;?></strong>
 						</div>			
 
 					</div>	
 					<div class="col-sm-1 ">
-						<strong>Balance</strong>
+						<strong><?=BALANCE;?></strong>
 					</div>				
 					<div class="col-sm-3 ">
 						<div class="col-sm-12 ">
-							<strong>Cash - last day</strong>
+							<strong><?=CASH;?> - <?=LAST_DAY;?></strong>
 						</div>					
 						<div class="col-sm-4 ">
-							<strong>Plan</strong>
+							<strong><?=PLAN;?></strong>
 						</div>				
 						<div class="col-sm-4 ">
-							<strong>In</strong>
+							<strong><?=IN;?></strong>
 						</div>				
 						<div class="col-sm-4 ">
-							<strong>Expenses</strong>
+							<strong><?=EXPENSES;?></strong>
 						</div>		
 					</div>
 					<div class="col-sm-1">
-						<strong>Unapproved Expenses </strong> 
+						<strong><?=UNAPPROVED_EXPENSES;?> </strong> 
 					</div>
 					<div class="col-sm-1 ">
-						<strong>Balance total</strong>
+						<strong><?=BALANCE_TOTAL;?></strong>
 					</div>						
 				</div>
 			</div> <!-- End of #sum -->
