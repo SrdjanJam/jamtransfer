@@ -168,7 +168,7 @@ define("LASTCHANGE", "Last Change");
 define("LAST_VISIT", "Last visit");
 define("LEVEL", "Level");
 define("LINKEDIN", "LinkedIn");
-define("LIST", "List");
+define("LIST123", "List");
 define("LOADING", "Loading...");
 define("LOCATION", "Location");
 define("LOCATIONS", "Locations");
@@ -1002,3 +1002,15 @@ define("EXTRA_CHARGE", "ExtraCharge");
 define("DRIVER_EXTRA_CHARGE", "DriverExtraCharge");
 define("GROSS_MARGIN", "GrossMargin");
 define("RATIO", "Ratio");
+
+// 3.7.23 ==========================================================
+define("NOT_PAID","Not Paid");
+
+// 26.7.23 =======================================================
+define("SUBDRIVER_BALANCE","SubDriver Balance");
+define("RECIEVED","Received");
+define("LAST_DAY","last day");
+define("PLAN","Plan");
+define("IN","In");
+define("UNAPPROVED_EXPENSES","Unapproved Expenses");
+define("BALANCE_TOTAL","Balance total");
