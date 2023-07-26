@@ -23,7 +23,7 @@
 			<div class="box-tools pull-right">
 				{{#compare details.DriverConfStatus ">" 0}}
 					<button id='resendVoucher' class="btn btn-primary"><?= RESEND_VOUCHER ?></button>
-					<label id='lrv' style='display:none'><?= RESEND_VOUCHER ?> Reason</label>	
+					<label id='lrv' style='display:none'><?= RESEND_VOUCHER ?> <?=REASON;?></label>	
 					{{changeTransferReasonSelect details.ChangeTransferReason}}
 					<button id='todriver' class="btn btn-primary" style='display:none'
 					onclick="return sendUpdateEmail('{{details.DriverEmail}}','','','','','driver','{{details.DetailsID}}',this);">
@@ -307,40 +307,43 @@
 								{{driverSelect details.DriverID details.RouteID details.VehicleType}}
 							</div>
 							<div class="col-md-1">
+								<!-- Call the modal: ------------------------------ -->
 								<button type="button" class="btn btn-primary searchdrivers" data-toggle="modal" data-target="#routeDriversModal">
 									<i class="fa fa-search"></i>
 								</button>
 							</div>							
 						</div>	
 						
-								<div class="modal fade"  id="routeDriversModal">
-									<div class="modal-dialog" style="width:800px">
-										<div class="modal-content">
-											<div class="modal-header">
-												<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-													<span aria-hidden="true">&times;</span>
-												</button>
-												<h4 class="modal-title">Prices for route {{details.RouteID}}</h4>
-											</div>
-											<div class="modal-body" style="padding:10px">
-												<strong>
-												<div class="col-md-3">Driver Company</div>
-												<div class="col-md-1">Type</div>
-												<div class="col-md-1 right">Neto</div>												
-												<div class="col-md-1 right">Adds</div>
-												<div class="col-md-1 right">Provision (%)</div>
-												<div class="col-md-2 right">Final</div>
-												<div class="col-md-1 right">Provision2 (%)</div>
-												<div class="col-md-2 right">Final2</div>
-												</strong><br>
-												{{listDriversByRoute details.RouteID details.PickupDate details.PickupTime details.VehicleType}}
-											</div>
-											<div class="modal-footer">
-												<button type="button" class="btn btn-primary col-md-12 modalbutton" data-dismiss="modal">Close</button>
-											</div>
-										</div>
+						<!-- Modal content: --------------------------------------- -->
+						<div class="modal fade"  id="routeDriversModal">
+							<div class="modal-dialog" style="width:800px">
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+											<span aria-hidden="true">&times;</span>
+										</button>
+										<h4 class="modal-title"><?=PRICES_FOR_ROUTE;?> {{details.RouteID}}</h4>
 									</div>
-								</div>	
+									<div class="modal-body" style="padding:10px">
+										<strong>
+										<div class="col-md-3"><?=DRIVER_COMPANY;?></div>
+										<div class="col-md-1"><?=TYPE;?></div>
+										<div class="col-md-1 right"><?=NETO;?></div>												
+										<div class="col-md-1 right"><?=ADDS;?></div>
+										<div class="col-md-1 right"><?=PROVISION;?> (%)</div>
+										<div class="col-md-2 right"><?=FINAL_PRICE;?></div>
+										<div class="col-md-1 right"><?=PROVISION;?>2 (%)</div>
+										<div class="col-md-2 right"><?=FINAL_PRICE;?>2</div>
+										</strong><br>
+										{{listDriversByRoute details.RouteID details.PickupDate details.PickupTime details.VehicleType}}
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-primary col-md-12 modalbutton" data-dismiss="modal"><?=CLOSE;?></button>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- ---------------------------------------------------------- -->
 								
 						<div class="row dpdriver">
 							<div class="col-md-4">
