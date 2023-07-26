@@ -44,7 +44,7 @@
 		</div>		
 		
 		<div class="col-md-1">
-			DRIVES
+			<?=DRIVERS;?>
 		</div>
 				
 	</div>
@@ -121,7 +121,7 @@
 				
 				<!-- Drives: -->
 				<div class="col-md-1 col-xs-6">
-					<span><a target='_blank' href='drives/subdrivers/{{AuthUserID}}'>Drives</a></span>
+					<span><a target='_blank' href='drives/subdrivers/{{AuthUserID}}'><?=DRIVERS;?></a></span>
 				</div>
 				
 
