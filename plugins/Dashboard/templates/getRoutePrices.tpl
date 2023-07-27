@@ -151,7 +151,7 @@
 		var PickupDate=$("#date").val();
 		var PickupTime=$("#time").val();
 		$(".modal-body").html(listDrivers(RouteID,  PickupDate, PickupTime));
-		
+		$(".mytooltip").popover({trigger:'hover', html:true, placement:'bottom'});		
 	})
 	
 	function listDrivers(RouteID,  PickupDate, PickupTime) {
@@ -194,7 +194,7 @@
 					list += '<div class="col-md-3">' + val.DriverCompany + val.StatusCompany + '</div>';
 					list += '<div class="col-md-1">' + val.VehicleTypeID + '</div>';
 					list += '<div class="col-md-1 right">' + val.DriversPrice + '</div>';	   /* Neto */					
-					list += '<div title="Surcharges ' + surcharges + ' " data-content="' + surcharges + '" class="col-md-1 right mytooltip">' + val.AddToPrice + '</div>';		  /* Additions */
+					list += '<div title="Surcharges" data-content="' + surcharges + '" class="col-md-1 right mytooltip">' + val.AddToPrice + '</div>';		  /* Additions */
 					list += '<div class="col-md-1 right">' + val.Provision + '</div>';		  /* Provision */
 					list += '<div class="col-md-2 right">' + val.FinalPrice + '</div>';		 /* FinalPrice */
 					list += '<div class="col-md-1 right">' + val.Provision2 + '</div>';		  /* Provision */
@@ -209,9 +209,7 @@
 		});
 		return list;
 	}
-	$(document).ready(function(){
-		$(".mytooltip").popover({trigger:'hover', html:true, placement:'bottom'});
-	});	
+
 
 {/literal}
 </script>
