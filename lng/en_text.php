@@ -1014,3 +1014,8 @@ define("PLAN","Plan");
 define("IN","In");
 define("UNAPPROVED_EXPENSES","Unapproved Expenses");
 define("BALANCE_TOTAL","Balance total");
+define("PRICES_FOR_ROUTE","Prices for route");
+define("NETO","Neto");
+define("ADDS","Adds");
+define("FINAL_PRICE","Final Price");
+define("MINUTES_FLIGHT_CONFLICT","minutes Flight Conflict");

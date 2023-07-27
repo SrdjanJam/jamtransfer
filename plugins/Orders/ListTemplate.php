@@ -154,7 +154,7 @@
 									<strong>{{UserName}}</strong>
 								</div>	
 								<div class="icon">
-									<h4>Purchaser</h4>
+									<h4><?=PURCHASER;?></h4>
 								</div>								
 							</div>
 
@@ -191,7 +191,7 @@
 									{{#if SubFinalNote}}<small style="color:red"><i class="fa-solid fa-message"></i></small>{{/if}}				
 								</div>	
 								<div class="icon">
-									<h4>Driver company</h4>
+									<h4><?=DRIVER_COMPANY;?></h4>
 								</div>						
 							</div>
 
@@ -205,7 +205,7 @@
 										<i class="fa fa-phone"></i> {{MPaxTel}}
 									</small>
 								</div>
-								{{#if ConflictColor}}<div><strong>{{TimeDiff}} minutes Flight Conflict</strong></div>{{/if}}
+								{{#if ConflictColor}}<div><strong>{{TimeDiff}} <?=MINUTES_FLIGHT_CONFLICT;?></strong></div>{{/if}}
 								<div class="icon">
 									<i class="fa fa-person" style="font-size:60px;"></i>
 								</div>								
