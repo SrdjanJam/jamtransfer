@@ -12,6 +12,12 @@
 	.red-123{
 		color: red;
 	}
+	.route-edit{
+		padding: 5px;
+    	border-radius: 5px;
+		box-shadow: 0px 0px 4px 1px #888888;
+		width: 100%;
+	}
 </style>
 
     <!-- get transfer  widget -->
@@ -31,15 +37,15 @@
 			</div>
 			<div class="row">
 				<div class="col-md-3">Route to</div>
-				<div class="col-md-8">
-					<select name="Route" id="Route">
+				<div class="col-md-5">
+					<select name="Route" id="Route" class="route-edit">
 						<option value="-1"><?= NO_ROUTE ?></option>
 					</select>
 				</div>	
 			</div>	
 			<div class="row">
-				<div class="col-md-4">Date & Time</div>
-				<div class="col-md-4">
+				<div class="col-md-3">Date & Time</div>
+				<div class="col-md-5">
 					<input class="form-control datepicker" type="text" name="Date" size="5" id="Date" value=""> 
 				</div>					
 				<div class="col-md-4">
