@@ -25,6 +25,10 @@
 		require_once 'getOrder.php';
 		$smarty->assign('getOrder',true);				
 	}	
+	if (in_array($_SESSION['AuthLevelID'],array(2,31,41,43,44,45,91,92,99))) {
+		require_once 'getRoutePrices.php';
+		$smarty->assign('getRoutePrices',true);				
+	}	
 	if (in_array($_SESSION['AuthLevelID'],array(41,44,91,92,99))) {
 		require_once 'getUnfinishedPayment.php';
 		$smarty->assign('getUnfinishedPayment',true);							

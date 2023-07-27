@@ -171,7 +171,7 @@ else {
 				if($au->getActive() == 0) $statusComp="<i>-Not active</i>";
 				if($DriversPrice < 1) $statusComp="<i>-No price</i>";
 				if(isVehicleOffDuty($VehicleID, $transferDate)) $statusComp="<i>-Off duty</i>";
-				if ($statusComp=="") $DriverCompanyFormated="<button data-ownerid='".$OwnerID."' class='selectowner' type='button'>".$DriverCompany."</button>";
+				if ($statusComp=="" && !isset($_REQUEST['type'])) $DriverCompanyFormated="<button data-ownerid='".$OwnerID."' class='selectowner' type='button'>".$DriverCompany."</button>";
 				else $DriverCompanyFormated=$DriverCompany;
 				
 				$cars[] = array(

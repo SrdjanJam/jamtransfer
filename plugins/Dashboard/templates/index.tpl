@@ -16,6 +16,11 @@
 						<section class="col-lg-6 xconnectedSortable"> 
 							{include file="plugins/Dashboard/templates/getOrder.tpl"} 			
 						</section><!-- /.Left col -->
+						{/if}						
+						{if $getRoutePrices}
+						<section class="col-lg-6 xconnectedSortable"> 
+							{include file="plugins/Dashboard/templates/getRoutePrices.tpl"} 			
+						</section><!-- /.Left col -->
 						{/if}
 						{if $getUnfinishedPayment}						
 						<section class="col-lg-6 xconnectedSortable"> 
