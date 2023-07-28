@@ -1109,11 +1109,11 @@ Handlebars.registerHelper("driverSelect", function(id,routeId,vehicleTypeId) {
 					selector += 'data-driverprice="'+val.DriverPrice +'" ';
 					selector += 'data-realname="'+val.RealName +'" ';
 					
-					if (val.UserID == id && val.VehicleType==vehicleTypeId) {
+					if (val.UserID == id) {
 						selector += ' selected="selected" ';
 					}
 
-					selector += '>' + val.Country + ' - '  + val.Company + ' / '  + val.VehicleType + ' / ' + val.DriverPrice;
+					selector += '>' + val.Country + ' - '  + val.Company ;
 					selector += '</option>';
 				});
 

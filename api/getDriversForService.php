@@ -14,7 +14,7 @@ $sr = new v4_Services();
 
 $rid=$_REQUEST['RouteID'];
 $vtid=$_REQUEST['VehicleTypeID'];
-$srWhere = ' WHERE RouteID = ' . $rid . ' AND VehicleTypeID = ' . $vtid . ' AND Active =1';
+/*$srWhere = ' WHERE RouteID = ' . $rid . ' AND VehicleTypeID = ' . $vtid . ' AND Active =1';
 $srKeys = $sr->getKeysBy('OwnerID', 'asc', $srWhere);
 $i=0;
 //ista ruta i tip vozila
@@ -55,9 +55,10 @@ foreach($driverID as $n => $ID) {
 		);
 	}
 	$j++;		
-}
+}*/
 foreach($users as $u) {
-	if (!in_array($u->AuthUserID,$driverID) && $u->AuthLevelID==31) {
+	//if (!in_array($u->AuthUserID,$driverID) && $u->AuthLevelID==31) {
+	if ($u->AuthLevelID==31) {
 		$out[] = array(
 					'UserID'		=> $u->AuthUserID, 
 					'RealName' 		=> $u->AuthUserRealName,
@@ -65,12 +66,10 @@ foreach($users as $u) {
 					'Tel' 			=> $u->AuthUserTel,
 					'Email'			=> $u->AuthUserMail,
 					'Country'       => $u->Country,
-					'Terminal'      => $u->Terminal,
-					'DriverPrice'   => "",
-					'VehicleType'   => "0"
 		);
 	}
 }
+
 # send output back
 $output = json_encode($out);
 

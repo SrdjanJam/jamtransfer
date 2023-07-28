@@ -15,9 +15,12 @@ $fID = $_SESSION['FromID'];
 $routes = array();
 # Routes for selected place
 $q1 = "SELECT DISTINCT RouteID, FromID, ToID, RouteName FROM v4_Routes
-			WHERE FromID = ".$fID."
-			OR    ToID   = ".$fID."
+			WHERE (FromID = ".$fID."
+			OR    ToID   = ".$fID.")
 			";
+if (isset($_SESSION['UseDriverID']) && $_SESSION['UseDriverID']>0) {
+	$q1.=" AND RouteID in (SELECT `RouteID` FROM `v4_DriverRoutes` WHERE `OwnerID`=".$_SESSION['UseDriverID'].") ";
+}	
 $r1 = $db->RunQuery($q1);
 
 while($r = $r1->fetch_object())

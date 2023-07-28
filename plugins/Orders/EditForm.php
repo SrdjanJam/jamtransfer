@@ -298,20 +298,27 @@
 									</div>
 								{{/each}}
 							</div>
-						</div>						
+						</div>	
+						<input type="hidden" id="DriversPrice" name="DriversPrice"  value="{{details.DriversPrice}}">
 						{{/compare}}
 						{{#compare tab "==" "pdriver"}}						
 						<div class="row dpdriver">
 							<div class="col-md-3 "><label><?= DRIVER_NAME ?></label></div>
-							<div class="col-md-8 driver" id="newDriverName">	
+							<div class="col-md-5 driver" id="newDriverName">	
 								{{driverSelect details.DriverID details.RouteID details.VehicleType}}
 							</div>
+							<div class="col-md-3 ">
+								<!--<input type="text" name="VehicleType" id="VehicleType" value="{{details.VehicleType}}" >!-->
+								{{vehicleTypeSelect details.VehicleType "VehicleType" "VehicleType"}}						
+							</div>	
 							<div class="col-md-1">
 								<!-- Call the modal: ------------------------------ -->
 								<button type="button" class="btn btn-primary searchdrivers" data-toggle="modal" data-target="#routeDriversModal">
 									<i class="fa fa-search"></i>
 								</button>
-							</div>							
+							</div>	
+							<input type="hidden" id="DetailPrice" name="DetailPrice">
+							
 						</div>	
 						
 						<!-- Modal content: --------------------------------------- -->
@@ -479,7 +486,6 @@
 							</div>
 							{{/compare}}		
 						</div>	
-						<input type="hidden" name="VehicleType" id="VehicleType" value="{{details.VehicleType}}" >
 						
 						{{/compare}}
 						{{#compare tab "==" "agent"}}	
@@ -644,12 +650,12 @@
 		<input type="hidden" name="DetailsID" id="DetailsID" value="{{details.DetailsID}}">
 		<!--<input type="hidden" name="AgentID" id="AgentID" value="{{details.AgentID}}">!-->		
 		<input type="hidden" name="DriverName" id="DriverName" value="{{details.DriverName}}">
-		<input type="hidden" name="DriverTel" id="DriverTel" value="{{details.DriverTel}}">
-		<input type="hidden" name="DriverEmail" id="DriverEmail" value="{{details.DriverEmail}}">
+		<!--<input type="hidden" name="DriverTel" id="DriverTel" value="{{details.DriverTel}}">!-->
+		<!--<input type="hidden" name="DriverEmail" id="DriverEmail" value="{{details.DriverEmail}}">!-->
 		<input type="hidden" name="DriverConfTime" id="DriverConfTime" value="{{details.DriverConfTime}}">
 		<input type="hidden" name="DriverConfDate" id="DriverConfDate" value="{{details.DriverConfDate}}">
-		<input type="hidden" name="UserName" id="UserName" value="<?= $_SESSION['UserName']?>">
-		<input type="hidden" name="AuthUserID" id="AuthUserID" value="<?= $_SESSION['AuthUserID']?>">
+		<!--<input type="hidden" name="UserName" id="UserName" value="<?= $_SESSION['UserName']?>">!-->
+		<!--<input type="hidden" name="AuthUserID" id="AuthUserID" value="<?= $_SESSION['AuthUserID']?>">!-->
 		<input type="hidden" name="OrderID" id="OrderID"   value="{{details.OrderID}}">
 		<!--<input type="hidden" name="UserLevelID" id="UserLevelID"  value="{{details.UserLevelID}}">!-->
 		<input type="hidden" name="PickupType" id="PickupType" value="{{details.PlaceType}}" >
@@ -676,12 +682,12 @@
 		function DriverConfStatusRelated() {
 			if ($('#DriverConfStatus').val() > 1) {
 				$('#DriverID').prop( "disabled", true );
-				$('#DriverPrice').prop( "disabled", true );
+				$('#DriversPrice').prop( "disabled", true );
 				$('.searchdrivers').prop( "disabled", true );
 			}	
 			else {
-				$('#DriverID').prop( "disabled", false );
-				$('#DriverPrice').prop( "disabled", false );
+				$('#DriversID').prop( "disabled", false );
+				$('#DriversPrice').prop( "disabled", false );
 				$('.searchdrivers').prop( "disabled", false );				
 			}	
 			if ($('#DriverConfStatus').val() != 3) {
@@ -691,11 +697,22 @@
 			}			
 		}
 		// promena DriverID nakon klika na button u modalu
-		$('.selectowner').click(function(){
+		$('.selectowner,.selectprice').click(function(){
 			$('#DriverID').val($(this).attr('data-ownerid'));
+			$('#DriversPrice').val($(this).attr('data-driverprice'));
+			$('#VehicleType').val($(this).attr('data-vehicletype'));
+			if ($(this).attr('class')=='selectprice') $('#DetailPrice').val($(this).attr('data-price'));
 			changedriver ();
+			changedriverpaymentamount ();			
 			$('.modalbutton').trigger('click');
 		})	
+		$('#DriversPrice,#DriverExtraCharge').change(function(){
+			changedriverpaymentamount ();
+		})	
+		// promena ukupne drajverske cene		
+		function changedriverpaymentamount () {		
+			$('#DriverPaymentAmt').val(Number($('#DriversPrice').val())+Number($('#DriverExtraCharge').val()));
+		}			
 		$('#DriverID').change(function(){
 			changedriver ();
 		})	
@@ -703,11 +720,6 @@
 		function changedriver () {	
 			$('#DriverTel').val($('#DriverID :selected').attr('data-tel'));
 			$('#DriverEmail').val($('#DriverID :selected').attr('data-email'));
-			//$('#VehicleType').val($('#DriverID :selected').attr('data-vehicletype'));
-			$('#DriversPrice').val($('#DriverID :selected').attr('data-driverprice'));
-			$('#DriverPaymentAmt').val($('#DriverID :selected').attr('data-driverprice'));
-			//var vtid = $('#DriverID :selected').attr('data-vehicletype');
-			//$('#VehicleType').val(vtid);
 		}			
 		// promena mobilnog nakon promene subdrivera
 		function changesubdriver (i) {

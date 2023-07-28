@@ -192,6 +192,7 @@ if (isset($_REQUEST['ServiceID'])) {
 	}
 	$db->setDriverExtraCharge(number_format($sumDriverPrice));
 	$db->setExtraCharge(number_format($sumPrice));
+	$db->setDriverPaymentAmt($_REQUEST['DriversPrice']+$sumDriverPrice);
 }
 if (isset($_REQUEST['MPaxFirstName']) && isset($_REQUEST['MPaxLastName']) ) $db->setPaxName($_REQUEST['MPaxFirstName'] . ' ' . $_REQUEST['MPaxLastName']);
 $OrderID=$db->getOrderID();
@@ -236,7 +237,7 @@ if($priceChanged) {
 		$MOrderCurrencyPrice+= ($db2->getDetailPrice() + $db2->getExtraCharge() ) * $MEurToCurrencyRate;
 	}
 	$om->getRow($OrderID);	
-	$om->setMUserID($MUserID);
+	//$om->setMUserID($MUserID);
 	$om->setMTransferPrice($MTransferPrice);
 	$om->setMExtrasPrice($MExtrasPrice);
 	$om->setMOrderPriceEUR($MOrderPriceEUR);
@@ -247,8 +248,10 @@ if($priceChanged) {
 	$om->setMOrderCurrencyPrice($MOrderCurrencyPrice);
 	$om->saveRow();
 }
-$MUserID = $_REQUEST['UserID'];
-$om->setMUserID($MUserID);
+if (isset($_REQUEST['UserID']) && $_REQUEST['UserID']>0) {
+	$MUserID = $_REQUEST['UserID'];
+	$om->setMUserID($MUserID);
+}
 // dodati i cuvanje povratnog transfera 
 if ($keyName != '' and $keyValue != '') {
 	$res = $db->saveRow();

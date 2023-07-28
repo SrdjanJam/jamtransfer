@@ -71,6 +71,7 @@ $carsErrorMessage = array(); // greske
 // ODAVDE KRECE
 
 $drWhere = "WHERE RouteID = '".$RouteID."' AND Active = '1'";
+if (isset($_SESSION['UseDriverID']) && $_SESSION['UseDriverID']>0) $drWhere .= " AND OwnerID=".$_SESSION['UseDriverID'];
 // check for drivers for the route 
 $driverRouteKeys = $dr->getKeysBy('OwnerID', "ASC", $drWhere);
 if (count($driverRouteKeys) == 0) {
@@ -171,8 +172,14 @@ else {
 				if($au->getActive() == 0) $statusComp="<i>-Not active</i>";
 				if($DriversPrice < 1) $statusComp="<i>-No price</i>";
 				if(isVehicleOffDuty($VehicleID, $transferDate)) $statusComp="<i>-Off duty</i>";
-				if ($statusComp=="" && !isset($_REQUEST['type'])) $DriverCompanyFormated="<button data-ownerid='".$OwnerID."' class='selectowner' type='button'>".$DriverCompany."</button>";
-				else $DriverCompanyFormated=$DriverCompany;
+				if ($statusComp=="" && !isset($_REQUEST['type'])) {
+					$DriverCompanyFormated="<button data-ownerid='".$OwnerID."' data-vehicletype='".$VehicleTypeID."' data-driverprice='".$DriversPrice."' class='selectowner' type='button'>".$DriverCompany."</button>";
+					$FinalPriceFormated="<button data-ownerid='".$OwnerID."' data-vehicletype='".$VehicleTypeID."' data-driverprice='".$DriversPrice."' data-price='".nf($FinalPrice)."' class='selectprice' type='button'>".nf($FinalPrice)."</button>";
+				}	
+				else {
+					$DriverCompanyFormated=$DriverCompany;
+					$FinalPriceFormated=nf($FinalPrice);
+				}	
 				
 				$cars[] = array(
 					'RouteID'           => $RouteID,
@@ -189,7 +196,7 @@ else {
 					'VehicleClass'      => $VehicleClass,
 					'WiFi'              => $WiFi,
 					'VehicleDescription'=> $VehicleDescription,
-					'FinalPrice'        => nf($FinalPrice), // cijena sa svim dodacima
+					'FinalPrice'        => $FinalPriceFormated, // cijena sa svim dodacima
 					'FinalPrice2'        => nf($FinalPrice2), // cijena sa svim dodacima
 					'DriversPrice'      => nf($DriversPrice), // cista vozacka cijena
 					'OneWayPrice'       => nf($OneWayPrice), // cijena za jedan smjer sa dodacima
