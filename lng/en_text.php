@@ -1019,3 +1019,8 @@ define("NETO","Neto");
 define("ADDS","Adds");
 define("FINAL_PRICE","Final Price");
 define("MINUTES_FLIGHT_CONFLICT","minutes Flight Conflict");
+
+// 28.7.23 ==========================================================
+define("NUMBER_OF_DRIVERS","Number of Drives");
+define("FREE_DAYS","Free Days");
+define("SCHEDULE","Schedule");
