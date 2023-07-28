@@ -23,8 +23,8 @@
 
 
 
-<!-- Script: -->
 
+<!-- Script: -->
 
 <!-- =================================================================== -->
 
@@ -47,23 +47,23 @@
 					<?=SUBDRIVERS;?>
 				</div>					
 				<div class="col-md-2">
-					Number of Drives
+					<?=NUMBER_OF_DRIVERS;?>
 				</div>					
 				<div class="col-md-2">
-					Total Value
+					<?=TOTAL_VALUE;?>
 				</div>				
 				<div class="col-md-1">
-					Free Days
+					<?=FREE_DAYS;?>
 				</div>							
 				<div class="col-md-1">
-					Schedule
+					<?=SCHEDULE;?>
 				</div>							
 	
 			</div>	
 			{{#each Item}}
 				<div>
 				
-					<div class="row {{color}} pad1em listTile listTile-edit orders-edit" 
+					<div class="row {{color}} pad1em listTile orders-edit"
 					id="t_{{DetailsID}}">
 						<div class="col-md-1">
 							{{AuthUserID}}
@@ -81,7 +81,7 @@
 							{{FreeDays}} 
 						</div>						
 						<div class="col-md-1">						
-							<span><a target='_blank' href='schedule/{{Date1}}/{{Date2}}/{{AuthUserID}}'>Schedule</a></span>
+							<span><a target='_blank' href='schedule/{{Date1}}/{{Date2}}/{{AuthUserID}}'><?=SCHEDULE;?></a></span>
 						</div>						
 					</div>
 
