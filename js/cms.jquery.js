@@ -1281,9 +1281,9 @@ Handlebars.registerHelper("myDriverSelect", function(id,routeId) {
 Ispis vozaca i cijena po ruti
 */
 
-Handlebars.registerHelper("listDriversByRoute", function(RouteID, PickupDate, PickupTime, VehicleType) {
+Handlebars.registerHelper("listDriversByRoute", function(RouteID, PickupDate, PickupTime, VehicleType, AgentID) {
 	function listDrivers(RouteID,  PickupDate, PickupTime) {
-		var url = 'api/getCarsAjax.php?RouteID='+RouteID+'&TransferDate='+PickupDate+'&TransferTime='+PickupTime+'&callback=';
+		var url = 'api/getCarsAjax.php?RouteID='+RouteID+'&TransferDate='+PickupDate+'&TransferTime='+PickupTime+'&AgentID='+AgentID+'&callback=';
 		var list = '';
 		var funcArgs = '';
 		console.log(url);

@@ -346,7 +346,7 @@
 										<div class="col-md-1 right"><?=PROVISION;?>2 (%)</div>
 										<div class="col-md-2 right"><?=FINAL_PRICE;?>2</div>
 										</strong><br>
-										{{listDriversByRoute details.RouteID details.PickupDate details.PickupTime details.VehicleType}}
+										{{listDriversByRoute details.RouteID details.PickupDate details.PickupTime details.VehicleType details.AgentID}}
 									</div>
 									<div class="modal-footer">
 										<button type="button" class="btn btn-primary col-md-12 modalbutton" data-dismiss="modal"><?=CLOSE;?></button>

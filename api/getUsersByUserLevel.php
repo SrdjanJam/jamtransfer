@@ -17,11 +17,14 @@ foreach($users as $u) {
 		);
 	}
 }
+usort($out,function($first,$second){
+	return $first['AuthUserRealName'] > $second['AuthUserRealName'];
+});
+
 # send output back
 $output = json_encode($out);
 
 unset($out);
-//print_r($output);
 echo $_REQUEST['callback'] . '(' . $output . ')';
 
 

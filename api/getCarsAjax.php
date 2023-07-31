@@ -58,6 +58,8 @@ $vt = new v4_VehicleTypes();
 $RouteID		= $_REQUEST['RouteID'];
 $transferDate   = $_REQUEST['TransferDate'];
 $transferTime   = $_REQUEST['TransferTime'];
+if (isset($_REQUEST['AgentID'])) $AgentID = $_REQUEST['AgentID'];
+else $AgentID =0;
 
 $returnDate     = '';
 $returnTime     = '';
@@ -160,6 +162,18 @@ else {
 				$Provision2 = returnProvision2($DriversPriceAdd, $s->getOwnerID(), $VehicleClass);
 				$FinalPrice = $DriversPriceAdd+$DriversPriceAdd*$Provision/100;
 				$FinalPrice2 = $DriversPriceAdd+$DriversPriceAdd*$Provision2/100;
+				
+				$contractPrice=getContractPrice($VehicleTypeID, $RouteID, $AgentID);
+				if ($contractPrice>0) {
+					$FinalPrice=$contractPrice;
+					$Provision=0;
+					$contractDriverPrice=getContractDriverPrice($ServiceID);
+					if ($contractDriverPrice>0) {
+						$DriversPrice=$contractDriverPrice;
+						$addToPrice=0;
+					}	
+				}	
+				
 				// zaokruzenje cijena
 				$FinalPrice = nf( round($FinalPrice,2) );
 				$FinalPrice2 = nf( round($FinalPrice2,2) );
@@ -175,7 +189,8 @@ else {
 				if ($statusComp=="" && !isset($_REQUEST['type'])) {
 					$DriverCompanyFormated="<button data-ownerid='".$OwnerID."' data-vehicletype='".$VehicleTypeID."' data-driverprice='".$DriversPrice."' class='selectowner' type='button'>".$DriverCompany."</button>";
 					$FinalPriceFormated="<button data-ownerid='".$OwnerID."' data-vehicletype='".$VehicleTypeID."' data-driverprice='".$DriversPrice."' data-price='".nf($FinalPrice)."' class='selectprice' type='button'>".nf($FinalPrice)."</button>";
-				}	
+					if ($contractPrice>0) $DriverCompanyFormated="<button data-ownerid='".$OwnerID."' data-vehicletype='".$VehicleTypeID."' data-driverprice='".$DriversPrice."' class='selectowner' type='button'>".$DriverCompany." CONTRACT</button>";
+				}
 				else {
 					$DriverCompanyFormated=$DriverCompany;
 					$FinalPriceFormated=nf($FinalPrice);
@@ -343,4 +358,25 @@ function calculateSpecialDates($OwnerID, $amount, $transferDate, $transferTime, 
     }
     // zbroji oba transfera
     return $add1 + $add2;
+}
+
+function getContractPrice($VehicleTypeID, $RouteID, $AgentID) {
+    require_once '../db/db.class.php';
+    $dbT = new DataBaseMysql();
+	$q5 = "SELECT * FROM v4_AgentPrices
+			WHERE RouteID = ".$RouteID." AND VehicleTypeID = ".$VehicleTypeID." AND AgentID = ".$AgentID;
+	$result = $dbT->RunQuery($q5);
+	$cp = mysqli_fetch_object($result);
+	
+	if (count($cp)>0) {
+		return $cp->Price;
+	}	
+	else return 0;
+}
+
+function getContractDriverPrice($ServiceID) {
+	require_once '../db/v4_Services.class.php';
+	$db = new v4_Services();	
+	$db->getRow($ServiceID);
+	return $db->getServicePrice2();											
 }
