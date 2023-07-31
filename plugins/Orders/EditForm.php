@@ -12,6 +12,10 @@
 	.red-123{
 		color: red;
 	}
+
+	#newDriverName select{
+		width:90%;
+	}
 </style>
 
 <?= $newID ?>
@@ -353,7 +357,7 @@
 						<!-- ---------------------------------------------------------- -->
 								
 						<div class="row dpdriver">
-							<div class="col-md-4">
+							<div class="col-md-3">
 								<div class="row">
 									<div class="col-md-3 "><label><?= STATUS ?></label></div>
 									<div class="col-md-9">
@@ -412,7 +416,7 @@
 									</div>
 								</div>								
 							</div>
-							<div class="col-md-4">
+							<div class="col-md-5">
 								{{#compare details.PaymentMethod "==" 2}}					
 								<div class="row">
 									<div class="col-md-3 "><label><?= PARTNER ?> <?= INVOICE ?></label></div>
@@ -440,13 +444,15 @@
 							<div class="col-md-4">
 								<? if (isset($_SESSION['UseDriverID'])) {?>
 								<div class="row">
-									<a target="_blank" href='schedule/{{details.PickupDate}}'><?= SCHEDULE_FOR ?> {{details.PickupDate}}</a>
+									<div class="col-md-12"><a target="_blank" href='schedule/{{details.PickupDate}}'><?= SCHEDULE_FOR ?> {{details.PickupDate}}</a></div>
 								</div>
 								<? } ?>
-								<div class="row"><label><?= SUB_DRIVER ?></label></div>
 								<div class="row">
-									<div class="col-md-9">{{subdriverSelect details.SubDriver details.DriverID 'SubDriver'}}  </div>	
-									<div class="col-md-3"><a id="SubDriverMob" href=""></a></div>	
+									<div class="col-md-12"><label><?= SUB_DRIVER ?></label></div>
+								</div>
+								<div class="row">
+									<div class="col-md-8">{{subdriverSelect details.SubDriver details.DriverID 'SubDriver'}}  </div>	
+									<div class="col-md-4"><a id="SubDriverMob" href=""></a></div>	
 								</div>	
 								{{#compare details.SubDriver "!==" "0"}}
 								<div class="row">
