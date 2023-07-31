@@ -564,11 +564,6 @@ button.searchdrivers{
         width:100% !important;
     }
 
-    .select-top-edit{
-        width:100%;
-        text-align: center;
-    }
-
     .datepicker-edit{
         width:100% !important;
     }
@@ -847,6 +842,11 @@ button.searchdrivers{
 	.row-third-edit .form-control{
 		width:100%;
 	}
+
+    /* Spare: */
+    /* .col-md-9 select{
+        width: -webkit-fill-available;
+    } */
 
 
 }
