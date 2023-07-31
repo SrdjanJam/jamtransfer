@@ -438,9 +438,11 @@
 							</div>
 							{{#compare details.DriverConfStatus ">" "1"}}
 							<div class="col-md-4">
+								<? if (isset($_SESSION['UseDriverID'])) {?>
 								<div class="row">
 									<a target="_blank" href='schedule/{{details.PickupDate}}'><?= SCHEDULE_FOR ?> {{details.PickupDate}}</a>
 								</div>
+								<? } ?>
 								<div class="row"><label><?= SUB_DRIVER ?></label></div>
 								<div class="row">
 									<div class="col-md-9">{{subdriverSelect details.SubDriver details.DriverID 'SubDriver'}}  </div>	
@@ -686,7 +688,7 @@
 				$('.searchdrivers').prop( "disabled", true );
 			}	
 			else {
-				$('#DriversID').prop( "disabled", false );
+				$('#DriverID').prop( "disabled", false );
 				$('#DriversPrice').prop( "disabled", false );
 				$('.searchdrivers').prop( "disabled", false );				
 			}	
