@@ -76,10 +76,13 @@
 										{{details.RelatedTransfers.RelatedTransferText}}
 									</a>
 								{{else}}		
-									<button id="saveR" class="badge blue text-black" title="Add Return Transfer" 
+									<button id="saveR" class="badge blue text-black" title="<?= ADD_RETURN_TRANSFER ?>" 
 									onclick="return editSaveItem('{{details.DetailsID}}',1);"><?= ADD_RETURN_TRANSFER ?>
 									</button>
 								{{/if}}
+								<button id="saveR" class="badge blue text-black" title="Copy Transfer" 
+									onclick="return editSaveItem('{{details.DetailsID}}',2);">Copy Transfer
+								</button>
 							</div>
 						</div>
 						<div class="row dorder">
@@ -690,11 +693,13 @@
 		function DriverConfStatusRelated() {
 			if ($('#DriverConfStatus').val() > 1) {
 				$('#DriverID').prop( "disabled", true );
+				$('#VehicleType').prop( "disabled", true );
 				$('#DriversPrice').prop( "disabled", true );
 				$('.searchdrivers').prop( "disabled", true );
 			}	
 			else {
 				$('#DriverID').prop( "disabled", false );
+				$('#VehicleType').prop( "disabled", false );				
 				$('#DriversPrice').prop( "disabled", false );
 				$('.searchdrivers').prop( "disabled", false );				
 			}	

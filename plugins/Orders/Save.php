@@ -278,6 +278,16 @@ if ($_REQUEST['return']==1) {
 	$logDescription="Insert return transfer";
 	$logTitle = 'Order Inserted by ' . $_SESSION['UserRealName'];
 }	
+if ($_REQUEST['return']==2) {
+	$om->setMOrderDate(date("Y-m-d"));
+	$om->setMOrderTime(date("H:i:s"));
+	$om->setMOrderKey(create_order_key()); // pravi OrderKey
+	$mID = $om->saveAsNew();
+	$db->setOrderID($mID);
+	$db->setOrderDate(date("Y-m-d"));
+	$db->setTNo(1);	
+	$db->saveAsNew();
+}	
 if ($keyName != '' && $keyValue == '') {
 	$om->setSiteID(2);
 	$om->setMOrderDate(date("Y-m-d"));
