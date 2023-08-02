@@ -59,7 +59,7 @@
                                             {$todayBooking}
                                         </h3>
                                         <p>
-                                            {$NNEW} {$TODAY}
+                                            {$FROM} {$YESTERDAY}
                                         </p>
                                     </div>
                                     <div class="icon">

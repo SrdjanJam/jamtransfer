@@ -51,10 +51,10 @@ $StatusDescription = array(
 	$yesterday          = strtotime("yesterday 00:00");
 	$lastWeek = strtotime("yesterday -1 week 00:00");
 
-	$fromDate= date("Y-m-d", $today);
+	$fromDate= date("Y-m-d", time()-3600*24);
 	$lastWeek= date("Y-m-d", $lastWeek);
 
-    $where = $driverQ.' OrderDate = "'. $fromDate.'" AND TransferStatus < "3"';
+    $where = $driverQ.' OrderDate >= "'. $fromDate.'" AND TransferStatus < "3"';
     $k = $od->getKeysBy('DetailsID', 'asc', $where);
     $smarty->assign('todayBooking',count($k));
 

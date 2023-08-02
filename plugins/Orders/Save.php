@@ -29,8 +29,8 @@ else {
 $isAgent = false;
 $MAgentCommisionPercent = 0;
 
-if($om->getMUserLevelID() == '2') {
-	$au->getRow( $om->getMUserID() );
+if($od->getUserLevelID() == '2') {
+	$au->getRow( $od->getUserID() );
 	$MAgentCommisionPercent = $au->getProvision();
 	$isAgent = true;
 }
@@ -79,6 +79,9 @@ foreach ($db->fieldNames() as $name) {
 			if ($name == 'DriverConfStatus') {
 				$DriverNotes = $_REQUEST['DriverNotes'];
 				switch ($content) {
+					// obavesti izabranog vozaca pri promeni statusa iz NO DRIVER u NOT CONFIRMED
+					case 1:
+						if ($old_content==0) $logDescription .= informNewDriver($db->getOrderID(),$db->getTNo(),$_REQUEST['DriverID']) .'<br>';
 					case 5:
 						$icon = 'fa fa-minus-square bg-red';
 						$logDescription = 'Order status is now NO SHOW<br>'.$DriverNotes.'<br>';
@@ -130,14 +133,13 @@ foreach ($db->fieldNames() as $name) {
 						break;
 				}
 			}	
-			
 			// ako se promijenio vozac
 			if ($name == 'DriverID') {
 				// obavijesti starog vozaca
-				$logDescription .= informOldDriver($db->getOrderID(),$db->getTNo(),$old_content) . '<br>';
+				if ($old_content>0) $logDescription .= informOldDriver($db->getOrderID(),$db->getTNo(),$old_content) . '<br>';
 
-				// obavijesti novog vozaca
-				$logDescription .= informNewDriver($db->getOrderID(),$db->getTNo(),$content) .'<br>';
+				// obavesti novog vozaca ako je driverconf status NOT CONFIRMED
+				if ($_REQUEST['DriverConfStatus']==1) $logDescription .= informNewDriver($db->getOrderID(),$db->getTNo(),$content) .'<br>';
 
 				// obavijesti kupca 
 				$customerDescription .= YOUR_NEW_DRIVER_NAME . ' : ' . $_REQUEST['DriverName'] . '<br>';
@@ -263,6 +265,7 @@ if ($keyName != '' && $keyValue != '') {
 	$dID=$db->getDetailsID();
 	$mID=$db->getOrderID();
 }
+// dodavanje return transfera
 if ($_REQUEST['return']==1) {
 	$db->setTNo(2);	
 	$pickupid=$db->getPickupID();
@@ -273,11 +276,14 @@ if ($_REQUEST['return']==1) {
 	$db->setDropName($pickupname);	
 	$db->setDropPlace('');	
 	$mID=$db->getOrderID();	
+	$db->setDriverConfStatus(0);	
+	$db->setTransferStatus(4);	
 	$dID = $db->saveAsNew();	
 	$logAction = 'Insert';
 	$logDescription="Insert return transfer";
 	$logTitle = 'Order Inserted by ' . $_SESSION['UserRealName'];
-}	
+}
+// kopiranje transfera	
 if ($_REQUEST['return']==2) {
 	$om->setMOrderDate(date("Y-m-d"));
 	$om->setMOrderTime(date("H:i:s"));
@@ -286,8 +292,14 @@ if ($_REQUEST['return']==2) {
 	$db->setOrderID($mID);
 	$db->setOrderDate(date("Y-m-d"));
 	$db->setTNo(1);	
+	$db->setDriverConfStatus(0);
+	$db->setTransferStatus(4);
 	$db->saveAsNew();
-}	
+	$logAction = 'Insert';
+	$logDescription="Insert copied transfer";
+	$logTitle = 'Order Inserted by ' . $_SESSION['UserRealName'];	
+}
+// novi transfer	
 if ($keyName != '' && $keyValue == '') {
 	$om->setSiteID(2);
 	$om->setMOrderDate(date("Y-m-d"));

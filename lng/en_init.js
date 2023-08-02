@@ -10,7 +10,7 @@ statusDescription[9] = 'Deleted';
 
 var userLevels = {};
 userLevels[2] = 'Agent';
-//userLevels[3] = 'Client';
+userLevels[3] = 'Client';
 userLevels[4] = 'Affiliate';
 userLevels[5] = 'iFrame User';
 userLevels[6] = 'API User';

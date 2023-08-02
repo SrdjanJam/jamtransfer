@@ -12,6 +12,7 @@ foreach ($db->fieldNames() as $name) {
 		eval("\$db->set".$name."(\$content);");	
 	}	
 }	
+if ($_REQUEST['AuthLevelID']==2) $db->setAuthUserRealName($_REQUEST['AuthUserCompany']);	
 $db->setAuthUserPass( md5($_REQUEST['AuthUserPassNew']) ); 
 $upd = '';
 $newID = '';

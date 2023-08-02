@@ -1024,3 +1024,6 @@ define("MINUTES_FLIGHT_CONFLICT","minutes Flight Conflict");
 define("NUMBER_OF_DRIVERS","Number of Drives");
 define("FREE_DAYS","Free Days");
 define("SCHEDULE","Schedule");
+
+// 02.08.23
+define("YESTERDAY","Yesterday");

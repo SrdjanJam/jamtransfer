@@ -75,7 +75,7 @@ if (isset($type2)) {
 				break;			
 				
 			case 'newTransfers':
-				$filter .= " AND TransferStatus < '3' AND OrderDate = '" . $today . "'";
+				$filter .= " AND TransferStatus < '3' AND OrderDate >= '" . date("Y-m-d", time()-3600*24) . "' ";
 				break;			
 				
 			case 'tomorrow':
@@ -293,10 +293,9 @@ if (strlen($locationName)>2) $dbWhere .= " AND (PickupName LIKE ('%".$locationNa
 $queryDrivers="SELECT AuthUserID FROM v4_AuthUsers WHERE AuthUserRealName LIKE ('%".$driverName."%') 
 														OR AuthUserID = '".$driverName."'";												
 if (strlen($driverName)>2) $dbWhere .= " AND v4_OrderDetails.DriverID IN (".$queryDrivers.") ";
-$queryAgents="SELECT AuthUserID FROM v4_AuthUsers WHERE (AuthUserRealName LIKE ('%".$agentName."%') 
-														OR AuthUserID = '".$agentName."')";	
+$queryAgents="SELECT AuthUserID FROM v4_AuthUsers WHERE (AuthUserRealName LIKE ('%".$agentName."%') OR AuthUserID = '".$agentName."')";	
 if ($_REQUEST['Type2']==7) 	$queryAgents.= 	" AND NOT(`Image` is NULL or `Image`=' ') ";
-else $queryAgents.= " AND (`Image` is NULL or `Image`=' ') ";
+//else $queryAgents.= " AND (`Image` is NULL or `Image`=' ') ";
 if (strlen($agentName)>2 || $_REQUEST['Type2']==7) $dbWhere .= " AND v4_OrderDetails.AgentID IN (".$queryAgents.") ";
 if (strlen($agentOrder)>2) $dbWhere .= " AND ( MConfirmFile LIKE ('%".$agentOrder."%') OR
 												MOrderKey LIKE ('%".$agentOrder."%') ) ";
