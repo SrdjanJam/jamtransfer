@@ -37,6 +37,7 @@
 		.box-body .payment-content:last-child{
 			border: none;
 		}
+
 	</style>
 
 
@@ -45,9 +46,19 @@
         <div class="box-header">
             <i class="fa fa-credit-card"></i>
             <h3 class="box-title">{$UNFINISHED_ONLINE_PAYMENT}</h3>
+
+			<div class="pull-right box-tools">
+
+				<button class="btn btn-info btn-sm" data-name="unfinished-payment" data-name2="test"><i class="fa fa-plus"></i></button>
+                
+                <button class="btn btn-info btn-sm" data-widget='remove' 
+                data-toggle="tooltip" title="Remove"><i class="fa fa-times"></i></button>
+                
+            </div><!-- /. tools -->
+
 		</div>
 
-		<div class="box-body">
+		<div class="box-body unfinished-payment">
 
 			<div class="payment-label">
 				<div>{$NUMBER_KEY}</div>

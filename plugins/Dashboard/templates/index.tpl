@@ -47,3 +47,6 @@
                         <section class="col-lg-6 xconnectedSortable">
                         </section>
                     </div>	        
+
+
+					{include file="plugins/Dashboard/templates/script.tpl"}
