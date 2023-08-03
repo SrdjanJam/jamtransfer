@@ -1027,3 +1027,5 @@ define("SCHEDULE","Schedule");
 
 // 02.08.23
 define("YESTERDAY","Yesterday");
+// 03.08.23
+define("PROVISION2","Provision");

@@ -344,9 +344,9 @@
 										<div class="col-md-1"><?=TYPE;?></div>
 										<div class="col-md-1 right"><?=NETO;?></div>												
 										<div class="col-md-1 right"><?=ADDS;?></div>
-										<div class="col-md-1 right"><?=PROVISION;?> (%)</div>
+										<div class="col-md-1 right"><?=PROVISION2;?> (%)</div>
 										<div class="col-md-2 right"><?=FINAL_PRICE;?></div>
-										<div class="col-md-1 right"><?=PROVISION;?>2 (%)</div>
+										<div class="col-md-1 right"><?=PROVISION2;?>2 (%)</div>
 										<div class="col-md-2 right"><?=FINAL_PRICE;?>2</div>
 										</strong><br>
 										{{listDriversByRoute details.RouteID details.PickupDate details.PickupTime details.VehicleType details.AgentID}}

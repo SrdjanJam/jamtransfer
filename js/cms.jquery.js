@@ -1322,7 +1322,7 @@ Handlebars.registerHelper("listDriversByRoute", function(RouteID, PickupDate, Pi
 					else if (val.VehicleTypeID==VehicleType) var select='green-123';
 					else var select='';
 					list += '<div class="row selectable selectable-edit '+select+'">';
-					list += '<div class="col-md-3">' + val.DriverCompany + val.StatusCompany + '</div>';
+					list += '<div class="col-md-3">' + val.DriverCompany + val.StatusCompany + val.Contract + '</div>';
 					list += '<div class="col-md-1">' + val.VehicleTypeID + '</div>';
 					list += '<div class="col-md-1 right">' + val.DriversPrice + '</div>';	   /* Neto */					
 					list += '<div title="Surcharges" data-content="' +surcharges + '" class="col-md-1 right mytooltip">' + val.AddToPrice + '</div>';		  /* Additions */

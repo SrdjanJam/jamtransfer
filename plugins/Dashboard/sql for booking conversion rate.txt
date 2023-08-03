@@ -1,0 +1,3 @@
+SELECT count(*) FROM `v4_OrderDetailsTemp` WHERE DriverID=0
+SELECT count(*) FROM `v4_OrderDetailsTemp` WHERE DriverID>0 and (PayNow+PayLater+InvoiceAmount=0 or PayNow+PayLater+InvoiceAmount is null)
+SELECT count(*) FROM `v4_OrderDetailsTemp` WHERE DriverID>0 and PayNow+PayLater+InvoiceAmount>0

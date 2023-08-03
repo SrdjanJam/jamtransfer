@@ -183,13 +183,17 @@ else {
 				*/
 
 				$statusComp="";	
+				$contract="";
 				if($au->getActive() == 0) $statusComp="<i>-Not active</i>";
 				if($DriversPrice < 1) $statusComp="<i>-No price</i>";
 				if(isVehicleOffDuty($VehicleID, $transferDate)) $statusComp="<i>-Off duty</i>";
 				if ($statusComp=="" && !isset($_REQUEST['type'])) {
+					if ($contractPrice>0) {
+						$contract=" contract Agent";
+						if ($contractDriverPrice>0) $contract.=", Driver";
+					}	
 					$DriverCompanyFormated="<button data-ownerid='".$OwnerID."' data-vehicletype='".$VehicleTypeID."' data-driverprice='".$DriversPrice."' class='selectowner' type='button'>".$DriverCompany."</button>";
 					$FinalPriceFormated="<button data-ownerid='".$OwnerID."' data-vehicletype='".$VehicleTypeID."' data-driverprice='".$DriversPrice."' data-price='".nf($FinalPrice)."' class='selectprice' type='button'>".nf($FinalPrice)."</button>";
-					if ($contractPrice>0) $DriverCompanyFormated="<button data-ownerid='".$OwnerID."' data-vehicletype='".$VehicleTypeID."' data-driverprice='".$DriversPrice."' class='selectowner' type='button'>".$DriverCompany." CONTRACT</button>";
 				}
 				else {
 					$DriverCompanyFormated=$DriverCompany;
@@ -201,6 +205,7 @@ else {
 					'OwnerID'           => $OwnerID,
 					'DriverCompany'     => $DriverCompanyFormated,
 					'StatusCompany'     => $statusComp,
+					'Contract'     		=> $contract,
 					'ProfileImage'      => $ProfileImage,
 					'ServiceID'         => $ServiceID,
 					'VehicleID'         => $VehicleID,
@@ -246,7 +251,15 @@ else {
 		}// end else
 	} // end foreach DriverRoutes
 }
-
+$cnt=0;
+foreach ($cars as $car) {
+	if	($car['Contract']<>"") $cnt++;
+}	
+if ($cnt>0) {
+	foreach ($cars as $key => $car) {
+		if	($car['Contract']=="") 	unset($cars[$key]);
+	}	
+}	
 $cars = json_encode($cars);
 echo $_GET['callback'] . '(' . $cars. ')';
 
