@@ -23,11 +23,21 @@
     <!-- get transfer  widget -->
     <div class="box box-info">
         <div class="box-header">
+
+			<div class="pull-right box-tools">
+
+				<button class="btn btn-info btn-sm" data-name="get-route-prices"><i class="fa fa-plus"></i></button>
+                
+                <button class="btn btn-info btn-sm" data-widget='remove' 
+                data-toggle="tooltip" title="Remove"><i class="fa fa-times"></i></button>
+                
+            </div><!-- /. tools -->
+
             <i class="fa fa-road"></i>
             <h3 class="box-title">Get route prices</h3>
 
         </div>
-        <div class="box-body">
+        <div class="box-body get-route-prices">
 			<div class="row">
 				<div class="col-md-3">Pickup location</div>
 				<div class="col-md-9">
@@ -215,7 +225,6 @@
 		});
 		return list;
 	}
-
 
 {/literal}
 </script>
