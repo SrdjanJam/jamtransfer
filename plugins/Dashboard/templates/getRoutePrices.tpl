@@ -62,7 +62,7 @@
 					<input class="form-control timepicker" type="text" name="Time" size="5" id="Time" value=""> 
 				</div>					
 			</div>		
-			<button type="button" class="btn btn-primary searchdrivers" data-toggle="modal" data-target="#routeDriversModal">
+			<button type="button" id="button-find" class="btn btn-primary searchdrivers" data-toggle="modal" data-target="#routeDriversModal">
 				<i class="fa fa-search"></i>
 			</button>			
         </div>
@@ -162,13 +162,17 @@
 			})	
 		}
 	})	
-	$("#Route").change(function(){
-		var RouteID=$(this).val();
-		var PickupDate=$("#date").val();
-		var PickupTime=$("#time").val();
-		$(".modal-body").html(listDrivers(RouteID,  PickupDate, PickupTime));
-		$(".mytooltip").popover({trigger:'hover', html:true, placement:'bottom'});		
-	})
+
+	
+	$( "#button-find" ).on('click', function(){
+		var RouteID=$("#Route").val();
+		var Date=$("#Date").val();
+		var Time=$("#Time").val();
+		if ( Date!=="" && Time!=="") {
+			$(".modal-body").html(listDrivers(RouteID,  Date, Time));
+			$(".mytooltip").popover({trigger:'hover', html:true, placement:'bottom'});	
+		}	
+	});	
 	
 	function listDrivers(RouteID,  PickupDate, PickupTime) {
 		var url = 'api/getCarsAjax.php?RouteID='+RouteID+'&TransferDate='+PickupDate+'&TransferTime='+PickupTime+'&type=2'+'&callback=';
