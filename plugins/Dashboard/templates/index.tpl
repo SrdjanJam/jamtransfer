@@ -22,6 +22,7 @@
 							{include file="plugins/Dashboard/templates/getRoutePrices.tpl"} 			
 						</section><!-- /.Left col -->
 						{/if}
+
 						{if $getUnfinishedPayment}						
 						<section class="col-lg-6 xconnectedSortable"> 
 							{include file="plugins/Dashboard/templates/getUnfinishedPayment.tpl"} 			
@@ -46,6 +47,12 @@
 						{/if}
                         <section class="col-lg-6 xconnectedSortable">
                         </section>
+
+						{if $bookingConversionRate}
+							<section class="col-lg-6 xconnectedSortable"> 
+								{include file="plugins/Dashboard/templates/bookingConversionRate.tpl"} 			
+							</section><!-- /.Left col -->
+						{/if}
                     </div>	        
 
 
