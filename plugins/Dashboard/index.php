@@ -7,7 +7,9 @@
 	$smarty->assign('actualTransfers',false);										
 	$smarty->assign('todo',false);
 	$smarty->assign('quickEmail',false);	
-	$smarty->assign('translatorPanel',false);	
+	$smarty->assign('translatorPanel',false);
+	// Check:
+	// $smarty->assign('bookingConversionRate',false);	
 
 	if (in_array($_SESSION['AuthLevelID'],array(2,31,41,43,44,45,91,92,99))) {
 		require_once 'smallBoxes.php'; 
@@ -52,4 +54,8 @@
 		$smarty->assign('translatorPanel',true);	
 	}											
 
+	if (in_array($_SESSION['AuthLevelID'],array(2,31,41,42,43,44,45,91,92,99))) {
+		require_once 'bookingConversionRate.php';
+		$smarty->assign('bookingConversionRate',true);
+	}
 
