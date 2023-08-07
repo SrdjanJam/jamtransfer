@@ -25,13 +25,11 @@ $ActionID=0;
 
 require_once 'pathToVars.php';
 // LOGIN
-
 if(!isset($_SESSION['UserAuthorized']) or $_SESSION['UserAuthorized'] == false) {
 	require_once 'login.php';
 	exit();	
 }
 else setcookie("pageEx", $activePage, time() + (7*24*60*60),"/");
-
 if (isset ($_SESSION['UseDriverID'])){
 	setcookie("UseDriverID", $_SESSION['UseDriverID'],time()+24*3600);
 	setcookie("UseDriverName", $_SESSION['UseDriverName'],time()+(24*3600));
@@ -93,7 +91,7 @@ if ($result->num_rows>0) {
 		else $row1['active']='';		
 		$row1['menu']=$menu2;	
 		$menu1[]=$row1;
-	}	
+	}
 	$mdk = $md->getKeysBy('ModulID ' ,'asc', "where code='$activePage'");
 	if (count($mdk)==1 && in_array($activePage,$active_pages)) {
 		$keyP=$mdk[0];
@@ -173,6 +171,8 @@ if ($result->num_rows>0) {
 		
 	// display
 	?><script type="text/x-handlebars-template"></script><?
+	require_once 'css.php';
+
 	$smarty->display("index.tpl");	
 }
 else echo "<h1>No menu options for this profile</h1>";
