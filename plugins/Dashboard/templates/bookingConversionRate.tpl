@@ -28,7 +28,8 @@
     <!-- get transfer  widget -->
     <div class="box box-info">
 
-		<input type="hidden" name="loc" id="loc" value="">
+		{* Spare: *}
+		{* <input type="hidden" name="loc" id="loc" value=""> *}
 
         <div class="box-header">
 			<div class="pull-right box-tools">
@@ -53,12 +54,12 @@
 			</div>
 			
 			<div class="row">
-				<div class="col-md-4">Date & Time</div>
+				<div class="col-md-4">Date</div>
 				<div class="col-md-4">
 					<input class="form-control datepicker" type="text" name="Date" size="5" id="Date" value="" placeholder="From"> 
 				</div>					
 				<div class="col-md-4">
-					<input class="form-control timepicker" type="text" name="Time" size="5" id="Time" value="" placeholder="To"> 
+					<input class="form-control datepicker" type="text" name="Date2" size="5" id="Date2" value="" placeholder="To">  
 				</div>					
 			</div>	
 
@@ -74,7 +75,7 @@
 				</div>	
 			</div>	
 
-			<button type="button" class="btn btn-primary conversion-rate" data-toggle="modal" data-target="#conversionRate">
+			<button type="button" id="button-find" class="btn btn-primary conversion-rate" data-toggle="modal" data-target="#conversionRate">
 				<i class="fa fa-search"></i>
 			</button>			
         </div>
@@ -132,14 +133,16 @@
 						$("#selectFrom_options"+loc).html(html);
 
 						// option selected
-						$(".Location").click(function(){
-							$("#Location").val($(this).attr('data-name'));
-							$("#"+loc+"ID").val($(this).attr('id'));
-							var fid=$(this).attr('id');
-							$("#selectFrom_options"+loc).hide("slow");
-					
-							
-						});						
+						$( "#button-find" ).on('click', function(){
+							var Location=$("#Location").val();
+							var Date=$("#Date").val();
+							var Date2=$("#Date2").val();
+							var Route=$("#Route").val();
+							if ( Date!=="" && Date2!=="") {
+								$(".modal-body").html(bookingRate(Location,  Date, Date2, Route));
+								$(".mytooltip").popover({trigger:'hover', html:true, placement:'bottom'});	
+							}	
+						});				
 					}						
 				}
 			})	
@@ -147,8 +150,8 @@
 	})	
 
 	
-	function listDrivers(RouteID,  PickupDate, PickupTime) {
-		var url = 'api/getCarsAjax.php?RouteID='+RouteID+'&TransferDate='+PickupDate+'&TransferTime='+PickupTime+'&type=2'+'&callback=';
+	function bookingRate(Location, Date, Date2, Route) {
+		var url = 'api/bookingRate.php?Location='+Location+'&Date='+Date+'&Date2='+Date2+'&Route='+Route+'&callback=';
 		var list = '';
 		var funcArgs = '';
 		console.log(url);
@@ -160,40 +163,7 @@
 			dataType: 'jsonp',
 
 			success: function(data) {
-				$.each(data, function(i,val) {
-					var surcharges ='';
-					if (val.NightPrice>0) surcharges = '<br>Night: '+val.NightPrice;
-					if (val.MonPrice>0) surcharges += '<br>Monday: '+ val.MonPrice;
-					if (val.TuePrice>0) surcharges += '<br>Tueday: '+ val.TuePrice;
-					if (val.WedPrice>0) surcharges += '<br>Wednesday: '+ val.WedPrice;
-					if (val.ThuPrice>0) surcharges += '<br>Thusday: '+ val.ThuPrice;
-					if (val.FriPrice>0) surcharges += '<br>Friday: '+ val.FriPrice;
-					if (val.SatPrice>0) surcharges += '<br>Saterday: '+  val.SatPrice;
-					if (val.SunPrice>0) surcharges += '<br>Sunday: '+ val.SunPrice;
-					if (val.S1Price>0) surcharges += '<br>Season1: '+  val.S1Price;
-					if (val.S2Price>0) surcharges += '<br>Season2: '+  val.S2Price;
-					if (val.S3Price>0) surcharges += '<br>Season3: '+  val.S3Price;
-					if (val.S4Price>0) surcharges += '<br>Season4: '+  val.S4Price;
-					if (val.S5Price>0) surcharges += '<br>Season5: '+  val.S5Price;
-					if (val.S6Price>0) surcharges += '<br>Season6: '+  val.S6Price;
-					if (val.S7Price>0) surcharges += '<br>Season7: '+  val.S7Price;
-					if (val.S8Price>0) surcharges += '<br>Season8: '+  val.S8Price;
-					if (val.S9Price>0) surcharges += '<br>Season9: '+  val.S9Price;
-					if (val.S10Price>0) surcharges += '<br>Season10: '+ val.S10Price;
-					if (val.SpecialDatesPrice>0) surcharges += '<br>Special Date: '+ val.SpecialDatesPrice;
-					if (val.StatusCompany!="") var select='red-123';					
-					else var select='';
-					list += '<div class="row selectable selectable-edit '+select+'">';
-					list += '<div class="col-md-3">' + val.DriverCompany + val.StatusCompany + '</div>';
-					list += '<div class="col-md-1">' + val.VehicleTypeID + '</div>';
-					list += '<div class="col-md-1 right">' + val.DriversPrice + '</div>';	   /* Neto */					
-					list += '<div title="Surcharges" data-content="' + surcharges + '" class="col-md-1 right mytooltip">' + val.AddToPrice + '</div>';		  /* Additions */
-					list += '<div class="col-md-1 right">' + val.Provision + '</div>';		  /* Provision */
-					list += '<div class="col-md-2 right">' + val.FinalPrice + '</div>';		 /* FinalPrice */
-					list += '<div class="col-md-1 right">' + val.Provision2 + '</div>';		  /* Provision */
-					list += '<div class="col-md-2 right">' + val.FinalPrice2 + '</div>';		 /* FinalPrice */
-					list += '</div>';
-				});
+				var list = data;
 			},
 			error: function(data) {
 				console.log('Error:');
