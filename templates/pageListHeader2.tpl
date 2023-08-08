@@ -9,7 +9,7 @@
 	}
 
 	.select-top-edit.addon{
-		width:50%;
+		width:48%;
 		display: inline;
 	}
 
@@ -18,7 +18,7 @@
 	}
 
 
-	.datepicker-edit{ width:48%; }
+	.datepicker-edit{ width:49%; }
 
 	.datepicker-edit,.datepicker-edit-2{
 		color: rgb(1 114 255) !important;
