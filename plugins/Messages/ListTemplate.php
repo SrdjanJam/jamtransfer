@@ -2,14 +2,6 @@
 	$smarty->assign('selectsolved',true);
 ?>
 
-<style>
-	@media only screen and (max-width: 1350px) {
-		/* For mobile phones: */
-		[class*="col-"] {
-			width: 100% !important;
-		}
-	}
-</style>
 
 <script type="text/x-handlebars-template" id="ItemListTemplate">
 
