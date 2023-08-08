@@ -872,6 +872,11 @@ button.searchdrivers, button.conversion-rate{
         /* object-fit: cover !important; */
 	}
 
+    .modal-dialog-edit {
+		width: 90% !important;    /* by default its 600px. */
+		margin: 30px auto !important;
+	}
+
 
 }
 
