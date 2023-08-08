@@ -58,90 +58,6 @@ $(document).ready(function(){
 </script>
 
 
-<style>
-* {
-  box-sizing: border-box;
-}
-body {
-  font-family: Arial, Helvetica, sans-serif;
-}
-.grid-container {
-  display: grid;
-  grid-gap: 1px;
-  grid-template-columns: auto auto auto auto auto auto auto;
-  padding: 1px;
-  margin: 10px auto;
-  background-color: rgba(235, 235, 235, 0.8);;
-}
-.grid-item {
-  background-color: rgba(235, 235, 235, 0.8);
-  padding: 5px;
-  font-size: 15px;
-  text-align: center;
-}
-.grid-item-2 {
-	background:white;
-}
-.show-data .small{
-	font-size:16px;
-}
-
-/*///////////////////////////////////////////////////////////*/
-/*MEDIA SECTION:*/
-@media screen and (max-width:767px) {
-	.wrapper{
-		padding:0px;
-	}
-	.body{
-		padding:0;
-	}
-	.fullscreen{
-		z-index: 9999; 
-		width: 100%; 
-		height: 100%; 
-		position: fixed; 
-		top: 0; 
-		left: 0; 
-		background:#f3f1f1;
-
-		/* Animation */
-		animation: myAnim 0.5s ease 0s 1 normal forwards;
- 	}
-
-	/* keyframes  */
-	@keyframes myAnim {
-		0% {
-			transform: scale(0.5);
-		}
-
-		100% {
-			transform: scale(1);
-		}
-	}
-
-
-	a.close-gi{
-		color:rgb(185, 65, 65);
-		font-size:35px;
-		border:1px solid red;
-		padding:5px;
-	}
-	.grid-item-2{
-		overflow-y: auto;
-	}
-	.days .small{
-		color:black;
-		font-size:30px;
-	}
-	.days b{
-		font-size:30px;
-	}
-	.days .small-mini{
-		font-size:17px;
-	}
-	
-}
-</style>
 <div class="grid-container">
 	<div class="grid-item" style="background:#FDB5B5">{$dayNames[0]}</div>
 	<div class="grid-item" style="background:#f2f2f2">{$dayNames[1]}</div>
@@ -221,7 +137,7 @@ body {
 					
 					</div> {* / days *}
 					{* close *}
-					<a class="close-gi" data-id ="{$month_transfers[pom].nom}" style="display:none;">{$close}</a>		
+					<a class="close-gi" data-id ="{$month_transfers[pom].nom}" style="display:none;">{$CLOSE}</a>		
 				</div> {* / .grid-item-2 *}  {* old - </td>*}
 				
 				
