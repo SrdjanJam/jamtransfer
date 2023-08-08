@@ -156,7 +156,6 @@
     background-image: url(./i/m-assets/white-bg/stripes-light.webp) !important;
     box-shadow: 5px 5px 8px #616060;
 }
-.box-info-edit{ overflow-y: auto; height: 300px; }
 .box-body .row{ margin-bottom: 10px; }
 .box-body .row-edit-2{ margin-top:5px; }
 .box-body-edit{ background: #6cd7f36b; }
@@ -477,7 +476,7 @@ textarea{ width:90% !important; }
     border-radius: 5px;
 }
 
-button.searchdrivers{
+button.searchdrivers, button.conversion-rate{
 	box-shadow: 2px 2px 4px 1px #888888 !important;
 }
 
