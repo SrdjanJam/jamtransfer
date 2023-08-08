@@ -1,8 +1,4 @@
-<style>
-	.w-edit{
-		width:180px;
-	}
-</style>
+
 
 <script type="text/x-handlebars-template" id="ItemListTemplate">
 
@@ -76,7 +72,7 @@
 	<script>
 
 		$('input').change(function(){
-			var base=window.rootbase;
+			var base=window.location.origin;
 			if (window.location.host=='localhost') base=base+'/jamtransfer';		
 			var link = base+'/plugins/SpecialDates/Save.php';
 
