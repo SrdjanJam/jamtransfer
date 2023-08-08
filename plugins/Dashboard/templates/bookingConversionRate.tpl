@@ -1,35 +1,16 @@
 <style>
-/* Old: */
-	/* .selectable-edit{
-		margin-left:0 !important;
-		margin-right:0 !important;
-	}
-	.blue-123{
-		color: blue;
-	}	
-	.green-123{
-		color: green;
-	}	
-	.red-123{
-		color: red;
-	}
-	.route-edit{
-		padding: 5px;
-    	border-radius: 5px;
-		box-shadow: 0px 0px 4px 1px #888888;
-		width: 100%;
-	} */
-
 	.clock-timepicker{
 		width:100%;
+	}
+
+	.row{
+		margin-right: 0;
+		margin-left: 0;
 	}
 </style>
 
     <!-- get transfer  widget -->
     <div class="box box-info">
-
-		{* Spare: *}
-		{* <input type="hidden" name="loc" id="loc" value=""> *}
 
         <div class="box-header">
 			<div class="pull-right box-tools">
@@ -83,13 +64,13 @@
     </div>
 	
 	<div class="modal fade"  id="conversionRate">
-		<div class="modal-dialog" style="width:800px">
+		<div class="modal-dialog modal-dialog-edit" style="width:800px">
 			<div class="modal-content">
 				<div class="modal-header" style="padding:10px">
 					<strong>
 						<div class="col-md-4">Booking Step</div>
 						<div class="col-md-4">Number</div>
-						<div class="col-md-4 right">%</div>												
+						<div class="col-md-4">%</div>												
 					</strong>
 				</div>				
 				<div class="modal-body" style="padding:10px">
