@@ -1,34 +1,9 @@
 <?
-
 $currency = array(
     '1' => 'EUR',
     '2' => 'HRK',
     '3' => 'CHF');
 ?>
-
-<style>
-
-
-.small {
-	width: auto;
-	height: 25px;
-	background-color: #d6edfc;
-}
-	.large {
-	width: 700px;
-	height: auto;
-
-	background-color: #fc0;
-	margin: 10px auto;
-}
-.rotate {
-  -moz-transform: rotate(90deg);
-  -webkit-transform: rotate(90deg);
-  -o-transform: rotate(90deg);
-  -ms-transform: rotate(90deg);
-  transform: rotate(90deg);
-}
-  </style>
 
 <script type="text/x-handlebars-template" id="ItemEditTemplate">
 <form id= "ItemEditForm{{ID}}" class="form box box-info" enctype="multipart/form-data" method="post" onsubmit="return false;">

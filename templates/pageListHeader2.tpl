@@ -50,7 +50,10 @@
 	.button-toggle:hover,.fa-bars-edit:hover{
 		cursor:pointer; font-weight:bold; color: #0b70c9;
 	}
-	
+
+	.filter .col-sm-3{
+		width: auto;
+	}
 
 </style>
 
@@ -76,34 +79,48 @@ value=" WHERE {$ItemID} > 0">
 	<div class="filter">
 
 		<!-- Sorting: -->
-		<div class="filterOlderAdd" style="padding:5px;float:left;margin-left:20px;">
-			<!-- Sort by: -->
-			<b style="color:#157bff;">{$SORT_BY}:</b>
-			<select id='sortField' class="select-top-edit" name='sortField' onchange="allItems();">
-				<option value="OrderDate">{$ORDER_DATE}</option>	
-				<option value="PickupDate">{$PICKUP_DATE}</option>		
-			</select>				
-			<select id='sortDirection' class="select-top-edit" name='sortDirection' onchange="allItems();">
-				<option value="ASC">{$ASC}</option>	
-				<option value="DESC">{$DESC}</option>		
-			</select>
-			<!-- Report By: -->
-			<b style="color:#157bff; margin-left:20px;">{$REPORT_BY}:</b>
-			<select id='reportBy' class="select-top-edit" name='reportBy' onchange="allItems();">
-				{foreach from=$ReportBy item=label key=key}
-					<option value="{$key}" {if $data.key == $key} selected="selected" {/if}>{$label}</option>
-				{/foreach}	
-			</select>
-			<!-- Filter By: -->			
-			<b style="color:#157bff; margin-left:20px;">{$FILTER_BY}:</b>
-			<select id='action' class="select-top-edit" name='action' onchange="allItems();">
-				{foreach from=$Action item=label key=key}
-					<option value="{$key}" {if $data.key == $key} selected="selected" {/if}>{$label}</option>
-				{/foreach}	
-			</select>
+		{* Spare: *}
+		{* <div class="filterOlderAdd" style="padding:5px;float:left;margin-left:20px;"> *}
 
-		</div>	<!-- End of sorting -->	
-		<br><br>
+			<!-- Sort by: -->
+			<div class="row">
+
+				<div class="col-sm-3">
+					<b style="color:#157bff; style=">{$SORT_BY}:</b>
+					<select id='sortField' class="select-top-edit" name='sortField' onchange="allItems();">
+						<option value="OrderDate">{$ORDER_DATE}</option>	
+						<option value="PickupDate">{$PICKUP_DATE}</option>		
+					</select>				
+					<select id='sortDirection' class="select-top-edit" name='sortDirection' onchange="allItems();">
+						<option value="ASC">{$ASC}</option>	
+						<option value="DESC">{$DESC}</option>		
+					</select>
+				</div>
+
+				<!-- Report By: -->
+				<div class="col-sm-3">
+					<b style="color:#157bff; margin-left:20px;">{$REPORT_BY}:</b>
+					<select id='reportBy' class="select-top-edit" name='reportBy' onchange="allItems();">
+						{foreach from=$ReportBy item=label key=key}
+							<option value="{$key}" {if $data.key == $key} selected="selected" {/if}>{$label}</option>
+						{/foreach}	
+					</select>
+				</div>
+
+				<!-- Filter By: -->	
+				<div class="col-sm-3">	
+					<b style="color:#157bff; margin-left:20px;">{$FILTER_BY}:</b>
+					<select id='action' class="select-top-edit" name='action' onchange="allItems();">
+						{foreach from=$Action item=label key=key}
+							<option value="{$key}" {if $data.key == $key} selected="selected" {/if}>{$label}</option>
+						{/foreach}	
+					</select>
+					</div>
+
+			</div>
+
+		{* </div>	<!-- End of sorting -->	 *}
+		<br>
 
 		<!-- Order: -->
 		<div class="col-md-2 col-md-2-edit order-edit">
@@ -192,7 +209,7 @@ value=" WHERE {$ItemID} > 0">
 	</div> <!-- End of .filter -->
 
 
-</div>
+</div> <!-- row itemsheader itemsheader-edit -->
 
 {* Scripts: *}
 <script>
