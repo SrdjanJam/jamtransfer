@@ -1033,3 +1033,7 @@ define("YESTERDAY","Yesterday");
 define("AGENT_ID","AgentID");
 define("ROUTE_ID","RouteID");
 define("VEHICLE_TYPE_ID","VehicleTypeID");
+
+
+// 22.8.23 ==========================================================
+define("PREPARED_FOR_SET_AS","Prepared for set as");
