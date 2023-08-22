@@ -3,7 +3,7 @@
 		width:100%;
 	}
 
-	.row{
+	.row.booking-row{
 		margin-right: 0;
 		margin-left: 0;
 	}
@@ -26,7 +26,7 @@
             <h3 class="box-title">Booking conversion rate</h3>
         </div>
         <div class="box-body booking-conversation">
-			<div class="row">
+			<div class="row booking-row">
 				<div class="col-md-4">Location</div>
 				<div class="col-md-8">
 					<input class="form-control" type="text" name="Location" size="5" id="Location" value="" placeholder="Location"> 
@@ -35,7 +35,7 @@
 				</div>					
 			</div>
 			
-			<div class="row">
+			<div class="row booking-row">
 				<div class="col-md-4">Date</div>
 				<div class="col-md-4">
 					<input class="form-control datepicker" type="text" name="Date1" size="5" id="Date1" value="" placeholder="From"> 
@@ -146,7 +146,7 @@
 
 			success: function(data) {
 				$.each(data, function(i,val) {
-					list += '<div class="row">';
+					list += '<div class="row booking-row">';
 					list += '<div class="col-md-4">' + val.Step + '</div>';
 					list += '<div class="col-md-4">' + val.Number + '</div>';
 					list += '<div class="col-md-4">' + val.Percent + '</div>';
