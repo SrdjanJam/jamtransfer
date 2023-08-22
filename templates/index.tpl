@@ -247,16 +247,16 @@
 							{if isset($smarty.session.UseDriverName)}
 								<!-- Header in navbar - nav-header nav-header-edit -->
 								<li class="nav-header nav-header-edit">
-									<h3 id="set-as">{$SETED_AS}:</h3>
+									<h3 id="set-as">{$SET_AS}:</h3>
 									<h3 class="cut-name">{$smarty.session.UseDriverName}</h3>
 									<a href="setout.php" id="a-setout">{$SETOUT} &nbsp;<i class="fas fa-sign-out-alt"></i></a>	
 								</li>
 							{else}
 								{if isset ($smarty.cookies.UseDriverName)}	
 									<!--Header in navbar - Set as with cookie -->
-									<li class="nav-header nav-header-edit">
+									<li class="nav-header nav-header-edit nav-header-edit-2">
 										<a href="satAsDriver/{$smarty.cookies.UseDriverID}" style="padding-left:5px;padding-right:0px;">
-											<h3 id="set-us-2">{$SET_AS}: <i class="fas fa-sign-in-alt"></i></h3>
+											<h3 id="set-us-2">{$PREPARED_FOR_SET_AS}: <i class="fas fa-sign-in-alt"></i></h3>
 											<h3 class="cut-name-2">{$smarty.cookies.UseDriverName}</h3>
 										</a>
 									</li>
@@ -385,13 +385,13 @@
 
 				{* MAIN CONTENT ========================================================================================================== *}
 				<div class="body row white-bg white-bg-edit">
-
+					
 					{if isset($pageOLD)}
 						{NOT_MODEL_VIEW_CONTROL}
 						{elseif isset($pageName) and $pageName ne ''}
 							{include file="{$root}/plugins/{$base}/templates/{$includeFileTpl}"}
 						{elseif $pageList}
-							{include file="pageList.tpl"} 
+								{include file="pageList.tpl"} 
 							{if $orderid gt 0}
 								{include file="plugins/Dashboard/templates/getOrder.tpl"} 			
 							{/if}

@@ -1025,7 +1025,15 @@ define("NUMBER_OF_DRIVERS","Number of Drives");
 define("FREE_DAYS","Free Days");
 define("SCHEDULE","Schedule");
 
-// 02.08.23
+// 02.08.23 ========================================================
 define("YESTERDAY","Yesterday");
-// 03.08.23
-define("PROVISION2","Provision");
+
+
+// 10.8.23 =========================================================
+define("AGENT_ID","AgentID");
+define("ROUTE_ID","RouteID");
+define("VEHICLE_TYPE_ID","VehicleTypeID");
+
+
+// 22.8.23 ==========================================================
+define("PREPARED_FOR_SET_AS","Prepared for set as");

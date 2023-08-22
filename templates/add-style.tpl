@@ -7,6 +7,7 @@
 /* Main wrapper: */
 .wrapper-edit{ padding:0px; }
 
+
 /* Sub wrapper: */
 .page-wrapper-edit{
     background-image: url(./i/m-assets/white-bg/noise_lines.png) !important;
@@ -20,7 +21,7 @@
 .white-bg-edit{ 
     background-image: url(./i/m-assets/white-bg/noise_lines.png) !important;
     /* height: 100%; check */
-    padding: 30px 30px 30px;
+    padding: 10px 30px 10px;
     flex:1;
 }
 
@@ -737,6 +738,10 @@ button.searchdrivers, button.conversion-rate{
 		text-align: center;
 	}
 
+    .filter	.col-sm-3 b{
+		display: block !important;
+	}
+
 }
 
 
@@ -870,6 +875,11 @@ button.searchdrivers, button.conversion-rate{
 		/* Testing for stretched on mobile: */
 		/* height: auto !important; */
         /* object-fit: cover !important; */
+	}
+
+    .modal-dialog-edit {
+		width: 90% !important;    /* by default its 600px. */
+		margin: 30px auto !important;
 	}
 
 
