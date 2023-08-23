@@ -151,7 +151,7 @@ while($d = $w->fetch_object())	{
 	else $RCash = number_format(0,2);
 	
 	// Deposit
-	$key8 = array_search($subDriverID, array_column($deposit_arr, 'DriverID'));
+	$key8 = array_search($subDriverID, array_column((array)$deposit_arr, 'DriverID'));
 	if ($key8>-1) $Deposit = $deposit_arr[$key8]['Trosak'];			
 	else $Deposit = number_format(0,2);
 	
