@@ -193,13 +193,11 @@
 
 		{/if}
 		
-
 	</head>
-	{* End of HEAD =============================================================================================================================*}
 
+	
 {* TPL INCLUDE: *}
 {include file="{$root}/templates/default-style.tpl"}
-
 {include file="{$root}/templates/add-style.tpl"}
 
 
@@ -215,7 +213,7 @@
 				<!-- SIDEBAR COLLAPSE: -->
 				<div class="sidebar-collapse">
 					<ul class="nav metismenu" id="side-menu">
-						<!-- PROFILE: =================================================================== -->
+						<!-- PROFILE: -------------------------------------------------------------------------------- -->
 						<!-- Header in navbar - nav-header-top-edit -->
 						<li class="nav-header nav-header-top-edit">
 							<div class="dropdown profile-element" style="text-align:center;">
@@ -239,9 +237,9 @@
 
 							</div>
 						</li>
-						<!-- End of PROFILE ======================================================================== -->
+						<!-- End of PROFILE -------------------------------------------------------------------------- -->
 
-						<!-- SETTING DRIVER: ======================================================================== -->
+						<!-- SETTING DRIVER: -------------------------------------------------------------------------- -->
 						{if $setasdriver}
 							
 							{if isset($smarty.session.UseDriverName)}
@@ -252,7 +250,7 @@
 									<a href="setout.php" id="a-setout">{$SETOUT} &nbsp;<i class="fas fa-sign-out-alt"></i></a>	
 								</li>
 							{else}
-								{if isset ($smarty.cookies.UseDriverName)}	
+								{if isset ($smarty.cookies.UseDriverName)}
 									<!--Header in navbar - Set as with cookie -->
 									<li class="nav-header nav-header-edit nav-header-edit-2">
 										<a href="satAsDriver/{$smarty.cookies.UseDriverID}" style="padding-left:5px;padding-right:0px;">
@@ -264,7 +262,7 @@
 							{/if}
 							
 						{/if}
-						<!-- End of SETTING DRIVER ====================================================================================== -->
+						<!-- End of SETTING DRIVER ------------------------------------------------------------------------ -->
 
 						<!-- Items of sidebar -->
 						{section name=index loop=$menu1}
@@ -355,7 +353,7 @@
 					
 					</nav>
 				</div> <!-- /.header row border-bottom -->
-				<!-- ******************************************************************************** -->		
+				<!-- END OF HEADER ========================================================================================== -->		
 			
 				{if not $isNew and $pageList} 							
 					<!-- .header -->
@@ -450,12 +448,12 @@
 					<div class="backdrop"><div class="spiner"></div></div>
 
 				</div><!-- /.footer row -->
-				{* END OF FOOTER =================================================================================*}
+				<!-- END OF FOOTER ================================================================================= -->
 
 			</div> <!-- End of page-wrapper -->
 
 		</div> <!-- End of wrapper -->
-		{* END OF WRAPPER ==================================================================================================*}
+		<!-- END OF WRAPPER ================================================================================================== -->
 
 		<input type="hidden" id="fieldsSettings" name="fieldsSettings" value="{$fieldsSettings}">
 		<input type="hidden" id="levelID" name="levelID" value="{$levelID}">
