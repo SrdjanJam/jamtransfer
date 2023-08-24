@@ -1675,7 +1675,7 @@ function inDateRange($start, $end, $needle) {
         return ($needle >= $fullStart) && ($needle <= $fullEnd);
     }
     if($fullStart > $fullEnd) {
-        $fullEnd   = $year+1 . '-'.$end;
+        $fullEnd   = (int)$year+1 . '-'.$end;
         return ($needle >= $fullStart) && ($needle <= $fullEnd);
     }
     if($fullStart == $fullEnd) {
