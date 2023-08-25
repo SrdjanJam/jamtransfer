@@ -1028,12 +1028,20 @@ define("SCHEDULE","Schedule");
 // 02.08.23 ========================================================
 define("YESTERDAY","Yesterday");
 
-
 // 10.8.23 =========================================================
 define("AGENT_ID","AgentID");
 define("ROUTE_ID","RouteID");
 define("VEHICLE_TYPE_ID","VehicleTypeID");
 
-
 // 22.8.23 ==========================================================
-define("PREPARED_FOR_SET_AS","Prepared for set as");
+define("READY_FOR_SET_AS","Ready for set as");
+
+// 24.8.23===========================================================
+define("GATEWAY","Gateway");
+define("ORDER_ID","Order ID");
+define("CUSTOMER_IP","Customer IP");
+define("ORDER_NUMBER","Order Number");
+define("DATETIME_1","Datetime 1");
+define("DATETIME_2","Datetime 2");
+define("DATETIME_3","Datetime 3");
+define("CREATED","Created");
