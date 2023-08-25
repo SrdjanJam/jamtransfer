@@ -249,7 +249,8 @@ hr {
 	<!-- MAIN CONTENT: -->
 	<div class="row row-shedule">
 		{assign var=counter value=1}
-		{if $sdArray|count eq 0}
+
+		{if count((array)$sdArray) eq 0}
 			<h1 style="color: chocolate;">{$NO_TRANSFERS_FOR_THIS_PERIOD}</h1>
 		{/if}
 		{section name=pom loop=$sdArray}
