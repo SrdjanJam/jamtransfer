@@ -1,7 +1,7 @@
 <?
 require_once '../../config.php';
-require_once ROOT . '/db/v4_ContractPrices.class.php';
-$db = new v4_ContractPrices();
+require_once ROOT . '/db/v4_AgentPrices.class.php';
+$db = new v4_AgentPrices();
 $keyName = 'ID';
 $ItemName='ID ';
 #********************************

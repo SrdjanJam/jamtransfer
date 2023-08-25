@@ -37,7 +37,7 @@ $flds = array();
 $DB_Where = " " . $_REQUEST['where'];
 $DB_Where .= $filter;
 
-$routes_arr = "";
+$routes_arr = "0,";
 $routes[]=0;
 	$sql="SELECT RouteID FROM `v4_DriverTerminals`,v4_RoutesTerminals WHERE `DriverID`=".$_SESSION['UseDriverID']." and v4_DriverTerminals.TerminalID=v4_RoutesTerminals.TerminalID";		
 	$result = $dbT->RunQuery($sql);
@@ -98,6 +98,16 @@ if (count($dbk) != 0) {
 				$detailFlds["TwoToOne"]=$row['TwoToOne'];
 				$detailFlds["PriceRules"]=$row['SurCategory'];
 				$detailFlds["PriceRules2"]=$row['SurCategory'];
+				if ($row['FromID']==0) {
+					$dbC->getRow($row["ID"]);	
+					$dbC->setFromID($db->getFromID());
+					$dbC->saveRow();
+				}				
+				if ($row['ToID']==0) {
+					$dbC->getRow($row["ID"]);	
+					$dbC->setToID($db->getToID());
+					$dbC->saveRow();
+				}	
 			}			
 		// ako postoji neko custom polje, onda to ovdje.
 		// npr. $detailFlds["AuthLevelName"] = $nekaDrugaDB->getAuthLevelName().' nesto';
