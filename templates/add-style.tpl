@@ -149,6 +149,11 @@
 #show_Items .pad1em div{ border-right:1px solid rgb(187, 187, 187); }
 #show_Items .pad1em div:last-child{ border-right:none;}
 #show_Items .pad1em:hover{ background: rgb(0 0 0 / 9%) !important; }
+#show_Items .h-style:hover{ background: #04656f78 !important; }
+
+.cursor-list{
+    cursor: default !important;
+}
 
 /* off */
 /* .listTitleEdit{ cursor:auto !important; } */
@@ -483,6 +488,7 @@ textarea{ width:90% !important; }
 button.searchdrivers, button.conversion-rate{
 	box-shadow: 2px 2px 4px 1px #888888 !important;
 }
+
 
 /* *************************************************************************************** */
 /* *************************************************************************************** */
