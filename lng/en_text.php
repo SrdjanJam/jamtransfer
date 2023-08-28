@@ -1045,3 +1045,6 @@ define("DATETIME_1","Datetime 1");
 define("DATETIME_2","Datetime 2");
 define("DATETIME_3","Datetime 3");
 define("CREATED","Created");
+
+// 28.8.23============================================================
+define("URL","Url");
