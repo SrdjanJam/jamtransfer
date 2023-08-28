@@ -16,15 +16,7 @@
 
 		<div class="col-md-2">
 			<?=TITLE?>
-		</div>
-
-		<div class="col-md-2">
-			<?=URL;?>
-		</div>		
-		
-		<div class="col-md-2">
-			<?=IMAGE;?>
-		</div>		
+		</div>	
 				
 	</div>
 	<!-- --------------------------------- -->
@@ -42,14 +34,6 @@
 
 					<div class="col-md-2">
 						{{Title}}
-					</div>
-
-					<div class="col-md-2">
-						{{Url}}
-					</div>			
-					
-					<div class="col-md-2">
-						{{Image}}
 					</div>
 					
 			</div>
