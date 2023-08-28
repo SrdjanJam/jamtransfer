@@ -1,4 +1,3 @@
-
 <script type="text/x-handlebars-template" id="ItemEditTemplate">
 <form id="ItemEditForm{{ID}}" class="form box box-info" enctype="multipart/form-data" method="post" onsubmit="return false;">
 	<div class="box-header">
@@ -24,13 +23,13 @@
 			</button>
 		</div>
 	</div>
-
+	
 	<div class="box-body ">
         <div class="row">
 			<div class="col-md-12">
 
 				<input type="hidden" name="ID" id="ID" class="w100" value="{{ID}}">
-
+				
 				<div class="row">
 					<div class="col-md-3">
 						<label for="ID"><?=ID;?></label>
@@ -58,6 +57,7 @@
 					</div>
 				</div>
 
+
 				<div class="row">
 					<div class="col-md-3">
 						<label for="Content"><?=ARTICLE;?></label>
@@ -67,7 +67,7 @@
 					class="textarea" style="width:100%">{{Article}}</textarea>
 					</div>
 				</div>
-				
+
 				<div class="row">
 					<div class="col-md-3">
 						<label for="Page"><?=PAGE;?></label>
@@ -94,26 +94,7 @@
 						<input type="text" name="HTMLBefore" id="HTMLBefore" class="w100" value="{{HTMLBefore}}">
 					</div>
 				</div>
-<!--
-	
-				<div class="row">
-					<div class="col-md-3">
-						<label for="HTMLAfter"><?=HTMLAFTER;?></label>
-					</div>
-					<div class="col-md-9">
-						<input type="text" name="HTMLAfter" id="HTMLAfter" class="w100" value="{{HTMLAfter}}">
-					</div>
-				</div>
 
-				<div class="row">
-					<div class="col-md-3">
-						<label for="Classes"><?=CLASSES;?></label>
-					</div>
-					<div class="col-md-9">
-						<input type="text" name="Classes" id="Classes" class="w100" value="{{Classes}}">
-					</div>
-				</div>
--->
 				<div class="row">
 					<div class="col-md-3">
 						<label for="Published"><?=PUBLISHED;?></label>
@@ -130,7 +111,7 @@
 					<div class="col-md-9">
 						{{LastChange}}
 					</div>
-				</div>
+				</div>	
 
 			</div>
 	    </div>
