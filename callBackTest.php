@@ -1,13 +1,17 @@
 <?
-	//parametri glavne baze
+	//parametri testne baze
 	define("DB_HOST", "127.0.0.1");
-	$DB_USER="jamtrans_cms";
-	$DB_PASSWORD="~5%OuH{etSL)";
-	$DB_NAME="jamtrans_touradria";
+	$DB_USER="jamtrans_api";
+	$DB_PASSWORD="i97zo5X&ftt4";
+	$DB_NAME="jamtrans_test";
 	require_once $_SERVER['DOCUMENT_ROOT'] . '/common/functions/f.php';
+	//ob_start();
+	//echo "Test parametri ". time().'<br>';
 	$data = file_get_contents('php://input');
 	$data=json_decode($data);
 	$TempOrderKey=$data->order_number;
+	//$TempOrderKey=169320646252904;
+	//echo $TempOrderKey;
 	require_once $_SERVER['DOCUMENT_ROOT'] . '/db/v4_OrdersMasterTemp.class.php';
 	$omt 	= new v4_OrdersMasterTemp();
 	$omtKeys = $omt->getKeysBy('MOrderID', 'asc', " WHERE MOrderKey = '" .$TempOrderKey ."'");

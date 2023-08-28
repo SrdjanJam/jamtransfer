@@ -92,6 +92,22 @@ Class v4_OnlinePayments {
 		return $keys;
 	}
 
+    /**
+     * Update the active row table on table
+     */
+	public function saveRow(){
+		$result = $this->connection->RunQuery("UPDATE v4_OnlinePayments set 
+gateway = '".$this->myreal_escape_string($this->gateway)."', 
+OrderID = '".$this->myreal_escape_string($this->OrderID)."', 
+OrderNumber = '".$this->myreal_escape_string($this->OrderNumber)."', 
+type = '".$this->myreal_escape_string($this->type)."', 
+datetime1 = '".$this->myreal_escape_string($this->datetime1)."', 
+datetime2 = '".$this->myreal_escape_string($this->datetime2)."', 
+datetime3 = '".$this->myreal_escape_string($this->datetime3)."', 
+created_at = '".$this->myreal_escape_string($this->created_at)."', 
+updated_at = '".$this->myreal_escape_string($this->updated_at)."' WHERE ID = '".$this->ID."'");
+	return $result; 
+}
 
 	// GET METHODS:
 
