@@ -14,7 +14,7 @@ $sr = new v4_Services();
 
 $rid=$_REQUEST['RouteID'];
 $vtid=$_REQUEST['VehicleTypeID'];
-/*$srWhere = ' WHERE RouteID = ' . $rid . ' AND VehicleTypeID = ' . $vtid . ' AND Active =1';
+$srWhere = ' WHERE RouteID = ' . $rid . ' AND VehicleTypeID = ' . $vtid . ' AND Active =1';
 $srKeys = $sr->getKeysBy('OwnerID', 'asc', $srWhere);
 $i=0;
 //ista ruta i tip vozila
@@ -45,7 +45,7 @@ foreach($driverID as $n => $ID) {
 		$out[] = array(
 					'UserID'		=> $u->AuthUserID, 
 					'RealName' 		=> $u->AuthUserRealName,
-					'Company' 		=> $u->AuthUserCompany,
+					'Company'		=> $u->Country."/".$u->AuthUserCompany,
 					'Tel' 			=> $u->AuthUserTel,
 					'Email'			=> $u->AuthUserMail,
 					'Country'       => $u->Country,
@@ -55,20 +55,30 @@ foreach($driverID as $n => $ID) {
 		);
 	}
 	$j++;		
-}*/
+}
+
+$out2 = array();
+
 foreach($users as $u) {
-	//if (!in_array($u->AuthUserID,$driverID) && $u->AuthLevelID==31) {
-	if ($u->AuthLevelID==31) {
-		$out[] = array(
+	if (!in_array($u->AuthUserID,$driverID) && $u->AuthLevelID==31) {
+		$out2[] = array(
 					'UserID'		=> $u->AuthUserID, 
 					'RealName' 		=> $u->AuthUserRealName,
-					'Company' 		=> $u->AuthUserCompany,
 					'Tel' 			=> $u->AuthUserTel,
 					'Email'			=> $u->AuthUserMail,
-					'Country'       => $u->Country,
+					'Terminal'      => $u->Terminal,
+					'DriverPrice'   => "",
+					'VehicleType'   => "0",
+					'Company'		=> $u->Country."/".$u->AuthUserCompany 
 		);
 	}
 }
+
+$key_values = array_column($out2, 'Company'); 
+array_multisort($key_values, SORT_ASC, $out2);
+
+
+$out = array_merge($out, $out2);
 
 # send output back
 $output = json_encode($out);
