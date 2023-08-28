@@ -525,7 +525,12 @@ while ($result = $r->fetch_object()) {
 	$DiscountSum+=$result->Discount;		
 	$gm=$result->DetailPrice+$result->ExtraCharge-$result->Provision-$result->DriversPrice-$result->DriverExtraCharge;
 	$row['GrossMargin'] = number_format($gm*$_SESSION['CurrencyRate'],2);
-	$row['Ratio']=number_format(($gm*100/($result->DriversPrice+$result->DriverExtraCharge))*$_SESSION['CurrencyRate'],2);
+	
+	if($gm == 0){
+		$gm = 1;
+		$row['Ratio']=number_format(($gm*100/($result->DriversPrice+$result->DriverExtraCharge))*$_SESSION['CurrencyRate'],2);
+	}
+	
 	$sum[]=$row;
 	
 }	
@@ -542,11 +547,33 @@ $row['Provision']=number_format($ProvisionSum*$_SESSION['CurrencyRate'],2);
 $row['Discount']=number_format($DiscountSum*$_SESSION['CurrencyRate'],2);
 $gm=$DetailPriceSum+$ExtraChargeSum-$ProvisionSum-$DriversPriceSum-$DriverExtraChargeSum;
 $row['GrossMargin'] = number_format($gm,2);
-$row['Ratio']=number_format(($gm*100/($DriversPriceSum+$DriverExtraChargeSum))*$_SESSION['CurrencyRate'],2);
+
+if($gm == 0){
+	$gm = 1;
+	$row['Ratio']=number_format(($gm*100/($DriversPriceSum+$DriverExtraChargeSum))*$_SESSION['CurrencyRate'],2);
+}
+
 $sum[]=$row;
+
+// Old:
+// usort($sum,function($first,$second){
+// 	return $first["ItemNumber"] < $second["ItemNumber"];
+// });
+
+// For PHP 8:
 usort($sum,function($first,$second){
-	return $first["ItemNumber"] < $second["ItemNumber"];
+
+	$first = $first["ItemNumber"];
+	$second = $second["ItemNumber"];
+
+	if ($first === $second) {
+        return 0;
+    }
+
+	return $first < $second ? 1 : -1;
+
 });
+
 $dbk = $od->getFullOrderByDetailsID($sortField, $sortDirection, $limit  , $dbWhere);
 
 if (count($dbk) != 0) {
