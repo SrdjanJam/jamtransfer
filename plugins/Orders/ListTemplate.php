@@ -52,7 +52,7 @@
 			{{#each Item}}
 				<div>
 				
-					<div class="row {{color}} pad1em listTile listTile-edit orders-edit" 
+					<div class="row {{color}} pad1em listTile listTile-edit orders-edit h-style" 
 					id="t_{{DetailsID}}">
 
 							<!-- Order: -->
