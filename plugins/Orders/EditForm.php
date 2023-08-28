@@ -1,23 +1,3 @@
-<style>
-	.selectable-edit{
-		margin-left:0 !important;
-		margin-right:0 !important;
-	}
-	.blue-123{
-		color: blue;
-	}	
-	.green-123{
-		color: green;
-	}	
-	.red-123{
-		color: red;
-	}
-
-	#newDriverName select{
-		width:90%;
-	}
-</style>
-
 <?= $newID ?>
 <script type="text/x-handlebars-template" id="ItemEditTemplate">
 
@@ -76,13 +56,10 @@
 										{{details.RelatedTransfers.RelatedTransferText}}
 									</a>
 								{{else}}		
-									<button id="saveR" class="badge blue text-black" title="<?= ADD_RETURN_TRANSFER ?>" 
+									<button id="saveR" class="badge blue text-black" title="Add Return Transfer" 
 									onclick="return editSaveItem('{{details.DetailsID}}',1);"><?= ADD_RETURN_TRANSFER ?>
 									</button>
 								{{/if}}
-								<button id="saveR" class="badge blue text-black" title="Copy Transfer" 
-									onclick="return editSaveItem('{{details.DetailsID}}',2);">Copy Transfer
-								</button>
 							</div>
 						</div>
 						<div class="row dorder">
@@ -344,12 +321,12 @@
 										<div class="col-md-1"><?=TYPE;?></div>
 										<div class="col-md-1 right"><?=NETO;?></div>												
 										<div class="col-md-1 right"><?=ADDS;?></div>
-										<div class="col-md-1 right"><?=PROVISION2;?> (%)</div>
+										<div class="col-md-1 right"><?=PROVISION;?> (%)</div>
 										<div class="col-md-2 right"><?=FINAL_PRICE;?></div>
-										<div class="col-md-1 right"><?=PROVISION2;?>2 (%)</div>
+										<div class="col-md-1 right"><?=PROVISION;?>2 (%)</div>
 										<div class="col-md-2 right"><?=FINAL_PRICE;?>2</div>
 										</strong><br>
-										{{listDriversByRoute details.RouteID details.PickupDate details.PickupTime details.VehicleType details.AgentID}}
+										{{listDriversByRoute details.RouteID details.PickupDate details.PickupTime details.VehicleType}}
 									</div>
 									<div class="modal-footer">
 										<button type="button" class="btn btn-primary col-md-12 modalbutton" data-dismiss="modal"><?=CLOSE;?></button>
@@ -693,13 +670,11 @@
 		function DriverConfStatusRelated() {
 			if ($('#DriverConfStatus').val() > 1) {
 				$('#DriverID').prop( "disabled", true );
-				$('#VehicleType').prop( "disabled", true );
 				$('#DriversPrice').prop( "disabled", true );
 				$('.searchdrivers').prop( "disabled", true );
 			}	
 			else {
 				$('#DriverID').prop( "disabled", false );
-				$('#VehicleType').prop( "disabled", false );				
 				$('#DriversPrice').prop( "disabled", false );
 				$('.searchdrivers').prop( "disabled", false );				
 			}	
