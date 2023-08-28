@@ -73,7 +73,7 @@ Class v4_ExternalLinks {
      * Save the active var class as a new row on table
      */
 	public function saveAsNew(){
-		$this->connection->RunQuery("INSERT INTO v4_ExternalLinks (Title, Url, Image) values ('".$this->myreal_escape_string($this->ID)."',
+		$this->connection->RunQuery("INSERT INTO v4_ExternalLinks (Title, Url, Image) values (
 		'".$this->myreal_escape_string($this->Title)."',
 		'".$this->myreal_escape_string($this->Url)."',
 		'".$this->myreal_escape_string($this->Image)."')");
