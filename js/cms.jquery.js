@@ -1109,11 +1109,11 @@ Handlebars.registerHelper("driverSelect", function(id,routeId,vehicleTypeId) {
 					selector += 'data-driverprice="'+val.DriverPrice +'" ';
 					selector += 'data-realname="'+val.RealName +'" ';
 					
-					if (val.UserID == id) {
+					if (val.UserID == id && val.VehicleType==vehicleTypeId) {
 						selector += ' selected="selected" ';
 					}
 
-					selector += '>' + val.Country + ' - '  + val.Company ;
+					selector += '>' + val.Company + ' / '  + val.VehicleType + ' / ' + val.DriverPrice;
 					selector += '</option>';
 				});
 
@@ -1281,9 +1281,9 @@ Handlebars.registerHelper("myDriverSelect", function(id,routeId) {
 Ispis vozaca i cijena po ruti
 */
 
-Handlebars.registerHelper("listDriversByRoute", function(RouteID, PickupDate, PickupTime, VehicleType, AgentID) {
+Handlebars.registerHelper("listDriversByRoute", function(RouteID, PickupDate, PickupTime, VehicleType) {
 	function listDrivers(RouteID,  PickupDate, PickupTime) {
-		var url = 'api/getCarsAjax.php?RouteID='+RouteID+'&TransferDate='+PickupDate+'&TransferTime='+PickupTime+'&AgentID='+AgentID+'&callback=';
+		var url = 'api/getCarsAjax.php?RouteID='+RouteID+'&TransferDate='+PickupDate+'&TransferTime='+PickupTime+'&callback=';
 		var list = '';
 		var funcArgs = '';
 		console.log(url);
@@ -1322,7 +1322,7 @@ Handlebars.registerHelper("listDriversByRoute", function(RouteID, PickupDate, Pi
 					else if (val.VehicleTypeID==VehicleType) var select='green-123';
 					else var select='';
 					list += '<div class="row selectable selectable-edit '+select+'">';
-					list += '<div class="col-md-3">' + val.DriverCompany + val.StatusCompany + val.Contract + '</div>';
+					list += '<div class="col-md-3">' + val.DriverCompany + val.StatusCompany + '</div>';
 					list += '<div class="col-md-1">' + val.VehicleTypeID + '</div>';
 					list += '<div class="col-md-1 right">' + val.DriversPrice + '</div>';	   /* Neto */					
 					list += '<div title="Surcharges" data-content="' +surcharges + '" class="col-md-1 right mytooltip">' + val.AddToPrice + '</div>';		  /* Additions */
