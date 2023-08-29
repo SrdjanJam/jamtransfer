@@ -28,15 +28,6 @@
 	<div class="box-body ">
         <div class="row">
 			<div class="col-md-6">
-				<!-- ID: -->
-				<div class="row">
-					<div class="col-md-2">
-						<label for="ID"><?=ID;?></label>
-					</div>
-					<div class="col-md-10">
-						<input type="text" name="ID" id="ID" class="w100" value="{{ID}}">
-					</div>
-				</div>
 				<!-- TITLE: -->
 				<div class="row">
 					<div class="col-md-2">
@@ -61,7 +52,7 @@
 						<label for="Image"><?=IMAGE;?></label>
 					</div>
 					<div class="col-md-10">
-						<input type="Image" name="Image" id="Image" class="w100" value="{{Image}}">
+						<input type="text" name="Image" id="Image" class="w100" value="{{Image}}">
 					</div>
 				</div>
 		
