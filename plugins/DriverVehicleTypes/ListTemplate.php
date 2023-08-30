@@ -10,6 +10,7 @@
 ?>
 
 <script type="text/x-handlebars-template" id="ItemListTemplate">
+
 		<div class="row row-edit">
 			<div class="col-md-1">
 				<?=VEHICLETYPEID;?>
@@ -39,7 +40,7 @@
 	{{#each Item}}
 
 			<div>		
-				<div class="row {{color}} pad1em" 
+				<div class="row {{color}} pad1em cursor-list" 
 				style="border-top:1px solid #ddd" 
 				id="t_{{VehicleTypeID}}">
 						<!-- VehicleTypeID: -->

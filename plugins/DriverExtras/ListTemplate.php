@@ -43,7 +43,7 @@ if (isset($_SESSION['UseDriverID']) && $_SESSION['UseDriverID']>0) {
 	{{#each Item}}
 		
 		
-		<div class="row {{color}} pad1em listTile listTitleEdit" 
+		<div class="row {{color}} pad1em listTile listTitleEdit cursor-list" 
 		style="border-top:1px solid #ddd" 
 		id="t_{{ID}}">
 	
