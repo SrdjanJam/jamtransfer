@@ -63,7 +63,7 @@
 			{{#each Item}}
 				<div>
 				
-					<div class="row {{color}} pad1em listTile orders-edit"
+					<div class="row {{color}} pad1em listTile orders-edit cursor-list"
 					id="t_{{DetailsID}}">
 						<div class="col-md-1">
 							{{AuthUserID}}
