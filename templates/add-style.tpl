@@ -81,7 +81,7 @@
     color: rgb(149 198 239);
     /* color:rgb(30 104 166); old */
     font-family: 'Times New Roman', Times, serif;
-    text-shadow: 1px 1px #3e3e42;
+    text-shadow: 1px 2px #3e3e42;
     /* font-style: italic; */
 }
 .mini-navbar .nav-header-edit .cut-name{
@@ -148,7 +148,7 @@
 
 #show_Items .pad1em div{ border-right:1px solid rgb(187, 187, 187); }
 #show_Items .pad1em div:last-child{ border-right:none;}
-#show_Items .pad1em:hover{ background: rgb(0 0 0 / 9%) !important; }
+#show_Items .pad1em:hover{ background: rgb(0 0 0 / 9%); }
 #show_Items .h-style:hover{ background: #04656f78 !important; }
 
 .cursor-list{
