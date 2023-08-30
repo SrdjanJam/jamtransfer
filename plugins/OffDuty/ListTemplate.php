@@ -38,7 +38,7 @@
 	<!-- Main content: -->
 	{{#each Item}}
 		
-		<div class="row {{color}} pad1em listTile listTitleEdit" 
+		<div class="row {{color}} pad1em listTile listTitleEdit cursor-list" 
 		style="border-top:1px solid #ddd" 
 		id="t_{{ID}}">
 
@@ -98,7 +98,7 @@
 
 	<script>
 		$('input').change(function(){
-			var base=window.rootbase;
+			var base=window.location.origin;
 			if (window.location.host=='localhost') base=base+'/jamtransfer';
 
 			var link = base+'/plugins/OffDuty/Save.php';
@@ -114,7 +114,6 @@
 				data: param,
 				success: function(data) {
 					$('#t_ .ID').val(data);
-					toastr['success'](window.success);						
 				}				
 			});
 			
