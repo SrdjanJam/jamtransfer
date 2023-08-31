@@ -34,7 +34,7 @@
 						<label for="ID"><?=ID;?></label>
 					</div>
 					<div class="col-md-10">
-						<input type="text" name="ID" id="ID" class="w100" value="{{ID}}">
+						{{ID}}
 					</div>
 				</div>
 				<!-- AGENT_ID: -->
