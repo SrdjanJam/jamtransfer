@@ -10,6 +10,7 @@
 <script type="text/x-handlebars-template" id="ItemListTemplate">
 
 	<div class="row row-edit">
+		
 		<div class="col-md-1">
 			<?=TERMINAL_ID;?>
 		</div>							
@@ -25,7 +26,7 @@
 	{{#each Item}}
 		<div>
 		
-			<div class="row {{color}} pad1em listTitleEdit" 
+			<div class="row {{color}} pad1em listTitleEdit cursor-list" 
 			style="border-top:1px solid #ddd" 
 			id="t_{{PlaceID}}">
 		
