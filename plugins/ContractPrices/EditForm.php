@@ -39,12 +39,17 @@
 				</div>
 				<!-- AGENT_ID: -->
 				<div class="row">
-					<div class="col-md-2">
+					<!-- Prev: -->
+					<!-- <div class="col-md-2">
 						<label for="AgentID"><?=AGENT_ID;?></label>
 					</div>
 					<div class="col-md-10">
 						<input type="text" name="AgentID" id="AgentID" class="w100" value="{{AgentID}}">
-					</div>
+					</div> -->
+					<div class="col-md-2 "><label><?=AGENT;?></label></div>
+					<div class="col-md-10">
+						{{userSelect AgentID "2" "AgentID"}}
+					</div>	
 				</div>
 				<!-- ROUTE_ID: -->
 				<div class="row">
@@ -58,10 +63,12 @@
 				<!-- VEHICLE_TYPE_ID: -->
 				<div class="row">
 					<div class="col-md-2">
-						<label for="VehicleTypeID"><?=VEHICLE_TYPE_ID;?></label>
+						<label for="VehicleTypeID" style="font-size:14px;"><?=VEHICLE_TYPE_ID;?></label>
 					</div>
 					<div class="col-md-10">
-						<input type="text" name="VehicleTypeID" id="VehicleTypeID" class="w100" value="{{VehicleTypeID}}">
+						<!-- Prev: -->
+						<!-- <input type="text" name="VehicleTypeID" id="VehicleTypeID" class="w100" value="{{VehicleTypeID}}"> -->
+						{{vehicleTypeSelect VehicleTypeID "VehicleTypeID" "VehicleTypeID"}}
 					</div>
 				</div>
 				<!-- PRICE: -->
