@@ -1029,9 +1029,9 @@ define("SCHEDULE","Schedule");
 define("YESTERDAY","Yesterday");
 
 // 10.8.23 =========================================================
-define("AGENT_ID","AgentID");
-define("ROUTE_ID","RouteID");
-define("VEHICLE_TYPE_ID","VehicleTypeID");
+define("AGENT_ID","Agent ID");
+define("ROUTE_ID","Route ID");
+define("VEHICLE_TYPE_ID","Vehicle Type ID");
 
 // 22.8.23 ==========================================================
 define("READY_FOR_SET_AS","Ready for set as");

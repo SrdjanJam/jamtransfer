@@ -489,6 +489,20 @@ button.searchdrivers, button.conversion-rate{
 	box-shadow: 2px 2px 4px 1px #888888 !important;
 }
 
+/* Set as driver listTemplate */
+#show_Items .set-as-edit{
+	all:unset !important;
+}
+
+#show_Items .set-as-edit div{
+	border-right:none !important;
+}
+
+.AuthUserID-edit:hover{
+	background:#d9d9d9;
+}
+
+
 
 /* *************************************************************************************** */
 /* *************************************************************************************** */
