@@ -63,8 +63,12 @@ if (count($dbk) != 0) {
 		// ako treba neki lookup, onda to ovdje
 		# get all fields and values
 		$detailFlds = $db->fieldValues();
-		// ako postoji neko custom polje, onda to ovdje.
-		// npr. $detailFlds["AuthLevelName"] = $nekaDrugaDB->getAuthLevelName().' nesto';
+		$au->getRow($db->getAgentID());
+		$detailFlds["AgentName"]=$au->getAuthUserCompany();
+		$vt->getRow($db->getVehicleTypeID());
+		$detailFlds["VehicleTypeName"]=$vt->getVehicleTypeName();		
+		$rt->getRow($db->getRouteID());
+		$detailFlds["RouteName"]=$rt->getRouteName();
 		$out[] = $detailFlds;    	
     }
 }

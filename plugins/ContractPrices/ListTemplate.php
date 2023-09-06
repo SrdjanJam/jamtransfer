@@ -11,15 +11,15 @@
 	<div class="row row-edit">
 		
 		<div class="col-md-2">
-			<?=AGENT_ID;?>
+			<?=NAME;?>
 		</div>
 
 		<div class="col-md-2">
-			<?=ROUTE_ID;?>
+			<?=ROUTE;?>
 		</div>	
 		
 		<div class="col-md-2">
-			<?=VEHICLE_TYPE_ID;?>
+			<?=VEHICLE_TYPE;?>
 		</div>		
 				
 	</div>
@@ -33,15 +33,15 @@
 			id="t_{{ID}}">
 		
 					<div class="col-md-2">
-						<strong>{{AgentID}}</strong>
+						<strong>{{AgentName}}</strong>
 					</div>
 
 					<div class="col-md-2">
-						{{RouteID}}
+						{{RouteName}}
 					</div>
 
 					<div class="col-md-2">
-						{{VehicleTypeID}}
+						{{VehicleTypeName}}
 					</div>				
 					
 			</div>

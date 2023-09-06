@@ -505,12 +505,15 @@
 						<input type="hidden" name="AgentID" id="AgentID" value="{{details.AgentID}}">	
 						<input type="hidden" name="UserLevelID" id="UserLevelID"  value="{{details.UserLevelID}}">
 						
-						{{#compare master.MConfirmFile "!=" ''}}
+						{{#compare details.UserLevelID "==" '2'}}
 						<div class="row dagent">
 							<div class="col-md-3 "><label><?= AGENT_REFERENCE ?></label></div>
-							<div class="col-md-9">
+							<div class="col-md-6">
 								<input name="MConfirmFile" id="MConfirmFile" value="{{master.MConfirmFile}}"/> 
 							</div>
+							{{#compare details.AgentID "==" '1711'}}
+							<div class="col-md-3 "><a target="_blank" href="https://wis.jamtransfer.com/plugins/Orders/getJSON.php?code={{master.MConfirmFile}}">WEBY API</a></div>							
+							{{/compare}}
 						</div>
 						{{/compare}}
 						<div class="row dagent">

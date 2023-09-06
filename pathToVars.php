@@ -3,22 +3,12 @@
 $baseUrl = "/";
 $pathVars = new PathVars($baseUrl);
 $activePage = 'dashboard';
-if (LOCAL) {
-	$indexStart = 1;
-	$size=$pathVars->size();
-	$specialpage=$pathVars->fetchByIndex($indexStart + $size - 2);
-	$specialpage2=$pathVars->fetchByIndex($indexStart + $size - 3);
 
-	if ($size>1) $activePage=$pathVars->fetchByIndex($indexStart);
-}
-else {
-	$indexStart = 0;
-	$size=$pathVars->size();
-	$specialpage=$pathVars->fetchByIndex($indexStart + $size - 1);
-	$specialpage2=$pathVars->fetchByIndex($indexStart + $size - 2);	
-	if ($size>0) $activePage=$pathVars->fetchByIndex($indexStart);
-}	
-
+$indexStart = ROOT_INDEX;
+$size=$pathVars->size();
+$specialpage=$pathVars->fetchByIndex($size - 1);
+$specialpage2=$pathVars->fetchByIndex($size - 2);	
+if ($size>0) $activePage=$pathVars->fetchByIndex($indexStart);
 
 switch ($activePage) {
 	case 'loginAsUser':

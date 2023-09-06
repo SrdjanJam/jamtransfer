@@ -76,10 +76,10 @@
 	
 	// bojenje transfera
 	$t->bgColor = "#caefff";
-	if($t->TransferStatus == "3") $t->bgColor = "#ffa07a";					
-	if($t->DriverConfStatus >2) $t->bgColor = "#ffe599";										
+	if($t->DriverConfStatus >2) $t->bgColor = "#ffe599";	
+	if($t->TransferIn) $t->bgColor = "#b6d7a8";		
+	if($t->TransferStatus == "3") $t->bgColor = "#ffa07a";						
 	if($t->TransferStatus == "5") $t->bgColor = "#fefefe";
-	if($t->TransferIn) $t->bgColor = "#b6d7a8";	
 	$t->CustomerType="";
 	if($t->MUserLevelID==3 or $t->MUserLevelID==9) {
 		$mkeys=array_keys($customers);
