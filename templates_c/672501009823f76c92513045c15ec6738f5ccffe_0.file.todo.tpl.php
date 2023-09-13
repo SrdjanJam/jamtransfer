@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.32, created on 2023-04-13 14:58:04
+/* Smarty version 3.1.32, created on 2023-09-11 09:12:20
   from 'C:\wamp\www\jamtransfer\plugins\Dashboard\templates\todo.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.32',
-  'unifunc' => 'content_6437fc5c4fdef9_33265221',
+  'unifunc' => 'content_64febdd4892ff7_66368593',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '672501009823f76c92513045c15ec6738f5ccffe' => 
     array (
       0 => 'C:\\wamp\\www\\jamtransfer\\plugins\\Dashboard\\templates\\todo.tpl',
-      1 => 1681386759,
+      1 => 1689077575,
       2 => 'file',
     ),
   ),
@@ -20,15 +20,15 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6437fc5c4fdef9_33265221 (Smarty_Internal_Template $_smarty_tpl) {
+function content_64febdd4892ff7_66368593 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div id="showToDo"></div>
  <?php echo '<script'; ?>
 > 
  
  	getTodoData();
 	function getTodoData() {
-		var url = './api/'+
-		"todoItems.php?action=get&callback=?";
+		var url = "api/todoItems.php?action=get&callback=?";
+		console.log(url);
 		$.ajax({
 			type: 'GET',
 			url: url,
@@ -42,6 +42,7 @@ function content_6437fc5c4fdef9_33265221 (Smarty_Internal_Template $_smarty_tpl)
 			  var HTML = template({todoItems : data});
 			  $("#showToDo").html(HTML);
 			}
+			
 		});
 	}
  	function todoItem(action,itemId){

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.32, created on 2023-03-09 12:53:56
+/* Smarty version 3.1.32, created on 2023-09-11 07:11:58
   from 'C:\wamp\www\jamtransfer\templates\login.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.32',
-  'unifunc' => 'content_6409d6e4015cd9_19232016',
+  'unifunc' => 'content_64febdbeeb6486_42787278',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'f3c6e8389f5a98f6613aafe5269a28f0651b59de' => 
     array (
       0 => 'C:\\wamp\\www\\jamtransfer\\templates\\login.tpl',
-      1 => 1678366376,
+      1 => 1685094532,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6409d6e4015cd9_19232016 (Smarty_Internal_Template $_smarty_tpl) {
+function content_64febdbeeb6486_42787278 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 	<html style="background: transparent  url('i/header/121.jpg') center fixed;background-size:cover;">
 	<head>
@@ -102,43 +102,50 @@ function content_6409d6e4015cd9_19232016 (Smarty_Internal_Template $_smarty_tpl)
         <!-- Form: -->
         <form class="form-signin" method="post" action="login.php">
 
-          <h2 class="form-signin-heading">Sign in</h2>
+          <h2 class="form-signin-heading"><?php echo $_smarty_tpl->tpl_vars['SIGN_IN']->value;?>
+</h2>
           
-          <label for="username" class="sr-only">User name</label>
+          <label for="username" class="sr-only"><?php echo $_smarty_tpl->tpl_vars['USER_NAME']->value;?>
+</label>
           
           <input type="text" name="username" id="username" class="form-control" placeholder="User name" required autofocus>
           
-          <label for="inputPassword" class="sr-only">Password</label>
+          <label for="inputPassword" class="sr-only"><?php echo $_smarty_tpl->tpl_vars['PASSWORD']->value;?>
+</label>
           <input type="password" name="password" id="password" class="form-control" placeholder="Password" required>
           
 		  <?php if (!$_smarty_tpl->tpl_vars['LOCAL']->value) {?>
-		  <label for="inputPasswordT" class="sr-only">Password for test</label>
+		  <label for="inputPasswordT" class="sr-only"><?php echo $_smarty_tpl->tpl_vars['PASSWORD_FOR_TEST']->value;?>
+</label>
           <input type="password" name="passwordT" id="passwordT" class="form-control" placeholder="Password for test" required>
 		  <?php }?>
 		  
-			<!--
+		
           <select name="language" id="language" class="form-control">
             <option value='en'>English</option>
-            <option value='hr'>Hrvatski</option>
+            <option value='fr'>Français</option>
           </select>
-		  !-->
+		  
 
-          <button class="btn btn-lg btn-primary btn-block" name="Login" type="submit">Sign in</button>
+          <button class="btn btn-lg btn-primary btn-block" name="Login" type="submit"><?php echo $_smarty_tpl->tpl_vars['SIGN_IN']->value;?>
+</button>
 
           <?php if ($_smarty_tpl->tpl_vars['error']->value) {?>
 
             <?php if ($_smarty_tpl->tpl_vars['message']->value == 1) {?>
-            <br/><b>Your account has been blocked.</b><br/>
-                    Please contact us immediately!
+            <br/><b><?php echo $_smarty_tpl->tpl_vars['YOUR_ACCOUT_HAS_BEEN_BLOCKED']->value;?>
+</b><br/>
+                    <?php echo $_smarty_tpl->tpl_vars['PLEASE_CONTACT_US_IMMEDIATELY']->value;?>
+
             <?php }?>
     
             <?php if ($_smarty_tpl->tpl_vars['message']->value == 2) {?>
-              <br/><b class="lFailed"><?php echo LOGIN_FAILED;?>
+              <br/><b class="lFailed"><?php echo $_smarty_tpl->tpl_vars['LOGIN_FAILED']->value;?>
 </b><br/>
             <?php }?>
     
             <?php if ($_smarty_tpl->tpl_vars['message']->value == 3) {?>
-              <br/><b><?php echo USE_BOTH;?>
+              <br/><b><?php echo $_smarty_tpl->tpl_vars['USE_BOTH']->value;?>
 </b><br/>
             <?php }?>
     

@@ -49,7 +49,11 @@ $flds = array();
 $sum=array();
 
 $dbWhere = " " . $_REQUEST['where'];
-$sql="SELECT min(`PickupDate`) as min,`SubDriver`,`PickupDate`,count(*) as quant, sum(DriversPrice) as price FROM `v4_OrderDetails` WHERE `TransferStatus` not in (3,9) AND `SubDriver`>0 AND DriverConfStatus not in (0,1,2,4)  AND DriverID = '".$_SESSION['UseDriverID']."'";
+$sql="SELECT min(`PickupDate`) as min,`SubDriver`,`PickupDate`,count(*) as quant, 
+	sum(DriversPrice) as price,
+	sum(PayLater) as payLater,
+	sum(CashIn) as cashIn
+	FROM `v4_OrderDetails` WHERE `TransferStatus` not in (3,9) AND `SubDriver`>0 AND DriverConfStatus not in (0,1,2,4)  AND DriverID = '".$_SESSION['UseDriverID']."'";
 if (isset($_REQUEST['subdriverID']) && $_REQUEST['subdriverID']>0) $sql .= " AND SubDriver = ".$_REQUEST['subdriverID'];
 if (isset($_REQUEST['orderFromDate']) && $_REQUEST['orderFromDate']>0) $sql .= " AND PickupDate >='".$_REQUEST['orderFromDate']."'";
 if (isset($_REQUEST['orderToDate']) && $_REQUEST['orderToDate']>0) $sql .= " AND PickupDate <='".$_REQUEST['orderToDate']."'";
@@ -61,6 +65,8 @@ while($row = $result->fetch_array(MYSQLI_ASSOC)){
 	$sdid=$row['SubDriver'];
 	$sd_not[$sdid]+=$row['quant']."<br>";
 	$sd_price[$sdid]+=$row['price'];
+	$sd_payLater[$sdid]+=$row['payLater'];
+	$sd_cashIn[$sdid]+=$row['cashIn'];
 	$sd_workingdates[$sdid][]=$row['PickupDate'];
 }
 	
@@ -127,6 +133,8 @@ if (count($dbk) != 0) {
 		$detailFlds["SubDriverName"]=$db->getAuthUserRealName();
 		$detailFlds["NoT"]=$sd_not[$key];
 		$detailFlds["Value"]=number_format($sd_price[$key],2);
+		$detailFlds["PayLater"]=number_format($sd_payLater[$key],2);
+		$detailFlds["CashIn"]=number_format($sd_cashIn[$key],2);
 		if (empty($_REQUEST['orderFromDate']) ) $_REQUEST['orderFromDate']=$min;
 		if (empty($_REQUEST['orderToDate'])) $_REQUEST['orderToDate']=date('Y-m-d');
 		$workingDaysAll=((strtotime($_REQUEST['orderToDate'])-strtotime($_REQUEST['orderFromDate']))/(3600*24))+1;

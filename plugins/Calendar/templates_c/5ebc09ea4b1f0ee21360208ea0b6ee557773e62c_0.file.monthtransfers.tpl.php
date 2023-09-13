@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.32, created on 2022-09-22 10:06:52
+/* Smarty version 3.1.32, created on 2023-09-11 07:46:55
   from 'C:\wamp\www\jamtransfer\plugins\Calendar\templates\monthtransfers.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.32',
-  'unifunc' => 'content_632c33bcd2bd76_72414129',
+  'unifunc' => 'content_64fec5efaeac44_88406592',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '5ebc09ea4b1f0ee21360208ea0b6ee557773e62c' => 
     array (
       0 => 'C:\\wamp\\www\\jamtransfer\\plugins\\Calendar\\templates\\monthtransfers.tpl',
-      1 => 1663841208,
+      1 => 1691568067,
       2 => 'file',
     ),
   ),
@@ -20,12 +20,8 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_632c33bcd2bd76_72414129 (Smarty_Internal_Template $_smarty_tpl) {
+function content_64fec5efaeac44_88406592 (Smarty_Internal_Template $_smarty_tpl) {
 echo '<script'; ?>
- src="https://code.jquery.com/jquery-2.0.2.js"><?php echo '</script'; ?>
->
-
-<?php echo '<script'; ?>
 >
 
 function resize(){
@@ -87,90 +83,6 @@ $(document).ready(function(){
 >
 
 
-<style>
-* {
-  box-sizing: border-box;
-}
-body {
-  font-family: Arial, Helvetica, sans-serif;
-}
-.grid-container {
-  display: grid;
-  grid-gap: 1px;
-  grid-template-columns: auto auto auto auto auto auto auto;
-  padding: 1px;
-  margin: 10px auto;
-  background-color: rgba(235, 235, 235, 0.8);;
-}
-.grid-item {
-  background-color: rgba(235, 235, 235, 0.8);
-  padding: 5px;
-  font-size: 15px;
-  text-align: center;
-}
-.grid-item-2 {
-	background:white;
-}
-.show-data .small{
-	font-size:16px;
-}
-
-/*///////////////////////////////////////////////////////////*/
-/*MEDIA SECTION:*/
-@media screen and (max-width:767px) {
-	.wrapper{
-		padding:0px;
-	}
-	.body{
-		padding:0;
-	}
-	.fullscreen{
-		z-index: 9999; 
-		width: 100%; 
-		height: 100%; 
-		position: fixed; 
-		top: 0; 
-		left: 0; 
-		background:#f3f1f1;
-
-		/* Animation */
-		animation: myAnim 0.5s ease 0s 1 normal forwards;
- 	}
-
-	/* keyframes  */
-	@keyframes myAnim {
-		0% {
-			transform: scale(0.5);
-		}
-
-		100% {
-			transform: scale(1);
-		}
-	}
-
-
-	a.close-gi{
-		color:rgb(185, 65, 65);
-		font-size:35px;
-		border:1px solid red;
-		padding:5px;
-	}
-	.grid-item-2{
-		overflow-y: auto;
-	}
-	.days .small{
-		color:black;
-		font-size:30px;
-	}
-	.days b{
-		font-size:30px;
-	}
-	.days .small-mini{
-		font-size:17px;
-	}
-	
-}
-</style>
 <div class="grid-container">
 	<div class="grid-item" style="background:#FDB5B5"><?php echo $_smarty_tpl->tpl_vars['dayNames']->value[0];?>
 </div>
@@ -209,7 +121,8 @@ for ($__section_pom_0_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_po
 								<?php if ($_SESSION['AuthLevelID'] == '31' || isset($_SESSION['UseDriverID'])) {?>
 									<a target='_blank' href='<?php echo $_smarty_tpl->tpl_vars['root_home']->value;?>
 distribution/<?php echo $_smarty_tpl->tpl_vars['month_transfers']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_pom']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_pom']->value['index'] : null)]['date'];?>
-'>Distribution</a>
+'><?php echo $_smarty_tpl->tpl_vars['DISTRIBUTION']->value;?>
+</a>
 								<?php }?>	
 							</div>
 									<div class="show-data">
@@ -287,14 +200,17 @@ echo $_smarty_tpl->tpl_vars['DriverConfStatus']->value[$_prefixVariable2];?>
 ?> 										</small>
 										
 									</div> 											
-																<small class="small">No of transfers: <br><?php echo $_smarty_tpl->tpl_vars['month_transfers']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_pom']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_pom']->value['index'] : null)]['noOfTransfers'];?>
+																<small class="small"><?php echo $_smarty_tpl->tpl_vars['NO_OF_TRANSFERS']->value;?>
+ <br><?php echo $_smarty_tpl->tpl_vars['month_transfers']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_pom']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_pom']->value['index'] : null)]['noOfTransfers'];?>
 </small>
-							<small class="small-mini" style="display:none;">No of: <br><?php echo $_smarty_tpl->tpl_vars['month_transfers']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_pom']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_pom']->value['index'] : null)]['noOfTransfers'];?>
+							<small class="small-mini" style="display:none;"><?php echo NO_OF;?>
+ <br><?php echo $_smarty_tpl->tpl_vars['month_transfers']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_pom']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_pom']->value['index'] : null)]['noOfTransfers'];?>
 </small>
 							
 					
 					</div> 										<a class="close-gi" data-id ="<?php echo $_smarty_tpl->tpl_vars['month_transfers']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_pom']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_pom']->value['index'] : null)]['nom'];?>
-" style="display:none;">Close</a>		
+" style="display:none;"><?php echo $_smarty_tpl->tpl_vars['CLOSE']->value;?>
+</a>		
 				</div>   				
 				
 				
@@ -310,24 +226,39 @@ echo $_smarty_tpl->tpl_vars['DriverConfStatus']->value[$_prefixVariable2];?>
 </div> 
 
 <div class="dashboard-legend">
-	Transfer status:
+	<?php echo $_smarty_tpl->tpl_vars['TRANSFER_STATUS_2']->value;?>
+
 	<ul>
-		<i class="fa fa-circle-o text-blue"></i> Active |
-		<i class="fa fa-circle-o text-orange"></i> Changed |
-		<i class="fa fa-question-circle text-orange"></i> Temp |
-		<i class="fa fa-times-circle" style="color:#c00"></i> Cancelled |
-		<i class="fa fa-check-circle text-green"></i> Completed<br>
+		<i class="fa fa-circle-o text-blue"></i> <?php echo $_smarty_tpl->tpl_vars['ACTIVE']->value;?>
+ |
+		<i class="fa fa-circle-o text-orange"></i> <?php echo $_smarty_tpl->tpl_vars['CHANGED']->value;?>
+ |
+		<i class="fa fa-question-circle text-orange"></i> <?php echo $_smarty_tpl->tpl_vars['TEMP']->value;?>
+ |
+		<i class="fa fa-times-circle" style="color:#c00"></i><?php echo $_smarty_tpl->tpl_vars['CANCELLED']->value;?>
+  |
+		<i class="fa fa-check-circle text-green"></i> <?php echo $_smarty_tpl->tpl_vars['COMPLETED']->value;?>
+<br>
 	</ul><br>
-	Driver confirmation status:
+	<?php echo $_smarty_tpl->tpl_vars['DRIVER_CONFIRMATION_STATUS']->value;?>
+
 	<ul>
-		<i class="fa fa-car" style="color:#c00"></i> No driver |
-		<i class="fa fa-info-circle text-orange"></i> Not Confirmed |
-		<i class="fa fa-thumbs-up text-blue"></i> Confirmed |
-		<i class="fa fa-car text-blue"></i> Ready |
-		<i class="fa fa-thumbs-down" style="color:#c00"></i> Declined |
-		<i class="fa fa-user-times" style="color:#c00"></i> No-show |
-		<i class="fa fa-black-tie" style="color:#c00"></i> Driver error |
-		<i class="fa fa-check-square text-green"></i> Completed
+		<i class="fa fa-car" style="color:#c00"></i> <?php echo $_smarty_tpl->tpl_vars['NO_DRIVER']->value;?>
+ |
+		<i class="fa fa-info-circle text-orange"></i> <?php echo $_smarty_tpl->tpl_vars['NOT_CONFIRMED']->value;?>
+ |
+		<i class="fa fa-thumbs-up text-blue"></i> <?php echo $_smarty_tpl->tpl_vars['CONFIRMED']->value;?>
+ |
+		<i class="fa fa-car text-blue"></i> <?php echo $_smarty_tpl->tpl_vars['READY']->value;?>
+ |
+		<i class="fa fa-thumbs-down" style="color:#c00"></i> <?php echo $_smarty_tpl->tpl_vars['DECLINED']->value;?>
+ |
+		<i class="fa fa-user-times" style="color:#c00"></i> <?php echo $_smarty_tpl->tpl_vars['NO_SHOW']->value;?>
+ |
+		<i class="fa fa-black-tie" style="color:#c00"></i> <?php echo $_smarty_tpl->tpl_vars['DRIVER_ERROR']->value;?>
+ |
+		<i class="fa fa-check-square text-green"></i> <?php echo $_smarty_tpl->tpl_vars['COMPLETED']->value;?>
+
 	</ul>
 </div>
 

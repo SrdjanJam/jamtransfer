@@ -300,9 +300,7 @@
 								<button type="button" class="btn btn-primary searchdrivers" data-toggle="modal" data-target="#routeDriversModal">
 									<i class="fa fa-search"></i>
 								</button>
-							</div>	
-							<input type="hidden" id="DetailPrice" name="DetailPrice">
-							
+							</div>								
 						</div>	
 						
 						<!-- Modal content: --------------------------------------- -->

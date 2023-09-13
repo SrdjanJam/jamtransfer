@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.32, created on 2023-04-13 14:58:04
+/* Smarty version 3.1.32, created on 2023-09-11 09:12:19
   from 'C:\wamp\www\jamtransfer\plugins\Dashboard\templates\charts.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.32',
-  'unifunc' => 'content_6437fc5c28ead0_34716688',
+  'unifunc' => 'content_64febdd3a8ffc3_24200394',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'c14563043b812c18260563bb154fd0ad4161a8bb' => 
     array (
       0 => 'C:\\wamp\\www\\jamtransfer\\plugins\\Dashboard\\templates\\charts.tpl',
-      1 => 1681289281,
+      1 => 1689077576,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6437fc5c28ead0_34716688 (Smarty_Internal_Template $_smarty_tpl) {
+function content_64febdd3a8ffc3_24200394 (Smarty_Internal_Template $_smarty_tpl) {
 echo '<script'; ?>
  src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"><?php echo '</script'; ?>
 >
@@ -39,7 +39,10 @@ echo '<script'; ?>
 
 Chart.defaults.global.defaultFontSize = 14;
 
+
 // Pie Chart:
+var title_pie = "<?php echo $_smarty_tpl->tpl_vars['TITLE_PIE']->value;?>
+";
 var xValues = <?php echo $_smarty_tpl->tpl_vars['levels']->value;?>
 ;
 var yValues = <?php echo $_smarty_tpl->tpl_vars['values']->value;?>
@@ -54,6 +57,7 @@ var barColors = [
   "#FF000070", // Admin
 ];
 
+
 new Chart("pie-chart", {
   type: "pie",
   data: {
@@ -67,7 +71,7 @@ new Chart("pie-chart", {
   options: {
     title: {
       display: true,
-      text: "Value of ordered transfers in the last year by purchaser"
+      text: title_pie
     },
     
   }
@@ -84,11 +88,13 @@ new Chart("pie-chart", {
 });
 
 // Bar Chart:
+var title_bar = "<?php echo $_smarty_tpl->tpl_vars['TITLE_BAR']->value;?>
+";
 var xValues = <?php echo $_smarty_tpl->tpl_vars['months2']->value;?>
 ;
 var yValues = <?php echo $_smarty_tpl->tpl_vars['values2']->value;?>
 ;
-var barColors = ["red", "green","blue","orange","brown", "green","blue","orange","brown", "green","blue"];
+var barColors = ["red", "green","blue","orange","brown", "green","blue","orange","brown", "green","blue","orange"];
 
 new Chart("bar-chart", {
   type: "bar",
@@ -103,7 +109,7 @@ new Chart("bar-chart", {
     legend: {display: false},
     title: {
       display: true,
-      text: "Value of ordered transfers in the last year by months"
+      text: title_bar
     }
   }
 });

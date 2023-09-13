@@ -51,6 +51,12 @@
 				</div>					
 				<div class="col-md-2">
 					<?=TOTAL_VALUE;?>
+				</div>					
+				<div class="col-md-1">
+					<?=PAY_LATER;?>
+				</div>					
+				<div class="col-md-1">
+					<?=CASH_IN;?>
 				</div>				
 				<div class="col-md-1">
 					<?=FREE_DAYS;?>
@@ -76,6 +82,12 @@
 						</div>						
 						<div class="col-md-2">						
 							{{Value}} 
+						</div>							
+						<div class="col-md-1">						
+							{{PayLater}} 
+						</div>							
+						<div class="col-md-1">						
+							{{CashIn}} 
 						</div>						
 						<div class="col-md-1">						
 							{{FreeDays}} 
