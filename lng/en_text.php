@@ -1052,3 +1052,4 @@ define("URL","Url");
 // 13.9.23 ===========================================================
 define("PAY_LATER","Pay Later");
 define("CASH_IN","Cash in");
+define("DRIVES","Drives");
