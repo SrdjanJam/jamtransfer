@@ -1281,9 +1281,9 @@ Handlebars.registerHelper("myDriverSelect", function(id,routeId) {
 Ispis vozaca i cijena po ruti
 */
 
-Handlebars.registerHelper("listDriversByRoute", function(RouteID, PickupDate, PickupTime, VehicleType) {
+Handlebars.registerHelper("listDriversByRoute", function(RouteID, PickupDate, PickupTime, VehicleType, AgentID) {
 	function listDrivers(RouteID,  PickupDate, PickupTime) {
-		var url = 'api/getCarsAjax.php?RouteID='+RouteID+'&TransferDate='+PickupDate+'&TransferTime='+PickupTime+'&callback=';
+		var url = 'api/getCarsAjax.php?RouteID='+RouteID+'&TransferDate='+PickupDate+'&TransferTime='+PickupTime+'&AgentID='+AgentID+'&callback=';
 		var list = '';
 		var funcArgs = '';
 		console.log(url);
@@ -1321,8 +1321,9 @@ Handlebars.registerHelper("listDriversByRoute", function(RouteID, PickupDate, Pi
 					if (val.StatusCompany!="") var select='red-123';					
 					else if (val.VehicleTypeID==VehicleType) var select='green-123';
 					else var select='';
+					val.DriverCompany=val.DriverCompany+val.Contract;
 					list += '<div class="row selectable selectable-edit '+select+'">';
-					list += '<div class="col-md-3">' + val.DriverCompany + val.StatusCompany + '</div>';
+					list += '<div class="col-md-3">' + val.DriverCompany + val.StatusCompany  + '</div>';
 					list += '<div class="col-md-1">' + val.VehicleTypeID + '</div>';
 					list += '<div class="col-md-1 right">' + val.DriversPrice + '</div>';	   /* Neto */					
 					list += '<div title="Surcharges" data-content="' +surcharges + '" class="col-md-1 right mytooltip">' + val.AddToPrice + '</div>';		  /* Additions */
