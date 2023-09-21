@@ -196,6 +196,7 @@ if (isset($_REQUEST['ServiceID'])) {
 	$db->setExtraCharge(number_format($sumPrice));
 	$db->setDriverPaymentAmt($_REQUEST['DriversPrice']+$sumDriverPrice);
 }
+if (isset($_REQUEST['DetailPriceX']) && $_REQUEST['DetailPriceX']>0) $db->setDetailPrice($_REQUEST['DetailPriceX']);
 if (isset($_REQUEST['MPaxFirstName']) && isset($_REQUEST['MPaxLastName']) ) $db->setPaxName($_REQUEST['MPaxFirstName'] . ' ' . $_REQUEST['MPaxLastName']);
 $OrderID=$db->getOrderID();
 

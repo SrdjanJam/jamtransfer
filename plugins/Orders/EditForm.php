@@ -285,7 +285,8 @@
 						</div>	
 						<input type="hidden" id="DriversPrice" name="DriversPrice"  value="{{details.DriversPrice}}">
 						{{/compare}}
-						{{#compare tab "==" "pdriver"}}						
+						{{#compare tab "==" "pdriver"}}		
+						<input type="hidden" id="DetailPriceX" name="DetailPriceX" class="w25" value="">
 						<div class="row dpdriver">
 							<div class="col-md-3 "><label><?= DRIVER_NAME ?></label></div>
 							<div class="col-md-5 driver" id="newDriverName">	
@@ -690,7 +691,7 @@
 			$('#DriverID').val($(this).attr('data-ownerid'));
 			$('#DriversPrice').val($(this).attr('data-driverprice'));
 			$('#VehicleType').val($(this).attr('data-vehicletype'));
-			if ($(this).attr('class')=='selectprice') $('#DetailPrice').val($(this).attr('data-price'));
+			if ($(this).attr('class')=='selectprice') $('#DetailPriceX').val($(this).attr('data-price'));
 			changedriver ();
 			changedriverpaymentamount ();			
 			$('.modalbutton').trigger('click');
@@ -723,7 +724,12 @@
 		$('#SubDriver3').change(function(){changesubdriver ('3');})	
 		// promena lokacija	
 		$('#PickupName,#DropName').on('click keyup', function(event) {
-			 if($(this).val() == "") {
+			// brisanje ruta ako ih ima
+			$( "#Route option" ).each(function() {
+				if ($(this).val()!=-1) $(this).remove();
+			});
+			
+			if($(this).val() == "") {
 				if($(this).attr('id') == "PickupName") $('#PickupID').val(0);
 				if($(this).attr('id') == "DropName") $('#DropID').val(0);
 			}
@@ -788,7 +794,7 @@
 				})	
 			}
 		})	
-		// proemena rute
+		// promena rute
 		$('#Route').change(function() {
 			
 			var toName = $(this).find("option:selected").text();	
