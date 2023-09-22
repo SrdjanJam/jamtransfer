@@ -19,14 +19,17 @@
 						<?= TO_PAX ?>
 						<div></div>
 					</button>&nbsp;&nbsp;&nbsp;
-				{{/compare}}				
+				{{/compare}}
+
 				<button class="btn " title="<?= CLOSE ?>"
 				onclick="return editCloseItem('{{details.DetailsID}}');">
 					<i class="fa fa-chevron-up l""></i>
 				</button>
+
 				<button id="save" class="btn btn-info" title="<?= SAVE_CHANGES ?>" 
 				onclick="return editSaveItem('{{details.DetailsID}}');">
 				<i class="fa fa-save"></i>
+
 				</button>
 				<a href="plugins/Orders/printTransfer.php?OrderID={{details.OrderID}}" class="btn btn-danger" title="<?= PRINT_CONFIRMATION ?>" target="_blank">
 					<i class="fa fa-print l"></i>
@@ -36,13 +39,16 @@
 
 		<div class="box-body box-body-edit">
 			<div class="nav-tabs-custom nav-tabs-custom-edit">
+
 				{{#compare tab "==" "order"}}
-				<ul class="nav nav-tabs dorder">
+					<ul class="nav nav-tabs dorder">
 					<li class="active"><a href="#tab_1{{details.DetailsID}}" data-toggle="tab"><?= TRANSFER ?></a></li>
 					<li><a href="#tab_2{{details.DetailsID}}" data-toggle="tab"><?= ORDER_LOG ?></a></li>
-				</ul>
+					</ul>
 				{{/compare}}
+
 				<div class="tab-content tab-content-edit">
+					<!-- Tab pane 1: -->
 					<div class="tab-pane active" id="tab_1{{details.DetailsID}}">
 						{{#compare tab "==" "order"}}
 						<div class="row dorder">
@@ -285,8 +291,7 @@
 						</div>	
 						<input type="hidden" id="DriversPrice" name="DriversPrice"  value="{{details.DriversPrice}}">
 						{{/compare}}
-						{{#compare tab "==" "pdriver"}}		
-						<input type="hidden" id="DetailPriceX" name="DetailPriceX" class="w25" value="">
+						{{#compare tab "==" "pdriver"}}						
 						<div class="row dpdriver">
 							<div class="col-md-3 "><label><?= DRIVER_NAME ?></label></div>
 							<div class="col-md-5 driver" id="newDriverName">	
@@ -593,6 +598,7 @@
 						{{/compare}}
 					</div> {{!-- tab-pane tab_1 --}}
 
+					<!-- Tab pane 2: -->
 					<div class="tab-pane" id="tab_2{{details.DetailsID}}">
 						<div class="row">
 							<div class="col-sm-12">
@@ -628,13 +634,14 @@
 								{{else}}
 									<i class="fa fa-exclamation-circle"></i> <?= NO_DATA ?>
 								{{/if}}
-							</div>
-						</div>
-				</div>{{!-- tab-pane tab_2 --}}
+							</div>{{!-- /.col-md-12 --}}
+						</div> {{!-- /.row --}}
+					</div>{{!-- tab-pane tab_2 --}}
 
-			</div> {{!-- tab-content --}}
-		</div> {{!-- nav tabs custom end --}}
-	</div> {{!-- box-body --}}
+				</div> {{!-- tab-content --}}
+
+			</div> {{!-- nav tabs custom end --}}
+		</div> {{!-- box-body --}}
 
 
 		<input type="hidden" name="DetailsID" id="DetailsID" value="{{details.DetailsID}}">
