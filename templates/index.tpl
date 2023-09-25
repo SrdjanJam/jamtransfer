@@ -199,7 +199,6 @@
 {* TPL INCLUDE: *}
 {include file="{$root}/templates/default-style.tpl"}
 {include file="{$root}/templates/add-style.tpl"}
-asd
 
 	{* BODY ================================================================================================================================== *}
 	<body class="fixed-top body-edit">
