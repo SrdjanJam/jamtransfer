@@ -57,8 +57,8 @@
 						</div>
 
 						<!-- Subcategory: -->
-						<div class="col-md-4 surcategory" data-status="{{PriceRules2}}" data-id="{{VehicleTypeID}}">
-							<span class="show_hide">{{SurCategoryRB PriceRules 'SurCategory' '2' 'vehicles' VehicleTypeID}}</span>
+						<div class="col-md-4 surcategory" data-status="{{PriceRules2}}" data-id="{{VehicleID}}">
+							<span class="show_hide">{{SurCategoryRB PriceRules 'SurCategory' '2' 'vehicles' VehicleID}}</span>
 						</div>
 						<!-- Prices: -->
 						<div class="col-md-1">

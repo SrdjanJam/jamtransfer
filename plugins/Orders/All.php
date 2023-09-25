@@ -137,7 +137,8 @@ if (isset($type2)) {
 				break;				
 				
 			case 'detail':
-				$filter .= " AND DetailsID = ".$_REQUEST['detailid'];					
+				$filter .= " AND DetailsID = ".$_REQUEST['detailid'];		
+				$_REQUEST['orderToDate']=date('Y-m-d',time());				
 				break;			
 		}		
 	}	

@@ -71,7 +71,8 @@ hr {
 	/* border:1px solid rgb(223 223 223); Old */
 	/* border: 2px solid rgb(136 177 217); off */
 	border-radius:5px;
-	box-shadow: 0px 0px 8px 0px #6d7fba;
+	/* box-shadow: 0px 0px 8px 0px #6d7fba; old */
+	box-shadow: 0px 0px 8px 0px #020202;
 }
 
 .row .orange{
@@ -97,7 +98,8 @@ hr {
 	margin:5px;
 	padding:2px;
 	border-radius:5px;
-	box-shadow: 3px 1px 3px 0px #5d5959;
+	/* box-shadow: 3px 1px 3px 0px #5d5959; old */
+	box-shadow: 0px 0px 4px 0px #a2c8fb;
 }
 .sub-card .row{
 	font-family: Tahoma, Verdana, Geneva, sans-serif;
@@ -144,16 +146,16 @@ hr {
 }
 
 .add-hiddenInfo{
-	/* background: #F5F5F5; */ /* Old */
-	background: #eef8f4;
+	/* background: #eef8f4; old */
+	background: #f4f5f6;
 	padding:10px;
+	border-radius: 3px;
 }
 
 .sub-card textarea{
 	width:100%;
 }
 .sub-card .row button{
-	padding:5px;
 	border-radius: 5px;
 }
 

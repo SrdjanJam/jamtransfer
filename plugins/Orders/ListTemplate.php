@@ -55,19 +55,11 @@
 					<div class="row {{color}} pad1em listTile listTile-edit orders-edit h-style" 
 					id="t_{{DetailsID}}">
 
-							<!-- Order: -->
-							<div class="col-md-2 order"  onclick="oneItem({{DetailsID}},'order');">	
-								<small>{{OrderDate}} {{MOrderTime}}</small></br>
-								<strong>{{MOrderID}} - {{TNo}}</strong><br>
-								<small>{{displayTransferStatusText TransferStatus}}</small>
-								{{#if StaffNote}}<small style="color:red"><i class="fa-solid fa-message"></i></small>{{/if}}				
-								{{#if FinalNote}}<small style="color:red"><i class="fa-solid fa-message"></i></small>{{/if}}	
-							</div>
-
 							<!-- Client/Agent Purchaser: -->
 							<div class="col-md-2 small-box agent" onclick="oneItem({{DetailsID}},'agent');">
 								<div class="inner inner-edit">
-									{{MOrderKey}}<br>
+									<strong>{{MOrderID}} - {{TNo}}</strong>
+									<small> / {{MOrderKey}}</small><br>
 									{{MConfirmFile}}<br>						
 									{{#if Image}}
 										<img src='i/agents/{{Image}}'>	 
@@ -148,9 +140,17 @@
 								{{#if PayConflictColor}}<div><strong>{{PayDiff}}</strong></div>{{/if}}								
 								<div class="icon">
 									<i class="fa fa-file-invoice" style="font-size:60px;"></i>
-								</div>	 
-															
+								</div>	 							
 							</div>
+							
+							<!-- Order: -->
+							<div class="col-md-2 order"  onclick="oneItem({{DetailsID}},'order');">	
+								<small>{{OrderDate}} {{MOrderTime}}</small></br>
+								<strong>{{MOrderID}} - {{TNo}}</strong><br>
+								<small>{{displayTransferStatusText TransferStatus}}</small>
+								{{#if StaffNote}}<small style="color:red"><i class="fa-solid fa-message"></i></small>{{/if}}				
+								{{#if FinalNote}}<small style="color:red"><i class="fa-solid fa-message"></i></small>{{/if}}	
+							</div>							
 							
 					</div>
 
