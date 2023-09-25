@@ -46,9 +46,8 @@
 .header-edit{ padding: 5px 14px 5px 14px; }
 
 .nav-header-edit{
-    background-image: linear-gradient(#9af8077d, #7effba54);
-    /* background-image: linear-gradient(#ffdc7eab, #fab80654); old */
-    /* background-color: #dbd6ca; Old 2 */
+    /* background-image: linear-gradient(#00aaff3d, #c0c0c036); old */
+    background-image: linear-gradient(#00aaff29, #00aaff08);
     margin: 0 5px 5px 5px;
     padding: 5px;
     box-sizing: border-box;
@@ -64,17 +63,19 @@
     background: none;
 }
 .nav-header-edit-2{
-    background-image: linear-gradient(#ffdc7eab, #fab80654);
+    /* background-image: linear-gradient(#ffdc7eab, #fab80654); old */
+    background-image: linear-gradient(#edbc3669, #61594554);
 }
 
 .navbar-header .btn-primary-edit{
-    background-color: #3c72bc;
-    border-color: #3c72bc;
+    background-color: #37b1d2;
+    box-shadow: 2px 2px 5px #4b545c;
+    border: none;
     margin-left:15px;
-    box-shadow: 2px 2px 5px #424181;
 }
 .navbar-header .btn-primary-edit:hover{
-    background-color: #36619f !important; border-color: #3c72bc !important;
+    /* background-color: #36619f !important; border-color: #3c72bc !important; old */
+    background-color: #6cc9e3 !important;
 }
 
 .cut-name{
@@ -183,7 +184,8 @@
     background: #0eb9f221;
     /* background: #def6fe; Old 1 */
     /* background-image: linear-gradient(#C5D5DC,#CBEAFA); Old 2 */
-    box-shadow: 0px 0px 6px 3px #88888894;
+    /* box-shadow: 0px 0px 6px 3px #88888894; old */
+    box-shadow: 0px 0px 5px 2px #38383894;
     border-radius: 6px;
     padding: 5px 55px 5px 35;
 
@@ -285,13 +287,13 @@
 }
 
 .select-top-edit, .select-bottom-edit{
-    color: rgb(45 106 183) !important;
-    /* color: rgb(1 114 255) !important; old */
+    /* color: rgb(45 106 183) !important; old */
+    color: rgb(2, 140, 226) !important;
     padding:2px;
     border-radius: 5px !important;
     margin-bottom: 2px;
-    box-shadow: 2px 2px 4px #3f50a1;
-    /* box-shadow: 2px 2px 4px #616060; old */
+    /* box-shadow: 2px 2px 4px #3f50a1; old */
+    box-shadow: 1px 1px 2px 0px #3f50a1;
     font-size: 16px !important;
 }
 
@@ -305,16 +307,22 @@
 
 .select-top-edit, .select-bottom-edit, .button-asc-edit, .button-desc-edit, .input-one{
     outline:none;
-    border:2px solid rgb(192, 199, 241);
+    border:1px solid rgb(192, 199, 241);
     font-family: 'Times New Roman', Times, serif;
     color:rgb(59, 59, 66);
+    /* border: none; */
 }
 .select-top-edit:focus, .select-bottom-edit:focus, .button-asc-edit:focus, .button-desc-edit:focus, .input-one:focus{
-    outline:none;
-    border:2px solid rgb(135, 147, 218);
+    outline:hidden;
+    /* border:2px solid rgb(135, 147, 218); */
 }
 
-.badge-edit{ color: #054ff3; background: #f9f9f9; }
+.badge-edit{ 
+    /* color: #054ff3; old */
+    color: #007bff;
+    background: #f9f9f9;
+    font-size: 12px;
+}
 
 .btn-default-edit{ color:white !important; }
 .btn-default-edit:hover{ color:black !important; }
@@ -350,12 +358,10 @@
 .button-3 {
   appearance: none;
   background-color: #37b1d2;
-  /* background-color: #2e8ba4; old */
   /* background: linear-gradient(177deg, #2ea44f 0%, #58ce79 100%); */
   border: 1px solid rgba(27, 31, 35, .15);
-  border-radius: 6px;
-  /* box-shadow: rgba(27, 31, 35, .1) 0 1px 0; Old */ 
-  box-shadow: 2px 2px 5px #424181;
+  border-radius: 3px;
+  box-shadow: 2px 2px 5px #4b545c;
   box-sizing: border-box;
   color: #fff;
   cursor: pointer;
@@ -364,7 +370,7 @@
   font-size: 14px;
   font-weight: 600;
   /* line-height: 20px; */
-  padding: 6px 16px;
+  padding: 4px 15px;
   margin-top: -5px;
   margin-right:5px;
   position: relative;
