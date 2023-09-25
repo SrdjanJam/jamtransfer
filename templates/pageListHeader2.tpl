@@ -122,28 +122,6 @@ value=" WHERE {$ItemID} > 0">
 		{* </div>	<!-- End of sorting -->	 *}
 		<br>
 
-		<!-- Order: -->
-		<div class="col-md-2 col-md-2-edit order-edit">
-			<small class="badge blue text-black badge-edit">{$ORDER}</small><br>
-			<input id='order' class="input-one" name='order'  placeholder="{$ORDERID}" onchange="allItems();"/><br>
-						
-			<select id='yearsOrder' class="form-control select-top-edit addon" name='yearsOrder' value='0' onchange="allItems();">
-				<option value='0'>{$ALL_YEARS}</option>
-			</select>
-			
-			<input id='orderFromDate' class="datepicker datepicker-edit" name='orderFromDate'  placeholder="{$FROM_DATE}" onchange="allItems();" /><br>
-			
-			<select id="Type" class="form-control select-top-edit addon" onchange="allItems();">
-				<option value="0">{$ALL} {$STATUS}</option>
-				{section name=pom loop=$options}
-					<option value="{$options[pom].id}">{$options[pom].name}</option>
-				{/section}
-			</select>
-			
-			<input id='orderToDate' class="datepicker datepicker-edit" name='orderToDate'  placeholder="{$TRANSFERTODATE}" onchange="allItems();" /><br>
-
-		</div>
-
 		<!-- Client/Agent purchaser: -->
 		<div class="col-md-2 col-md-2-edit">
 			<small class="badge blue text-black badge-edit">{$PURCHASER}</small><br>
@@ -167,7 +145,6 @@ value=" WHERE {$ItemID} > 0">
 				<!--<select id='yearsPickup' class="select-top-edit" name='yearsPickup' value='0' onchange="allItems();">
 					<option value='0'>All years</option>
 				</select>!-->
-				<i class="fa fa-cubes" style="color:#900"></i><input type="checkbox" id="listExtras" name="listExtras"  value="" onchange="allItems();" />
 				</br>
 				<input id='pickupToDate' class="datepicker datepicker-edit-2 datepicker-edit-2-small" name='pickupToDate'  placeholder="{$TRANSFERTODATE}" onchange="allItems();" style="width:80%;"/>				
 		</div>
@@ -190,6 +167,7 @@ value=" WHERE {$ItemID} > 0">
 			<small class="badge blue text-black badge-edit">{$PASSENGER}</small><br>
 			<input id='passengerData' class="input-one" name='passengerData'  placeholder="{$PASSENGER_DATA}" onchange="allItems();"/>					
 			<i class="fa fa-plane" style="color:#900"></i><input type="checkbox" id="flightTimeChecker" name="flightTimeChecker"  value="" onchange="allItems();" />{$FLIGHT_TIME_CHECKER}
+			<i class="fa fa-cubes" style="color:#900"></i><input type="checkbox" id="listExtras" name="listExtras"  value="" onchange="allItems();" />
 		</div>	
 
 		<!-- Payment: -->
@@ -205,6 +183,26 @@ value=" WHERE {$ItemID} > 0">
 				</select>
 				<i class="fa fa-money" style="color:#900"></i><input type="checkbox" id="paymentChecker" name="paymentChecker"  value="" onchange="allItems();" />{$CHECKER}
 		</div>
+		
+		<!-- Order: -->
+		<div class="col-md-2 col-md-2-edit order-edit">
+			<small class="badge blue text-black badge-edit">{$ORDER}</small><br>
+			<input id='order' class="input-one" name='order'  placeholder="{$ORDERID}" onchange="allItems();"/><br>
+						
+			<select id='yearsOrder' class="form-control select-top-edit addon" name='yearsOrder' value='0' onchange="allItems();">
+				<option value='0'>{$ALL_YEARS}</option>
+			</select>
+			
+			<input id='orderFromDate' class="datepicker datepicker-edit" name='orderFromDate'  placeholder="{$FROM_DATE}" onchange="allItems();" /><br>
+			
+			<select id="Type" class="form-control select-top-edit addon" onchange="allItems();">
+				<option value="0">{$ALL} {$STATUS}</option>
+				{section name=pom loop=$options}
+					<option value="{$options[pom].id}">{$options[pom].name}</option>
+				{/section}
+			</select>
+			<input id='orderToDate' class="datepicker datepicker-edit" name='orderToDate'  placeholder="{$TRANSFERTODATE}" onchange="allItems();" /><br>
+		</div>		
 
 	</div> <!-- End of .filter -->
 

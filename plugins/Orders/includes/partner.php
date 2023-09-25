@@ -77,7 +77,9 @@
                     <input type="text" id="DriversPrice" name="DriversPrice" class="w25" value="{{details.DriversPrice}}">
                 </div>
             </div>
-            <div class="row">
+			<input type="hidden" id="DetailPriceX" name="DetailPriceX" class="w25">
+
+            <!--<div class="row">
                 <div class="col-md-3 "><label><?= PARTNER_S ?> <?= EXTRAS ?></label></div>
                 <div class="col-md-9">
                     <input type="text" id="DriverExtraCharge" name="DriverExtraCharge" class="w25" value="{{details.DriverExtraCharge}}">
@@ -90,7 +92,7 @@
                     value="{{#compare details.DriverPaymentAmt ">" 0}}{{details.DriverPaymentAmt}}{{/compare}}{{#compare details.DriverPaymentAmt "==" 0}}{{details.DriversPrice}}{{/compare}}"
                         readonly>
                 </div>
-            </div>	
+            </div>!-->
             <div class="row">
                 <div class="col-md-12 "><label><?= MESSAGE ?></label></div>
             </div>	

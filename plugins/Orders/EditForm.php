@@ -160,9 +160,9 @@
 			$('#DriverID').val($(this).attr('data-ownerid'));
 			$('#DriversPrice').val($(this).attr('data-driverprice'));
 			$('#VehicleType').val($(this).attr('data-vehicletype'));
-			if ($(this).attr('class')=='selectprice') $('#DetailPrice').val($(this).attr('data-price'));
+			if ($(this).attr('class')=='selectprice') $('#DetailPriceX').val($(this).attr('data-price'));
 			changedriver ();
-			changedriverpaymentamount ();			
+			//changedriverpaymentamount ();			
 			$('.modalbutton').trigger('click');
 		})	
 		$('#DriversPrice,#DriverExtraCharge').change(function(){
@@ -170,7 +170,7 @@
 		})	
 		// promena ukupne drajverske cene		
 		function changedriverpaymentamount () {		
-			$('#DriverPaymentAmt').val(Number($('#DriversPrice').val())+Number($('#DriverExtraCharge').val()));
+			$('#DriverPaymentAmt').val(Number($('#DriversPriceX').val())+Number($('#DriverExtraCharge').val()));
 		}			
 		$('#DriverID').change(function(){
 			changedriver ();
