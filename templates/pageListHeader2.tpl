@@ -21,14 +21,14 @@
 	.datepicker-edit{ width:49%; }
 
 	.datepicker-edit,.datepicker-edit-2{
-		color: rgb(1 114 255) !important;
+		color: rgb(2, 140, 226) !important;
 		padding:2px;
 		border-radius: 5px !important;
 		margin-bottom: 2px;
-		box-shadow: 2px 2px 4px #3f50a1;
+		/* box-shadow: 2px 2px 4px #3f50a1; old */
+		box-shadow: rgb(63, 80, 161) 2px 2px 4px 0px;
 		outline:none;
-		border:2px solid rgb(135, 147, 218);
-		font-weight: bold;
+		border: none;
 	}
 
 	#wrapp-buttons{
@@ -53,6 +53,12 @@
 
 	.filter .col-sm-3{
 		width: auto;
+	}
+
+	.col-sm-3 .b-asd{
+		color:#157bff;
+		font-family: 'Times New Roman', Times, serif;
+		font-size: 17px;
 	}
 
 </style>
@@ -86,7 +92,7 @@ value=" WHERE {$ItemID} > 0">
 			<div class="row">
 
 				<div class="col-sm-3">
-					<b style="color:#157bff; style=">{$SORT_BY}:</b>
+					<b class="b-asd">{$SORT_BY}:</b>
 					<select id='sortField' class="select-top-edit" name='sortField' onchange="allItems();">
 						<option value="OrderDate">{$ORDER_DATE}</option>	
 						<option value="PickupDate">{$PICKUP_DATE}</option>		
@@ -99,7 +105,7 @@ value=" WHERE {$ItemID} > 0">
 
 				<!-- Report By: -->
 				<div class="col-sm-3">
-					<b style="color:#157bff; margin-left:20px;">{$REPORT_BY}:</b>
+					<b class="b-asd" style="margin-left:20px;">{$REPORT_BY}:</b>
 					<select id='reportBy' class="select-top-edit" name='reportBy' onchange="allItems();">
 						{foreach from=$ReportBy item=label key=key}
 							<option value="{$key}" {if $data.key == $key} selected="selected" {/if}>{$label}</option>
@@ -109,7 +115,7 @@ value=" WHERE {$ItemID} > 0">
 
 				<!-- Filter By: -->	
 				<div class="col-sm-3">	
-					<b style="color:#157bff; margin-left:20px;">{$FILTER_BY}:</b>
+					<b class="b-asd" style="margin-left:20px;">{$FILTER_BY}:</b>
 					<select id='action' class="select-top-edit" name='action' onchange="allItems();">
 						{foreach from=$Action item=label key=key}
 							<option value="{$key}" {if $data.key == $key} selected="selected" {/if}>{$label}</option>
