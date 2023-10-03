@@ -8,11 +8,14 @@
             <!--<input type="text" name="VehicleType" id="VehicleType" value="{{details.VehicleType}}" >!-->
             {{vehicleTypeSelect details.VehicleType "VehicleType" "VehicleType"}}						
         </div>	
-        <div class="col-md-1">
+        <div class="col-md-1 searchdrivers">
             <!-- Call the modal: ------------------------------ -->
-            <button type="button" class="btn btn-primary searchdrivers" data-toggle="modal" data-target="#routeDriversModal">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#routeDriversModal">
                 <i class="fa fa-search"></i>
             </button>
+			<span class="btn btn-primary"><a target='_blank' href='driverReOrder/{{details.OrderID}}/{{details.TNo}}'>
+				<i class="fa fa-balance-scale" aria-hidden="true"></i>
+			</a></span>
         </div>								
     </div>	
     

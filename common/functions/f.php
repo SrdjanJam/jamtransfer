@@ -4801,6 +4801,28 @@ function getConnectedUserNamePlus($id) {
 	}
 }
 
+	function getCarImage ($VehicleClass) {
+	if ($VehicleClass == '1') $vehicleImageFile = '/i/cars/sedan.jpg';
+	else if ($VehicleClass == '2') $vehicleImageFile = '/i/cars/minivanl.jpg';
+	else if ($VehicleClass == '3') $vehicleImageFile = '/i/cars/minibusl.jpg';
+	else if ($VehicleClass == '4') $vehicleImageFile = '/i/cars/minibusl.jpg';	
+	else if ($VehicleClass == '5' or $VehicleClass == '6') 	$vehicleImageFile = '/i/cars/bus.jpg';	
+
+	else if ($VehicleClass == '11') $vehicleImageFile = '/i/cars/sedan_p.jpg';
+	else if ($VehicleClass == '12') $vehicleImageFile = '/i/cars/minivans_p.jpg';
+	else if ($VehicleClass == '13') $vehicleImageFile = '/i/cars/minivans_p.jpg';
+	else if ($VehicleClass == '14') $vehicleImageFile = '/i/cars/minibusl_p.jpg';	
+	else if ($VehicleClass == '15' or $VehicleClass == '16') 	$vehicleImageFile = '/i/cars/bus_p.jpg';							
+
+	else if ($VehicleClass == '21') $vehicleImageFile = '/i/cars/sedan_l.jpg';
+	else if ($VehicleClass == '22') $vehicleImageFile = '/i/cars/minivans_l.jpg';
+	else if ($VehicleClass == '23') $vehicleImageFile = '/i/cars/minivanl_l.jpg';
+	else if ($VehicleClass == '24') $vehicleImageFile = '/i/cars/minibusl_l.jpg';	
+	else if ($VehicleClass == '25' or $VehicleClass == '26') 	$vehicleImageFile = '/i/cars/bus_l.jpg';
+	
+	return$VehicleImageRoot.$vehicleImageFile;
+}					 
+
 function htmldecode(& $html)
 {
 	/*$html = str_replace('%gt;', '>', $html);

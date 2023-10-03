@@ -142,12 +142,12 @@
 			if ($('#DriverConfStatus').val() > 1) {
 				$('#DriverID').prop( "disabled", true );
 				$('#DriversPrice').prop( "disabled", true );
-				$('.searchdrivers').prop( "disabled", true );
+				$('.searchdrivers').hide();
 			}	
 			else {
 				$('#DriverID').prop( "disabled", false );
 				$('#DriversPrice').prop( "disabled", false );
-				$('.searchdrivers').prop( "disabled", false );				
+				$('.searchdrivers').show();				
 			}	
 			if ($('#DriverConfStatus').val() != 3) {
 				$('#SubDriver').prop( "disabled", true );

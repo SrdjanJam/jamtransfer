@@ -83,7 +83,7 @@ if ($result->num_rows>0) {
 					$active_parent=true;
 				}	
 				else $row2['active']='';
-				$menu2[]=$row2;	
+				if ($md->getMenuOrder()<100) $menu2[]=$row2;	
 			}
 		}
 		else $row1['arrow']='';	
@@ -172,7 +172,6 @@ if ($result->num_rows>0) {
 	// display
 	?><script type="text/x-handlebars-template"></script><?
 	require_once 'css.php';
-
 	$smarty->display("index.tpl");	
 }
 else echo "<h1>No menu options for this profile</h1>";

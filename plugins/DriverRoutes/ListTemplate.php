@@ -72,7 +72,7 @@
 						</div>
 						<!-- Prices: -->
 						<div class="col-md-1">
-							<span class="show_hide"><a target='_blank' href='services/route/{{RouteID}}'><?=VEHICLES;?></a></span>
+							<span class="show_hide"><a target='_blank' href='services/route/{{RouteID}}'><i class="fa fa-link" aria-hidden="true"></i></a></span>
 						</div>
 				</div>
 			</div>

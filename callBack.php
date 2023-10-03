@@ -23,7 +23,7 @@
 	$opKeys = $op->getKeysBy('OrderID', 'asc', " WHERE OrderNumber = '" .$TempOrderKey ."'");
 	if(count($opKeys) == 1 ) {
 		$op->getRow( $opKeys[0] ); 
-		$op->setDateTime3(date ('Y-m-d h:i:s'));
+		$op->setDateTime3(date ('Y-m-d H:i:s'));
 	}	
 	$op->saveRow();
 	

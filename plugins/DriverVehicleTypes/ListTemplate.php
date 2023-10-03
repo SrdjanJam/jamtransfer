@@ -26,10 +26,10 @@
 				<?=SURCATEGORY;?>
 			</div>
 			<div class="col-md-1">
-				<?=ROUTES;?>
+				<?=PRICE;?>
 			</div>				
 			<div class="col-md-1">
-				<?=DATE;?>
+				<?=OFF_DUTY;?>
 			</div>				
 			<div class="col-md-1">
 				<?=VEHICLES;?>
@@ -62,15 +62,15 @@
 						</div>
 						<!-- Prices: -->
 						<div class="col-md-1">
-							<span class="show_hide"><a target='_blank' href='services/vehicleType/{{VehicleTypeID}}'><?=ROUTES;?></a></span>
+							<span class="show_hide"><a target='_blank' href='services/vehicleType/{{VehicleTypeID}}'><i class="fa fa-link" aria-hidden="true"></i></a></span>
 						</div>
 						<!-- Dates: -->
 						<div class="col-md-1">
-							<span class="show_hide"><a target='_blank' href='offDuty/{{VehicleID}}'><?=DATES;?></a></span>
+							<span class="show_hide"><a target='_blank' href='offDuty/{{VehicleID}}'><i class="fa fa-link" aria-hidden="true"></i></a></span>
 						</div>						
 						<!-- Vehicles: -->
 						<div class="col-md-1">
-							<span class="show_hide"><a target='_blank' href='subVehicles/{{VehicleTypeID}}'><?=VEHICLES;?></a></span>
+							<span class="show_hide"><a target='_blank' href='subVehicles/{{VehicleTypeID}}'><i class="fa fa-link" aria-hidden="true"></i></a></span>
 						</div>
 				</div>
 			</div>
