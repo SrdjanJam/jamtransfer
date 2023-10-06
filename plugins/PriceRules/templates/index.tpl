@@ -11,7 +11,7 @@
 						<input type="hidden" name="ID" id="ID" class="w100" value="{$ID}" >
 						<input type="hidden" name="rulesType" id="rulesType" class="w100" value="{$smarty.request.rulesType}" >
 						<input type="hidden" name="OwnerID" id="OwnerID" class="w100" value="{$smarty.session.UseDriverID}" >
-						{if $smarty.request.rulesType eq 'rutes'} <input type="hidden" name="DriverRouteID" id="DriverRouteID" class="w100" value="{$smarty.request.item}" readonly>{/if}
+						{if $smarty.request.rulesType eq 'routes'} <input type="hidden" name="DriverRouteID" id="DriverRouteID" class="w100" value="{$smarty.request.item}" readonly>{/if}
 						{if $smarty.request.rulesType eq 'vehicles'} <input type="hidden" name="VehicleID" id="VehicleID" class="w100" value="{$smarty.request.item}" readonly>{/if}
 						{if $smarty.request.rulesType eq 'services'} <input type="hidden" name="ServiceID" id="ServiceID" class="w100" value="{$smarty.request.item}" readonly>{/if}
 
@@ -83,11 +83,11 @@
 				<div class="row box box-info alert">
 					<div class="col-md-2">
 						<label for="S1Start">{$S1START}</label>
-						<input type="text" name="S1Start" id="S1Start" class="w100 datepicker" value="{$S1Start}" >
+						<input type="text" name="S1Start" id="S1Start" class="w100" value="{$S1Start}"  placeholder="mm-dd">
 					</div>
 					<div class="col-md-2">
 						<label for="S1End">{$S1END}</label>
-						<input type="text" name="S1End" id="S1End" class="w100 datepicker" value="{$S1End}" >
+						<input type="text" name="S1End" id="S1End" class="w100" value="{$S1End}" placeholder="mm-dd">
 					</div>
 					<div class="col-md-1">
 						<label for="S1Percent">{$S1PERCENT}</label>
@@ -98,11 +98,11 @@
 					</div>	-					
 					<div class="col-md-2">
 						<label for="S2Start">{$S2START}</label>
-						<input type="text" name="S2Start" id="S2Start" class="w100 datepicker" value="{$S2Start}" >
+						<input type="text" name="S2Start" id="S2Start" class="w100 " value="{$S2Start}" placeholder="mm-dd">
 					</div>
 					<div class="col-md-2">
 						<label for="S2End">{$S2END}</label>
-						<input type="text" name="S2End" id="S2End" class="w100 datepicker" value="{$S2End}" >
+						<input type="text" name="S2End" id="S2End" class="w100 " value="{$S2End}" placeholder="mm-dd">
 					</div>
 					<div class="col-md-1">
 						<label for="S2Percent">{$S2PERCENT}</label>
@@ -116,11 +116,11 @@
 				<div class="row box box-warning alert">
 					<div class="col-md-2">
 						<label for="S3Start">{$S3START}</label>
-						<input type="text" name="S3Start" id="S3Start" class="w100 datepicker" value="{$S3Start}" >
+						<input type="text" name="S3Start" id="S3Start" class="w100" value="{$S3Start}" placeholder="mm-dd">
 					</div>
 					<div class="col-md-2">
 						<label for="S3End">{$S3END}</label>
-						<input type="text" name="S3End" id="S3End" class="w100 datepicker" value="{$S3End}" >
+						<input type="text" name="S3End" id="S3End" class="w100" value="{$S3End}" placeholder="mm-dd">
 					</div>
 					<div class="col-md-1">
 						<label for="S3Percent">{$S3PERCENT}</label>
@@ -131,11 +131,11 @@
 					</div>						
 					<div class="col-md-2">
 						<label for="S4Start">{$S4START}</label>
-						<input type="text" name="S4Start" id="S4Start" class="w100 datepicker" value="{$S4Start}" >
+						<input type="text" name="S4Start" id="S4Start" class="w100" value="{$S4Start}" placeholder="mm-dd">
 					</div>
 					<div class="col-md-2">
 						<label for="S4End">{$S4END}</label>
-						<input type="text" name="S4End" id="S4End" class="w100 datepicker" value="{$S4End}" >
+						<input type="text" name="S4End" id="S4End" class="w100" value="{$S4End}" placeholder="mm-dd">
 					</div>
 					<div class="col-md-1">
 						<label for="S4Percent">{$S4PERCENT}</label>
@@ -149,11 +149,11 @@
 				<div class="row box alert">
 					<div class="col-md-2">
 						<label for="S5Start">{$S5START}</label>
-						<input type="text" name="S5Start" id="S5Start" class="w100 datepicker" value="{$S5Start}" >
+						<input type="text" name="S5Start" id="S5Start" class="w100" value="{$S5Start}" placeholder="mm-dd">
 					</div>
 					<div class="col-md-2">
 						<label for="S5End">{$S5END}</label>
-						<input type="text" name="S5End" id="S5End" class="w100 datepicker" value="{$S5End}" >
+						<input type="text" name="S5End" id="S5End" class="w100" value="{$S5End}" placeholder="mm-dd">
 					</div>
 					<div class="col-md-1">
 						<label for="S5Percent">{$S5PERCENT}</label>
@@ -164,11 +164,11 @@
 					</div>	
 					<div class="col-md-2">
 						<label for="S6Start">{$S6START}</label>
-						<input type="text" name="S6Start" id="S6Start" class="w100 datepicker" value="{$S6Start}" >
+						<input type="text" name="S6Start" id="S6Start" class="w100" value="{$S6Start}" placeholder="mm-dd">
 					</div>
 					<div class="col-md-2">
 						<label for="S6End">{$S6END}</label>
-						<input type="text" name="S6End" id="S6End" class="w100 datepicker" value="{$S6End}" >
+						<input type="text" name="S6End" id="S6End" class="w100" value="{$S6End}" placeholder="mm-dd">
 					</div>
 					<div class="col-md-1">
 						<label for="S6Percent">{$S6PERCENT}</label>
@@ -182,11 +182,11 @@
 				<div class="row box alert">
 					<div class="col-md-2">
 						<label for="S7Start">{$S7START}</label>
-						<input type="text" name="S7Start" id="S7Start" class="w100 datepicker" value="{$S7Start}" >
+						<input type="text" name="S7Start" id="S7Start" class="w100" value="{$S7Start}" placeholder="mm-dd">
 					</div>
 					<div class="col-md-2">
 						<label for="S7End">{$S7END}</label>
-						<input type="text" name="S7End" id="S7End" class="w100 datepicker" value="{$S7End}" >
+						<input type="text" name="S7End" id="S7End" class="w100" value="{$S7End}" placeholder="mm-dd">
 					</div>
 					<div class="col-md-1">
 						<label for="S7Percent">{$S7PERCENT}</label>
@@ -197,11 +197,11 @@
 					</div>	
 					<div class="col-md-2">
 						<label for="S8Start">{$S8START}</label>
-						<input type="text" name="S8Start" id="S8Start" class="w100 datepicker" value="{$S8Start}" >
+						<input type="text" name="S8Start" id="S8Start" class="w100" value="{$S8Start}" placeholder="mm-dd">
 					</div>
 					<div class="col-md-2">
 						<label for="S8End">{$S8END}</label>
-						<input type="text" name="S8End" id="S8End" class="w100 datepicker" value="{$S8End}" >
+						<input type="text" name="S8End" id="S8End" class="w100" value="{$S8End}" placeholder="mm-dd">
 					</div>
 					<div class="col-md-1">
 						<label for="S8Percent">{$S8PERCENT}</label>
@@ -215,11 +215,11 @@
 				<div class="row box alert">
 					<div class="col-md-2">
 						<label for="S9Start">{$S9START}</label>
-						<input type="text" name="S9Start" id="S9Start" class="w100 datepicker" value="{$S9Start}" >
+						<input type="text" name="S9Start" id="S9Start" class="w100" value="{$S9Start}" placeholder="mm-dd">
 					</div>
 					<div class="col-md-2">
 						<label for="S9End">{$S9END}</label>
-						<input type="text" name="S9End" id="S9End" class="w100 datepicker" value="{$S9End}" >
+						<input type="text" name="S9End" id="S9End" class="w100" value="{$S9End}" placeholder="mm-dd">
 					</div>
 					<div class="col-md-1">
 						<label for="S9Percent">{$S9PERCENT}</label>
@@ -230,11 +230,11 @@
 					</div>	
 					<div class="col-md-2">
 						<label for="S10Start">{$S10START}</label>
-						<input type="text" name="S10Start" id="S10Start" class="w100 datepicker" value="{$S10Start}" >
+						<input type="text" name="S10Start" id="S10Start" class="w100" value="{$S10Start}" placeholder="mm-dd">
 					</div>
 					<div class="col-md-2">
 						<label for="S10End">{$S10END}</label>
-						<input type="text" name="S10End" id="S10End" class="w100 datepicker" value="{$S10End}" >
+						<input type="text" name="S10End" id="S10End" class="w100" value="{$S10End}" placeholder="mm-dd">
 					</div>
 					<div class="col-md-1">
 						<label for="S10Percent">{$S10PERCENT}</label>

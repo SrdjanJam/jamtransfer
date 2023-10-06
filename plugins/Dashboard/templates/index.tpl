@@ -52,6 +52,12 @@
 							<section class="col-lg-6 xconnectedSortable"> 
 								{include file="plugins/Dashboard/templates/bookingConversionRate.tpl"} 			
 							</section><!-- /.Left col -->
+						{/if}						
+						
+						{if $calculateProvision}
+							<section class="col-lg-6 xconnectedSortable"> 
+								{include file="plugins/Dashboard/templates/calculateProvision.tpl"} 			
+							</section><!-- /.Left col -->
 						{/if}
                     </div>	        
 

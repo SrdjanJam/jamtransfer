@@ -4823,6 +4823,14 @@ function getConnectedUserNamePlus($id) {
 	return$VehicleImageRoot.$vehicleImageFile;
 }					 
 
+// provizija prema funkciji
+function returnProvision2($price, $ownerid, $VehicleClass = 1) {
+	$priceCalc= 25.5-$price*0.0125+$price*$price*0.00000242;
+	if ($priceCalc<10) $priceCalc=10;
+	if ($price<40) $priceCalc=1000/$price;
+	return $priceCalc;		
+}
+
 function htmldecode(& $html)
 {
 	/*$html = str_replace('%gt;', '>', $html);

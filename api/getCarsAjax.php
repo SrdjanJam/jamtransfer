@@ -131,7 +131,7 @@ else {
 				$sur = Surcharges($OwnerID, $SurCategory, $s->getServicePrice1(),
 								  $transferDate, $transferTime,
 								  $returnDate, $returnTime,
-								  $dr->getID(), $VehicleID, $ServiceID,
+								  $RouteID, $VehicleID, $ServiceID,
 								  $VSurCategory, $DRSurCategory
 								  );
 				$addToPrice =   $sur['MonPrice'] +
@@ -152,7 +152,6 @@ else {
 								$sur['S9Price'] +
 								$sur['S10Price'] +
 								$sur['NightPrice'];
-
 				$DriversPrice = $s->getServicePrice1();
 				$DriversPriceAdd = $DriversPrice + $addToPrice;
 				$specialDatesPrice = calculateSpecialDates($OwnerID,$DriversPriceAdd,$transferDate, $transferTime);
@@ -307,12 +306,7 @@ function returnProvision($price, $ownerid, $VehicleClass = 1) {
         }
         return '0';
 }
-// proviyija prema funkciji
-function returnProvision2($price, $ownerid, $VehicleClass = 1) {
-	$priceCalc= 25.5-$price*0.0125+$price*$price*0.00000242;
-	if ($priceCalc<10) $priceCalc=10;
-	return $priceCalc;		
-}
+
 function vehicleTypeName($vehicleTypeID) {
     require_once '../db/db.class.php';
     $dbT = new DataBaseMysql();
