@@ -50,7 +50,8 @@
 					<div class="col-md-8">
 						<input type="text" name="VehicleTypeName" id="VehicleTypeName" class="w100" value="{{VehicleTypeName}}" {{disabled}}>
 					</div>
-				</div>				
+				</div>	
+				<? if (!$isNew) { ?>				
 				<div class="row {{noEnglish}}">
 					<div class="col-md-4">
 						<label for="VehicleTypeName"><?=VEHICLETYPENAME;?> {{Language}}</label>
@@ -59,7 +60,7 @@
 						<input type="text" name="VehicleTypeName{{Language}}" id="VehicleTypeName{{Language}}" class="w100" value="{{VehicleTypeNameTR}}">
 					</div>
 				</div>
-
+				<? } ?>	
 				<div class="row">
 					<div class="col-md-4">
 						<label for="Min"><?=MIN;?></label>

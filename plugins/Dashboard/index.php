@@ -57,5 +57,9 @@
 	if (in_array($_SESSION['AuthLevelID'],array(2,31,41,42,43,44,45,91,92,99))) {
 		require_once 'bookingConversionRate.php';
 		$smarty->assign('bookingConversionRate',true);
+	}	
+	
+	if (in_array($_SESSION['AuthLevelID'],array(2,31,41,42,43,44,45,91,92,99))) {
+		$smarty->assign('calculateProvision',true);
 	}
 
