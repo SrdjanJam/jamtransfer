@@ -36,7 +36,7 @@ $flds = array();
 # kombinacija where i filtera
 $DB_Where = " " . $_REQUEST['where'];
 $DB_Where .= $filter;
-
+$vehicles="0,";
 	if ($_REQUEST['Type']>0) {
 		$sql="SELECT VehicleTypeID FROM `v4_Vehicles` WHERE `OwnerID`=".$_SESSION['UseDriverID'];					
 		$result = $dbT->RunQuery($sql);
@@ -79,6 +79,7 @@ if (count($dbk) != 0) {
 		$detailFlds["VehicleID"]='';
 		$result = $dbT->RunQuery("SELECT * FROM v4_Vehicles WHERE VehicleTypeID=".$key." AND OwnerID=".$_SESSION['UseDriverID']);
 			while($row = $result->fetch_array(MYSQLI_ASSOC)){
+				$detailFlds["ReturnDiscount"]=$row['ReturnDiscount'];
 				$detailFlds["DriverVehicle"]=1;
 				$detailFlds["PriceRules"]=$row['SurCategory'];
 				$detailFlds["PriceRules2"]=$row['SurCategory'];

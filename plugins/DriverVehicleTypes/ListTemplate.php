@@ -22,9 +22,12 @@
 				<?=CONNECTED;?>
 			</div>				
 			<!-- SURCATEGORY: -->
-			<div class="col-md-4">
+			<div class="col-md-3">
 				<?=SURCATEGORY;?>
 			</div>
+			<div class="col-md-1">
+				<?=RETURNDISCOUNT;?>
+			</div>			
 			<div class="col-md-1">
 				<?=PRICE;?>
 			</div>				
@@ -55,11 +58,14 @@
 						<div class="col-md-1 vehicle active1" data-id="{{VehicleTypeID}}" data-change="1" data-active="{{DriverVehicle}}">
 							<span>{{yesNoSliderEdit DriverVehicle 'DriverVehicle' }}</span>
 						</div>
-
 						<!-- Subcategory: -->
-						<div class="col-md-4 surcategory" data-status="{{PriceRules2}}" data-id="{{VehicleID}}">
+						<div class="col-md-3 surcategory" data-status="{{PriceRules2}}" data-id="{{VehicleID}}">
 							<span class="show_hide">{{SurCategoryRB PriceRules 'SurCategory' '2' 'vehicles' VehicleID}}</span>
 						</div>
+						<!-- Return Discount -->
+						<div class="col-md-1 return" data-id="{{VehicleTypeID}}" data-name="{{ReturnDiscount}}">
+							<input type="text" name="ReturnDiscount" id="ReturnDiscount"  class="w10 show_hide" value="{{ReturnDiscount}}" style="width:100%;" >
+						</div>				
 						<!-- Prices: -->
 						<div class="col-md-1">
 							<span class="show_hide"><a target='_blank' href='services/vehicleType/{{VehicleTypeID}}'><i class="fa fa-link" aria-hidden="true"></i></a></span>
@@ -97,7 +103,7 @@
 				data: param,
 				success: function(data) {
 					if (data==0) $t.parent().parent().parent().find('.show_hide').hide(500);
-					if (data==1) $t.parent().parent().parent().find('.show_hide').show(500);
+					if (data>0) $t.parent().parent().parent().find('.show_hide').show(500);
 					toastr['success'](window.success);							
 				}				
 			});
@@ -109,6 +115,23 @@
 			if (window.location.host=='localhost') base=base+'/jamtransfer';		
 			var link = base+'/plugins/DriverVehicleTypes/Update.php';
 			var param = "VehicleTypeID="+vehicleid+"&SurCategory="+surcategory;
+			console.log(link+'?'+param);
+			$.ajax({
+				type: 'POST',
+				url: link,
+				data: param,
+				success: function(data) {
+        			toastr['success'](window.success);				
+    			}			
+			});
+		})			
+		$('.return input').change(function(){
+			var returndiscount=$(this).val();
+			var vehicleid=$(this).parent().attr('data-id');
+			var base=window.rootbase;
+			if (window.location.host=='localhost') base=base+'/jamtransfer';		
+			var link = base+'/plugins/DriverVehicleTypes/Update.php';
+			var param = "VehicleTypeID="+vehicleid+"&ReturnDiscount="+returndiscount;
 			console.log(link+'?'+param);
 			$.ajax({
 				type: 'POST',

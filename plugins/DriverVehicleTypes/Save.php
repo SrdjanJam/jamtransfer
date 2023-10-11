@@ -8,7 +8,8 @@ if ($_REQUEST['DriverVehicle']==0) {
 	$VehicleID=0;
 }	
 if ($_REQUEST['DriverVehicle']==1) {
-	$result = $dbT->RunQuery("INSERT IGNORE INTO `v4_Vehicles`(`VehicleTypeID`,`OwnerID`,`SurCategory`) VALUES (".$_REQUEST['VehicleTypeID'].",".$_SESSION['UseDriverID'].",1)");
+	$db->getRow($_REQUEST['VehicleTypeID']);
+	$result = $dbT->RunQuery("INSERT IGNORE INTO `v4_Vehicles`(`VehicleTypeID`,`OwnerID`,`VehicleName`,`VehicleCapacity`,`SurCategory`) VALUES (".$_REQUEST['VehicleTypeID'].",".$_SESSION['UseDriverID'].",'".$db->getVehicleTypeName()."',".$db->getMax().",1)");
 		$VehicleID=$dbT->insert_id();
 		require_once '../../db/v4_AuthUsers.class.php';
 		$au = new v4_AuthUsers();
@@ -33,7 +34,7 @@ if ($_REQUEST['DriverVehicle']==1) {
 			$s->setOwnerID( $_SESSION['UseDriverID']);
 			$s->setSurCategory('1');
 			$s->setRouteID( $dr->getRouteID() );
-			//$s->setVehicleID( $newID );
+			$s->setVehicleID( $VehicleID);
 			$s->setVehicleTypeID ( $_REQUEST['VehicleTypeID']);
 			$s->setVehicleAvailable('1');
 			$s->setActive('1');
