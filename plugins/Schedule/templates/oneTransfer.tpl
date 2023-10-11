@@ -193,7 +193,7 @@ select{
 		</div>
 
 		<div class="row">
-			<button class="btn-xs btn-primary btn-block" onclick="ShowShow({$sdArray[pom].Transfers[pom2].DetailsID});toggleChevron(this);">
+			<button class="btn-xs btn-primary btn-block b-style" onclick="ShowShow({$sdArray[pom].Transfers[pom2].DetailsID});toggleChevron(this);">
 			{if $sdArray[pom].Transfers[pom2].Notes}<span class='blink'><i class="fa fa-envelope" aria-hidden="true"></i></span>&nbsp;{/if}
 				<i class="fa fa-chevron-down"></i>
 			</button>
