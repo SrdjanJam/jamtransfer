@@ -37,11 +37,5 @@
         <div class="col-md-3 "><a target="_blank" href="https://wis.jamtransfer.com/plugins/Orders/getJSON.php?code={{master.MConfirmFile}}">WEBY API</a></div>							
         {{/compare}}
     </div>
-    {{/compare}}
-    <div class="row dagent">
-        <div class="col-md-3 "><label><?= PROVISION ?></label></div>
-        <div class="col-md-9 ">
-            <input name="ProvisionAmount" id="ProvisionAmount" value="{{details.ProvisionAmount}}"/> 
-        </div>
-    </div>	
+    {{/compare}}	
 {{/compare}}

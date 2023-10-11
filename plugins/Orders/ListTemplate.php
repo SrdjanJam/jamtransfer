@@ -176,7 +176,7 @@
 					<p><?=NUMBER;?></p>
 				</div>
 				<div>
-					<p><?=PROVISION;?></p> 
+					<p><?=DISCOUNT;?></p> 
 				</div>
 				<div>
 					<p><?=DETAIL_PRICE;?></p> 
@@ -185,7 +185,7 @@
 					<p><?=EXTRA_CHARGE;?></p> 
 				</div>
 				<div>
-					<p><?=PROVISION;?></p>
+					<p><?=COMMISSION;?></p>
 				</div>
 				<div>
 					<p><?=DRIVERS_PRICE;?></p>

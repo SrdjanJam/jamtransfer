@@ -157,7 +157,7 @@
 							</div>
 
 							<div class="row">
-								<div class="col-md-3 "><label><?= COMPANY_ADDRESS ?></label></div>
+								<div class="col-md-3 "><label><?= ADDRESS ?></label></div>
 								<div class="col-md-9">
 									<textarea class="textarea" name="AuthCoAddress" id="AuthCoAddress" 
 									cols="40" rows="2"
@@ -243,7 +243,7 @@
 
 							{{#compare AuthLevelID "==" '2'}}	
 							<div class="row">
-								<div class="col-md-3 "><label><?= PROVISION ?></label></div>
+								<div class="col-md-3 "><label><?= COMMISSION ?></label></div>
 								<div class="col-md-9">
 									<input type="text" name="Provision" class="w25 " value="{{Provision}}"
 									<?= READ_ONLY_FLD ?>> %
@@ -253,7 +253,7 @@
 
 							{{#compare AuthLevelID "==" '4'}}	
 							<div class="row">
-								<div class="col-md-3 "><label><?= PROVISION ?></label></div>
+								<div class="col-md-3 "><label><?= COMMISSION ?></label></div>
 								<div class="col-md-9">
 									<input type="text" name="Provision" class="w25 " value="{{Provision}}"
 									<?= READ_ONLY_FLD ?>> %
@@ -414,7 +414,7 @@
 							<div class="row">
 								<div class="col-md-12">
 									<br>
-									<h3><?= OUR_COMMISION ?></h3>
+									<h3><?= PROVISION ?></h3>
 									<hr>
 								</div>
 							</div>

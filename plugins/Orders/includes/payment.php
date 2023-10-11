@@ -26,7 +26,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-3 "><label><?= PROVISION ?></label></div>
+            <div class="col-md-3 "><label><?= COMMISSION ?></label></div>
             <div class="col-md-9 ">
                 <input type="text" name="ProvisionAmount" id="ProvisionAmount" class="w25"
                 value="{{details.ProvisionAmount}}" > <?= CURRENCY ?>
