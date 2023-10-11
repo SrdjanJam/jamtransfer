@@ -1,4 +1,5 @@
-<?php
+<?
+	require_once '../../config.php';
 	error_reporting(E_PARSE);
 	
 	$error = "";
@@ -12,7 +13,7 @@
 	$IMAGE = $_FILES[$fileElementName];
 	
 	// temp folder - relativan u odnosu na ovu skriptu
-	$tempFolder = $_SERVER['DOCUMENT_ROOT'] . '/cms/upload/';
+	$tempFolder = $_SERVER['DOCUMENT_ROOT'] . '/upload/';
 	
 	if(!empty($IMAGE['error']))
 	{
@@ -49,13 +50,11 @@
 	} elseif(empty($IMAGE['tmp_name']) || $IMAGE['tmp_name'] == 'none') { // no name
 		$error = 'No file was uploaded..';
 	} else { // no errors
-			
 			if(filesize($IMAGE['tmp_name']) > 204800) { // file too big
 				$error = 'Max. size allowed is 200kB';
 			} elseif ($IMAGE['type'] != 'image/jpeg') {
 				$error = 'Sorry! Only .jpg images are allowed.';
 			} else {		
-			
 				$msg .= 'FILE UPLOADED \n';
 				$msg .= " File Name: " . $IMAGE['name'] . ", ";
 				$msg .= " File Size: " . @filesize($IMAGE['tmp_name']);
@@ -71,8 +70,7 @@
 			
 
 				// spremi sliku u BLOB polje u datoteci			
-				require_once $_SERVER['DOCUMENT_ROOT'] . '/db/db.class.php';
-				$db = new DataBaseMysql();
+
 			
 				$db->RunQuery("UPDATE v4_AuthUsers SET 
 								DBImage = '".$imageData ."', 
@@ -80,13 +78,9 @@
 								WHERE AuthUserID = " . $_REQUEST['UserID']
 							);
 				// spremljeno - showProfileImage.php prikazuje sliku
-				@unlink($tempFolder . $IMAGE['name']);
+				//@unlink($tempFolder . $IMAGE['name']);
 			}			
 	}
-
-	echo "{";
-	echo				"error: '" . $error . "',\n";
-	echo				"msg: '" . $msg . "',\n";
-	echo				"img: '" . $IMAGE['name'] . "'\n";
-	echo "}";
+	$arr = array('error' => $error, 'msg' => $msg, 'img' => $IMAGE['name']);
+	echo json_encode($arr);
 

@@ -38,15 +38,7 @@
 	<div class="box-body ">
 	
 		<div class="nav-tabs-custom">
-            <ul class="nav nav-tabs">
-                <li class="active"><a href="#tab_1{{AuthUserID}}" data-toggle="tab"><?= PROFILE ?></a></li>
-                <? if ($_SESSION['AuthLevelID'] == DRIVER_USER) { ?>
-                <li><a href="#tab_2{{AuthUserID}}" data-toggle="tab"><?= SURCHARGES ?></a></li>
-                <? } ?>
-            </ul>
-
-			<div class="tab-content">			
-				<div class="tab-pane active" id="tab_1{{AuthUserID}}">		
+  	
 
 					<div class="row">
 						<div class="col-md-6">
@@ -70,8 +62,8 @@
 										<br>
 										<button id="imgUpload" class="btn btn-xs btn-default" 
 											onclick="$('#imageFile').click();return false;">
-											<?= UPLOAD_NEW_IMAGE ?>
-										</button> <small>(200x200px)</small>
+											<?= UPLOAD_NEW_IMAGE ?> 
+										</button> <small class="yellow">(jpg/200x200px)</small>
 									</form>
 									<br><br>
 								</div>
@@ -593,30 +585,7 @@
 							</div>
 						
 						</div>
-					</div>	
-		    	</div> {{!-- tab1 end --}}
-
-		    	
-				<div class="tab-pane" id="tab_2{{AuthUserID}}">
-					<div class="row">
-						<div class="col-md-3">
-							<label for="SurCategory"><?= SURCATEGORY ?></label>
-						</div>
-						<div class="col-md-9">
-							<select name="SurCategory" id="SurCategory" class="w100" >
-								{{#select SurCategory}}
-									<option value="1"><?= DEFINE_GLOBAL ?></option>
-									<option value="0"><?= NO_SURCHARGES ?></option>
-								{{/select}}								
-							</select>
-							
-							<input type="hidden" name="SurID" id="SurID" class="w100" value="{{SurID}}">
-						</div>
 					</div>
-					<div id="globalSurcharges{{AuthUserID}}"></div>
-
-				</div> {{!-- tab-pane tab_2 --}}						
-						
 	    </div><!-- box-body-->
 
 </form>
@@ -651,41 +620,40 @@
 			});
 
 			var UserID = $("#UserID").val();
-			
-			$.ajaxFileUpload
-			(
-				{
-					url: 'saveProfileImage.php?UserID='+UserID,
-					secureuri:false,
-					fileElementId:'imageFile',
+			var url= 'plugins/AuthUser/saveProfileImage.php';
+	
+			var form = new FormData($(".form")[0]);
+			$.ajax({
+					url: url,
+					method: "POST",
 					dataType: 'json',
-					//data:{UserID: UserID},
-					success: function (data, status)
-					{
+					data: form,
+					processData: false,
+					contentType: false,
+					success: function(data){
+						console.log(data);
 						if(typeof(data.error) != 'undefined')
 						{
 							if(data.error != '')
 							{
-								alert(data.error);
+								toastr['error'](data.error);	
 							}else
 							{
-								//alert(data.msg);
 								$("#imageDiv > img").attr('src', 'upload/'+data.img);
-
-								$.get("deleteTempImage.php?image="+data.img, function( data ) {
+								$.get("plugins/AuthUser/deleteTempImage.php?image="+data.img, function( data ) {
 								});
+								toastr['success'](data.msg);	
 							}
-						}
-
+						}			
 					},
 					error: function (data, status, e)
 					{
-						// console.log(data);
-                        alert(e);
+						alert(e);
 					}
-					
-				}
-			)
+			});
+			
+			
+
 		
 			return false;
 

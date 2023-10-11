@@ -1,0 +1,4 @@
+[11-Oct-2023 12:17:54 UTC] PHP Parse error:  syntax error, unexpected '*' in /home/jamtrans/laravel/public/wis.jamtransfer.com/plugins/AuthUser/saveProfileImage.php on line 81
+[11-Oct-2023 12:20:00 UTC] PHP Parse error:  syntax error, unexpected '*' in /home/jamtrans/laravel/public/wis.jamtransfer.com/plugins/AuthUser/saveProfileImage.php on line 81
+[11-Oct-2023 12:37:41 UTC] PHP Warning:  unlink(/home/jamtrans/public_html/wis.jamtransfer.com/upload/peninsula.PNG): No such file or directory in /home/jamtrans/laravel/public/wis.jamtransfer.com/plugins/AuthUser/deleteTempImage.php on line 2
+[11-Oct-2023 12:39:33 UTC] PHP Warning:  unlink(/home/jamtrans/public_html/wis.jamtransfer.com/upload/peninsula.PNG): No such file or directory in /home/jamtrans/laravel/public/wis.jamtransfer.com/plugins/AuthUser/deleteTempImage.php on line 2

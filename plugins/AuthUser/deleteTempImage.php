@@ -1,2 +1,2 @@
 <?
-	//unlink($_SERVER['DOCUMENT_ROOT'] . '/cms/upload/'.$_REQUEST['image']);
+	unlink($_SERVER['DOCUMENT_ROOT'] . '/upload/'.$_REQUEST['image']);
