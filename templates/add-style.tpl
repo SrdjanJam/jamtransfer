@@ -326,6 +326,12 @@
 
 .btn-default-edit{ color:white !important; }
 .btn-default-edit:hover{ color:black !important; }
+
+.timepicker-edit{
+    padding: 4px;
+    border-radius: 4px;
+    direction: ltr;
+}
 /* End of Bookings/Orders */
 /* ====================================================================================== */
 /* Dialog */
@@ -448,6 +454,15 @@ textarea{ width:90% !important; }
 /* Buttons: */
 .go-edit, .rate-edit{ box-shadow: 2px 2px 5px 1px #42484d; }
 
+.sub-card .b-style{
+    background: #0f90e0;
+    border:none;
+    box-shadow: 0px 0px 4px 1px #5c5c5c;
+}
+.sub-card .b-style:hover,.sub-card .b-style:focus{
+    background: #36b2ff;
+}
+
 .btn.btn-primary:hover,
 .btn.btn-primary:active,
 .btn.btn-primary.hover { 
@@ -481,6 +496,11 @@ textarea{ width:90% !important; }
 .form-group { margin-bottom: 0px !important; }
 
 .tab-content-edit{ padding:20px !important; }
+
+.tab-content-edit label{
+    font-weight: unset;
+    color: black;
+}
 
 .container.white{ width:90% !important; }
 
@@ -770,6 +790,21 @@ button.searchdrivers, button.conversion-rate{
     .filter	.col-sm-3 b{
 		display: block !important;
 	}
+
+    /* orders - transfers */
+    .col-md-9-border{
+        border: none !important;
+    }
+
+    .w75-edit{
+        width: auto !important;
+    }
+
+    .textarea-edit{
+        max-width: fit-content;
+    }
+    /* ----------------------- */
+
 
 }
 
