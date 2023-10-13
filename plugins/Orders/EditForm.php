@@ -6,8 +6,8 @@
 		<div class="box-header box-header-edit">
 			<div class="box-tools pull-right">
 				{{#compare details.DriverConfStatus ">" 0}}
-					<button id='resendVoucher' class="btn btn-primary"><?= RESEND_VOUCHER ?></button>
-					<label id='lrv' style='display:none'><?= RESEND_VOUCHER ?> <?=REASON;?></label>	
+					<button id='resendVoucher' class="btn btn-primary"><?= SEND_VOUCHER ?></button>
+					<label id='lrv' style='display:none'><?= SEND_VOUCHER ?> <?=REASON;?></label>	
 					{{changeTransferReasonSelect details.ChangeTransferReason}}
 					<button id='todriver' class="btn btn-primary" style='display:none'
 					onclick="return sendUpdateEmail('{{details.DriverEmail}}','','','','','driver','{{details.DetailsID}}',this);">

@@ -365,6 +365,7 @@ define("SATPERCENT", "Samedi (%)");
 define("SAVE", "Sauvegarder");
 define("SEND_EMAIL_TO_DRIVER", "Envoyer un e-mail au partenaire");
 define("SEND", "Envoyer");
+define("SEND_VOUCHER", "Envoyer le voucher");
 define("SERVICE", "Service");
 define("SIGN_OUT", "Se déconnecter");
 define("SITE", "Site");

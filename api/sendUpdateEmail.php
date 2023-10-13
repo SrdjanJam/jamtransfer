@@ -51,30 +51,36 @@
 
 	// slaganje potvrde za poslati vozacu ili putniku
 	ob_start();
+	if ($reason<>"") $reason2='-Change/'.$reason;
 	if ($profile == 'driver') {
-		$subject = TRANSFER_UPDATE.$om->MOrderKey.'-'.$om->MOrderID.'-'.$od->TNo.'-Change/'.$reason;
+		$subject = $om->MOrderKey.'-'.$om->MOrderID.'-'.$od->TNo.$reason2;
+		if ($reason<>"") {
 		?>
 		<div style="font-weight:bold;color:red">
 			Hello, there is a change of <u><?= $reason ?></u> in the reservation. Please, check and confirm new details by email reply.
 		</div>
 		<?
+		}
 		newPrintReservation($DetailsID, 'driver', $od, $om);
 	}
 	else if ($profile == 'pax') {
-		$subject = TRANSFER_UPDATE.$om->MOrderKey.'-'.$om->MOrderID.'-'.$od->TNo.'-Change/'.$reason;
+		$subject = $om->MOrderKey.'-'.$om->MOrderID.'-'.$od->TNo.$reason2;
+		if ($reason<>"") {		
 		?>
 		<div style="font-weight:bold;color:red">
 			There is a change of <u><?= $reason ?></u> in the reservation.
 		</div>		
 		<?
-		printVoucher($od->getOrderID());
+		}
+		if ($level==2) printVoucher($od->getOrderID(),false);
+		else printVoucher($od->getOrderID());
 	}
 	$message = ob_get_contents();
 	ob_end_clean();
 
 	// slanje maila
 	if ($message != '' and $mailTo != '') {
-		$sent = mail_html($mailTo, $mailFrom, $fromName, $mailFrom, $subject, $message);
+		$sent = mail_html_send($mailTo, $mailFrom, $fromName, $mailFrom, $subject, $message);
 		$sent = true;
 	}
 	else $sent = false;

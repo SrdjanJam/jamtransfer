@@ -364,6 +364,7 @@ define("SATPERCENT", "Sat (%)");
 define("SAVE", "Save");
 define("SEND_EMAIL_TO_DRIVER", "Send e-mail to Partner");
 define("SEND", "Send");
+define("SEND_VOUCHER", "Send Voucher");
 define("SERVICE", "Service");
 define("SIGN_OUT", "Sign Out");
 define("SITE", "Site");

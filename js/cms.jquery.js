@@ -2217,6 +2217,7 @@ String.prototype.replaceAll = function(str1, str2, ignore)
 // ponovno slanje potvrde vozacu ili putniku
 function sendUpdateEmail(mailTo, mailFrom, fromName, subject, message, profile, DetailsID, responseButton) {
 	var reason = $( "#ChangeTransferReason option:selected" ).text();
+	if ($( "#ChangeTransferReason option:selected" ).val()==0) reason ="";
 	console.log(reason);
 	$responseButton = $(responseButton);
 	var url =  'api/sendUpdateEmail.php' +

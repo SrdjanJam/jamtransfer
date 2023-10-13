@@ -42,6 +42,7 @@
 
 					<div class="row">
 						<div class="col-md-6">
+							<? if (!$isNew) { ?>						
 							<div class="row">
 								<div class="col-md-3 "><label><?= IMAGE ?></label></div>
 								<div class="col-md-9">
@@ -67,15 +68,16 @@
 									</form>
 									<br><br>
 								</div>
-							</div>					
+							</div>		
 							<div class="row">
 								<div class="col-md-3 "><label><?= ID ?></label></div>
 								<div class="col-md-9">
 									  <strong>{{AuthUserID}}</strong> 
 								</div>
 							</div>
+							<? } ?>	
 							<div class="row">
-								<div class="col-md-3 "><label><?= STATUS ?></label></div>
+								<div class="col-md-3 "><label><?= ACTIVE ?></label></div>
 								<div class="col-md-9">
 									{{yesNoSliderEdit Active 'Active' }}
 								</div>
@@ -224,13 +226,13 @@
 								</div>
 							</div>
 
-							<div class="row">
+							<!--<div class="row">
 								<div class="col-md-3 "><label><?= FAX ?></label></div>
 								<div class="col-md-9">
 									<input type="text" name="AuthUserFax" class="w100 " value="{{AuthUserFax}}"
 									<?= READ_ONLY_FLD ?>>
 								</div>
-							</div>							
+							</div>	!-->						
 							
 
 							{{#compare AuthLevelID "==" '2'}}	
