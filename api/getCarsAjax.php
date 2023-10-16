@@ -157,10 +157,10 @@ else {
 				$specialDatesPrice = calculateSpecialDates($OwnerID,$DriversPriceAdd,$transferDate, $transferTime);
 				$DriversPriceAdd2 = $DriversPriceAdd+$specialDatesPrice;
 				$addToPrice=$addToPrice+$specialDatesPrice;
-				$Provision = returnProvision($DriversPriceAdd, $s->getOwnerID(), $VehicleClass);
-				$Provision2 = returnProvision2($DriversPriceAdd, $s->getOwnerID(), $VehicleClass);
-				$FinalPrice = $DriversPriceAdd+$DriversPriceAdd*$Provision/100;
-				$FinalPrice2 = $DriversPriceAdd+$DriversPriceAdd*$Provision2/100;
+				$Provision = returnProvision($DriversPriceAdd2, $s->getOwnerID(), $VehicleClass);
+				$Provision2 = returnProvision2($DriversPriceAdd2, $s->getOwnerID(), $VehicleClass);
+				$FinalPrice = $DriversPriceAdd2+$DriversPriceAdd2*$Provision/100;
+				$FinalPrice2 = $DriversPriceAdd2+$DriversPriceAdd2*$Provision2/100;
 				
 				$contractPrice=getContractPrice($VehicleTypeID, $RouteID, $AgentID);
 				if ($contractPrice>0) {

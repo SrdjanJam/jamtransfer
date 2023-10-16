@@ -79,6 +79,7 @@ foreach ($kd as $nn => $id) {
 
 	$transferPrice 	= $od->getDetailPrice();
 	$extrasPrice 	= $od->getExtraCharge();
+	$driverextrasPrice 	= $od->getDriverExtraCharge();
 	$provision		= $od->getProvisionAmount();
 
 	$transfersSum	+= $transferPrice;
@@ -113,12 +114,12 @@ foreach ($kd as $nn => $id) {
 	$subTotal += $fullPrice;
 
 	$isInSerbia = InSerbia($od->RouteID);
-	$noVAT += nfT($fullPrice -  $provision - $driversPrice);
+	$noVAT += nfT($fullPrice -  $provision - $driversPrice - $driverextrasPrice);
 
 	$commissionAmt += $provision;
 	$totalEur += nfT($fullPrice -  $provision);
 
-	$driversPriceTotal += nfT($driversPrice);
+	$driversPriceTotal += nfT($driversPrice+$driverextrasPrice);
 
 	$VATbase +=  ($fullPrice - $driversPrice - $provision) / ((100 + $vat) / 100);
 
