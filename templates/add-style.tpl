@@ -576,54 +576,43 @@ button.searchdrivers, button.conversion-rate{
 /* ===================================== */
 @media screen and (max-width: 1550px) {
 
-    /* .row-edit is in #show_items labels: */
+    /* #show_Items: */
     .row-edit div { border-right: none; }
-
     #show_Items .pad1em div{ border-right: none; }
+    /* ------------- */
 
-    /* In footer: */
-    .footer-edit{ display: flex; flex-direction: column; text-align: center; }
-    .pull-right-edit, .pull-left-edit{ margin:0; }
-    .group-edit{ width: 50% !important; }
-    .btn-xs-edit{ width:50%; padding: 10px; }
-    /* --- */
-
+    /* Orders: */
     .orders-edit [class*="col-"]{
         width: auto !important;
         padding: 5px;
     }
 
-    [class*="col-md"], [class*="col-sm"]{
-        width: 100% !important;
-        padding: 5px 0;
-        text-align: center;
+    .col-md-9-border{
+        border: none !important;
     }
-    
+
+    .w75-edit{
+        width: auto !important;
+    }
+
+    .textarea-edit{
+        max-width: fit-content;
+    }
+    /* ----------- */
+    /* Customer: */
     .customer-edit [class*="col-sm"]{
         width: 100% !important;
         padding: 5px 0;
         text-align: center;
     }
-
-    #show, #hide{
-        display: inline-block;
-    }
-
-    .select-top-edit.addon{
-        width:100% !important;
-    }
-
-    .datepicker-edit{
-        width:100% !important;
-    }
-
-
-    .tab-content-edit{ padding:20px !important; }
-
-    .pad1em{
-        flex-direction: column;
-    }
+    /* ----------- */
     
+    [class*="col-md"], [class*="col-sm"]{
+        width: 100% !important;
+        padding: 5px 0;
+        text-align: center;
+    }
+
     [class*="col-"] > *{ 
         float:none !important;
         text-align: center !important;
@@ -638,17 +627,37 @@ button.searchdrivers, button.conversion-rate{
     }
     
     [class*="col-"] input[type="range"]{ display:inline-block !important;float:none !important;}
-
     
-
+    
     .col-md-9 .wysihtml5-toolbar{ 
         display: inline-flex;
     }
 
+    .col-md-2-edit{
+        padding: 10px;
+    }
+
+    #show, #hide{
+        display: inline-block;
+    }
+
+    .select-top-edit.addon{
+        width:100% !important;
+    }
+
+    .datepicker-edit{
+        width:100% !important;
+    }
+
+    .tab-content-edit{ padding:20px !important; }
+
+    /* .pad1em{
+        flex-direction: column;
+    } */
+    
     iframe{
         width:90% !important;
     }
-
 
     .row{
         margin-left:0;
@@ -710,19 +719,22 @@ button.searchdrivers, button.conversion-rate{
     }
 
     /* ---------------------------- */
-    /* Filters: */
+    /* FILTERS: */
+
+    /* schedule: */
     #schedule-filters{
 		float:none !important;
 		margin:0 auto;
         width: fit-content;
 	}
-
+    /* --------------- */
+    /* pageListHeader: */
     #pageListHeader-filters{
         float:none !important;
 		margin:0 auto;
         width: fit-content;
     }
-
+    /* --------------- */
     #footer-filters{
 		float:none !important;
 		margin:0 auto;
@@ -765,49 +777,37 @@ button.searchdrivers, button.conversion-rate{
         overflow-y: auto;
     }
 
-    /* ---------------------------- */
-
     .filter{
 		display: none;
-	}
-
-    .sum-edit{
-        flex-direction: column;
-    }
-
-    .col-md-2-edit{
-        padding: 10px;
-    }
-
-    .datepicker-edit-2-small{
-        width:100% !important;
-    }
-
-    .sum-edit div{
-		text-align: center;
 	}
 
     .filter	.col-sm-3 b{
 		display: block !important;
 	}
 
-    /* orders - transfers */
-    .col-md-9-border{
-        border: none !important;
+    /* ---------------------------- */
+    
+    .sum-edit{
+        flex-direction: column;
     }
 
-    .w75-edit{
-        width: auto !important;
+    .sum-edit div{
+		text-align: center;
+	}
+
+    .datepicker-edit-2-small{
+        width:100% !important;
     }
 
-    .textarea-edit{
-        max-width: fit-content;
-    }
-    /* ----------------------- */
+    /* In footer: */
+    .footer-edit{ display: flex; flex-direction: column; text-align: center; }
+    .pull-right-edit, .pull-left-edit{ margin:0; }
+    .group-edit{ width: 50% !important; }
+    .btn-xs-edit{ width:50%; padding: 10px; }
+    /* ---------- */
 
 
 }
-
 
 /* ===================================== */
 @media (min-width: 768px) and (max-width: 1300px) {
@@ -822,11 +822,20 @@ button.searchdrivers, button.conversion-rate{
         left:300px !important;
     }
 
+    /*  
+        old:
+        .pad1em{
+		flex-direction: column;
+	} */
+
+
+}
+
+/* ===================================== */
+@media (max-width: 1165px){
     .pad1em{
 		flex-direction: column;
 	}
-
-
 }
 
 /* ===================================== */
@@ -944,6 +953,11 @@ button.searchdrivers, button.conversion-rate{
     .modal-dialog-edit {
 		width: 90% !important;    /* by default its 600px. */
 		margin: 30px auto !important;
+	}
+
+    /* Treansfers orders: */
+    .pad1em{
+		flex-direction: column;
 	}
 
 
