@@ -15734,8 +15734,8 @@ h5 {
 /* Changed: */
 .nav > li.active > a {
     color: #fff;
-    background-image: linear-gradient(to bottom right,#615f6859,#0505052b);
-    /* background-image: linear-gradient(to bottom right,#4049544d,#0505052b); old */
+    background-image: linear-gradient(to bottom right,#5444444a,#0202024d);
+    /* background-image: linear-gradient(to bottom right,#615f6859,#0505052b); old */
     border-radius: 10px;
 }
 /* Changed: */
@@ -15871,9 +15871,8 @@ h5 {
 }
 /* Changed: */
 ul.nav-second-level {
-    background-image: linear-gradient(#b9646414, #3b393945);
-    /* background-image: linear-gradient(#52464614, #3b39398f); old 1 */
-    /* background-image: linear-gradient(#b9646414, #3b39398f); old 2 */
+    background-image: linear-gradient(#b9646414, #00000017);
+    /* background-image: linear-gradient(#b9646414, #3b393945); old */
 }
 /* Changed: */
 .nav > li.active {
