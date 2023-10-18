@@ -94,8 +94,8 @@
 }
 
 .nav-header-top-edit{
-    background-image: linear-gradient(#ff00002b, #00000030) !important;
-    /* background-image: linear-gradient(#ff00002b, #4b494961) !important; old */
+    background-image: linear-gradient(#f964642b, #00000030) !important;
+    /* background-image: linear-gradient(#ff00002b, #00000030) !important; old */
     margin: 5px 5px 10px 5px;
     border-radius: 10px;
     /* box-shadow: 5px 5px 16px #232328 inset; */
@@ -229,9 +229,8 @@
 }
 #side-menu .edit-fa{ text-shadow: 3px 3px 2px #494949; }
 .nav.nav-second-level > li.active a{
-    background: #6e6e6e28;
-    /* background: #634242; old */
-    /* background: #624e4e; old 2 */
+    background: #5857571f;
+    /* background: #6e6e6e28; old */
 }
 
 /* ====================================================================================== */
@@ -827,7 +826,6 @@ button.searchdrivers, button.conversion-rate{
         .pad1em{
 		flex-direction: column;
 	} */
-
 
 }
 
