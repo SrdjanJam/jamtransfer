@@ -564,6 +564,7 @@ button.searchdrivers, button.conversion-rate{
 
     select{
 		/* width:90%; */
+        width:50%;
 		margin-bottom: 5px;
 	}
 
@@ -641,11 +642,11 @@ button.searchdrivers, button.conversion-rate{
     }
 
     .select-top-edit.addon{
-        width:100% !important;
+        width:30% !important;
     }
 
     .datepicker-edit{
-        width:100% !important;
+        width:30% !important;
     }
 
     .tab-content-edit{ padding:20px !important; }
@@ -795,7 +796,7 @@ button.searchdrivers, button.conversion-rate{
 	}
 
     .datepicker-edit-2-small{
-        width:100% !important;
+        width:30% !important;
     }
 
     /* In footer: */
@@ -805,6 +806,13 @@ button.searchdrivers, button.conversion-rate{
     .btn-xs-edit{ width:50%; padding: 10px; }
     /* ---------- */
 
+    .form-control{
+        width:30%;
+    }
+
+    .input-one{
+        width:30% !important;
+    }
 
 }
 
@@ -834,6 +842,11 @@ button.searchdrivers, button.conversion-rate{
     .pad1em{
 		flex-direction: column;
 	}
+
+    select{
+        width:50%;
+    }
+
 }
 
 /* ===================================== */
@@ -958,6 +971,9 @@ button.searchdrivers, button.conversion-rate{
 		flex-direction: column;
 	}
 
+    select{
+        width:50%;
+    }
 
 }
 
