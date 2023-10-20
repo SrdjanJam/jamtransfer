@@ -147,12 +147,12 @@ value=" WHERE {$ItemID} > 0">
 			<small class="badge blue text-black badge-edit">{$TRANSFER}</small><br>
 			<input id='locationName' class="input-one" name='locationName'  placeholder="{$LOCATION_NAME}" onchange="allItems();"/>
 			
-				<input id='pickupFromDate' class="datepicker datepicker-edit-2 datepicker-edit-2-small" name='pickupFromDate'  placeholder="{$TRANSFERFROMDATE}" onchange="allItems();" style="width:80%;"/>
+				<input id='pickupFromDate' class="datepicker datepicker-edit-2 datepicker-edit-2-small" name='pickupFromDate'  placeholder="{$TRANSFERFROMDATE}" onchange="allItems();" style="width:100%;"/>
 				<!--<select id='yearsPickup' class="select-top-edit" name='yearsPickup' value='0' onchange="allItems();">
 					<option value='0'>All years</option>
 				</select>!-->
 				</br>
-				<input id='pickupToDate' class="datepicker datepicker-edit-2 datepicker-edit-2-small" name='pickupToDate'  placeholder="{$TRANSFERTODATE}" onchange="allItems();" style="width:80%;"/>				
+				<input id='pickupToDate' class="datepicker datepicker-edit-2 datepicker-edit-2-small" name='pickupToDate'  placeholder="{$TRANSFERTODATE}" onchange="allItems();" style="width:100%;"/>				
 		</div>
 
 		<!-- Driver: -->
