@@ -1,3 +1,22 @@
+<style>
+	h4{ color:black; }
+	.edit-div{
+		background: #c0c0c047;
+		border-radius: 5px;
+		padding: 15px;
+	}
+	.edit-div2{
+		border-bottom: 1px dashed #c1c1c1;
+		padding: 5px;
+	}
+	.edit-div2:last-of-type{
+		border-bottom: none;
+	}
+	.edit-h{
+		font-size: 20px;
+	}
+</style>
+
 <input type='hidden' name="OrderID" id="OrderID" value=" {$smarty.request.OrderID}">
 <input type='hidden' name="TNo" id="TNo" value="{$smarty.request.TNo}">
 <input type='hidden' name="returnTransfer" id="returnTransfer" value="0">
@@ -7,15 +26,17 @@
 		<div class="container-fluid side-collapse-container center" >
 			<div class="row xpad1em white-text">
 				<div class="row z-depth-2 white lighten-5">			
-					<h3>{$ORDER}: {$smarty.request.OrderID}-{$smarty.request.TNo} Route: {$route}</h3>
+					<h2>{$ORDER}: {$smarty.request.OrderID}-{$smarty.request.TNo} Route: {$route}</h2>
 				</div>
 				<hr>
-			</div>	
-			<div class="row xpad1em white-text">
+			</div>
+
+			<h3 class="edit-h">Driver:</h3>
+			<div class="row xpad1em white-text edit-div">
 				<div class="row z-depth-2 white lighten-5">			
 					<div class="col-md-3">
 						<h4>{$BOOKED_DRIVER}</h4>							 					
-						<h3><b style='color:blue'>{$driverName}</b></h3>
+						<h3><b style='color: #0170ff;'>{$driverName}</b></h3>
 					</div>				
 					<div class="col-md-3"> 
 						<h4>{$BOOKED_PRICE}: {$DetailPrice}</h4>							 						
@@ -23,7 +44,7 @@
 					</div>						
 					<div class="col-md-3">						
 						<h4>{$BOOKED_VEHICLE}</h4>							 										
-						<img class="" src="{$vehicleImage}" style="max-height:20%; max-width:20%;" alt="car">
+						<img class="" src="{$ROOT_HOME}{$vehicleImage}" style="max-height:20%; max-width:20%;" alt="car">
 						<span style="text-transform:uppercase; font-weight:100 !important">{$VehicleTypeName}</span>
 					</div>							
 					<div class="col-md-3"> 
@@ -31,8 +52,12 @@
 						<h3>{$VehiclesNo}</h3>							 						
 					</div>							
 				</div>
-				<hr>
-			</div>	
+				
+			</div>
+			<br>
+			
+			<!-- Part 2: -----------------------------------------  -->
+			<h3 class="edit-h">Other drivers:</h3>
 			<div class="row z-depth-2 white lighten-5 center">
 				<div class="col-md-3 white">
 					<h4>Other drivers for this route</h4>						
@@ -53,9 +78,9 @@
 			</div>	
 
 			{section name=pom loop=$drivers}
-				<div class="row white lighten-5">
+				<div class="row white lighten-5 edit-div2">
 					<div class="col-md-3 white">
-						<b style='color:blue'>{$drivers[pom].id} {$drivers[pom].name.name}</b><br>
+						<b style='color: #0170ff;'>{$drivers[pom].id} {$drivers[pom].name.name}</b><br>
 						{$drivers[pom].name.mail}<br>
 						<i class="fa-solid fa-phone"></i>{$drivers[pom].name.tel}<br>
 						<i class="fa-solid fa-mobile"></i>{$drivers[pom].name.mob}
