@@ -71,7 +71,6 @@ $drivers = array(); // podaci o vozacima
 $carsErrorMessage = array(); // greske
 
 // ODAVDE KRECE
-
 $drWhere = "WHERE RouteID = '".$RouteID."' AND Active = '1'";
 if (isset($_SESSION['UseDriverID']) && $_SESSION['UseDriverID']>0) $drWhere .= " AND OwnerID=".$_SESSION['UseDriverID'];
 // check for drivers for the route 
@@ -83,11 +82,13 @@ if (count($driverRouteKeys) == 0) {
 else {
 	// ako su pronadjene DriverRoutes, obradi svaku
 	foreach($driverRouteKeys as $dri => $rowId) {
+		$statusCompP=""; // za crvene, neostvarive
 		$dr->getRow($rowId);
-		if($dr->getFromID() == $FromID  and $dr->getOneToTwo() == '0') break;
-		if($dr->getFromID() == $ToID  and $dr->getTwoToOne() == '0') break;
+		//echo $rowId;
+		//echo "<br>";
+		if($dr->getFromID() == $FromID  and $dr->getOneToTwo() == '0') $statusCompP="<i>-No direction</i>";
 		$OwnerID = $dr->getOwnerID();
-		if($au->getRow($OwnerID)===false) break;
+		if($au->getRow($OwnerID)===false) continue;
 		// Driver Profiles iz v4_AuthUsers
 		$DriverCompany = $au->getAuthUserCompany();
 		// check for Services
@@ -181,8 +182,8 @@ else {
 				** KRAJ OBRADE CIJENA
 				*/
 
-				$statusComp="";	
 				$contract="";
+				$statusComp=$statusCompP; // preuzima status po drajver ruti;
 				if($au->getActive() == 0) $statusComp="<i>-Not active</i>";
 				if($DriversPrice < 1) $statusComp="<i>-No price</i>";
 				if(isVehicleOffDuty($VehicleID, $transferDate)) $statusComp="<i>-Off duty</i>";

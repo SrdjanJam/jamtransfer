@@ -13,7 +13,7 @@ foreach ($db->fieldNames() as $name) {
 	}	
 }	
 if ($_REQUEST['AuthLevelID']==2) $db->setAuthUserRealName($_REQUEST['AuthUserCompany']);	
-$db->setAuthUserPass( md5($_REQUEST['AuthUserPassNew']) ); 
+if (!empty($_REQUEST['AuthUserPassNew'])) $db->setAuthUserPass( md5($_REQUEST['AuthUserPassNew']) ); 
 $upd = '';
 $newID = '';
 if ($keyName != '' and $keyValue != '') {
