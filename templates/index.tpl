@@ -690,13 +690,13 @@
 		// Resize for footer:
 		function resizeContent(){
 
-			if ($(window).width() > 1550) {
+			if ($(window).width() > 1551) {
 				$('.filter-wrapper').show();
 				$('#filter-show').hide();
 				$('#filter-hide').hide();
 			}
 
-			if ($(window).width() < 1499) {
+			if ($(window).width() < 1550) {
 				$('.filter-wrapper').hide();
 				$('#filter-show').show();
 				$('#filter-hide').hide();
