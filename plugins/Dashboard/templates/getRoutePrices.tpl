@@ -64,7 +64,8 @@
 			</div>		
 			<button type="button" id="button-find" class="btn btn-primary searchdrivers" data-toggle="modal" data-target="#routeDriversModal">
 				<i class="fa fa-search"></i>
-			</button>			
+			</button>	
+			<input type="checkbox" id="Only" name="Only" checked />	only site displayed
         </div>
     </div>
 	
@@ -88,7 +89,7 @@
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-primary col-md-12 modalbutton" data-dismiss="modal">Close</button>
-				</div>
+				</div>				
 			</div>
 		</div>
 	</div>		
@@ -164,18 +165,19 @@
 	})	
 
 	
-	$( "#button-find" ).on('click', function(){
+	$( "#button-find").on('click', function(){
 		var RouteID=$("#Route").val();
+		var Only=$("#Only").prop('checked');
 		var Date=$("#Date").val();
 		var Time=$("#Time").val();
 		if ( Date!=="" && Time!=="") {
-			$(".modal-body").html(listDrivers(RouteID,  Date, Time));
+			$(".modal-body").html(listDrivers(RouteID,  Date, Time, Only));
 			$(".mytooltip").popover({trigger:'hover', html:true, placement:'bottom'});	
 		}	
 	});	
 	
-	function listDrivers(RouteID,  PickupDate, PickupTime) {
-		var url = 'api/getCarsAjax.php?RouteID='+RouteID+'&TransferDate='+PickupDate+'&TransferTime='+PickupTime+'&type=2'+'&callback=';
+	function listDrivers(RouteID,  PickupDate, PickupTime, Only) {
+		var url = 'api/getCarsAjax.php?RouteID='+RouteID+'&TransferDate='+PickupDate+'&TransferTime='+PickupTime+'&Only='+Only+'&type=2'+'&callback=';
 		var list = '';
 		var funcArgs = '';
 		console.log(url);

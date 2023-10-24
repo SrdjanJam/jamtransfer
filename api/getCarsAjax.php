@@ -58,6 +58,7 @@ $vt = new v4_VehicleTypes();
 $RouteID		= $_REQUEST['RouteID'];
 $transferDate   = $_REQUEST['TransferDate'];
 $transferTime   = $_REQUEST['TransferTime'];
+$only   = $_REQUEST['Only'];
 if (isset($_REQUEST['AgentID'])) $AgentID = $_REQUEST['AgentID'];
 else $AgentID =0;
 
@@ -200,6 +201,8 @@ else {
 					$FinalPriceFormated=nf($FinalPrice);
 				}	
 				
+				$sortHelpClass      = 1000+$VehicleTypeID;
+                $sortBy = $sortHelpClass.$FinalPrice;				
 				$cars[] = array(
 					'RouteID'           => $RouteID,
 					'OwnerID'           => $OwnerID,
@@ -215,6 +218,7 @@ else {
 					'VehicleCapacity'   => $VehicleCapacity,
 					'VehicleClass'      => $VehicleClass,
 					'WiFi'              => $WiFi,
+					'VehicleSort'       => $sortBy,
 					'VehicleDescription'=> $VehicleDescription,
 					'FinalPrice'        => $FinalPriceFormated, // cijena sa svim dodacima
 					'FinalPrice2'        => nf($FinalPrice2), // cijena sa svim dodacima
@@ -259,7 +263,23 @@ if ($cnt>0) {
 	foreach ($cars as $key => $car) {
 		if	($car['Contract']=="") 	unset($cars[$key]);
 	}	
-}	
+}
+if ($only=="true") {
+	foreach ($cars as $key => $car) {
+		if	($car['StatusCompany']<>"") unset($cars[$key]);
+	}	
+
+	usort($cars, function($a, $b) {
+		return $a['VehicleSort'] <=> $b['VehicleSort'];
+	});
+
+	$vtid=0;	
+	foreach ($cars as $key => $car) {
+		if ($vtid==$car['VehicleTypeID']) unset($cars[$key]);
+		else $vtid=$car['VehicleTypeID'];
+	}	
+}
+	
 $cars = json_encode($cars);
 echo $_GET['callback'] . '(' . $cars. ')';
 
