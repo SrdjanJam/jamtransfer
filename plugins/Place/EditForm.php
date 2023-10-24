@@ -26,6 +26,10 @@
 			<button class="btn btn-info" title="<?= SAVE_CHANGES ?>" 
 			onclick="return editSaveItem('{{PlaceID}}');">
 			<i class="fa fa-save"></i>
+			</button>			
+			<button class="btn btn-info" title="Top Routes" 
+			onclick="return topRoutes('{{PlaceID}}');">
+			<i class="fa fa-road"></i>
 			</button>
 		</div>
 	</div>
@@ -196,6 +200,8 @@
 						{{Drivers}}
 					</div>
 				</div>
+				<a id="tr" style="display:none;" href='plugins/Place/TopRoutes_{{PlaceID}}.csv'></a>
+
 			</div>
 	    </div>
 		   
@@ -228,7 +234,23 @@
 		
 		$("#PlaceCountry").change(function(){
 			$("#CountryNameEN").val( $("#PlaceCountry option:selected").text());
-		});
+		});		
+		function topRoutes(id) {
+			$.ajax({
+				type: 'GET',
+				url: 'plugins/Place/TopRoutes.Export.php?PlaceID='+id,		
+				success: function(data) {
+					$('#tr')[0].click();
+					$.ajax({
+						type: 'GET',
+						url: 'plugins/Place/DeleteTopRoutesFile.php?PlaceID='+id,		
+						success: function(data) {
+						}
+					})	
+				}						
+			})
+			
+		}		
 	</script>
 </script>
 
