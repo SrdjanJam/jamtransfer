@@ -1,5 +1,6 @@
 <?
-unlink ("TopRoutes_145881.csv");
+
+unlink ("TopRoutes_".$_REQUEST["PlaceID"].".csv");
 
 
 
