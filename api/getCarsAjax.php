@@ -75,20 +75,22 @@ $returnTime     = '';
 
 $cars_all = array(); 
 foreach ($routes as $rt) {
-	$RouteID=$rt;
-	$r->getRow($rt);
-	$RouteName=$r->getRouteName();
-	$Km=$r->getKm();
+	$routes_ids=
+	$routes_ids .= $rt. ",";
+}
+$routes_ids = substr($routes_ids,0,strlen($routes_ids)-1);	
+
+	
 	// Izlazni podaci koje koriste skripte za display
 	$cars = array(); // podaci o vozilima
 	$drivers = array(); // podaci o vozacima
 	$carsErrorMessage = array(); // greske
 
 	// ODAVDE KRECE
-	$drWhere = "WHERE RouteID = '".$RouteID."' AND Active = '1'";
+	$drWhere = "WHERE RouteID in (".$routes_ids.") AND Active = '1'";
 	if (isset($_SESSION['UseDriverID']) && $_SESSION['UseDriverID']>0) $drWhere .= " AND OwnerID=".$_SESSION['UseDriverID'];
 	// check for drivers for the route 
-	$driverRouteKeys = $dr->getKeysBy('OwnerID', "ASC", $drWhere);
+	$driverRouteKeys = $dr->getKeysBy('RouteID', "ASC", $drWhere);
 	if (count($driverRouteKeys) == 0) {
 		//$carsErrorMessage['title'] = $NO_DRIVERS;
 		//$carsErrorMessage['text'] = $NO_DRIVERS_EXT;
@@ -100,6 +102,11 @@ foreach ($routes as $rt) {
 			$dr->getRow($rowId);
 			//echo $rowId;
 			//echo "<br>";
+			$RouteID=$dr->getRouteID();
+			$r->getRow($RouteID);
+			$RouteName=$r->getRouteName();
+			$Km=$r->getKm();
+			
 			if($dr->getFromID() == $FromID  and $dr->getOneToTwo() == '0') $statusCompP="<i>-No direction</i>";
 			$OwnerID = $dr->getOwnerID();
 			if($au->getRow($OwnerID)===false) continue;
@@ -215,7 +222,7 @@ foreach ($routes as $rt) {
 					}	
 					
 					$sortHelpClass      = 1000+$VehicleTypeID;
-					$sortBy = $sortHelpClass.$FinalPrice;				
+					$sortBy = $RouteID.$sortHelpClass.$FinalPrice;				
 					$cars[] = array(
 						'RouteID'           => $RouteID,
 						'RouteName'           => $RouteName,
@@ -293,11 +300,9 @@ foreach ($routes as $rt) {
 			else $vtid=$car['VehicleTypeID'];
 		}	
 	}
-	$cars_all=array_merge($cars_all, $cars);
-}
 
 ob_start(); 
-MakeCSV($cars_all);
+MakeCSV($cars);
 $csv = ob_get_contents();
 ob_end_clean();
 //echo $csv;
@@ -305,7 +310,7 @@ $fp = fopen(ROOT.'/plugins/Dashboard/Routes_Prices.csv', 'w');
 fwrite($fp, $csv);
 
 	
-$cars = json_encode($cars_all);
+$cars = json_encode($cars);
 echo $_GET['callback'] . '(' . $cars. ')';
 
 // Dodavanje dogovorene provizije na osnovnu cijenu
