@@ -8,7 +8,7 @@
     <div class="row dagent">
         <div class="col-md-3 "><label><?= BOOKED_BY?></label></div>
         <div class="col-md-9">
-            <strong>{{userName details.UserID "AuthUserCompany"}}-{{userName details.UserID "AuthUserRealName"}}</strong>
+            <strong>{{userName details.UserID "AuthUserRealName"}}</strong>
             {{userSelect details.UserID "0" "UserIDeX"}}
             
             ({{details.UserID}})
@@ -18,7 +18,7 @@
     <div class="row dagent">	
         <div class="col-md-3 "><label><?= AGENT?></label></div>
         <div class="col-md-9">
-            <strong>{{userName details.AgentID "AuthUserCompany"}} {{userName details.AgentID "AuthUserRealName"}}</strong>
+			{{#compare details.AgentID ">" "0"}}<strong>{{userName details.AgentID "AuthUserCompany"}}</strong>{{/compare}}
             {{userSelect details.AgentID "0" "AgentIDeX"}}
             ({{details.AgentID}})
         </div>													

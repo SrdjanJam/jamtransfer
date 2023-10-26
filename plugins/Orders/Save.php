@@ -271,11 +271,13 @@ if ($_REQUEST['return']==1) {
 	$db->setTNo(2);	
 	$pickupid=$db->getPickupID();
 	$pickupname=$db->getPickupName();
+	$pickupadress=$db->getPickupAddress();
 	$db->setPickupID($db->getDropID());	
 	$db->setPickupName($db->getDropName());	
+	$db->setPickupAddress($db->getDropAddress());	
 	$db->setDropID($pickupid);	
 	$db->setDropName($pickupname);	
-	$db->setDropPlace('');	
+	$db->setDropAddress($pickupadress);	
 	$mID=$db->getOrderID();	
 	$db->setDriverConfStatus(0);	
 	$db->setTransferStatus(4);	

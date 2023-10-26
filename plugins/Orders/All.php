@@ -146,19 +146,19 @@ if (isset($type2)) {
 if(!isset($_REQUEST['page'])) $_REQUEST['page']="";
 if(!isset($_REQUEST['length'])) $_REQUEST['length']="";
 if(!isset($_REQUEST['orderFromDate']) || empty($_REQUEST['orderFromDate'])) {
-	if(isset($_COOKIE['orderFromDate'])) $_REQUEST['orderFromDate']=$_COOKIE['orderFromDate'];
+	if(isset($_COOKIE['orderFromDateC'])) $_REQUEST['orderFromDate']=$_COOKIE['orderFromDateC'];
 	else $_REQUEST['orderFromDate']=date('Y-m-d',time()-365*24*3600);
 }	
 if(!isset($_REQUEST['pickupFromDate']) || empty($_REQUEST['pickupFromDate'])) { 
-	if(isset($_COOKIE['pickupFromDate'])) $_REQUEST['pickupFromDate']=$_COOKIE['pickupFromDate'];
+	if(isset($_COOKIE['pickupFromDateC'])) $_REQUEST['pickupFromDate']=$_COOKIE['pickupFromDateC'];
 	else $_REQUEST['pickupFromDate']=date('Y-m-d',time()-365*24*3600);
 }
 if(!isset($_REQUEST['orderToDate']) || empty($_REQUEST['orderToDate'])) {
-	if(isset($_COOKIE['orderToDate'])) $_REQUEST['orderToDate']=$_COOKIE['orderToDate'];
+	if(isset($_COOKIE['orderToDateC'])) $_REQUEST['orderToDate']=$_COOKIE['orderToDateC'];
 	else $_REQUEST['orderToDate']=date('Y-m-d',time());
 }	
 if(!isset($_REQUEST['pickupToDate']) || empty($_REQUEST['pickupToDate'])) { 
-	if(isset($_COOKIE['pickupToDate'])) $_REQUEST['pickupToDate']=$_COOKIE['pickupToDate'];
+	if(isset($_COOKIE['pickupToDateC'])) $_REQUEST['pickupToDate']=$_COOKIE['pickupToDateC'];
 	else $_REQUEST['pickupToDate']=date('Y-m-d',time()+365*24*3600);
 }
 if(!isset($_REQUEST['paymentNumber'])) $_REQUEST['paymentNumber']="";
@@ -178,13 +178,13 @@ $page 		= $_REQUEST['page'];
 $length 	= $_REQUEST['length'];
 //$sortOrder 	= $_REQUEST['sortOrder'];
 $orderFromDate 	= $_REQUEST['orderFromDate'];
-setcookie("orderFromDate", $orderFromDate, time() + (7*24*60*60),"/");
+setcookie("orderFromDateC", $orderFromDate, time() + (7*24*60*60),"/");
 $pickupFromDate 	= $_REQUEST['pickupFromDate'];
-setcookie("pickupFromDate", $pickupFromDate, time() + (7*24*60*60),"/");
+setcookie("pickupFromDateC", $pickupFromDate, time() + (7*24*60*60),"/");
 $orderToDate 	= $_REQUEST['orderToDate'];
-setcookie("orderToDate", $orderToDate, time() + (7*24*60*60),"/");
+setcookie("orderToDateC", $orderToDate, time() + (7*24*60*60),"/");
 $pickupToDate 	= $_REQUEST['pickupToDate'];
-setcookie("pickupToDate", $pickupToDate, time() + (7*24*60*60),"/");
+setcookie("pickupToDateC", $pickupToDate, time() + (7*24*60*60),"/");
 $paymentNumber 	= $_REQUEST['paymentNumber'];
 $order 	= $_REQUEST['order'];
 $locationName 	= $_REQUEST['locationName'];
