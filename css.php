@@ -91,9 +91,10 @@
 
 	@media only screen and (max-width: 1350px) {
 		/* For mobile phones: */
-		[class*="col-"] {
+		/* Check: */
+		/* [class*="col-"] :not(.col-md-2-edit){
 			width: 100% !important;
-		}
+		} */
 	}
 
 

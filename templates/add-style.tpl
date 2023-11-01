@@ -32,6 +32,11 @@
     border-top: 1px solid #aaaaaa;
     /* border-top: 1px solid #e7eaec; Old */
 }
+/* prev:
+.footer-edit [class*="col-md"]{
+    background: silver;
+    border: 1px solid black;
+} */
 .pull-left-edit{ margin-left:10px; }
 
 .pull-right .btn{
@@ -120,6 +125,7 @@
 	border-radius: 5px;
 	padding-right: 5px;
 	box-shadow: 3px 3px 4px 0px #3b75b9;
+    margin: 0 auto;
 }
 
 /* ====================================================================================== */
@@ -247,6 +253,7 @@
     /* background: #a1bdca; */
 }
 
+/* .row .itemsheader-edit */
 .row .itemsheader-edit{
     background: #00bdfbbd;
     /* background: #00bdfb12; Old */
@@ -259,16 +266,21 @@
     padding: 5px;
     box-shadow: 5px 5px 8px #616060;
 }
-.row .itemsheader-edit .col-md-2{
+.row.itemsheader-edit .col-md-2{
     border-right: 1px solid #c5c5c5;
 }
-
+.row.itemsheader-edit .col-md-2:last-of-type{
+    border-right: none;
+}
+/* --------------------------------------------- */
 .row .listTile-edit{
     display: flex;
     /* flex-wrap: wrap; */
     margin-left: 0px;
     margin-right: 0px;
     background:#d9d8d8;
+    /* border-bottom: 1px solid black; old */
+    border-bottom: 2px solid #626262;
 }
 .listTile-edit .col-md-2{
     background: #dfebee;
@@ -491,7 +503,7 @@ textarea{ width:90% !important; }
 }
 /* -------------------------------------------------------------------------------------- */
 
-.form-control{ width:100%;}
+.form-control{ width:100%;text-align: center;}
 .form-group { margin-bottom: 0px !important; }
 
 .tab-content-edit{ padding:20px !important; }
@@ -544,8 +556,19 @@ button.searchdrivers, button.conversion-rate{
 }
 
 @media screen and (min-width: 1551px){
-    .col-md-2 input[type="number"]{
+    .col-sm-2 input[type="number"]{
         width:100%;
+    }
+    .filter{
+		display: block;
+	}
+
+    .filter-wrapper{
+		display: block;
+	}
+    
+    #footer-filters{
+        display: none;
     }
 }
 
@@ -583,7 +606,7 @@ button.searchdrivers, button.conversion-rate{
 
     /* Orders: */
     .orders-edit [class*="col-"]{
-        width: auto !important;
+        /* width: auto !important; prev */
         padding: 5px;
     }
 
@@ -607,14 +630,14 @@ button.searchdrivers, button.conversion-rate{
     }
     /* ----------- */
     
-    [class*="col-md"], [class*="col-sm"]{
+    /* [class*="col-md"] :not(.col-md-2-edit), [class*="col-sm"] :not(.col-md-2-edit){
         width: 100% !important;
         padding: 5px 0;
         text-align: center;
-    }
+    } */
 
     [class*="col-"] > *{ 
-        float:none !important;
+        /* float:none !important; */
         text-align: center !important;
     }
 
@@ -635,13 +658,14 @@ button.searchdrivers, button.conversion-rate{
 
     .col-md-2-edit{
         padding: 10px;
+        text-align: center;
     }
 
     #show, #hide{
         display: inline-block;
     }
 
-    .select-top-edit.addon{
+    .select-top-edit.addon :not(.col-md-2-edit){
         width:30% !important;
     }
 
@@ -741,7 +765,7 @@ button.searchdrivers, button.conversion-rate{
         width: fit-content;
 	}
 
-    #wrapp-buttons{
+    #wrapp-button{
 		float:none !important;
 		margin:0 auto;
         width: fit-content;
@@ -785,6 +809,10 @@ button.searchdrivers, button.conversion-rate{
 		display: block !important;
 	}
 
+    .filter-wrapper{
+        display: none;
+    }
+
     /* ---------------------------- */
     
     .sum-edit{
@@ -795,25 +823,75 @@ button.searchdrivers, button.conversion-rate{
 		text-align: center;
 	}
 
-    .datepicker-edit-2-small{
+    /* .datepicker-edit-2-small{
         width:30% !important;
-    }
+    } */
 
     /* In footer: */
-    .footer-edit{ display: flex; flex-direction: column; text-align: center; }
-    .pull-right-edit, .pull-left-edit{ margin:0; }
-    .group-edit{ width: 50% !important; }
-    .btn-xs-edit{ width:50%; padding: 10px; }
+    .footer-edit{ 
+        display: flex; flex-direction: column; text-align: center;
+    }
+
+    .pull-right-edit, .pull-left-edit{ margin:0;}
+    .pull-left-edit{ float:none !important;}
+    
+    .btn-xs-edit{ width:10%; padding: 10px; }
     /* ---------- */
 
+    .footer-edit [class*="col-md"]{
+        width: 100%;
+    }
+
+    /* 
+     old
     .form-control{
         width:30%;
-    }
+    } */
 
-    .input-one{
+    /* .input-one{
         width:30% !important;
+    } */
+
+}
+
+/* ===================================== */
+@media (min-width: 768px) and (max-width: 1550px){
+    .group-edit{ width: 20% !important; }
+    /* .select-top-edit{
+        width:30%;
+    } */
+
+  
+
+    
+}
+
+/* ===================================== */
+@media (min-width: 768px) and (max-width: 1000px){
+    .filter-one-edit .group-edit{ 
+        width: 50% !important;
+        margin: 5px;
+        
+    }
+}
+
+/* ===================================== */
+@media (min-width: 1000px){
+    /* pageListHeader.tpl: */
+    .filter-one-edit .group-edit{ 
+        width: 80% !important;
+        margin: 5px;
     }
 
+   
+}
+
+/* ===================================== */
+@media (min-width: 768px) and (max-width: 1000px){
+    /* pageListHeader.tpl: */
+    .filter-one-edit{
+        text-align: center;
+    }
 }
 
 /* ===================================== */
@@ -840,13 +918,25 @@ button.searchdrivers, button.conversion-rate{
 /* ===================================== */
 @media (max-width: 1165px){
     .pad1em{
-		flex-direction: column;
+		/* flex-direction: column; prev */
 	}
 
     select{
         width:50%;
     }
 
+}
+
+/* ===================================== */
+/* This max-width 991px is in bootstrap: */
+@media (max-width: 991px){
+    .input-one, .select-top-edit, .datepicker-edit-2{
+        width:50% !important;
+    }
+
+    .pad1em{
+		flex-direction: column;
+	}
 }
 
 /* ===================================== */
@@ -936,6 +1026,16 @@ button.searchdrivers, button.conversion-rate{
         width: -webkit-fill-available;
     } */
 
+    [class*="col-md"]:not(.col-md-2-edit), [class*="col-sm"]:not(.col-md-2-edit){
+        width: 100% !important;
+        padding: 5px 0;
+        text-align: center;
+    }
+
+    /* .filter-wrapper [class*="col-md"]{
+        width:unset !important;
+    } */
+
 
 }
 
@@ -951,7 +1051,11 @@ button.searchdrivers, button.conversion-rate{
         width:60% !important;
     }
 
-    .form-group.group-edit{ width:90%; }
+    .form-group.group-edit{ 
+        /* width:90%; prev */
+        width: 50%;
+        
+    }
 
     .expenses-image{
 		pointer-events: none; /* Turn off hover effect */
