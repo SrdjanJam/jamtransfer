@@ -87,13 +87,13 @@
                         {{extrasSelect ServiceID ID ID ../details.DriverID}}
                     </div>										
                     <div class="col-md-2">
-                        <input type="text" class="w25 DriverPrice" name="DriverPrice[{{ID}}]" id="DriverPrice[{{ID}}]" value="{{DriverPrice}}">
+                        <input type="text" class="w25 DriverPrice" name="DriverPrice[{{ID}}]" id="DriverPrice[{{ID}}]" value="{{DriverPrice}}" style="width:90%;">
                     </div>										
                     <div class="col-md-2">
-                        <input type="text" class="w25 Price" name="Price[{{ID}}]" id="Price[{{ID}}]" value="{{Price}}">
+                        <input type="text" class="w25 Price" name="Price[{{ID}}]" id="Price[{{ID}}]" value="{{Price}}" style="width:90%;">
                     </div>										
                     <div class="col-md-2">
-                        <input type="number" class="w25" name="Qty[{{ID}}]" id="Qty[{{ID}}]" value="{{Qty}}">
+                        <input type="number" class="w25" name="Qty[{{ID}}]" id="Qty[{{ID}}]" value="{{Qty}}" style="width:90%;">
                     </div>
                 </div>
             {{/each}}

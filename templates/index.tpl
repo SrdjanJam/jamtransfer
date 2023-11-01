@@ -369,7 +369,7 @@
 
 				{if $pageName eq 'Price Rules'}	
 					<!-- .header row -->
-					<div class="header row"> 
+					<div class="header row">
 						<div class="pull-left">
 							<span>{$RULE}: <strong>{$smarty.request.rulesType}</strong></span>
 							{if $routeName}<span>{$ROUTE}:<strong>{$routeName}</strong></span>{/if}
@@ -403,8 +403,8 @@
 
 					<!-- Show and Hide Filters buttons: -->
 					<div id="footer-filters">
-						<div id="filter-show" class="button-toggle"><i class="fa-solid fa-bars fa-bars-edit"></i>{$SHOW_FOOTER}</div>
-						<div id="filter-hide" class="button-toggle"><i class="fa-solid fa-bars fa-bars-edit"></i>{$HIDE_FOOTER}</div>
+						<div id="filter-show" class="button-toggle"><i class="fa fa-bars fa-bars-edit"></i></div>
+
 					</div>
 
 					<!-- Filter -->
@@ -418,7 +418,7 @@
 							
 								{if not isset($pagelength)}{assign var="pagelength" value="10"}{/if}
 							
-								<div class="col-md-3">
+								<div class="col-md-3" style="padding-bottom: 5px;">
 									<i class="fa fa-eye edit-fa"></i>
 									<div class="form-group group-edit">
 										<select id="length" class="w75 form-control control-edit" onchange="allItems();">
@@ -687,37 +687,30 @@
 
 		}
 
-		// Resize for footer:
+		// Toggle effects for button:
+		$('#filter-show').click(function(){
+			var link = $(this);
+			$('.filter-wrapper').slideToggle('slow', function() {
+				if ($(this).is(":visible")) {
+					link.html('<i class="fa fa-bars fa-bars-edit"></i>Hide footer');
+				} else{
+					link.html('<i class="fa fa-bars fa-bars-edit"></i>Show footer');
+				}        
+			});
+		});
+		// Resize effect for footer:
 		function resizeContent(){
-
-			if ($(window).width() > 1551) {
-				$('.filter-wrapper').show();
-				$('#filter-show').hide();
-				$('#filter-hide').hide();
+			$('#filter-show').html('<i class="fa fa-bars fa-bars-edit"></i>Show footer');
+			var filter = $('.filter-wrapper');
+			var sirina = $(window).width();
+			if(sirina > 1551 && filter.is(':hidden')){
+				filter.show();
+			}if(sirina < 1551 && filter.is(':visible')){
+				$('#filter-show').html('<i class="fa fa-bars fa-bars-edit"></i>Hide footer');
+				// filter.hide();
 			}
-
-			if ($(window).width() < 1550) {
-				$('.filter-wrapper').hide();
-				$('#filter-show').show();
-				$('#filter-hide').hide();
-				
-			}
-
 		}
-
-
-		$('#filter-show').click(function() {
-			$('.filter-wrapper').toggle(600);
-			$('#filter-show').hide();
-			$('#filter-hide').show();
-		});
-
-		$('#filter-hide').click(function() {
-			$('.filter-wrapper').toggle(600);
-			$('#filter-show').show();
-			$('#filter-hide').hide();
-		});
-
+		// Call the resize function:
 		resizeContent();
 		$(window).resize(resizeContent);
 		

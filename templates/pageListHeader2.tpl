@@ -31,7 +31,7 @@
 		border: none;
 	}
 
-	#wrapp-buttons{
+	#wrapp-button{
 		float:left;
 		background: #479de929;
 		border-radius: 5px;
@@ -39,16 +39,15 @@
 		box-shadow: 3px 3px 4px 0px #3b75b9;
 	}
 
-	.button-toggle{
+	#filterToggle{
 		cursor:pointer; font-weight:bold; color: #0584f1; text-shadow: #0584f1 0px 0px 1px;
+	}
+	#filterToggle:hover,.fa-bars-edit:hover{
+		cursor:pointer; font-weight:bold; color: #0b70c9;
 	}
 
 	.fa-bars-edit{
 		font-size: 20px;margin: 5px;color: #0584f1;
-	}
-
-	.button-toggle:hover,.fa-bars-edit:hover{
-		cursor:pointer; font-weight:bold; color: #0b70c9;
 	}
 
 	.filter .col-sm-3{
@@ -72,18 +71,15 @@ value=" WHERE {$ItemID} > 0">
 <input type="hidden"  id="Search">
 
 
-
 <div class="row itemsheader itemsheader-edit">
 
-	<!-- Show and Hide Filters buttons: -->
-	<div id="wrapp-buttons">
-		<div id="show" class="button-toggle"><i class="fa-solid fa-bars fa-bars-edit"></i>{$SHOW_FILTERS}</div>
-		<div id="hide" class="button-toggle"><i class="fa-solid fa-bars fa-bars-edit"></i>{$HIDE_FILTERS}</div>
+	<div id="wrapp-button">
+		<!-- Show-hide button: -->
+		<div id="filterToggle"><i class="fa fa-bars fa-bars-edit"></i></div>
 	</div>
 
-	
+	<!-- Filter: -->
 	<div class="filter">
-
 		<!-- Sorting: -->
 		{* Spare: *}
 		{* <div class="filterOlderAdd" style="padding:5px;float:left;margin-left:20px;"> *}
@@ -215,46 +211,34 @@ value=" WHERE {$ItemID} > 0">
 
 </div> <!-- row itemsheader itemsheader-edit -->
 
-{* Scripts: *}
+{* SCRIPT: *}
 <script>
 
-
+	// Toggle effects:
+	$('#filterToggle').html('<i class="fa fa-bars fa-bars-edit"></i>Hide filters');
+	$('#filterToggle').click(function(){
+		var link = $(this);
+		$('.filter').slideToggle('slow', function() {
+			if ($(this).is(":visible")) {
+				link.html('<i class="fa fa-bars fa-bars-edit"></i>Hide filters');
+			} else{
+				link.html('<i class="fa fa-bars fa-bars-edit"></i>Show filters');
+			}        
+		});
+	});
+	// Resize effect:
 	function resize(){
-
-		if ($(window).width() > 1551) {
-			$('.filter').show();
-			$('#show').hide();
-			$('#hide').show();
-			$('#wrapp-buttons').css("text-align",""); // Remove text align from #wrapp-buttons
+		var filter = $('.filter');
+		var sirina = $(window).width();
+		if(sirina > 1551 && filter.is(':visible')){
+			filter.removeAttr('style');
+			$('#filterToggle').html('<i class="fa fa-bars fa-bars-edit"></i>Hide filters');
+		}if(sirina < 1550 && filter.is(':hidden')){
+			$('#filterToggle').html('<i class="fa fa-bars fa-bars-edit"></i>Show filters');
 		}
-
-		if ($(window).width() < 1550 ) {
-			$('#show').show();
-			$('#hide').hide();
-			$('#wrapp-buttons').css("text-align","center");	
-		}
-
-
-	} // End of function resize()
-
-
-	$('#show').click(function() {
-		$('.filter').fadeToggle();
-		$('#show').hide();
-		$('#hide').show();
-	});
-
-	$('#hide').click(function() {
-		$('.filter').fadeToggle();
-		$('#show').show();
-		$('#hide').hide();
-	});
-
+	}
+	// Call the resize function:
+	resize();
+	$(window).resize(resize);
 	
-	$(document).ready(function(){
-		resize();
-		$(window).resize(resize);
-	});
-
-
 </script>
