@@ -207,7 +207,7 @@ $routes_ids = substr($routes_ids,0,strlen($routes_ids)-1);
 					$statusComp=$statusCompP; // preuzima status po drajver ruti;
 					if($au->getActive() == 0) $statusComp="<i>-Not active</i>";
 					if($DriversPrice < 1) $statusComp="<i>-No price</i>";
-					if(isVehicleOffDuty($VehicleID, $transferDate)) $statusComp="<i>-Off duty</i>";
+					if(isVehicleOffDuty($VehicleID, $transferDate,$transferTime)) $statusComp="<i>-Off duty</i>";
 					if ($statusComp=="" && !isset($_REQUEST['type'])) {
 						if ($contractPrice>0) {
 							$contract=" contract Agent";
@@ -368,7 +368,7 @@ function vehicleTypeName($vehicleTypeID) {
     return $v->VehicleTypeName;
 }
 
-function isVehicleOffDuty($vehicleID, $transferDate) {
+function isVehicleOffDuty($vehicleID, $transferDate, $transferTime) {
     $cnt = 0;
     require_once '../db/db.class.php';
     $dbT = new DataBaseMysql();
@@ -377,7 +377,7 @@ function isVehicleOffDuty($vehicleID, $transferDate) {
 
     while($o = $r->fetch_object()) {
 
-        if( isInDateRange($o->StartDate, $o->EndDate, $transferDate) ) {
+        if( inDateTimeRange($o->StartDate, $o->StartTime, $o->EndDate, $o->EndTime, $transferDate, $transferTime) ) {
 
             $cnt += 1;
         }

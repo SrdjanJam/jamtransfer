@@ -31,6 +31,7 @@ define("BASE_PRICE", "Base Price");
 define("BASE","Base");
 define("BOOKED_BY", "Booked by");
 define("BOOKING", "Booking");
+define("BOOKING TIME", "Booking hours +- time zone");
 define("BOOKINGS", "Bookings");
 define("BRAND_NAME", "Brand name");
 define("BY_BOOKING_DATE", "by booking date");

@@ -1,0 +1,82 @@
+<style>
+    
+    .in-acc {position: absolute;opacity: 0;z-index: -1;}.accordion {margin: 10px;border-radius: 5px;overflow: hidden;box-shadow: 0 4px 4px -2px rgba(0, 0, 0, 0.5);}.accordion-label {padding: 1em;cursor: pointer;background: #f9f9f9;color: #4c4c4c;}.accordion-content {max-height: 0;padding: 0 1em;background: white;transition: all 0.35s;}input:checked ~ .accordion-content {max-height: 100vh;padding: 1em;}
+
+    h1{
+        font-size:13.999999999999998pt;
+        font-family:Calibri,sans-serif;
+        color:#000000;
+        font-weight:bold;
+    }
+
+    h1 a{
+        font-size:13.999999999999998pt;
+        font-family:Calibri,sans-serif;
+        color:#000000;
+        font-weight:bold;
+    }
+
+    p{
+        text-align:justify;
+        font-size:12pt;
+        font-family:Calibri,sans-serif;
+        color:#000000;
+        text-decoration:none;
+    }
+
+    p a{
+        color:#000000;
+        text-decoration:none;
+    }
+
+    .list-where-is li{
+        list-style-type:none;
+        font-size:12pt;
+        font-family:Calibri,sans-serif;
+        color:#000000;
+    }
+    .list-where-is li a{
+        text-decoration:none;
+        font-size:12pt;
+        font-family:Calibri,sans-serif;
+        color:#000000;
+    }
+
+    ol li{
+        font-size:12pt;
+        font-family:Calibri,sans-serif;
+        color:#000000;
+        text-align:justify;
+    }
+
+    ol li a{
+        color:#000000;
+    }
+
+    .accordion-content-edit a{
+    	color:#000 !important;
+        /*color:#676a6c !important; the second option */
+        text-decoration:none;
+    }
+    .accordion-content-edit ul{
+        margin: 0;
+        padding: 0;
+    }
+    .accordion-content-edit ul li{
+        all:unset !important;
+    }
+
+    .col img{
+        margin-bottom: 20px;
+    }
+
+    .accordion-label a{
+        color:#4c4c4c !important;
+        text-decoration:none;
+    }
+
+    .accordion input{
+        display: none;
+    }
+
+</style>

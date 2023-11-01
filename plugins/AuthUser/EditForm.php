@@ -367,7 +367,7 @@
 								</div>
 							</div>
 
-							{{#compare AuthLevelID "==" '2'}}
+							{{#compare AuthLevelID "==" '2'}}						
 							<div class="row">
 								<div class="col-md-3">
 									<label><?= ACCEPTED_PAYMENT ?> - <?= NOT_ACTIVE ?></label>
@@ -389,6 +389,14 @@
 
 
 							{{#compare AuthLevelID "==" '31'}}
+							<div class="row">
+								<div class="col-md-3 "><label>Booking hours +- time zone</label></div>
+								<div class="col-md-9">
+									<input type="number" name="Temp_pass_active" class="w25" max='48' min='4'
+									 value="{{Temp_pass_active}}"
+									<?= READ_ONLY_FLD ?>>
+								</div>
+							</div>								
 							<div class="row">
 								<div class="col-md-3">
 									<label><?= ACCEPTED_PAYMENT ?></label>

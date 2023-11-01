@@ -98,6 +98,7 @@
 
 	<script>
 		$('input').change(function(){
+			if ($('#EndDate').is(':empty')) $('#EndDate').val($('#StartDate').val());
 			var base=window.location.origin;
 			if (window.location.host=='localhost') base=base+'/jamtransfer';
 
