@@ -1,0 +1,141 @@
+PlainSailing code 4190d4731aa725d606c511be010e2e6d
+
+REQUEST 1 - GET FROM PLACE 
+	SEND: qry - leading three or more characters of desired starting location
+	SAMPLE URL REQUEST: https://wis.jamtransfer.com/app/getFromPlacesEdge.php?qry=Nic&code=/your api code/
+	RESPONCE SAMPLE: 
+		{
+			"248250":"Nice",
+			"145797":"Nice Airport",
+			"250445":"Nice Port",
+			"252484":"Nice Ville Train Station",
+			"251170":"Nicolosi, Sicily Island",
+			"248018":"Nicosia","251862":"Nicosia Lefkosa"
+		}
+	SAVE: ID of selected location
+
+REQUEST 2 - GET TO PLACE
+	SEND: fID - ID of selected location in Request 1
+	SAMPLE URL REQUEST: https://wis.jamtransfer.com/app/getToPlacesEdge.php?fID=145797&code=/your api code/
+	RESPONCE SAMPLE: 
+		{
+			"250446":"Agay",
+			"253699":"Airole",
+			"246982":"Aix en Provence",
+			"250448":"Alassio",
+			"250601":"Allos",
+			.....
+			"248251":"Cannes",
+			.....
+			"248255":"Villefranche sur Mer",
+			"248266":"Villeneuve Loubet",
+			"251186":"Vins sur Caramy",
+			"252544":"Vintimiglia"
+		}
+	SAVE: ID of selected location
+
+REQUEST 3 - GET SERVICE (Vehicle Types Prices for selected Route)	
+	SEND: 	FromID - ID of selected location in Request 1
+			ToID - ID of selected location in Request 2
+			PaxNo - Number of passengers
+			transferDate - date of transfer in YYYY-MM-DD format
+			transferTime - time of transfer in YYYY-MM-DD format
+			returnTransfer - 0 if NO, 1 if YES
+			returnDate - date of return transfer in YYYY-MM-DD format
+			returnTime - time of return transfer in YYYY-MM-DD format
+	SAMPLE URL REQUEST:  https://wis.jamtransfer.com/app/getServices.php?FromID=145797&ToID=248251&PaxNo=3&transferDate=2024-04-01&transferTime=15:30&returnTransfer=1&returnDate=2024-04-02&returnTime=16:00&code=/your api code/
+	RESPONCE SAMPLE:
+		{
+			"38960":{"VehicleName":"Standard, 4 passengers","VehicleCapacity":"4","FinalPrice":"128.10"},
+			"38961":{"VehicleName":"Standard, 8 passengers","VehicleCapacity":"8","FinalPrice":"152.50"},
+			"38962":{"VehicleName":"Standard, 16 passengers","VehicleCapacity":"16","FinalPrice":"310.18"},
+			"86996":{"VehicleName":"Premium, 4 passengers","VehicleCapacity":"4","FinalPrice":"153.68"},
+			"87158":{"VehicleName":"Premium, 8 passengers","VehicleCapacity":"8","FinalPrice":"169.20"},
+			"87239":{"VehicleName":"Premium, 14 passengers","VehicleCapacity":"14","FinalPrice":"372.24"},
+			"87482":{"VehicleName":"First Class, 7 passengers","VehicleCapacity":"7","FinalPrice":"197.40"},
+			"106508":{"VehicleName":"First Class, 3 passengers","VehicleCapacity":"3","FinalPrice":"165.82"},
+			"533678":{"VehicleName":"Standard, 7 passengers","VehicleCapacity":"7","FinalPrice":"147.90"},
+			"535063":{"VehicleName":"Premium, 7 passengers","VehicleCapacity":"7","FinalPrice":"164.10"}
+		}
+	SAVE: ID of selected service	
+REQUEST 4 - GET EXTRAS 
+	SEND:	ServiceID - ID of selected service in Request 3
+	SAMPLE URL REQUEST:  https://wis.jamtransfer.com/app/getExtras.php?ServiceID=535063&code=/your api code/
+	RESPONCE SAMPLE:
+		{
+			"101":{"ServiceEN":"Infant Seat (0-9kg or 0-1 years)","Price":"2.00"},
+			"102":{"ServiceEN":"Child Seat (9-18kg or 1-4 years)","Price":"2.00"},
+			"103":{"ServiceEN":"Booster Seat (18-36kg or 4-12 years)","Price":"2.00"},
+			"104":{"ServiceEN":"Bicycle","Price":"10.00"},
+			"105":{"ServiceEN":"Extra stop in same town","Price":"10.00"},
+			"322":{"ServiceEN":"Baby Stroller","Price":"0.00"},
+			"323":{"ServiceEN":"Extra luggage (more than 1 piece per person)","Price":"0.00"},
+			"325":{"ServiceEN":"Golf Bag","Price":"2.00"},
+			"326":{"ServiceEN":"Skis\/Snowboard","Price":"0.00"},
+			"327":{"ServiceEN":"Wheelchair (folding type only)","Price":"0.00"},
+			"4224":{"ServiceEN":"Waiting time per 1 starting hour","Price":"55.00"}
+		}	
+	SAVE: IDs of selected extrases (array)	
+REQUEST 5 - SET ORDER 	
+	SEND: JSON data
+			ServiceID - ID of selected service in Request 3
+			ExtrasIDS - array of ids of selected extras in Request 4
+			PaxNo - Number of passengers
+			transferDate - date of transfer in YYYY-MM-DD format
+			transferTime - time of transfer in YYYY-MM-DD format
+			returnTransfer - 0 if NO, 1 if YES
+			returnDate - date of return transfer in YYYY-MM-DD format
+			returnTime - time of return transfer in YYYY-MM-DD format
+			VehiclesNo - Number of vehicles
+			pickupAddress - address in Pickup location
+			dropoffAddress - address in Drop location
+			flightNumber - Official flight number
+			flightTime - Official flight time			
+			returnFlightNumber - Official retutn flight number 
+			returnFlightTime - Official return flight time
+			paxName - Passenger name
+			paxMobile - Passenger time
+			paxEmail - Passenger Email
+			notes - Notes				
+	SAMPLE URL REQUEST:  https://wis.jamtransfer.com/app/setOrder.php?code=/your api code/
+	SAMPLE OF PHP SCRIPT: 
+		<?
+			// sample of array with requested data
+			$arr=array (
+						"ServiceID" => 535063,
+						"ExtrasIDS" => array (103,105),
+						"PaxNo" => 3,
+						"transferDate" => "2024-04-01",
+						"transferTime" => "15:30",
+						"returnTransfer" => 1,
+						"returnDate" => "2024-04-02",
+						"returnTime" => "16:00",
+						"VehiclesNo" => 1,
+						"pickupAddress" => "Terminal airport",
+						"dropoffAddress" => "Test street",
+						"flightNumber" => "TT111",
+						"flightTime" => "15:20",			
+						"returnFlightNumber" => "TT112",
+						"returnFlightTime" => "19:00",
+						"paxName" => "John Smith",
+						"paxMobile" => "+44 11111111",
+						"paxEmail" => "jsmith@test.com",
+						"notes" => "for test porpuse"
+					);	
+			// url for request
+			$url = "https://wis.jamtransfer.com/app/setOrder.php?code=/your api code/";    
+			$content = json_encode($arr);
+			$curl = curl_init($url);
+			curl_setopt($curl, CURLOPT_HEADER, false);
+			curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+			curl_setopt($curl, CURLOPT_HTTPHEADER,
+					array("Content-type: application/json"));
+			curl_setopt($curl, CURLOPT_POST, true);
+			curl_setopt($curl, CURLOPT_POSTFIELDS, $content);
+			$json_response = curl_exec($curl);
+			$status = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+			if ( $status != 200 ) {
+				die("Error: call to URL $url failed with status $status, response $json_response, curl_error " . curl_error($curl) . ", curl_errno " . curl_errno($curl));
+			} 
+			curl_close($curl);
+	
