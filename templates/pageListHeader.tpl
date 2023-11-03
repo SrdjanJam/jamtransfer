@@ -36,11 +36,14 @@ value=" WHERE {$ItemID} > 0">
 
 <!-- Show and Hide Filters buttons: -->
 <div id="pageListHeader-filters">
-	<div id="show" class="button-toggle"><i class="fa-solid fa-bars fa-bars-edit"></i>{$SHOW_FILTERS}</div>
-	<div id="hide" class="button-toggle"><i class="fa-solid fa-bars fa-bars-edit"></i>{$HIDE_FILTERS}</div>
+	{* old: *}
+	{* <div id="show" class="button-toggle"><i class="fa-solid fa-bars fa-bars-edit"></i>{$SHOW_FILTERS}</div>
+	<div id="hide" class="button-toggle"><i class="fa-solid fa-bars fa-bars-edit"></i>{$HIDE_FILTERS}</div> *}
+
+	<div id="show-hide" class="button-toggle"><i class="fa fa-bars fa-bars-edit"></i></div>
 </div>
 
-	<div class="filter">
+	<div class="filter filter-one-edit">
 
 		{if isset($selecttype)}
 		<div class="col-md-2">
@@ -157,38 +160,36 @@ value=" WHERE {$ItemID} > 0">
 {* Scripts: *}
 <script>
 
-function resize(){
-
-	if ($(window).width() > 1553) {
-		$('.filter').show();
-		$('#show').hide();
-		$('#hide').hide();
+// Toggle effects for button:
+$('#show-hide').hide();
+$('#show-hide').click(function(){
+	var link = $(this);
+	$('.filter').slideToggle('slow', function() {
+		if ($(this).is(":visible")) {
+			link.html('<i class="fa fa-bars fa-bars-edit"></i>Hide filters');
+		} else{
+			link.html('<i class="fa fa-bars fa-bars-edit"></i>Show filters');
+		}        
+	});
+});
+// Resize effect for footer:
+function resizeContent(){
+	var filter = $('.filter');
+	var sirina = $(window).width();
+	if(sirina > 1551 && filter.is(':visible')){
+		filter.removeAttr('style');
+		$('#show-hide').hide();
+	}if(sirina < 1551 && filter.is(':hidden')){
+		$('#show-hide').show();
+		$('#show-hide').html('<i class="fa fa-bars fa-bars-edit"></i>Show filters');
+		filter.show();
+		filter.removeAttr('style');
 	}
-
-	if ($(window).width() < 1552) {
-		$('.filter').hide();
-		$('#show').show();
-		$('#hide').hide();
-		
-	}
-
 }
 
-
-$('#show').click(function() {
-	$('.filter').toggle(600);
-	$('#show').hide();
-	$('#hide').show();
-});
-
-$('#hide').click(function() {
-	$('.filter').toggle(600);
-	$('#show').show();
-	$('#hide').hide();
-});
-
-resize();
-$(window).resize(resize);
+// Call the resize function:
+resizeContent();
+$(window).resize(resizeContent);
 
 
 </script>

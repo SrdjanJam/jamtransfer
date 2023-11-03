@@ -539,10 +539,6 @@ button.searchdrivers, button.conversion-rate{
 	background:#d9d9d9;
 }
 
-
-
-/* *************************************************************************************** */
-/* *************************************************************************************** */
 /* *************************************************************************************** */
 /* *************************************************************************************** */
 
@@ -570,6 +566,7 @@ button.searchdrivers, button.conversion-rate{
     #footer-filters{
         display: none;
     }
+
 }
 
 @media screen (min-width: 1280px) and (max-width: 1549px){
@@ -608,6 +605,7 @@ button.searchdrivers, button.conversion-rate{
     .orders-edit [class*="col-"]{
         /* width: auto !important; prev */
         padding: 5px;
+        text-align: center;
     }
 
     .col-md-9-border{
@@ -721,9 +719,9 @@ button.searchdrivers, button.conversion-rate{
         width:100% !important;
     }
 
-    .input-edit {
+    /* .input-edit {
         width: 100% !important;
-    }
+    } */
 
 	.input-edit-2{
 		display:block;
@@ -861,9 +859,6 @@ button.searchdrivers, button.conversion-rate{
         width:30%;
     } */
 
-  
-
-    
 }
 
 /* ===================================== */
@@ -871,7 +866,6 @@ button.searchdrivers, button.conversion-rate{
     .filter-one-edit .group-edit{ 
         width: 50% !important;
         margin: 5px;
-        
     }
 }
 
@@ -882,7 +876,6 @@ button.searchdrivers, button.conversion-rate{
         width: 80% !important;
         margin: 5px;
     }
-
    
 }
 
@@ -930,13 +923,17 @@ button.searchdrivers, button.conversion-rate{
 /* ===================================== */
 /* This max-width 991px is in bootstrap: */
 @media (max-width: 991px){
-    .input-one, .select-top-edit, .datepicker-edit-2{
+    .select-top-edit, .datepicker-edit-2{
         width:50% !important;
     }
 
     .pad1em{
 		flex-direction: column;
 	}
+
+    .addedit .input-one{
+        width: auto !important;
+    }
 }
 
 /* ===================================== */
@@ -982,7 +979,6 @@ button.searchdrivers, button.conversion-rate{
         padding:5px;
     }
 
-
     /* For invoice: */
     .btn.btn-danger{
         float: none !important;
@@ -1013,7 +1009,6 @@ button.searchdrivers, button.conversion-rate{
         display: block;
     }
 
-
     .row-third-edit .col-md-3{
 		margin-top: 10px;
 	}
@@ -1036,6 +1031,9 @@ button.searchdrivers, button.conversion-rate{
         width:unset !important;
     } */
 
+    .input-edit {
+        width: auto !important;
+    }
 
 }
 
@@ -1083,7 +1081,6 @@ button.searchdrivers, button.conversion-rate{
 
 
 </style>
-
 
 
 <script>
