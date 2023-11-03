@@ -8,7 +8,7 @@
                 
                 <button class="btn btn-info btn-sm" data-name="get-order"><i class="fa fa-plus"></i></button>
                 
-                <button class="btn btn-info btn-sm"  
+                <button class="btn btn-warning btn-sm"  
                 data-toggle="tooltip" data-widget='remove' title="Remove"><i class="fa fa-times"></i></button>
 
             </div><!-- /. tools -->
