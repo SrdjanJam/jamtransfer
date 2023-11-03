@@ -43,8 +43,8 @@ hr {
 
 .row-header{
 	/* background: rgb(205 216 243);  */ /* Old */
-	background-image: linear-gradient(#6c93eb, #828d979e);
 	/* background-image: linear-gradient(#a8beef, #96a0a99e); old */
+	background-image: linear-gradient(#007aff4d,#98b3ce59);
 	box-shadow: 5px 5px 8px #525a5e;
 	/* box-shadow: 5px 5px 8px #6c9bb6; old */
 	padding: 10px;
@@ -160,13 +160,14 @@ hr {
 }
 
 .input-edit{
-	box-shadow: 3px 2px 4px 1px #6a6e76;
-	/* box-shadow: 1px 1px 5px 2px #4f7ab4; old */
+	/* box-shadow: 3px 2px 4px 1px #6a6e76; old */
+	box-shadow: 2px 1px 4px 1px #6a6e76;
 }
 
 .btn-primary-edit{
+	/* box-shadow: 2px 1px 5px 1px #3e7ed9; old */
 	box-shadow: 2px 1px 5px 1px #3e7ed9;
-	/* box-shadow: 1px 1px 4px 1px #4d5077; old */
+    border-radius: 5px;
 }
 
 .datepicker{
@@ -183,6 +184,7 @@ hr {
 	border-radius: 5px;
 	padding-right: 5px;
 	box-shadow: 3px 3px 4px 0px #3b75b9;
+	margin-bottom: 10px;
 }
 
 .button-toggle{
@@ -209,8 +211,7 @@ hr {
 
 	<!-- Show and Hide Filters buttons: -->
 	<div id="schedule-filters">
-		<div id="show" class="button-toggle"><i class="fa-solid fa-bars fa-bars-edit"></i>{$SHOW_FILTERS}</div>
-		<div id="hide" class="button-toggle"><i class="fa-solid fa-bars fa-bars-edit"></i>{$HIDE_FILTERS}</div>
+		<div id="show-hide" class="button-toggle"><i class="fa fa-bars fa-bars-edit"></i></div>
 	</div>
 
 
@@ -310,38 +311,36 @@ hr {
 {* Scripts: *}
 <script>
 
-function resize(){
-
-	if ($(window).width() > 1553) {
-		$('.filter').show();
-		$('#show').hide();
-		$('#hide').hide();
+// Toggle effects for button:
+$('#show-hide').hide();
+$('#show-hide').click(function(){
+	var link = $(this);
+	$('.filter').slideToggle('slow', function() {
+		if ($(this).is(":visible")) {
+			link.html('<i class="fa fa-bars fa-bars-edit"></i>Hide filters');
+		} else{
+			link.html('<i class="fa fa-bars fa-bars-edit"></i>Show filters');
+		}        
+	});
+});
+// Resize effect for footer:
+function resizeContent(){
+	var filter = $('.filter');
+	var sirina = $(window).width();
+	if(sirina > 1551 && filter.is(':visible')){
+		filter.removeAttr('style');
+		$('#show-hide').hide();
+	}if(sirina < 1551 && filter.is(':hidden')){
+		$('#show-hide').show();
+		$('#show-hide').html('<i class="fa fa-bars fa-bars-edit"></i>Show filters');
+		filter.show();
+		filter.removeAttr('style');
 	}
-
-	if ($(window).width() < 1552) {
-		$('.filter').hide();
-		$('#show').show();
-		$('#hide').hide();
-		
-	}
-
 }
 
-
-$('#show').click(function() {
-	$('.filter').toggle(600);
-	$('#show').hide();
-	$('#hide').show();
-});
-
-$('#hide').click(function() {
-	$('.filter').toggle(600);
-	$('#show').show();
-	$('#hide').hide();
-});
-
-resize();
-$(window).resize(resize);
+// Call the resize function:
+resizeContent();
+$(window).resize(resizeContent);
 
 
 </script>
