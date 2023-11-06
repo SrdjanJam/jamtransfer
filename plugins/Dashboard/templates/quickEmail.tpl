@@ -10,7 +10,7 @@
                 <button class="btn btn-info btn-sm" data-widget='collapse' 
                 data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
                 
-                <button class="btn btn-info btn-sm" data-widget='remove' 
+                <button class="btn btn-warning btn-sm" data-widget='remove' 
                 data-toggle="tooltip" title="Remove"><i class="fa fa-times"></i></button>
                 
             </div><!-- /. tools -->

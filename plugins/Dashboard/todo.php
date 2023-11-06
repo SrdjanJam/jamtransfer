@@ -9,7 +9,7 @@
                 
                 <button class="btn btn-info btn-sm" data-name="to-do"><i class="fa fa-plus"></i></button>
                 
-                <button class="btn btn-info btn-sm" data-widget='remove' 
+                <button class="btn btn-warning btn-sm" data-widget='remove' 
                 data-toggle="tooltip" title="Remove"><i class="fa fa-times"></i></button>
                 
             </div><!-- /. tools -->                                    
