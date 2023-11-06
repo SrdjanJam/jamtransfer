@@ -28,7 +28,7 @@
 
 				<button class="btn btn-info btn-sm" data-name="get-route-prices"><i class="fa fa-plus"></i></button>
                 
-                <button class="btn btn-info btn-sm" data-widget='remove' 
+                <button class="btn btn-warning btn-sm" data-widget='remove' 
                 data-toggle="tooltip" title="Remove"><i class="fa fa-times"></i></button>
                 
             </div><!-- /. tools -->
@@ -43,8 +43,7 @@
 				<div class="col-md-9">
 					<input class="form-control" type="text" name="PickupName" size="5" id="PickupName" value=""> 
 					<div id="selectFrom_optionsPickup"  style="max-height:15em;overflow:auto"></div>
-				</div>	
-				<input type="hidden" name="PlaceID" id="PlaceID" value=""> 
+				</div>					
 			</div>
 			<div class="row">
 				<div class="col-md-3">Route to</div>
@@ -65,8 +64,7 @@
 			</div>		
 			<button type="button" id="button-find" class="btn btn-primary searchdrivers" data-toggle="modal" data-target="#routeDriversModal">
 				<i class="fa fa-search"></i>
-			</button>	
-			<input type="checkbox" id="Only" name="Only" checked />	only site displayed
+			</button>			
         </div>
     </div>
 	
@@ -86,13 +84,11 @@
 					</strong>
 				</div>				
 				<div class="modal-body" style="padding:10px">
-					No services
+					No routes
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-primary col-md-12 modalbutton" data-dismiss="modal">Close</button>
-					<a id="tr"  href='plugins/Dashboard/Routes_Prices.csv'>Download</a>
-			
-				</div>				
+				</div>
 			</div>
 		</div>
 	</div>		
@@ -105,6 +101,7 @@
 			if($(this).attr('id') == "PickupName") $('#PickupID').val(0);
 		}
 		var clicked_id='#'+$(this).attr('id');
+
 		var loc=$(this).attr('id').replace("Name", "");
 		var html = '';
 		query = $(clicked_id).val();			
@@ -134,13 +131,9 @@
 
 						// option selected
 						$(".PickupName").click(function(){
-							$("#Route").append(
-								'<option data-toid="-1" value="-1">All routes</option>'
-							)
 							$(clicked_id).val($(this).attr('data-name'));
 							$("#"+loc+"ID").val($(this).attr('id'));
 							var fid=$(this).attr('id');
-							$("#PlaceID").val(fid);
 							$("#selectFrom_options"+loc).hide("slow");
 							$.ajax({
 								url:  './api/getToPlacesEdge.php',
@@ -171,20 +164,18 @@
 	})	
 
 	
-	$( "#button-find").on('click', function(){
-		var PlaceID=$("#PlaceID").val();
+	$( "#button-find" ).on('click', function(){
 		var RouteID=$("#Route").val();
-		var Only=$("#Only").prop('checked');
 		var Date=$("#Date").val();
 		var Time=$("#Time").val();
 		if ( Date!=="" && Time!=="") {
-			$(".modal-body").html(listDrivers(PlaceID, RouteID,  Date, Time, Only));
+			$(".modal-body").html(listDrivers(RouteID,  Date, Time));
 			$(".mytooltip").popover({trigger:'hover', html:true, placement:'bottom'});	
 		}	
 	});	
 	
-	function listDrivers(PlaceID, RouteID,  PickupDate, PickupTime, Only) {
-		var url = 'api/getCarsAjax.php?PlaceID='+PlaceID+'&RouteID='+RouteID+'&TransferDate='+PickupDate+'&TransferTime='+PickupTime+'&Only='+Only+'&type=2'+'&callback=';
+	function listDrivers(RouteID,  PickupDate, PickupTime) {
+		var url = 'api/getCarsAjax.php?RouteID='+RouteID+'&TransferDate='+PickupDate+'&TransferTime='+PickupTime+'&type=2'+'&callback=';
 		var list = '';
 		var funcArgs = '';
 		console.log(url);
@@ -196,7 +187,6 @@
 			dataType: 'jsonp',
 
 			success: function(data) {
-				var rn="";
 				$.each(data, function(i,val) {
 					var surcharges ='';
 					if (val.NightPrice!=0) surcharges = '<br>Night: '+val.NightPrice;
@@ -220,10 +210,6 @@
 					if (val.SpecialDatesPrice!=0) surcharges += '<br>Special Date: '+ val.SpecialDatesPrice;
 					if (val.StatusCompany!="") var select='red-123';					
 					else var select='';
-					if (rn!==val.RouteName) {
-						list += '<h2>&nbsp;'+val.RouteName+'</h2>';
-						rn=val.RouteName
-					}	
 					list += '<div class="row selectable selectable-edit '+select+'">';
 					list += '<div class="col-md-3">' + val.DriverCompany + val.StatusCompany + '</div>';
 					list += '<div class="col-md-1">' + val.VehicleTypeID + '</div>';

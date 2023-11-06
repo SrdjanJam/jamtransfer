@@ -79,7 +79,7 @@ value=" WHERE {$ItemID} > 0">
 	</div>
 
 	<!-- Filter: -->
-	<div class="filter">
+	<div class="filter addedit">
 		<!-- Sorting: -->
 		{* Spare: *}
 		{* <div class="filterOlderAdd" style="padding:5px;float:left;margin-left:20px;"> *}
@@ -215,7 +215,7 @@ value=" WHERE {$ItemID} > 0">
 <script>
 
 	// Toggle effects:
-	$('#filterToggle').html('<i class="fa fa-bars fa-bars-edit"></i>Hide filters');
+	// $('#filterToggle').html('<i class="fa fa-bars fa-bars-edit"></i>Hide filters');
 	$('#filterToggle').click(function(){
 		var link = $(this);
 		$('.filter').slideToggle('slow', function() {
