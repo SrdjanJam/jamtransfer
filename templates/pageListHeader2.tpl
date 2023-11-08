@@ -215,7 +215,6 @@ value=" WHERE {$ItemID} > 0">
 <script>
 
 	// Toggle effects:
-	// $('#filterToggle').html('<i class="fa fa-bars fa-bars-edit"></i>Hide filters');
 	$('#filterToggle').click(function(){
 		var link = $(this);
 		$('.filter').slideToggle('slow', function() {

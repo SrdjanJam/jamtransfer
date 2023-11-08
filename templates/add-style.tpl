@@ -539,10 +539,17 @@ button.searchdrivers, button.conversion-rate{
 	background:#d9d9d9;
 }
 
+
 /* *************************************************************************************** */
 /* *************************************************************************************** */
 
 /* MEDIA SCREEN: */
+
+/* @media screen (min-width: 1166px) and (max-width: 1550px){
+    .coupons-edit .LimitLocationID{
+        width: 70% !important;
+    }
+} */
 
 @media screen and (min-width: 1201px) {
     #show, #hide{
@@ -550,7 +557,33 @@ button.searchdrivers, button.conversion-rate{
     }
 		
 }
+/* ===================================== */
+@media screen and (min-width: 991px){ 
+    .offduty-edit input{
+    width:100% !important;
+    }
+    .offduty-edit .timepicker{
+    min-width:100% !important;
+    }
 
+    .tasks-edit input{
+    width:100% !important;
+    }
+    .tasks-edit .timepicker{
+    min-width:100% !important;
+    }
+
+}
+/* ===================================== */
+@media screen and (max-width:992px){
+    .offduty-edit [class*='col-md']{
+        margin-bottom: 5px !important;
+    }
+    .tasks-edit [class*='col-md']{
+        margin-bottom: 5px !important;
+    }
+}
+/* ===================================== */
 @media screen and (min-width: 1551px){
     .col-sm-2 input[type="number"]{
         width:100%;
@@ -568,7 +601,7 @@ button.searchdrivers, button.conversion-rate{
     }
 
 }
-
+/* ===================================== */
 @media screen (min-width: 1280px) and (max-width: 1549px){
 
     .clock-timepicker{
@@ -591,8 +624,6 @@ button.searchdrivers, button.conversion-rate{
     .col-md-9 input[type="text"]{ margin-bottom: 5px;}
 
 }
-
-
 /* ===================================== */
 @media screen and (max-width: 1550px) {
 
@@ -715,9 +746,10 @@ button.searchdrivers, button.conversion-rate{
         width: 100%;
     }
 
-    #DriverID{
+    /* Check: */
+    /* #DriverID{
         width:100% !important;
-    }
+    } */
 
     /* .input-edit {
         width: 100% !important;
@@ -859,16 +891,18 @@ button.searchdrivers, button.conversion-rate{
         width:30%;
     } */
 
+    .coupons-edit .LimitLocationID{
+        width: -webkit-fill-available !important;
+    }
 }
-
 /* ===================================== */
 @media (min-width: 768px) and (max-width: 1000px){
     .filter-one-edit .group-edit{ 
         width: 50% !important;
         margin: 5px;
     }
-}
 
+}
 /* ===================================== */
 @media (min-width: 1000px){
     /* pageListHeader.tpl: */
@@ -876,17 +910,16 @@ button.searchdrivers, button.conversion-rate{
         width: 80% !important;
         margin: 5px;
     }
-   
-}
 
+}
 /* ===================================== */
 @media (min-width: 768px) and (max-width: 1000px){
     /* pageListHeader.tpl: */
     .filter-one-edit{
         text-align: center;
     }
-}
 
+}
 /* ===================================== */
 @media (min-width: 768px) and (max-width: 1300px) {
     .ui-dialog{ /*Global dialog style */
@@ -905,9 +938,15 @@ button.searchdrivers, button.conversion-rate{
         .pad1em{
 		flex-direction: column;
 	} */
+}
+/* ===================================== */
+@media (max-width: 1320px){
+    .tab-pane-edit [class*="col-md"]{
+        /* display: block; */
+        width: 100% !important;
+    }
 
 }
-
 /* ===================================== */
 @media (max-width: 1165px){
     .pad1em{
@@ -919,7 +958,6 @@ button.searchdrivers, button.conversion-rate{
     }
 
 }
-
 /* ===================================== */
 /* This max-width 991px is in bootstrap: */
 @media (max-width: 991px){
@@ -933,9 +971,13 @@ button.searchdrivers, button.conversion-rate{
 
     .addedit .input-one{
         width: auto !important;
+       
     }
-}
+    .addedit [class*="col-sm"]{
+        text-align: center;
+    }
 
+}
 /* ===================================== */
 @media (max-width: 900px){
     .table{
@@ -1021,7 +1063,7 @@ button.searchdrivers, button.conversion-rate{
         width: -webkit-fill-available;
     } */
 
-    [class*="col-md"]:not(.col-md-2-edit), [class*="col-sm"]:not(.col-md-2-edit){
+    [class*="col-md"]:not(.col-md-2-edit)not(.orders-edit), [class*="col-sm"]:not(.col-md-2-edit){
         width: 100% !important;
         padding: 5px 0;
         text-align: center;
@@ -1036,7 +1078,6 @@ button.searchdrivers, button.conversion-rate{
     }
 
 }
-
 /* ==================================== */
 @media (max-width: 767px)  {
     
@@ -1077,11 +1118,16 @@ button.searchdrivers, button.conversion-rate{
         width:50%;
     }
 
+    .filter-one-edit{ 
+        text-align: center;
+    }
+    .form-group.group-edit{
+        margin: 5px;
+    }
+
 }
 
-
 </style>
-
 
 <script>
     function resize(){

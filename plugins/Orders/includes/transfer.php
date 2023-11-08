@@ -33,9 +33,12 @@
                     {{vehicleTypeSelect details.VehicleType "VehicleType" "VehicleType"}}
                 </div>
                 
-                <div class="col-md-1">x</div>
-                <div class="col-md-2">
-                    <input type="text" name="VehiclesNo" class="w75 w75-edit" value="{{details.VehiclesNo}}" style="width: -webkit-fill-available;">
+                <!-- <div class="row"> -->
+                <div class="col-md-12">
+                    <div class="col-md-1">x</div>
+                    <div class="col-md-4">
+                        <input type="text" name="VehiclesNo" class="w75 w75-edit" value="{{details.VehiclesNo}}" style="width: -webkit-fill-available;">
+                    </div>
                 </div>
 
             </div>
@@ -82,7 +85,7 @@
                 <div class="col-md-3 "><label><?= ROUTE ?> <?= TO ?></label></div>
             </div>
             <div class="row dtransfer">
-                <div class="col-md-6">
+                <div class="col-md-3">
                     <select name="Route" id="Route">
                         <option value="-1"><?= NO_ROUTE ?></option>
                     </select>

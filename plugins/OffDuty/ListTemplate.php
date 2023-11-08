@@ -38,7 +38,7 @@
 	<!-- Main content: -->
 	{{#each Item}}
 		
-		<div class="row {{color}} pad1em listTile listTitleEdit cursor-list" 
+		<div class="row {{color}} pad1em listTile listTitleEdit cursor-list offduty-edit" 
 		style="border-top:1px solid #ddd" 
 		id="t_{{ID}}">
 
@@ -98,7 +98,6 @@
 
 	<script>
 		$('input').change(function(){
-			if ($('#EndDate').is(':empty')) $('#EndDate').val($('#StartDate').val());
 			var base=window.location.origin;
 			if (window.location.host=='localhost') base=base+'/jamtransfer';
 
