@@ -23,7 +23,7 @@
 		</div>
 	</div>
 	
-	<div class="box-body ">
+	<div class="box-body coupons-edit">
         <div class="row">
 			<div class="col-md-6">
 				<div class="row">

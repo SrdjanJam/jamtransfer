@@ -52,7 +52,7 @@
 		</div>
 	</div>
 
-	<div class="box-body">
+	<div class="box-body tasks-edit">
         <div class="row">
 			<div class="col-md-6">
 				<div class="row">

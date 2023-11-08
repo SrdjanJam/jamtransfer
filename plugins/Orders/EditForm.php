@@ -49,7 +49,7 @@
 
 				<div class="tab-content tab-content-edit">
 					<!-- Tab pane 1: -->
-					<div class="tab-pane active" id="tab_1{{details.DetailsID}}">
+					<div class="tab-pane active tab-pane-edit" id="tab_1{{details.DetailsID}}">
 
 						<?php include('includes/order.php'); ?>
 						<?php include('includes/payment.php'); ?>
