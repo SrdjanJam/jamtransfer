@@ -152,12 +152,12 @@ foreach ($db->fieldNames() as $name) {
 				$priceChanged = true;
 				if($isAgent) {
 					// izracunaj nove vrijednosti za v4_OrderDetails
-					$db->setProvisionAmount(number_format( $_REQUEST['DetailPrice'] * $MAgentCommisionPercent / 100 ),2,'.');
-					$db->setInvoiceAmount(number_format( $_REQUEST['DetailPrice'] - $db->getProvisionAmount() ),2,'.');
+					$db->setProvisionAmount(number_format( ($_REQUEST['DetailPrice'] * $MAgentCommisionPercent / 100) ,2,'.'));
+					$db->setInvoiceAmount(number_format( ($_REQUEST['DetailPrice'] - $db->getProvisionAmount()) ,2,'.'));
 				}
 				// ako nije placanje racunom (agenti) onda povecaj ili umanji cash za razliku cijena
 				if($db->getInvoiceAmount() == 0) {
-					$db->setPayLater(number_format( $_REQUEST['DetailPrice'] - $db->getPayNow()),2,'.');
+					$db->setPayLater(number_format( $_REQUEST['DetailPrice'] - $db->getPayNow(),2,'.'));
 				}
 			}
 			if (in_array($name,$payment_arr))  {
@@ -192,8 +192,8 @@ if (isset($_REQUEST['ServiceID'])) {
 		}
 		elseif ($key>0) $oe->deleteRow($key);
 	}
-	$db->setDriverExtraCharge(number_format($sumDriverPrice));
-	$db->setExtraCharge(number_format($sumPrice));
+	$db->setDriverExtraCharge($sumDriverPrice);
+	$db->setExtraCharge($sumPrice);
 	$db->setDriverPaymentAmt($_REQUEST['DriversPrice']+$sumDriverPrice);
 }
 if (isset($_REQUEST['DetailPriceX']) && $_REQUEST['DetailPriceX']>0) $db->setDetailPrice($_REQUEST['DetailPriceX']);
