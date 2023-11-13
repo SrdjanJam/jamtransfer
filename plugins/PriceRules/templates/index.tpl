@@ -6,6 +6,12 @@
 		color: blue !important;
     	font-weight: bold;
 	}
+
+	@media screen and (min-width: 991px){
+		input{
+			width:100%;
+		}
+	}
 </style>
 
 <form id="" class="form " method="post">	
