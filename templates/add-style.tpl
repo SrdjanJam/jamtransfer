@@ -46,7 +46,7 @@
 .additional-class{ position: fixed; height: 100vh; overflow-y: auto; }
 
 /* Header Main: */
-.border-bottom-edit{ padding: 12px 12px 7px 12px; }
+.border-bottom-edit{ padding: 12px 12px 0px 12px; }
 
 .header-edit{ padding: 5px 14px 5px 14px; }
 
@@ -109,7 +109,9 @@
 .navbar-static-side{ box-shadow: 5px 5px 8px #888888; }
 
 .small-box, .small-box-footer{
-    border-radius: 10px; box-shadow: 5px 5px 8px #616060;
+    border-radius: 10px; 
+    /* box-shadow: 5px 5px 8px #616060; old */
+    box-shadow: 2px 2px 8px #616060;
 }
 
 .nav-header-edit #set-as{ color: #e0e0e0;}
@@ -191,8 +193,11 @@
     /* background: #def6fe; Old 1 */
     /* background-image: linear-gradient(#C5D5DC,#CBEAFA); Old 2 */
     /* box-shadow: 0px 0px 6px 3px #88888894; old */
-    box-shadow: 0px 0px 5px 2px #38383894;
-    border-radius: 6px;
+    /* box-shadow: 0px 0px 5px 2px #38383894; old */
+    box-shadow: 0px 0px 4px 1px #38383894;
+    /* border-radius: 6px; old */
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
     padding: 5px 55px 5px 35;
 
 }
@@ -215,8 +220,11 @@
 .navbar-static-top-edit{
     background-image: linear-gradient(#00aaff3d, #c0c0c036);
     /* background-image: linear-gradient(to bottom right,#00aaff3d, #c0c0c036); old */
-    box-shadow: 0px 0px 6px 3px #88888894;
-    border-radius: 6px;
+    /* box-shadow: 0px 0px 6px 3px #88888894; old */
+    box-shadow: 0px 0px 6px 1px #54545494;
+    /* border-radius: 6px; old */
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
 }
 .nav-label-edit{
     font-size: 18px;
@@ -503,7 +511,7 @@ textarea{ width:90% !important; }
 }
 /* -------------------------------------------------------------------------------------- */
 
-.form-control{ width:100%;text-align: center;}
+.form-control{ width:100%;}
 .form-group { margin-bottom: 0px !important; }
 
 .tab-content-edit{ padding:20px !important; }
@@ -670,9 +678,10 @@ button.searchdrivers, button.conversion-rate{
         text-align: center !important;
     }
 
-    [class*="col-"] input[type="text"]{
+    /* Old: */
+    /* [class*="col-"] input[type="text"]{
         text-align: center !important;
-    }
+    } */
 
     [class*="col-"] span{
         float:none !important;
