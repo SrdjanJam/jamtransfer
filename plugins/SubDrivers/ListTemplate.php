@@ -21,7 +21,7 @@
 			<?=NAME;?>
 		</div>
 
-		<div class="col-md-2">
+		<div class="col-md-1">
 			<i class="fa fa-envelope"></i>
 			<?=EMAIL;?>
 		</div>
@@ -45,7 +45,13 @@
 		
 		<div class="col-md-1">
 			<?=DRIVES;?>
+		</div>		
+		
+		<div class="col-md-1">
+			<?=VEHICLES;?>
 		</div>
+		
+		
 				
 	</div>
 
@@ -80,7 +86,7 @@
 				</div>
 
 				<!-- EMAIL -->
-				<div class="col-sm-2 col-xs-12">
+				<div class="col-sm-1 col-xs-12">
 					<small>{{AuthUserMail}}</small>
 				</div>
 
@@ -122,6 +128,11 @@
 				<!-- Drives: -->
 				<div class="col-md-1 col-xs-6">
 					<span><a target='_blank' href='drives/subdrivers/{{AuthUserID}}'><?=DRIVES;?></a></span>
+				</div>				
+				
+				<!-- Vehicles: -->
+				<div class="col-md-1 col-xs-6">
+					<span><a target='_blank' href='vehiclesAssign/subdrivers/{{AuthUserID}}'><?=VEHICLES;?></a></span>
 				</div>
 				
 

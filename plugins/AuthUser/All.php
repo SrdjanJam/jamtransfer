@@ -44,7 +44,9 @@ $flds = array();
 # kombinacija where i filtera
 $DB_Where = " " . $_REQUEST['where'];
 $DB_Where .= $filter;
-
+if (isset($_REQUEST['actionID']) && $_REQUEST['actionID']=="NT") {
+	$DB_Where .= " AND AuthUserID not in (SELECT DriverID FROM v4_DriverTerminals)";
+}
 # dodavanje search parametra u qry
 # DB_Where sad ima sve potrebno za qry
 if ( $_REQUEST['Search'] != "" )

@@ -1,0 +1,3 @@
+SELECT * FROM `v4_Places` WHERE (`PlaceID` not in (SELECT `FromID` FROM `v4_Routes`) AND `PlaceID` not in (SELECT `ToID` FROM `v4_Routes`))
+SELECT * FROM `v4_Routes` WHERE `RouteID` not in (SELECT `RouteID` FROM `v4_DriverRoutes`)
+SELECT * FROM `v4_AuthUsers` WHERE `AuthLevelID`=31 and `AuthUserID` not in (SELECT `OwnerID` FROM `v4_DriverRoutes`)

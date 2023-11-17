@@ -28,6 +28,13 @@ require_once 'Initial.php';
     foreach ($detailFlds as $key=>$value) {
         $detailFlds[$key] = stripslashes($value);
     }
+	// geo sirina i duzina
+	if ($db->getLongitude()==0 || $db->getLatitude()==0) {
+		$ll=getLL($db->getPlaceNameEN());
+		$ll_arr=explode("/",$ll);
+		$detailFlds["Longitude"]=$ll_arr[0];
+		$detailFlds["Latitude"]=$ll_arr[1];
+	}	
 
 	$name=$db->getPlaceNameEN();
 	$name = str_replace(" ","_",$name);
@@ -97,6 +104,7 @@ require_once 'Initial.php';
 	while($row = $result->fetch_array(MYSQLI_ASSOC)){
 		$detailFlds["Terminal"]=1;
 	}	
+
 	
 	$out[] = $detailFlds;
 
@@ -104,3 +112,19 @@ require_once 'Initial.php';
 	$output = json_encode($out);
 	echo $output;
 	
+function getLL($name) {
+	$api_key="5b3ce3597851110001cf6248ec7fafd8eca44e0ca5590caf093aa7cb";
+	$layers="coarse";
+	$source1="whosonfirst";
+	$source2="geonames";
+	$text=str_replace(" ","%20",$name);
+	$url="https://api.openrouteservice.org/geocode/search?api_key=".$api_key."&start&layers=".$layers."&sources=".$source1.",".$source2."&text=".$text;
+	$json = file_get_contents($url);   
+	$obj="";
+	$obj = json_decode($json,true);	
+	if ($obj) {
+		$long=$obj['features'][0]['geometry']['coordinates'][0];	
+		$latt=$obj['features'][0]['geometry']['coordinates'][1]; 
+		if ($long>0 && $latt>0) return $long."/".$latt;
+	}	
+}	

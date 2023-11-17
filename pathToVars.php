@@ -33,6 +33,12 @@ switch ($activePage) {
 		}
 		break;		
 		
+	case 'routes':
+	case 'locations':
+	case 'users':
+		if ($pathVars->fetchByIndex($indexStart + 1)=="NT") $ActionID="NT";	
+		break;		
+		
 	case 'driverReOrder':
 		if ($pathVars->fetchByIndex($indexStart + 1)) { 
 			$_REQUEST['OrderID']=$pathVars->fetchByIndex($indexStart + 1);
@@ -97,6 +103,7 @@ switch ($activePage) {
 	case 'expenses':
 	case 'tasks':
 	case 'drives':
+	case 'vehiclesAssign':
 		if ($pathVars->fetchByIndex($indexStart + 1)) { 
 			if ($pathVars->fetchByIndex($indexStart + 1)=='vehicles') {
 				$VehicleID=$pathVars->fetchByIndex($indexStart + 2);

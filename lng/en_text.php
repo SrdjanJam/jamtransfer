@@ -1056,3 +1056,7 @@ define("URL","Url");
 define("PAY_LATER","Pay Later");
 define("CASH_IN","Cash in");
 define("DRIVES","Drives");
+
+//16.11.23
+define("ASSIGN","Assign");
+define("UNASSIGN","Unassign");

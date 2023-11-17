@@ -72,6 +72,9 @@ else if ($_REQUEST['Type']>0) {
 	if ($_REQUEST['Type']==1) $DB_Where .= " AND RouteID in (".$routes_arr.")";
 	else $DB_Where .= " AND RouteID not in (".$routes_arr.")";
 }	
+if (isset($_REQUEST['actionID']) && $_REQUEST['actionID']=="NT") {
+	$DB_Where .= " AND RouteID not in (SELECT RouteID FROM v4_RoutesTerminals)";
+}
 # dodavanje search parametra u qry
 # DB_Where sad ima sve potrebno za qry
 if ( $_REQUEST['Search'] != "" )

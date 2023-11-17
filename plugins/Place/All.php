@@ -46,6 +46,10 @@ if ($_REQUEST['Type']==99) {
 	$terminals_arr = substr($terminals_arr,0,strlen($terminals_arr)-1);	
 	$DB_Where .= " AND PlaceID in (".$terminals_arr.")";
 }
+if (isset($_REQUEST['actionID']) && $_REQUEST['actionID']=="NT") {
+	$DB_Where .= " AND (Longitude=0 OR Latitude=0)";
+	$DB_Where .= " AND (`PlaceID` in (SELECT `FromID` FROM `v4_Routes`) OR `PlaceID` in (SELECT `ToID` FROM `v4_Routes`))";
+}
 # dodavanje search parametra u qry
 # DB_Where sad ima sve potrebno za qry
 if ( $_REQUEST['Search'] != "" )
@@ -72,7 +76,7 @@ if (count($dbk) != 0) {
     	$db->getRow($key);
 		// ako treba neki lookup, onda to ovdje
 		# get all fields and values
-		$detailFlds = $db->fieldValues();
+		$detailFlds = $db->fieldValues();	
 		// ako postoji neko custom polje, onda to ovdje.
 		// npr. $detailFlds["AuthLevelName"] = $nekaDrugaDB->getAuthLevelName().' nesto';
 		$out[] = $detailFlds;    	
@@ -84,3 +88,5 @@ $output = array(
 'data' =>$out
 );
 echo $_GET['callback'] . '(' . json_encode($output) . ')';	
+
+	

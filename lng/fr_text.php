@@ -1027,4 +1027,58 @@ define("EXTRA_CHARGE", "Supplément");
 define("DRIVER_EXTRA_CHARGE", "Les frais supplémentaires pour le conducteur ");
 define("GROSS_MARGIN", "Marge brute");
 define("RATIO", "Ratio");
+// kraj prevoda
+// 3.7.23 ==========================================================
+define("NOT_PAID","Not Paid");
 
+// 26.7.23 =======================================================
+define("SUBDRIVER_BALANCE","SubDriver Balance");
+define("RECIEVED","Received");
+define("LAST_DAY","last day");
+define("PLAN","Plan");
+define("IN","In");
+define("UNAPPROVED_EXPENSES","Unapproved Expenses");
+define("BALANCE_TOTAL","Balance total");
+define("PRICES_FOR_ROUTE","Prices for route");
+define("NETO","Neto");
+define("ADDS","Adds");
+define("FINAL_PRICE","Final Price");
+define("MINUTES_FLIGHT_CONFLICT","minutes Flight Conflict");
+
+// 28.7.23 ==========================================================
+define("NUMBER_OF_DRIVERS","Number of Drives");
+define("FREE_DAYS","Free Days");
+define("SCHEDULE","Schedule");
+
+// 02.08.23 ========================================================
+define("YESTERDAY","Yesterday");
+
+// 10.8.23 =========================================================
+define("AGENT_ID","Agent ID");
+define("ROUTE_ID","Route ID");
+define("VEHICLE_TYPE_ID","Vehicle Type ID");
+
+// 22.8.23 ==========================================================
+define("READY_FOR_SET_AS","Ready for set as");
+
+// 24.8.23===========================================================
+define("GATEWAY","Gateway");
+define("ORDER_ID","Order ID");
+define("CUSTOMER_IP","Customer IP");
+define("ORDER_NUMBER","Order Number");
+define("DATETIME_1","Datetime 1");
+define("DATETIME_2","Datetime 2");
+define("DATETIME_3","Datetime 3");
+define("CREATED","Created");
+
+// 28.8.23============================================================
+define("URL","Url");
+
+// 13.9.23 ===========================================================
+define("PAY_LATER","Pay Later");
+define("CASH_IN","Cash in");
+define("DRIVES","Drives");
+
+//16.11.23
+define("ASSIGN","Assign");
+define("UNASSIGN","Unassign");
