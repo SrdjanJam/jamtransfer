@@ -33,6 +33,7 @@ Class v4_Customers {
 	public $Discount; //tinyint(1)
 	public $CustImage; //blob
 	public $CustImageType; //varchar(255)
+	public $IsFirstTime; //tinyint(1)
 	
 	public $connection;
 
@@ -46,7 +47,7 @@ Class v4_Customers {
      * New object to the class. Don´t forget to save this new object "as new" by using the function $class->saveAsNew(); 
      *
      */
-	public function New_v4_Customers($Site,$CustType,$CustFirstName,$CustLastName,$CustCountry,$CustLanguage,$CustEmail,$CustAddress,$CustCity,$CustZip,$CustMobile,$CustPass,$OrdersCount,$OrdersValue,$CustSubscribed,$CustActive,$Discount,$CustImage,$CustImageType){
+	public function New_v4_Customers($Site,$CustType,$CustFirstName,$CustLastName,$CustCountry,$CustLanguage,$CustEmail,$CustAddress,$CustCity,$CustZip,$CustMobile,$CustPass,$OrdersCount,$OrdersValue,$CustSubscribed,$CustActive,$Discount,$CustImage,$CustImageType,$IsFirstTime){
 		$this->Site = $Site;
 		$this->CustType = $CustType;
 		$this->CustFirstName = $CustFirstName;
@@ -66,6 +67,7 @@ Class v4_Customers {
 		$this->Discount = $Discount;
 		$this->CustImage = $CustImage;
 		$this->CustImageType = $CustImageType;
+		$this->IsFirstTime = $IsFirstTime;
 	}
 
     /**
@@ -98,6 +100,7 @@ Class v4_Customers {
 			$this->Discount = $row["Discount"];
 			$this->CustImage = $row["CustImage"];
 			$this->CustImageType = $row["CustImageType"];
+			$this->IsFirstTime = $row["IsFirstTime"];
 		}
 	}
 
@@ -134,6 +137,7 @@ CustSubscribed = '".$this->myreal_escape_string($this->CustSubscribed)."',
 CustActive = '".$this->myreal_escape_string($this->CustActive)."', 
 Discount = '".$this->myreal_escape_string($this->Discount)."', 
 CustImage = '".$this->myreal_escape_string($this->CustImage)."', 
+IsFirstTime = '".$this->myreal_escape_string($this->IsFirstTime)."', 
 CustImageType = '".$this->myreal_escape_string($this->CustImageType)."' WHERE CustID = '".$this->CustID."'");
 	return $result; 
 }
@@ -142,13 +146,16 @@ CustImageType = '".$this->myreal_escape_string($this->CustImageType)."' WHERE Cu
      * Save the active var class as a new row on table
      */
 	public function saveAsNew(){
-		$this->connection->RunQuery("INSERT INTO v4_Customers (Site, CustType, CustFirstName, CustLastName, CustCountry, CustLanguage, CustEmail, CustAddress, CustCity, CustZip, CustMobile, CustPass, OrdersCount, OrdersValue, CustSubscribed, CustActive, Discount, CustImage, CustImageType) values ('".$this->myreal_escape_string($this->Site)."', '".$this->myreal_escape_string($this->CustType)."', '".$this->myreal_escape_string($this->CustFirstName)."', '".$this->myreal_escape_string($this->CustLastName)."', '".$this->myreal_escape_string($this->CustCountry)."', '".$this->myreal_escape_string($this->CustLanguage)."', '".$this->myreal_escape_string($this->CustEmail)."', '".$this->myreal_escape_string($this->CustAddress)."', '".$this->myreal_escape_string($this->CustCity)."', '".$this->myreal_escape_string($this->CustZip)."', '".$this->myreal_escape_string($this->CustMobile)."', '".$this->myreal_escape_string($this->CustPass)."',
+		$this->connection->RunQuery("INSERT INTO v4_Customers (Site, CustType, CustFirstName, CustLastName, CustCountry, CustLanguage, CustEmail, CustAddress, CustCity, CustZip, CustMobile, CustPass, OrdersCount, OrdersValue, CustSubscribed, CustActive, Discount, CustImage, CustImageType, IsFirstTime) values ('".$this->myreal_escape_string($this->Site)."', '".$this->myreal_escape_string($this->CustType)."', '".$this->myreal_escape_string($this->CustFirstName)."', '".$this->myreal_escape_string($this->CustLastName)."', '".$this->myreal_escape_string($this->CustCountry)."', '".$this->myreal_escape_string($this->CustLanguage)."', '".$this->myreal_escape_string($this->CustEmail)."', '".$this->myreal_escape_string($this->CustAddress)."', '".$this->myreal_escape_string($this->CustCity)."', '".$this->myreal_escape_string($this->CustZip)."', '".$this->myreal_escape_string($this->CustMobile)."', '".$this->myreal_escape_string($this->CustPass)."',
 		'".$this->myreal_escape_string($this->OrdersCount)."',
 		'".$this->myreal_escape_string($this->OrdersValue)."',
 		'".$this->myreal_escape_string($this->CustSubscribed)."',		
 		'".$this->myreal_escape_string($this->CustActive)."',
 		'".$this->myreal_escape_string($this->Discount)."',
-		'".$this->myreal_escape_string($this->CustImage)."', '".$this->myreal_escape_string($this->CustImageType)."')");
+		'".$this->myreal_escape_string($this->CustImage)."', 
+		'".$this->myreal_escape_string($this->CustImageType)."',
+		'".$this->myreal_escape_string($this->IsFirstTime)."',
+		)");
 		return $this->connection->insert_id(); //return insert_id 
 	}
 
@@ -167,6 +174,9 @@ CustImageType = '".$this->myreal_escape_string($this->CustImageType)."' WHERE Cu
 			}
 	return $keys;
 	}
+
+	// ====================================================
+	// GET:
 
 	/**
 	 * @return Site - int(2)
@@ -307,6 +317,14 @@ CustImageType = '".$this->myreal_escape_string($this->CustImageType)."' WHERE Cu
 	public function getCustImageType(){
 		return $this->CustImageType;
 	}
+	/**
+	* @return IsFirstTime - tinyint(1)
+	*/
+	public function getIsFirstTime(){
+		return $this->IsFirstTime;
+	}
+	// ===========================================================
+	// SET:
 
 	/**
 	 * @param Type: int(2)
@@ -448,6 +466,14 @@ CustImageType = '".$this->myreal_escape_string($this->CustImageType)."' WHERE Cu
 		$this->CustImageType = $CustImageType;
 	}
 
+	/**
+	 * @param Type: tinyint(1)
+	 */
+	public function setIsFirstTime($IsFirstTime){
+		$this->IsFirstTime = $IsFirstTime;
+	}
+
+
     /**
      * fieldValues - Load all fieldNames and fieldValues into Array. 
      *
@@ -475,7 +501,9 @@ CustImageType = '".$this->myreal_escape_string($this->CustImageType)."' WHERE Cu
 			'CustActive' => $this->getCustActive(),
 			'Discount' => $this->getDiscount(),
 			'CustImage' => $this->getCustImage(),
-			'CustImageType' => $this->getCustImageType()		);
+			'CustImageType' => $this->getCustImageType(),
+			'IsFirstTime' => $this->getIsFirstTime()
+		);
 		return $fieldValues;
 	}
     /**
@@ -486,7 +514,7 @@ CustImageType = '".$this->myreal_escape_string($this->CustImageType)."' WHERE Cu
      */
 	public function fieldNames(){
 		$fieldNames = array(
-			'Site',			'CustID',			'CustType',			'CustFirstName',			'CustLastName',			'CustCountry',			'CustLanguage',			'CustEmail',			'CustAddress',			'CustCity',			'CustZip',			'CustMobile',			'CustPass',			'OrdersCount',		'OrdersValue',		'CustSubscribed',	'CustActive',			'Discount',			'CustImage',			'CustImageType'		);
+			'Site',			'CustID',			'CustType',			'CustFirstName',			'CustLastName',			'CustCountry',			'CustLanguage',			'CustEmail',			'CustAddress',			'CustCity',			'CustZip',			'CustMobile',			'CustPass',			'OrdersCount',		'OrdersValue',		'CustSubscribed',	'CustActive',			'Discount',			'CustImage',			'CustImageType',	'IsFirstTime'		);
 		return $fieldNames;
 	}
     /**
