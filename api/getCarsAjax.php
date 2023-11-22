@@ -213,8 +213,8 @@ $routes_ids = substr($routes_ids,0,strlen($routes_ids)-1);
 							$contract=" contract Agent";
 							if ($contractDriverPrice>0) $contract.=", Driver";
 						}	
-						$DriverCompanyFormated="<button data-ownerid='".$OwnerID."' data-vehicletype='".$VehicleTypeID."' data-driverprice='".$DriversPrice."' class='selectowner' type='button'>".$DriverCompany."</button>";
-						$FinalPriceFormated="<button data-ownerid='".$OwnerID."' data-vehicletype='".$VehicleTypeID."' data-driverprice='".$DriversPrice."' data-price='".nf($FinalPrice)."' class='selectprice' type='button'>".nf($FinalPrice)."</button>";
+						$DriverCompanyFormated="<button data-ownerid='".$OwnerID."' data-vehicletype='".$VehicleTypeID."' data-driverprice='".$DriversPriceAdd."' class='selectowner' type='button'>".$DriverCompany."</button>";
+						$FinalPriceFormated="<button data-ownerid='".$OwnerID."' data-vehicletype='".$VehicleTypeID."' data-driverprice='".$DriversPriceAdd."' data-price='".nf($FinalPrice)."' class='selectprice' type='button'>".nf($FinalPrice)."</button>";
 					}
 					else {
 						$DriverCompanyFormated=$DriverCompany;

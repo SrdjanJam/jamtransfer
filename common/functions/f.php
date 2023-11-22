@@ -802,7 +802,7 @@ function mail_html($mailto, $from_mail, $from_name, $replyto, $subject, $message
 	$ml->setStatus(0);
 
 	$ml->saveAsNew();
-
+	mail_html_send($mailto, $from_mail, $from_name, $replyto, $subject, $message, $attachment = '');
 }
 
 /*
