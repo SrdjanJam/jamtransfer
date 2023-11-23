@@ -42,6 +42,10 @@ if (isset($type2)) {
 				$filter .= " AND DriverConfStatus = '1' AND TransferStatus < '3'";
 				break;			
 				
+			case 'notConfirmedToday': 
+				$filter .= " AND PickupDate = '".$today ."' AND (DriverConfStatus = '1' OR DriverConfStatus = '4') AND TransferStatus < '3'";
+				break;	
+				
 			case 'notConfirmedTomorrow':
 				$filter .= " AND PickupDate = '".$tomorrow ."' AND (DriverConfStatus = '1' OR DriverConfStatus = '4')  AND TransferStatus < '3'";
 				break;			

@@ -48,7 +48,7 @@ if($NewStatus == 1) {
 
 if($NewStatus == 3) {
 	$om->setMOrderStatus($NewStatus);
-	$om->setMConfirmFile('');
+	//$om->setMConfirmFile('');
 	$om->saveRow();	
 	# init vars
 	$data = array();
