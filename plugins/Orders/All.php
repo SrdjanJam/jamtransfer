@@ -450,6 +450,17 @@ if ($paymentChecker==1) {
 	}
 }
 
+if ($_REQUEST['lid']<>0) {
+	$listLID=array();
+	$sql="SELECT `DetailsID`  FROM `v4_OrderLog` WHERE `UserID`= ".$_REQUEST['lid']." AND `Action`='".$_REQUEST['lac']."'";
+	$query=mysqli_query($dbT->conn, $sql) or die('Error in query' . mysqli_connect_error());
+	while( $l = mysqli_fetch_object($query) ) {
+		$lid_details  .=$l->DetailsID.",";
+	}
+	$lid_details = substr($lid_details ,0,strlen($lid_details)-1);
+	$dbWhere .= " AND DetailsID in (".$lid_details .")";	
+}
+
 if ($_REQUEST["action"]<>"null" && $_REQUEST["action"]<>"0") {
 	//niz order logova sa datom timeline akcijom
 	$sql="SELECT `DetailsID`,`UserID`  FROM `v4_OrderLog` WHERE `Action` = '".$_REQUEST["action"]."' group by `DetailsID`";
@@ -485,6 +496,7 @@ $sql .=$dbWhere;
 if ($_REQUEST["action"]<>"0") {
 	$sql .= " AND v4_OrderLog.DetailsID=v4_OrderDetails.DetailsID ";
 	$sql .= " AND Action='".$_REQUEST["action"]."'";
+	if ($_REQUEST["lid"]<>"0") $sql .= " AND v4_OrderLog.UserID=".$_REQUEST["lid"];
 }
 $sql .= " AND v4_OrderDetails.OrderID=v4_OrdersMaster.MOrderID ";
 
@@ -493,8 +505,15 @@ $r = $dbT->RunQuery($sql);
 //$result=$r->fetch_object();
 while ($result = $r->fetch_object()) {	
 	$row=array();
-	if ($_REQUEST["action"]<>"0") $row['Name']=$users[$result->Name]->AuthUserRealName;
-	else {	
+	if ($_REQUEST["action"]<>"0") {
+		$row['LogUserID']=$result->Name;
+		//$row['LogAction']=ltrim(str_replace(" ","_",$_REQUEST["action"]));
+		$row['LogAction']=$_REQUEST["action"];
+		$row['Name']=$users[$result->Name]->AuthUserRealName;
+	}	
+	else {
+		$row['LogUserID']=0;
+		$row['LogAction']=0;		
 		if ($_REQUEST["reportBy"]=="UserID") $row['Name']=$users[$result->Name]->AuthUserRealName;
 		if ($_REQUEST["reportBy"]=="UserLevelID") $row['Name']=$levels_array[$result->Name];
 		if ($_REQUEST["reportBy"]=="PaymentMethod") $row['Name']=$PaymentMethod[$result->Name];

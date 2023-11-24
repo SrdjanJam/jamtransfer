@@ -205,7 +205,8 @@
 			{{#each Item2}}
 				<div id="sum" class="sum-edit sum-edit-2">
 					<div class="add-direction">
-						{{Name}}
+					{{#compare LogUserID "!=" "0"}} <button type="button" onclick="allItems('{{LogAction}}',{{LogUserID}},);">{{Name}}</button>{{/compare}}   
+					{{#compare LogUserID "==" "0"}}{{Name}} {{/compare}}   
 					</div>					
 					<div>
 						{{ItemNumber}}

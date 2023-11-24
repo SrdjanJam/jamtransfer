@@ -2,7 +2,7 @@
 	window.base='http://localhost/jamtransfer/';
 	var validationFields = ["PlaceTypeEN", "PlaceTypeRUS"];
 
-	function allItems() {
+	function allItems(lac,lid) {	
 		// podaci iz input polja - filtriranje
 		var where  = $("#whereCondition").val(); // glavni filter koji uvijek radi
 	 	var status = $("#Type").val(); // prikazuje po tipu	
@@ -72,7 +72,16 @@
 		var reportBy = $("#reportBy").val();
 		if (typeof reportBy=='undefined') reportBy='UserID';			
 		var action = $("#action").val();
-		if (typeof action=='undefined') action='0';		
+		if (typeof action=='undefined') action='0';	
+
+		if (typeof lid=='undefined') {
+			lid=$("#lid").val();
+		}
+		if (typeof lac=='undefined') {
+			lac=action;
+		}
+		if (lac==0) lid=0;
+		
 		var callFunction = 'allItems()'; // funkcija koju paginator poziva kod promjene stranice
 	
 		// ovo koristi i paginator funkcija!
@@ -121,7 +130,9 @@
 		'&subdriverID='+subdriverID+
 		'&actionID='+actionID+
 		'&reportBy='+reportBy+
-		'&action='+action+
+		'&action='+action+		
+		'&lid='+lid+
+		'&lac='+lac+
 		'&callback=?';
 		console.log(url+'?'+data);
 		$.ajax({
@@ -220,6 +231,7 @@
 					});
 					$("#yearsPickup option[value="+yearsPickup+"]").prop("selected", true)
 			  }	
+			  $("#lid").val(lid);
 		      if (orderid>0 || detailid>0) $('.itemsheader').hide();
 		      if (orderid>0 || detailid>0) $('#pageSelect').hide();
 		      if (listExtras==1) $('#listExtras').prop('checked', true);
