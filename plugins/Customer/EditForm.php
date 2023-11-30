@@ -195,6 +195,22 @@
 					<div class="col-md-9">
 						{{OrdersValue}}
 					</div>
+				</div>					
+				<div class="row">
+					<div class="col-md-3">
+						<label for="ReservationNumber"><?=NUMBER_OF_RESERVATION;?> for Next Level</label>
+					</div>
+					<div class="col-md-9">
+						{{NextLevelCount}}
+					</div>
+				</div>				
+				<div class="row">
+					<div class="col-md-3">
+						<label for="ReservationNumber"><?=VALUE_OF_RESERVATION;?>  for Next Level</label>
+					</div>
+					<div class="col-md-9">
+						{{NextLevelValue}}
+					</div>
 				</div>	
 				<!-- CUSTOMER_TYPE: -->
 				<div class="row">
@@ -213,7 +229,14 @@
 					<div class="col-md-9">
 						<input type="text" name="Discount" id="Discount" class="w100" value="{{Discount}}">
 					</div>
-				</div>					
+				</div>	
+				<div class="row">
+					<div class="col-md-3 "><label>Set default password (123456)</label></div>
+					<div class="col-md-9">
+						<input type="checkbox" id="DefaultPassword" name="DefaultPassword">
+					</div>
+				</div>	
+				
 			</div>
 	    </div>
 		   

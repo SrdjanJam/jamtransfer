@@ -342,5 +342,22 @@ function resizeContent(){
 resizeContent();
 $(window).resize(resizeContent);
 
+$('.readytime').change(function(){
+	var ReadyTime = $(this).val();
+	var ReadyDate = $("#DateFrom").val();
+	var sdid = $(this).attr('data-sdid');
+	var nid = $(this).attr('data-nid');
+	var url = "plugins/Schedule/readyTime.php";
+	var param = "TimeToSend="+ReadyTime+"&DateToSend="+ReadyDate+"&SubDriverID="+sdid+"&NotificationID="+nid;
+	console.log(url+'?'+param);
+	$.ajax({
+		url: url,
+		type: "POST",
+		data: param,
+		success: function (data) {
+			toastr['success'](window.success);	
+		}
+	})	
+})
 
 </script>

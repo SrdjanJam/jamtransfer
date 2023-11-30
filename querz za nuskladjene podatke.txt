@@ -1,3 +1,20 @@
+Lokacije koje nisu vezane za rute
 SELECT * FROM `v4_Places` WHERE (`PlaceID` not in (SELECT `FromID` FROM `v4_Routes`) AND `PlaceID` not in (SELECT `ToID` FROM `v4_Routes`))
+
+Rute koje nisu vezane za partnere
 SELECT * FROM `v4_Routes` WHERE `RouteID` not in (SELECT `RouteID` FROM `v4_DriverRoutes`)
+
+Aktivni partneri koji nemaju rute
 SELECT * FROM `v4_AuthUsers` WHERE `AuthLevelID`=31 and `AuthUserID` not in (SELECT `OwnerID` FROM `v4_DriverRoutes`)
+
+Aktivni partneri koji nisu vezani za terminale
+SELECT * FROM `v4_AuthUsers` WHERE `AuthLevelID`=31 and Active=1 and `AuthUserID` not in (SELECT `DriverID` FROM `v4_DriverTerminals`) 
+
+Aktivni partneri koji imaju rute a nisu vezani za terminale
+SELECT * FROM `v4_AuthUsers` WHERE `AuthLevelID`=31 and Active=1 and `AuthUserID` not in (SELECT `DriverID` FROM `v4_DriverTerminals`) and `AuthUserID` in (SELECT `OwnerID` FROM `v4_DriverRoutes`)
+
+Top rute koje nemaju terminale
+SELECT `RouteID`,`RouteName` FROM `v4_Routes` WHERE `RouteID` in (SELECT `TopRouteID` FROM `v4_TopRoutes`) and `RouteID` not in (SELECT `RouteID` FROM `v4_RoutesTerminals`)
+
+Terminali koji nemaju top rute
+create table w4 SELECT PlaceID,PlaceNameEN FROM `v4_Terminals`,v4_Places WHERE TerminalID=PlaceID and `TerminalID` not in (SELECT TopRouteID FROM `v4_TopRoutes`,v4_RoutesTerminals where `TopRouteID`=v4_RoutesTerminals.RouteID)

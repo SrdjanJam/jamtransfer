@@ -41,11 +41,11 @@ languages['nl'] = 'Nederlands';
 
 // Add to the database:
 var customers = {};
-customers[0] = 'Normal';
-customers[1] = 'Premium';
-customers[2] = 'Silver';
-customers[3] = 'Gold';
-customers[4] = 'Platinum';
+customers[0] = 'No level';
+customers[1] = 'Level 1';
+customers[2] = 'Level 2';
+customers[3] = 'Level 3';
+customers[4] = 'Level 4';
 
 // Add to the database:
 var yesNo = {};
