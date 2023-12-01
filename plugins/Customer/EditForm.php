@@ -233,7 +233,8 @@
 				<div class="row">
 					<div class="col-md-3 "><label>Set default password (123456)</label></div>
 					<div class="col-md-9">
-						<input type="checkbox" id="DefaultPassword" name="DefaultPassword">
+						<input type="checkbox" id="DefaultPasswordC" name="DefaultPasswordC">
+						<input type="hidden" id="DefaultPassword" name="DefaultPassword">
 					</div>
 				</div>	
 				
@@ -269,6 +270,10 @@
 		
 		$("#PlaceCountry").change(function(){
 			$("#CountryNameEN").val( $("#PlaceCountry option:selected").text());
+		});		
+		$("#DefaultPasswordC").change(function(){
+			if ($(this).is(':checked')) $("#DefaultPassword").val("ON");
+			else  $("#DefaultPassword").val("OFF");
 		});
 	</script>
 </script>
