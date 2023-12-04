@@ -271,7 +271,7 @@ hr {
 					<div class="row orange white-text">
 						<strong>{$sdArray[pom].DriverName}</strong>	
 						<a href="tel:{$sdArray[pom].Mob}">{$sdArray[pom].Mob}</a>
-							<input type="text" class="timepicker readytime" name="readytime" value="{$sdArray[pom].TimeToSend}" placeholder="ready time"
+							<input id="rt{$sdArray[pom].DriverID}" type="text" class="timepicker readytime" name="readytime" value="{$sdArray[pom].TimeToSend}" placeholder="ready time"
 							data-sdid="{$sdArray[pom].DriverID}" data-nid="{$sdArray[pom].NotificationID}"/>
 						<div class='{$todayshow}'>
 							<i class="{$sdArray[pom].IconPositon}" aria-hidden="true"></i> <small>{$sdArray[pom].Device} {$sdArray[pom].Location}</small>
@@ -356,6 +356,7 @@ $('.readytime').change(function(){
 		data: param,
 		success: function (data) {
 			toastr['success'](window.success);	
+			$('#rt'+sdid).attr('data-nid',data);
 		}
 	})	
 })

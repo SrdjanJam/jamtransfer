@@ -260,11 +260,10 @@ if ($r->num_rows>0) {
 				$timeToSend=$tt[0].":".$tt[1];
 				$row['TimeToSend']=$timeToSend;
 				$row['NotificationID']=$nt->getNotificationID();
-			} 		
+			} 
 			$sdArray[] = $row;
 		}
 	}	
-
 	// dobavi vozace od trenutnog vlasnika timetable-a, slozi ih u sdArray sa podacima
 	/*$q = "SELECT * FROM v4_AuthUsers";
 	$q .= "	WHERE DriverID = " . $_SESSION['UseDriverID'] ." AND ACTIVE>0 ORDER BY DriverID,AuthUserID ASC"; 
@@ -312,6 +311,7 @@ if ($r->num_rows>0) {
 		$sd['Transfers']=$ordersArray;
 		$sdArrayExt[]=$sd;
 	}
+	
 	$smarty->assign('sdArray',$sdArrayExt);
 	$smarty->assign('sddArray',$sddArray);
 	$smarty->assign('vehicles',$vehicles);

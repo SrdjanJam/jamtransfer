@@ -21,6 +21,7 @@ Class v4_Notifications {
 	public $Message; //varchar(255) unsigned
 	public $Url; //varchar(255) unsigned
 	public $NotificationType; //tinyint(1)
+	public $CNotificationID; //int(11) unsigned
 	
 
 	function __construct(){
@@ -33,7 +34,7 @@ Class v4_Notifications {
      * New object to the class. Don´t forget to save this new object "as new" by using the function $class->saveAsNew();
      *
      */
-	public function New_v4_Notifications($NotificationID,$SubDriverID,$DateToSend,$TimeToSend,$SenderID,$Message,$Url,$NotificationType){
+	public function New_v4_Notifications($NotificationID,$SubDriverID,$DateToSend,$TimeToSend,$SenderID,$Message,$Url,$NotificationType,$CNotificationID){
 		$this->NotificationID = $NotificationID;
 		$this->SubDriverID = $SubDriverID;
 		$this->DateToSend = $DateToSend;
@@ -42,6 +43,7 @@ Class v4_Notifications {
 		$this->Message = $Message;
 		$this->Url = $Url;
 		$this->NotificationType = $NotificationType;
+		$this->CNotificationID = $CNotificationID;	
 	}
 
     /**
@@ -62,6 +64,7 @@ Class v4_Notifications {
 			$this->Message = $row["Message"];
 			$this->Url = $row["Url"];
 			$this->NotificationType = $row["NotificationType"];
+			$this->CNotificationID = $row["CNotificationID"];			
 		}
 	}
 
@@ -87,7 +90,9 @@ TimeToSend = '".$this->myreal_escape_string($this->TimeToSend)."',
 SenderID = '".$this->myreal_escape_string($this->SenderID)."',
 Message = '".$this->myreal_escape_string($this->Message)."',
 Url = '".$this->myreal_escape_string($this->Url)."',
-NotificationType = '".$this->myreal_escape_string($this->NotificationType)."' WHERE NotificationID = '".$this->NotificationID."'");
+NotificationType = '".$this->myreal_escape_string($this->NotificationType)."',
+CNotificationID = '".$this->myreal_escape_string($this->CNotificationID)."' 
+WHERE NotificationID = '".$this->NotificationID."'");
 	return $result;
 }
 
@@ -95,15 +100,15 @@ NotificationType = '".$this->myreal_escape_string($this->NotificationType)."' WH
      * Save the active var class as a new row on table
      */
 	public function saveAsNew(){
-		$this->connection->RunQuery("INSERT INTO v4_Notifications (NotificationID, SubDriverID, DateToSend, TimeToSend, SenderID, Message, Url, NotificationType) values (
-			'".$this->myreal_escape_string($this->NotificationID)."', 
+		$this->connection->RunQuery("INSERT INTO v4_Notifications (SubDriverID, DateToSend, TimeToSend, SenderID, Message, Url, NotificationType,CNotificationID) values (
 			'".$this->myreal_escape_string($this->SubDriverID)."', 
 			'".$this->myreal_escape_string($this->DateToSend)."', 
 			'".$this->myreal_escape_string($this->TimeToSend)."', 
 			'".$this->myreal_escape_string($this->SenderID)."', 
 			'".$this->myreal_escape_string($this->Message)."', 
 			'".$this->myreal_escape_string($this->Url)."', 
-			'".$this->myreal_escape_string($this->NotificationType)."')");
+			'".$this->myreal_escape_string($this->NotificationType)."', 
+			'".$this->myreal_escape_string($this->CNotificationID)."')");
 		return $this->connection->insert_id(); //return insert_id
 	}
 
@@ -180,6 +185,12 @@ NotificationType = '".$this->myreal_escape_string($this->NotificationType)."' WH
 		return $this->NotificationType;
 	}	
 	
+	/**
+	 * @return CNotificationID - int(10) unsigned
+	 */
+	public function getCNotificationID(){
+		return $this->CNotificationID;
+	}	
 
 	/**
 	 * @param Type: int(10) unsigned
@@ -237,6 +248,12 @@ NotificationType = '".$this->myreal_escape_string($this->NotificationType)."' WH
 		$this->NotificationType = $NotificationType;
 	}
 	
+	/**
+	 * @param Type: int(10) unsigned
+	 */
+	public function setCNotificationID($CNotificationID){
+		$this->CNotificationID = $CNotificationID;
+	}	
 
     /**
      * fieldValues - Load all fieldNames and fieldValues into Array.
@@ -253,7 +270,8 @@ NotificationType = '".$this->myreal_escape_string($this->NotificationType)."' WH
 			'SenderID' => $this->getSenderID(),
 			'Message' => $this->getMessage(),
 			'Url' => $this->getUrl(),
-			'NotificationTyp' => $this->getNotificationType()		);
+			'NotificationTyp' => $this->getNotificationType(),
+			'CNotificationID' => $this->getCNotificationID());
 		return $fieldValues;
 	}
     /**
@@ -264,7 +282,7 @@ NotificationType = '".$this->myreal_escape_string($this->NotificationType)."' WH
      */
 	public function fieldNames(){
 		$fieldNames = array(
-			'NotificationID',			'SubDriverID',			'DateToSend',			'TimeToSend',			'SenderID',		'Message',			'Url',			'NotificationType'	);
+			'NotificationID',			'SubDriverID',			'DateToSend',			'TimeToSend',			'SenderID',		'Message',			'Url',			'NotificationType',		'CNotificationID');
 		return $fieldNames;
 	}
     /**
