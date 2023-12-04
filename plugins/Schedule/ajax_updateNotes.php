@@ -10,6 +10,10 @@ $ol = new v4_OrderLog();
 // FRANCUSKA FIX
 $SOwnerID = $_SESSION['OwnerID'];
 
+if ($_REQUEST['SubDriver']>0) $_REQUEST['Car']=connectedCar($_REQUEST['SubDriver'],$db) ;
+if ($_REQUEST['SubDriver2']>0) $_REQUEST['Car2']=connectedCar($_REQUEST['SubDriver2'],$db) ;
+if ($_REQUEST['SubDriver3']>0) $_REQUEST['Car3']=connectedCar($_REQUEST['SubDriver3'],$db) ;
+
 // preko timetable se samo sljedeca polja mogu mijenjati
 $data = array(
         'DriverConfStatus' => $_REQUEST['DriverConfStatus'],
@@ -132,4 +136,10 @@ if (isset($_REQUEST['Mail']) && $_REQUEST['Mail']==1) {
 	
 }	
 
-
+function connectedCar($subdriver,$db) {
+	echo $sql="SELECT `VehicleID` FROM `v4_SubVehicles` WHERE `OwnerID`=".$_SESSION["UseDriverID"]." and `AssignSDID`=".$subdriver;
+	$r = $db->RunQuery($sql);
+	$res = $r->fetch_object();
+	if (count($res)>0) return ($res->VehicleID);
+	else return 0;	
+}	

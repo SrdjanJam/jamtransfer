@@ -179,15 +179,19 @@ if ($r->num_rows>0) {
 	$sdd = substr($sdd,0,strlen($sdd)-1);
 
 	// dobavi sve parove vozaca i vozila za driver-a
-	$q = "SELECT * FROM v4_SubVehiclesSubDrivers";
+	//$q = "SELECT * FROM v4_SubVehiclesSubDrivers";
+	$q = "SELECT * FROM v4_SubVehicles";
 	$q .= "	WHERE OwnerID = " . $_SESSION['UseDriverID']; 
+	
 	$r = $db->RunQuery($q);
 	while ($d = $r->fetch_object()) {
 			$row = array();
 			//$row['SubVehicleID'] = $d->SubVehicleID;
-			$sv->getRow($d->SubVehicleID);
+			//$sv->getRow($d->SubVehicleID);
+			$sv->getRow($d->VehicleID);
 			$row['SubVehicleName']=$sv->getVehicleDescription();
-			$vehicles[$d->SubDriverID]=$row;
+			//$vehicles[$d->SubDriverID]=$row;
+			$vehicles[$d->AssignSDID]=$row;
 	}
 
 	date_default_timezone_set("Europe/Paris");		
