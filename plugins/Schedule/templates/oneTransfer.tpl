@@ -193,14 +193,14 @@ select{
 		</div>
 
 		<div class="row">
-			<button class="btn-xs btn-primary btn-block b-style" onclick="ShowShow({$sdArray[pom].Transfers[pom2].DetailsID});toggleChevron(this);">
+			<button class="btn-xs btn-primary btn-block b-style" onclick="ShowShow({$sdArray[pom].DriverID},{$sdArray[pom].Transfers[pom2].DetailsID});toggleChevron(this);">
 			{if $sdArray[pom].Transfers[pom2].Notes}<span class='blink'><i class="fa fa-envelope" aria-hidden="true"></i></span>&nbsp;{/if}
 				<i class="fa fa-chevron-down"></i>
 			</button>
 		</div> 
 
 		<!-- hiddenInfo -->
-		<div class="row lighten-4 pad1em shadow add-hiddenInfo" id="show{$sdArray[pom].Transfers[pom2].DetailsID}" style="display:none;margin:0">
+		<div class="row lighten-4 pad1em shadow add-hiddenInfo" id="show{$sdArray[pom].DriverID}-{$sdArray[pom].Transfers[pom2].DetailsID}" style="display:none;margin:0">
 			{* Detalji transfera *}
 			<div class="row">
 				<div class="row-one">
@@ -399,8 +399,8 @@ select{
 
 
 	
-	function ShowShow(i) {
-		$("#show"+i).toggle('slow');
+	function ShowShow(j,i) {
+		$("#show"+j+'-'+i).toggle('slow');
 	}
 	
 	function toggleChevron (button) {
