@@ -1,5 +1,0 @@
-[06-Sep-2023 11:07:26 UTC] PHP Fatal error:  require_once(): Failed opening required '/home/jamtrans/public_html/wis.jamtransfer.com/db/v4_VehicleType.class.php' (include_path='.:/opt/cpanel/ea-php72/root/usr/share/pear') in /home/jamtrans/laravel/public/wis.jamtransfer.com/plugins/ContractPrices/Initial.php on line 5
-[06-Sep-2023 11:11:49 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method v4_VehicleTypes::getRouteName() in /home/jamtrans/laravel/public/wis.jamtransfer.com/plugins/ContractPrices/All.php:71
-Stack trace:
-#0 {main}
-  thrown in /home/jamtrans/laravel/public/wis.jamtransfer.com/plugins/ContractPrices/All.php on line 71

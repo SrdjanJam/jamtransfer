@@ -27,6 +27,9 @@
 			</div>
 			<div class="col-md-1">
 				<?=RETURNDISCOUNT;?>
+			</div>				
+			<div class="col-md-1">
+				<?=PRICE;?>/km
 			</div>			
 			<div class="col-md-1">
 				<?=PRICE;?>
@@ -65,6 +68,10 @@
 						<!-- Return Discount -->
 						<div class="col-md-1 return" data-id="{{VehicleTypeID}}" data-name="{{ReturnDiscount}}">
 							<input type="text" name="ReturnDiscount" id="ReturnDiscount"  class="w10 show_hide" value="{{ReturnDiscount}}" style="width:100%;" >
+						</div>							
+						<!-- Price per KM -->
+						<div class="col-md-1 pricekm" data-id="{{VehicleTypeID}}" data-name="{{PriceKm}}">
+							<input type="text" name="PriceKm" id="PriceKm"  class="w10 show_hide" value="{{PriceKm}}" style="width:100%;" >
 						</div>				
 						<!-- Prices: -->
 						<div class="col-md-1">
@@ -132,6 +139,23 @@
 			if (window.location.host=='localhost') base=base+'/jamtransfer';		
 			var link = base+'/plugins/DriverVehicleTypes/Update.php';
 			var param = "VehicleTypeID="+vehicleid+"&ReturnDiscount="+returndiscount;
+			console.log(link+'?'+param);
+			$.ajax({
+				type: 'POST',
+				url: link,
+				data: param,
+				success: function(data) {
+        			toastr['success'](window.success);				
+    			}			
+			});
+		})			
+		$('.pricekm input').change(function(){
+			var pricekm=$(this).val();
+			var vehicleid=$(this).parent().attr('data-id');
+			var base=window.rootbase;
+			if (window.location.host=='localhost') base=base+'/jamtransfer';		
+			var link = base+'/plugins/DriverVehicleTypes/Update.php';
+			var param = "VehicleTypeID="+vehicleid+"&PriceKm="+pricekm;
 			console.log(link+'?'+param);
 			$.ajax({
 				type: 'POST',
