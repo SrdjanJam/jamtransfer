@@ -46,12 +46,19 @@
 				</div>					
 			</div>
 			<input type="hidden" name="PlaceID" id="PlaceID" value=""> 
+			<input type="hidden" name="Long" id="Long" value="0"> 
+			<input type="hidden" name="Latt" id="Latt" value="0"> 			
+			<input type="hidden" name="LongD" id="LongD" value="0"> 
+			<input type="hidden" name="LattD" id="LattD" value="0"> 
 			<div class="row">
 				<div class="col-md-3">Route to</div>
 				<div class="col-md-5">
-					<select name="Route" id="Route" class="route-edit">
+					<select style="display:none;" name="Route" id="Route" class="route-edit">
 						<option value="-1"><?= NO_ROUTE ?></option>
 					</select>
+					<input style="display:none;" class="form-control" type="text" name="DropName" size="5" id="DropName" value=""> 
+					<div id="selectTo_optionsDrop"  style="max-height:15em;overflow:auto"></div>
+					
 				</div>	
 			</div>	
 			<div class="row">
@@ -98,16 +105,71 @@
 	
 <script>	
 {literal}
+	$('#DropName').on('click keyup', function(event) {
+		var clicked_id='#'+$(this).attr('id');
+		var loc=$(this).attr('id').replace("Name", "");
+		query = $(clicked_id).val();	
+		long = $("#Long").val();
+		latt = $("#Latt").val();
+		var html = '';
+		url = './api/getToPlacesEdgeN.php?query='+query+'&long='+long+'&latt='+latt;
+		console.log(url);
+		if (query.length > 2) {	
+			$.ajax({
+				url:  url,
+				type: 'GET',
+				dataType: 'jsonp',
+				error: function() {
+					//callback();
+				},
+				success: function(res) {
+					if(res.length > 0) {
+						console.log(res);
+						$.each( res, function( index, item ){
+							html +='<button class="DropName" id="'+ item.ID +
+								'" data-name="'+item.Place+
+								'" data-type="'+item.Type+
+								'" data-long="'+item.Long+
+								'" data-latt="'+item.Latt+
+								'">'+item.Place +
+								'</button><br>';
+						});
+						// data received
+						$("#selectTo_options"+loc).show("slow");
+						$("#selectTo_options"+loc).html(html);
+						// option selected
+						$(".DropName").click(function(){
+							$(clicked_id).val($(this).attr('data-name'));
+							$("#selectTo_options"+loc).hide("slow");
+							$("#LongD").val($(this).attr('data-long'));
+							$("#LattD").val($(this).attr('data-latt'));
+						})
 
+					}	
+				}
+			})	
+		}
+	})
+	$('#Route').change(function() {	
+		$("#Long").val(0);
+		$("#Latt").val(0);			
+		$("#LongD").val(0);
+		$("#LattD").val(0);	
+		$("#DropName").hide();		
+	})
 	$('#PickupName').on('click keyup', function(event) {
-		 if($(this).val() == "") {
+		$("#Long").val(0);
+		$("#Latt").val(0);			
+		$("#LongD").val(0);
+		$("#LattD").val(0);	
+		if($(this).val() == "") {
 			if($(this).attr('id') == "PickupName") $('#PickupID').val(0);
 		}
 		var clicked_id='#'+$(this).attr('id');
 
 		var loc=$(this).attr('id').replace("Name", "");
 		var html = '';
-		query = $(clicked_id).val();			
+		query = $(clicked_id).val();
 		if (query.length > 2) {	
 			$.ajax({
 				url:  './api/getFromPlacesEdgeN.php',
@@ -124,8 +186,11 @@
 					if(res.length > 0) {
 						$.each( res, function( index, item ){
 							html +='<button class="PickupName" id="'+ item.ID +
-								'" data-name="'+item.Place+'">'+
-								item.Place +
+								'" data-name="'+item.Place+
+								'" data-type="'+item.Type+
+								'" data-long="'+item.Long+
+								'" data-latt="'+item.Latt+
+								'">'+item.Place +
 								'</button><br>';
 						});
 						// data received
@@ -134,10 +199,23 @@
 
 						// option selected
 						$(".PickupName").click(function(){
+							if ($(this).attr('data-type')==1) {
+								$("#Route").show();
+								$("#DropName").show();
+							}	
+							else {
+								$("#Route").hide();	
+								$("#DropName").show();
+							}	
 							$("#Route").append(
 								'<option data-toid="-1" value="-1">All routes</option>'
 							)						
 							$(clicked_id).val($(this).attr('data-name'));
+							if ($(this).attr('data-type')==1) $("#Route").show();
+							else $("#Route").hide();
+							$("#Long").val($(this).attr('data-long'));
+							$("#Latt").val($(this).attr('data-latt'));
+							
 							$("#"+loc+"ID").val($(this).attr('id'));
 							var fid=$(this).attr('id');
 							$("#PlaceID").val(fid);							
@@ -173,17 +251,22 @@
 	$( "#button-find" ).on('click', function(){
 		var PlaceID=$("#PlaceID").val();
 		var RouteID=$("#Route").val();
+		var Long=$("#Long").val();
+		var Latt=$("#Latt").val();
+		var LongD=$("#LongD").val();
+		var LattD=$("#LattD").val();
 		var Only=$("#Only").prop('checked');
 		var Date=$("#Date").val();
 		var Time=$("#Time").val();
 		if ( Date!=="" && Time!=="") {
-			$(".modal-body").html(listDrivers(PlaceID, RouteID,  Date, Time, Only));
+			$(".modal-body").html(listDrivers(PlaceID, RouteID, Long, Latt, LongD, LattD, Date, Time, Only));
 			$(".mytooltip").popover({trigger:'hover', html:true, placement:'bottom'});	
 		}	
 	});	
 	
-	function listDrivers(PlaceID, RouteID,  PickupDate, PickupTime, Only) {
-		var url = 'api/getCarsAjax.php?PlaceID='+PlaceID+'&RouteID='+RouteID+'&TransferDate='+PickupDate+'&TransferTime='+PickupTime+'&Only='+Only+'&type=2'+'&callback=';		var list = '';
+	function listDrivers(PlaceID, RouteID, Long, Latt, LongD, LattD, PickupDate, PickupTime, Only) {
+		var url = 'api/getCarsAjax.php?PlaceID='+PlaceID+'&RouteID='+RouteID+'&TransferDate='+PickupDate+'&TransferTime='+PickupTime+'&Only='+Only+'&type=2'+'&Long='+Long+'&Latt='+Latt+'&LongD='+LongD+'&LattD='+LattD+'&callback=';		
+		var list = '';
 		var funcArgs = '';
 		console.log(url);
 		$.ajax({
