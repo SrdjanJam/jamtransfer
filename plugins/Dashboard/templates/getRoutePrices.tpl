@@ -50,6 +50,7 @@
 			<input type="hidden" name="Latt" id="Latt" value="0"> 			
 			<input type="hidden" name="LongD" id="LongD" value="0"> 
 			<input type="hidden" name="LattD" id="LattD" value="0"> 
+			<input type="hidden" name="Country" id="Country" value=""> 
 			<div class="row">
 				<div class="col-md-3">Route to</div>
 				<div class="col-md-5">
@@ -73,7 +74,7 @@
 			<button type="button" id="button-find" class="btn btn-primary searchdrivers" data-toggle="modal" data-target="#routeDriversModal">
 				<i class="fa fa-search"></i>
 			</button>		
-			<input type="checkbox" id="Only" name="Only" checked />	only site displayed
+			<input type="checkbox" id="Only" name="Only" checked />	only min. prices
         </div>
     </div>
 	
@@ -84,12 +85,14 @@
 					<strong>
 					<div class="col-md-3">Driver Company</div>
 					<div class="col-md-1">Type</div>
+					<div class="col-md-1 right">Pr/km</div>												
+					<div class="col-md-1 right">APr/km</div>												
 					<div class="col-md-1 right">Neto</div>												
 					<div class="col-md-1 right">Adds</div>
-					<div class="col-md-1 right">Provision (%)</div>
-					<div class="col-md-2 right">Final</div>
-					<div class="col-md-1 right">Provision2 (%)</div>
-					<div class="col-md-2 right">Final2</div>
+					<div class="col-md-1 right">Prov.(%)</div>
+					<div class="col-md-1 right">Final</div>
+					<div class="col-md-1 right">Prov2.(%)</div>
+					<div class="col-md-1 right">Final2</div>
 					</strong>
 				</div>				
 				<div class="modal-body" style="padding:10px">
@@ -111,8 +114,9 @@
 		query = $(clicked_id).val();	
 		long = $("#Long").val();
 		latt = $("#Latt").val();
+		country = $("#Country").val();
 		var html = '';
-		url = './api/getToPlacesEdgeN.php?query='+query+'&long='+long+'&latt='+latt;
+		url = './api/getToPlacesEdgeN.php?query='+query+'&long='+long+'&latt='+latt+'&country='+country;
 		console.log(url);
 		if (query.length > 2) {	
 			$.ajax({
@@ -185,13 +189,25 @@
 					$("#Route").html('');
 					if(res.length > 0) {
 						$.each( res, function( index, item ){
-							html +='<button class="PickupName" id="'+ item.ID +
+							if (item.Disabled=="disabled") {
+								var strike="<s><i>";
+								var cstrike="</i></s>"
+							} else {
+								var strike="";
+								var cstrike=""
+							}
+							html +=
+								strike+
+								'<button class="PickupName" id="'+ item.ID +
 								'" data-name="'+item.Place+
 								'" data-type="'+item.Type+
 								'" data-long="'+item.Long+
 								'" data-latt="'+item.Latt+
-								'">'+item.Place +
-								'</button><br>';
+								'" data-country="'+item.Country+
+								'"'+item.Disabled+'>'+item.Place +
+								'</button>'+
+								cstrike+
+								'<br>';
 						});
 						// data received
 						$("#selectFrom_options"+loc).show("slow");
@@ -215,7 +231,7 @@
 							else $("#Route").hide();
 							$("#Long").val($(this).attr('data-long'));
 							$("#Latt").val($(this).attr('data-latt'));
-							
+							$("#Country").val($(this).attr('data-country'));
 							$("#"+loc+"ID").val($(this).attr('id'));
 							var fid=$(this).attr('id');
 							$("#PlaceID").val(fid);							
@@ -308,12 +324,14 @@
 					list += '<div class="row selectable selectable-edit '+select+'">';
 					list += '<div class="col-md-3">' + val.DriverCompany + val.StatusCompany + '</div>';
 					list += '<div class="col-md-1">' + val.VehicleTypeID + '</div>';
+					list += '<div class="col-md-1">' + val.PriceKm + '</div>';
+					list += '<div class="col-md-1">' + val.APriceKm + '</div>';
 					list += '<div class="col-md-1 right">' + val.DriversPrice + '</div>';	   /* Neto */					
 					list += '<div title="Surcharges" data-content="' + surcharges + '" class="col-md-1 right mytooltip">' + val.AddToPrice + '</div>';		  /* Additions */
 					list += '<div class="col-md-1 right">' + val.Provision + '</div>';		  /* Provision */
-					list += '<div class="col-md-2 right">' + val.FinalPrice + '</div>';		 /* FinalPrice */
+					list += '<div class="col-md-1 right">' + val.FinalPrice + '</div>';		 /* FinalPrice */
 					list += '<div class="col-md-1 right">' + val.Provision2 + '</div>';		  /* Provision */
-					list += '<div class="col-md-2 right">' + val.FinalPrice2 + '</div>';		 /* FinalPrice */
+					list += '<div class="col-md-1 right">' + val.FinalPrice2 + '</div>';		 /* FinalPrice */
 					list += '</div>';
 				});
 			},

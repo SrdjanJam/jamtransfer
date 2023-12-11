@@ -43,7 +43,8 @@ while($p = mysqli_fetch_object($w))
 												'Long' => $p->Longitude,
 												'Latt' => $p->Latitude,
 												'Country' => $p->CountryNameEN,
-												'Type' => 1
+												'Type' => 1,
+												'Disabled' => ""
 											);
 		}
 	}
@@ -66,16 +67,18 @@ while($p = mysqli_fetch_object($w))
 			$placeName=trim($places['properties']['name']);
 			if (strtoupper(substr($placeName, 0, strlen($text)))==strtoupper($text)) { 
 				if (isTerminal($places['geometry']['coordinates'][0],$places['geometry']['coordinates'][1],$radius,$db)) {
-					$fromPlaces["2".$placeNameL] = array(
-														'ID' => 0,
-														'Place'=> $placeNameL." (api)",
-														'SEO' => '',
-														'Long' => $places['geometry']['coordinates'][0],
-														'Latt' => $places['geometry']['coordinates'][1],
-														'Country' => $places['properties']['country'],
-														'Type' => 2
-													);
-				}								
+					$disabled="";
+				}	else $disabled="disabled";
+				$fromPlaces["2".$placeNameL] = array(
+													'ID' => 0,
+													'Place'=> $placeNameL." (api)",
+													'SEO' => '',
+													'Long' => $places['geometry']['coordinates'][0],
+													'Latt' => $places['geometry']['coordinates'][1],
+													'Country' => $places['properties']['country'],
+													'Type' => 2,
+													'Disabled' => $disabled
+												);				
 			}
 		}
 	}
@@ -93,7 +96,8 @@ foreach ($fromPlaces as $key => $value) {
 		'Long' => $value['Long'],
 		'Latt' => $value['Latt'],
 		'Country' => $value['Country'],		
-		'Type' => $value['Type']
+		'Type' => $value['Type'],
+		'Disabled' => $value['Disabled']
     );
 }
 

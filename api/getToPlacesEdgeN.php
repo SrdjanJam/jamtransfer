@@ -13,6 +13,7 @@ $fromPlaces = array();
 $srch = explode(',' , trim($_REQUEST['query']) );
 $LongC=$_REQUEST['long'];
 $LattC=$_REQUEST['latt'];
+$Country=$_REQUEST['country'];
 $layers="locality";
 $radius=3;
 
@@ -60,7 +61,7 @@ while($p = mysqli_fetch_object($w))
 	$api_key="5b3ce3597851110001cf6248ec7fafd8eca44e0ca5590caf093aa7cb";	
 	$text=str_replace(" ","%20",$srch[0]);
 
-	$url="https://api.openrouteservice.org/geocode/autocomplete?api_key=".$api_key."&layers=".$layers."&text=".$text;
+	$url="https://api.openrouteservice.org/geocode/autocomplete?api_key=".$api_key."&layers=".$layers."&focus.point.lon=".$LongC."&focus.point.lat=".$LattC."&country=".$Country."&text=".$text;
 
 	$json = file_get_contents($url);   
 	$obj="";

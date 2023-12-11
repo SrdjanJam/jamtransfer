@@ -84,8 +84,8 @@ if (isset($_REQUEST["LongD"]) && $_REQUEST["LongD"]>0 && isset($_REQUEST["LattD"
 	$obj = json_decode($json,true);				 	
 	$Km=0;
 	if ($json) {
-		 $Km=($obj['features'][0]['properties']['segments'][0]['distance'])/1000;
-		 $Duration=nf(($obj['features'][0]['properties']['segments'][0]['duration'])/60);
+		$Km=($obj['features'][0]['properties']['segments'][0]['distance'])/1000;
+		$Duration=nf(($obj['features'][0]['properties']['segments'][0]['duration'])/60);
 	}
 	$pl = new v4_Places();
 	if ($_REQUEST["PlaceID"]==0) {
@@ -128,12 +128,16 @@ if (isset($_REQUEST["LongD"]) && $_REQUEST["LongD"]>0 && isset($_REQUEST["LattD"
 			foreach ($vehicleKeys as $key) {
 				$v->getRow($key);
 				$OwnerID=$v->getOwnerID();
-				if ($v->getPriceKm()==0) {
-					$avpr=number_format(getAveragePrice($OwnerID,$key),2);
-					$v->setPriceKm($avpr); 
-					$statusComapny=" Avgreage price per KM is ".$avpr;
+				$PriceKm=$v->getPriceKm();
+				if ($PriceKm==0) {
+					$APriceKm=number_format(getAveragePrice($OwnerID,$key),2);
+					$v->setPriceKm($APriceKm); 
+					//$statusComapny=" Avg. price/KM is ".$APriceKm;
 				}	
-				else $statusComapny=" Price per KM is ".$avpr;
+				else {
+					//$statusComapny=" Price/KM is ".$PriceKm;
+					$APriceKm=0;
+				}	
 				if ($v->getPriceKm()>0) { 
 					//echo $v->getOwnerID()."/".$v->getVehicleTypeID()."/".$v->getPriceKm()*$Km."<br>";
 					$VehicleName    = getVehicleTypeName( $v->getVehicleTypeID() );
@@ -201,7 +205,7 @@ if (isset($_REQUEST["LongD"]) && $_REQUEST["LongD"]>0 && isset($_REQUEST["LattD"
 						'RouteName'         => $RouteName,
 						'OwnerID'           => $OwnerID,
 						'DriverCompany'     => $DriverCompanyFormated,
-						'StatusCompany'     => $statusComapny,
+						'StatusCompany'     => " Price/km",
 						'Contract'     		=> "",
 						'ProfileImage'      => $ProfileImage,
 						'ServiceID'         => $ServiceID,
@@ -241,6 +245,9 @@ if (isset($_REQUEST["LongD"]) && $_REQUEST["LongD"]>0 && isset($_REQUEST["LattD"
 						'S9Price'           => $sur['S9Price'],
 						'S10Price'          => $sur['S10Price'],
 						'SpecialDatesPrice'  => $specialDatesPrice,
+						'Km'                => $Km,
+						'PriceKm'           => $PriceKm,
+						'APriceKm'          => $APriceKm,
 						'Km'                => $Km,
 						'Duration'          => $Duration,
 						'BasePrice'         => nf( round($BasePrice,2) )
@@ -447,6 +454,8 @@ else {
 							'S10Price'          => $sur['S10Price'],
 							'SpecialDatesPrice'  => $specialDatesPrice,
 							'Km'                => $Km,
+							'PriceKm'           => 0,
+							'APriceKm'          => 0,
 							'Duration'          => $Duration,
 							'BasePrice'         => nf( round($BasePrice,2) )
 						);
@@ -480,15 +489,16 @@ else {
 			else $vtid=$car['VehicleTypeID'];
 		}	
 	}
-
-	ob_start(); 
-	MakeCSV($cars);
-	$csv = ob_get_contents();
-	ob_end_clean();
-	//echo $csv;
-	$fp = fopen(ROOT.'/plugins/Dashboard/Routes_Prices.csv', 'w');
-	fwrite($fp, $csv);
 }
+ob_start(); 
+MakeCSV($cars);
+$csv = ob_get_contents();
+ob_end_clean();
+unlink(ROOT.'/plugins/Dashboard/Routes_Prices.csv');
+//echo $csv;
+$fp = fopen(ROOT.'/plugins/Dashboard/Routes_Prices.csv', 'w');
+fwrite($fp, $csv);
+
 	
 $cars = json_encode($cars);
 echo $_GET['callback'] . '(' . $cars. ')';
@@ -632,6 +642,8 @@ function MakeCSV($cars_all) {
 	echo 
 		'Route Name'.$dlm.
 		'Driver Company'.$dlm.
+		'Price/km'.$dlm.
+		'Avg.Price/km'.$dlm.
 		'Type'.$dlm.
 		'Neto'.$dlm.
 		'Adds'.$dlm.		
@@ -647,6 +659,8 @@ function MakeCSV($cars_all) {
 			$car['RouteName'].$dlm.
 			$car['DriverCompany'].$dlm.
 			$car['VehicleTypeID'].$dlm.
+			$car['PriceKm'].$dlm.
+			$car['APriceKm'].$dlm.
 			$car['DriversPrice'].$dlm.
 			$car['AddToPrice'].$dlm.		
 			$car['Provision'].$dlm.		
