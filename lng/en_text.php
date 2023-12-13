@@ -1060,3 +1060,6 @@ define("DRIVES","Drives");
 //16.11.23
 define("ASSIGN","Assign");
 define("UNASSIGN","Unassign");
+
+//13.12.23
+define("FIELDS_DESCRIPTIONS","Fields Descriptions");

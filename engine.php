@@ -143,7 +143,10 @@ if ($result->num_rows>0) {
 	else {
 		$smarty->assign('fieldsSettings',0);
 		$smarty->assign('levelID',0);		
-	}
+	}	
+	if ($specialpage2=='fieldsDescription') $smarty->assign('fieldsDescription',1);
+	else $smarty->assign('fieldsDescription',0);
+	
 	$smarty->assign('transfersFilter',$transfersFilter);
 	$smarty->assign('includeFile',$includeFile);
 	$smarty->assign('includeFileTpl',$includeFileTpl);

@@ -455,6 +455,7 @@
 		<!-- END OF WRAPPER ================================================================================================== -->
 
 		<input type="hidden" id="fieldsSettings" name="fieldsSettings" value="{$fieldsSettings}">
+		<input type="hidden" id="fieldsDescription" name="fieldsDescription" value="{$fieldsDescription}">
 		<input type="hidden" id="levelID" name="levelID" value="{$levelID}">
 		<input type='hidden' id='ModuleID' value='{$ModulID}' name='ModuleID'>
 		<input type='hidden' id='local' value='{$local}' name='local'>
@@ -466,6 +467,9 @@
 			<span><label>{$REQUIRED}</label> <input type="checkbox" class="" name="required" value="" data-attr=""/></span>
 			<span><label>{$DISABLED}</label> <input type="checkbox" class="" name="disabled" value="" data-attr=""/></span>
 			<span><label>{$HIDDEN}</label> <input type="checkbox" class="" name="hidden" value="" data-attr=""/></span>
+		</div>		
+		<div style="display:none;" id="fdBlock" data-attr="">
+			<textarea class="" name="field_description" value="" data-attr=""/></textarea>
 		</div>
 
 	</body>

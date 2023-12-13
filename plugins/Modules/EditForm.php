@@ -134,6 +134,14 @@
 			class="textarea" style="width:100%;background:#ecf5ec;">{{Help}}</textarea>
 			</div>
 		</div>		
+		<div class="row">
+			<div class="col-md-3">
+				<label for="FieldsDescriptions" style="color:green;"><?=FIELDS_DESCRIPTIONS;?></label>
+			</div>
+			<div class="col-md-9">
+				<a target="_blank" href="{{Code}}/fieldsDescription/0">Link</a>
+			</div>
+		</div>	
 
 
 

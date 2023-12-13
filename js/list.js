@@ -337,6 +337,23 @@
 			}	
 		});	
 		
+		var url =  "plugins/fieldsDescriptions.php?ModuleID="+ModuleID;
+		console.log(url);
+		$.ajax({
+			type: 'GET',
+			url: url,
+			async: false,
+			contentType: "application/json",
+			dataType: 'jsonp',
+			success: function(out) {
+				$.each(out.data, function() {
+					console.log(this);
+					var name = this.Name;
+					$('.box-body').find("[name='"+name+"']").attr('title',this.Description);
+				})
+			}	
+		});		
+		
 	}
 	function new_Item() { 
 
@@ -347,7 +364,9 @@
 		$("#ItemWrapperNew").show('slow');
 		
 		var fieldsSettings = $("#fieldsSettings").val();
-		if (fieldsSettings==1) fieldSetter();
+		if (fieldsSettings==1) fieldSetter();		
+		var fieldsDescription = $("#fieldsDescription").val();
+		if (fieldsDescription==1) fieldDescriptor();
 	//})		
 	}
 
@@ -538,12 +557,12 @@
 		$('iframe').each(function() {
 			$(this).remove();
 		})		
-		$('input:not(:hidden), textarea').each(function() {
+		$('input:not(:hidden), textarea, select').each(function() {
 			var name=$(this).attr('name');
 			$("#fsBlock input").attr('data-attr',name);
 			var fsHTML = $("#fsBlock").html();
 			$(this).after(fsHTML);			
-			$(this).hide();
+			//$(this).hide();
 		})	
 		
 		var url =  "plugins/fieldsSettings.php?ModuleID="+mid+"&LevelID="+lid;
@@ -582,6 +601,54 @@
 				}	
 			});
 		});	
+	}
+	function fieldDescriptor() {
+		$('button').hide();
+		var mid = $("#ModuleID").val();
+		$('iframe').each(function() {
+			$(this).remove();
+		})		
+		$('input:not(:hidden), textarea, select').each(function() {
+			var name=$(this).attr('name');
+			$("#fdBlock textarea").attr('data-attr',name);
+			var fdHTML = $("#fdBlock").html();
+			$(this).after(fdHTML);			
+			$(this).hide();
+		})
+		var url =  "plugins/fieldsDescriptions.php?ModuleID="+mid;
+		console.log(url);
+		$.ajax({
+			type: 'GET',
+			url: url,
+			async: false,
+			contentType: "application/json",
+			dataType: 'jsonp',
+			success: function(out) {
+				console.log(out);
+				$.each(out.data, function() {
+					console.log(this);
+					var name = this.Name;
+					$("textarea[data-attr='"+name+"']").val(this.Description);
+				})
+			}	
+		});			
+		$("textarea").change(function() {
+			if ($(this).prop('checked')) var check=1;
+			else var check=0;
+			var fname=$(this).attr('data-attr');
+			var param = 'ModuleID='+mid+'&Name='+fname+'&SetValue='+$(this).val();
+			var url =  "plugins/fieldsDescriptor.php?"+param;
+			console.log(url);
+			$.ajax({
+				type: 'GET',
+				url: url,
+				async: false,
+				success: function() {
+					toastr['success']('Item updated');
+				}	
+			});
+		});			
+		
 	}
 
 	
