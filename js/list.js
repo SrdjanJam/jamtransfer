@@ -350,11 +350,16 @@
 					console.log(this);
 					var name = this.Name;
 					$('.box-body').find("[name='"+name+"']").attr('title',this.Description);
+					// text to speech from title of fields
+					$('.box-body').find("[name='"+name+"']").after('&nbsp;<i title="click for audio help" class="fa-solid fa-file-audio-o fa-lg" aria-hidden="true"></i>');
+					$('.box-body').find("[name='"+name+"']").next().on( "click", function() {
+						text_to_speech ($(this).prev().attr('title'));
+					} );
 				})
 			}	
 		});		
 		
-	}
+	}	
 	function new_Item() { 
 
 		var source   = $("#ItemEditTemplate").html();
@@ -551,7 +556,7 @@
 	}
 
 	function fieldSetter() {
-		$('button').hide();
+		$('button').remove();
 		var mid = $("#ModuleID").val();
 		var lid = $("#levelID").val();
 		$('iframe').each(function() {
@@ -562,7 +567,7 @@
 			$("#fsBlock input").attr('data-attr',name);
 			var fsHTML = $("#fsBlock").html();
 			$(this).after(fsHTML);			
-			//$(this).hide();
+			$(this).hide();
 		})	
 		
 		var url =  "plugins/fieldsSettings.php?ModuleID="+mid+"&LevelID="+lid;
@@ -603,17 +608,17 @@
 		});	
 	}
 	function fieldDescriptor() {
-		$('button').hide();
+		$('button').remove();
 		var mid = $("#ModuleID").val();
 		$('iframe').each(function() {
 			$(this).remove();
 		})		
-		$('input:not(:hidden), textarea, select').each(function() {
+		$('input:not(:hidden), textarea, select').each(function() {;
 			var name=$(this).attr('name');
 			$("#fdBlock textarea").attr('data-attr',name);
 			var fdHTML = $("#fdBlock").html();
 			$(this).after(fdHTML);			
-			$(this).hide();
+			//$(this).hide();
 		})
 		var url =  "plugins/fieldsDescriptions.php?ModuleID="+mid;
 		console.log(url);
@@ -683,3 +688,31 @@
 		.replace(/"/g, '%25#34;');*/
 		
 	}
+	
+	function text_to_speech(text) {
+		window.msg = prepare_text_to_speech();	
+		window.msg.text = (text);
+		window.msg.onend = function(e) {
+			beep();
+		};
+		window.speechSynthesis.speak(window.msg);	
+	}	
+	function prepare_text_to_speech()
+	{	
+		var msg = new SpeechSynthesisUtterance();
+		msg.onstart = function(e) {
+			resumeInfinity();
+		};		
+		var voices = window.speechSynthesis.getVoices();
+		msg.voice = voices[1000]; // Note: some voices don't support altering params
+		msg.voiceURI = 'native';
+		msg.volume = 1; // 0 to 1
+		msg.rate = 0.7; // 0.1 to 10
+		msg.pitch = 1; //0 to 2
+		msg.lang = 'en-EN';
+		return msg;
+	}	
+	function beep() {
+		const audio = new Audio("i/beep-08b.wav");
+		audio.play();
+	}	

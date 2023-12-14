@@ -224,7 +224,6 @@ switch ($specialpage) {
 
 switch ($specialpage2) {
 	case 'fieldsSettings':
-	case 'fieldsDescription':
 		$isNew=true;
 	default:
 }
