@@ -15,8 +15,7 @@ $md->getRow($_REQUEST['ModulID']);
 $help = $md->getHelp();
 
 echo $help;
-
-$where = $fs->getRow($_REQUEST['ModulID']);
+$where = " WHERE (ModuleID = '" . $_REQUEST['ModulID'] . "' )";
 $dbk = $fs->getKeysBy('ID', 'asc', $where);
 
 $out=array();
