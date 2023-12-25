@@ -27,6 +27,10 @@ $smarty->assign('date2',true);
 		<div class="col-md-2">
 			<?=STATUS;?>
 		</div>
+		
+		<div class="col-md-1">
+			<a href="plugins/VehiclesAssign/VehicleList_<?= $_SESSION['UseDriverID'] ?>.csv"><i class="fa fa-download" aria-hidden="true"></i> Download</a>
+		</div>			
 	</div>
 
 	<!-- listTile: -->
@@ -55,9 +59,8 @@ $smarty->assign('date2',true);
 
 				<div class="col-md-2">
 					{{Status}}
-				</div>					
-				
-
+				</div>		
+								
 			</div>
 
 		</div>

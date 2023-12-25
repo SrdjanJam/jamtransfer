@@ -188,7 +188,7 @@ function phaseStatus($status) {
 			return "";
 			break;			
 		case 1:
-			return "A";
+			return "";
 			break;			
 		case 2:
 			return "T";

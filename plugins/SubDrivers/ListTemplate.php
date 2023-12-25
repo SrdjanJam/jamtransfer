@@ -132,7 +132,7 @@
 				
 				<!-- Vehicles: -->
 				<div class="col-md-1 col-xs-6">
-					<span><a target='_blank' href='vehiclesAssign/subdrivers/{{AuthUserID}}'><?=VEHICLES;?></a></span>
+					<span><a target='_blank' href='vehicleAssignHistory/subdrivers/{{AuthUserID}}'><?=VEHICLES;?></a></span>
 				</div>
 				
 

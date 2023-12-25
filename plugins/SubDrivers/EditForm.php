@@ -133,7 +133,7 @@
 							</div>							
 														
 							<div class="row">
-								<div class="col-md-3 "><label>{FLAT_PLACE_ID}</label></div>
+								<div class="col-md-3 "><label><?= FLAT_PLACE_ID ?></label></div>
 								<div class="col-md-9">
 									<input type="text" name="IBAN" class="w100"
 									 value="{{IBAN}}"

@@ -1,7 +1,6 @@
 <?
 	require_once ROOT . '/db/v4_AuthUsers.class.php';
 	require_once ROOT . '/db/v4_SubDrivers.class.php';
-
 	$au = new v4_AuthUsers();
 	
 	$q = "SELECT * FROM v4_AuthUsers";

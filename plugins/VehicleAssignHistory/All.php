@@ -58,10 +58,14 @@ if ( $_REQUEST['Search'] != "" )
 }
 $dbTotalRecords = $db->getKeysBy($ItemName.' ASC', '',$DB_Where);
 
+$dlm = ";";
+$header='VID'.$dlm.'Name'.$dlm.'Vehicle'.$dlm.'Date&Time'.$dlm. 'Status'.$dlm."\n";
+
+$table_row="";
+
+
 # test za LIMIT - trebalo bi ga iskoristiti za pagination! 'asc' . ' LIMIT 0,50'
 $dbk = $db->getKeysBy($ItemName.' ' . $sortOrder, '' . $limit , $DB_Where);
-
-
 if (count($dbk) != 0) {
     foreach ($dbk as $nn => $key)  
     {	
@@ -76,8 +80,43 @@ if (count($dbk) != 0) {
 		if ($db->getStatus()==0) $detailFlds["Status"]=UNASSIGN;
 		else $detailFlds["Status"]=ASSIGN;
 		$out[] = $detailFlds;
+		$table_row.=$detailFlds["ID"]. $dlm. 
+				$detailFlds["SubDriverName"] . $dlm .
+				$detailFlds["VehicleName"] . $dlm .
+				$detailFlds["AssignTime"] . $dlm . 
+				$detailFlds["Status"] .  $dlm .
+				"\n";	
     }
 }
+$dbk = $db->getKeysBy($ItemName.' ' . $sortOrder, '' , $DB_Where);
+if (count($dbk) != 0) {
+    foreach ($dbk as $nn => $key)  
+    {	
+    	$db->getRow($key);
+		// ako treba neki lookup, onda to ovdje	
+		# get all fields and values
+		$detailFlds = $db->fieldValues();
+		$sv->getRow($db->getVehicleID());
+		$detailFlds["VehicleName"]=$sv->getVehicleDescription();		
+		$au->getRow($db->getAssignSDID());
+		$detailFlds["SubDriverName"]=$au->getAuthUserRealName();
+		if ($db->getStatus()==0) $detailFlds["Status"]=UNASSIGN;
+		else $detailFlds["Status"]=ASSIGN;
+		$table_row.=$detailFlds["ID"]. $dlm. 
+				$detailFlds["SubDriverName"] . $dlm .
+				$detailFlds["VehicleName"] . $dlm .
+				$detailFlds["AssignTime"] . $dlm . 
+				$detailFlds["Status"] .  $dlm .
+				"\n";	
+    }
+}
+ob_start(); 
+echo $header.$table_row;
+$csv = ob_get_contents();
+ob_end_clean();
+$fp = fopen('VehicleList_'.($_SESSION['UseDriverID']).'.csv', 'w');
+fwrite($fp, $csv);
+fclose($fp);	
 
 # send output back
 $output = array(
