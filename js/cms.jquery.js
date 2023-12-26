@@ -516,7 +516,7 @@ uzima podatke iz customers u lng/en_init.js
 
 Handlebars.registerHelper("customerSelect", function(currentLevel) {
 	function customersDropdown() {
-		var customerSelect = '<select name="CustType" id="CustType">';
+		var customerSelect = '<select name="LevelID" id="LevelID">';
 
 		$.each (customers, function(i, val) {
 			customerSelect += '<option value="'+i+'" ';

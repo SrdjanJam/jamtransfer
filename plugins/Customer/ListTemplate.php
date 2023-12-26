@@ -24,7 +24,7 @@
 		</div>		
 		
 		<div class="col-md-2">
-			<?=TYPE;?>
+			<?=LEVEL;?>
 		</div>
 
 					
@@ -51,7 +51,7 @@
 					{{CustEmail}}
 				</div>				
 				<div class="col-sm-2">
-					{{displayCutomerType CustType}}
+					{{displayCutomerType LevelID}}
 				</div>
 
 			</div>

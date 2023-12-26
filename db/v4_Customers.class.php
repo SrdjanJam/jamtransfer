@@ -15,7 +15,7 @@ Class v4_Customers {
 
 	public $Site; //int(2)
 	public $CustID; //int(10)
-	public $CustType; //int(2)
+	public $LevelID; //int(2)
 	public $CustFirstName; //varchar(255)
 	public $CustLastName; //varchar(255)
 	public $CustCountry; //int(10)
@@ -49,9 +49,9 @@ Class v4_Customers {
      * New object to the class. Don´t forget to save this new object "as new" by using the function $class->saveAsNew(); 
      *
      */
-	public function New_v4_Customers($Site,$CustType,$CustFirstName,$CustLastName,$CustCountry,$CustLanguage,$CustEmail,$CustAddress,$CustCity,$CustZip,$CustMobile,$CustPass,$OrdersCount,$OrdersValue,$CustSubscribed,$CustActive,$Discount,$CustImage,$CustImageType,$IsFirstTime,$NextLevelCount,$NextLevelValue){
+	public function New_v4_Customers($Site,$LevelID,$CustFirstName,$CustLastName,$CustCountry,$CustLanguage,$CustEmail,$CustAddress,$CustCity,$CustZip,$CustMobile,$CustPass,$OrdersCount,$OrdersValue,$CustSubscribed,$CustActive,$Discount,$CustImage,$CustImageType,$IsFirstTime,$NextLevelCount,$NextLevelValue){
 		$this->Site = $Site;
-		$this->CustType = $CustType;
+		$this->LevelID = $LevelID;
 		$this->CustFirstName = $CustFirstName;
 		$this->CustLastName = $CustLastName;
 		$this->CustCountry = $CustCountry;
@@ -86,7 +86,7 @@ Class v4_Customers {
 		while($row = $result->fetch_array(MYSQLI_ASSOC)){
 			$this->Site = $row["Site"];
 			$this->CustID = $row["CustID"];
-			$this->CustType = $row["CustType"];
+			$this->LevelID = $row["LevelID"];
 			$this->CustFirstName = $row["CustFirstName"];
 			$this->CustLastName = $row["CustLastName"];
 			$this->CustCountry = $row["CustCountry"];
@@ -126,7 +126,7 @@ Class v4_Customers {
 	public function saveRow(){
 		$result = $this->connection->RunQuery("UPDATE v4_Customers set 
 Site = '".$this->myreal_escape_string($this->Site)."', 
-CustType = '".$this->myreal_escape_string($this->CustType)."', 
+LevelID = '".$this->myreal_escape_string($this->LevelID)."', 
 CustFirstName = '".$this->myreal_escape_string($this->CustFirstName)."', 
 CustLastName = '".$this->myreal_escape_string($this->CustLastName)."', 
 CustCountry = '".$this->myreal_escape_string($this->CustCountry)."', 
@@ -154,7 +154,7 @@ CustImageType = '".$this->myreal_escape_string($this->CustImageType)."' WHERE Cu
      * Save the active var class as a new row on table
      */
 	public function saveAsNew(){
-		$this->connection->RunQuery("INSERT INTO v4_Customers (Site, CustType, CustFirstName, CustLastName, CustCountry, CustLanguage, CustEmail, CustAddress, CustCity, CustZip, CustMobile, CustPass, OrdersCount, OrdersValue, CustSubscribed, CustActive, Discount, CustImage, CustImageType, IsFirstTime, NextLevelCount, NextLevelValue) values ('".$this->myreal_escape_string($this->Site)."', '".$this->myreal_escape_string($this->CustType)."', '".$this->myreal_escape_string($this->CustFirstName)."', '".$this->myreal_escape_string($this->CustLastName)."', '".$this->myreal_escape_string($this->CustCountry)."', '".$this->myreal_escape_string($this->CustLanguage)."', '".$this->myreal_escape_string($this->CustEmail)."', '".$this->myreal_escape_string($this->CustAddress)."', '".$this->myreal_escape_string($this->CustCity)."', '".$this->myreal_escape_string($this->CustZip)."', '".$this->myreal_escape_string($this->CustMobile)."', '".$this->myreal_escape_string($this->CustPass)."',
+		$this->connection->RunQuery("INSERT INTO v4_Customers (Site, LevelID, CustFirstName, CustLastName, CustCountry, CustLanguage, CustEmail, CustAddress, CustCity, CustZip, CustMobile, CustPass, OrdersCount, OrdersValue, CustSubscribed, CustActive, Discount, CustImage, CustImageType, IsFirstTime, NextLevelCount, NextLevelValue) values ('".$this->myreal_escape_string($this->Site)."', '".$this->myreal_escape_string($this->LevelID)."', '".$this->myreal_escape_string($this->CustFirstName)."', '".$this->myreal_escape_string($this->CustLastName)."', '".$this->myreal_escape_string($this->CustCountry)."', '".$this->myreal_escape_string($this->CustLanguage)."', '".$this->myreal_escape_string($this->CustEmail)."', '".$this->myreal_escape_string($this->CustAddress)."', '".$this->myreal_escape_string($this->CustCity)."', '".$this->myreal_escape_string($this->CustZip)."', '".$this->myreal_escape_string($this->CustMobile)."', '".$this->myreal_escape_string($this->CustPass)."',
 		'".$this->myreal_escape_string($this->OrdersCount)."',
 		'".$this->myreal_escape_string($this->OrdersValue)."',
 		'".$this->myreal_escape_string($this->CustSubscribed)."',		
@@ -203,10 +203,10 @@ CustImageType = '".$this->myreal_escape_string($this->CustImageType)."' WHERE Cu
 	}
 
 	/**
-	 * @return CustType - int(2)
+	 * @return LevelID - int(2)
 	 */
-	public function getCustType(){
-		return $this->CustType;
+	public function getLevelID(){
+		return $this->LevelID;
 	}
 
 	/**
@@ -368,8 +368,8 @@ CustImageType = '".$this->myreal_escape_string($this->CustImageType)."' WHERE Cu
 	/**
 	 * @param Type: int(2)
 	 */
-	public function setCustType($CustType){
-		$this->CustType = $CustType;
+	public function setLevelID($LevelID){
+		$this->LevelID = $LevelID;
 	}
 
 	/**
@@ -523,7 +523,7 @@ CustImageType = '".$this->myreal_escape_string($this->CustImageType)."' WHERE Cu
 		$fieldValues = array(
 			'Site' => $this->getSite(),
 			'CustID' => $this->getCustID(),
-			'CustType' => $this->getCustType(),
+			'LevelID' => $this->getLevelID(),
 			'CustFirstName' => $this->getCustFirstName(),
 			'CustLastName' => $this->getCustLastName(),
 			'CustCountry' => $this->getCustCountry(),
@@ -555,7 +555,7 @@ CustImageType = '".$this->myreal_escape_string($this->CustImageType)."' WHERE Cu
      */
 	public function fieldNames(){
 		$fieldNames = array(
-			'Site',			'CustID',			'CustType',			'CustFirstName',			'CustLastName',			'CustCountry',			'CustLanguage',			'CustEmail',			'CustAddress',			'CustCity',			'CustZip',			'CustMobile',			'CustPass',			'OrdersCount',		'OrdersValue',		'CustSubscribed',	'CustActive',			'Discount',			'CustImage',			'CustImageType',	'IsFirstTime',		'NextLevelCount',	'NextLevelValue'		);
+			'Site',			'CustID',			'LevelID',			'CustFirstName',			'CustLastName',			'CustCountry',			'CustLanguage',			'CustEmail',			'CustAddress',			'CustCity',			'CustZip',			'CustMobile',			'CustPass',			'OrdersCount',		'OrdersValue',		'CustSubscribed',	'CustActive',			'Discount',			'CustImage',			'CustImageType',	'IsFirstTime',		'NextLevelCount',	'NextLevelValue'		);
 		return $fieldNames;
 	}
     /**

@@ -215,10 +215,10 @@
 				<!-- CUSTOMER_TYPE: -->
 				<div class="row">
 					<div class="col-md-3">
-						<label for="CustType"><?=CUSTOMER_TYPE;?></label>
+						<label for="LevelID"><?=LEVEL;?></label>
 					</div>
 					<div class="col-md-9">
-						{{customerSelect CustType 'CustType'}}
+						{{customerSelect LevelID 'LevelID'}}
 					</div>
 				</div>	
 				<!-- DISCOUNT: -->
