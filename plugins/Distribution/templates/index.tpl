@@ -106,9 +106,6 @@
 			<a href='{$root_home}distribution/{$days[4]}'>
 				<i class="fa fa-arrow-right" aria-hidden="true"></i>		
 			</a>
-			&nbsp;&nbsp;&nbsp;&nbsp;
-			&nbsp;&nbsp;&nbsp;&nbsp;
-			<a class='marked' href='{$root_home}distribution/vehicles'>{$VEHICLES}</a>
 		</div> <!-- End of text-align: center -->
 
 		<div class="transfers">
@@ -171,7 +168,7 @@
 
 			<!-- For drop: ========================================================== -->
 			<div class="drag-wrapper dropzoneN" data-id='0' data-svid='0'>
-				<h3>{$ROUTES}:</h3>
+				<h3>{$ORDERS}:</h3>
 				<div class="sort">
 
 					{section name=pom1 loop=$transfers}

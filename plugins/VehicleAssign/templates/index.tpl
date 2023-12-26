@@ -146,7 +146,7 @@
 
 			// changeOrder:
 			function changeOrder(vehicleid,driverid) {
-				var link = '{/literal}{$root_home}{literal}plugins/Distribution/updateVehicles.php';
+				var link = '{/literal}{$root_home}{literal}plugins/VehicleAssign/updateVehicles.php';
 				var param = "SubVehicleID="+vehicleid+"&SubDriverID="+driverid;
 				console.log(link+'?'+param);
 				$.ajax({
