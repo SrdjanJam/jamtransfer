@@ -1,44 +1,63 @@
 	<style>
 
-        body{
+		body{
 			font-size: 22px;
 			overflow-x: hidden;
 		}
 
-		.vehicles{
-			float:left;
+		.vehicles {
+			float: left;
+			background: #05e4fd0d;
+			padding: 5px;
+			border-radius: 5px;
+		}
+
+		.vehicles h2{
+			font-weight: bold;
+			color: #5c9dbd;
 		}
 		
 		.drop-wrapper{
-            width: 60%;
+            width: 75%;
 			padding:0 0 40px 0;
 			float: left;
         }
 
+		.drop-wrapper h3, .drag-wrapper h3{
+			font-size: 19px;
+			padding: 5px;
+			color: #64b1d7;
+        }
+
 		.drop-wrapper .dropzoneN, .drop-wrapper .dropin{
-			color: #5e5b53;
-    		background: #f7f4f1;
-            min-height: 5%;
-			border: 1px solid #ebe9e8;
-			width:25%;
-			float:left;
+			color: #576f95;
+			background: #8a9ebf1c;
+			min-height: 5%;
+			border: 1px solid #576f95a3;
+			border-radius: 10px;
+			min-width: 32%;
+			float: left;
 			font-family: Georgia, serif;
+			padding: 5px;
+			margin: 2px;
         }
 
 		.drag-wrapper{
             float: left;
-            width: 40%;
+            width: 25%;
 			min-height:100vh;
 			box-sizing: border-box;
+			background: #c1ccdb33;
         }
 
 		.dropelement {
-			color: black;
-            border: 2px dashed rgb(192, 202, 100);
-			margin: 5px;
-			float:left;
-			width:45%; 
-        }
+			border: 2px solid rgb(202 199 100);
+			border-radius: 8px;
+			margin: 0 10px 5px 10px;
+			padding: 5px;
+			background: #e4e9c04f;
+			box-shadow: 3px 2px 7px 2px #b2b3b3;
+		}
 
         .drop-wrapper .dropelement {
 			width:90%;
@@ -63,24 +82,29 @@
 			color: rgb(133 134 145);
 		}
 
-		/* @media screen ========================= */
-		@media screen and (max-width:1200px) {
+		@media screen and (max-width:768px) {
 
-			.drop-wrapper, .drop-wrapper .dropzoneN, .drag-wrapper {
-				float: none;
-				width:100%;
+			.drop-wrapper, .drop-wrapper, .drag-wrapper {
+				/* width: -webkit-fill-available; */
+				width: 50%;
+			}
+
+			.drop-wrapper .dropzoneN{
+				width: -webkit-fill-available;
 			}
 
 
 		}
+
 
 	</style>
 
     <body>
 
         <div class="vehicles"> 
-		
+			<h2>Assign vehicles</h2>
 			<div class="drop-wrapper">
+				
 				<h3>{$DRIVERS}:</h3>
 
 				{section name=pom1 loop=$drivers} {* $vehicles changes to $drivers *}
@@ -103,7 +127,7 @@
 			<!-- For drop: -->
 			<div class="drag-wrapper sort dropzoneN" data-id='0'>
 				<h3>{$VEHICLES}:</h3>
-
+				
 				{section name=pom1 loop=$vehicles}
 					{if $vehicles[pom1].SubDriver eq 0}
 						<div class="dropzoneN" data-id='0'>
