@@ -6,7 +6,8 @@
 		}
 
 		.vehicles {
-			float: left;
+			/* float: left; */
+			overflow: hidden;
 			background: #05e4fd0d;
 			padding: 5px;
 			border-radius: 5px;
@@ -101,7 +102,7 @@
 
     <body>
 
-        <div class="vehicles"> 
+        <div class="vehicles">
 			<h2>Assign vehicles</h2>
 			<div class="drop-wrapper">
 				
