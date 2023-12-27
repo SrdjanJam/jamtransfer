@@ -37,7 +37,7 @@ $smarty->assign('date2',true);
 	{{#each Item}}
 		<div  onclick="oneItem({{ID}});">
 		
-			<div class="row {{color}} pad1em listTile" 
+			<div class="row {{color}} pad1em listTile cursor-list"  
 			style="border-top:1px solid #ddd" 
 			id="t_{{ID}}">
 		
