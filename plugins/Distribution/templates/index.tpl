@@ -6,7 +6,7 @@
 		}
 
 		.transfers{
-			float:left;
+			overflow: hidden;
 		}
 
 		.drop-wrapper{
