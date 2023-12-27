@@ -20,13 +20,13 @@
 	$q .= " WHERE DriverID = ".$_SESSION['UseDriverID']." AND Active=1 ORDER BY AuthUserRealName ASC";
 	$r = $db->RunQuery($q);	
 	
-	$q2 = "SELECT * FROM v4_SubVehiclesSubDrivers,v4_SubVehicles";
-	$q2 .= " WHERE v4_SubVehiclesSubDrivers.OwnerID = ".$_SESSION['UseDriverID']." AND VehicleID=SubVehicleID";
+	$q2 = "SELECT * FROM v4_SubVehicles";
+	$q2 .= " WHERE OwnerID = ".$_SESSION['UseDriverID'];
 	$r2 = $db->RunQuery($q2);
 	$subvehicles=array();
 	while ($d = $r2->fetch_object()) {
 		$row = array();
-		$row['SubDriverID'] = $d->SubDriverID;
+		$row['SubDriverID'] = $d->AssignSDID;
 		$row['SubVehicleID'] = $d->SubVehicleID;
 		$row['SubVehicleDescription'] = $d->VehicleDescription;
 		$row['SubVehicleCapacity'] = $d->VehicleCapacity;		
