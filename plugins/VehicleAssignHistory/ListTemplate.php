@@ -29,7 +29,7 @@ $smarty->assign('date2',true);
 		</div>
 		
 		<div class="col-md-1">
-			<a href="plugins/VehiclesAssign/VehicleList_<?= $_SESSION['UseDriverID'] ?>.csv"><i class="fa fa-download" aria-hidden="true"></i> Download</a>
+			<a href="plugins/VehicleAssignHistory/VehicleList_<?= $_SESSION['UseDriverID'] ?>.csv"><i class="fa fa-download" aria-hidden="true"></i> Download</a>
 		</div>			
 	</div>
 
