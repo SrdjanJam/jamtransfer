@@ -297,7 +297,7 @@ if (strlen($locationName)>2) $dbWhere .= " AND (PickupName LIKE ('%".$locationNa
 													DropName LIKE ('%".$locationName."%')) ";
 $queryDrivers="SELECT AuthUserID FROM v4_AuthUsers WHERE AuthUserRealName LIKE ('%".$driverName."%') 
 														OR AuthUserID = '".$driverName."'";												
-if (strlen($driverName)>2) $dbWhere .= " AND v4_OrderDetails.DriverID IN (".$queryDrivers.") ";
+if (strlen($driverName)>2) $dbWhere .= " AND (v4_OrderDetails.DriverID IN (".$queryDrivers.") OR v4_OrderDetails.SubDriver IN (".$queryDrivers.") OR v4_OrderDetails.SubDriver2 IN (".$queryDrivers.")) ";
 $queryAgents="SELECT AuthUserID FROM v4_AuthUsers WHERE (AuthUserRealName LIKE ('%".$agentName."%') OR AuthUserID = '".$agentName."')";	
 if ($_REQUEST['Type2']==7) 	$queryAgents.= 	" AND NOT(`Image` is NULL or `Image`=' ') ";
 //else $queryAgents.= " AND (`Image` is NULL or `Image`=' ') ";

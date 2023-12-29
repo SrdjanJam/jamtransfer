@@ -27,20 +27,18 @@
 	while ($d = $r2->fetch_object()) {
 		$row = array();
 		$row['SubDriverID'] = $d->AssignSDID;
-		$row['SubVehicleID'] = $d->SubVehicleID;
+		$row['SubVehicleID'] = $d->VehicleID;
 		$row['SubVehicleDescription'] = $d->VehicleDescription;
 		$row['SubVehicleCapacity'] = $d->VehicleCapacity;		
 		$subvehicles[] = $row;
 	}	
 
-
 	$sdArray = array();
-
 	while ($d = $r->fetch_object()) {
 		$row = array();
 		$row['DriverID'] = $d->AuthUserID;
 		$key = array_search($d->AuthUserID, array_column($subvehicles, 'SubDriverID'));
-		if ($key) {
+		if (is_numeric($key)) {
 			$row['SubVehicleID']=$subvehicles[$key]['SubVehicleID'];
 			$row['SubVehicleDescription']=$subvehicles[$key]['SubVehicleDescription'];
 			$row['SubVehicleID']=$subvehicles[$key]['SubVehicleID'];
@@ -63,7 +61,8 @@
 
 	$order = " ASC";
 	//$where .= " AND SubDriver = 0 ";
-	if (!isset($_REQUEST['Date'])) $_REQUEST['Date']=date('Y-m-d');
+	//if (!isset($_REQUEST['Date'])) $_REQUEST['Date']=date('Y-m-d');
+	if (!isset($_REQUEST['Date'])) $_REQUEST['Date']=date('2024-07-14');
 	
 	$where .= " AND PickupDate = '".$_REQUEST['Date']."' "; 
 	$where .= " AND TransferStatus < '6' AND TransferStatus != '3' AND TransferStatus != '4'
