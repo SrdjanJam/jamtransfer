@@ -16,38 +16,167 @@
 			<?=REQUEST_ID;?>
 		</div>
 
-		<div class="col-md-11">
+		<div class="col-md-2">
 			<?=REQUEST_TITLE;?>
-		</div>	
+		</div>
+
+		<div class="col-md-2">
+			<?=DISPLAY_ORDER;?>
+		</div>
+
+		<div class="col-md-4">
+			<?=ACTIVE;?>
+		</div>
+
+		<div class="col-md-2">
+			<?=TITLE;?>
+		</div>
+
+		<div class="col-md-1">
+			<?=DELETE;?>
+		</div>
 					
 	</div>
 
 	{{#each Item}}
 		<div  onclick="oneItem({{ID}});">
 		
-			<div class="row {{color}} pad1em listTile" 
+			<div class="row {{color}} pad1em listTile cursor-list" 
 			style="border-top:1px solid #ddd" 
 			id="t_{{ID}}">
 		
-					<div class="col-md-1">
-						<strong>{{ID}}</strong>
-					</div>
-
-					<div class="col-md-11">
-						{{Title}}
-					</div>
-
-			</div>
-		</div>
-		<div id="ItemWrapper{{ID}}" class="editFrame" style="display:none">
-			<div id="inlineContent{{ID}}" class="row">
-				<div id="one_Item{{ID}}" >
-					<?= LOADING ?>
+				<div class="col-md-1">
+					<strong>{{ID}}</strong>
 				</div>
+
+				<div class="col-md-2">
+					{{Title}}
+				</div>
+
+				<div class="col-md-2 displayorder">
+					<input type="text" name="DisplayOrder" id="DisplayOrder" class="w100" value="{{DisplayOrder}}" data-id="{{ID}}">
+				</div>
+
+				<!-- RequestType This method is in the Jquery file: -->
+				<div class="col-md-4 surcategory">
+					<span>{{RequestType Active ID}}</span>
+				</div>
+
+				<div class="col-md-2 title">
+					<input type="text" name="Title" id="Title" class="w100" value="{{Title}}" data-id="{{ID}}">
+				</div>
+
+				<div class="col-md-1">
+					<button type="button" class="b-delete" style="color:red;" title="delete" data-id="{{ID}}">
+						<i class="fas fa-trash-alt"></i>
+					</button>
+				</div>
+
 			</div>
 		</div>
 
 	{{/each}}
+
+
+	<script>
+
+		//bootstrap WYSIHTML5 - text editor
+		$(".textarea").wysihtml5({
+				"font-styles": true, //Font styling, e.g. h1, h2, etc. Default true
+				"emphasis": true, //Italics, bold, etc. Default true
+				"lists": true, //(Un)ordered lists, e.g. Bullets, Numbers. Default true
+				"html": true, //Button which allows you to edit the generated HTML. Default false
+				"link": true, //Button to insert a link. Default true
+				"image": true, //Button to insert an image. Default true,
+				"color": true //Button to change color of font 
+				
+		});
+
+		// uklanja ikonu Saved - statusMessage sa ekrana
+		$("form").change(function(){
+			$("#statusMessage").html('');
+		});
+		// surcategory:
+		$('.surcategory input').change(function(){
+			var surcategory=$(this).val();
+			var id=$(this).attr('data-id');
+			var base=window.rootbase;
+			if (window.location.host=='localhost') base=base;		
+			var link = base+'plugins/Request/Save.php';
+			var param = "RequestID="+id+"&Active="+surcategory;
+			console.log(link+'?'+param);
+			$.ajax({
+				type: 'POST',
+				url: link,
+				data: param,
+				success: function(data) {
+        			toastr['success'](window.success);		
+    			}
+			});
+		})
+		// title:
+		$('.title input').change(function(){
+			var title=$(this).val();
+			var id=$(this).attr('data-id');
+			var base=window.rootbase;
+			if (window.location.host=='localhost') base=base;		
+			var link = base+'plugins/Request/Save.php';
+			var param = "RequestID="+id+"&Title="+title;
+			console.log(link+'?'+param);
+			$.ajax({
+				type: 'POST',
+				url: link,
+				data: param,
+				success: function(data) {
+        			toastr['success'](window.success);		
+    			}
+			});
+		})
+		// displayorder:
+		$('.displayorder input').change(function(){
+			var displayorder=$(this).val();
+			var id=$(this).attr('data-id');
+			var base=window.rootbase;
+			if (window.location.host=='localhost') base=base;		
+			var link = base+'plugins/Request/Save.php';
+			var param = "RequestID="+id+"&DisplayOrder="+displayorder;
+			console.log(link+'?'+param);
+			$.ajax({
+				type: 'POST',
+				url: link,
+				data: param,
+				success: function(data) {
+        			toastr['success'](window.success);		
+    			}
+			});
+		})
+		// Delete:
+		$('.b-delete').click(function(){
+			if (confirm("Are you sure to delete this row?")) {
+
+				var base=window.rootbase;
+				if (window.location.host=='localhost') base=base;
+
+				var link = base+'plugins/Request/Delete.php';
+				var param = "id="+ $(this).attr('data-id');
+				console.log(link+'?'+param);
+				
+				$.ajax({
+					type: 'POST',
+					url: link,
+					data: param,
+					success: function(data) {
+						$('#t_ .ID').val(data);
+						toastr['success'](window.delete);
+					}				
+				});
+				// Hide div row:
+				$(this).parent().parent().hide(500);
+			}
+			return false;
+		});
+
+</script>
 
 
 </script>
