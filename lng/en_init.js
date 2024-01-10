@@ -61,6 +61,14 @@ surCategory[2] = 'Vehicle';
 surCategory[3] = 'Route';
 surCategory[4] = 'Service';
 
+// Add to the database:
+// requestType
+var requestType = {};
+requestType[0] = 'Not Active';
+requestType[1] ='Check Box';
+requestType[2] ='Photo';
+requestType[3] ='Video';
+
 // payment Status
 var paymentStatus = {};
 paymentStatus [0] = 	'Not Paid';
