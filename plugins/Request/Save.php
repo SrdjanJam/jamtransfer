@@ -3,7 +3,7 @@ header('Content-Type: text/javascript; charset=UTF-8');
 require_once 'Initial.php';
 
 	
-$keyValue = $_REQUEST['id'];
+$keyValue = $_REQUEST['RequestID'];
 
 // print_r($keyValue);
 
