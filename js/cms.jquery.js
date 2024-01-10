@@ -125,7 +125,7 @@ function paginator(page, recordsTotal, length, callFunction) {
 		}
 
 		selHtml += '</select>';
-		selHtml += '  <button class="btn btn-primary align" onclick="paginatorNextPage();">Next</button>';
+		selHtml += '  <button class="btn btn-primary align" onclick="paginatorNextPage();" style="margin-top:0;">Next</button>';
 		$("#pageSelect").html(selHtml);
 }
 
@@ -718,7 +718,7 @@ Handlebars.registerHelper("SurCategoryRB", function(currentLevel, fieldName, cat
 				(category==3 && i!=2 && i!=4) ||
 				category==4
 			) {
-				SurCategorySelector += '&nbsp;&nbsp;<input type="radio"  name="SurCategory" value="'+i+'"' ;
+				SurCategorySelector += '&nbsp;&nbsp;<input type="radio"  name="SurCategory123" value="'+i+'"' ;
 				if (i == currentLevel) { SurCategorySelector += ' checked="checked" ';}
 				SurCategorySelector += '>';
 				SurCategorySelector += '&nbsp;<label>';
@@ -727,6 +727,30 @@ Handlebars.registerHelper("SurCategoryRB", function(currentLevel, fieldName, cat
 				if (i == category) SurCategorySelector += '</a>';
 				SurCategorySelector += '</label>';
 			}
+
+		});
+		SurCategorySelector += '</form>';
+		return  SurCategorySelector;
+	}
+
+return new Handlebars.SafeString(SurCategoryDropdown());
+
+});
+// ----------------------------------------------------------------------------------------------------------------
+// RequestType:
+												// Active 'Active' '2' 'active' ID
+												//currentLevel, fieldName, category,catName,id - prev
+Handlebars.registerHelper("RequestType", function(currentLevel, id) {
+	function SurCategoryDropdown() {
+		var SurCategorySelector = '<form style="margin:0;">';
+		$.each (requestType, function(i, val) {
+
+			SurCategorySelector += '&nbsp;&nbsp;<input type="radio" data-id="'+id+'" name="Active" value="'+i+'"' ;
+			if (i == currentLevel) { SurCategorySelector += ' checked="checked" ';}
+			SurCategorySelector += '>';
+			SurCategorySelector += '&nbsp;<label>';
+			SurCategorySelector += val;
+			SurCategorySelector += '</label>';
 
 		});
 		SurCategorySelector += '</form>';
@@ -759,7 +783,13 @@ Handlebars.registerHelper("surCategory", function(numeric) {
 	if(numeric == 2) return 'Vehicle';
 	if(numeric == 3) return 'Route';
 	if(numeric == 4) return 'Service';
+});
 
+Handlebars.registerHelper("requestType", function(numeric) {
+	if(numeric == 0) return 'Not Active';
+	if(numeric == 1) return 'Check Box';
+	if(numeric == 2) return 'Photo';
+	if(numeric == 3) return 'Video';
 });
 
 /*
