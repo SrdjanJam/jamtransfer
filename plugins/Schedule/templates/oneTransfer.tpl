@@ -1,7 +1,8 @@
 <style>
 
-.input-edit {
-    width: 80%;
+.sub-card .input-edit {
+    width: 65%;
+	/* width: -webkit-fill-available; */
 }
 
 select{
@@ -9,6 +10,19 @@ select{
 	margin-bottom: 5px;
 }
 
+.row.row-third-edit .col-md-3{
+	width: 45%;
+	margin-top: 5px;
+}
+
+.row.row-third-edit .col-md-3.clock-edit{
+	padding: 0;
+	text-align: center;
+}
+
+.row.fifth .col-md-9-edit{
+	padding-right: 0;
+}
 </style>
 
 
@@ -90,7 +104,7 @@ select{
 				</div>
 			</div>
 
-			<div class="col-md-3">
+			<div class="col-md-3 clock-edit">
 				<i class="fa fa-clock-o"></i>		
 				
 				<input type="text" name="TransferDuration_{$sdArray[pom].Transfers[pom2].DetailsID}" 
@@ -132,8 +146,8 @@ select{
 		</div>
 				
 		<!-- row fifth -->
-		<div class="row" style="line-height:140%">
-			<div class="col-md-10">
+		<div class="row fifth" style="line-height:140%">
+			<div class="col-md-9 col-md-9-edit">
 				<select class="subdriver1" data-id="{$sdArray[pom].Transfers[pom2].DetailsID}"
 				id="SubDriver1_{$sdArray[pom].Transfers[pom2].DetailsID}" name="SubDriver_{$sdArray[pom].Transfers[pom2].DetailsID}" onchange="saveTransfer({$sdArray[pom].Transfers[pom2].DetailsID},0)">
 					<option value='0'> --- </option>
