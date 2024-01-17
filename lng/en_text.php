@@ -1063,3 +1063,6 @@ define("UNASSIGN","Unassign");
 
 //13.12.23
 define("FIELDS_DESCRIPTIONS","Fields Descriptions");
+
+// 11.1.24
+define("SHOW_SCHEDULE","Show Schedule");
