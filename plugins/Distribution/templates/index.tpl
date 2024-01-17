@@ -8,7 +8,8 @@
 		.transfers{
 			overflow: hidden;
 		}
-
+/* ----------------------------------------------- */
+/* Drop - left side: */
 		.drop-wrapper{
             width: 75%;
 			padding:0 0 40px 0;
@@ -27,19 +28,19 @@
             min-height: 8%;
 			border: 1px solid #5e5b5382;
 			border-radius: 10px;
-			width:32%;
+			width:24%;
 			float:left;
 			font-family: Georgia, serif;
 			padding: 5px;
 			margin: 2px;
         }
 
-		.drag-wrapper{
-            float: left;
-            width: 25%;
-			min-height:100vh;
-			background: #b1d3e961;
-			border-radius: 7px;
+		.drop-wrapper .dropzoneN .sort .dropelement{
+			font-size: 14px;
+        }
+
+		.drop-wrapper .dropzoneN .sort .dropelement .top-line{
+			font-size: 20px;
         }
 
 		.dropelement {
@@ -56,13 +57,27 @@
 			font-size: 12px;
 			background: rgb(164, 216, 164);
         }
-		
+/* ----------------------------------------------- */
+/* Drag - right side: */
+		.drag-wrapper{
+            float: left;
+            width: 25%;
+			min-height:100vh;
+			background: #b1d3e961;
+			border-radius: 7px;
+        }
+
+		.drag-wrapper.dropzoneN{
+            font-size:20px;
+        }
+/* ------------------------------------------------- */
+/* draggable-dragging: */
 		.ui-draggable-dragging{
             background: rgb(164, 216, 164);
             z-index: 3;
 			position:relative;
         }
-
+/* ------------------------------------------------- */
 		.marked{
 			font-size: 150%; 
 			color: green;
@@ -109,6 +124,7 @@
 		</div> <!-- End of text-align: center -->
 
 		<div class="transfers">
+<!-- Drop - left side: ========================================================== -->
 			<div class="drop-wrapper ">
 				<h3>{$DRIVERS}:</h3>
 			
@@ -130,7 +146,7 @@
 
 							{section name=pom2 loop=$transfers}
 								{if $drivers[pom1].DriverID eq $transfers[pom2].SubDriver}
-									{* dropelement *}
+									<!--dropelement -->
 									<div data-sort="{$transfers[pom2].PickupTime}" class="dropelement"  data-id="{$transfers[pom2].DetailsID}">
 										<a target="_blank" href="orders/detail/{$transfers[pom2].DetailsID}"
 											title="<b>{$transfers[pom2].OrderID}-{$transfers[pom2].TNo} - {$transfers[pom2].PaxName} </b>" 
@@ -139,7 +155,7 @@
 												<br>{$FLIGHT_TIME}: {$transfers[pom2].FlightTime}
 											" 
 											class="mytooltip">						
-											<div>
+											<div class="top-line">
 												<strong>{$transfers[pom2].PickupTime}</strong>
 												<i class="fa fa-car"></i><span>{$transfers[pom2].VehicleType}</span>							
 												<strong>{$transfers[pom2].OrderID}-{$transfers[pom2].TNo}</strong> 
@@ -150,8 +166,8 @@
 											
 											<div>
 												{if not isset($smarty.request.Date)}{$transfers[pom2].PickupDate}{/if} 
-												<strong>{$transfers[pom2].PickupTime}</strong>
-												<i class="fa fa-car"></i><span>{$transfers[pom2].VehicleType}</span>							
+												{* <strong>{$transfers[pom2].PickupTime}</strong>
+												<i class="fa fa-car"></i><span>{$transfers[pom2].VehicleType}</span>							 *}
 											</div>
 										</a>
 									</div>
@@ -166,7 +182,7 @@
 			
 			</div> {* /.drop-wrapper *}
 
-			<!-- For drop: ========================================================== -->
+<!-- Drag - right side: ========================================================== -->
 			<div class="drag-wrapper dropzoneN" data-id='0' data-svid='0'>
 				<h3>{$ORDERS}:</h3>
 				<div class="sort">
@@ -193,8 +209,8 @@
 
 									<div>
 										{if not isset($smarty.request.Date)}{$transfers[pom1].PickupDate}{/if} 
-										<strong>{$transfers[pom1].PickupTime}</strong>
-										<i class="fa fa-car"></i><span>{$transfers[pom1].VehicleType}</span>							
+										{* <strong>{$transfers[pom1].PickupTime}</strong> *}
+										{* <i class="fa fa-car"></i><span>{$transfers[pom1].VehicleType}</span>							 *}
 									</div>
 								</a>
 							</div>
