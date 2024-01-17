@@ -159,7 +159,7 @@ hr {
 	border-radius: 5px;
 }
 
-.input-edit{
+.filter .input-edit{
 	/* box-shadow: 3px 2px 4px 1px #6a6e76; old */
 	box-shadow: 2px 1px 4px 1px #6a6e76;
 }
@@ -242,7 +242,7 @@ hr {
 					</select>		
 				</div>
 				<div class="col-sm-2">
-					<button type="submit" class="btn btn-primary btn-primary-edit">{$GO}</button>
+					<button type="submit" class="btn btn-primary btn-primary-edit">{$SHOW_SCHEDULE}</button>
 				</div>
 			</form> <!-- /form -->
 
