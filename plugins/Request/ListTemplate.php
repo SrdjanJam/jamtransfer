@@ -20,15 +20,15 @@
 			<?=REQUEST_TITLE;?>
 		</div>
 
-		<div class="col-md-2">
+		<div class="col-md-1" style="font-size: 15px;">
 			<?=DISPLAY_ORDER;?>
 		</div>
 
-		<div class="col-md-4">
+		<div class="col-md-3">
 			<?=ACTIVE;?>
 		</div>
 
-		<div class="col-md-2">
+		<div class="col-md-3">
 			<?=TITLE;?>
 		</div>
 
@@ -53,17 +53,17 @@
 					{{Title}}
 				</div>
 
-				<div class="col-md-2 displayorder">
-					<input type="text" name="DisplayOrder" id="DisplayOrder" class="w100" value="{{DisplayOrder}}" data-id="{{ID}}">
+				<div class="col-md-1 displayorder">
+					<input type="text" name="DisplayOrder" id="DisplayOrder" value="{{DisplayOrder}}" data-id="{{ID}}" style="width: -webkit-fill-available;">
 				</div>
 
 				<!-- RequestType This method is in the Jquery file: -->
-				<div class="col-md-4 surcategory">
+				<div class="col-md-3 surcategory">
 					<span>{{RequestType Active ID}}</span>
 				</div>
 
-				<div class="col-md-2 title">
-					<input type="text" name="Title" id="Title" class="w100" value="{{Title}}" data-id="{{ID}}">
+				<div class="col-md-3 title">
+					<input type="text" name="Title" id="Title" class="w100" value="{{Title}}" data-id="{{ID}}" style="width: -webkit-fill-available;">
 				</div>
 
 				<div class="col-md-1">
