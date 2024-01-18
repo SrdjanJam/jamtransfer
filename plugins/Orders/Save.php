@@ -40,6 +40,7 @@ foreach ($db->fieldNames() as $name) {
 		$content=$db->myreal_escape_string($_REQUEST[$name]);
 		eval("\$old_content=\$db->get".$name."();");	
 		eval("\$db->set".$name."(\$content);");	
+		if ($db->getTransferStatus()==6) $db->setPriceClassID(1);
 		if(gettype($old_content)==gettype($content) && $old_content != $content) {
 			$logDescription .= 'Changed: '. $name . ' <b>from:</b> ' . $old_content . ' <b>to:</b> ' . 
 								$content . '<br>';

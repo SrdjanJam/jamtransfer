@@ -107,6 +107,7 @@
 
 
 		<input type="hidden" name="DetailsID" id="DetailsID" value="{{details.DetailsID}}">
+		<input type="hidden" name="PriceClassID" id="PriceClassID" value="{{details.PriceClassID}}">
 		<!--<input type="hidden" name="AgentID" id="AgentID" value="{{details.AgentID}}">!-->		
 		<input type="hidden" name="DriverName" id="DriverName" value="{{details.DriverName}}">
 		<!--<input type="hidden" name="DriverTel" id="DriverTel" value="{{details.DriverTel}}">!-->
