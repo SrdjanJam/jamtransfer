@@ -92,8 +92,10 @@
 						<div class="col-md-1">						
 							{{FreeDays}} 
 						</div>						
-						<div class="col-md-1">						
+						<div class="col-md-1">	
+							{{#compare CashDiff "!=" "0"}}	
 							<span><a target='_blank' href='schedule/{{Date1}}/{{Date2}}/{{AuthUserID}}'><?=SCHEDULE;?></a></span>
+							{{/compare}}
 						</div>						
 					</div>
 

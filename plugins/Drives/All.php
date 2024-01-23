@@ -135,6 +135,7 @@ if (count($dbk) != 0) {
 		$detailFlds["Value"]=number_format($sd_price[$key],2);
 		$detailFlds["PayLater"]=number_format($sd_payLater[$key],2);
 		$detailFlds["CashIn"]=number_format($sd_cashIn[$key],2);
+		$detailFlds["CashDiff"]=$sd_payLater[$key]-$sd_cashIn[$key];
 		if (empty($_REQUEST['orderFromDate']) ) $_REQUEST['orderFromDate']=$min;
 		if (empty($_REQUEST['orderToDate'])) $_REQUEST['orderToDate']=date('Y-m-d');
 		$workingDaysAll=((strtotime($_REQUEST['orderToDate'])-strtotime($_REQUEST['orderFromDate']))/(3600*24))+1;
