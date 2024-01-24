@@ -60,6 +60,15 @@ foreach ($db->fieldNames() as $name) {
 						$logAction = 'Cancel';
 						$logTitle = 'Order cancelled by ' . $_SESSION['UserRealName'];
 						$showToCustomer = 1;
+						if ($old_content==1) {
+							// slanje mail-ova
+							$msg = TRANSFER . ' '. $db->getOrderID().'-'.$db->getTNo() .' '.CANCELLED;
+							$msg .= '<br><br>';
+							$msgEN = 'Transfer ' . $db->getOrderID() . '-' . $db->getTNo() . ' Cancelled<br><br>';
+							informCustomer($db->getOrderID(), $db->getTNo(), $msg);
+							informDriver($db->getOrderID(), $db->getTNo(), $msgEN);
+						}
+
 						break;					
 					case 5:
 						$icon = 'fa fa-cloud-upload bg-blue';
