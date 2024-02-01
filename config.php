@@ -125,9 +125,9 @@ $smarty->assign('language',$_SESSION['CMSLang']);
 // END OF LANGUAGES	
 
 // pdv
-$filename = ROOT . '/plugins/vatRate/vatRate.inc';	
+/*$filename = ROOT . '/plugins/vatRate/vatRate.inc';	
 $vat = file_get_contents($filename, FILE_USE_INCLUDE_PATH);
-$_SESSION['vat'] = $vat;
+$_SESSION['vat'] = $vat;*/
 
 // COMPANY DATA FROM DATABASE
 if (!is('co_name')) {
@@ -176,7 +176,7 @@ $vehicletypes=$_SESSION['vehicletypes'];*/
 			`AcceptedPayment`,	
 			`IBAN`,	
 			`Active` 
-			FROM `v4_AuthUsers` WHERE Active=1" ;
+			FROM `v4_AuthUsers` WHERE Active>0" ;
 		$rU = $db->RunQuery($qU);
 		while ($u = $rU->fetch_object()) {
 			$users[$u->AuthUserID]=$u;

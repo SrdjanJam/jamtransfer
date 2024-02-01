@@ -129,7 +129,7 @@
 				<h3>{$DRIVERS}:</h3>
 			
 				{section name=pom1 loop=$drivers}
-					<div class="dropzoneN" data-svid="{$drivers[pom1].SubVehicleID}" data-id="{$drivers[pom1].DriverID}">
+					<div class="dropzoneN dropDrivers" data-svid="{$drivers[pom1].SubVehicleID}" data-id="{$drivers[pom1].DriverID}">
 						
 						<div>{$drivers[pom1].DriverName}</div> 
 
@@ -224,7 +224,23 @@
 		
 		<script>
 		{literal}
-			
+			$("document").ready(function(){
+				hideDrivers();	
+			})
+			// hide drivers if is not available transfers on the right
+			function hideDrivers() {
+				if ($(".drag-wrapper").children(".sort").children().length == 0) {
+					$(".dropDrivers").each(function() {
+						if ($(this).children(".sort").children().length == 0) {
+							$(this).hide();
+						}
+
+					})
+				}	else {
+					$(".dropDrivers").show();
+				}	
+				
+			}
 			// elementdragg method
 			function elementdragg() {
 
@@ -241,7 +257,6 @@
 					}
 					
 				});
-
 			} // End of elementdragg method
 
 			// popUp method:
@@ -291,14 +306,14 @@
 
 					elementdragg();	
 					popUp();
-
+					hideDrivers();
 				}
 
 			}); // End of droppable method
 
 
 			$(".driver_hide").click(function(){
-				$(this).parent().hide(300);
+				$(this).parent().parent().hide(300);
 			});
 
 

@@ -17,7 +17,7 @@
 	$ol = new v4_OrderLog();
 	
 	$q = "SELECT * FROM v4_AuthUsers";
-	$q .= " WHERE DriverID = ".$_SESSION['UseDriverID']." AND Active=1 ORDER BY AuthUserRealName ASC";
+	$q .= " WHERE DriverID = ".$_SESSION['UseDriverID']." AND Active>0 ORDER BY AuthUserRealName ASC";
 	$r = $db->RunQuery($q);	
 	
 	$q2 = "SELECT * FROM v4_SubVehicles";
@@ -61,8 +61,7 @@
 
 	$order = " ASC";
 	//$where .= " AND SubDriver = 0 ";
-	//if (!isset($_REQUEST['Date'])) $_REQUEST['Date']=date('Y-m-d');
-	if (!isset($_REQUEST['Date'])) $_REQUEST['Date']=date('2024-07-14');
+	if (!isset($_REQUEST['Date'])) $_REQUEST['Date']=date('Y-m-d');
 	
 	$where .= " AND PickupDate = '".$_REQUEST['Date']."' "; 
 	$where .= " AND TransferStatus < '6' AND TransferStatus != '3' AND TransferStatus != '4'
