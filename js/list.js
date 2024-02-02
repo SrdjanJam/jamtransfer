@@ -68,7 +68,11 @@
 		if ($("#paymentChecker").is(':checked')) var paymentChecker=1;
 		else var paymentChecker=0;		
 		if ($("#flightTimeChecker").is(':checked')) var flightTimeChecker=1;
-		else var flightTimeChecker=0;
+		else var flightTimeChecker=0;		
+		if ($("#longTerm").is(':checked')) var longTerm=1;
+		else var longTerm=0;
+		if ($("#preOrder").is(':checked')) var preOrder=1;
+		else var preOrder=0;
 		var reportBy = $("#reportBy").val();
 		if (typeof reportBy=='undefined') reportBy='UserID';			
 		var action = $("#action").val();
@@ -124,6 +128,8 @@
 		'&listExtras='+listExtras+
 		'&paymentChecker='+paymentChecker+
 		'&flightTimeChecker='+flightTimeChecker+
+		'&longTerm='+longTerm+
+		'&preOrder='+preOrder+
 		'&routeID='+routeID+
 		'&vehicleTypeID='+vehicleTypeID+
 		'&vehicleID='+vehicleID+
@@ -133,10 +139,10 @@
 		'&action='+action+		
 		'&lid='+lid+
 		'&lac='+lac+
-		'&callback=?';
+		'&callback=?'; 
 		console.log(url+'?'+data);
 		$.ajax({
-		 type: 'GET',
+		 type: 'GET', 
 		  url: url+'?'+data,
 		  //url: url,
 		  //data: data,			

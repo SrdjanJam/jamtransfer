@@ -205,6 +205,8 @@ $sortDirection 	= $_REQUEST['sortDirection'];
 $listExtras 	= $_REQUEST['listExtras'];
 $paymentChecker = $_REQUEST['paymentChecker'];
 $flightTimeChecker = $_REQUEST['flightTimeChecker'];
+$longTerm = $_REQUEST['longTerm'];
+$preOrder = $_REQUEST['preOrder'];
 
 $start = ((int)$page * (int)$length) - (int)$length;
 // var_dump($start);
@@ -309,6 +311,8 @@ if (strlen($passengerData)>2) $dbWhere .= " AND (MPaxFirstName LIKE ('%".$passen
 													MPaxTel LIKE ('%".$passengerData."%') OR
 													MPaxEmail LIKE ('%".$passengerData."%') OR
 													FlightNo LIKE ('%".$passengerData."%')) ";
+if ($longTerm==1) 	$dbWhere .= " AND PriceClassID=2 ";											
+if ($preOrder==1) 	$dbWhere .= " AND PriceClassID=1 ";											
 // pravljenje filtera
 // year of OrderDate
 $query='SELECT YEAR(`OrderDate`) as yearOrder FROM `v4_OrderDetails`,`v4_OrdersMaster` '.$dbWhere.' AND MOrderID=OrderID group by YEAR(`OrderDate`) order by yearOrder DESC';

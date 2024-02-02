@@ -67,6 +67,7 @@ value=" WHERE {$ItemID} > 0">
 
 <input type="hidden"  id="orderid" name="orderid" value="{$orderid}">
 <input type="hidden"  id="detailid" name="detailid" value="{$detailid}">
+<input type="hidden"  id="lid" name="lid" value="0">
 <input type="hidden"  id="transfersFilter" name="transfersFilter" value="{$transfersFilter}">
 <input type="hidden"  id="Search">
 
@@ -155,13 +156,14 @@ value=" WHERE {$ItemID} > 0">
 		<div class="col-md-2 col-md-2-edit">
 			<small class="badge blue text-black badge-edit">{$PARTNER}</small><br>
 			<input id='driverName' class="input-one" name='driverName'  placeholder="{$NAME_ID}" onchange="allItems();"/><br>
-			
-				<select id="DriverConfStatusChoose" class="w75 form-control select-top-edit" onchange="allItems();">		
-					<option value="-1">{$ALL} {$STATUS}</option>
-					{section name=pom loop=$options4}
-						<option value="{$options4[pom].id}">{$options4[pom].name}</option>
-					{/section}
-				</select>
+			<select id="DriverConfStatusChoose" class="w75 form-control select-top-edit" onchange="allItems();">		
+				<option value="-1">{$ALL} {$STATUS}</option>
+				{section name=pom loop=$options4}
+					<option value="{$options4[pom].id}">{$options4[pom].name}</option>
+				{/section}
+			</select>
+			<input type="checkbox" id="longTerm" name="longTerm"  value="" onchange="allItems();" />Long term	
+			<input type="checkbox" id="preOrder" name="preOrder"  value="" onchange="allItems();" />Pre Order	
 		</div>
 
 		<!-- Passenger: -->
