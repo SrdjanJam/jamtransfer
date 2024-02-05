@@ -1679,7 +1679,7 @@ Prikaz VehicleType kao dropdown
 Handlebars.registerHelper("vehicleTypeSelect", function(id,fieldName) {
 	function vehicleTypeSelectDropdown() {
 		var url = 'api/getVehicleType.php?callback=';
-		var selector = "<select class=\"w100\" name=\""+fieldName+"\" id=\""+fieldName+"\" >";
+		var selector = "<select class=\"w100 form-control\" name=\""+fieldName+"\" id=\""+fieldName+"\" >";
 		selector += '<option value="0"> --- </option>';
 
 		$.ajax({
