@@ -23,7 +23,7 @@
 						<label for="VehicleCapacity"><?=VEHICLETYPEID;?></label>
 					</div>
 					<div class="col-md-9">
-						<input type="text" name="VehicleTypeID" id="VehicleTypeID" class="w100 form-control" value="">
+						{{ vehicleTypeSelect VehicleTypeID 'VehicleTypeID'}}	
 					</div>
 				</div>				
 				<div class="row">
