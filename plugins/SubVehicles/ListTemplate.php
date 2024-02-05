@@ -12,11 +12,11 @@
 				<?=VEHICLEID;?>
 			</div>
 
-			<div class="col-md-3">
+			<div class="col-md-2">
 				<?=VEHICLEDESCRIPTION;?>
 			</div>	
 
-			<div class="col-md-1">
+			<div class="col-md-2">
 				<?=VEHICLETYPEID;?>
 			</div>			
 			
@@ -69,13 +69,14 @@
 					</div>
 
 					<!-- VEHICLEDESCRIPTION -->
-					<div class="col-md-3">
+					<div class="col-md-2">
 						<input type="text" name="VehicleDescription" id="VehicleDescription" class="w100 form-control" value="{{VehicleDescription}}">
 					</div>
 
 					<!-- VEHICLETYPEID -->
-					<div class="col-md-1">
-						<input type="text" name="VehicleTypeID" id="VehicleTypeID" class="w100 form-control" value="{{VehicleTypeID}}">
+					<div class="col-md-2">
+						<!-- <input type="text" name="VehicleTypeID" id="VehicleTypeID" class="w100 form-control" value="{{VehicleTypeID}}"> -->
+						{{ vehicleTypeSelect VehicleTypeID 'VehicleTypeID'}}	
 					</div>					
 					
 					<!-- VEHICLECAPACITY -->
@@ -123,11 +124,12 @@
 	{{/each}}
 
 	<script>
-		$('input').change(function(){
+		$('input, select').change(function(){
 			var base=window.rootbase;
-			if (window.location.host=='localhost') base=base+'/jamtransfer';
+			// Doesn't work:
+			//if (window.location.host=='localhost') base=base+'/jamtransfer';
 
-			var link = base+'/plugins/SubVehicles/Save.php';
+			var link = base+'plugins/SubVehicles/Save.php';
 
 			var param = $(this).parent().parent().parent().serialize();
 
@@ -152,7 +154,8 @@
 				if (confirm("Are you sure to delete this row?")) {
 
 					var base=window.rootbase;
-					if (window.location.host=='localhost') base=base+'/jamtransfer';
+					// Doesn't work:
+					// if (window.location.host=='localhost') base=base+'/jamtransfer';
 
 					var link = base+'/plugins/SubVehicles/Delete.php';
 					var param = "id="+ $(this).attr('data-id');
