@@ -79,6 +79,8 @@ if (count($dbk) != 0) {
 		// ako treba neki lookup, onda to ovdje
 		# get all fields and values
 		$detailFlds = $db->fieldValues();
+		$vt->getRow($detailFlds["VehicleTypeID"]);
+		$detailFlds["VehicleTypeName"] = $vt->getVehicleTypeName();
 		// ako postoji neko custom polje, onda to ovdje.
 		// npr. $detailFlds["AuthLevelName"] = $nekaDrugaDB->getAuthLevelName().' nesto';
 		$out[] = $detailFlds;    	
