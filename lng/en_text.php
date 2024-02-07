@@ -1066,3 +1066,10 @@ define("FIELDS_DESCRIPTIONS","Fields Descriptions");
 
 // 11.1.24
 define("SHOW_SCHEDULE","Show Schedule");
+
+// 6.2.24
+define("MONRI_ID","MonriID");
+define("AVANS","Avans");
+define("EU","EU");
+define("BUYER","Buyer");
+define("FISCALBILL","Fiscal Bill");

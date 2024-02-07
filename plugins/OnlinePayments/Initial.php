@@ -11,7 +11,5 @@ $ItemName='ID ';
 #********************************
 $aColumns = array(
 	'ID',
-	'OrderID',
-	'OrderNumber'
-	// dodaj ostala polja!
+	'OrderID' // dodaj ostala polja!
 );
