@@ -24,6 +24,12 @@
 	if(count($opKeys) == 1 ) {
 		$op->getRow( $opKeys[0] ); 
 		$op->setDateTime3(date ('Y-m-d H:i:s'));
+		$op->setMonriID($data->id);
+		$op->setBuyer($data->ch_full_name);
+		$op->setCountry($data->ch_country);
+		$op->setCard($data->cc_type);
+		$op->setAmount(($data->amount)/100);
+		$op->setCurrency($data->currency);
 	}	
 	$op->saveRow();
 	

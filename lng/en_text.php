@@ -1044,9 +1044,9 @@ define("GATEWAY","Gateway");
 define("ORDER_ID","Order ID");
 define("CUSTOMER_IP","Customer IP");
 define("ORDER_NUMBER","Order Number");
-define("DATETIME_1","Datetime 1");
-define("DATETIME_2","Datetime 2");
-define("DATETIME_3","Datetime 3");
+define("DATETIME_1","RequestTime");
+define("DATETIME_2","BackTime");
+define("DATETIME_3","CallBackTime");
 define("CREATED","Created");
 
 // 28.8.23============================================================
