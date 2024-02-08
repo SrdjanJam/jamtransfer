@@ -184,7 +184,6 @@ public function saveAsNew(){
 		'".$this->myreal_escape_string($this->Currency)."',
 		'".$this->myreal_escape_string($this->Avans)."',
 		'".$this->myreal_escape_string($this->EU)."',
-		'".$this->myreal_escape_string($this->PickupDate)."',
 		'".$this->myreal_escape_string($this->FiscalBill)."',
 		'".$this->myreal_escape_string($this->TNo)."',
 		'".$this->myreal_escape_string($this->DetailsID)."',
