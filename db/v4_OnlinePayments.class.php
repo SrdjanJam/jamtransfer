@@ -24,15 +24,18 @@ Class v4_OnlinePayments {
 	public $Currency; //varchar(3)
 	public $Avans; //tinyint(1)
 	public $EU; //tinyint(1)
-	public $PickupDate; //date
 	public $FiscalBill; //varchar(20)
+	public $TNo; //tinyint(1)
+	public $DetailsID; //int(11)
+	public $DriverID; //int(11)
+	public $DriverPrice; //int(10,2)
 
 
 	public $connection;
 
 	function __construct(){
 		$this->connection = new DataBaseMysql();
-	}	
+	}
 	
 	public function myreal_escape_string($string){
 		return $this->connection->real_escape_string($string);
@@ -42,7 +45,7 @@ Class v4_OnlinePayments {
      * New object to the class. Don´t forget to save this new object "as new" by using the function $class->saveAsNew(); 
      *
      */
-	public function New_v4_OnlinePayments($ID,$gateway,$OrderID,$CustomerIP,$OrderNumber,$type,$datetime1,$datetime2,$datetime3,$created_at,$updated_at,$MonriID,$Buyer,$Country,$Card,$Amount,$Currency,$Avans,$EU,$PickupDate,$FiscalBill){
+	public function New_v4_OnlinePayments($ID,$gateway,$OrderID,$CustomerIP,$OrderNumber,$type,$datetime1,$datetime2,$datetime3,$created_at,$updated_at,$MonriID,$Buyer,$Country,$Card,$Amount,$Currency,$Avans,$EU,$FiscalBill,$TNo,$DetailsID,$DriverID,$DriverPrice){
 		$this->ID = $ID;
 		$this->gateway = $gateway;
 		$this->OrderID = $OrderID;		
@@ -62,8 +65,11 @@ Class v4_OnlinePayments {
 		$this->Currency = $Currency;
 		$this->Avans = $Avans;
 		$this->EU = $EU;
-		$this->PickupDate = $PickupDate;
 		$this->FiscalBill = $FiscalBill;
+		$this->TNo = $TNo;
+		$this->DetailsID = $DetailsID;
+		$this->DriverID = $DriverID;
+		$this->DriverPrice = $DriverPrice;
 	}
 
     /**
@@ -95,8 +101,11 @@ Class v4_OnlinePayments {
 			$this->Currency = $row["Currency"];
 			$this->Avans = $row["Avans"];
 			$this->EU = $row["EU"];
-			$this->PickupDate = $row["PickupDate"];
 			$this->FiscalBill = $row["FiscalBill"];
+			$this->TNo = $row["TNo"];
+			$this->DetailsID = $row["DetailsID"];
+			$this->DriverID = $row["DriverID"];
+			$this->DriverPrice = $row["DriverPrice"];
 		}
 	}
 
@@ -146,14 +155,17 @@ Amount = '".$this->myreal_escape_string($this->Amount)."',
 Currency = '".$this->myreal_escape_string($this->Currency)."',
 Avans = '".$this->myreal_escape_string($this->Avans)."',
 EU = '".$this->myreal_escape_string($this->EU)."',
-PickupDate = '".$this->myreal_escape_string($this->PickupDate)."',
-FiscalBill = '".$this->myreal_escape_string($this->FiscalBill)."' WHERE ID = '".$this->ID."'");
+FiscalBill = '".$this->myreal_escape_string($this->FiscalBill)."',
+TNo = '".$this->myreal_escape_string($this->TNo)."',
+DetailsID = '".$this->myreal_escape_string($this->DetailsID)."',
+DriverID = '".$this->myreal_escape_string($this->DriverID)."',
+DriverPrice = '".$this->myreal_escape_string($this->DriverPrice)."' WHERE ID = '".$this->ID."'");
 	return $result; 
 }
 
 
 public function saveAsNew(){
-	$this->connection->RunQuery("INSERT INTO v4_OnlinePayments (gateway, OrderID, CustomerIP, OrderNumber, type, datetime1, datetime2, datetime3, created_at, updated_at,MonriID, Buyer, Country, Card, Amount, Currency, Avans, EU, PickupDate, FiscalBill) values (
+	$this->connection->RunQuery("INSERT INTO v4_OnlinePayments (gateway, OrderID, CustomerIP, OrderNumber, type, datetime1, datetime2, datetime3, created_at, updated_at,MonriID, Buyer, Country, Card, Amount, Currency, Avans, EU, FiscalBill, TNo, DetailsID, DriverID, DriverPrice) values (
 		'".$this->myreal_escape_string($this->gateway)."', 
 		'".$this->myreal_escape_string($this->OrderID)."', 
 		'".$this->myreal_escape_string($this->CustomerIP)."', 
@@ -173,7 +185,12 @@ public function saveAsNew(){
 		'".$this->myreal_escape_string($this->Avans)."',
 		'".$this->myreal_escape_string($this->EU)."',
 		'".$this->myreal_escape_string($this->PickupDate)."',
-		'".$this->myreal_escape_string($this->FiscalBill)."')");
+		'".$this->myreal_escape_string($this->FiscalBill)."',
+		'".$this->myreal_escape_string($this->TNo)."',
+		'".$this->myreal_escape_string($this->DetailsID)."',
+		'".$this->myreal_escape_string($this->DriverID)."',
+		'".$this->myreal_escape_string($this->DriverPrice)."'
+		)");
 	return $this->connection->insert_id(); //return insert_id
 }
 
@@ -313,17 +330,38 @@ public function saveAsNew(){
 	}
 
 	/**
-	 * @return PickupDate - //date
-	 */
-	public function getPickupDate(){
-		return $this->PickupDate;
-	}
-
-	/**
 	 * @return FiscalBill - //varchar(20)
 	 */
 	public function getFiscalBill(){
 		return $this->FiscalBill;
+	}
+
+	/**
+	 * @return TNo - //tinyint(1)
+	 */
+	public function getTNo(){
+		return $this->TNo;
+	}
+
+	/**
+	 * @return DetailsID - //int (11)
+	 */
+	public function getDetailsID(){
+		return $this->DetailsID;
+	}
+
+	/**
+	 * @return DriverID - //int (11)
+	 */
+	public function getDriverID(){
+		return $this->DriverID;
+	}
+
+	/**
+	 * @return DriverPrice - //int (10,2)
+	 */
+	public function getDriverPrice(){
+		return $this->DriverPrice;
 	}
 
 
@@ -466,17 +504,38 @@ public function saveAsNew(){
 	}
 
 	/**
-	 * @param Type: //date
-	 */
-	public function setPickupDate($PickupDate){
-		$this->PickupDate = $PickupDate;
-	}
-
-	/**
 	 * @param Type: //varchar(20)
 	 */
 	public function setFiscalBill($FiscalBill){
 		$this->FiscalBill = $FiscalBill;
+	}
+	
+	/**
+	 * @param Type: //tinyint(1)
+	 */
+	public function setTNo($TNo){
+		$this->TNo = $TNo;
+	}
+
+	/**
+	 * @param Type: //int(11)
+	 */
+	public function setDetailsID($DetailsID){
+		$this->DetailsID = $DetailsID;
+	}
+
+	/**
+	 * @param Type: //int(11)
+	 */
+	public function setDriverID($DriverID){
+		$this->DriverID = $DriverID;
+	}
+
+	/**
+	 * @param Type: //int(10,2)
+	 */
+	public function setDriverPrice($DriverPrice){
+		$this->DriverPrice = $DriverPrice;
 	}
 	
 	// ===========================================================================================
@@ -509,8 +568,11 @@ public function saveAsNew(){
 			'Currency' => $this->getCurrency(),		
 			'Avans' => $this->getAvans(),	
 			'EU' => $this->getEU(),
-			'PickupDate' => $this->getPickupDate(),
-			'FiscalBill' => $this->getFiscalBill()
+			'FiscalBill' => $this->getFiscalBill(),
+			'TNo' => $this->getTNo(),
+			'DetailsID' => $this->getDetailsID(),
+			'DriverID' => $this->getDriverID(),
+			'DriverPrice' => $this->getDriverPrice()
 		);
 		return $fieldValues;
 	}
@@ -542,8 +604,11 @@ public function saveAsNew(){
 			'Currency',
 			'Avans',
 			'EU',
-			'PickupDate',
-			'FiscalBill'
+			'FiscalBill',
+			'TNo',
+			'DetailsID',
+			'DriverID',
+			'DriverPrice'
 
 		);
 		return $fieldNames;
