@@ -9,7 +9,7 @@ $om = new v4_OrdersMaster();
 $od = new v4_OrderDetails();
 $pl = new v4_Places();
 $keyName = 'ID';
-$ItemName='ID ';
+$ItemName='OrderID ';
 $selectapproved='Status';
 #********************************
 # kolone za koje je moguc Search 

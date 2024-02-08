@@ -75,7 +75,10 @@ if (count($dbkA) != 0) {
 				$pickupM=(explode("-",$od->getPickupDate()))[1];
 				if ($orderM==$pickupM) $db->setAvans(2);
 				else $db->setAvans(1);
-				$db->setPickupDate($od->getPickupDate());
+				$db->setDetailsID($od->getDetailsID());
+				$db->setDriverID($od->getDriverID());
+				if (count($odk)==2) $db->setDriverPrice($od->getDriversPrice()*2);
+				else $db->setDriverPrice($od->getDriversPrice());
 				$db->setOrderID($OrderID);
 				$db->setEU(isEU($od->getPickupID(),$od->getDropID(),$pl));
 				$db->saveRow();	
@@ -84,7 +87,9 @@ if (count($dbkA) != 0) {
 					$orderM=(explode("-",$od->getOrderDate()))[1];
 					$pickupM=(explode("-",$od->getPickupDate()))[1];	
 					if ($orderM<>$pickupM && $db->getAvans()==2)	{
+						$db->setTNo(1);				
 						$db->setAmount($db->getAmount()/2);
+						$db->setDriverPrice($db->getDriverPrice()/2);
 						$db->saveRow(); 							
 						foreach ($db->fieldValues() as $key=>$fv) {
 							eval("\$db->set".$key."(\$fv);");		
@@ -93,8 +98,10 @@ if (count($dbkA) != 0) {
 						$dbN = new v4_OnlinePayments();					
 						$dbN->getRow($k);
 						$dbN->setAvans(1);
-						$dbN->setPickupDate($od->getPickupDate());
-						$dbN->setOrderID($OrderID);
+						$dbN->setDetailsID($od->getDetailsID());
+						$dbN->setDriverID($od->getDriverID());
+						$dbN->setDriverPrice($od->getDriversPrice());
+						$dbN->setTNo(2);	
 						$dbN->saveRow(); 
 					}	
 				}
@@ -110,10 +117,17 @@ if (count($dbk) != 0) {
 		// ako treba neki lookup, onda to ovdje
 		# get all fields and values
 		$detailFlds = $db->fieldValues();
+		$od->getRow($db->getDetailsID());
 		if ($detailFlds["Avans"]==1) $detailFlds["Avans"]="Avans";
 		else $detailFlds["Avans"]="";		
 		if ($detailFlds["EU"]==1) $detailFlds["EU"]="EU";
 		else $detailFlds["EU"]="";
+		$detailFlds["PaymentMethod"]=$od->getPaymentMethod();
+		$detailFlds["TransferStatus"]=$od->getTransferStatus();
+		$detailFlds["DriverConfStatus"]=$od->getDriverConfStatus();
+		$detailFlds["DriversName1"]=$users[$db->getDriverID()]->AuthUserRealName;
+		$detailFlds["DriversName2"]=$users[$od->getDriverID()]->AuthUserRealName;
+		$detailFlds["DriversPrice2"]=$od->getDriversPrice();
 		// ako postoji neko custom polje, onda to ovdje.
 		// npr. $detailFlds["AuthLevelName"] = $nekaDrugaDB->getAuthLevelName().' nesto';
 		$out[] = $detailFlds;    	

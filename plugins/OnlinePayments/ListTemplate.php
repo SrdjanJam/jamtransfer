@@ -11,7 +11,7 @@
 			<?=ID;?>
 		</div>
 
-		<div class="col-md-2">
+		<div class="col-md-1">
 			<?=ORDER_NUMBER;?>
 		</div>
 		
@@ -32,11 +32,11 @@
 		</div>	
 		
 		<div class="col-md-1">
-			<?=PICKUP_DATE;?>
+			<?=DRIVERS;?>
 		</div>
 
 		<div class="col-md-1">
-			<?=COUNTRY;?>
+			<?=DRIVERS_PRICE;?>
 		</div>
 
 		<div class="col-md-1">
@@ -45,6 +45,10 @@
 
 		<div class="col-md-1">
 			<?=DATETIME_3;?>
+		</div>		
+		
+		<div class="col-md-1">
+			<?=STATUS;?>
 		</div>
 		
 		<div class="col-md-1">
@@ -73,12 +77,22 @@
 				<div class="row">
 					<div class="col-md-12">
 						<div class="col-md-1">
-							<a target="_blank" href="/orders/order/{{OrderID}}">{{OrderID}}</a><br>
+							<a target="_blank" href="
+								{{#compare TNo "==" "0"}}
+									/orders/order/{{OrderID}}
+								{{else}}
+									/orders/detail/{{DetailsID}}
+								{{/compare}}
+							">
+								{{OrderID}}{{#compare TNo "!==" "0"}}-{{TNo}}{{/compare}}
+							</a><br>
 							<a target="_blank" href="https://ipg.monri.com/transactions/{{MonriID}}">{{MonriID}}</a>
 						</div>
 
-						<div class="col-md-2">
-							{{OrderNumber}}
+						<div class="col-md-1">
+							<small>{{OrderNumber}}<br>
+							{{paymentMethodText PaymentMethod}}</small>
+							
 						</div>
 						
 						<div class="col-md-1">
@@ -98,11 +112,15 @@
 						</div>
 						
 						<div class="col-md-1">
-							{{PickupDate}}
+							<small>{{DriversName1}}
+							{{#compare DriversName1 "!==" DriversName2}}
+								<br>{{DriversName2}}
+							{{/compare}}
+							</small>
 						</div>
 
 						<div class="col-md-1">
-							<strong>{{Country}}</strong>
+							{{DriverPrice}}
 						</div>
 
 						<div class="col-md-1">
@@ -111,6 +129,13 @@
 
 						<div class="col-md-1">
 							{{datetime3}}
+						</div>						
+						
+						<div class="col-md-1">
+							<small>
+								{{displayTransferStatusText TransferStatus}}
+								<br>{{driverConfText DriverConfStatus}}
+							</small>
 						</div>
 
 						<div class="col-md-1">
