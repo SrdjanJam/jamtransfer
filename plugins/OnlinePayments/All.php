@@ -34,6 +34,8 @@ $flds = array();
 # kombinacija where i filtera
 $DB_Where = " " . $_REQUEST['where']." AND datetime3<>''";
 $DB_Where .= $filter;
+if (isset($_REQUEST['orderFromDate']) && $_REQUEST['orderFromDate']>0) $DB_Where .= " AND datetime1>='".$_REQUEST['orderFromDate']."'";
+if (isset($_REQUEST['orderToDate']) && $_REQUEST['orderToDate']>0) $DB_Where .= " AND datetime1<='".$_REQUEST['orderToDate']."'";
 if (in_array($_SESSION['BrandName'],array('EN','FR','RU','DE'))) $DB_Where .= " AND `Language` = '".strtolower($_SESSION['BrandName'])."'";
 
 # dodavanje search parametra u qry
