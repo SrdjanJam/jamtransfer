@@ -1,5 +1,7 @@
 <?
 	$smarty->assign('selectsolved',true);
+	$smarty->assign('date1',true);
+	$smarty->assign('date2',true);
 ?>
 
 <script type="text/x-handlebars-template" id="ItemListTemplate">
@@ -159,7 +161,7 @@
 
 	<script>
 
-		$('input').change(function(){
+		$('#FiscalBill').change(function(){
 			var base=window.rootbase;
 			// Doesn't work:
 			//if (window.location.host=='localhost') base=base+'/jamtransfer';
