@@ -573,10 +573,10 @@ button.searchdrivers, button.conversion-rate{
     .offduty-edit .timepicker{
     min-width:100% !important;
     }
-
-    .tasks-edit input{
+    /* Spare: */
+    /* .tasks-edit input{
     width:100% !important;
-    }
+    } */
     .tasks-edit .timepicker{
     min-width:100% !important;
     }
