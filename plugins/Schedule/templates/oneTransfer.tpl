@@ -1,28 +1,17 @@
 <style>
 
-.sub-card .input-edit {
-    width: 65%;
-	/* width: -webkit-fill-available; */
+.col-md-9 select{
+	width: 100%;
 }
 
-select{
-	width:100%;
-	margin-bottom: 5px;
+.col-md-3-edit, 
+.col-md-3-edit-add,
+.col-md-3-edit-add input,
+.col-md-5-edit{
+	padding-left: 0px;
+    padding-right: 0px;
 }
 
-.row.row-third-edit .col-md-3{
-	width: 45%;
-	margin-top: 5px;
-}
-
-.row.row-third-edit .col-md-3.clock-edit{
-	padding: 0;
-	text-align: center;
-}
-
-.row.fifth .col-md-9-edit{
-	padding-right: 0;
-}
 </style>
 
 
@@ -39,6 +28,8 @@ select{
 		</div>
 	</div>	
 {/if}
+
+<!-- Sub card: -->
 <div class="sub-card">
 	<div class="bgColor" style="background:{$sdArray[pom].Transfers[pom2].bgColor};padding:10px;">
 		{if $sdArray[pom].Transfers[pom2].TransferIn}
@@ -48,7 +39,7 @@ select{
 			<small><iframe src="https://maps.google.com/maps?q={$sdArray[pom].Lat},{$sdArray[pom].Lng} &z=8&output=embed"  frameborder="0" style="border:0"></iframe></small>
 		{/if}
 
-		<!-- row first -->
+<!-- row first -->
 		<div class="row"> <!-- TRANSFER -->
 			<span>
 				{if $sdArray[pom].Transfers[pom2].UserLevelID eq '2'}
@@ -74,24 +65,24 @@ select{
 			</strong>	
 		</div>
 
-		<!-- row second -->
+<!-- row second -->
 		<div class="row">
 			<h4>{$sdArray[pom].Transfers[pom2].PickupDate} {$sdArray[pom].Transfers[pom2].PickupName} - {$sdArray[pom].Transfers[pom2].DropName}</h4>
 		</div>
 
-		<!-- row third -->
-		<div class="row row-third-edit">
+<!-- row third -->
+		<div class="row">
 
-			<div class="col-md-3">
+			<div class="col-md-3 col-md-3-edit">
 				<input type="text" class="timepicker w100 form-control {$sdArray[pom].Transfers[pom2].color} timepicker-edit" id="SubPickupTime_{$sdArray[pom].Transfers[pom2].DetailsID}"
 					name="SubPickupTime_{$sdArray[pom].Transfers[pom2].DetailsID}"
 					value="{$sdArray[pom].Transfers[pom2].SubPickupTime}" onchange="saveTransfer({$sdArray[pom].Transfers[pom2].DetailsID},0)">
 			</div>
 
-			<div class="col-md-3">
+			<div class="col-md-3 col-md-3-edit-add">
 				<input type="text" class="w100 form-control {$sdArray[pom].Transfers[pom2].color2}"  id="PickupTimeX_{$sdArray[pom].Transfers[pom2].DetailsID}"
 					name="PickupTimeX_{$sdArray[pom].Transfers[pom2].DetailsID}"
-					value="{$sdArray[pom].Transfers[pom2].PickupTime}" style="width: -webkit-fill-available;" />
+					value="{$sdArray[pom].Transfers[pom2].PickupTime}" />
 			</div>
 			<!-- info icons -->
 			<div class="col-md-3 small align-middle">
@@ -104,11 +95,11 @@ select{
 				</div>
 			</div>
 
-			<div class="col-md-3 clock-edit">
+			<div class="col-md-3 col-md-3-edit-add">
 				<i class="fa fa-clock-o"></i>		
 				
 				<input type="text" name="TransferDuration_{$sdArray[pom].Transfers[pom2].DetailsID}" 
-				id="TransferDuration_{$sdArray[pom].Transfers[pom2].DetailsID}" class="form-control input-edit transfer-duration-edit" size="2" value="{$sdArray[pom].Transfers[pom2].TransferDuration}" 
+				id="TransferDuration_{$sdArray[pom].Transfers[pom2].DetailsID}" class="form-control transfer-duration-edit" size="2" value="{$sdArray[pom].Transfers[pom2].TransferDuration}" 
 				title="Transfer duration"  onchange="saveTransfer({$sdArray[pom].Transfers[pom2].DetailsID},0)">
 
 				<div>
@@ -118,36 +109,37 @@ select{
 
 		</div> 
 
-		<!-- row forth -->
+<!-- row forth -->
 		<div class="row">
-			
-			{if $sdArray[pom].Transfers[pom2].FsLink ne ''}
-				<big><a target="_blank" href="{$sdArray[pom].Transfers[pom2].FsLink}"><i class="fa fa-plane" aria-hidden="true"></i></a></big>
-			{else}
-				<i class="fa fa-plane" aria-hidden="true"></i>
-			{/if}
-			
-			<input type="text" name="FlightNo_{$sdArray[pom].Transfers[pom2].DetailsID}" id="FlightNo_{$sdArray[pom].Transfers[pom2].DetailsID}"
-			value="{$sdArray[pom].Transfers[pom2].FlightNo}" onchange="saveTransfer({$sdArray[pom].Transfers[pom2].DetailsID},0)" class="input-edit-2 flight-no-edit">
-				
+			<div class="col-md-1">
+				{if $sdArray[pom].Transfers[pom2].FsLink ne ''}
+					<big><a target="_blank" href="{$sdArray[pom].Transfers[pom2].FsLink}"><i class="fa fa-plane" aria-hidden="true"></i></a></big>
+				{else}
+					<i class="fa fa-plane" aria-hidden="true"></i>
+				{/if}
+			</div>
+			<div class="col-md-5 col-md-5-edit">
+				<input type="text" name="FlightNo_{$sdArray[pom].Transfers[pom2].DetailsID}" id="FlightNo_{$sdArray[pom].Transfers[pom2].DetailsID}"
+				value="{$sdArray[pom].Transfers[pom2].FlightNo}" onchange="saveTransfer({$sdArray[pom].Transfers[pom2].DetailsID},0)" class="form-control">
+			</div>
 
-			
-			<input type="text" name="FlightTime_{$sdArray[pom].Transfers[pom2].DetailsID}" class="timepicker" id="FlightTime_{$sdArray[pom].Transfers[pom2].DetailsID}"
-			value="{$sdArray[pom].Transfers[pom2].FlightTime}" onchange="saveTransfer({$sdArray[pom].Transfers[pom2].DetailsID},0)" class="input-edit-2">
-			
+			<div class="col-md-5 col-md-5-edit">
+				<input type="text" name="FlightTime_{$sdArray[pom].Transfers[pom2].DetailsID}" class="timepicker timepicker-edit form-control" id="FlightTime_{$sdArray[pom].Transfers[pom2].DetailsID}"
+				value="{$sdArray[pom].Transfers[pom2].FlightTime}" onchange="saveTransfer({$sdArray[pom].Transfers[pom2].DetailsID},0)">
+			</div>
 
-			
-			{if $sdArray[pom].Transfers[pom2].flightTimeConflict}
-				<span class='blink'>{$FLIGHT_TIME_CONFLICT}</span>
-				{$sdArray[pom].Transfers[pom2].FlightTime}
-			{/if}
-			
+			<div class="col-md-1">
+				{if $sdArray[pom].Transfers[pom2].flightTimeConflict}
+					<span class='blink'>{$FLIGHT_TIME_CONFLICT}</span>
+					{$sdArray[pom].Transfers[pom2].FlightTime}
+				{/if}
+			</div>
 
 		</div>
 				
-		<!-- row fifth -->
+<!-- row fifth -->
 		<div class="row fifth" style="line-height:140%">
-			<div class="col-md-9 col-md-9-edit">
+			<div class="col-md-9">
 				<select class="subdriver1" data-id="{$sdArray[pom].Transfers[pom2].DetailsID}"
 				id="SubDriver1_{$sdArray[pom].Transfers[pom2].DetailsID}" name="SubDriver_{$sdArray[pom].Transfers[pom2].DetailsID}" onchange="saveTransfer({$sdArray[pom].Transfers[pom2].DetailsID},0)">
 					<option value='0'> --- </option>
@@ -160,16 +152,16 @@ select{
 					{/section}	
 				</select>
 			</div>
-			<div class="col-md-2">
+			<div class="col-md-3">
 				<button class="btn btn-default" onclick="return ShowSubdriver2('{$sdArray[pom].Transfers[pom2].DetailsID}');">
 					<i class="fa fa-plus"></i>
 				</button>
 			</div>		
 		</div>
 		
-		<!-- Hidden or not: -->
+<!-- Hidden or not: -->
 		<div id="subDriver2{$sdArray[pom].Transfers[pom2].DetailsID}" class="row {if  $sdArray[pom].Transfers[pom2].SubDriver2 eq 0}hidden{/if}" style="line-height:140%">
-			<div class="col-md-10">
+			<div class="col-md-9">
 				<select class="subdriver2" data-id="{$sdArray[pom].Transfers[pom2].DetailsID}"
 				id="SubDriver2_{$sdArray[pom].Transfers[pom2].DetailsID}" name="SubDriver_{$sdArray[pom].Transfers[pom2].DetailsID}" onchange="saveTransfer({$sdArray[pom].Transfers[pom2].DetailsID},0)">
 					<option value='0'> --- </option>
@@ -182,16 +174,16 @@ select{
 					{/section}	
 				</select>
 			</div>
-			<div class="col-md-2">
+			<div class="col-md-3">
 				<button class="btn btn-default" onclick="return ShowSubdriver3('{$sdArray[pom].Transfers[pom2].DetailsID}');">
 					<i class="fa fa-plus"></i>
 				</button>
 			</div>			
 		</div>
 
-		<!-- Hidden or not: -->
+<!-- Hidden or not: -->
 		<div id="subDriver3{$sdArray[pom].Transfers[pom2].DetailsID}"  class="row {if  $sdArray[pom].Transfers[pom2].SubDriver3 eq 0}hidden{/if}" style="line-height:140%">
-			<div class="col-md-10">
+			<div class="col-md-9">
 				<select class="subdriver3" data-id="{$sdArray[pom].Transfers[pom2].DetailsID}"
 				id="SubDriver3_{$sdArray[pom].Transfers[pom2].DetailsID}" name="SubDriver_{$sdArray[pom].Transfers[pom2].DetailsID}" onchange="saveTransfer({$sdArray[pom].Transfers[pom2].DetailsID},0)">
 					<option value='0'> --- </option>
@@ -213,7 +205,7 @@ select{
 			</button>
 		</div> 
 
-		<!-- hiddenInfo -->
+<!-- hiddenInfo -->
 		<div class="row lighten-4 pad1em shadow add-hiddenInfo" id="show{$sdArray[pom].DriverID}-{$sdArray[pom].Transfers[pom2].DetailsID}" style="display:none;margin:0">
 			{* Detalji transfera *}
 			<div class="row">
@@ -308,8 +300,6 @@ select{
 				</button>
 			</div>
 			
-
-
 
 		</div> {* ./add-hiddenInfo *}
 	</div> {* ./bgColor *}

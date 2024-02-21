@@ -206,7 +206,7 @@ hr {
 
 </style>
 
-	<!-- HEADER: -->
+<!-- HEADER: -->
 	<div class="row row-header">
 
 	<!-- Show and Hide Filters buttons: -->
@@ -249,7 +249,7 @@ hr {
 		</div> <!-- /.filter -->
 	</div> <!-- /.row -->
 
-	<!-- MAIN CONTENT: -->
+<!-- MAIN CONTENT: -->
 	<div class="row row-shedule">
 		{assign var=counter value=1}
 
@@ -263,11 +263,9 @@ hr {
 			
 			
 			<!-- Column one: -->
-			
 			<div class="col-md-{$BsColumnWidth} col-md-edit">				
 				<!-- One card: -->
 				<div class="row white shadow border">
-
 					<div class="row orange white-text">
 						<strong>{$sdArray[pom].DriverName}</strong>	
 						<a href="tel:{$sdArray[pom].Mob}">{$sdArray[pom].Mob}</a>
