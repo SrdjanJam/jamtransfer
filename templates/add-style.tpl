@@ -511,7 +511,7 @@ textarea{ width:90% !important; }
 }
 /* -------------------------------------------------------------------------------------- */
 
-.form-control{ width:100%;}
+/* .form-control{ width:100%;} */
 .form-group { margin-bottom: 0px !important; }
 
 .tab-content-edit{ padding:20px !important; }
@@ -764,18 +764,6 @@ button.searchdrivers, button.conversion-rate{
         width: 100% !important;
     } */
 
-	.input-edit-2{
-		display:block;
-	}
-
-	.flight-no-edit{
-		margin:0 auto 5px;
-	}
-
-    .flight-no-edit {
-		margin:0 auto 5px;
-        width:100%;
-	}
 
     .transfer-duration-edit{
         margin-bottom: 5px;
@@ -1063,9 +1051,9 @@ button.searchdrivers, button.conversion-rate{
     .row-third-edit .col-md-3{
 		margin-top: 10px;
 	}
-	.row-third-edit .form-control{
+	/* .row-third-edit .form-control{
 		width:100%;
-	}
+	} */
 
     /* Spare: */
     /* .col-md-9 select{
@@ -1081,10 +1069,6 @@ button.searchdrivers, button.conversion-rate{
     /* .filter-wrapper [class*="col-md"]{
         width:unset !important;
     } */
-
-    .input-edit {
-        width: auto !important;
-    }
 
 }
 /* ==================================== */
@@ -1132,6 +1116,12 @@ button.searchdrivers, button.conversion-rate{
     }
     .form-group.group-edit{
         margin: 5px;
+    }
+
+    .row.row-shedule .clock-timepicker{
+        display:block !important;
+        margin-top: 5px;
+        margin-bottom: 5px;
     }
 
 }
