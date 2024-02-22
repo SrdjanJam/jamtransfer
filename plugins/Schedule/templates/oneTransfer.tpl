@@ -7,7 +7,7 @@
 .col-md-3-edit, 
 .col-md-3-edit-add,
 .col-md-3-edit-add input,
-.col-md-5-edit{
+.col-md-6-edit{
 	padding-left: 0px;
     padding-right: 0px;
 }
@@ -51,12 +51,14 @@
 						{/if}
 				{/if}
 				<small class="badge" style="background-color:{$sdArray[pom].Transfers[pom2].CustomerTypeColor}">{$sdArray[pom].Transfers[pom2].CustomerType}</small>								
-			</span>					
+			</span>	
+
 			<strong>
 				<a href="orders/detail/{$sdArray[pom].Transfers[pom2].DetailsID}" target="_blank">
 					{$sdArray[pom].Transfers[pom2].MOrderKey}-{$sdArray[pom].Transfers[pom2].OrderID}-{$sdArray[pom].Transfers[pom2].TNo}
 				</a>
 			</strong>
+			
 			<strong>
 				<input style='float:right;' class='check' onchange="saveTransfer({$sdArray[pom].Transfers[pom2].DetailsID},1)" id="checkdata_{$sdArray[pom].Transfers[pom2].DetailsID}" type="checkbox" name="checkeddata"
 				{if $sdArray[pom].Transfers[pom2].DriverConfStatus gt 2}checked disabled{/if}>
@@ -96,7 +98,7 @@
 			</div>
 
 			<div class="col-md-3 col-md-3-edit-add">
-				<i class="fa fa-clock-o"></i>		
+				<i class="fa fa-clock-o"></i>	
 				
 				<input type="text" name="TransferDuration_{$sdArray[pom].Transfers[pom2].DetailsID}" 
 				id="TransferDuration_{$sdArray[pom].Transfers[pom2].DetailsID}" class="form-control transfer-duration-edit" size="2" value="{$sdArray[pom].Transfers[pom2].TransferDuration}" 
@@ -111,30 +113,27 @@
 
 <!-- row forth -->
 		<div class="row">
-			<div class="col-md-1">
+			<div class="col-md-6 col-md-6-edit">
 				{if $sdArray[pom].Transfers[pom2].FsLink ne ''}
 					<big><a target="_blank" href="{$sdArray[pom].Transfers[pom2].FsLink}"><i class="fa fa-plane" aria-hidden="true"></i></a></big>
 				{else}
 					<i class="fa fa-plane" aria-hidden="true"></i>
 				{/if}
-			</div>
-			<div class="col-md-5 col-md-5-edit">
+
 				<input type="text" name="FlightNo_{$sdArray[pom].Transfers[pom2].DetailsID}" id="FlightNo_{$sdArray[pom].Transfers[pom2].DetailsID}"
 				value="{$sdArray[pom].Transfers[pom2].FlightNo}" onchange="saveTransfer({$sdArray[pom].Transfers[pom2].DetailsID},0)" class="form-control">
-			</div>
 
-			<div class="col-md-5 col-md-5-edit">
+			</div>	
+
+			<div class="col-md-6 col-md-6-edit">
 				<input type="text" name="FlightTime_{$sdArray[pom].Transfers[pom2].DetailsID}" class="timepicker timepicker-edit form-control" id="FlightTime_{$sdArray[pom].Transfers[pom2].DetailsID}"
 				value="{$sdArray[pom].Transfers[pom2].FlightTime}" onchange="saveTransfer({$sdArray[pom].Transfers[pom2].DetailsID},0)">
-			</div>
 
-			<div class="col-md-1">
 				{if $sdArray[pom].Transfers[pom2].flightTimeConflict}
 					<span class='blink'>{$FLIGHT_TIME_CONFLICT}</span>
 					{$sdArray[pom].Transfers[pom2].FlightTime}
 				{/if}
 			</div>
-
 		</div>
 				
 <!-- row fifth -->
@@ -424,4 +423,16 @@
 	    $("#subDriver3"+i).toggleClass('hidden');
 	    return false;
 	}
+
+	// Resize for a div:
+	function resize(){
+		var div = $(".sub-card").width();	
+		if(div < 350){
+			$(".transfer-duration-edit").css("width","70%");
+		}
+	}
+	resize();
+	$(window).resize(resize);
+
+	
 </script>	
