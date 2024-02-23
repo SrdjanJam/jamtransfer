@@ -54,7 +54,8 @@
 		</div>
 		
 		<div class="col-md-1">
-			<?=FISCALBILL;?>
+			<?=FISCALBILL;?><br>
+			<a href="plugins/OnlinePayments/Payments.csv"><i class="fa fa-download" aria-hidden="true"></i> Download</a>
 		</div>
 				
 	</div>

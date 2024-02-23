@@ -4376,7 +4376,7 @@ function PrintTransferTable($OrderID) {
  */
 function TecajValutaNBH($currencyName='all')
 {
-    $ch = curl_init("https://www.hnb.hr/tecajn/htecajn.htm");
+    /*$ch = curl_init("https://www.hnb.hr/tecajn/htecajn.htm");
     $fileName = ROOT . "/tecajValutaHNB.txt";
     $fp = fopen($fileName, "w");
 
@@ -4405,7 +4405,7 @@ function TecajValutaNBH($currencyName='all')
 
     curl_exec($ch);
     curl_close($ch);
-    fclose($fp);
+    fclose($fp);*/
 }
 
 

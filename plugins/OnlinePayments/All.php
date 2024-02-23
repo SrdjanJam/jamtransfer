@@ -35,7 +35,7 @@ $flds = array();
 $DB_Where = " " . $_REQUEST['where']." AND datetime3<>''";
 $DB_Where .= $filter;
 if (isset($_REQUEST['orderFromDate']) && $_REQUEST['orderFromDate']>0) $DB_Where .= " AND datetime1>='".$_REQUEST['orderFromDate']."'";
-if (isset($_REQUEST['orderToDate']) && $_REQUEST['orderToDate']>0) $DB_Where .= " AND datetime1<='".$_REQUEST['orderToDate']."'";
+if (isset($_REQUEST['orderToDate']) && $_REQUEST['orderToDate']>0) $DB_Where .= " AND '".$_REQUEST['orderToDate']."'>=datetime1 ";
 if (in_array($_SESSION['BrandName'],array('EN','FR','RU','DE'))) $DB_Where .= " AND `Language` = '".strtolower($_SESSION['BrandName'])."'";
 
 # dodavanje search parametra u qry
@@ -54,6 +54,28 @@ if ( $_REQUEST['Search'] != "" )
 	$DB_Where = substr_replace( $DB_Where, "", -3 );
 	$DB_Where .= ')';
 }
+$dlm = ";";
+$header=
+'Fiskalni'.$dlm.
+'ID'.$dlm.
+'Buyer'.$dlm.
+'Country'.$dlm.
+'Card'.$dlm.
+'Amount'.$dlm.
+'Currency'.$dlm.
+'EU/BS/HR'.$dlm.
+'NOVA CIJENA VOZAČA'.$dlm.
+'CIJENA VOZAČA'.$dlm.
+'VOZAČ'.$dlm.
+'TRANSFER'.$dlm.
+'Order number'.$dlm.
+'datum transfera'.$dlm.
+'br.kartice'.$dlm.
+'Created at'.$dlm.
+''.$dlm.
+'storno BROJ RAČUNA'.$dlm.
+"\n";
+$table_row="";
 $dbTotalRecords = $db->getKeysBy($ItemName . $sortOrder, '',$DB_Where);
 $dbkA = $db->getKeysBy($ItemName . $sortOrder, '',$DB_Where);
 # test za LIMIT - trebalo bi ga iskoristiti za pagination! 'asc' . ' LIMIT 0,50'
@@ -65,7 +87,10 @@ if (count($dbkA) != 0) {
     	$db->getRow($key);
 		// ako treba neki lookup, onda to ovdje
 		if ($db->getAvans()==0 and $db->getMonriID()>0) {
-			$whereM= " WHERE MCardNumber=".$db->getOrderNumber();	
+			if ($db->getOrderNumber()>1000000) 
+				echo $whereM= " WHERE MCardNumber=".$db->getOrderNumber();	
+			else
+				$whereM= " WHERE MOrderID=".$db->getOrderNumber();				
 			$omk = $om->getKeysBy("MOrderID ASC", "" , $whereM);
 			$om->getRow($omk[0]);
 			$OrderID=$om->getMOrderID();
@@ -108,7 +133,34 @@ if (count($dbkA) != 0) {
 					}	
 				}
 			}	
-		}	  	
+		}
+		if (isset($_REQUEST['orderFromDate']) && $_REQUEST['orderFromDate']>0 && isset($_REQUEST['orderToDate']) && $_REQUEST['orderToDate']>0) {
+		if ($db->getAvans()==1) $Avans="Avans";
+		else $Avans="";		
+		if ($db->getEU()==1) $EU="EU";
+		else $EU="";		
+
+			$table_row.=
+				$db->getFiscalBill(). $dlm. 
+				$db->getID().$dlm.
+				$db->getBuyer().$dlm.
+				$db->getCountry().$dlm.
+				$db->getCard().$dlm.
+				$db->getAmount().$dlm.
+				$db->getCurrency().$dlm.
+				$Avans.'/'.$EU.$dlm.
+				''.$dlm.
+				$db->getDriverPrice().$dlm.
+				$users[$db->getDriverID()]->AuthUserRealName.$dlm.
+				$db->getOrderID().$dlm.
+				$db->getOrderNumber().$dlm.
+				$od->getPickupDate().$dlm.
+				''.$dlm.
+				$db->getdatetime1().$dlm.
+				''.$dlm.
+				''.$dlm.
+				"\n";
+		}
     }
 }
 
@@ -135,6 +187,17 @@ if (count($dbk) != 0) {
 		$out[] = $detailFlds;    	
     }
 }
+if (isset($_REQUEST['orderFromDate']) && $_REQUEST['orderFromDate']>0 && isset($_REQUEST['orderToDate']) && $_REQUEST['orderToDate']>0) {
+	unlink(Payments.csv);
+	ob_start(); 
+	echo $header.$table_row;
+	$csv = ob_get_contents();
+	ob_end_clean();
+	$fp = fopen('Payments.csv', 'w');
+	fwrite($fp, $csv);
+	fclose($fp);
+}
+
 function isEU($PickupID,$DropID,$pl) {
 	$pl->getRow($PickupID);
 	$cID1=$pl->getPlaceCountry();
