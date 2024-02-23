@@ -12,6 +12,10 @@
     padding-right: 0px;
 }
 
+.sub-card iframe{
+	width: 100%;
+}
+
 </style>
 
 
@@ -58,7 +62,7 @@
 					{$sdArray[pom].Transfers[pom2].MOrderKey}-{$sdArray[pom].Transfers[pom2].OrderID}-{$sdArray[pom].Transfers[pom2].TNo}
 				</a>
 			</strong>
-			
+
 			<strong>
 				<input style='float:right;' class='check' onchange="saveTransfer({$sdArray[pom].Transfers[pom2].DetailsID},1)" id="checkdata_{$sdArray[pom].Transfers[pom2].DetailsID}" type="checkbox" name="checkeddata"
 				{if $sdArray[pom].Transfers[pom2].DriverConfStatus gt 2}checked disabled{/if}>
