@@ -631,7 +631,7 @@ function getContractDriverPrice($ServiceID) {
 
 function MakeCSV($cars_all) {
 
-	require_once $_SERVER['DOCUMENT_ROOT'] .'/db/db.class.php';
+	require_once ROOT .'/db/db.class.php';
 	$db = new DataBaseMysql();
 	#===
 
