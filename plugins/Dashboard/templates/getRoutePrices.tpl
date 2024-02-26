@@ -79,8 +79,8 @@
     </div>
 	
 	<div class="modal fade"  id="routeDriversModal">
-		<div class="modal-dialog" style="width:800px">
-			<div class="modal-content" style="width: fit-content;">
+		<div class="modal-dialog" style="width: fit-content;">
+			<div class="modal-content">
 				<div class="modal-header" style="padding:10px">
 					<strong>
 					<div class="col-md-3">Driver Company</div>
