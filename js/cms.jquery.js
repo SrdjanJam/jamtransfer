@@ -1353,8 +1353,8 @@ Handlebars.registerHelper("listDriversByRoute", function(RouteID, PickupDate, Pi
 					else var select='';
 					val.DriverCompany=val.DriverCompany+val.Contract;
 					list += '<div class="row selectable selectable-edit '+select+'">';
-					list += '<div class="col-md-3">' + val.DriverCompany + val.StatusCompany  + '</div>';
-					list += '<div class="col-md-1">' + val.VehicleTypeID + '</div>';
+					list += '<div class="col-md-3" style="text-align:center;">' + val.DriverCompany + val.StatusCompany  + '</div>';
+					list += '<div class="col-md-1" style="text-align:center;">' + val.VehicleTypeID + '</div>';
 					list += '<div class="col-md-1 right">' + val.DriversPrice + '</div>';	   /* Neto */					
 					list += '<div title="Surcharges" data-content="' +surcharges + '" class="col-md-1 right mytooltip">' + val.AddToPrice + '</div>';		  /* Additions */
 					list += '<div class="col-md-1 right">' + val.Provision + '</div>';		  /* Provision */
