@@ -60,6 +60,8 @@
 		font-size: 17px;
 	}
 
+	.below-select{ width:100%; }
+
 </style>
 
 <input type="hidden"  id="whereCondition" name="whereCondition" 
@@ -131,7 +133,7 @@ value=" WHERE {$ItemID} > 0">
 			<input id='agentName' class="input-one" name='agentName'  placeholder="{$NAME_ID}" onchange="allItems();"/><br>				
 			<input id='agentOrder' class="input-one" name='agentOrder'  placeholder="{$ORDER_KEY_AGENT_ORDER}" onchange="allItems();"/><br>				
 			
-				<select id="Type2" class="w75 form-control select-top-edit" onchange="allItems();">
+				<select id="Type2" class="w75 form-control select-top-edit below-select" onchange="allItems();">
 					<option value="0">{$ALL} {$USERS}</option>
 					{section name=pom2 loop=$options2}
 						<option value="{$options2[pom2].id}">{$options2[pom2].name}</option>
@@ -156,7 +158,7 @@ value=" WHERE {$ItemID} > 0">
 		<div class="col-md-2 col-md-2-edit">
 			<small class="badge blue text-black badge-edit">{$PARTNER}</small><br>
 			<input id='driverName' class="input-one" name='driverName'  placeholder="{$NAME_ID}" onchange="allItems();"/><br>
-			<select id="DriverConfStatusChoose" class="w75 form-control select-top-edit" onchange="allItems();">		
+			<select id="DriverConfStatusChoose" class="w75 form-control select-top-edit below-select" onchange="allItems();">		
 				<option value="-1">{$ALL} {$STATUS}</option>
 				{section name=pom loop=$options4}
 					<option value="{$options4[pom].id}">{$options4[pom].name}</option>
@@ -179,7 +181,7 @@ value=" WHERE {$ItemID} > 0">
 			<small class="badge blue text-black badge-edit">{$PAYMENT}</small><br>
 			<input id='paymentNumber' class="input-one" name='paymentNumber'  placeholder="{$PAYMENT_INVOICE_NO}" onchange="allItems();"/>	
 			
-				<select id="PaymentMethod" class="w75 form-control select-top-edit" onchange="allItems();">		
+				<select id="PaymentMethod" class="w75 form-control select-top-edit below-select" onchange="allItems();">		
 					<option value="-1">{$ALL} {$PAYMENT}</option>
 					{section name=pom loop=$options3}
 						<option value="{$options3[pom].id}">{$options3[pom].name}</option>
