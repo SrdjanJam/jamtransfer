@@ -191,7 +191,27 @@ function sendDriverNotification($OrderID, $OrderKey='') {
           $NEW_TRANSFER . ' - ' . $OrderKey , $message);
 }
 
+function sendDriverMessage($DetailsID) {
+	require_once $_SERVER['DOCUMENT_ROOT'] .'/db/v4_OrderDetails.class.php';
+	require_once $_SERVER['DOCUMENT_ROOT'] .'/db/v4_OrdersMaster.class.php';
+	$od = new v4_OrderDetails();
+	$om = new v4_OrdersMaster();
 
+	$message = HELLO . '! ';
+	$message .= TRANSFER_FOR_YOU;
+
+	$k = $od->getKeysBy('DetailsID', 'asc', " WHERE DetailsID = '". $DetailsID . "'");
+	foreach($k as $nn => $id) {
+		$od->getRow($id);
+		$om->getRow($od->getOrderID());
+		$link = ' https://cms.jamtransfer.com/cms/dc.php?code='.$od->getDetailsID() .
+				'%26control='.$om->getMOrderKey().'%26id='.$od->getDriverID();
+		$message .= $link . ' ';
+	}
+	$message .= THANK_YOU . '!';
+	$message = str_replace("<br>"," ",$message);
+	return $message;
+}
 
 
 function Logo($color='black') { ?>
@@ -4466,16 +4486,7 @@ function ParseTecaj($currencyName='all') {
 **
 */
 function toCurrency($iznos) {
-    if(!isset($_SESSION['Currency']) or $_SESSION['Currency'] == '') return $iznos;
-
-    $tecajevi = ParseTecaj();
-    $EUR = $tecajevi['EUR']['avg'];
-    $tecajValute = $tecajevi[$_SESSION['Currency']]['avg'];
-    $zaJedan = $tecajValute / $tecajevi[$_SESSION['Currency']]['for'];
-
-    if($zaJedan == '0') return nf($iznos);
-
-    return nf($iznos * ($EUR / $zaJedan));
+    return $iznos;
 }
 
 function ExchangeRatio() {

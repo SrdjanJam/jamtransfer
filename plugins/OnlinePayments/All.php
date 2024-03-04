@@ -88,50 +88,52 @@ if (count($dbkA) != 0) {
 		// ako treba neki lookup, onda to ovdje
 		if ($db->getAvans()==0 and $db->getMonriID()>0) {
 			if ($db->getOrderNumber()>1000000) 
-				echo $whereM= " WHERE MCardNumber=".$db->getOrderNumber();	
+				$whereM= " WHERE MCardNumber=".$db->getOrderNumber();	
 			else
-				$whereM= " WHERE MOrderID=".$db->getOrderNumber();				
+				$whereM= " WHERE MOrderID=".$db->getOrderNumber();					
 			$omk = $om->getKeysBy("MOrderID ASC", "" , $whereM);
-			$om->getRow($omk[0]);
-			$OrderID=$om->getMOrderID();
-			$whereD= " WHERE OrderID=".$om->getMOrderID();
-			$odk = $od->getKeysBy("OrderID ASC", "" , $whereD);
-			if (count($odk)>0) {
-				$od->getRow($odk[0]);	
-				$orderM=(explode("-",$od->getOrderDate()))[1];
-				$pickupM=(explode("-",$od->getPickupDate()))[1];
-				if ($orderM==$pickupM) $db->setAvans(2);
-				else $db->setAvans(1);
-				$db->setDetailsID($od->getDetailsID());
-				$db->setDriverID($od->getDriverID());
-				if (count($odk)==2) $db->setDriverPrice($od->getDriversPrice()*2);
-				else $db->setDriverPrice($od->getDriversPrice());
-				$db->setOrderID($OrderID);
-				$db->setEU(isEU($od->getPickupID(),$od->getDropID(),$pl));
-				$db->saveRow();	
-				if (count($odk)==2) {
-					$od->getRow($odk[1]);		
+			if (count($omk)>0) {
+				$om->getRow($omk[0]);
+				$OrderID=$om->getMOrderID();
+				$whereD= " WHERE OrderID=".$om->getMOrderID();
+				$odk = $od->getKeysBy("OrderID ASC", "" , $whereD);
+				if (count($odk)>0) {
+					$od->getRow($odk[0]);	
 					$orderM=(explode("-",$od->getOrderDate()))[1];
-					$pickupM=(explode("-",$od->getPickupDate()))[1];	
-					if ($orderM<>$pickupM && $db->getAvans()==2)	{
-						$db->setTNo(1);				
-						$db->setAmount($db->getAmount()/2);
-						$db->setDriverPrice($db->getDriverPrice()/2);
-						$db->saveRow(); 							
-						foreach ($db->fieldValues() as $key=>$fv) {
-							eval("\$db->set".$key."(\$fv);");		
-						}
-						$k=$db->saveAsNew();
-						$dbN = new v4_OnlinePayments();					
-						$dbN->getRow($k);
-						$dbN->setAvans(1);
-						$dbN->setDetailsID($od->getDetailsID());
-						$dbN->setDriverID($od->getDriverID());
-						$dbN->setDriverPrice($od->getDriversPrice());
-						$dbN->setTNo(2);	
-						$dbN->saveRow(); 
-					}	
-				}
+					$pickupM=(explode("-",$od->getPickupDate()))[1];
+					if ($orderM==$pickupM) $db->setAvans(2);
+					else $db->setAvans(1);
+					$db->setDetailsID($od->getDetailsID());
+					$db->setDriverID($od->getDriverID());
+					if (count($odk)==2) $db->setDriverPrice($od->getDriversPrice()*2);
+					else $db->setDriverPrice($od->getDriversPrice());
+					$db->setOrderID($OrderID);
+					$db->setEU(isEU($od->getPickupID(),$od->getDropID(),$pl));
+					$db->saveRow();	
+					if (count($odk)==2) {
+						$od->getRow($odk[1]);		
+						$orderM=(explode("-",$od->getOrderDate()))[1];
+						$pickupM=(explode("-",$od->getPickupDate()))[1];	
+						if ($orderM<>$pickupM && $db->getAvans()==2)	{
+							$db->setTNo(1);				
+							$db->setAmount($db->getAmount()/2);
+							$db->setDriverPrice($db->getDriverPrice()/2);
+							$db->saveRow(); 							
+							foreach ($db->fieldValues() as $key=>$fv) {
+								eval("\$db->set".$key."(\$fv);");		
+							}
+							$k=$db->saveAsNew();
+							$dbN = new v4_OnlinePayments();					
+							$dbN->getRow($k);
+							$dbN->setAvans(1);
+							$dbN->setDetailsID($od->getDetailsID());
+							$dbN->setDriverID($od->getDriverID());
+							$dbN->setDriverPrice($od->getDriversPrice());
+							$dbN->setTNo(2);	
+							$dbN->saveRow(); 
+						}	
+					}
+				}	
 			}	
 		}
 		if (isset($_REQUEST['orderFromDate']) && $_REQUEST['orderFromDate']>0 && isset($_REQUEST['orderToDate']) && $_REQUEST['orderToDate']>0) {

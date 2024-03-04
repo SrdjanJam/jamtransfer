@@ -115,6 +115,22 @@
         </div> <!-- /.col-md-3 -->
 
         <div class="col-md-5">
+			{{#compare details.DriverConfStatus "==" 1}}
+			<div class="row">
+				<div class="col-md-3 "><label>Confirmation link</label></div>
+				<div class="col-md-6 driver" id="confirlmLink">
+					<a href='https://<?= $_SERVER['SERVER_NAME'] ?>/cms/dc.php?
+						code={{details.DetailsID}}
+						&control={{master.MOrderKey}}
+						&id={{details.DriverID}}'
+					>{{details.OrderID}}-{{details.TNo}}</a>
+				</div>								
+				<div class="col-md-3 driver" id="whatsapp">
+					<a target="_blank" href="https://wa.me/{{details.ContactMobWhtsApp}}/?text={{details.MessageWhtsApp}}"
+					><i class="fa fa-whatsapp fa-lg" aria-hidden="true"></i></a>
+				</div>
+			</div>	
+			{{/compare}}	
             {{#compare details.PaymentMethod "==" 2}}					
             <div class="row">
                 <div class="col-md-3 "><label><?= PARTNER ?> <?= INVOICE ?></label></div>

@@ -109,9 +109,14 @@ $detailFlds['DriverPaymentAmtEUR'] = number_format($db->getDriverPaymentAmt(),2)
 $detailFlds['VehicleTypeName'] = $vehicletypes[$db->getVehicleType()]->VehicleTypeName;
 $detailFlds['VehicleClass'] = $vehicletypes[$db->getVehicleType()]->VehicleClass;
 
+$au->getRow($db->getDriverID());
+if (empty($au->getAuthUserMob())) $detailFlds['ContactMob'] = $au->getAuthUserTel();
+else $detailFlds['ContactMob'] = $au->getAuthUserMob();	
+$detailFlds['ContactMobWhtsApp']=str_replace("+","",$detailFlds['ContactMob']);
+$detailFlds['ContactMobWhtsApp']=str_replace(" ","",$detailFlds['ContactMob']);
+$detailFlds['MessageWhtsApp']=sendDriverMessage($db->getDetailsID());
 //partneri
-/*$au->getRow($db->getDriverID());
-$contractFile=$au->getContractFile();
+/*$contractFile=$au->getContractFile();
 if ($contractFile!='inter') {
 	$detailFlds['ContactName'] = $au->getContactPerson();
 	if (empty($au->getAuthUserMob())) $detailFlds['ContactMob'] = $au->getAuthUserTel();
