@@ -34,7 +34,12 @@ require_once 'Initial.php';
 		$detailFlds['language']=" ";
 		$detailFlds['disabled']='';
 	}	
-
+	$result = $dbT->RunQuery("SELECT * FROM v4_DriverTerminals WHERE TerminalID=".$_REQUEST['ItemID']); 
+	while($row = $result->fetch_array(MYSQLI_ASSOC)){
+		$driverID=$row['DriverID'];
+		if (array_key_exists($driverID, $users)) $detailFlds["Drivers"][]=$users[$driverID];
+	}
+	//print_r($detailFlds["Drivers"]);
 	$out[] = $detailFlds;
 
 	# send output back

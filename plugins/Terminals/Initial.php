@@ -5,7 +5,7 @@ require_once ROOT . '/db/v4_Places.class.php';
 
 $db = new v4_Terminals();
 $dbT = new DataBaseMysql();
-$dbP = new v4_Places;
+$dbP = new v4_Places();
 
 $keyName = 'TerminalID';
 $ItemName='TerminalID ';

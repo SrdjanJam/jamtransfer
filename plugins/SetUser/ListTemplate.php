@@ -4,7 +4,7 @@
 
 	{{#each Item}}
 			<div class="col-md-3 AuthUserID-edit">
-				<a  title="Sat as Driver" 
+				<a  title="<?=SAT_AS_DRIVER;?>" 
 					href="satAsDriver/{{AuthUserID}}"> {{AuthUserID}} - {{AuthUserName}}</a> 
 			</div>
 	{{/each}}

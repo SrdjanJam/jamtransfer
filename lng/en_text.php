@@ -1073,3 +1073,7 @@ define("AVANS","Avans");
 define("EU","EU");
 define("BUYER","Buyer");
 define("FISCALBILL","Fiscal Bill");
+
+// 05.03.24
+define("AV_DRIVERS","Available Drivers");
+define("SAT_AS_DRIVER","Sat as Driver");

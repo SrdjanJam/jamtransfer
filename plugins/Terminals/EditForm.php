@@ -23,7 +23,7 @@
 	
 	<div class="box-body ">
         <div class="row">
-			<div class="col-md-12">
+			<div class="col-md-6">
 				<!-- TERMINAL_ID: -->
 				<div class="row">
 					<div class="col-md-3">
@@ -101,10 +101,21 @@
 					</div>	
 				</div>	
 				{{/each}}
-				
-				
-
-				
+			</div>
+			<div class="col-md-6">
+				<h2><?=AV_DRIVERS;?> </h2>	
+				{{#each Drivers}}
+					<div class="row">
+						<div class="col-md-6">
+							{{AuthUserRealName}}
+						</div>							
+						<div class="col-md-6">
+							<a  target="_blank" 
+								href="satAsDriver/{{AuthUserID}}"><?=SAT_AS_DRIVER;?>
+							</a> 
+						</div>	
+					</div>
+				{{/each}}
 			</div>
 	    </div>
 		   
