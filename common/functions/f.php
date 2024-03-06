@@ -805,7 +805,37 @@ function getServiceName($ServiceID) {
 
     return $c->$v;
 }
-
+function send_whatsapp_message($phone_to,$message) {
+	require_once ROOT . '/db/v4_CoInfo.class.php';
+	$ci = new v4_CoInfo;
+	$ci->getRow(3);
+	$token=$ci->getco_facebook();
+	$instance=$ci->getco_twitter();
+	$params=array(
+	'token' => $token,
+	'to' => $phone_to,
+	'body' => $message
+	);
+	$curl = curl_init();
+	curl_setopt_array($curl, array(
+	  CURLOPT_URL => "https://api.ultramsg.com/".$instance."/messages/chat",
+	  CURLOPT_RETURNTRANSFER => true,
+	  CURLOPT_ENCODING => "",
+	  CURLOPT_MAXREDIRS => 10,
+	  CURLOPT_TIMEOUT => 30,
+	  CURLOPT_SSL_VERIFYHOST => 0,
+	  CURLOPT_SSL_VERIFYPEER => 0,
+	  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+	  CURLOPT_CUSTOMREQUEST => "POST",
+	  CURLOPT_POSTFIELDS => http_build_query($params),
+	  CURLOPT_HTTPHEADER => array(
+		"content-type: application/x-www-form-urlencoded"
+	  ),
+	));
+	$response = curl_exec($curl);
+	$err = curl_error($curl);
+	curl_close($curl);
+}
 function mail_html($mailto, $from_mail, $from_name, $replyto, $subject, $message, $attachment = '') {
 
 	require_once ROOT . '/db/v4_Mailer.class.php';
@@ -830,7 +860,6 @@ function mail_html($mailto, $from_mail, $from_name, $replyto, $subject, $message
 ** FROM CMS
 **
 */
-
 
 
 function mail_html_send($mailto, $from_mail, $from_name, $replyto, $subject, $message, $attachment = '') {
