@@ -1077,3 +1077,10 @@ define("FISCALBILL","Fiscal Bill");
 // 05.03.24
 define("AV_DRIVERS","Available Drivers");
 define("SAT_AS_DRIVER","Sat as Driver");
+
+// 07.03.24
+define("TUNNEL_PASS_ID","Tunnel pass ID");
+define("VEHICLE_CATEGORY","Vehicle Category");
+define("TUNNEL_PASS_CODE","Tunnel Pass Code");
+define("PASS_NUMBER","Pass Number");
+define("ASSIGN_SDID","Assign SDID");
