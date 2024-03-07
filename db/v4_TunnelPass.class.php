@@ -236,7 +236,7 @@ Active = '".$this->myreal_escape_string($this->Active)."' WHERE TunnelPassID = '
 	 * @param Type - date
 	 */
 	public function setValidTo($ValidTo){
-		$this->TunnelPassCode = $ValidTo;
+		$this->ValidTo = $ValidTo;
 	}
 
 	/**
