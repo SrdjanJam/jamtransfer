@@ -53,7 +53,7 @@ Class v4_TunnelPass {
      * 
      */
 	public function getRow($key_row){
-		$result = $this->connection->RunQuery("Select * from v4_TunnelPass where VehicleID = \"$key_row\" ");
+		$result = $this->connection->RunQuery("Select * from v4_TunnelPass where TunnelPassID = \"$key_row\" ");
 		if($result->num_rows < 1) return false;
 		while($row = $result->fetch_array(MYSQLI_ASSOC)){
 			$this->TunnelPassID = $row["TunnelPassID"];
@@ -128,6 +128,7 @@ Active = '".$this->myreal_escape_string($this->Active)."' WHERE TunnelPassID = '
      */
 	public function getKeysBy($column, $order, $where = NULL){
 		$keys = array(); $i = 0;
+		// echo "SELECT TunnelPassID from v4_TunnelPass $where ORDER BY $column $order";
 		$result = $this->connection->RunQuery("SELECT TunnelPassID from v4_TunnelPass $where ORDER BY $column $order");
 			while($row = $result->fetch_array(MYSQLI_ASSOC)){
 				$keys[$i] = $row["TunnelPassID"];
@@ -235,7 +236,7 @@ Active = '".$this->myreal_escape_string($this->Active)."' WHERE TunnelPassID = '
 	 * @param Type - date
 	 */
 	public function setValidTo($ValidTo){
-		$this->TunnelPassCode = $ValidTo;
+		$this->ValidTo = $ValidTo;
 	}
 
 	/**
