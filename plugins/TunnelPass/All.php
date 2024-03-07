@@ -62,6 +62,9 @@ if ( $_REQUEST['Search'] != "" )
 $dbTotalRecords = $db->getKeysBy($ItemName . $sortOrder, '',$DB_Where);
 
 // prazan red za eventualni unos
+$db->getRow(0);	
+$detailFlds = $db->fieldValues();
+$out[] = $detailFlds; 
 if (isset($_REQUEST['TunnelPassID']) && $_REQUEST['TunnelPassID']>0) {
 	$db->getRow(0);	
 	$detailFlds = $db->fieldValues();

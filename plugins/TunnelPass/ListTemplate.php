@@ -48,7 +48,7 @@
 					<div class="col-md-1"> <input type="text" name="PassNumber" id="PassNumber"  class="w100 form-control" value="{{PassNumber}}"> </div>
 
 					<!-- AssignSDID -->
-					<div class="col-md-1"> <input type="text" name="AssignSDID" id="AssignSDID"  class="w100 form-control" value="{{AssignSDID}}"> </div>
+					<div class="col-md-1"> {{userSelect AssignSDID "32" "AuthUserRealName"}} </div>
 
 					<!-- AssignTime -->
 					<!-- <div class="col-md-1"> <input type="text" name="AssignTime" id="AssignTime"  class="w100 form-control" value="{{AssignTime}}"> </div> -->

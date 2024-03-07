@@ -20,7 +20,7 @@ if ($keyName != '' and $keyValue != '') {
 	if($res !== true) $upd = $res;
 }
 if ($keyName != '' and $keyValue == '') {
-	$db->setTunnelPassID($_SESSION['TunnelPassID']);
+	$db->setOwnerID($_SESSION['UseDriverID']);
 	$_REQUEST['TunnelPassID'] = $db->saveAsNew();
 }
 $out = array(
