@@ -6,14 +6,14 @@
 	<!-- Labels: -->
 	<div class="row row-edit">
 		<div class="col-md-12">
-			<div class="col-md-2"> <?=TUNNEL_PASS_ID;?> </div>
+			<div class="col-md-1"> <?=TUNNEL_PASS_ID;?> </div>
 			<!-- <div class="col-md-1"> <?=OWNERID;?> </div> -->
-			<div class="col-md-2"> <?=VEHICLE_CATEGORY;?> </div>			
+			<div class="col-md-1"> <?=VEHICLE_CATEGORY;?> </div>			
 			<div class="col-md-2"> <?=TUNNEL_PASS_CODE;?> </div>
-			<div class="col-md-2"> <?=VALIDTO;?> </div>
+			<div class="col-md-1"> <?=VALIDTO;?> </div>
 			<div class="col-md-1"> <?=PASS_NUMBER;?> </div>
-			<div class="col-md-1"> <?=ASSIGN_SDID;?> </div>
-			<!-- <div class="col-md-1"> <?=ASSIGN_TIME;?> </div> -->
+			<div class="col-md-2"> <?=ASSIGN_SDID;?> </div>
+			<div class="col-md-2"> <?=ASSIGN_TIME;?> </div>
 			<div class="col-md-1"> <?=ACTIVE;?> </div>
 			<div class="col-md-1"> <?=DELETE;?> </div>
 		</div>
@@ -30,28 +30,28 @@
 				
 				<div class="col-md-12">
 					<!-- TunnelPassID -->
-					<div class="col-md-2"> <input type="text"  name="TunnelPassID" class="TunnelPassID form-control" value="{{TunnelPassID}}" readonly> </div>
+					<div class="col-md-1"> <input type="text"  name="TunnelPassID" class="TunnelPassID form-control" value="{{TunnelPassID}}" readonly> </div>
 
 					<!-- OwnerID -->
-					<!-- <div class="col-md-2"> <input type="text" name="OwnerID" id="OwnerID" class="w100 form-control" value="{{OwnerID}}"> </div>					 -->
+					<!-- <div class="col-md-2"> <input type="text" name="OwnerID" id="OwnerID" class="w100 form-control" value="{{OwnerID}}"> </div> -->
 					
 					<!-- VehicleCategory -->
-					<div class="col-md-2"> <input type="text" name="VehicleCategory" id="VehicleCategory"  class="w100 form-control" value="{{VehicleCategory}}"> </div>
+					<div class="col-md-1"> <input type="text" name="VehicleCategory" id="VehicleCategory"  class="w100 form-control" value="{{VehicleCategory}}"> </div>
 
 					<!-- TunnelPassCode -->
 					<div class="col-md-2"> <input type="text" name="TunnelPassCode" id="TunnelPassCode"  class="w100 form-control" value="{{TunnelPassCode}}"> </div>
 
 					<!-- ValidTo -->
-					<div class="col-md-2"> <input type="text" name="ValidTo" id="ValidTo"  class="w100 form-control" value="{{ValidTo}}"> </div>
+					<div class="col-md-1"> <input type="text" name="ValidTo" id="ValidTo"  class="w100 form-control datepicker" value="{{ValidTo}}"> </div>
 
 					<!-- PassNumber -->
 					<div class="col-md-1"> <input type="text" name="PassNumber" id="PassNumber"  class="w100 form-control" value="{{PassNumber}}"> </div>
 
 					<!-- AssignSDID -->
-					<div class="col-md-1"> {{userSelect AssignSDID "32" "AuthUserRealName"}} </div>
+					<div class="col-md-2"> {{userSelect AssignSDID "32" "AuthUserRealName"}} </div>
 
 					<!-- AssignTime -->
-					<!-- <div class="col-md-1"> <input type="text" name="AssignTime" id="AssignTime"  class="w100 form-control" value="{{AssignTime}}"> </div> -->
+					<div class="col-md-2"> <input type="text" name="AssignTime" id="AssignTime"  class="w100 form-control" value="{{AssignTime}}" readonly> </div>
 
 					<!-- ACTIVE -->
 					<div class="col-md-1"> {{ yesNoSliderEdit Active 'Active'}} </div>
@@ -73,6 +73,12 @@
 			// Doesn't work:
 			//if (window.location.host=='localhost') base=base+'/jamtransfer';
 
+			if($(this).attr("name") == "AuthUserRealName"){
+				// var datetime = new Date().toLocaleString('sr-RS', { timeZone: 'UTC' });
+				var datetime = new Date().toISOString().slice(0, 19).replace('T', ' ');
+				$(this).parent().parent().find("#AssignTime").val(datetime);
+			}
+
 			var link = base+'plugins/TunnelPass/Save.php';
 
 			var param = $(this).parent().parent().parent().serialize();
@@ -89,6 +95,8 @@
 					toastr['success'](window.success);
 				}				
 			});
+
+	
 			
 		})
 
