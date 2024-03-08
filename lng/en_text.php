@@ -1083,4 +1083,5 @@ define("TUNNEL_PASS_ID","Tunnel pass ID");
 define("VEHICLE_CATEGORY","Vehicle Category");
 define("TUNNEL_PASS_CODE","Tunnel Pass Code");
 define("PASS_NUMBER","Pass Number");
-define("ASSIGN_SDID","Assign SDID");
+define("ASSIGN_SDID","Assign Sub Driver ID");
+define("ASSIGN_TIME","Assign Time");
