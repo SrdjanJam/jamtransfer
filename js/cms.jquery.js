@@ -1171,7 +1171,7 @@ Handlebars.registerHelper("userSelect", function(id,levelId,field) {
 		var url = 'api/getUsersByUserLevel.php?LevelID='+levelId+'&callback=';
 		
 		console.log(url);
-		var selector = "<select class=\"w100\" name=\""+field+"\" id=\""+field+"\">";
+		var selector = "<select class=\"w100 form-control\" name=\""+field+"\" id=\""+field+"\" style='width: -webkit-fill-available;'>";
 
 		selector += '<option value="0"> --- </option>';
 
