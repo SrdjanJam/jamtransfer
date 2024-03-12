@@ -26,7 +26,10 @@ $flds = array();
 $DB_Where = " " . $_REQUEST['where'];
 $DB_Where .= $filter;
 
-if (isset($_REQUEST['ID']) && $_REQUEST['ID']>0) $DB_Where .= " AND ID=".$_REQUEST['ID'];
+
+$DB_Where .= " AND ID=".$_SESSION['ID'];
+
+ if (isset($_REQUEST['ID']) && $_REQUEST['ID']>0) $DB_Where .= " AND ID=".$_REQUEST['ID'];
 
 # dodavanje search parametra u qry
 # DB_Where sad ima sve potrebno za qry
@@ -45,18 +48,6 @@ if ( $_REQUEST['Search'] != "" )
 	$DB_Where .= ')';
 }
 $dbTotalRecords = $db->getKeysBy($ItemName . $sortOrder, '',$DB_Where);
-
-// prazan red za eventualni unos
-$detailFlds = $db->fieldValues();
-$out[] = $detailFlds; 
-if (isset($_REQUEST['ID']) && $_REQUEST['ID']>0) {
-	$db->getRow(0);	
-	$detailFlds = $db->fieldValues();
-	//$v->getRow( $_REQUEST['ID'] );
-	$detailFlds["ID"] = $_REQUEST['ID'];	
-	$out[] = $detailFlds; 
-}
-
 # test za LIMIT - trebalo bi ga iskoristiti za pagination! 'asc' . ' LIMIT 0,50'
 $dbk = $db->getKeysBy($ItemName . $sortOrder, '' . $limit , $DB_Where);
 
@@ -67,6 +58,9 @@ if (count($dbk) != 0) {
 		// ako treba neki lookup, onda to ovdje
 		# get all fields and values
 		$detailFlds = $db->fieldValues();
+		$tp->getRow($db->getTunnelPassID());
+		$detailFlds["TunnelPassCode"] = $tp->getTunnelPassCode();	
+		$detailFlds["SubDriver"] = $users[$db->getPassSDID()]->AuthUserRealName;	
 		// ako postoji neko custom polje, onda to ovdje.
 		// npr. $detailFlds["AuthLevelName"] = $nekaDrugaDB->getAuthLevelName().' nesto';
 		$out[] = $detailFlds;    	
