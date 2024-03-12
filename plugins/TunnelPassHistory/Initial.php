@@ -1,12 +1,11 @@
 <?
 require_once '../../config.php';
-require_once ROOT . '/db/v4_TunnelPassAH.class.php';
+require_once ROOT . '/db/v4_TunnelPassHistory.class.php';
 
-$db = new v4_TunnelPassAH();
+$db = new v4_TunnelPassHistory();
 
 $keyName = 'ID';
-$ItemName='AssignTime ';
-$type='Status'; 
+$ItemName='PassTime ';
 
 
 #********************************
@@ -15,5 +14,5 @@ $type='Status';
 # Search ce ih sam pretraziti
 #********************************
 $aColumns = array(
-	'AssignTime' // dodaj ostala polja!
+	'PassTime' // dodaj ostala polja!
 );

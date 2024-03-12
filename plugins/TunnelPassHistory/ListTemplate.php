@@ -7,14 +7,9 @@
 	<!-- LABEL: -->
 	<div class="row row-edit">
 		<div class="col-md-1"> <?=ID;?> </div>
-		<div class="col-md-2"> <?=TUNNEL_PASS_ID;?> </div>
-		<div class="col-md-2"> <?=ASSIGN_SDID;?> </div>
-		<div class="col-md-2"> <?=ASSIGN_TIME;?> </div>
-		<div class="col-md-2"> <?=STATUS;?> </div>
-		
-		<div class="col-md-1">
-			<a href="plugins/TunnelPassHistory/TunnelPassList_<?= $_SESSION['UseDriverID'] ?>.csv"><i class="fa fa-download" aria-hidden="true"></i> Download</a>
-		</div>			
+		<div class="col-md-2"> <?=TUNNEL_PASS_CODE;?> </div>
+		<div class="col-md-2"> <?=SUBDRIVER;?> </div>
+		<div class="col-md-2"> <?=PASS_TIME;?> </div>			
 	</div>
 
 	<!-- listTile: -->
@@ -27,9 +22,8 @@
 		
 				<div class="col-md-1"> <strong>{{ID}}</strong> </div>
 				<div class="col-md-2"> {{TunnelPassID}} </div>				
-				<div class="col-md-2"> {{AssignSDID}} </div>				
-				<div class="col-md-2"> {{AssignTime}} </div>
-				<div class="col-md-2"> {{Status}} </div>		
+				<div class="col-md-2"> {{PassSDID}} </div>				
+				<div class="col-md-2"> {{PassTime}} </div>
 								
 			</div>
 

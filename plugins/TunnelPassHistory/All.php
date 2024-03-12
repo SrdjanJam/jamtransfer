@@ -26,10 +26,7 @@ $flds = array();
 $DB_Where = " " . $_REQUEST['where'];
 $DB_Where .= $filter;
 
-
-$DB_Where .= " AND ID=".$_SESSION['ID'];
-
- if (isset($_REQUEST['ID']) && $_REQUEST['ID']>0) $DB_Where .= " AND ID=".$_REQUEST['ID'];
+if (isset($_REQUEST['ID']) && $_REQUEST['ID']>0) $DB_Where .= " AND ID=".$_REQUEST['ID'];
 
 # dodavanje search parametra u qry
 # DB_Where sad ima sve potrebno za qry
@@ -50,7 +47,6 @@ if ( $_REQUEST['Search'] != "" )
 $dbTotalRecords = $db->getKeysBy($ItemName . $sortOrder, '',$DB_Where);
 
 // prazan red za eventualni unos
-$db->getRow(0);	
 $detailFlds = $db->fieldValues();
 $out[] = $detailFlds; 
 if (isset($_REQUEST['ID']) && $_REQUEST['ID']>0) {
@@ -76,17 +72,6 @@ if (count($dbk) != 0) {
 		$out[] = $detailFlds;    	
     }
 }
-
-
-ob_start(); 
-echo $header.$table_row;
-$csv = ob_get_contents();
-ob_end_clean();
-$fp = fopen('TunnelPassList_'.($_SESSION['UseDriverID']).'.csv', 'w');
-fwrite($fp, $csv);
-fclose($fp);	
-
-
 # send output back
 $output = array(
 'recordsTotal' => count($dbTotalRecords),
