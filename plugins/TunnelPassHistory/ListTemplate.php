@@ -3,7 +3,7 @@
 	<div class="row row-edit">
 		<div class="col-md-1"> <?=ID;?> </div>
 		<div class="col-md-2"> <?=TUNNEL_PASS_ID;?> </div>
-		<div class="col-md-2"> <?=SUBDRIVER;?> </div>
+		<div class="col-md-2"> <?=SUB_DRIVER;?> </div>
 		<div class="col-md-2"> <?=PASS_TIME;?> </div>		
 	</div>
 	<!-- listTile: -->
