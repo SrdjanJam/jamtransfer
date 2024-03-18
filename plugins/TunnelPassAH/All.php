@@ -25,11 +25,8 @@ $flds = array();
 # kombinacija where i filtera
 $DB_Where = " " . $_REQUEST['where'];
 $DB_Where .= $filter;
-
-
-//$DB_Where .= " AND ID=".$_SESSION['ID'];
-
- if (isset($_REQUEST['ID']) && $_REQUEST['ID']>0) $DB_Where .= " AND ID=".$_REQUEST['ID'];
+if (isset($_REQUEST['orderFromDate']) && $_REQUEST['orderFromDate']>0) $DB_Where .= " AND AssignTime>='".$_REQUEST['orderFromDate']."'";
+if (isset($_REQUEST['orderToDate']) && $_REQUEST['orderToDate']>0) $DB_Where .= " AND AssignTime<='".$_REQUEST['orderToDate']."'";
 
 # dodavanje search parametra u qry
 # DB_Where sad ima sve potrebno za qry
@@ -48,22 +45,7 @@ if ( $_REQUEST['Search'] != "" )
 	$DB_Where .= ')';
 }
 $dbTotalRecords = $db->getKeysBy($ItemName . $sortOrder, '',$DB_Where);
-
-// prazan red za eventualni unos
-$db->getRow(0);	
-$detailFlds = $db->fieldValues();
-$out[] = $detailFlds; 
-if (isset($_REQUEST['ID']) && $_REQUEST['ID']>0) {
-	$db->getRow(0);	
-	$detailFlds = $db->fieldValues();
-	//$v->getRow( $_REQUEST['ID'] );
-	$detailFlds["ID"] = $_REQUEST['ID'];	
-	$out[] = $detailFlds; 
-}
-
-# test za LIMIT - trebalo bi ga iskoristiti za pagination! 'asc' . ' LIMIT 0,50'
 $dbk = $db->getKeysBy($ItemName . $sortOrder, '' . $limit , $DB_Where);
-
 if (count($dbk) != 0) {
     foreach ($dbk as $nn => $key)
     {
@@ -73,19 +55,12 @@ if (count($dbk) != 0) {
 		$detailFlds = $db->fieldValues();
 		// ako postoji neko custom polje, onda to ovdje.
 		// npr. $detailFlds["AuthLevelName"] = $nekaDrugaDB->getAuthLevelName().' nesto';
+		$tp->getRow($db->getTunnelPassID());
+		$detailFlds["TunnelPassCode"] = $tp->getTunnelPassCode();	
+		$detailFlds["SubDriver"] = $users[$db->getAssignSDID()]->AuthUserRealName;			
 		$out[] = $detailFlds;    	
     }
 }
-
-
-ob_start(); 
-echo $header.$table_row;
-$csv = ob_get_contents();
-ob_end_clean();
-$fp = fopen('TunnelPassList_'.($_SESSION['UseDriverID']).'.csv', 'w');
-fwrite($fp, $csv);
-fclose($fp);	
-
 
 # send output back
 $output = array(
