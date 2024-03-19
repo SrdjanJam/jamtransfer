@@ -85,8 +85,8 @@
 	}
 	else $sent = false;
 
-	if ($sent) $output = '<span class="badge bg-green"><i class="ic-happy"></i> Message sent to mail queue</span>';
-	else $output = '<span class="badge bg-red"><i class="ic-sad"></i> Message not sent to mail queue</span>';
+	if ($sent) $output = '<span class="badge bg-green"><i class="ic-happy"></i> Message sent.</span>';
+	else $output = '<span class="badge bg-red"><i class="ic-sad"></i> Message not sent.</span>';
 
 	echo $_GET['callback'] . '(' . json_encode($output) . ')';
 

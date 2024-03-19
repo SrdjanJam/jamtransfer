@@ -10,6 +10,6 @@ $message 	= $subject . '<br><br>Message:<br><br>'.$_REQUEST['message'];
 $OrderID 	= $_REQUEST['OrderID'];
 $TNo		= $_REQUEST['TNo'];
 if ($_REQUEST['message'] != '' and $to != '') mail_html($to, $from, $from_name, $from, $subject, $message);
-$output = '<span class="badge bg-green"><i class="ic-happy"></i> Message sent to mail queue </span>';
+$output = '<span class="badge bg-green"><i class="ic-happy"></i> Message sent. </span>';
 echo $_GET['callback'] . '(' . json_encode($output) . ')';	
 
