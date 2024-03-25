@@ -16,6 +16,14 @@
 			<span class="btn btn-primary"><a target='_blank' href='driverReOrder/{{details.OrderID}}/{{details.TNo}}'>
 				<i class="fa fa-balance-scale" aria-hidden="true"></i>
 			</a></span>
+			{{#compare details.RelatedTransfers "!=" ""}}	
+			{{#compare details.TNo "==" 1}}	
+			<span class="btn btn-primary"><a target='_blank' href='driverReOrder/{{details.OrderID}}/{{details.TNo}}/1'>
+				<i class="fa fa-balance-scale" aria-hidden="true">R</i>
+			</a></span>									
+
+			{{/compare}}
+			{{/compare}}			
         </div>								
     </div>	
     

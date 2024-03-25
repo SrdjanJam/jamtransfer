@@ -19,6 +19,7 @@
 		$check_query="SELECT count(*) as broj FROM `v4_OrderRequests` WHERE OrderKey='".$_REQUEST['key']."' AND ConfirmDecline>0"; 
 		$result_check = $db->RunQuery($check_query);
 		$row_check=$result_check->fetch_array(MYSQLI_ASSOC);
+		$_REQUEST['cd']=(int)($_REQUEST['cd']);
 		if ($row_check['broj']==0) {
 			$upd_query="UPDATE `v4_OrderRequests` SET `ResponseDate`=NOW(),`ResponseTime`=NOW(),`ConfirmDecline`=".$_REQUEST['cd']." WHERE `OrderKey`='".$_REQUEST['key']."'";
 			$result_upd = $db->RunQuery($upd_query);

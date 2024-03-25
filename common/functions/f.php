@@ -830,9 +830,9 @@ function mail_html($mailto, $from_mail, $from_name, $replyto, $subject, $message
 **
 */
 
-function mail_html_send($mailto, $from_mail, $from_name, $replyto, $subject, $message, $attachment = '') {
+function mail_html_send($mailto, $from_mail, $from_name, $replyto, $subject, $message, $attachment = '', $whatsapp = 1) {
 
-	if (getPhoneFromMail($mailto)) send_whatsapp_message(getPhoneFromMail($mailto),$message);
+	if (!empty($mailto) && getPhoneFromMail($mailto) && $whatsapp==1) send_whatsapp_message(getPhoneFromMail($mailto),$message);	
 
 	require_once ROOT. '/PHPMailer-master/PHPMailerAutoload.php';
 
@@ -894,7 +894,11 @@ function getPhoneFromMail($mail) {
 	else return false;
 }	
 function send_whatsapp_message($phone_to,$message) {
+	$message=str_replace("<BR>","\n",$message);
+	$message=str_replace("<br>","\n",$message);
+	$message=str_replace("&nbsp;"," ",$message);
 	$message=strip_tags($message);
+	$message = preg_replace('/^[ \t]*[\r\n]+/m', '', $message);	
 	require_once ROOT . '/db/v4_CoInfo.class.php';
 	$ci = new v4_CoInfo;
 	$ci->getRow(3);
@@ -926,7 +930,70 @@ function send_whatsapp_message($phone_to,$message) {
 	curl_close($curl);
 }
 
+// funkcija za formiranje whatsapp poruke za orderlog
+function sendOrderLogNotification($logID) {
+	require_once ROOT . '/db/v4_OrderLog.class.php';	
+	require_once ROOT . '/db/v4_OrderDetails.class.php';	
+	require_once ROOT . '/db/v4_AuthUsers.class.php';	
+	$ol = new v4_OrderLog;
+	$od = new v4_OrderDetails;
+	$au = new v4_AuthUsers;
+	$ol->getRow($logID);
+	$od->getRow($ol->getDetailsID());
+	if ($ol->getAction()=="Update") {
+		if ($od->getSubDriver()>0 && $od->getDriverConfStatus()==3) {
+			$au->getRow($od->getSubDriver());
+			$phone=$au->getAuthUserMob();
+			$message="ORDER:<a href='https://cms.jamtransfer.com/cms/index.php?p=details&id=".$od->getDetailsID()."'>".$od->getOrderID()."</a>-".$od->getTNo()."   ". $ol->getDescription();
+			send_whatsapp_message($phone,$message);
+		}		
+		if ($od->getSubDriver2()>0 && $od->getDriverConfStatus()==3) {
+			$au->getRow($od->getSubDriver2());
+			$phone=$au->getAuthUserMob();
+			$message="ORDER:<a href='https://cms.jamtransfer.com/cms/index.php?p=details&id=".$od->getDetailsID()."'>".$od->getOrderID()."</a>-".$od->getTNo()."   ". $ol->getDescription();
+			send_whatsapp_message($phone,$message);
+		}		
+		if ($od->getSubDriver3()>0 && $od->getDriverConfStatus()==3) {
+			$au->getRow($od->getSubDriver3());
+			$phone=$au->getAuthUserMob();
+			$message="ORDER:<a href='https://cms.jamtransfer.com/cms/index.php?p=details&id=".$od->getDetailsID()."'>".$od->getOrderID()."</a>-".$od->getTNo()."   ". $ol->getDescription();
+			send_whatsapp_message($phone,$message);
+		}	
+	}
+}	
 
+// funkcija za primanje mail-ova sa mail servera
+function receiveMails($email,$pass,$range) {
+	error_reporting(E_ALL);
+	// Connect to the mail server
+	$imap = imap_open('{mail.jamtransfer.com:993/imap/ssl}INBOX', $email, $pass);
+	
+	// Retrieve the incoming mail
+	$messages = imap_search($imap,$range);
+	//$messages = imap_search($imap, 'ALL');
+	// Process each incoming message
+	$mails=array();
+	foreach ($messages as $message) {
+		// Get the message header
+		$structure = imap_fetchstructure($imap, $message);
+		$mail_row = imap_headerinfo($imap, $message);
+		$part = $structure->parts[1];
+		$body=imap_fetchbody($imap, $message, 1);
+		if($part->encoding == 3) {
+			$mail_row->body = imap_base64($body);
+			$mail_row->subject = imap_base64($mail_row->subject);
+		} else if($part->encoding == 1) {
+			$mail_row->body = imap_8bit($body);
+			$mail_row->subject = imap_8bit($mail_row->subject);
+		} else {
+			$mail_row->body = imap_qprint($body);
+			$mail_row->subject = imap_qprint($mail_row->subject);			
+		}
+		$mails[] = $mail_row;
+	}	
+	imap_close($imap);	
+	return json_encode($mails);
+}
 /*
     poziva: cms/dc.php, cms/a/sendUpdateEmail.php
 */

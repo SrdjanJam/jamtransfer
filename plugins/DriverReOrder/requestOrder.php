@@ -210,7 +210,7 @@
 								// Set email format to HTML
 
 
-	mail_html_send($mailto, 'info@jamtransfer.com', 'JamTransfer.com', 'info@jamtransfer.com', $subject , $message);
+	mail_html_send($mailto, 'info@jamtransfer.com', 'JamTransfer.com', 'info@jamtransfer.com', $subject , $message, 0);
 
 	$res = array(
 				'OrderID'=>$OrderID,

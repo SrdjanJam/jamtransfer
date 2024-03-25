@@ -19,14 +19,16 @@
 
 <input type='hidden' name="OrderID" id="OrderID" value=" {$smarty.request.OrderID}">
 <input type='hidden' name="TNo" id="TNo" value="{$smarty.request.TNo}">
-<input type='hidden' name="returnTransfer" id="returnTransfer" value="0">
+<input type='hidden' name="returnTransfer" id="returnTransfer" value="{$returnTransfer}">
 
 <body  style="">
 	<div class="">
 		<div class="container-fluid side-collapse-container center" >
 			<div class="row xpad1em white-text">
 				<div class="row z-depth-2 white lighten-5">			
-					<h2>{$ORDER}: {$smarty.request.OrderID}-{$smarty.request.TNo} Route: {$route}</h2>
+					<h2>{$ORDER}: {$smarty.request.OrderID}{if $returnTransfer eq 0}-{$smarty.request.TNo}{/if} Route: {$route}
+					{if $returnTransfer eq 1} RETURN{/if}
+					</h2>
 				</div>
 				<hr>
 			</div>

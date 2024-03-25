@@ -13,17 +13,32 @@
 	$vt = new v4_VehicleTypes();		
 	require_once ROOT  . '/db/v4_Vehicles.class.php';
 	$vh = new v4_Vehicles();	
-
-	$oKey = $od->getKeysBy('OrderID', 'ASC', ' WHERE OrderID = ' .$_REQUEST['OrderID']. ' and TNo = ' . $_REQUEST['TNo']);
+	if (isset($_REQUEST['returnTransfer']) && $_REQUEST['returnTransfer']==1) {
+		$returnTransfer=1;
+		$oKey = $od->getKeysBy('OrderID', 'ASC', ' WHERE OrderID = ' .$_REQUEST['OrderID']);
+	}	
+	else {
+		$returnTransfer=0;
+		$oKey = $od->getKeysBy('OrderID', 'ASC', ' WHERE OrderID = ' .$_REQUEST['OrderID']. ' and TNo = ' . $_REQUEST['TNo']);
+	}	
 	$od->getRow($oKey[0]);
+	$driverPrice=$od->getDriversPrice();
+	$detailPrice=$od->getDetailPrice();
+	if ($returnTransfer==1) {
+		$od->getRow($oKey[1]);
+		$driverPrice+=$od->getDriversPrice();
+		$detailPrice+=$od->getDetailPrice();
+		$od->getRow($oKey[0]);
+	}		
 	$au->getRow($od->getDriverID());
 	$vt->getRow($od->getVehicleType());
 	$smarty->assign("driverName",$au->getAuthUserRealName());
-	$smarty->assign("DetailPrice",number_format($od->getDetailPrice(),2));
-	$smarty->assign("DriversPrice",$od->getDriversPrice());
+	$smarty->assign("DetailPrice",number_format($detailPrice,2));
+	$smarty->assign("DriversPrice",number_format($driverPrice,2));
 	$smarty->assign("VehicleTypeName",$vt->getVehicleTypeName());
 	$smarty->assign("vehicleImage",getCarImage($vt->getVehicleClass()));
 	$smarty->assign("VehiclesNo",$od->getVehiclesNo());
+	$smarty->assign("returnTransfer",$returnTransfer);
 	
 	$fromID=$od->getPickupID();
 	$toID=$od->getDropID();

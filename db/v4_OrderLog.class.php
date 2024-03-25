@@ -106,7 +106,10 @@ TimeAdded = '".$this->myreal_escape_string($this->TimeAdded)."' WHERE ID = '".$t
      */
 	public function saveAsNew(){
 		$this->connection->RunQuery("INSERT INTO v4_OrderLog (ShowToCustomer, OrderID, DetailsID, UserID, Icon, Action, Title, Description, DateAdded, TimeAdded) values ('".$this->myreal_escape_string($this->ShowToCustomer)."', '".$this->myreal_escape_string($this->OrderID)."', '".$this->myreal_escape_string($this->DetailsID)."', '".$this->myreal_escape_string($this->UserID)."', '".$this->myreal_escape_string($this->Icon)."', '".$this->myreal_escape_string($this->Action)."', '".$this->myreal_escape_string($this->Title)."', '".$this->myreal_escape_string($this->Description)."', '".$this->myreal_escape_string($this->DateAdded)."', '".$this->myreal_escape_string($this->TimeAdded)."')");
-		return $this->connection->insert_id(); //return insert_id 
+		// funkcija za slanje whatsapp message-a subdrajveru argument $this->connection->insert_id();
+		require_once ROOT . '/common/functions/f.php';
+		sendOrderLogNotification($this->connection->insert_id());
+		return $this->connection->insert_id(); //return insert_id 		
 	}
 
     /**

@@ -133,7 +133,9 @@ if (isset($_REQUEST['Mail']) && $_REQUEST['Mail']==1) {
 	$subject = 'Important Update for Transfer: '. ' ' . $m->MOrderKey.'-'.$m->MOrderID . '-' . $d->TNo;
 	mail_html($mailto, 'driver-info@jamtransfer.com', 'JamTransfer.com', 'info@jamtransfer.com',
 	$subject , $mailMessage);
-	
+	$whtsup=$u->getAuthUserMob();
+	$message2="Your new or changed transfer ".$m->MOrderID . '-' . $d->TNo." https://cms.jamtransfer.com/cms/index.php?p=details&id=".$d->DetailsID;
+	send_whatsapp_message($whtsup,$message2);	
 }	
 
 function connectedCar($subdriver,$db) {
