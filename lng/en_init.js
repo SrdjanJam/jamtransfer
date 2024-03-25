@@ -64,10 +64,11 @@ surCategory[4] = 'Service';
 // Add to the database:
 // requestType
 var requestType = {};
-requestType[0] = 'Not Active';
+requestType[0] = 'NA';
 requestType[1] ='Check Box';
 requestType[2] ='Photo';
 requestType[3] ='Video';
+requestType[4] ='Text';
 
 // payment Status
 var paymentStatus = {};

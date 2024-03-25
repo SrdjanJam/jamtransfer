@@ -64,6 +64,10 @@ if ( $_REQUEST['Search'] != "" )
 
 
 $dbTotalRecords = $db->getKeysBy('ID ASC', '',$DB_Where);
+// prazan red za eventualni unos
+	$db->getRow(0);	
+	$detailFlds = $db->fieldValues();
+	$out[] = $detailFlds; 
 # test za LIMIT - trebalo bi ga iskoristiti za pagination! 'asc' . ' LIMIT 0,50'
 $dbk = $db->getKeysBy('DisplayOrder ' . $sortOrder, '' . $limit , $DB_Where);
 

@@ -41,6 +41,11 @@ if ($keyName != '' and $keyValue == '') {
 	$db->setOwnerID($_SESSION['UseDriverID']);
 	$newID = $db->saveAsNew();
 }
+$msg="You have a new or changed TASK https://cms.jamtransfer.com/cms/index.php?p=subdriver_tasks";
+$whtsup=$users[$_REQUEST['DriverID']]->AuthUserMob;
+send_whatsapp_message($whtsup,$msg);	
+
+
 // zaprimanje - razduzivanje vozila
 $ex_arr=array(ZADUZIVANJE,RAZDUZIVANJE);
 

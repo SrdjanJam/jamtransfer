@@ -15,23 +15,15 @@
 		<div class="col-md-1">
 			<?=REQUEST_ID;?>
 		</div>
-
-		<div class="col-md-2">
-			<?=REQUEST_TITLE;?>
-		</div>
-
-		<div class="col-md-1" style="font-size: 15px;">
-			<?=DISPLAY_ORDER;?>
-		</div>
-
-		<div class="col-md-3">
-			<?=ACTIVE;?>
-		</div>
-
 		<div class="col-md-3">
 			<?=TITLE;?>
 		</div>
-
+		<div class="col-md-1" style="font-size: 15px;">
+			<?=DISPLAY_ORDER;?>
+		</div>
+		<div class="col-md-3">
+			<?=ACTIVE;?>
+		</div>
 		<div class="col-md-1">
 			<?=DELETE;?>
 		</div>
@@ -49,8 +41,8 @@
 					<strong>{{ID}}</strong>
 				</div>
 
-				<div class="col-md-2">
-					{{Title}}
+				<div class="col-md-3 title">
+					<input type="text" name="Title" id="Title" class="w100" value="{{Title}}" data-id="{{ID}}" style="width: -webkit-fill-available;">
 				</div>
 
 				<div class="col-md-1 displayorder">
@@ -60,10 +52,6 @@
 				<!-- RequestType This method is in the Jquery file: -->
 				<div class="col-md-3 surcategory">
 					<span>{{RequestType Active ID}}</span>
-				</div>
-
-				<div class="col-md-3 title">
-					<input type="text" name="Title" id="Title" class="w100" value="{{Title}}" data-id="{{ID}}" style="width: -webkit-fill-available;">
 				</div>
 
 				<div class="col-md-1">

@@ -160,7 +160,7 @@
 					<div class="col-md-4">
 						<label for="Approved"><?= APPROVED ;?></label>
 					</div>
-					<div class="col-md-8 approved">
+					<div class="col-md-2 approved">
 						<large>{{yesNoSliderEdit Approved 'Approved' }}</large>
 					</div>
 				</div>								

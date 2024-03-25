@@ -790,6 +790,7 @@ Handlebars.registerHelper("requestType", function(numeric) {
 	if(numeric == 1) return 'Check Box';
 	if(numeric == 2) return 'Photo';
 	if(numeric == 3) return 'Video';
+	if(numeric == 4) return 'Text';
 });
 
 /*
@@ -1171,7 +1172,7 @@ Handlebars.registerHelper("userSelect", function(id,levelId,field) {
 		var url = 'api/getUsersByUserLevel.php?LevelID='+levelId+'&callback=';
 		
 		console.log(url);
-		var selector = "<select class=\"w100 form-control\" name=\""+field+"\" id=\""+field+"\" style='width: -webkit-fill-available;'>";
+		var selector = "<select class=\"w100\" name=\""+field+"\" id=\""+field+"\">";
 
 		selector += '<option value="0"> --- </option>';
 

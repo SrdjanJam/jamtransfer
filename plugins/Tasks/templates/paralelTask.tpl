@@ -2,19 +2,19 @@
 	<table>
 		<tr>
 			<th width='300px'>
-				{$TITLE}
+				Title
 			</th>
 			{section name=pom loop=$list_all}
 				<th width='200px'>
-					{if $list_all[pom].expense eq '109'}{$ZADUZENJE}{/if}
-					{if $list_all[pom].expense eq '127'}{$RAZDUZENJE}{/if}
+					{if $list_all[pom].expense eq '109'}Zaduženje{/if}
+					{if $list_all[pom].expense eq '127'}Razduženje{/if}
 					<br>
 					{$list_all[pom].vreme}
 					<br>
 					{$list_all[pom].drivername}		
 					<br>		
-					{if $list_all[pom].approved eq '1'}{$APPROVED}{/if}
-					{if $list_all[pom].expense eq '0'}{$NOT_APPROVED}{/if}
+					{if $list_all[pom].approved eq '1'}Approved{/if}
+					{if $list_all[pom].expense eq '0'}Not approved{/if}
 					
 				</th>		
 			{/section}	
