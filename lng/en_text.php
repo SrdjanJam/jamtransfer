@@ -1086,3 +1086,11 @@ define("PASS_NUMBER","Pass Number");
 define("ASSIGN_SDID","Assign SubDriver");
 define("ASSIGN_TIME","Assign Time");
 define("PASS_TIME","Pass Time");
+
+// 27.3.24
+define("SEND_RULE","Send Rule");
+define("SCHEDULE_TIME","Schedule Time");
+define("SEND_TIME_FIRST","Send Time First");
+define("SEND_TIME_LAST","Send Time Last");
+define("CONFIRM_TIME","Confirm Time");
+define("SEND_NUMBER","Send Number");
