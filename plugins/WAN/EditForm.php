@@ -42,8 +42,8 @@
 		</div>
 		<!-- SER_ID: -->
 		<div class="row">
-			<div class="col-md-3"> <label for="UserID"><?=USER_ID;?></label> </div>
-			<div class="col-md-9"> <input type="text" name="UserID" id="UserID" class="w100" value="{{UserID}}"> </div>
+			<div class="col-md-3"> <label for="UserID"><?=SUBDRIVERS;?></label> </div>
+            <div class="col-md-6">{{subdriverSelect UserID '<?=$_SESSION['UseDriverID']?>' 'UserID'}}  </div>	
 		</div>
 		<!-- SEND_RULE: -->
 		<div class="row">

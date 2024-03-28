@@ -11,7 +11,7 @@
  */
 require_once 'db.class.php';
 
-Class v4_Wan {
+Class v4_WAN {
 
 	public $ID; //int(10)
   	public $Title; //varchar(20)
@@ -37,7 +37,7 @@ Class v4_Wan {
      * New object to the class. Don´t forget to save this new object "as new" by using the function $class->saveAsNew(); 
      *
      */
-	public function New_v4_Wan($Title,$Body,$UserID,$SendRule,$ScheduleTime,$SendTimeFirst,$SendTimeLast,$ConfirmTime,$SendNumber,$Status){
+	public function New_v4_WAN($Title,$Body,$UserID,$SendRule,$ScheduleTime,$SendTimeFirst,$SendTimeLast,$ConfirmTime,$SendNumber,$Status){
 		$this->Title = $Title;
 		$this->Body = $Body;
 		$this->UserID = $UserID;
@@ -57,7 +57,7 @@ Class v4_Wan {
      * 
      */
 	public function getRow($key_row){
-		$result = $this->connection->RunQuery("Select * from v4_Wan where ID = \"$key_row\" ");
+		$result = $this->connection->RunQuery("Select * from v4_WAN where ID = \"$key_row\" ");
 		if($result->num_rows < 1) return false;
 		while($row = $result->fetch_array(MYSQLI_ASSOC)){
 			$this->ID = $row["ID"];
@@ -82,14 +82,14 @@ Class v4_Wan {
      *
      */
 	public function deleteRow($key_row){
-		$this->connection->RunQuery("DELETE FROM v4_Wan WHERE ID = $key_row");
+		$this->connection->RunQuery("DELETE FROM v4_WAN WHERE ID = $key_row");
 	}
 
     /**
      * Update the active row table on table
      */
 	public function saveRow(){
-		$result = $this->connection->RunQuery("UPDATE v4_Wan set 
+		$result = $this->connection->RunQuery("UPDATE v4_WAN set 
 Title = '".$this->myreal_escape_string($this->Title)."', 
 Body = '".$this->myreal_escape_string($this->Body)."', 
 UserID = '".$this->myreal_escape_string($this->UserID)."', 
@@ -107,7 +107,7 @@ Status = '".$this->myreal_escape_string($this->Status)."' WHERE ID = '".$this->I
      * Save the active var class as a new row on table
      */
 	public function saveAsNew(){
-		$this->connection->RunQuery("INSERT INTO v4_Wan (
+		$this->connection->RunQuery("INSERT INTO v4_WAN (
 			Title, 
 			Body, 
 			UserID, 
@@ -142,7 +142,7 @@ Status = '".$this->myreal_escape_string($this->Status)."' WHERE ID = '".$this->I
 	public function getKeysBy($column, $order, $where = NULL){
 		$keys = array(); $i = 0;
 		// echo "SELECT TunnelPassID from v4_TunnelPass $where ORDER BY $column $order";
-		$result = $this->connection->RunQuery("SELECT ID from v4_Wan $where ORDER BY $column $order");
+		$result = $this->connection->RunQuery("SELECT ID from v4_WAN $where ORDER BY $column $order");
 			while($row = $result->fetch_array(MYSQLI_ASSOC)){
 				$keys[$i] = $row["ID"];
 				$i++;
@@ -353,7 +353,7 @@ Status = '".$this->myreal_escape_string($this->Status)."' WHERE ID = '".$this->I
     /**
      * Close mysql connection
      */
-	public function endv4_Wan(){
+	public function endv4_WAN(){
 		$this->connection->CloseMysql();
 	}
 

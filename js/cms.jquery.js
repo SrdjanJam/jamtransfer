@@ -1221,7 +1221,7 @@ Handlebars.registerHelper("subdriverSelect", function(id,ownerId,field) {
 		console.log(url);
 		var selector = "<select class=\"w100\" name=\""+field+"\" id=\""+field+"\">";
 
-		selector += '<option value="0" data-tel=""> --- </option>';
+		//selector += '<option value="0" data-tel=""> --- </option>';
 
 		$.ajax({
 			type: 'POST',

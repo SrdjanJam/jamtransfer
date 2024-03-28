@@ -32,7 +32,6 @@ class v4_SubActivityJoin extends v4_SubActivity {
 }
 # init class
 $se = new v4_SubActivityJoin();
-$au = new v4_AuthUsers();
 
 #********************************************
 # ulazni parametri su where, status i search
@@ -122,7 +121,6 @@ if (count($dbk) != 0) {
     foreach ($dbk as $nn => $key)  
     {	
     	$db->getRow($key);
-	   	$au->getRow($db->getDriverID());
 
 		// ako treba neki lookup, onda to ovdje
 		
@@ -131,8 +129,7 @@ if (count($dbk) != 0) {
 		
 		// ako postoji neko custom polje, onda to ovdje.
 		// npr. $detailFlds["AuthLevelName"] = $nekaDrugaDB->getAuthLevelName().' nesto';
-
-		$detailFlds["AuthUserRealName"] = $au->getAuthUserRealName();
+		$detailFlds["AuthUserRealName"] = $users[$db->getDriverID()]->AuthUserRealName;
 		$ac->getRow($db->getExpense());
 		$detailFlds["ExpanceTitle"] = $ac->getTitle();
 		$detailFlds["VehicleDescription"] = $vehiclesnames[$db->VehicleID];

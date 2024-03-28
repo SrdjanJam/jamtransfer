@@ -6,16 +6,11 @@
 	<!-- LABELS: -->
 	<div class="row row-edit">
 		<div class="col-md-1"> <?=ID;?> </div>
-		<div class="col-md-4"> <?=TITLE;?> </div>	
-		<!-- <div class="col-md-2"> <?=BODY;?> </div>
-		<div class="col-md-2"> <?=USER_ID;?> </div>
-		<div class="col-md-1"> <?=SEND_RULE;?> </div>
+		<div class="col-md-3"> <?=TITLE;?> </div>	
+		<div class="col-md-2"> <?=SUBDRIVERS;?> </div>
 		<div class="col-md-2"> <?=SCHEDULE_TIME;?> </div>
-		<div class="col-md-1"> <?=SEND_TIME_FIRST;?> </div>
-		<div class="col-md-1"> <?=SEND_TIME_LAST;?> </div>
-		<div class="col-md-1"> <?=CONFIRM_TIME;?> </div>
-		<div class="col-md-1"> <?=SEND_NUMBER;?> </div>
-		<div class="col-md-1"> <?=STATUS;?> </div> -->
+		<div class="col-md-2"> <?=CONFIRM_TIME;?> </div>
+		<div class="col-md-1"> <?=STATUS;?> </div>
 	</div>
 	
 	{{#each Item}}
@@ -26,7 +21,11 @@
 			id="t_{{ID}}">
 			
 				<div class="col-md-1"> <strong>{{ID}}</strong> </div>
-				<div class="col-md-4"> <strong>{{Title}}</strong> </div>
+				<div class="col-md-3"> <strong>{{Title}}</strong> </div>
+				<div class="col-md-2"> {{userName UserID "AuthUserRealName"}} </div>
+				<div class="col-md-2"> {{ScheduleTime}} </div>
+				<div class="col-md-2"> {{ConfirmTime}} </div>
+				<div class="col-md-1"> {{Status}} </div>				
 
 			</div>
 		</div>

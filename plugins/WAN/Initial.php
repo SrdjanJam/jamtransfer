@@ -1,8 +1,8 @@
 <?
 require_once '../../config.php';
-require_once ROOT . '/db/v4_Wan.class.php';
+require_once ROOT . '/db/v4_WAN.class.php';
 $dbT = new DataBaseMysql();
-$db = new v4_Wan();
+$db = new v4_WAN();
 
 
 $keyName = 'ID';
