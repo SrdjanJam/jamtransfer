@@ -38,7 +38,7 @@
 		<!-- BODY: -->
 		<div class="row">
 			<div class="col-md-3"> <label for="Body"><?=BODY;?></label> </div>
-			<div class="col-md-9"> <input type="text" name="Body" id=Body" class="w100" value="{{Body}}"> </div>
+			<div class="col-md-6"> <textarea name="Body" id=Body" class="w100" value="{{Body}}"></textarea> </div>
 		</div>
 		<!-- SER_ID: -->
 		<div class="row">
@@ -53,34 +53,37 @@
 		<!-- SCHEDULE_TIME:  -->
 		<div class="row">
 			<div class="col-md-3"> <label for="ScheduleTime"><?=SCHEDULE_TIME;?></label> </div>
-			<div class="col-md-9"> <input type="text" name="ScheduleTime" id="ScheduleTime" class="w100" value="{{ScheduleTime}}"> </div>
+			<div class="col-md-9"> <input type="text" name="ScheduleTime" id="ScheduleTime" class="w100 datepicker" value="{{ScheduleTime}}"> </div>
 		</div>
-		<!-- SEND_TIME_FIRST: -->
-		<div class="row">
-			<div class="col-md-3"> <label for="SendTimeFirst"><?=SEND_TIME_FIRST;?></label> </div>
-			<div class="col-md-9"> <input type="text" name="SendTimeFirst" id="SendTimeFirst" class="w100" value="{{SendTimeFirst}}"> </div>
-		</div>
-		<!-- SEND_TIME_LAST: -->
-		<div class="row">
-			<div class="col-md-3"> <label for="SendTimeLast"><?=SEND_TIME_LAST;?></label> </div>
-			<div class="col-md-9"> <input type="text" name="SendTimeLast" id="SendTimeLast" class="w100" value="{{SendTimeLast}}"> </div>
-		</div>
-		<!-- CONFIRM_TIME: -->
-		<div class="row">
-			<div class="col-md-3"> <label for="ConfirmTime"><?=CONFIRM_TIME;?></label> </div>
-			<div class="col-md-9"> <input type="text" name="ConfirmTime" id="ConfirmTime" class="w100" value="{{ConfirmTime}}"> </div>
-		</div>
-		<!-- SEND_NUMBER: -->
-		<div class="row">
-			<div class="col-md-3"> <label for="SendNumber"><?=SEND_NUMBER;?></label> </div>
-			<div class="col-md-9"> <input type="text" name="SendNumber" id="SendNumber" class="w100" value="{{SendNumber}}"> </div>
-		</div>
-		<!-- STATUS: -->
-		<div class="row">
-			<div class="col-md-3"> <label for="Status"><?=STATUS;?></label> </div>
-			<div class="col-md-9"> <input type="text" name="Status" id="Status" class="w100" value="{{Status}}"> </div>
-		</div>
-			
+
+		<?php if(!$isNew){ ?>
+			<!-- SEND_TIME_FIRST: -->
+			<div class="row">
+				<div class="col-md-3"> <label for="SendTimeFirst"><?=SEND_TIME_FIRST;?></label> </div>
+				<div class="col-md-9"> <input type="text" name="SendTimeFirst" id="SendTimeFirst" class="w100 datepicker" value="{{SendTimeFirst}}"> </div>
+			</div>
+			<!-- SEND_TIME_LAST: -->
+			<div class="row">
+				<div class="col-md-3"> <label for="SendTimeLast"><?=SEND_TIME_LAST;?></label> </div>
+				<div class="col-md-9"> <input type="text" name="SendTimeLast" id="SendTimeLast" class="w100 datepicker" value="{{SendTimeLast}}"> </div>
+			</div>
+			<!-- CONFIRM_TIME: -->
+			<div class="row">
+				<div class="col-md-3"> <label for="ConfirmTime"><?=CONFIRM_TIME;?></label> </div>
+				<div class="col-md-9"> <input type="text" name="ConfirmTime" id="ConfirmTime" class="w100 datepicker" value="{{ConfirmTime}}"> </div>
+			</div>
+			<!-- SEND_NUMBER: -->
+			<div class="row">
+				<div class="col-md-3"> <label for="SendNumber"><?=SEND_NUMBER;?></label> </div>
+				<div class="col-md-9"> <input type="text" name="SendNumber" id="SendNumber" class="w100 datepicker" value="{{SendNumber}}"> </div>
+			</div>
+			<!-- STATUS: -->
+			<div class="row">
+				<div class="col-md-3"> <label for="Status"><?=STATUS;?></label> </div>
+				<div class="col-md-9"> <input type="text" name="Status" id="Status" class="w100" value="{{Status}}"> </div>
+			</div>
+		<?php } ?>
+
 	</div>
 </form>
 
