@@ -38,7 +38,7 @@
 		<!-- BODY: -->
 		<div class="row">
 			<div class="col-md-3"> <label for="Body"><?=BODY;?></label> </div>
-			<div class="col-md-6"> <textarea name="Body" id=Body" class="w100" value="{{Body}}"></textarea> </div>
+			<div class="col-md-6"> <textarea name="Body" id="Body" class="w100">{{Body}}</textarea> </div>
 		</div>
 		<!-- SER_ID: -->
 		<div class="row">
@@ -53,7 +53,10 @@
 		<!-- SCHEDULE_TIME:  -->
 		<div class="row">
 			<div class="col-md-3"> <label for="ScheduleTime"><?=SCHEDULE_TIME;?></label> </div>
-			<div class="col-md-9"> <input type="text" name="ScheduleTime" id="ScheduleTime" class="w100 datepicker" value="{{ScheduleTime}}"> </div>
+			<div class="col-md-9"> 
+				<input type="text" name="ScheduleTime" id="ScheduleTime" class="w100 datepicker" value="{{ScheduleTime}}">
+				<input type="text" name="ScheduleTime" id="ScheduleTime" class="w100 timepicker" value="{{ScheduleTime}}"> 
+			</div>
 		</div>
 
 		<?php if(!$isNew){ ?>
@@ -75,7 +78,7 @@
 			<!-- SEND_NUMBER: -->
 			<div class="row">
 				<div class="col-md-3"> <label for="SendNumber"><?=SEND_NUMBER;?></label> </div>
-				<div class="col-md-9"> <input type="text" name="SendNumber" id="SendNumber" class="w100 datepicker" value="{{SendNumber}}"> </div>
+				<div class="col-md-9"> <input type="text" name="SendNumber" id="SendNumber" class="w100" value="{{SendNumber}}"> </div>
 			</div>
 			<!-- STATUS: -->
 			<div class="row">
