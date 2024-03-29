@@ -24,6 +24,8 @@ Class v4_WAN {
   	public $ConfirmTime; //datetime
   	public $SendNumber; //tinyint(1)
   	public $Status; //tinyint(1)
+	public $Direction; //tinyint(1)
+	public $OwnerID; //int(11)
 
 	public $connection;
 
@@ -37,7 +39,7 @@ Class v4_WAN {
      * New object to the class. Don´t forget to save this new object "as new" by using the function $class->saveAsNew(); 
      *
      */
-	public function New_v4_WAN($Title,$Body,$UserID,$SendRule,$ScheduleTime,$SendTimeFirst,$SendTimeLast,$ConfirmTime,$SendNumber,$Status){
+	public function New_v4_WAN($Title,$Body,$UserID,$SendRule,$ScheduleTime,$SendTimeFirst,$SendTimeLast,$ConfirmTime,$SendNumber,$Status,$Direction,$OwnerID){
 		$this->Title = $Title;
 		$this->Body = $Body;
 		$this->UserID = $UserID;
@@ -48,6 +50,8 @@ Class v4_WAN {
 		$this->ConfirmTime = $ConfirmTime;
 		$this->SendNumber = $SendNumber;
 		$this->Status = $Status;
+		$this->Direction = $Direction;
+		$this->OwnerID = $OwnerID;
 	}
 
     /**
@@ -71,6 +75,8 @@ Class v4_WAN {
 			$this->ConfirmTime = $row["ConfirmTime"];
 			$this->SendNumber = $row["SendNumber"];
 			$this->Status = $row["Status"];
+			$this->Direction = $row["Direction"];
+			$this->OwnerID = $row["OwnerID"];
 
 		}
 	}
@@ -99,6 +105,8 @@ SendTimeFirst = '".$this->myreal_escape_string($this->SendTimeFirst)."',
 SendTimeLast = '".$this->myreal_escape_string($this->SendTimeLast)."',
 ConfirmTime = '".$this->myreal_escape_string($this->ConfirmTime)."',
 SendNumber = '".$this->myreal_escape_string($this->SendNumber)."',
+Direction = '".$this->myreal_escape_string($this->Direction)."',
+OwnerID = '".$this->myreal_escape_string($this->OwnerID)."',
 Status = '".$this->myreal_escape_string($this->Status)."' WHERE ID = '".$this->ID."'");
 	return $result; 
 }
@@ -117,7 +125,9 @@ Status = '".$this->myreal_escape_string($this->Status)."' WHERE ID = '".$this->I
 			SendTimeLast,
 			ConfirmTime,
 			SendNumber,
-			Status
+			Status,
+			Direction,
+			OwnerID
 		) values (
 		'".$this->myreal_escape_string($this->Title)."', 
 		'".$this->myreal_escape_string($this->Body)."', 
@@ -128,7 +138,9 @@ Status = '".$this->myreal_escape_string($this->Status)."' WHERE ID = '".$this->I
 		'".$this->myreal_escape_string($this->SendTimeLast)."',
 		'".$this->myreal_escape_string($this->ConfirmTime)."',
 		'".$this->myreal_escape_string($this->SendNumber)."',
-		'".$this->myreal_escape_string($this->Status)."'
+		'".$this->myreal_escape_string($this->Status)."',
+		'".$this->myreal_escape_string($this->Direction)."',
+		'".$this->myreal_escape_string($this->OwnerID)."'
 		)");
 		return $this->connection->insert_id(); //return insert_id 
 	}
@@ -228,6 +240,20 @@ Status = '".$this->myreal_escape_string($this->Status)."' WHERE ID = '".$this->I
 		return $this->Status;
 	}
 
+	/**
+	 * @return Direction - tinyint(1)
+	 */
+	public function getDirection(){
+		return $this->Direction;
+	}
+
+	/**
+	 * @return OwnerID - int(11)
+	 */
+	public function getOwnerID(){
+		return $this->OwnerID;
+	}
+
 
 	// SET METHODS:
 
@@ -307,6 +333,20 @@ Status = '".$this->myreal_escape_string($this->Status)."' WHERE ID = '".$this->I
 		$this->Status = $Status;
 	}
 
+	/**
+	 * @return Direction - tinyint(1)
+	 */
+	public function setDirection($Direction){
+		$this->Status = $Direction;
+	}
+
+	/**
+	 * @return OwnerID - int(11)
+	 */
+	public function setOwnerID($OwnerID){
+		$this->OwnerID = $OwnerID;
+	}
+
     /**
      * fieldValues - Load all fieldNames and fieldValues into Array. 
      *
@@ -325,7 +365,10 @@ Status = '".$this->myreal_escape_string($this->Status)."' WHERE ID = '".$this->I
 			'SendTimeLast' => $this->getSendTimeLast(),
 			'ConfirmTime' => $this->getConfirmTime(),
 			'SendNumber' => $this->getSendNumber(),
-			'Status' => $this->getStatus()		);
+			'Status' => $this->getStatus(),		
+			'Direction' => $this->getDirection(),		
+			'OwnerID' => $this->getOwnerID()
+		);
 		return $fieldValues;
 	}
     /**
@@ -346,7 +389,9 @@ Status = '".$this->myreal_escape_string($this->Status)."' WHERE ID = '".$this->I
 			'SendTimeLast', 
 			'ConfirmTime',
 			'SendNumber',
-			'Status'
+			'Status',
+			'Direction',
+			'OwnerID'
 		);
 		return $fieldNames;
 	}

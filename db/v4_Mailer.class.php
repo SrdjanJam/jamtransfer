@@ -24,6 +24,8 @@ Class v4_Mailer {
 	public $Attachment; //varchar(255)
 	public $SentTime; //datetime
 	public $Status; //tinyint(4)
+	public $Direction; //int(11)
+	public $OwnerID; //int(11)
 	
 	public $connection;
 
@@ -37,7 +39,7 @@ Class v4_Mailer {
      * New object to the class. Don´t forget to save this new object "as new" by using the function $class->saveAsNew();
      *
      */
-	public function New_v4_Mailer($MailID,$CreateTime,$CreatorID,$FromName,$ToName,$ReplyTo,$Subject,$Body,$Attachment,$SentTime,$Status){
+	public function New_v4_Mailer($MailID,$CreateTime,$CreatorID,$FromName,$ToName,$ReplyTo,$Subject,$Body,$Attachment,$SentTime,$Status,$Direction,$OwnerID){
 		$this->MailID = $MailID;
 		$this->CreateTime = $CreateTime;
 		$this->CreatorID = $CreatorID;
@@ -49,6 +51,8 @@ Class v4_Mailer {
 		$this->Attachment = $Attachment;
 		$this->SentTime = $SentTime;
 		$this->Status = $Status;
+		$this->Direction = $Direction;
+		$this->OwnerID = $OwnerID;
 	}
 
     /**
@@ -72,6 +76,8 @@ Class v4_Mailer {
 			$this->Attachment = $row["Attachment"];
 			$this->SentTime = $row["SentTime"];
 			$this->Status = $row["Status"];
+			$this->Direction = $row["Direction"];
+			$this->OwnerID = $row["OwnerID"];
 		}
 	}
 
@@ -100,6 +106,8 @@ Subject = '".$this->myreal_escape_string($this->Subject)."',
 Body = '".$this->myreal_escape_string($this->Body)."',
 Attachment = '".$this->myreal_escape_string($this->Attachment)."',
 SentTime = '".$this->myreal_escape_string($this->SentTime)."',
+Direction = '".$this->myreal_escape_string($this->Direction)."',
+OwnerID = '".$this->myreal_escape_string($this->OwnerID)."'
 Status = '".$this->myreal_escape_string($this->Status)."' WHERE MailID = '".$this->MailID."'");
 	return $result;
 }
@@ -108,7 +116,7 @@ Status = '".$this->myreal_escape_string($this->Status)."' WHERE MailID = '".$thi
      * Save the active var class as a new row on table
      */
 	public function saveAsNew(){
-		$this->connection->RunQuery("INSERT INTO v4_Mailer (MailID, CreateTime, CreatorID, FromName, ToName, ReplyTo, Subject, Body, Attachment, SentTime, Status) values (
+		$this->connection->RunQuery("INSERT INTO v4_Mailer (MailID, CreateTime, CreatorID, FromName, ToName, ReplyTo, Subject, Body, Attachment, SentTime, Status, Direction, OwnerID) values (
 			'".$this->myreal_escape_string($this->MailID)."', 
 			'".$this->myreal_escape_string($this->CreateTime)."', 
 			'".$this->myreal_escape_string($this->CreatorID)."', 
@@ -119,7 +127,10 @@ Status = '".$this->myreal_escape_string($this->Status)."' WHERE MailID = '".$thi
 			'".$this->myreal_escape_string($this->Body)."', 
 			'".$this->myreal_escape_string($this->Attachment)."', 
 			'".$this->myreal_escape_string($this->SentTime)."', 
-			'".$this->myreal_escape_string($this->Status)."')");
+			'".$this->myreal_escape_string($this->Status)."',
+			'".$this->myreal_escape_string($this->Direction)."',
+			'".$this->myreal_escape_string($this->OwnerID)."'
+			)");
 		return $this->connection->insert_id(); //return insert_id
 	}
 
@@ -210,11 +221,26 @@ Status = '".$this->myreal_escape_string($this->Status)."' WHERE MailID = '".$thi
 	public function getSentTime(){
 		return $this->SentTime;
 	}
+
 	/**
 	 * @return Status - tyint(4)
 	 */
 	public function getStatus(){
 		return $this->Status;
+	}
+
+	/**
+	 * @return Direction - tyint(1)
+	 */
+	public function getDirection(){
+		return $this->Direction;
+	}
+
+	/**
+	 * @return OwnerID - int(11)
+	 */
+	public function getOwnerID(){
+		return $this->OwnerID;
 	}
 
 
@@ -298,6 +324,20 @@ Status = '".$this->myreal_escape_string($this->Status)."' WHERE MailID = '".$thi
 		$this->Status = $Status;
 	}
 
+	/**
+	 * @param Type: tinyint(1)
+	 */
+	public function setDirection($Direction){
+		$this->Direction = $Direction;
+	}
+
+	/**
+	 * @param Type: tinyint(1)
+	 */
+	public function setOwnerID($OwnerID){
+		$this->OwnerID = $OwnerID;
+	}
+
     /**
      * fieldValues - Load all fieldNames and fieldValues into Array.
      *
@@ -316,7 +356,10 @@ Status = '".$this->myreal_escape_string($this->Status)."' WHERE MailID = '".$thi
 			'Body' => $this->getBody(),
 			'Attachment' => $this->getAttachment(),
 			'SentTime' => $this->getSentTime(),
-			'Status' => $this->getStatus()		);
+			'Status' => $this->getStatus(),		
+			'Direction' => $this->getDirection(),
+			'OwnerID' => $this->getOwnerID(),
+		);
 		return $fieldValues;
 	}
     /**
@@ -327,7 +370,7 @@ Status = '".$this->myreal_escape_string($this->Status)."' WHERE MailID = '".$thi
      */
 	public function fieldNames(){
 		$fieldNames = array(
-			'MailID',			'CreateTime',			'CreatorID',			'FromName',			'ToName',			'ReplyTo',			'Subject',			'Body',			'Attachment',	'SentTime',	'Status'		);
+			'MailID',			'CreateTime',			'CreatorID',			'FromName',			'ToName',			'ReplyTo',			'Subject',			'Body',			'Attachment',	'SentTime',	'Status', 'Direction', 'OwnerID'		);
 		return $fieldNames;
 	}
     /**
