@@ -48,14 +48,15 @@
 		<!-- SEND_RULE: -->
 		<div class="row">
 			<div class="col-md-3"> <label for="SendRule"><?=SEND_RULE;?></label> </div>
-			<div class="col-md-9"> <input type="text" name="SendRule" id="SendRule" class="w100" value="{{SendRule}}"> </div>
+			<div class="col-md-3"> <input type="text" name="SendRule" id="SendRule" class="w100" value="{{SendRule}}"> </div>
+			<div class="col-md-6"> e.g 3/10 means "send 3 times every 10 minutes"</div>
 		</div>
 		<!-- SCHEDULE_TIME:  -->
 		<div class="row">
 			<div class="col-md-3"> <label for="ScheduleTime"><?=SCHEDULE_TIME;?></label> </div>
 			<div class="col-md-9"> 
-				<input type="text" name="ScheduleTime" id="ScheduleTime" class="w100 datepicker" value="{{ScheduleTime}}">
-				<input type="text" name="ScheduleTime" id="ScheduleTime" class="w100 timepicker" value="{{ScheduleTime}}"> 
+				<input type="text" name="ScheduleTime1" id="ScheduleTime1" class="w100 datepicker" value="{{ScheduleTime1}}">
+				<input type="text" name="ScheduleTime2" id="ScheduleTime2" class="w100 timepicker" value="{{ScheduleTime2}}"> 
 			</div>
 		</div>
 
@@ -63,22 +64,22 @@
 			<!-- SEND_TIME_FIRST: -->
 			<div class="row">
 				<div class="col-md-3"> <label for="SendTimeFirst"><?=SEND_TIME_FIRST;?></label> </div>
-				<div class="col-md-9"> <input type="text" name="SendTimeFirst" id="SendTimeFirst" class="w100 datepicker" value="{{SendTimeFirst}}"> </div>
+				<div class="col-md-9"> <input readonly type="text" name="SendTimeFirst" id="SendTimeFirst" class="w100" value="{{SendTimeFirst}}"> </div>
 			</div>
 			<!-- SEND_TIME_LAST: -->
 			<div class="row">
 				<div class="col-md-3"> <label for="SendTimeLast"><?=SEND_TIME_LAST;?></label> </div>
-				<div class="col-md-9"> <input type="text" name="SendTimeLast" id="SendTimeLast" class="w100 datepicker" value="{{SendTimeLast}}"> </div>
+				<div class="col-md-9"> <input readonly type="text" name="SendTimeLast" id="SendTimeLast" class="w100" value="{{SendTimeLast}}"> </div>
 			</div>
 			<!-- CONFIRM_TIME: -->
 			<div class="row">
 				<div class="col-md-3"> <label for="ConfirmTime"><?=CONFIRM_TIME;?></label> </div>
-				<div class="col-md-9"> <input type="text" name="ConfirmTime" id="ConfirmTime" class="w100 datepicker" value="{{ConfirmTime}}"> </div>
+				<div class="col-md-9"> <input readonly type="text" name="ConfirmTime" id="ConfirmTime" class="w100" value="{{ConfirmTime}}"> </div>
 			</div>
 			<!-- SEND_NUMBER: -->
 			<div class="row">
 				<div class="col-md-3"> <label for="SendNumber"><?=SEND_NUMBER;?></label> </div>
-				<div class="col-md-9"> <input type="text" name="SendNumber" id="SendNumber" class="w100" value="{{SendNumber}}"> </div>
+				<div class="col-md-9"> <input readonly type="text" name="SendNumber" id="SendNumber" class="w100" value="{{SendNumber}}"> </div>
 			</div>
 			<!-- STATUS: -->
 			<div class="row">

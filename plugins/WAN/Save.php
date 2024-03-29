@@ -11,6 +11,7 @@ foreach ($db->fieldNames() as $name) {
 	if(isset($_REQUEST[$name])) {
 		eval("\$db->set".$name."(\$content);");	
 	}	
+	$db->setScheduleTime($_REQUEST["ScheduleTime1"]." ".$_REQUEST["ScheduleTime2"]);
 }	
 $upd = '';
 $newID = '';

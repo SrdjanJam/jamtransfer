@@ -10,9 +10,9 @@ if ($keyValue != '') {
 		$db->setStatus(1);	
 		$db->setConfirmTime(date("Y-m-d H:i:s"));	
 		$db->saveRow();	
-		echo "<h3>You have just confirmed receipt of this WhatsApp note:</h3><h1>".$db->getBody()."</h1>";
+		echo "<h3 style='font-size:6em;'>You have just confirmed receipt of this WhatsApp note:</h3><h1 style='font-size:6em;'>".$db->getBody()."</h1>";
 	} else {
-		echo "<h1>This whatsapp note is already confirmed !</h1>";
+		echo "<h1 style='font-size:4em;'>This whatsapp note is already confirmed !</h1>";
 	}	
 }	
 else echo "<h1>Something wrong</h1>";
