@@ -18,12 +18,15 @@
 			<?=SUBJECT;?>
 		</div>
 
-		<div class="col-md-3">
+		<div class="col-md-2">
 			<?=SENT_TIME;?>
 		</div>
 
 		<div class="col-md-1">
 			<?=STATUS;?>
+		</div>		
+		<div class="col-md-1">
+			<?=SEND;?>/<?=RECEIVE;?>
 		</div>
 					
 	</div>
@@ -49,7 +52,7 @@
 					{{Subject}}
 				</div>
 				
-				<div class="col-sm-3">
+				<div class="col-sm-2">
 					{{SentTime}}
 				</div>
 
@@ -60,6 +63,13 @@
 						<i class="fa fa-close text-red"></i>
 					{{/compare}}
 				</div>
+				<div class="col-md-1">
+					{{#compare Direction "==" 1}}
+						<i class="fa fa-arrow-circle-o-up fa-xl text-green"></i> <?=SEND;?>
+					{{else}}
+						<i class="fa fa-arrow-circle-o-down fa-xl text-green"></i> <?=RECEIVE;?>
+					{{/compare}}
+				</div>				
 
 			</div>
 		</div>

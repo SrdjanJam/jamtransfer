@@ -107,7 +107,7 @@ Body = '".$this->myreal_escape_string($this->Body)."',
 Attachment = '".$this->myreal_escape_string($this->Attachment)."',
 SentTime = '".$this->myreal_escape_string($this->SentTime)."',
 Direction = '".$this->myreal_escape_string($this->Direction)."',
-OwnerID = '".$this->myreal_escape_string($this->OwnerID)."'
+OwnerID = '".$this->myreal_escape_string($this->OwnerID)."',
 Status = '".$this->myreal_escape_string($this->Status)."' WHERE MailID = '".$this->MailID."'");
 	return $result;
 }

@@ -17,7 +17,8 @@ foreach ($db->fieldNames() as $name) {
 	}
 }
 $db->setSentTime(date("Y-m-d H:i:s"));
-$from_mail="cms@jamtransfer.com";
+
+$from_mail="office@jamtransfer.com";
 $from_name=$db->getFromName();
 $mailto=$db->getToName();
 $replyto=$db->getReplyTo();
@@ -34,6 +35,7 @@ if ($keyName != '' and $keyValue != '') {
 	if($res !== true) $upd = $res;
 }
 if ($keyName != '' and $keyValue == '') {
+	if ($db->getCreateTime()==0) $db->setCreateTime(date("Y-m-d H:i:s"));	
 	$newID = $db->saveAsNew();
 }
 

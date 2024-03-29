@@ -89,7 +89,7 @@ define("CUSTOMER_ACTIVE", "Active");
 define("CUSTOMER_IMAGE", "Image");
 define("CUSTOMER_IMAGE_TYPE", "Image Type");
 define("CREATE_TIME", "Create Time");
-define("CREATOR_ID", "Creator ID");
+define("CREATOR", "Creator");
 
 define("DASHBOARD", "Dashboard");
 define("DATE", "Date");
@@ -1094,3 +1094,6 @@ define("SEND_TIME_FIRST","Send Time First");
 define("SEND_TIME_LAST","Send Time Last");
 define("CONFIRM_TIME","Confirm Time");
 define("SEND_NUMBER","Send Number");
+
+//29.03.24
+define("RECEIVE","Receive");

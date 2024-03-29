@@ -26,6 +26,7 @@ if ($keyName != '' and $keyValue != '') {
 	if($res !== true) $upd = $res;
 }
 if ($keyName != '' and $keyValue == '') {
+	$db->setCreateTime(date("Y-m-d H:i:s"));
 	$newID = $db->saveAsNew();
 }
 

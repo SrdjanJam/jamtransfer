@@ -22,26 +22,18 @@
 	<div class="box-body ">
         <div class="row">
 			<div class="col-md-12">
-				<!-- MailID: -->
-				<div class="row">
-					<div class="col-md-3">
-						<label for="MailID"><?=MAILID;?></label>
-					</div>
-					<div class="col-md-9">
-						{{MailID}}
-					</div>
-				</div>
+				<? if (!$isNew) { ?>
 
 				<!-- CreatorID: -->
 				<div class="row">
 					<div class="col-md-3">
-						<label for="CreatorID"><?=CREATOR_ID;?></label>
+						<label for="Creator"><?=CREATOR;?></label>
 					</div>
 					<div class="col-md-9">
-						{{CreatorID}}
+						{{userName CreatorID "AuthUserRealName"}}
 					</div>
 				</div>
-
+				<? } ?>	
 				<!-- FromName: -->
 				<div class="row">
 					<div class="col-md-3">
@@ -55,7 +47,7 @@
 				<!-- ToName: -->
 				<div class="row">
 					<div class="col-md-3">
-						<label for=ToName"><?=TO_NAME;?></label>
+						<label for=ToName"><?=EMAIL;?></label>
 					</div>
 					<div class="col-md-9">
 						<input type="text" name="ToName" value="{{ToName}}">
@@ -101,14 +93,14 @@
 						<input type="text" name="Attachment" value="{{Attachment}}">
 					</div>
 				</div>
-
+				<? if (!$isNew) { ?>
 				<!-- Status: -->
 				<div class="row">
 					<div class="col-md-3">
 						<label for=Status"><?=STATUS;?></label>
 					</div>
 					<div class="col-md-9">
-						<input type="text" name="Status" value="{{Status}}">
+						<input readonly type="text" name="Status" value="{{Status}}">
 					</div>
 				</div>
 
@@ -118,7 +110,7 @@
 						<label for=CreateTime"><?=CREATE_TIME;?></label>
 					</div>
 					<div class="col-md-9">
-						<input type="text" name="CreateTime" value="{{CreateTime}}">
+						<input readonly type="text" name="CreateTime" value="{{CreateTime}}">
 					</div>
 				</div>
 
@@ -128,11 +120,13 @@
 						<label for=SentTime"><?=SENT_TIME;?></label>
 					</div>
 					<div class="col-md-9">
-						<input type="text" name="SentTime" value="{{SentTime}}">
+						<input readonly type="text" name="SentTime" value="{{SentTime}}">
 					</div>
 				</div>
-				
-			
+				<? } ?>
+				<input type="hidden" name="OwnerID" value="<?=$_SESSION["UseDriverID"]?>">
+				<input type="hidden" name="CreatorID" value="<?=$_SESSION["AuthUserID"]?>">
+				<input type="hidden" name="Direction" value="1">
 
 			</div>				
 				

@@ -811,6 +811,7 @@ function mail_html($mailto, $from_mail, $from_name, $replyto, $subject, $message
 	$ml = new v4_Mailer();
 
 	$ml->setCreateTime(date("Y-m-d H:i:s"));
+	$ml->setSentTime(date("Y-m-d H:i:s"));
 	$ml->setCreatorID($_SESSION['AuthUserID']);
 	$ml->setFromName($from_name);
 	$ml->setToName($mailto);
@@ -818,7 +819,9 @@ function mail_html($mailto, $from_mail, $from_name, $replyto, $subject, $message
 	$ml->setSubject($subject);
 	$ml->setBody($message);
 	$ml->setAttachment($attachment);
-	$ml->setStatus(0);
+	$ml->setStatus(1);
+	$ml->setDirection(1);
+	if (getUserIDFromMail($mailto)) $ml->setOwnerID(getUserIDFromMail($mailto));	
 
 	$ml->saveAsNew();
 	mail_html_send($mailto, $from_mail, $from_name, $replyto, $subject, $message, $attachment = '');
@@ -882,7 +885,7 @@ function mail_html_send($mailto, $from_mail, $from_name, $replyto, $subject, $me
 function getPhoneFromMail($mail) {
     require_once ROOT . '/db/db.class.php';
     $db = new DataBaseMysql();	
-	$q = "SELECT * FROM v4_AuthUsers WHERE Active=1 AND AuthUserMob<>'' AND AuthUserMail = '".$mail."'  ORDER BY AuthUserID DESC";
+	$q = "SELECT * FROM v4_AuthUsers WHERE AuthLevelID=31 AND Active=1 AND AuthUserMob<>'' AND AuthUserMail = '".$mail."'  ORDER BY AuthUserID DESC";
 	$w = $db->RunQuery($q);
 	$d = $w->fetch_object();
 	if (count($d)==1) {
@@ -891,6 +894,15 @@ function getPhoneFromMail($mail) {
 		$phone=str_replace("/","",$phone);
 		return $phone;
 	}	
+	else return false;
+}
+function getUserIDFromMail($mail) {
+    require_once ROOT . '/db/db.class.php';
+    $db = new DataBaseMysql();	
+	$q = "SELECT * FROM v4_AuthUsers WHERE AuthLevelID=31 AND Active=1 AND AuthUserMob<>'' AND AuthUserMail = '".$mail."'  ORDER BY AuthUserID DESC";
+	$w = $db->RunQuery($q);
+	$d = $w->fetch_object();
+	if (count($d)==1) return $d->AuthUserID;		
 	else return false;
 }	
 function send_whatsapp_message($phone_to,$message) {
