@@ -29,8 +29,8 @@ if (count($dbk) != 0) {
 				$db->setSendTimeLast(date("Y-m-d H:i:s"));
 				$db->setSendNumber($db->getSendNumber()+1);
 				$db->saveRow();
-				echo $message;
-				//send_whatsapp_message($phone,$message);
+				//echo $message;
+				send_whatsapp_message($phone,$message);
 			}
 		}	
     }

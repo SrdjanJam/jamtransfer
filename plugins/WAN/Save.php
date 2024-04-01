@@ -12,6 +12,7 @@ foreach ($db->fieldNames() as $name) {
 		eval("\$db->set".$name."(\$content);");	
 	}	
 	$db->setScheduleTime($_REQUEST["ScheduleTime1"]." ".$_REQUEST["ScheduleTime2"]);
+	$db->setOwnerID($_SESSION["UseDriverID"]);
 }	
 $upd = '';
 $newID = '';

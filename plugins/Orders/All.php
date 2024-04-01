@@ -397,8 +397,10 @@ if ($flightTimeChecker==1) {
 				$fligt_time_conflict  .= $key. ",";
 			}	
 		}
-		$fligt_time_conflict = substr($fligt_time_conflict,0,strlen($fligt_time_conflict)-1);
-		$dbWhere .= " AND DetailsID in (".$fligt_time_conflict.")";
+		if (!empty($fligt_time_conflict)) {
+			$fligt_time_conflict = substr($fligt_time_conflict,0,strlen($fligt_time_conflict)-1);
+			$dbWhere .= " AND DetailsID in (".$fligt_time_conflict.")";
+		}	
 	}	
 }	
 
@@ -449,8 +451,10 @@ if ($paymentChecker==1) {
 			$PayConflictColorArr[$key]=$ConflictColor;
 			
 		}
-		$payment_conflict = substr($payment_conflict,0,strlen($payment_conflict)-1);
-		$dbWhere .= " AND DetailsID in (".$payment_conflict.")";		
+		if (!empty($payment_conflict)) {
+			$payment_conflict = substr($payment_conflict,0,strlen($payment_conflict)-1);
+			$dbWhere .= " AND DetailsID in (".$payment_conflict.")";	
+		}	
 	}
 }
 
@@ -461,8 +465,10 @@ if ($_REQUEST['lid']<>0) {
 	while( $l = mysqli_fetch_object($query) ) {
 		$lid_details  .=$l->DetailsID.",";
 	}
-	$lid_details = substr($lid_details ,0,strlen($lid_details)-1);
-	$dbWhere .= " AND DetailsID in (".$lid_details .")";	
+	if (!empty($lid_details)) {
+		$lid_details = substr($lid_details ,0,strlen($lid_details)-1);
+		$dbWhere .= " AND DetailsID in (".$lid_details .")";	
+	}
 }
 
 if ($_REQUEST["action"]<>"null" && $_REQUEST["action"]<>"0") {
@@ -472,8 +478,10 @@ if ($_REQUEST["action"]<>"null" && $_REQUEST["action"]<>"0") {
 	while( $lTL = mysqli_fetch_object($query) ) {
 		$list_tl  .= $lTL->DetailsID. ",";
 	}
-	$list_tl = substr($list_tl,0,strlen($list_tl)-1);
-	$dbWhere .= " AND DetailsID in (".$list_tl.")";
+	if (!empty($list_tl)) {
+		$list_tl = substr($list_tl,0,strlen($list_tl)-1);
+		$dbWhere .= " AND DetailsID in (".$list_tl.")";
+	}
 }
 	
 $odTotalRecords = $od->getFullOrderByDetailsID($sortField, $sortDirection, '' , $dbWhere);

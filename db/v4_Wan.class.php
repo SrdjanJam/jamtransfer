@@ -116,6 +116,7 @@ Status = '".$this->myreal_escape_string($this->Status)."' WHERE ID = '".$this->I
      */
 	public function saveAsNew(){
 		$this->connection->RunQuery("INSERT INTO v4_WAN (
+			OwnerID,
 			Title, 
 			Body, 
 			UserID, 
@@ -125,10 +126,10 @@ Status = '".$this->myreal_escape_string($this->Status)."' WHERE ID = '".$this->I
 			SendTimeLast,
 			ConfirmTime,
 			SendNumber,
-			Status,
-			Direction,
-			OwnerID
+			Direction,			
+			Status
 		) values (
+		'".$this->myreal_escape_string($this->OwnerID)."', 
 		'".$this->myreal_escape_string($this->Title)."', 
 		'".$this->myreal_escape_string($this->Body)."', 
 		'".$this->myreal_escape_string($this->UserID)."', 
@@ -138,9 +139,8 @@ Status = '".$this->myreal_escape_string($this->Status)."' WHERE ID = '".$this->I
 		'".$this->myreal_escape_string($this->SendTimeLast)."',
 		'".$this->myreal_escape_string($this->ConfirmTime)."',
 		'".$this->myreal_escape_string($this->SendNumber)."',
-		'".$this->myreal_escape_string($this->Status)."',
 		'".$this->myreal_escape_string($this->Direction)."',
-		'".$this->myreal_escape_string($this->OwnerID)."'
+		'".$this->myreal_escape_string($this->Status)."'
 		)");
 		return $this->connection->insert_id(); //return insert_id 
 	}
@@ -337,7 +337,7 @@ Status = '".$this->myreal_escape_string($this->Status)."' WHERE ID = '".$this->I
 	 * @return Direction - tinyint(1)
 	 */
 	public function setDirection($Direction){
-		$this->Status = $Direction;
+		$this->Direction = $Direction;
 	}
 
 	/**

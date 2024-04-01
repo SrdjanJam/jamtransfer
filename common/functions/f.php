@@ -896,6 +896,23 @@ function getPhoneFromMail($mail) {
 	}	
 	else return false;
 }
+function getUserIDFromPhone($mob) {
+    require_once ROOT . '/db/db.class.php';
+    $db = new DataBaseMysql();	
+	$q = "SELECT * FROM v4_AuthUsers WHERE AuthLevelID in (31,32) AND Active=1 AND AuthUserMob<>'' ORDER BY AuthUserID DESC";
+	$w = $db->RunQuery($q);
+	while ($d = $w->fetch_object()) {
+		$phone=str_replace(" ","",$d->AuthUserMob);
+		$phone=str_replace("+","",$phone);
+		$phone=str_replace("-","",$phone);
+		$phone=str_replace("/","",$phone);
+		if ($phone==$mob) {
+			if ($d->AuthLevelID==32) return  $d->DriverID."/".$d->AuthUserID;
+			else return $d->AuthUserID."/".$d->AuthUserID;
+		}	
+	}	
+	return false;
+}
 function getUserIDFromMail($mail) {
     require_once ROOT . '/db/db.class.php';
     $db = new DataBaseMysql();	

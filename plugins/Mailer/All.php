@@ -44,7 +44,7 @@ $flds = array();
 
 # kombinacija where i filtera
 $DB_Where = " " . $_REQUEST['where'];
-$DB_Where .= " AND `OwnerID`=".$_SESSION['UseDriverID'];
+if (isset($_SESSION['UseDriverID'])) $DB_Where .= " AND `OwnerID`=".$_SESSION['UseDriverID'];
 $DB_Where .= $filter;
 
 

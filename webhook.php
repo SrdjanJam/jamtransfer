@@ -1,13 +1,21 @@
 <?
+require_once 'config.php';
+require_once ROOT . '/db/v4_WAN.class.php';
+$wn=new v4_WAN;
 $data = file_get_contents("php://input");
 $event = json_decode($data, true);
 if(isset($event)){
-    //Here, you now have event and can process them how you like e.g Add to the database or generate a response
-    $file = 'log.txt';  
-    $data =json_encode($event)."\n";  
-    file_put_contents($file, $data, FILE_APPEND | LOCK_EX);
+	$event=json_decode($data)->data;
+	$phone=str_replace("@c.us","",$event->from);
+	if (getUserIDFromPhone($phone)) {
+		$arr=explode("/",getUserIDFromPhone($phone));
+		$wn->setOwnerID($arr[0]);
+		$wn->setUserID($arr[1]);
+		$wn->setBody($event->body);
+		date_default_timezone_set("Europe/Paris");
+		$wn->setScheduleTime(date("Y-m-d H:i:s"));
+		$wn->setStatus("1");
+		$wn->setDirection("2");
+		$wn->saveAsNew();
+	}
 }
-?>
-<script>
-	alert ("WhatsApp message received");
-</script/>

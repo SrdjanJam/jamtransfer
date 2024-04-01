@@ -66,7 +66,8 @@
 				<div class="col-md-1">
 					{{#compare Direction "==" 1}}
 						<i class="fa fa-arrow-circle-o-up fa-xl text-green"></i> <?=SEND;?>
-					{{else}}
+					{{/compare}}	
+					{{#compare Direction "==" 2}}
 						<i class="fa fa-arrow-circle-o-down fa-xl text-green"></i> <?=RECEIVE;?>
 					{{/compare}}
 				</div>				
