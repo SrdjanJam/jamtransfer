@@ -1097,3 +1097,6 @@ define("SEND_NUMBER","Send Number");
 
 //29.03.24
 define("RECEIVE","Receive");
+
+//4.4.24
+define("IS_SORT_DESC","Is sort desc");

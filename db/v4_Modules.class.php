@@ -12,9 +12,11 @@ Class v4_Modules {
 	public $Icon; //int(11)
 	public $Description;
 	public $Help;
-	public $IsNew; 
+	public $IsNew;
 	public $Phase; 
-	public $Active; 
+	public $Active;
+	public $IsDesc; //tinyint(1)
+
 	public $connection;
 
 	
@@ -40,12 +42,13 @@ Class v4_Modules {
 			'Help' => $this->getHelp(),
 			'IsNew' => $this->getIsNew(),
 			'Phase' => $this->getPhase(),
-			'Active' => $this->getActive()
+			'Active' => $this->getActive(),
+			'IsDesc' => $this->getIsDesc()
 			);
 		return $fieldValues;
 	}
 	public function fieldNames(){
-		$fieldNames = array('ModulID','Name','Code','Base','ParentID','MenuOrder','Icon','Description','Help','IsNew','Phase','Active');
+		$fieldNames = array('ModulID','Name','Code','Base','ParentID','MenuOrder','Icon','Description','Help','IsNew','Phase','Active','IsDesc');
 		return $fieldNames;
 	}
 	
@@ -65,6 +68,7 @@ Class v4_Modules {
 			$this->IsNew = $row["IsNew"];
 			$this->Phase = $row["Phase"];
 			$this->Active = $row["Active"];
+			$this->IsDesc = $row["IsDesc"];
 		}
 	}
 
@@ -85,13 +89,14 @@ Description = '".$this->myreal_escape_string($this->Description)."',
 Help = '".$this->myreal_escape_string($this->Help)."',
 IsNew = '".$this->myreal_escape_string($this->IsNew)."',
 Phase = '".$this->myreal_escape_string($this->Phase)."',
+IsDesc = '".$this->myreal_escape_string($this->IsDesc)."',
 Active = '".$this->myreal_escape_string($this->Active)."' WHERE ModulID = '".$this->ModulID."'");
 	return $result; 
 }
 
 	public function saveAsNew(){
-		$this->connection->RunQuery("INSERT INTO v4_Modules_en (ModulID, Name, Code, Base, ParentID, MenuOrder, Icon, Description, Help, IsNew, Phase, Active) values ('".$this->myreal_escape_string($this->ModulID)."', '".$this->myreal_escape_string($this->Name)."', '".$this->myreal_escape_string($this->Code)."', '".$this->myreal_escape_string($this->Base)."', '".$this->myreal_escape_string($this->ParentID)."', '".$this->myreal_escape_string($this->MenuOrder)."','".$this->myreal_escape_string($this->Icon)."','".$this->myreal_escape_string($this->Description)."','".$this->myreal_escape_string($this->Help)."','".$this->myreal_escape_string($this->IsNew)."','".$this->myreal_escape_string($this->Phase)."','".$this->myreal_escape_string($this->Active)."')");
-		$this->connection->RunQuery("INSERT INTO v4_Modules_fr (ModulID, Name, Code, Base, ParentID, MenuOrder, Icon, Description, Help, IsNew, Phase, Active) values ('".$this->myreal_escape_string($this->ModulID)."', '".$this->myreal_escape_string($this->Name)."', '".$this->myreal_escape_string($this->Code)."', '".$this->myreal_escape_string($this->Base)."', '".$this->myreal_escape_string($this->ParentID)."', '".$this->myreal_escape_string($this->MenuOrder)."','".$this->myreal_escape_string($this->Icon)."','".$this->myreal_escape_string($this->Description)."','".$this->myreal_escape_string($this->Help)."','".$this->myreal_escape_string($this->IsNew)."','".$this->myreal_escape_string($this->Phase)."','".$this->myreal_escape_string($this->Active)."')");
+		$this->connection->RunQuery("INSERT INTO v4_Modules_en (ModulID, Name, Code, Base, ParentID, MenuOrder, Icon, Description, Help, IsNew, Phase, Active, IsDesc) values ('".$this->myreal_escape_string($this->ModulID)."', '".$this->myreal_escape_string($this->Name)."', '".$this->myreal_escape_string($this->Code)."', '".$this->myreal_escape_string($this->Base)."', '".$this->myreal_escape_string($this->ParentID)."', '".$this->myreal_escape_string($this->MenuOrder)."','".$this->myreal_escape_string($this->Icon)."','".$this->myreal_escape_string($this->Description)."','".$this->myreal_escape_string($this->Help)."','".$this->myreal_escape_string($this->IsNew)."','".$this->myreal_escape_string($this->Phase)."','".$this->myreal_escape_string($this->Active)."')");
+		$this->connection->RunQuery("INSERT INTO v4_Modules_fr (ModulID, Name, Code, Base, ParentID, MenuOrder, Icon, Description, Help, IsNew, Phase, Active) values ('".$this->myreal_escape_string($this->ModulID)."', '".$this->myreal_escape_string($this->Name)."', '".$this->myreal_escape_string($this->Code)."', '".$this->myreal_escape_string($this->Base)."', '".$this->myreal_escape_string($this->ParentID)."', '".$this->myreal_escape_string($this->MenuOrder)."','".$this->myreal_escape_string($this->Icon)."','".$this->myreal_escape_string($this->Description)."','".$this->myreal_escape_string($this->Help)."','".$this->myreal_escape_string($this->IsNew)."','".$this->myreal_escape_string($this->Phase)."','".$this->myreal_escape_string($this->IsDesc)."','".$this->myreal_escape_string($this->IsDesc)."')");
 		return $this->connection->insert_id(); //return insert_id 
 	}
 	public function getKeysBy($column, $order, $where = NULL){
@@ -141,6 +146,9 @@ Active = '".$this->myreal_escape_string($this->Active)."' WHERE ModulID = '".$th
 	public function getActive(){
 		return $this->Active;
 	}
+	public function getIsDesc(){
+		return $this->IsDesc;
+	}
 	
 	public function setModulID($ModulID){
 		$this->ModulID = $ModulID;
@@ -177,6 +185,9 @@ Active = '".$this->myreal_escape_string($this->Active)."' WHERE ModulID = '".$th
 	}	
 	public function setActive($Active){
 		$this->Active = $Active;
+	}
+	public function setIsDesc($IsDesc){
+		$this->IsDesc = $IsDesc;
 	}
 
 	public function endv4_Modules(){
