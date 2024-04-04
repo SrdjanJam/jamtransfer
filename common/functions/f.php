@@ -921,8 +921,35 @@ function getUserIDFromMail($mail) {
 	$d = $w->fetch_object();
 	if (count($d)==1) return $d->AuthUserID;		
 	else return false;
+}
+function getDriverIDFromSubDriverID($id) {
+    require_once ROOT . '/db/db.class.php';
+    $db = new DataBaseMysql();	
+	$q = "SELECT * FROM v4_AuthUsers WHERE AuthUserID=".$id." AND Active=1";
+	$w = $db->RunQuery($q);
+	$d = $w->fetch_object();
+	if (count($d)==1 && $d->DriverID>0) return $d->DriverID;		
+	else return 0;
 }	
 function send_whatsapp_message($phone_to,$message) {
+	// cuvanje poruke u tabeli
+	require_once ROOT . '/db/v4_WAN.class.php';
+	$wn = new v4_WAN;
+	$wn->setTitle("jtwismsg");
+	$wn->setBody($message);
+	$message="_jtwismsg_ \n".$message;	
+	$arr=explode("/",getUserIDFromPhone($phone_to));
+	$wn->setOwnerID($arr[0]);
+	$wn->setUserID($arr[1]);
+	$wn->setSendRule("1/0");
+	date_default_timezone_set("Europe/Paris");
+	$wn->setScheduleTime(date("Y-m-d H:i:s"));
+	$wn->setSendTimeFirst(date("Y-m-d H:i:s"));
+	$wn->setSendTimeLast(date("Y-m-d H:i:s"));
+	$wn->setSendNumber(1);
+	$wn->setDirection(1);
+	$wn->saveAsNew();
+	// slanje poruke	
 	$message=str_replace("<BR>","\n",$message);
 	$message=str_replace("<br>","\n",$message);
 	$message=str_replace("&nbsp;"," ",$message);
@@ -957,6 +984,7 @@ function send_whatsapp_message($phone_to,$message) {
 	$response = curl_exec($curl);
 	$err = curl_error($curl);
 	curl_close($curl);
+
 }
 
 // funkcija za formiranje whatsapp poruke za orderlog

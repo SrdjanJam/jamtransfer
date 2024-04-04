@@ -1,6 +1,4 @@
-<?
-	$smarty->assign('selectactive',true);
-?>
+
 <script type="text/x-handlebars-template" id="ItemListTemplate">
 
 	<!-- LABELS: -->
@@ -24,7 +22,7 @@
 			style="border-top:1px solid #ddd" 
 			id="t_{{ID}}">
 			
-				<div class="col-md-1"> <strong>{{ID}}</strong> </div>
+				<div class="col-md-1"> {{ID}} </div>
 				<div class="col-md-2"> {{DriverName}} </div>
 				<div class="col-md-2"> {{ScheduleTime}} </div>
 				<div class="col-md-1"> {{SendNumber}} </div>
@@ -38,7 +36,8 @@
 					{{#compare Direction "==" 2}}
 						<i class="fa fa-arrow-circle-o-down fa-xl text-green"></i> <?=RECEIVE;?>
 					{{/compare}}
-				</div>					
+				</div>	
+				<div style="background:white; color:black" class="col-md-12"><h2>{{{Body}}}</h2></div>				
 			</div>
 		</div>
 

@@ -6,7 +6,8 @@ $data = file_get_contents("php://input");
 $event = json_decode($data, true);
 if(isset($event)){
 	$event=json_decode($data)->data;
-	$phone=str_replace("@c.us","",$event->from);
+	if (json_decode($data)->event_type=="message_received") $phone=str_replace("@c.us","",$event->from);
+	else $phone=str_replace("@c.us","",$event->to);
 	if (getUserIDFromPhone($phone)) {
 		$arr=explode("/",getUserIDFromPhone($phone));
 		$wn->setOwnerID($arr[0]);
@@ -14,8 +15,17 @@ if(isset($event)){
 		$wn->setBody($event->body);
 		date_default_timezone_set("Europe/Paris");
 		$wn->setScheduleTime(date("Y-m-d H:i:s"));
-		$wn->setStatus("1");
-		$wn->setDirection("2");
-		$wn->saveAsNew();
+		if (json_decode($data)->event_type=="message_received") {
+			$wn->setStatus("1");
+			$wn->setDirection("2");
+		} else {
+			$wn->setDirection("1");
+		}
+		$code_array=array("jtwismsg","jtcmsmsg","jtcjmsg");
+		foreach ($code_array as $code) {
+			$pos = strpos($event->body, $code);
+			if ($pos) break;	
+		}
+		if (!$pos) $wn->saveAsNew();
 	}
 }

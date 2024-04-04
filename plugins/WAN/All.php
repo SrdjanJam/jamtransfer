@@ -15,7 +15,6 @@ if (isset($type)) {
 }
 $page 		= $_REQUEST['page'];
 $length 	= $_REQUEST['length'];
-$sortOrder 	= $_REQUEST['sortOrder'];
 
 $start = ($page * $length) - $length;
 
@@ -23,9 +22,6 @@ if ($length > 0) {
 	$limit = ' LIMIT '. $start . ','. $length;
 }
 else $limit = '';
-
-if(empty($sortOrder)) $sortOrder = 'ASC';
-
 
 # init vars
 $out = array();
@@ -52,9 +48,9 @@ if ( $_REQUEST['Search'] != "" )
 	$DB_Where = substr_replace( $DB_Where, "", -3 );
 	$DB_Where .= ')';
 }
-$dbTotalRecords = $db->getKeysBy($ItemName . $sortOrder, '',$DB_Where);
+$dbTotalRecords = $db->getKeysBy($ItemName, '',$DB_Where);
 # test za LIMIT - trebalo bi ga iskoristiti za pagination! 'asc' . ' LIMIT 0,50'
-$dbk = $db->getKeysBy($ItemName . $sortOrder, '' . $limit , $DB_Where);
+$dbk = $db->getKeysBy($ItemName, '' . $limit , $DB_Where);
 
 if (count($dbk) != 0) {
     foreach ($dbk as $nn => $key)
@@ -65,6 +61,7 @@ if (count($dbk) != 0) {
 		$detailFlds = $db->fieldValues();
 		// ako postoji neko custom polje, onda to ovdje.
 		$detailFlds["DriverName"] = $users[$db->getUserID()]->AuthUserRealName;
+		$detailFlds["Body"] = str_replace("<br>","",$detailFlds["Body"]);
 		$out[] = $detailFlds;    	
     }
 }
