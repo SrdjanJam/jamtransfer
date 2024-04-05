@@ -175,10 +175,10 @@ $('#show-hide').click(function(){
 function resizeContent(){
 	var filter = $('.filter');
 	var sirina = $(window).width();
-	if(sirina > 1551 && filter.is(':visible')){
+	if(sirina > 1221 && filter.is(':visible')){
 		filter.removeAttr('style');
 		$('#show-hide').hide();
-	}if(sirina < 1551 && filter.is(':hidden')){
+	}if(sirina < 1221 && filter.is(':hidden')){
 		$('#show-hide').show();
 		$('#show-hide').html('<i class="fa fa-bars fa-bars-edit"></i>Show filters');
 		filter.show();
