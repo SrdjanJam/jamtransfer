@@ -421,7 +421,7 @@
 								<div class="col-md-3" style="padding-bottom: 5px;">
 									<i class="fa fa-eye edit-fa"></i>
 									<div class="form-group group-edit">
-										<select id="length" class="w75 form-control control-edit" onchange="allItems();">
+										<select id="length" class="w75 form-control control-edit" style="width:50%;" onchange="allItems();">
 											<option value="5" {if $pagelength eq '5'} selected {/if}> 5 </option>
 											<option value="10" {if $pagelength eq '10'} selected {/if}> 10 </option>
 											<option value="20" {if $pagelength eq '20'} selected {/if}> 20 </option>
@@ -707,9 +707,10 @@
 			$('#filter-show').html('<i class="fa fa-bars fa-bars-edit"></i>Show footer');
 			var filter = $('.filter-wrapper');
 			var sirina = $(window).width();
-			if(sirina > 1551 && filter.is(':hidden')){
+			if(sirina > 1221 && filter.is(':hidden')){
 				filter.show();
-			}if(sirina < 1551 && filter.is(':visible')){
+			}if(sirina < 1221 && filter.is(':visible')){
+				// filter.removeAttr('style');
 				$('#filter-show').html('<i class="fa fa-bars fa-bars-edit"></i>Hide footer');
 				// filter.hide();
 			}
