@@ -11,7 +11,7 @@
 		</div>
 
 		<div class="col-md-3">
-			<?=CREATE_TIME;?>
+			<?=PARTNER;?>
 		</div>
 		
 		<div class="col-md-3">
@@ -45,11 +45,11 @@
 				</div>
 
 				<div class="col-sm-3">
-					{{CreateTime}}
+					{{UserName}}
 				</div>				
 				
 				<div class="col-sm-3">
-					{{Subject}}
+					{{{Subject}}}
 				</div>
 				
 				<div class="col-sm-2">
@@ -71,7 +71,7 @@
 						<i class="fa fa-arrow-circle-o-down fa-xl text-green"></i> <?=RECEIVE;?>
 					{{/compare}}
 				</div>				
-
+				<div style="background:white; color:black" class="col-md-12"><h4>{{{Body}}}</h4></div>				
 			</div>
 		</div>
 		<div id="ItemWrapper{{MailID}}" class="editFrame" style="display:none">

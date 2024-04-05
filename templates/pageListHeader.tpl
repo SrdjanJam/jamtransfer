@@ -94,17 +94,16 @@ value=" WHERE {$ItemID} > 0">
 				<input type="text" id="Search" class=" w75 form-control control-edit" onchange="allItems();" placeholder="Text + Enter to Search">
 			</div>
 		</div>
-
 		{if $pageList ne 'Orders'}
 		<div class="col-md-2">
 			<i class="fa fa-sort-amount-asc edit-fa"></i>
 			<div class="form-group group-edit">
 				<select name="sortOrder" id="sortOrder" onchange="allItems();" class="form-control control-edit">
 					<option value="ASC"> {$ASCENDING} </option>
-					<option value="DESC" {if isset($selectapproved) or isset($selectsolved)}SELECTED{/if}> {$DESCENDING} </option>
+					<option value="DESC" {if $isDesc}SELECTED{/if}> {$DESCENDING} </option>
 				</select>
 			</div>	
-		</div>		
+		</div>	
 		{/if}	
 		{if isset($selectactive)}		
 		<div class="col-md-2">

@@ -27,7 +27,7 @@ if ($length > 0) {
 }
 else $limit = '';
 
-$sortOrder = 'DESC';
+//$sortOrder = 'DESC';
 
 
 # init vars
@@ -81,7 +81,7 @@ if (isset($_REQUEST['vehicleID']) && $_REQUEST['vehicleID']>0) {
 }	
 
 # test za LIMIT - trebalo bi ga iskoristiti za pagination! 'asc' . ' LIMIT 0,50'
-$dbk = $db->getKeysBy('StartDate ' . $sortOrder, '' . $limit , $DB_Where);
+$dbk = $db->getKeysBy($ItemName, '' . $limit , $DB_Where);
 
 if (count($dbk) != 0) {
    

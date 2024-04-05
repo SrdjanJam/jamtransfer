@@ -82,7 +82,7 @@ if (count($dbk) != 0) {
 		// npr. $detaiAuthLevelName"]lFlds[" = $nekaDrugaDB->getAuthLevelName().' nesto';
 
 		// $md->getRow($db->getMailID());
-		// $detailFlds['PageName']=$md->getName();
+		$detailFlds['UserName']=$users[$db->getCreatorID()]->AuthUserRealName;
 		$out[] = $detailFlds;    	
     }
 }

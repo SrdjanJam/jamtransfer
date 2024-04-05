@@ -17,6 +17,7 @@ Class v4_WAN {
   	public $Title; //varchar(20)
   	public $Body; //varchar(255)
   	public $UserID; //int(10)
+  	public $Phone; //int(10)
   	public $SendRule; //text
   	public $ScheduleTime; //datetime
   	public $SendTimeFirst; //datetime
@@ -39,10 +40,11 @@ Class v4_WAN {
      * New object to the class. Don´t forget to save this new object "as new" by using the function $class->saveAsNew(); 
      *
      */
-	public function New_v4_WAN($Title,$Body,$UserID,$SendRule,$ScheduleTime,$SendTimeFirst,$SendTimeLast,$ConfirmTime,$SendNumber,$Status,$Direction,$OwnerID){
+	public function New_v4_WAN($Title,$Body,$UserID,$Phone,$SendRule,$ScheduleTime,$SendTimeFirst,$SendTimeLast,$ConfirmTime,$SendNumber,$Status,$Direction,$OwnerID){
 		$this->Title = $Title;
 		$this->Body = $Body;
 		$this->UserID = $UserID;
+		$this->Phone = $Phone;
 		$this->SendRule = $SendRule;
 		$this->ScheduleTime = $ScheduleTime;
 		$this->SendTimeFirst = $SendTimeFirst;
@@ -68,6 +70,7 @@ Class v4_WAN {
 			$this->Title = $row["Title"];
 			$this->Body = $row["Body"];
 			$this->UserID = $row["UserID"];
+			$this->Phone = $row["Phone"];
 			$this->SendRule = $row["SendRule"];
 			$this->ScheduleTime = $row["ScheduleTime"];
 			$this->SendTimeFirst = $row["SendTimeFirst"];
@@ -99,6 +102,7 @@ Class v4_WAN {
 Title = '".$this->myreal_escape_string($this->Title)."', 
 Body = '".$this->myreal_escape_string($this->Body)."', 
 UserID = '".$this->myreal_escape_string($this->UserID)."', 
+Phone = '".$this->myreal_escape_string($this->Phone)."', 
 SendRule = '".$this->myreal_escape_string($this->SendRule)."', 
 ScheduleTime = '".$this->myreal_escape_string($this->ScheduleTime)."', 
 SendTimeFirst = '".$this->myreal_escape_string($this->SendTimeFirst)."',
@@ -120,6 +124,7 @@ Status = '".$this->myreal_escape_string($this->Status)."' WHERE ID = '".$this->I
 			Title, 
 			Body, 
 			UserID, 
+			Phone, 
 			SendRule,
 			ScheduleTime, 
 			SendTimeFirst,
@@ -133,6 +138,7 @@ Status = '".$this->myreal_escape_string($this->Status)."' WHERE ID = '".$this->I
 		'".$this->myreal_escape_string($this->Title)."', 
 		'".$this->myreal_escape_string($this->Body)."', 
 		'".$this->myreal_escape_string($this->UserID)."', 
+		'".$this->myreal_escape_string($this->Phone)."', 
 		'".$this->myreal_escape_string($this->SendRule)."', 
 		'".$this->myreal_escape_string($this->ScheduleTime)."',
 		'".$this->myreal_escape_string($this->SendTimeFirst)."',
@@ -190,6 +196,13 @@ Status = '".$this->myreal_escape_string($this->Status)."' WHERE ID = '".$this->I
 	 */
 	public function getUserID(){
 		return $this->UserID;
+	}	
+	
+	/**
+	 * @return Phone - text
+	 */
+	public function getPhone(){
+		return $this->Phone;
 	}
 
 	/**
@@ -283,6 +296,13 @@ Status = '".$this->myreal_escape_string($this->Status)."' WHERE ID = '".$this->I
 	 */
 	public function setUserID($UserID){
 		$this->UserID = $UserID;
+	}	
+	
+	/**
+	 * @return Phone - text
+	 */
+	public function setPhone($Phone){
+		$this->Phone = $Phone;
 	}
 
 	/**
@@ -359,6 +379,7 @@ Status = '".$this->myreal_escape_string($this->Status)."' WHERE ID = '".$this->I
 			'Title' => $this->getTitle(),
 			'Body' => $this->getBody(),
 			'UserID' => $this->getUserID(),
+			'Phone' => $this->getPhone(),
 			'SendRule' => $this->getSendRule(),
 			'ScheduleTime' => $this->getScheduleTime(),
 			'SendTimeFirst' => $this->getSendTimeFirst(),
@@ -383,6 +404,7 @@ Status = '".$this->myreal_escape_string($this->Status)."' WHERE ID = '".$this->I
 			'Title',
 			'Body',
 			'UserID',
+			'Phone',
 			'SendRule',
 			'ScheduleTime',
 			'SendTimeFirst',

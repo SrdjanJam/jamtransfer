@@ -116,6 +116,8 @@ if ($result->num_rows>0) {
 		$smarty->assign('parentFolder',$parentFolder);
 		*/
 		if ($md->getIsNew()==1) $existNew=true;
+		if ($md->getIsDesc()==1) $isDesc=true;
+		else $isDesc=false;
 	}
 	else {
 		if (count($mdk)==1) header("Location: ". ROOT_HOME . '/dashboard');
@@ -159,6 +161,7 @@ if ($result->num_rows>0) {
 	$smarty->assign('ActionID',$ActionID);
 	$smarty->assign('item',$item);
 	$smarty->assign('isNew',$isNew);
+	$smarty->assign('isDesc',$isDesc);
 	$smarty->assign('existNew',$existNew);
 	$smarty->assign('menu1',$menu1);
 	$smarty->assign('pageName',$pageName);

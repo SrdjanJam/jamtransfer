@@ -86,6 +86,14 @@
 					<div class="col-md-9">
 						{{yesNoSliderEdit IsNew 'IsNew' }}
 					</div>
+				</div>	
+				<div class="row">
+					<div class="col-md-3">
+						<label for="IsDesc"><?=IS_SORT_DESC;?></label>
+					</div>
+					<div class="col-md-9">
+						{{yesNoSliderEdit IsDesc 'IsDesc' }}
+					</div>
 				</div>				
 				<div class="row">
 					<div class="col-md-3">
@@ -142,15 +150,6 @@
 				<a target="_blank" href="{{Code}}/fieldsDescription/0">Link</a>
 			</div>
 		</div>
-		<div class="row">
-			<div class="col-md-3">
-				<label for="IsDesc"><?=IS_SORT_DESC;?></label>
-			</div>
-			<div class="col-md-9">
-				{{yesNoSliderEdit IsDesc 'IsDesc' }}
-			</div>
-		</div>	
-
 	</div>
 		    
 

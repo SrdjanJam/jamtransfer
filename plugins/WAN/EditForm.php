@@ -27,7 +27,7 @@
 	<div class="box-body ">
 		<!-- ID: -->
 		<div class="row"> 
-			<div class="col-md-3"> <label for="CountryID"><?=ID;?></label> </div>
+			<div class="col-md-3"> <label for="ID"><?=ID;?></label> </div>
 			<div class="col-md-9"> {{ID}} </div>
 		</div>
 		<!-- TITLE: -->
@@ -45,6 +45,12 @@
 			<div class="col-md-3"> <label for="UserID"><?=SUBDRIVERS;?></label> </div>
             <div class="col-md-6">{{subdriverSelect UserID '<?=$_SESSION['UseDriverID']?>' 'UserID'}}  </div>	
 		</div>
+		<!-- SEND_RULE: -->
+		<div class="row">
+			<div class="col-md-3"> <label for="Phone"><?=Phone;?></label> </div>
+			<div class="col-md-6"> <input type="text" name="Phone" id="Phone" class="w100" value="{{Phone}}"> </div>
+
+		</div>		
 		<!-- SEND_RULE: -->
 		<div class="row">
 			<div class="col-md-3"> <label for="SendRule"><?=SEND_RULE;?></label> </div>

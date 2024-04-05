@@ -1,12 +1,12 @@
 <?php
-require_once 'config.php';
+require_once '../../config.php';
 require_once ROOT . '/db/v4_Mailer.class.php';
 $ml=new v4_Mailer;
 	
-	$email="srdjan.petrovic@jamtransfer.com";
-	$pass="nKtGsd0J;UXK";
+	$email="office@jamtransfer.com";
+	$pass="IRM86bk^GDu6";
 	$range="SINCE ".date('Y-m-d',strtotime("-1 days"));;
-	$imap = imap_open('{mail.jamtransfer.com:993/imap/ssl}INBOX', "srdjan.petrovic@jamtransfer.com", "nKtGsd0J;UXK");
+	$imap = imap_open('{mail.jamtransfer.com:993/imap/ssl}INBOX', $email, $pass);
 	// Retrieve the incoming mail
 	$messages = imap_search($imap,$range);
 	foreach ($messages as $message) {

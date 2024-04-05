@@ -809,10 +809,11 @@ function mail_html($mailto, $from_mail, $from_name, $replyto, $subject, $message
 
 	require_once ROOT . '/db/v4_Mailer.class.php';
 	$ml = new v4_Mailer();
-
+	date_default_timezone_set("Europe/Paris");
 	$ml->setCreateTime(date("Y-m-d H:i:s"));
 	$ml->setSentTime(date("Y-m-d H:i:s"));
 	$ml->setCreatorID($_SESSION['AuthUserID']);
+	if (isset($_SESSION['UseDriverID'])) $ml->setOwnerID($_SESSION['UseDriverID']);
 	$ml->setFromName($from_name);
 	$ml->setToName($mailto);
 	$ml->setReplyTo($replyto);
@@ -941,6 +942,7 @@ function send_whatsapp_message($phone_to,$message) {
 	$arr=explode("/",getUserIDFromPhone($phone_to));
 	$wn->setOwnerID($arr[0]);
 	$wn->setUserID($arr[1]);
+	$wn->setPhone($phone_to);
 	$wn->setSendRule("1/0");
 	date_default_timezone_set("Europe/Paris");
 	$wn->setScheduleTime(date("Y-m-d H:i:s"));

@@ -12,6 +12,7 @@ if(isset($event)){
 		$arr=explode("/",getUserIDFromPhone($phone));
 		$wn->setOwnerID($arr[0]);
 		$wn->setUserID($arr[1]);
+		$wn->setPhone($phone);
 		$wn->setBody($event->body);
 		date_default_timezone_set("Europe/Paris");
 		$wn->setScheduleTime(date("Y-m-d H:i:s"));

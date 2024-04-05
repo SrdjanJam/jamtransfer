@@ -8,7 +8,7 @@ $dbT = new DataBaseMysql();
 // $md= new v4_Modules();
 
 $keyName = 'MailID';
-$ItemName='MailID ';
+$ItemName='CreateTime ';
 
 $selectapproved='Status';
 
@@ -18,8 +18,8 @@ $selectapproved='Status';
 # Search ce ih sam pretraziti
 #********************************
 $aColumns = array(
-	'ID',
-	'PageID'
-	// dodaj ostala polja!
+	'MailID',
+	'Subject',
+	'Body'
 );
 
