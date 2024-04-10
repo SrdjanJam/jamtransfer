@@ -66,7 +66,7 @@ Class v4_OrderRequest {
 	}
 	
 	public function getRow($key_row){
-		$result = $this->connection->RunQuery("Select * from ". $this->table." where ID = \"$key_row\" ");
+		$result = $this->connection->RunQuery("Select * from v4_OrderRequest where ID = \"$key_row\" ");
 		if($result->num_rows < 1) return false;
 		while($row = $result->fetch_array(MYSQLI_ASSOC)){
 			$this->ID = $row["ID"];
@@ -86,11 +86,11 @@ Class v4_OrderRequest {
 	}
 
 	public function deleteRow($key_row){
-		$this->connection->RunQuery("DELETE FROM ". $this->table." WHERE ID = $key_row");
+		$this->connection->RunQuery("DELETE FROM v4_OrderRequest WHERE ID = $key_row");
 	}
 	
 		public function saveRow(){
-		$result = $this->connection->RunQuery("UPDATE ". $this->table." set 
+		$result = $this->connection->RunQuery("UPDATE v4_OrderRequest set 
 ID = '".$this->myreal_escape_string($this->ID)."', 
 OrderKey = '".$this->myreal_escape_string($this->OrderKey)."', 
 OrderID = '".$this->myreal_escape_string($this->OrderID)."', 
@@ -108,14 +108,14 @@ Price = '".$this->myreal_escape_string($this->Active)."' WHERE ID = '".$this->ID
 }
 
 	public function saveAsNew(){
-		$this->connection->RunQuery("INSERT INTO v4_OrderRequest (ID, OrderKey, OrderID, TNo, DriverID, ReturnTransfer, RequestType, RequestDate, RequestTime, ResponseDate, ResponseTime, ConfirmDecline, Price) values ('".$this->myreal_escape_string($this->ModulID)."', '".$this->myreal_escape_string($this->Name)."', '".$this->myreal_escape_string($this->Code)."', '".$this->myreal_escape_string($this->Base)."', '".$this->myreal_escape_string($this->ParentID)."', '".$this->myreal_escape_string($this->MenuOrder)."','".$this->myreal_escape_string($this->Icon)."','".$this->myreal_escape_string($this->Description)."','".$this->myreal_escape_string($this->Help)."','".$this->myreal_escape_string($this->IsNew)."','".$this->myreal_escape_string($this->Phase)."','".$this->myreal_escape_string($this->Active)."')");
+		$this->connection->RunQuery("INSERT INTO v4_OrderRequest (OrderKey, OrderID, TNo, DriverID, ReturnTransfer, RequestType, RequestDate, RequestTime, ResponseDate, ResponseTime, ConfirmDecline, Price) values ('".$this->myreal_escape_string($this->OrderKey)."', '".$this->myreal_escape_string($this->OrderID)."', '".$this->myreal_escape_string($this->TNo)."', '".$this->myreal_escape_string($this->DriverID)."', '".$this->myreal_escape_string($this->ReturnTransfer)."','".$this->myreal_escape_string($this->RequestType)."','".$this->myreal_escape_string($this->RequestDate)."','".$this->myreal_escape_string($this->RequestTime)."','".$this->myreal_escape_string($this->ResponseDate)."','".$this->myreal_escape_string($this->ResponseTime)."','".$this->myreal_escape_string($this->ConfirmDecline)."','".$this->myreal_escape_string($this->Price)."')");
 
 		return $this->connection->insert_id(); //return insert_id 
 	}
 
 	public function getKeysBy($column, $order, $where = NULL){
 		$keys = array(); $i = 0;
-		$result = $this->connection->RunQuery("SELECT ID from ". $this->table." $where ORDER BY $column $order");
+		$result = $this->connection->RunQuery("SELECT ID from v4_OrderRequest $where ORDER BY $column $order");
 			while($row = $result->fetch_array(MYSQLI_ASSOC)){
 				$keys[$i] = $row["ID"];
 				$i++;
