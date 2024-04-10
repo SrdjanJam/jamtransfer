@@ -1188,6 +1188,9 @@ Handlebars.registerHelper("userSelect", function(id,levelId,field) {
 			success: function(data) {
 				$.each(data, function(i,val) {
 					selector += '<option data-levelid="' + val.LevelID+'" value="' + val.UserID + '" ';
+					selector += 'data-mob="'+val.Mob +'" ';
+					selector += 'data-co="'+val.Company +'" ';
+					selector += 'data-email="'+val.Email +'" ';
 					if (val.UserID == id) {
 						selector += ' selected="selected" ';
 					}
@@ -1235,7 +1238,7 @@ Handlebars.registerHelper("subdriverSelect", function(id,ownerId,field) {
 			success: function(data) {
 				$.each(data, function(i,val) {
 					selector += '<option value="' + val.UserID + '" ';
-					selector += 'data-tel="'+val.Mob +'" ';
+					selector += 'data-mob="'+val.Mob +'" ';
 					if (val.UserID == id) {
 						selector += ' selected="selected" ';
 					}

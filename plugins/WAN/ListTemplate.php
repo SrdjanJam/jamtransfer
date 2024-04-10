@@ -1,10 +1,22 @@
-
+<?
+	$arr_row['id']=1;
+	$arr_row['name']="Operator send";
+	$arr_all[]=$arr_row;		
+	$arr_row['id']=2;
+	$arr_row['name']="System send";
+	$arr_all[]=$arr_row;	
+	$arr_row['id']=3;
+	$arr_row['name']="Received";
+	$arr_all[]=$arr_row;
+	$smarty->assign('options',$arr_all);
+	$smarty->assign('selecttype',true);
+?>
 <script type="text/x-handlebars-template" id="ItemListTemplate">
 
 	<!-- LABELS: -->
 	<div class="row row-edit">
 		<div class="col-md-1"> <?=ID;?> </div>
-		<div class="col-md-2"> <?=SUBDRIVERS;?> </div>
+		<div class="col-md-2"> <?=DRIVERS;?> </div>
 		<div class="col-md-2"> <?=SCHEDULE_TIME;?> </div>
 		<div class="col-md-1"> <?=SEND_NUMBER;?> </div>
 		<div class="col-md-2"> <?=CONFIRM_TIME;?> </div>
@@ -27,8 +39,13 @@
 				<div class="col-md-2"> {{ScheduleTime}} </div>
 				<div class="col-md-1"> {{SendNumber}} </div>
 				<div class="col-md-2"> {{ConfirmTime}} </div>
-				<div class="col-md-1"> {{Status}} </div>	
-				<div class="col-md-2"> <strong>{{Title}}</strong> </div>
+				<div class="col-sm-1">
+					{{#compare Status ">" 0}}
+						<i class="fa fa-check text-green"></i>
+					{{else}}
+						<i class="fa fa-close text-red"></i>
+					{{/compare}}
+				</div>				<div class="col-md-2"> <strong>{{Title}}</strong> </div>
 				<div class="col-md-1">
 					{{#compare Direction "==" 1}}
 						<i class="fa fa-arrow-circle-o-up fa-xl text-green"></i> <?=SEND;?>
@@ -37,7 +54,7 @@
 						<i class="fa fa-arrow-circle-o-down fa-xl text-green"></i> <?=RECEIVE;?>
 					{{/compare}}
 				</div>	
-				<div style="background:white; color:black" class="col-md-12"><h2>{{{Body}}}</h2></div>				
+				<div style="background:white; color:black" class="col-md-12"><h2>{{Body}}</h2></div>				
 			</div>
 		</div>
 

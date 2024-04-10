@@ -1,4 +1,15 @@
 <?
+	$arr_row['id']=1;
+	$arr_row['name']="Operator send";
+	$arr_all[]=$arr_row;		
+	$arr_row['id']=2;
+	$arr_row['name']="System send";
+	$arr_all[]=$arr_row;	
+	$arr_row['id']=3;
+	$arr_row['name']="Received";
+	$arr_all[]=$arr_row;
+	$smarty->assign('options',$arr_all);
+	$smarty->assign('selecttype',true);
 	$smarty->assign('selectsolved',true);
 ?>
 <script type="text/x-handlebars-template" id="ItemListTemplate">
@@ -71,7 +82,7 @@
 						<i class="fa fa-arrow-circle-o-down fa-xl text-green"></i> <?=RECEIVE;?>
 					{{/compare}}
 				</div>				
-				<div style="background:white; color:black" class="col-md-12"><h4>{{{Body}}}</h4></div>				
+				<!--<div style="background:white; color:black" class="col-md-12"><h4>{{{Body}}}</h4></div>!--->				
 			</div>
 		</div>
 		<div id="ItemWrapper{{MailID}}" class="editFrame" style="display:none">

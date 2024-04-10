@@ -1,38 +1,88 @@
 <?
-
-require "../../config.php";
+header('Content-Type: text/javascript; charset=UTF-8');
 require_once 'Initial.php';
 
-@session_start();
+$keyValue = $_REQUEST['id'];
 
+$fldList = array();
+$out = array();
 
-$DB_Where = " WHERE Status=0";
-$dbk = $db->getKeysBy($ItemName, '',$DB_Where);
+if ($keyName != '' and $keyValue != '') $db->getRow($keyValue);
 
-if (count($dbk) != 0) {
-    foreach ($dbk as $nn => $key)
-    {
-    	$db->getRow($key);
-		$message=$db->getBody();
-		$message.="\n";
-		$message.="Confirm receipt of the note.\n";
-		$message.="https://wis.jamtransfer.com/plugins/WAN/Confirm.php?id=".$key;
-		$phone=$users[$db->getUserID()]->AuthUserMob;
-		$rule=explode("/",$db->getSendRule());
-		$ruleSendNumber=$rule[0];
-		$ruleSendPeriod=$rule[1];
-		if ($ruleSendNumber>$db->getSendNumber()) {
-			$minutes=$db->getSendNumber()*$ruleSendPeriod." minutes" ;
-			$timeplus=date('Y-m-d H:i:s',strtotime($minutes,strtotime($db->getScheduleTime())));
-			if (date("Y-m-d H:i:s")>$timeplus) {
-				if ($db->getSendNumber()==0) $db->setSendTimeFirst(date("Y-m-d H:i:s"));
-				$db->setSendTimeLast(date("Y-m-d H:i:s"));
-				$db->setSendNumber($db->getSendNumber()+1);
-				$db->saveRow();
-				//echo $message;
-				send_whatsapp_message($phone,$message);
-			}
-		}	
-    }
+foreach ($db->fieldNames() as $name) {
+	$content=$db->myreal_escape_string($_REQUEST[$name]);
+	if(isset($_REQUEST[$name])) {
+		eval("\$db->set".$name."(\$content);");	
+	}
 }
+$message.=$db->getBody();
+$message="_jtmsg_ \n".$message;
+date_default_timezone_set("Europe/Paris");
+$db->setSendTimeFirst(date("Y-m-d H:i:s"));
+$db->setSendTimeLast(date("Y-m-d H:i:s"));
+$db->setSendNumber(1);
+$db->setStatus(1);
 	
+send($db->getPhone(),$message);
+   
+$upd = '';
+
+if ($keyName != '' and $keyValue != '') {
+	$res = $db->saveRow();
+	$upd = 'Updated';
+	if($res !== true) $upd = $res;
+}
+if ($keyName != '' and $keyValue == '') {
+	date_default_timezone_set("Europe/Paris");	
+	if ($db->getScheduleTime()==0) $db->setScheduleTime(date("Y-m-d H:i:s"));		
+	if (isset($_SESSION["UseDriverID"])) $db->setOwnerID($_SESSION["UseDriverID"]);	
+	else $db->setOwnerID($_REQUEST["UserID"]);
+	$db->setType(1);	
+	$newID = $db->saveAsNew();
+}
+
+$out = array(
+	'update' => $upd
+);
+# send output back
+$output = json_encode($out);
+echo $_REQUEST['callback'] . '(' . $output . ')';
+	
+	
+function send($phone_to,$message) {
+	// slanje poruke	
+	$message=str_replace("<BR>","\n",$message);
+	$message=str_replace("<br>","\n",$message);
+	$message=str_replace("&nbsp;"," ",$message);
+	$message=strip_tags($message);
+	$message = preg_replace('/^[ \t]*[\r\n]+/m', '', $message);	
+	require_once ROOT . '/db/v4_CoInfo.class.php';
+	$ci = new v4_CoInfo;
+	$ci->getRow(3);
+	$token=$ci->getco_facebook();
+	$instance=$ci->getco_twitter();
+	$params=array(
+	'token' => $token,
+	'to' => $phone_to,
+	'body' => $message
+	);
+	$curl = curl_init();
+	curl_setopt_array($curl, array(
+	  CURLOPT_URL => "https://api.ultramsg.com/".$instance."/messages/chat",
+	  CURLOPT_RETURNTRANSFER => true,
+	  CURLOPT_ENCODING => "",
+	  CURLOPT_MAXREDIRS => 10,
+	  CURLOPT_TIMEOUT => 30,
+	  CURLOPT_SSL_VERIFYHOST => 0,
+	  CURLOPT_SSL_VERIFYPEER => 0,
+	  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+	  CURLOPT_CUSTOMREQUEST => "POST",
+	  CURLOPT_POSTFIELDS => http_build_query($params),
+	  CURLOPT_HTTPHEADER => array(
+		"content-type: application/x-www-form-urlencoded"
+	  ),
+	));
+	$response = curl_exec($curl);
+	$err = curl_error($curl);
+	curl_close($curl);
+}	

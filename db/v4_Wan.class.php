@@ -19,6 +19,7 @@ Class v4_WAN {
   	public $UserID; //int(10)
   	public $Phone; //int(10)
   	public $SendRule; //text
+  	public $Type; //text
   	public $ScheduleTime; //datetime
   	public $SendTimeFirst; //datetime
   	public $SendTimeLast; //datetime
@@ -40,12 +41,13 @@ Class v4_WAN {
      * New object to the class. Don´t forget to save this new object "as new" by using the function $class->saveAsNew(); 
      *
      */
-	public function New_v4_WAN($Title,$Body,$UserID,$Phone,$SendRule,$ScheduleTime,$SendTimeFirst,$SendTimeLast,$ConfirmTime,$SendNumber,$Status,$Direction,$OwnerID){
+	public function New_v4_WAN($Title,$Body,$UserID,$Phone,$SendRule,$Type,$ScheduleTime,$SendTimeFirst,$SendTimeLast,$ConfirmTime,$SendNumber,$Status,$Direction,$OwnerID){
 		$this->Title = $Title;
 		$this->Body = $Body;
 		$this->UserID = $UserID;
 		$this->Phone = $Phone;
 		$this->SendRule = $SendRule;
+		$this->Type = $Type;
 		$this->ScheduleTime = $ScheduleTime;
 		$this->SendTimeFirst = $SendTimeFirst;
 		$this->SendTimeLast = $SendTimeLast;
@@ -72,6 +74,7 @@ Class v4_WAN {
 			$this->UserID = $row["UserID"];
 			$this->Phone = $row["Phone"];
 			$this->SendRule = $row["SendRule"];
+			$this->Type = $row["Type"];
 			$this->ScheduleTime = $row["ScheduleTime"];
 			$this->SendTimeFirst = $row["SendTimeFirst"];
 			$this->SendTimeLast = $row["SendTimeLast"];
@@ -104,6 +107,7 @@ Body = '".$this->myreal_escape_string($this->Body)."',
 UserID = '".$this->myreal_escape_string($this->UserID)."', 
 Phone = '".$this->myreal_escape_string($this->Phone)."', 
 SendRule = '".$this->myreal_escape_string($this->SendRule)."', 
+Type = '".$this->myreal_escape_string($this->Type)."', 
 ScheduleTime = '".$this->myreal_escape_string($this->ScheduleTime)."', 
 SendTimeFirst = '".$this->myreal_escape_string($this->SendTimeFirst)."',
 SendTimeLast = '".$this->myreal_escape_string($this->SendTimeLast)."',
@@ -126,6 +130,7 @@ Status = '".$this->myreal_escape_string($this->Status)."' WHERE ID = '".$this->I
 			UserID, 
 			Phone, 
 			SendRule,
+			Type,
 			ScheduleTime, 
 			SendTimeFirst,
 			SendTimeLast,
@@ -140,6 +145,7 @@ Status = '".$this->myreal_escape_string($this->Status)."' WHERE ID = '".$this->I
 		'".$this->myreal_escape_string($this->UserID)."', 
 		'".$this->myreal_escape_string($this->Phone)."', 
 		'".$this->myreal_escape_string($this->SendRule)."', 
+		'".$this->myreal_escape_string($this->Type)."', 
 		'".$this->myreal_escape_string($this->ScheduleTime)."',
 		'".$this->myreal_escape_string($this->SendTimeFirst)."',
 		'".$this->myreal_escape_string($this->SendTimeLast)."',
@@ -210,6 +216,13 @@ Status = '".$this->myreal_escape_string($this->Status)."' WHERE ID = '".$this->I
 	 */
 	public function getSendRule(){
 		return $this->SendRule;
+	}	
+	
+	/**
+	 * @return Type - tinyint(1)
+	 */
+	public function getType(){
+		return $this->Type;
 	}
 
 	/**
@@ -310,6 +323,13 @@ Status = '".$this->myreal_escape_string($this->Status)."' WHERE ID = '".$this->I
 	 */
 	public function setSendRule($SendRule){
 		$this->SendRule = $SendRule;
+	}	
+	
+	/**
+	 * @return Type - tinyint(1)
+	 */
+	public function setType($Type){
+		$this->Type = $Type;
 	}
 
 	/**
@@ -381,6 +401,7 @@ Status = '".$this->myreal_escape_string($this->Status)."' WHERE ID = '".$this->I
 			'UserID' => $this->getUserID(),
 			'Phone' => $this->getPhone(),
 			'SendRule' => $this->getSendRule(),
+			'Type' => $this->getType(),
 			'ScheduleTime' => $this->getScheduleTime(),
 			'SendTimeFirst' => $this->getSendTimeFirst(),
 			'SendTimeLast' => $this->getSendTimeLast(),
@@ -406,6 +427,7 @@ Status = '".$this->myreal_escape_string($this->Status)."' WHERE ID = '".$this->I
 			'UserID',
 			'Phone',
 			'SendRule',
+			'Type',
 			'ScheduleTime',
 			'SendTimeFirst',
 			'SendTimeLast', 

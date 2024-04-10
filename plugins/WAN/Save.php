@@ -12,7 +12,6 @@ foreach ($db->fieldNames() as $name) {
 		eval("\$db->set".$name."(\$content);");	
 	}	
 	$db->setScheduleTime($_REQUEST["ScheduleTime1"]." ".$_REQUEST["ScheduleTime2"]);
-	$db->setOwnerID($_SESSION["UseDriverID"]);
 }	
 $upd = '';
 $newID = '';
@@ -22,6 +21,11 @@ if ($keyName != '' and $keyValue != '') {
 	if($res !== true) $upd = $res;
 }
 if ($keyName != '' and $keyValue == '') {
+	date_default_timezone_set("Europe/Paris");	
+	if ($db->getScheduleTime()==0) $db->setScheduleTime(date("Y-m-d H:i:s"));
+	if (isset($_SESSION["UseDriverID"])) $db->setOwnerID($_SESSION["UseDriverID"]);	
+	else $db->setOwnerID($_REQUEST["UserID"]);
+	$db->setType(1);
 	$newID = $db->saveAsNew();
 }
 $out = array(

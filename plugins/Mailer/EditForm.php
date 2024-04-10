@@ -27,10 +27,10 @@
 				<!-- CreatorID: -->
 				<div class="row">
 					<div class="col-md-3">
-						<label for="Creator"><?=CREATOR;?></label>
+						<label for="Owner"><?=Owner;?></label>
 					</div>
 					<div class="col-md-9">
-						{{userName CreatorID "AuthUserRealName"}}
+						{{userName OwnerID "AuthUserRealName"}}
 					</div>
 				</div>
 				<? } ?>	
@@ -44,13 +44,23 @@
 					</div>
 				</div>
 
+				<!-- Drivers: -->
+				<div class="row">
+					<div class="col-md-3">
+						<label for=Drivers"><?=Drivers;?></label>
+					</div>
+					<div class="col-md-9">
+						{{userSelect OwnerID "31" "OwnerID"}}
+					</div>
+				</div>				
+				
 				<!-- ToName: -->
 				<div class="row">
 					<div class="col-md-3">
-						<label for=ToName"><?=EMAIL;?></label>
+						<label for=ToName"><?=TO_NAME;?></label>
 					</div>
 					<div class="col-md-9">
-						<input type="text" name="ToName" value="{{ToName}}">
+						<input type="text" id= "ToName" name="ToName" value="{{ToName}}">
 					</div>
 				</div>
 
@@ -123,10 +133,10 @@
 						<input readonly type="text" name="SentTime" value="{{SentTime}}">
 					</div>
 				</div>
-				<? } ?>
-				<input type="hidden" name="OwnerID" value="<?=$_SESSION["UseDriverID"]?>">
+				<? } else { ?>
 				<input type="hidden" name="CreatorID" value="<?=$_SESSION["AuthUserID"]?>">
 				<input type="hidden" name="Direction" value="1">
+				<? } ?>
 
 			</div>				
 				
@@ -150,6 +160,9 @@
 	
 		$('.solved input').change(function() {
 			$('#save_button').trigger('click');
+		})		
+		$('#OwnerID').change(function() {
+			$('#ToName').val($("#OwnerID option:selected").attr('data-email'));
 		})	
 	</script>
 </script>

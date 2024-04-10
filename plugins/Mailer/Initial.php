@@ -9,7 +9,7 @@ $dbT = new DataBaseMysql();
 
 $keyName = 'MailID';
 $ItemName='CreateTime ';
-
+$type='Type';
 $selectapproved='Status';
 
 #********************************

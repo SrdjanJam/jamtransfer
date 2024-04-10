@@ -11,12 +11,15 @@
 				onclick="return editCloseItem('{{ID}}');">
 				<i class="fa fa-close"></i>
 				</button>
-
 				<button class="btn btn-danger" title="<?= CANCEL ?>" 
 				onclick="return deleteItem('{{ID}}');">
 				<i class="fa fa-ban"></i>
 				</button>
 			<? } ?>	
+			<button class="btn btn-primary" title="<?= SEND?>"
+				onclick="return sendItem('{{ID}}');">
+				<i class="fa fa-whatsapp"></i>
+			</button>
 			<button class="btn btn-info" title="<?= SAVE_CHANGES ?>" 
 			onclick="return editSaveItem('{{ID}}');">
 			<i class="fa fa-save"></i>
@@ -42,8 +45,13 @@
 		</div>
 		<!-- SER_ID: -->
 		<div class="row">
-			<div class="col-md-3"> <label for="UserID"><?=SUBDRIVERS;?></label> </div>
-            <div class="col-md-6">{{subdriverSelect UserID '<?=$_SESSION['UseDriverID']?>' 'UserID'}}  </div>	
+			<div class="col-md-3"> <label for="UserID"><?=DRIVERS;?></label> </div>
+            <div class="col-md-6">
+				<? if (!isset($_SESSION['UseDriverID'])) {  ?> {{userSelect UserID '31' 'UserID'}}<? } else { ?>  
+				{{subdriverSelect UserID '<?=$_SESSION['UseDriverID']?>' 'UserID'}} <? } ?>
+			</div>	
+									
+
 		</div>
 		<!-- SEND_RULE: -->
 		<div class="row">
@@ -66,7 +74,7 @@
 			</div>
 		</div>
 
-		<?php if(!$isNew){ ?>
+		<?if(!$isNew){ ?>
 			<!-- SEND_TIME_FIRST: -->
 			<div class="row">
 				<div class="col-md-3"> <label for="SendTimeFirst"><?=SEND_TIME_FIRST;?></label> </div>
@@ -77,24 +85,10 @@
 				<div class="col-md-3"> <label for="SendTimeLast"><?=SEND_TIME_LAST;?></label> </div>
 				<div class="col-md-9"> <input readonly type="text" name="SendTimeLast" id="SendTimeLast" class="w100" value="{{SendTimeLast}}"> </div>
 			</div>
-			<!-- CONFIRM_TIME: -->
-			<div class="row">
-				<div class="col-md-3"> <label for="ConfirmTime"><?=CONFIRM_TIME;?></label> </div>
-				<div class="col-md-9"> <input readonly type="text" name="ConfirmTime" id="ConfirmTime" class="w100" value="{{ConfirmTime}}"> </div>
-			</div>
-			<!-- SEND_NUMBER: -->
-			<div class="row">
-				<div class="col-md-3"> <label for="SendNumber"><?=SEND_NUMBER;?></label> </div>
-				<div class="col-md-9"> <input readonly type="text" name="SendNumber" id="SendNumber" class="w100" value="{{SendNumber}}"> </div>
-			</div>
-			<!-- STATUS: -->
-			<div class="row">
-				<div class="col-md-3"> <label for="Status"><?=STATUS;?></label> </div>
-				<div class="col-md-9"> <input type="text" name="Status" id="Status" class="w100" value="{{Status}}"> </div>
-			</div>
-		<?php } ?>
-
-	</div>
+			<input type="hidden" name="OwnerID" value="{{OwnerID}}">
+		<? } else { ?>
+			<input type="hidden" name="Direction" value="1">
+		<? } ?>
 </form>
 
 	<script>
@@ -115,7 +109,9 @@
 		$("form").change(function(){
 			$("#statusMessage").html('');
 		});
-	
+		$('#UserID').change(function() {
+			$('#Phone').val($("#UserID option:selected").attr('data-mob'));
+		})	
 	</script>
 </script>
 

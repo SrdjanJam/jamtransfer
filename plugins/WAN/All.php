@@ -30,6 +30,7 @@ $flds = array();
 # kombinacija where i filtera
 $DB_Where = " " . $_REQUEST['where'];
 if (isset($_SESSION['UseDriverID'])) $DB_Where .= " AND `OwnerID`=".$_SESSION['UseDriverID'];
+else $DB_Where .= " AND `OwnerID`=`UserID`";
 $DB_Where .= $filter;
 
 # dodavanje search parametra u qry
@@ -61,7 +62,7 @@ if (count($dbk) != 0) {
 		$detailFlds = $db->fieldValues();
 		// ako postoji neko custom polje, onda to ovdje.
 		$detailFlds["DriverName"] = $users[$db->getUserID()]->AuthUserRealName;
-		$detailFlds["Body"] = str_replace("<br>","",$detailFlds["Body"]);
+		$detailFlds["Body"] = strip_tags($detailFlds["Body"]);
 		$out[] = $detailFlds;    	
     }
 }

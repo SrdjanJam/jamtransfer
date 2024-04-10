@@ -813,7 +813,6 @@ function mail_html($mailto, $from_mail, $from_name, $replyto, $subject, $message
 	$ml->setCreateTime(date("Y-m-d H:i:s"));
 	$ml->setSentTime(date("Y-m-d H:i:s"));
 	$ml->setCreatorID($_SESSION['AuthUserID']);
-	if (isset($_SESSION['UseDriverID'])) $ml->setOwnerID($_SESSION['UseDriverID']);
 	$ml->setFromName($from_name);
 	$ml->setToName($mailto);
 	$ml->setReplyTo($replyto);
@@ -822,9 +821,11 @@ function mail_html($mailto, $from_mail, $from_name, $replyto, $subject, $message
 	$ml->setAttachment($attachment);
 	$ml->setStatus(1);
 	$ml->setDirection(1);
-	if (getUserIDFromMail($mailto)) $ml->setOwnerID(getUserIDFromMail($mailto));	
-
-	$ml->saveAsNew();
+	$ml->setType(2);	
+	if (getUserIDFromMail($mailto)) {
+		$ml->setOwnerID(getUserIDFromMail($mailto));	
+		$ml->saveAsNew();
+	}	
 	mail_html_send($mailto, $from_mail, $from_name, $replyto, $subject, $message, $attachment = '');
 }
 
@@ -890,6 +891,7 @@ function getPhoneFromMail($mail) {
 	$w = $db->RunQuery($q);
 	$d = $w->fetch_object();
 	if (count($d)==1) {
+		$phone=ltrim($phone, '0');
 		$phone=str_replace(" ","",$d->AuthUserMob);
 		$phone=str_replace("-","",$phone);
 		$phone=str_replace("/","",$phone);
@@ -917,7 +919,7 @@ function getUserIDFromPhone($mob) {
 function getUserIDFromMail($mail) {
     require_once ROOT . '/db/db.class.php';
     $db = new DataBaseMysql();	
-	$q = "SELECT * FROM v4_AuthUsers WHERE AuthLevelID=31 AND Active=1 AND AuthUserMob<>'' AND AuthUserMail = '".$mail."'  ORDER BY AuthUserID DESC";
+	$q = "SELECT * FROM v4_AuthUsers WHERE AuthLevelID in (2,31) AND Active=1 AND AuthUserMail = '".$mail."'  ORDER BY AuthUserID DESC";
 	$w = $db->RunQuery($q);
 	$d = $w->fetch_object();
 	if (count($d)==1) return $d->AuthUserID;		
@@ -944,12 +946,14 @@ function send_whatsapp_message($phone_to,$message) {
 	$wn->setUserID($arr[1]);
 	$wn->setPhone($phone_to);
 	$wn->setSendRule("1/0");
+	$wn->setType(2);	
 	date_default_timezone_set("Europe/Paris");
 	$wn->setScheduleTime(date("Y-m-d H:i:s"));
 	$wn->setSendTimeFirst(date("Y-m-d H:i:s"));
 	$wn->setSendTimeLast(date("Y-m-d H:i:s"));
 	$wn->setSendNumber(1);
 	$wn->setDirection(1);
+	$wn->setStatus(1);
 	$wn->saveAsNew();
 	// slanje poruke	
 	$message=str_replace("<BR>","\n",$message);

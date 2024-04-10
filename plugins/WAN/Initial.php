@@ -7,7 +7,7 @@ $db = new v4_WAN();
 
 $keyName = 'ID';
 $ItemName='ScheduleTime DESC';
-$selectactive='Status';
+$type='Type';
 
 #********************************
 # kolone za koje je moguc Search

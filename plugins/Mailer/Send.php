@@ -16,6 +16,7 @@ foreach ($db->fieldNames() as $name) {
 		eval("\$db->set".$name."(\$content);");	
 	}
 }
+date_default_timezone_set("Europe/Paris");
 $db->setSentTime(date("Y-m-d H:i:s"));
 
 $from_mail="office@jamtransfer.com";
@@ -26,7 +27,10 @@ $subject=$db->getSubject();
 $message=$db->getBody();
 $attachment=$db->getAttachment();
 $result=mail_html_send($mailto, $from_mail, $from_name, $replyto, $subject, $message, $attachment = '') ;
-if ($result=='OK') $db->setStatus(1);
+if ($result=='OK') {
+	$db->setStatus(1);
+	$db->setType(1);
+}	
 $upd = '';
 
 if ($keyName != '' and $keyValue != '') {

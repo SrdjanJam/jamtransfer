@@ -14,14 +14,7 @@ if (isset($type)) {
 	}
 }
 
-if (isset($selectapproved)) {
-	if (!isset($_REQUEST['Approved']) or $_REQUEST['Approved'] == 99) {
-		$filter .= "  AND ".$selectapproved." > -1 ";
-	}
-	else {
-		$filter .= "  AND ".$selectapproved." = " . $_REQUEST['Approved'] ;
-	}
-}
+
 
 
 $page 		= (int) $_REQUEST['page'];
@@ -82,7 +75,9 @@ if (count($dbk) != 0) {
 		// npr. $detaiAuthLevelName"]lFlds[" = $nekaDrugaDB->getAuthLevelName().' nesto';
 
 		// $md->getRow($db->getMailID());
-		$detailFlds['UserName']=$users[$db->getCreatorID()]->AuthUserRealName;
+		if ($db->getOwnerID()>0) $detailFlds['UserName']=$users[$db->getOwnerID()]->AuthUserRealName;
+		else $detailFlds['UserName']=$db->getFromName();
+		$detailFlds['Body']=substr($detailFlds['Body'],0,150)."...";
 		$out[] = $detailFlds;    	
     }
 }

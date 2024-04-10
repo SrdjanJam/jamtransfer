@@ -1,0 +1,10 @@
+[10-Apr-2024 09:34:53 UTC] PHP Fatal error:  Cannot redeclare send_whatsapp_message() (previously declared in /home/jamtrans/laravel/public/wis.jamtransfer.com/plugins/WAN/Send.php:47) in /home/jamtrans/laravel/public/wis.jamtransfer.com/common/functions/f.php on line 937
+[10-Apr-2024 09:35:29 UTC] PHP Fatal error:  Cannot redeclare send_whatsapp_message() (previously declared in /home/jamtrans/laravel/public/wis.jamtransfer.com/plugins/WAN/Send.php:47) in /home/jamtrans/laravel/public/wis.jamtransfer.com/common/functions/f.php on line 937
+[10-Apr-2024 11:49:10 Europe/Paris] PHP Fatal error:  Uncaught Error: Function name must be a string in /home/jamtrans/laravel/public/wis.jamtransfer.com/plugins/WAN/Send.php:36
+Stack trace:
+#0 {main}
+  thrown in /home/jamtrans/laravel/public/wis.jamtransfer.com/plugins/WAN/Send.php on line 36
+[10-Apr-2024 11:59:06 Europe/Paris] PHP Fatal error:  Uncaught Error: Function name must be a string in /home/jamtrans/laravel/public/wis.jamtransfer.com/plugins/WAN/Send.php:37
+Stack trace:
+#0 {main}
+  thrown in /home/jamtrans/laravel/public/wis.jamtransfer.com/plugins/WAN/Send.php on line 37
