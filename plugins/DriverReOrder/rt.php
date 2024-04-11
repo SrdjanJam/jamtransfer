@@ -55,10 +55,16 @@ if (($od->PickupID != 0) and ($od->DropID != 0)) {
 $price=$od->getDriversPrice();
 $vt->getRow($od->getVehicleType());
 ?>
+
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
 <img alt='unnamed.png' src='https://ci6.googleusercontent.com/proxy/gBp_3CS_Q7717vUShqpClwV5nvpSBMX4R12HglRtYH_bZAnFztxLaWUyx1TjLdnvX28O1lHpYBR3R-z3BTRB-S2cH1IvOCM=s0-d-e1-ft#https://signaturehound.com/api/v1/file/ip95nlc8vsyni'>
-<h4><?=$subject ?></h4>
+<h3><?=$subject ?></h3>
 <p><?=$users[$or->DriverID]->AuthUserRealName ?></p>
-<div class="container">
+<div class="container container-edit">
 	<div class="row">
 		<div >Order :</div>
 		<div><b><?= $om->MOrderKey . '-' . $od->OrderID . ' ' . $returnTransfer; ?></b></div>
@@ -135,30 +141,46 @@ $vt->getRow($od->getVehicleType());
 		else $readonly="readonly";
 		if ($or->getConfirmDecline()>0) $readonly="readonly";
 	?>
+
+	<style>
+		
+		.row-button input{
+			font-size:25px;
+			padding: 5px;
+			margin: 5px;
+		}
+
+		.container-edit{
+			font-size: 20px;
+		}
+
+	</style>
+
 	<form action="" method="post">
-		<div class="row">		
-			<div>Price (EUR) :</div>
+		<div class="row row-button">
+			<div style="font-size:25px;">Price (EUR) :</div>
 			<div>
-				<div><input style="font-size:600%" type="text" class="form-control input-lg" id="Price" name="Price" value="<?= number_format($price,2) ?>"  <?= $readonly ?>/></div>
+				<div><input type="text" class="form-control input-lg" id="Price" name="Price" value="<?= number_format($price,2) ?>"  <?= $readonly ?>/></div>
 			</div>
+
+			<? if ($or->ConfirmDecline==0) { ?>
+				<div class="row">
+					<div>
+						<input type="submit" class="green" name="Confirm" id="Confirm" value="Confirm" <?= $disabled ?> />
+						<input type="submit" class="red" name="Decline" value="Decline" />
+					</div>
+				</div>	
+			<? } else if ($or->ConfirmDecline==1) { ?>	
+				<h4>Request confirmed<h4/>		
+			<? } else {?>
+				<h4>Request declined<h4/>	
+			<? } ?>
+
+			<input type="hidden" name="key" value="<?= $KEY ?>" />
 		</div>
-		<hr>
-	<? if ($or->ConfirmDecline==0) { ?>
-		<div class="row">
-			<div><input style="font-size:600%" type="submit" class="green" name="Confirm" id="Confirm" value="Confirm" <?= $disabled ?> /></div>
-		</div>	
-		<hr>
-		<div class="row">
-			<div><input style="font-size:600%" type="submit" class="red" name="Decline" value="Decline" /></div>			
-		</div>
-		<hr><hr>		
-	<? } else if ($or->ConfirmDecline==1) { ?>	
-		<h4>Request confirmed<h4/>		
-	<? } else {?>
-		<h4>Request declined<h4/>	
-	<? } ?>
-		<input type="hidden" name="key" value="<?= $KEY ?>" />	
-	</form>	
+	</form>
+
+
 </div>
 <small><?=$subsubject ?></small>
 <script src="../../js/jQuery/2.0.2/jquery.min.js"></script>
