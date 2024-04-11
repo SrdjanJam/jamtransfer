@@ -20,6 +20,7 @@
 
 	$u->getRow($DriverID);   //online
 	$mailto=$u->getAuthUserMail();
+	$phoneto=$u->getAuthUserMob();
 	//$mailto="jam.bgprogrameri@gmail.com";
 	
     $orderKey = create_order_key();
@@ -210,7 +211,17 @@
 								// Set email format to HTML
 
 
-	mail_html_send($mailto, 'info@jamtransfer.com', 'JamTransfer.com', 'info@jamtransfer.com', $subject , $message, 0);
+	mail_html_send($mailto, 'info@jamtransfer.com', 'JamTransfer.com', 'info@jamtransfer.com', $subject , $message, '', 0);
+	// blok za slanje WA poruke
+	$messageWA="Dear Partner. \n";
+	$messageWA.="We have new Request For Availability";
+	if ($requestType==2) $messageWA.= " and price";
+	$messageWA.="\n on the link bellow \n";
+	$messageWA.="https://wis.jamtransfer.com/rt/".$orderKey;
+	$messageWA.="\n Thank you, your JamTransfer";
+	send_whatsapp_message($phoneto,$messageWA);
+	
+
 
 	$res = array(
 				'OrderID'=>$OrderID,

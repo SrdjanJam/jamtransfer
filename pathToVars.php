@@ -125,8 +125,7 @@ switch ($activePage) {
 		}	
 		break;			
 	
-	case 'schedule':
-		
+	case 'schedule':	
 		if ($pathVars->fetchByIndex($indexStart + 1)) { 
 			$_REQUEST['ScheduleDate']=$pathVars->fetchByIndex($indexStart + 1);
 		}			
@@ -199,7 +198,21 @@ switch ($activePage) {
 				$includeFileTpl = "/vehicles.tpl";	
 			} else $_REQUEST['Date']=$pathVars->fetchByIndex($indexStart + 1);
 		}
-		break;			
+		break;	
+	//za potvrdu transfera na whatsApp-u	
+	case 'rt':
+		if ($pathVars->fetchByIndex($indexStart + 1)){
+			$key=$pathVars->fetchByIndex($indexStart + 1);
+			header('Location: /plugins/DriverReOrder/rt.php?key='.$key);
+		}
+		break;
+	case 'confirm':
+		if ($pathVars->fetchByIndex($indexStart + 1)){
+			$id=$pathVars->fetchByIndex($indexStart + 1);
+			header('Location: /plugins/WAN/Confirm.php?id='.$key);
+		}
+		break;
+		
 	default:
 		if ($pathVars->fetchByIndex($indexStart + 1)) { 
 			if (is_numeric($pathVars->fetchByIndex($indexStart + 1))) {

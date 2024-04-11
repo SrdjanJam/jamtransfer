@@ -23,7 +23,8 @@ if (count($wnk) != 0) {
 		$message=$wn->getBody();
 		$message.="\n";
 		$message.="Confirm receipt of the note.\n";
-		$message.="https://wis.jamtransfer.com/plugins/WAN/Confirm.php?id=".$key;
+		//$message.="https://wis.jamtransfer.com/plugins/WAN/Confirm.php?id=".$key;
+		$message.="https://wis.jamtransfer.com/confirm/".$key;
 		$rule=explode("/",$wn->getSendRule());
 		$ruleSendNumber=$rule[0];
 		$ruleSendPeriod=$rule[1];

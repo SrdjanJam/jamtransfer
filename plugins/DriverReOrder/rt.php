@@ -1,39 +1,48 @@
 <?
-$DetailsID = $_REQUEST['id'];
-$AuthUserID = $_SESSION['AuthUserID'];
 
-require_once 'subdriver/db.php';
-require_once '../db/v4_OrderDetails.class.php';
-require_once '../db/v4_OrdersMaster.class.php';
-require_once '../db/v4_OrderExtras.class.php';
-require_once '../db/v4_AuthUsers.class.php';
-require_once '../db/v4_Places.class.php';
+$KEY = $_REQUEST['key'];
 
+require_once '../../config.php';
+require_once ROOT.'/db/v4_OrderRequest.class.php';
+require_once ROOT.'/db/v4_OrderDetails.class.php';
+require_once ROOT.'/db/v4_OrdersMaster.class.php';
+require_once ROOT.'/db/v4_OrderExtras.class.php';
+require_once ROOT.'/db/v4_Places.class.php';
+require_once ROOT.'/db/v4_VehicleTypes.class.php';
+
+$or = new v4_OrderRequest;
 $od = new v4_OrderDetails;
 $om = new v4_OrdersMaster;
 $oe = new v4_OrderExtras;
-$au = new v4_AuthUsers;
 $op = new v4_Places;
+$vt = new v4_VehicleTypes;
 
-$od->getRow($DetailsID);
+$ork=$or->getKeysBy('ID', 'ASC', 'WHERE OrderKey = "' . $KEY .'" ');
+if (count($ork)!=1) exit ("Something wrong");
+$or->getRow($ork[0]);
+if (isset($_REQUEST['Price'])) {
+	if (isset($_REQUEST['Confirm'])) $or->setConfirmDecline(1);
+	if (isset($_REQUEST['Decline'])) $or->setConfirmDecline(2);
+	$or->setPrice($_REQUEST['Price']);
+	date_default_timezone_set('Europe/Paris');
+	$or->setResponseDate(date("Y-m-d"));
+	$or->setResponseTime(date("H:i:s"));
+	$or->saveRow();
+}
+$odk=$od->getKeysBy('DetailsID', 'ASC', 'WHERE OrderID = ' . $or->getOrderID() . ' and TNo=1 ');
+$od->getRow($odk[0]);
+$subject="Request For Availability";
+if ($or->RequestType==2) {
+	$subject.= " and Price";	
+	$subsubject="<br>We have request from the client, please check all details on the link below and give us your best price.";
+}
+else $subsubject="<br>This is just information to Jam Transfer that you have available vehicle and the price is suitable for you. If client confirms it, you will get an email with new transfer.";
+
+$ID=$odk[0];
 $om->getRow($od->getOrderID());
 
-$ExtrasID = $DetailsID;
-/*if ($od->TNo == 2) { // FIXME - TEMP: povratni transfer dobavlja extra usluge od dolaznog transfera
-	$odArrival = new v4_OrderDetails;
-	$odArrKey = $odArrival->getKeysBy('DetailsID', 'ASC', 'WHERE OrderID = ' . $od->OrderID . ' AND TNo = 1');
-	$odArrival->getRow($odArrKey[0]);
-	$ExtrasID = $odArrival->DetailsID;
-}*/
-$extras = $oe->getKeysBy('ID', 'ASC', 'WHERE OrderDetailsID = ' . $ExtrasID);
+$extras = $oe->getKeysBy('ID', 'ASC', 'WHERE OrderDetailsID = ' . $ID);
 
-$returnTransfer = hasReturn($od->OrderID, $od->TNo, $con);
-
-$paxName = $od->PaxName;
-
-// dohvacanje engleskih imena lokacija iz v4_Places
-// ako je FREEFORM, PickupID i DropID su 0,
-// pa se imena dohvacaju iz v4_OrderDetails
 if (($od->PickupID != 0) and ($od->DropID != 0)) {
 	$op->getRow($od->PickupID);
 	$PickupName = $op->getPlaceNameEN();
@@ -43,248 +52,118 @@ if (($od->PickupID != 0) and ($od->DropID != 0)) {
 	$PickupName = $od->PickupName;
 	$DropName = $od->DropName;
 }
-if ($od->PaxNo==1) $PaxNo=2;
-else $PaxNo=$od->PaxNo;
+$price=$od->getDriversPrice();
+$vt->getRow($od->getVehicleType());
 ?>
-
+<img alt='unnamed.png' src='https://ci6.googleusercontent.com/proxy/gBp_3CS_Q7717vUShqpClwV5nvpSBMX4R12HglRtYH_bZAnFztxLaWUyx1TjLdnvX28O1lHpYBR3R-z3BTRB-S2cH1IvOCM=s0-d-e1-ft#https://signaturehound.com/api/v1/file/ip95nlc8vsyni'>
+<h4><?=$subject ?></h4>
+<p><?=$users[$or->DriverID]->AuthUserRealName ?></p>
 <div class="container">
 	<div class="row">
-		<div class="col-xs-6 right">Order :</div>
-		<div class="col-xs-6"><b><?= $om->MOrderKey . '-' . $od->OrderID . ' ' . $returnTransfer; ?></b></div>
+		<div >Order :</div>
+		<div><b><?= $om->MOrderKey . '-' . $od->OrderID . ' ' . $returnTransfer; ?></b></div>
 	</div>
 	<div class="row">
-		<div class="col-xs-6 right">VehicleType :</div>
-		<div class="col-xs-6"><b><?= $od->VehicleType . ' pax' ?></b></div>
+		<div>VehicleType :</div>
+		<div><b><?= $vt->VehicleTypeName  ?></b></div>
+	</div>	
+	<div class="row">
+		<div>Pax No :</div>
+		<div><b><?= $od->PaxNo . ' pax' ?></b></div>
+	</div>
+	<hr><hr>
+	<div class="row">
+		<div>Pickup Name :</div>
+		<div><b><?= strtoupper($PickupName) ?></b></div>
 	</div>
 	<div class="row">
-		<div class="col-xs-6"><hr></div>
-		<div class="col-xs-6"><hr></div>
+		<div>Drop Name :</div>
+		<div><b><?= strtoupper($DropName) ?></b></div>
+	</div>
+	<hr><hr>
+	<div class="row">
+		<div>Pickup Date :</div>
+		<div><b><?= $od->PickupDate ?></b></div>
 	</div>
 	<div class="row">
-		<div class="col-xs-6 right">Pickup Name :</div>
-		<div class="col-xs-6"><b><?= strtoupper($PickupName) ?></b></div>
+		<div>Pickup Time :</div>
+		<div><b><?= $od->PickupTime ?></b></div>
 	</div>
-	<div class="row">
-		<div class="col-xs-6 right">Pickup Date :</div>
-		<div class="col-xs-6"><b><?= convertTime($od->PickupDate) ?></b></div>
-	</div>
-	<div class="row">
-		<div class="col-xs-6 right">Pickup Time :</div>
-		<div class="col-xs-6"><b><?= $od->SubPickupTime ?></b></div>
-	</div>
-	<div class="row">
-		<div class="col-xs-6 right">Pickup Address :</div>
-		<div class="col-xs-6"><b><?= $od->PickupAddress ?></b></div>
-	</div>
-	<div class="row">
-		<div class="col-xs-6 right">FlightNo :</div>
-		<div class="col-xs-6"><b><?= $od->FlightNo ?></b></div>
-	</div>
-	<div class="row">
-		<div class="col-xs-6 right">FlightTime :</div>
-		<div class="col-xs-6"><b><?= $od->FlightTime ?></b></div>
-	</div>
-
-	<? if ($od->SubDriver2 != 0) { /* ako ima još vozača na transferu */ ?>
-		<div class="row">
-			<div class="col-xs-6 right">Vozači :</div>
-			<div class="col-xs-6">
-				<?
-				$au->getRow($od->SubDriver); echo $au->AuthUserRealName;
-				$au->getRow($od->SubDriver2); echo '<br>' . $au->AuthUserRealName;
-				if ($od->SubDriver3 != 0) { $au->getRow($od->SubDriver3); echo '<br>' . $au->AuthUserRealName; }
-				?>
-			</div>
-		</div>
-	<? } ?>
-
-	<div class="row">
-		<div class="col-xs-6"><hr></div>
-		<div class="col-xs-6"><hr></div>
-	</div>
-	<div class="row">
-		<div class="col-xs-6 right">Drop Name :</div>
-		<div class="col-xs-6"><b><?= $DropName ?></b></div>
-	</div>
-	<div class="row">
-		<div class="col-xs-6 right">Drop Address :</div>
-		<div class="col-xs-6"><b><?= $od->DropAddress ?></b></div>
-	</div>
-	<div class="row">
-		<div class="col-xs-6"><hr></div>
-		<div class="col-xs-6"><hr></div>
-	</div>
-	<div class="row">
-		<div class="col-xs-6 right">Pax Name :</div>
-		<div class="col-xs-6"><b><?= $od->PaxName ?></b></div>
-	</div>
-	<div class="row">
-		<div class="col-xs-6 right">Pax Tel :</div>
-		<div class="col-xs-6"><b><a href='tel: <?= $om->MPaxTel ?>'><?= $om->MPaxTel ?></a></b></div>
-	</div>
-	<div class="row">
-		<div class="col-xs-6 right">Pax No :</div>
-		<div class="col-xs-6"><b><?= $PaxNo ?></b></div>
-	</div>
-	<div class="row">
-		<div class="col-xs-6 right">Notes :</div>
-		<div class="col-xs-6"><b><?= $od->PickupNotes ?></b></div>
-	</div>
-
-	<div class="row">
-		<div class="col-xs-6"><hr></div>
-		<div class="col-xs-6"><hr></div>
-	</div>
-
+	<hr><hr>
 	<? if (count($extras) > 0) { /* dobavi extra services */ ?>
 		<div class="row">
-			<div class="col-xs-6 right">Extras :</div>
-			<div class="col-xs-6">
+			<div>Extras :</div>
+			<div>
 				<? foreach ($extras as $extra) {
 					$oe->getRow($extra);
 					echo $oe->ServiceName . ' x' . $oe->Qty . '<br>';
 				} ?>
 			</div>
 		</div>
+		<hr><hr>
+	<? } if ($or->getReturnTransfer()==1) {
+			$odkR=$od->getKeysBy('DetailsID', 'ASC', 'WHERE OrderID = ' . $or->getOrderID() . ' and TNo=2 ');
+			$od->getRow($odkR[0]);
+			if (($od->PickupID != 0) and ($od->DropID != 0)) {
+				$op->getRow($od->PickupID);
+				$PickupName = $op->getPlaceNameEN();
+				$op->getRow($od->DropID);
+				$DropName = $op->getPlaceNameEN();
+			} else {
+				$PickupName = $od->PickupName;
+				$DropName = $od->DropName;
+			}
+			$price+=$od->getDriversPrice();
+	?>
 		<div class="row">
-			<div class="col-xs-6"><hr></div>
-			<div class="col-xs-6"><hr></div>
+			<div>Return Date :</div>
+				<div><b><?= $od->PickupDate ?></b></div>
+			</div>
+		</div>	
+		<div class="row">
+			<div>Return Time :</div>
+			<div><b><?= $od->PickupTime ?></b></div>
 		</div>
-	<? } ?>
-
-	<? if ($od->TNo == 2) { /* informacije o dolaznom transferu */ ?>
-		<div class="row">
-			<div class="col-xs-6 right">Vozili :</div>
-			<div class="col-xs-6">
-				<?
-					$od2 = new v4_OrderDetails;
-					$arrival = $od2->getKeysBy('DetailsID', 'ASC', 'WHERE OrderID = ' . $od->OrderID . ' AND TNo = 1');
-					$od2->getRow($arrival[0]);
-					if ($od2->SubDriver != 0) { $au->getRow($od2->SubDriver); echo $au->AuthUserRealName; }
-					if ($od2->SubDriver2 != 0) { $au->getRow($od2->SubDriver2); echo '<br>' . $au->AuthUserRealName; }
-					if ($od2->SubDriver3 != 0) { $au->getRow($od2->SubDriver3); echo '<br>' . $au->AuthUserRealName; }
-				?>
+		<hr><hr>
+	<? } 
+		$readonly="";
+		$disabled="";
+		if ($or->getRequestType()==2) {
+			$price=$or->Price;
+			$disabled="disabled";
+		}	
+		else $readonly="readonly";
+		if ($or->getConfirmDecline()>0) $readonly="readonly";
+	?>
+	<form action="" method="post">
+		<div class="row">		
+			<div>Price (EUR) :</div>
+			<div>
+				<div><input style="font-size:600%" type="text" class="form-control input-lg" id="Price" name="Price" value="<?= number_format($price,2) ?>"  <?= $readonly ?>/></div>
 			</div>
 		</div>
+		<hr>
+	<? if ($or->ConfirmDecline==0) { ?>
 		<div class="row">
-			<div class="col-xs-6 right">Final Notes :</div>
-			<div class="col-xs-6"><?= $od2->FinalNote . '<br>' . $od2->SubFinalNote ?></div>
-		</div>
+			<div><input style="font-size:600%" type="submit" class="green" name="Confirm" id="Confirm" value="Confirm" <?= $disabled ?> /></div>
+		</div>	
+		<hr>
 		<div class="row">
-			<div class="col-xs-6"><hr></div>
-			<div class="col-xs-6"><hr></div>
+			<div><input style="font-size:600%" type="submit" class="red" name="Decline" value="Decline" /></div>			
 		</div>
+		<hr><hr>		
+	<? } else if ($or->ConfirmDecline==1) { ?>	
+		<h4>Request confirmed<h4/>		
+	<? } else {?>
+		<h4>Request declined<h4/>	
 	<? } ?>
-
-	<div class="row">
-		<div class="col-xs-6 right">Driver Notes :</div>
-		<div class="col-xs-6"><b><?= $od->SubDriverNote ?></b></div>
-	</div>
-	<div class="row">
-		<div class="col-xs-6"><hr></div>
-		<div class="col-xs-6"><hr></div>
-	</div>
-
-	<? /* NAPOMENA:
-			prikazuje se samo za prvog SubDrivera,
-			ako je povratni transfer, iznos naplate je
-			podatak "Total" iz potvrde minus "Naplaćeno" iz prvog transfera
-			(CashIn2 = PayLater1 + PayLater2 - CashIn1),
-			u suprotnom je samo cash (PayLater) iz ovoga transfera
-		  2017-06-01 - ako je sve placeno online (PayNow), isto preskoci
-		  2017-10-30 - $od2 je dolazni transfer (prvi) */
-	if ($AuthUserID == $od->SubDriver) { ?>
-		<div class="row">
-			<div class="col-xs-6 right">Naplata <strong><?$au->getRow($od->SubDriver); echo '('.$au->AuthUserRealName.')';?></strong> :</div>
-			<div class="col-xs-6"><b>
-				<? 
-					$sql = 'SELECT Code,Buy FROM v4_ExchangeRate WHERE Code in ("USD","GBP","CHF")';
-					$rVAL = $db->RunQuery($sql);
-				
-				if (($od->TNo == 2) and ($od->DetailPrice != $od->PayNow)) {
-					$CashIn = $od->PayLater + $od2->PayLater - $od2->CashIn;
-					//if (in_array($od->DriverID,$cr_arr)) echo number_format($CashIn*$Eur['Average'],2) .' HRK / ';
-					echo $CashIn .' EUR'; 
-					$value=$CashIn;
-				} else {
-					if (in_array($od->DriverID,$cr_arr)) echo number_format($od->PayLater*$Eur['Average'],2) .' HRK / ';
-					echo $od->PayLater . ' EUR ';
-					$value=$od->PayLater;
-				}	
-				if ($od->getPayNow()>0 && $od->getPayLater()>0) echo "<b style='color:red'> IZDATI RAČUN !</b>"; 
-				$conv="";
-				while($val = mysqli_fetch_object($rVAL) ) {
-					$conv.=number_format($value*$val->Buy,2)." ".$val->Code."<BR>";
-				}	
-				?>
-			<button type="button" id="show_currency"><i class="fa fa-exchange" aria-hidden="true"></i></strong>	
-			</b></div>
-		</div>
-		<div class="row valute hidden">
-			<div class="col-xs-6 right">Valute:</div>
-			<div class="col-xs-6"><?=$conv ?></div>
-		</div>
-		<div class="row">
-			<div class="col-xs-6"><hr></div>
-			<div class="col-xs-6"><hr></div>
-		</div>
-	<? } ?>
-
-	<div class="row">
-		<div class="col-xs-6 right">Receipt PDF :</div>
-		<div class="col-xs-6"><b><?= '<a href="https://www.jamtransfer.com/cms/raspored/PDF/'.$od->PDFFile.'">'.$od->PDFFile.'</a>' ?></b></div>
-	</div>
+		<input type="hidden" name="key" value="<?= $KEY ?>" />	
+	</form>	
 </div>
-
-<div class="container">
-	<div class="row">
-		<div class="col-xs-6 pad1em">
-			<a href="index.php?p=sign&paxname=<?= $paxName ?>&id=<?= $DetailsID ?>"
-			class="col-xs-12 btn btn-lg btn-info">Welcome Sign</a>
-		</div>
-		<div class="col-xs-6 pad1em">
-			<a href="index.php?p=finished&id=<?= $DetailsID ?>"
-			class="col-xs-12 btn btn-lg btn-danger">Finished</a>
-		</div>
-
-	</div>
-    <? if (!$_SESSION['assoc'])  { ?>						
-	<div class="row">
-		<div class="col-xs-6 pad1em">
-			<a href="index.php?p=nalogN&id=<?= $DetailsID ?>"
-			class="col-xs-12 btn btn-lg btn-info">Putni nalog</a>
-		</div>
-		<? if ($od->getPayLater()>0) { ?>						
-		
-		<div class="col-xs-6 pad1em">
-			<a href="index.php?p=racun&id=<?= $DetailsID ?>"
-			class="col-xs-12 btn btn-lg btn-info">Receipt</a> 
-		</div>
-		<? } ?>
-	</div>
-	<? } ?>	
-</div>
+<small><?=$subsubject ?></small>
+<script src="../../js/jQuery/2.0.2/jquery.min.js"></script>
 <script>
-	$("#show_currency").click(function() {
-		$(".valute").toggleClass('hidden');
+	$("#Price").change(function(){
+		$("#Confirm").prop("disabled", false);
 	})	
 </script>
-<?
-function hasReturn($OrderID, $TNo, $con) {
-	$q  = "SELECT * FROM v4_OrderDetails";
-	$q .= " WHERE OrderID = '" . $OrderID . "' AND TNo > '".$TNo."'";
-	$q .= " ORDER BY DetailsID ASC ";
-	$qr = mysqli_query($con, $q) or die('Error in hasReturn query <br/>' . mysqli_connect_error());	
-	
-	$num_rows = mysqli_num_rows($qr);
-	
-	//if ($num_rows == 2) {
-		$o = mysqli_fetch_object($qr);
-		if($o->OrderID ==  $OrderID and $o->TNo != $TNo) {
-			$ret = ' R ' . convertTime($o->PickupDate) . ' ' . $o->SubPickupTime;
-			return $ret;
-		}
-		
-	return '';
-}
-
