@@ -685,6 +685,7 @@ button.searchdrivers, button.conversion-rate{
     /* #show_Items: */
     .row-edit div { border-right: none; }
     #show_Items .pad1em div{ border-right: none; }
+    #show_Items{ padding:0; }
     /* ------------- */
 
     /* Orders: */
@@ -720,10 +721,7 @@ button.searchdrivers, button.conversion-rate{
         text-align: center;
     } */
 
-    [class*="col-"] > *{ 
-        /* float:none !important; */
-        text-align: center !important;
-    }
+
 
     /* Old: */
     /* [class*="col-"] input[type="text"]{
@@ -773,6 +771,13 @@ button.searchdrivers, button.conversion-rate{
         margin-right:0;
         padding-left:0;
         padding-right:0;
+    }
+
+    .row.white-bg-edit{
+        margin-right: -15px !important;
+        margin-left: -15px !important;
+        padding-left: 10px !important;
+        padding-right: 10px !important;
     }
 
     /* .navbar-right {
@@ -1172,6 +1177,13 @@ button.searchdrivers, button.conversion-rate{
         margin-top: 5px;
         margin-bottom: 5px;
     }
+
+
+    [class*="col-"] > *{ 
+        /* float:none !important; */
+        text-align: center !important;
+    }
+
 
 }
 
