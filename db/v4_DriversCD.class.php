@@ -1,7 +1,7 @@
 <?
 require_once 'db.class.php';
 
-Class v4_OrderRequest {
+Class v4_DriversCD {
 
 	public $ID; //int(11)
 	public $DetailsID; //int(10)
@@ -130,7 +130,7 @@ Class v4_OrderRequest {
 	public function setDateAdded($DateAdded){
 		$this->DateAdded = $DateAdded;
 	}	
-	public function setReturnTransfer($TimeAdded){
+	public function setTimeAdded($TimeAdded){
 		$this->TimeAdded = $TimeAdded;
 	}	
 	// -----------------------------------------------------

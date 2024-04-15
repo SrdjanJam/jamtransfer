@@ -10,6 +10,8 @@
     require_once $_SERVER['DOCUMENT_ROOT'] . '/db/db.class.php';	
 	require_once $_SERVER['DOCUMENT_ROOT'] . '/db/v4_OrderDetails.class.php';
 	require_once $_SERVER['DOCUMENT_ROOT'] . '/db/v4_OrdersMaster.class.php';
+	require_once $_SERVER['DOCUMENT_ROOT'] . '/db/v4_DriversCD.class.php';
+	
 	
 	// Drivers
 	require_once $_SERVER['DOCUMENT_ROOT'] . '/db/v4_AuthUsers.class.php';
@@ -20,6 +22,7 @@
     $db = new DataBaseMysql();	
 	$d = new v4_OrderDetails();
 	$m = new v4_OrdersMaster();
+	$dcd = new v4_DriversCD();	
 	$u = new v4_AuthUsers();
 	$ol= new v4_OrderLog();
 	
@@ -68,9 +71,13 @@
 
 	// button pressed
 	if( isset($_REQUEST['Confirm']) ) { 
-		
+		$dcd->setDetailsID($DetailsID);
+		$dcd->setUserID($DriverID);
+		date_default_timezone_set('Europe/Paris');
+		$dcd->setDateAdded(date("Y-m-d"));
+		$dcd->setTimeAdded(date("H:i:s"));		
 		if($_REQUEST['Confirm'] == 'Confirmed') {
-			
+			$dcd->setCD(1);			
 			//izracunavanje i punjenje driver extras charge
 			$idd=$d->getDetailsID();
 			$query="SELECT `ServiceID`,`Qty` FROM `v4_OrderExtras` WHERE `OrderDetailsID`=".$idd;
@@ -94,6 +101,8 @@
 			$d->setDriverExtraCharge($suma);
 			// kraj driver extras charge
 			$d->setDriverConfStatus('2');
+			if($d->TransferStatus == '6') $d->setTransferStatus('1');	
+			if($d->TransferStatus == '0') $d->setTransferStatus('1');			
 			$d->setDriverID( $DriverID);
 			$d->setDriverName( $u->getAuthUserCompany() );
 			$d->setDriverEmail( $u->getAuthUserMail() );
@@ -139,7 +148,7 @@
 			You can contact Your driver directly in case You are delayed etc.<br>
 			or you can call our Customer Service 24/7 as well.<br>
 			<br>
-			If you can not reach driver\'s phone number, please contact our Call Centre +381646597200<br>
+			If you can not reach driver\'s phone number, please contact our Call Centre +44 808 1641413, +381 64 6597200<br>
 			If you need to contact us, please send an email to info@jamtransfer.com<br>
 			<br>
 			Have a nice trip and please recommend us if You like our service!<br>
@@ -147,38 +156,28 @@
 			Kindest regards, <br>
 			<br>
 			JamTransfer.com Team';
-			
 			$mailto = $m->MPaxEmail;
 			$subject = 'Important Update for Transfer: '. ' ' . $m->MOrderKey.'-'.$m->MOrderID . '-' . $d->TNo;
-			
 			mail_html($mailto, 'driver-info@jamtransfer.com', 'JamTransfer.com', 'info@jamtransfer.com',
 		  	$subject , $mailMessage);
-			
-
-
 			mail_html('cms@jamtransfer.com', 'driver-info@jamtransfer.com', 'JamTransfer.com', 'info@jamtransfer.com',
 		  	$subject , $mailMessage);	 
-
-			
 			// Log
 			$ol->setOrderID($m->getMOrderID);
 			$ol->setDetailsID($DetailsID);
-			$ol->setAction('Driver');
-			$ol->setTitle('Driver Confirmed');
+			$ol->setAction('Driver confirmed');
+			$ol->setTitle('Driver confirmed');
 			//$ol->setDescription('Driver ' . $u->getAuthUserRealName() . ' confirmed this transfer.');
 			$ol->setDescription('Driver ' . $u->getAuthUserRealName() . ' confirmed this transfer. Subdriver phone:'.$_REQUEST['SubDriverTel']);
-
 			$ol->setDateAdded(date("Y-m-d"));
 			$ol->setTimeAdded(date("H:i:s"));
 			$ol->setUserID($u->getAuthUserID());
 			$ol->setIcon('fa fa-check bg-blue');
 			$ol->setShowToCustomer('0');
-
 			$ol->saveAsNew();			
-		
 		}
-		
 		if($_REQUEST['Confirm'] == 'Declined') {
+			$dcd->setCD(2);			
 			$d->setDriverConfStatus('4');
 			$d->setDriverID('');
 			$d->saveRow();
@@ -187,7 +186,7 @@
 			// Log
 			$ol->setOrderID($d->OrderID);
 			$ol->setDetailsID($DetailsID);
-			$ol->setAction('Driver');
+			$ol->setAction('Driver declined');
 			$ol->setTitle('Driver declined');
 			//$ol->setDescription('Driver ' . $u->getAuthUserCompany() . ' DECLINED this transfer.');			
 			$ol->setDescription('Driver ' . $u->getAuthUserCompany() . ' DECLINED this transfer for reason: '.$_REQUEST['DeclineReason'].' / '. $_REQUEST['DeclineMessage']);			
@@ -210,8 +209,6 @@
 							
 			mail_html('cms@jamtransfer.com', 'transfer-update@jamtransfer.com', 'JamTransfer.com', $u->getAuthUserMail(),
 		  	$subject , $mailMessage);			 
-
-		
 		}
+		$dcd->saveAsNew();
 	}
-
