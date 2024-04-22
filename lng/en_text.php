@@ -1100,3 +1100,6 @@ define("RECEIVE","Receive");
 
 //4.4.24
 define("IS_SORT_DESC","Is sort desc");
+
+//22.04.24
+define("REQUEST","Request");
