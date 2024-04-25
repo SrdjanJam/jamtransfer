@@ -62,7 +62,9 @@
 		var subdriverID = $("#subdriverID").val();
 		if (typeof subdriverID=='undefined') subdriverID=0;	
 		var actionID = $("#actionID").val();
-		if (typeof actionID=='undefined') actionID=0;	
+		if (typeof actionID=='undefined') actionID=0;			
+		var terminalID = $("#terminalID").val();
+		if (typeof terminalID=='undefined') terminalID=0;	
 		if ($("#listExtras").is(':checked')) var listExtras=1;
 		else var listExtras=0;		
 		if ($("#paymentChecker").is(':checked')) var paymentChecker=1;
@@ -135,6 +137,7 @@
 		'&vehicleID='+vehicleID+
 		'&subdriverID='+subdriverID+
 		'&actionID='+actionID+
+		'&terminalID='+terminalID+
 		'&reportBy='+reportBy+
 		'&action='+action+		
 		'&lid='+lid+

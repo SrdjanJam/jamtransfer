@@ -211,6 +211,11 @@ switch ($activePage) {
 			$id=$pathVars->fetchByIndex($indexStart + 1);
 			header('Location: /plugins/WAN/Confirm.php?id='.$key);
 		}
+		break;	
+	case 'partnerStatistic':
+		if ($pathVars->fetchByIndex($indexStart + 1)){
+			$terminalID=$pathVars->fetchByIndex($indexStart + 1);
+		}
 		break;
 		
 	default:

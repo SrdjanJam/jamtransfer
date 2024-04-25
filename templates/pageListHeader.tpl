@@ -31,6 +31,7 @@ value=" WHERE {$ItemID} > 0">
 <input type="hidden"  id="vehicleID" name="vehicleID" value="{$VehicleID}">
 <input type="hidden"  id="subdriverID" name="subdriverID" value="{$SubDriverID}">
 <input type="hidden"  id="actionID" name="actionID" value="{$ActionID}">
+<input type="hidden"  id="terminalID" name="terminalID" value="{$TerminalID}">
 
 <div class="row itemsheader itemsheader-edit">
 

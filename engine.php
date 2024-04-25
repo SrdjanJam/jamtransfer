@@ -101,7 +101,7 @@ if ($result->num_rows>0) {
 				$pageName=$md->getName();
 			else $pageList=$md->getName();
 			require_once $modulesPath . '/'.$md->getBase().$includeFile;		
-		}	
+		}	else echo "NO PAGE";
 		
 		/*$md->getRow($md->getParentID());
 		$parentFolder=$md->getBase();
@@ -159,6 +159,7 @@ if ($result->num_rows>0) {
 	$smarty->assign('VehicleID',$VehicleID);
 	$smarty->assign('SubDriverID',$SubDriverID);
 	$smarty->assign('ActionID',$ActionID);
+	$smarty->assign('TerminalID',$terminalID);
 	$smarty->assign('item',$item);
 	$smarty->assign('isNew',$isNew);
 	$smarty->assign('isDesc',$isDesc);

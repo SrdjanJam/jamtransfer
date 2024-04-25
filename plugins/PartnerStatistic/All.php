@@ -54,6 +54,9 @@ if ( $_REQUEST['Search'] != "" )
 	$DB_Where = substr_replace( $DB_Where, "", -3 );
 	$DB_Where .= ')';
 }
+if (isset($_REQUEST["terminalID"]) && $_REQUEST["terminalID"]>0) {
+	$DB_Where .= " AND AuthUserID in (Select DriverID from v4_DriverTerminals WHERE TerminalID=".$_REQUEST["terminalID"].") ";
+}	
 $sql="SELECT UserID,count(*) as countCD from v4_DriversCD WHERE CD=1 AND DateAdded>='".$dateFrom."' AND DateAdded<='".$dateTo."' GROUP by UserID";
 $result = $dbT->RunQuery($sql);
 while($row = $result->fetch_array(MYSQLI_ASSOC)){

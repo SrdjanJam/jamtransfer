@@ -103,7 +103,8 @@
 				{{/each}}
 			</div>
 			<div class="col-md-6">
-				<h2><?=AV_DRIVERS;?> </h2>	
+				<span><?=AV_DRIVERS;?> </span>	
+				<a target="_blank" href="/partnerStatistic/{{TerminalID}}">Driver Statistic</a>				
 				{{#each Drivers}}
 					<div class="row">
 						<div class="col-md-6">
