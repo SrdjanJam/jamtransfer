@@ -3,6 +3,7 @@ require_once "../config.php";
 require_once ROOT . '/db/v4_AuthUsers.class.php';
 $au = new v4_AuthUsers();
 $pass=false;
+$cars = array(); // podaci o vozilima
 $agentKeys = $au->getKeysBy('AuthUserID','asc',"WHERE AuthLevelID=2 and Active=1");
 foreach($agentKeys as $ki => $id) {
 	$au->getRow($id);
@@ -157,8 +158,9 @@ if($pass) {
 			}
 		}
 	}
-	echo json_encode($cars);
 }
+echo json_encode($cars);
+
 // Dodavanje dogovorene provizije na osnovnu cijenu
 function calculateBasePrice($price, $ownerid) {
 	global $db;

@@ -1,6 +1,7 @@
 <?
 require_once "../config.php";
 require_once ROOT . '/db/v4_AuthUsers.class.php';
+$places = array();
 $au = new v4_AuthUsers();
 $pass=false;
 $agentKeys = $au->getKeysBy('AuthUserID','asc',"WHERE AuthLevelID=2 and Active=1");
@@ -14,7 +15,6 @@ foreach($agentKeys as $ki => $id) {
 }	
 if($pass) {
 	$fromName = $fID = $_REQUEST['fID'];
-	$places = array();
 	# Routes for selected place
 	$q1 = "SELECT FromID, ToID, RouteID FROM v4_Routes
 				WHERE FromID = '{$fID}'
@@ -45,6 +45,6 @@ if($pass) {
 		}					
 	}
 	asort($places);	
-	echo $res = json_encode($places);
 }
+echo $res = json_encode($places);
 

@@ -1,6 +1,9 @@
 <?
 require_once "../config.php";
 $pass=false;
+$fromPlaces = array();
+require_once ROOT . '/db/v4_AuthUsers.class.php';
+$au = new v4_AuthUsers();
 $agentKeys = $au->getKeysBy('AuthUserID','asc',"WHERE AuthLevelID=2 and Active=1");
 foreach($agentKeys as $ki => $id) {
 	$au->getRow($id);
@@ -10,7 +13,7 @@ foreach($agentKeys as $ki => $id) {
 		break;
 	}	
 }
-	$fromPlaces = array();
+if ($pass) {
 	$q  = " SELECT * FROM v4_Places ";
 	$q .= " WHERE PlaceActive = '1'";
 	$q .= " AND PlaceNameEN LIKE '" . $_REQUEST['qry'] . "%' ";
@@ -29,6 +32,6 @@ foreach($agentKeys as $ki => $id) {
 	}
 	# Sort by name
 	asort($fromPlaces);
-	echo $res = json_encode($fromPlaces);
 }
+echo $res = json_encode($fromPlaces);
 
