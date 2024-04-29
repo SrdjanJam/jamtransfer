@@ -22,6 +22,7 @@ $pageList='';
 $existNew=false;
 $SubDriverID=0;
 $ActionID=0;
+$terminalID=0;
 
 require_once 'pathToVars.php';
 // LOGIN

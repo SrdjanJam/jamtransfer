@@ -57,13 +57,6 @@ require_once('lng/' . $_SESSION['CMSLang'] . '_text.php');
 											WHERE AuthUserName = "'.$cleanUserName.'" 
 											AND AuthUserPass = "'.$cleanPass.'"');			
 								
-
-						//blok za registrovanje ulaza u administraciju cms-a			
-						$current_ip=$_SERVER['REMOTE_ADDR'];
-						$visitor_ip=ip2long(ltrim(rtrim($current_ip)));
-						$access_time=time();
-						$result2 = $db->RunQuery('INSERT INTO `LogUser`(`ip_address`, `time`, `username`) VALUES ("'.$current_ip.'",'.$access_time.',"'.$_REQUEST['username'].'")');									
-					
 						
 						if($result->num_rows == 1)
 						{
@@ -73,6 +66,7 @@ require_once('lng/' . $_SESSION['CMSLang'] . '_text.php');
 							// $smarty->assign('active',$row['Active']);
 							if($row['Active'] == 1)
 							{
+								saveLog($row['AuthUserID'],1);
 								$sql = 'SELECT Average FROM v4_ExchangeRate WHERE Name = "EUR"';
 								$rEur = $db->RunQuery($sql);
 								$Eur = $rEur->fetch_assoc();

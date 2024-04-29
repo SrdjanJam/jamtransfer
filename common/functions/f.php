@@ -5040,3 +5040,52 @@ function htmldecode(& $html)
 	return $html;
 }
 
+function saveLog($UserID,$type) {
+	global $db;
+	require_once ROOT . '/db/v4_LogUser.class.php';
+	$lu=new v4_LogUser();	
+	$current_ip=$_SERVER['REMOTE_ADDR'];
+	$visitor_ip=ip2long(ltrim(rtrim($current_ip)));
+	date_default_timezone_set('Europe/Paris');
+	$access_time=date("Y-m-d H:i:s");
+	/*$sessionfile="sess_".ltrim(session_id());
+	if (file_exists($sessionfile)) {
+		echo "exists";
+	}else{
+		echo "not exist";
+	}*/
+	if ($_REQUEST['longitude']=="20.4547323" && $_REQUEST['latitude']=="44.795393") $label="JT Office Belgrade";
+	else {
+		$key='5b3ce3597851110001cf6248ec7fafd8eca44e0ca5590caf093aa7cb';
+		$url='https://api.openrouteservice.org/geocode/reverse?api_key='.$key.'&point.lon='.$_REQUEST['longitude'].'&point.lat='.$_REQUEST['latitude'];   
+		$json = file_get_contents($url);   
+		$obj=array();
+		$obj = json_decode($json,true);
+		if (!in_array(gettype($obj),array('array','object'))) $obj=array();
+		if (count($obj)>0) {	
+			$label=$obj['features'][0]['properties']['label'];
+			$label=str_replace('\'','',$label);
+		} else $label="";
+	}
+	$lu->setIPAddress($current_ip);
+	$lu->setDateTime($access_time);
+	$lu->setUserName($_REQUEST['username']);
+	$lu->setAuthUserID($UserID);
+	$lu->setLatitude($_REQUEST['latitude']);
+	$lu->setLongitude($_REQUEST['longitude']);
+	$lu->setPlace($label);
+	$lu->setType($type);
+	$lu->setSessionID(session_id());
+	$id=$lu->saveAsNew();
+	$_SESSION["UserLatitude"]=$_REQUEST['latitude'];
+	$_SESSION["UserLongitude"]=$_REQUEST['longitude'];	
+	$where=" WHERE `AuthUserID`=".$UserID." AND `Type`= ".$type." AND DATE(`DateTime`)=CURDATE() ";
+	$luk=$lu->getKeysBy("ID", "ASC", $where);
+	if (count($luk)==1) {
+		$lu->getRow($id);
+		// send wa message for confirmation	
+		$lu->setType($type+2);
+		$lu->saveRow();
+	}	
+}	
+
