@@ -98,7 +98,8 @@
 										<strong><small>{{DriverName}}</small></strong>
 									{{/if}}	
 									<br>
-									{{DriversPrice}} €<br>
+									{{DriversPrice}} € 
+									{{#compare DriversPriceDiff "!=" 0}}<strong>{{DriversPriceDiff}} €</strong>{{/compare}}<br>
 									<small class="{{driverConfStyle DriverConfStatus}}">{{driverConfText DriverConfStatus}}</small>
 									{{#if DriverNotes}}<small style="color:red"><i class="fa-solid fa-message"></i></small>{{/if}}				
 									{{#if SubFinalNote}}<small style="color:red"><i class="fa-solid fa-message"></i></small>{{/if}}				

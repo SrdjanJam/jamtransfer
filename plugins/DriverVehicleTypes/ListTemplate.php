@@ -62,7 +62,7 @@
 							<span>{{yesNoSliderEdit DriverVehicle 'DriverVehicle' }}</span>
 						</div>
 						<!-- Subcategory: -->
-						<div class="col-md-3 surcategory" data-status="{{PriceRules2}}" data-id="{{VehicleID}}">
+						<div class="col-md-3 surcategory" data-status="{{PriceRules2}}" data-id="{{VehicleTypeID}}">
 							<span class="show_hide">{{SurCategoryRB PriceRules 'SurCategory' '2' 'vehicles' VehicleID}}</span>
 						</div>
 						<!-- Return Discount -->

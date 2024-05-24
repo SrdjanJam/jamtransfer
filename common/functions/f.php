@@ -934,7 +934,7 @@ function getDriverIDFromSubDriverID($id) {
 	if (count($d)==1 && $d->DriverID>0) return $d->DriverID;		
 	else return 0;
 }	
-function send_whatsapp_message($phone_to,$message) {
+function send_whatsapp_message($phone_to,$message,$confirm=false) {
 	// cuvanje poruke u tabeli
 	require_once ROOT . '/db/v4_WAN.class.php';
 	$wn = new v4_WAN;
@@ -953,14 +953,20 @@ function send_whatsapp_message($phone_to,$message) {
 	$wn->setSendTimeLast(date("Y-m-d H:i:s"));
 	$wn->setSendNumber(1);
 	$wn->setDirection(1);
-	$wn->setStatus(1);
-	$wn->saveAsNew();
+	if (!$confirm) $wn->setStatus(1);
+	$key=$wn->saveAsNew();
 	// slanje poruke	
 	$message=str_replace("<BR>","\n",$message);
 	$message=str_replace("<br>","\n",$message);
 	$message=str_replace("&nbsp;"," ",$message);
 	$message=strip_tags($message);
 	$message = preg_replace('/^[ \t]*[\r\n]+/m', '', $message);	
+	if ($confirm) {
+		$message.="\n";
+		$message.="Confirm receipt of the note.\n";
+		//$message.="https://wis.jamtransfer.com/plugins/WAN/Confirm.php?id=".$key;
+		$message.="https://wis.jamtransfer.com/confirm/".$key;
+	}	
 	require_once ROOT . '/db/v4_CoInfo.class.php';
 	$ci = new v4_CoInfo;
 	$ci->getRow(3);
@@ -1008,19 +1014,19 @@ function sendOrderLogNotification($logID) {
 			$au->getRow($od->getSubDriver());
 			$phone=$au->getAuthUserMob();
 			$message="ORDER:<a href='https://cms.jamtransfer.com/cms/index.php?p=details&id=".$od->getDetailsID()."'>".$od->getOrderID()."</a>-".$od->getTNo()."   ". $ol->getDescription();
-			send_whatsapp_message($phone,$message);
+			send_whatsapp_message($phone,$message,true);
 		}		
 		if ($od->getSubDriver2()>0 && $od->getDriverConfStatus()==3) {
 			$au->getRow($od->getSubDriver2());
 			$phone=$au->getAuthUserMob();
 			$message="ORDER:<a href='https://cms.jamtransfer.com/cms/index.php?p=details&id=".$od->getDetailsID()."'>".$od->getOrderID()."</a>-".$od->getTNo()."   ". $ol->getDescription();
-			send_whatsapp_message($phone,$message);
+			send_whatsapp_message($phone,$message,true);
 		}		
 		if ($od->getSubDriver3()>0 && $od->getDriverConfStatus()==3) {
 			$au->getRow($od->getSubDriver3());
 			$phone=$au->getAuthUserMob();
 			$message="ORDER:<a href='https://cms.jamtransfer.com/cms/index.php?p=details&id=".$od->getDetailsID()."'>".$od->getOrderID()."</a>-".$od->getTNo()."   ". $ol->getDescription();
-			send_whatsapp_message($phone,$message);
+			send_whatsapp_message($phone,$message,true);
 		}	
 	}
 }	
@@ -5079,9 +5085,10 @@ function saveLog($UserID,$type) {
 	$id=$lu->saveAsNew();
 	$_SESSION["UserLatitude"]=$_REQUEST['latitude'];
 	$_SESSION["UserLongitude"]=$_REQUEST['longitude'];	
-	$where=" WHERE `AuthUserID`=".$UserID." AND `Type`= ".$type." AND DATE(`DateTime`)=CURDATE() ";
+	$where=" WHERE `AuthUserID`=".$UserID." AND `Type`=".$type." AND DATE(`DateTime`)=CURDATE() ";
+	
 	$luk=$lu->getKeysBy("ID", "ASC", $where);
-	if (count($luk)==1) {
+	if (count($luk)>1) {
 		$lu->getRow($id);
 		// send wa message for confirmation	
 		$lu->setType($type+2);

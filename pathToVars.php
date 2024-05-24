@@ -209,7 +209,7 @@ switch ($activePage) {
 	case 'confirm':
 		if ($pathVars->fetchByIndex($indexStart + 1)){
 			$id=$pathVars->fetchByIndex($indexStart + 1);
-			header('Location: /plugins/WAN/Confirm.php?id='.$key);
+			header('Location: /plugins/WAN/Confirm.php?id='.$id);
 		}
 		break;	
 	case 'partnerStatistic':

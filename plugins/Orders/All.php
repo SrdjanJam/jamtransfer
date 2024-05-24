@@ -609,7 +609,6 @@ usort($sum,function($first,$second){
 	return $first < $second ? 1 : -1;
 
 });
-
 $dbk = $od->getFullOrderByDetailsID($sortField, $sortDirection, $limit  , $dbWhere);
 
 if (count($dbk) != 0) {
@@ -678,14 +677,21 @@ if (count($dbk) != 0) {
 		$detailFlds["TimeDiff"] = $TimeDiffArr[$key];
 		$detailFlds["PayConflictColor"] = $PayConflictColorArr[$key];
 		$detailFlds["PayDiff"] = $PayDiffArr[$key];
-				
+		
 		# get fields and values
 		$masterFlds = $om->fieldValues();
+		if ($longTerm==1) {
+			$sqlDP="SELECT count(*) as Broj, sum(`DriversPrice`) as DriversPriceOrig FROM `v4_OrderDetailsTemp` WHERE `OrderID`=(SELECT `MOrderID` FROM `v4_OrdersMasterTemp` WHERE `MOrderKey`='".$masterFlds['MCardNumber']."')";
+			$r = $dbT->RunQuery($sqlDP);
+			$result=$r->fetch_object();
+			$DriversPriceOrig=$result->DriversPriceOrig;
+			if ($result->Broj==2) $DriversPriceOrig=$DriversPriceOrig/2;
+			$detailFlds["DriversPriceDiff"]=number_format($DriversPriceOrig-$detailFlds["DriversPrice"],2);
+		}	else $detailFlds["DriversPriceDiff"]=0;	
 		if ($om->getMCardCountry()!=0) $masterFlds['CountryPhonePrefix'] = getCountryPrefix( $om->getMCardCountry() );
 		else $masterFlds['CountryPhonePrefix'] = '';
 		$masterFlds['UserName']=$users[$om->getMUserID()]->AuthUserRealName;
 		$masterFlds['Image']=$users[$om->getMUserID()]->Image;
-
 		
 		$out[] = array_merge($detailFlds , $masterFlds);    	  	
     }
