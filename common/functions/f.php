@@ -890,7 +890,7 @@ function getPhoneFromMail($mail) {
 	$q = "SELECT * FROM v4_AuthUsers WHERE AuthLevelID=31 AND Active=1 AND AuthUserMob<>'' AND AuthUserMail = '".$mail."'  ORDER BY AuthUserID DESC";
 	$w = $db->RunQuery($q);
 	$d = $w->fetch_object();
-	if (count($d)==1) {
+	if ($w->num_rows==1) {
 		$phone=ltrim($phone, '0');
 		$phone=str_replace(" ","",$d->AuthUserMob);
 		$phone=str_replace("-","",$phone);
@@ -922,7 +922,7 @@ function getUserIDFromMail($mail) {
 	$q = "SELECT * FROM v4_AuthUsers WHERE AuthLevelID in (2,31) AND Active=1 AND AuthUserMail = '".$mail."'  ORDER BY AuthUserID DESC";
 	$w = $db->RunQuery($q);
 	$d = $w->fetch_object();
-	if (count($d)==1) return $d->AuthUserID;		
+	if ($w->num_rows==1) return $d->AuthUserID;		
 	else return false;
 }
 function getDriverIDFromSubDriverID($id) {
@@ -931,7 +931,7 @@ function getDriverIDFromSubDriverID($id) {
 	$q = "SELECT * FROM v4_AuthUsers WHERE AuthUserID=".$id." AND Active=1";
 	$w = $db->RunQuery($q);
 	$d = $w->fetch_object();
-	if (count($d)==1 && $d->DriverID>0) return $d->DriverID;		
+	if ($w->num_rows==1 && $d->DriverID>0) return $d->DriverID;		
 	else return 0;
 }	
 function send_whatsapp_message($phone_to,$message,$confirm=false) {

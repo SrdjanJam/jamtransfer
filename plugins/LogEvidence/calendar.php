@@ -51,7 +51,7 @@ $active .=	"ORDER BY DateTime DESC";
 $rec = $db->RunQuery($active) ;
 $lg_arr=array();
 while ($row = $rec->fetch_assoc() ) {
-	$lg_arr[]=$row;
+	if ($users[$row['AuthUserID']]->AuthLevelID==$_REQUEST["level_id"]) $lg_arr[]=$row;
 }
 $rec=$lg_arr;
 $timestamp = mktime(0,0,0,$cMonth,1,$cYear);
@@ -75,10 +75,11 @@ function monthLogs($date,$rec,$count,$startday,$users)
 	$data = '';
 	$noOfLogs = 0;
 	$arr = array();
+
 	foreach ($rec as $row) { 
 		if (DateofDT($row['DateTime'])==$date && $row['Type']==1) {
 			if ((isset($_SESSION['UseDriverID']) && $users[$row['AuthUserID']]->DriverID==$_SESSION['UseDriverID']) ||
-			(!isset($_SESSION['UseDriverID']) && $users[$row['AuthUserID']]->DriverID==0 && $users[$row['AuthUserID']]->AuthLevelID==91)) {	
+			(!isset($_SESSION['UseDriverID']) && $users[$row['AuthUserID']]->DriverID==0)) {	
 				$noOfLogs += 1;
 				$row['Time']=TimeofDT($row['DateTime']);
 				$row['User']=$users[$row['AuthUserID']]->AuthUserRealName;

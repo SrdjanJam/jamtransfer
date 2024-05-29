@@ -10,6 +10,7 @@ $dbT = new DataBaseMysql();
 $keyName = 'MailID';
 $ItemName='CreateTime ';
 $type='Type';
+$type2='OwnerID';
 $selectapproved='Status';
 
 #********************************
@@ -20,6 +21,7 @@ $selectapproved='Status';
 $aColumns = array(
 	'MailID',
 	'Subject',
-	'Body'
+	'Body',
+	'OwnerID'
 );
 

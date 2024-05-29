@@ -9,8 +9,17 @@
 	$arr_row['name']="Received";
 	$arr_all[]=$arr_row;
 	$smarty->assign('options',$arr_all);
-	$smarty->assign('selecttype',true);
-	$smarty->assign('selectsolved',true);
+	$smarty->assign('selecttype',true);	
+	if (!isset($_SESSION['UseDriverID'])) {
+		$arr_row2['id']=2;
+		$arr_row2['name']="Agents";
+		$arr_all2[]=$arr_row2;		
+		$arr_row2['id']=31;
+		$arr_row2['name']="Drivers";
+		$arr_all2[]=$arr_row2;	
+		$smarty->assign('options2',$arr_all2);
+		$smarty->assign('selecttype2',true);
+	}
 ?>
 <script type="text/x-handlebars-template" id="ItemListTemplate">
 

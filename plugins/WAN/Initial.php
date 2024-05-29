@@ -6,8 +6,9 @@ $db = new v4_WAN();
 
 
 $keyName = 'ID';
-$ItemName='ScheduleTime DESC';
+$ItemName='ScheduleTime ';
 $type='Type';
+$type2='OwnerID';
 
 #********************************
 # kolone za koje je moguc Search
@@ -17,6 +18,7 @@ $type='Type';
 $aColumns = array(
 	'ID',
 	'Title',
-	'Body'
+	'Body',
+	'OwnerID'
 );
 

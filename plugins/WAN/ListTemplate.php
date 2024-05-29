@@ -10,13 +10,24 @@
 	$arr_all[]=$arr_row;
 	$smarty->assign('options',$arr_all);
 	$smarty->assign('selecttype',true);
+	if (!isset($_SESSION['UseDriverID'])) {
+		$arr_row2['id']=2;
+		$arr_row2['name']="Agents";
+		$arr_all2[]=$arr_row2;		
+		$arr_row2['id']=31;
+		$arr_row2['name']="Drivers";
+		$arr_all2[]=$arr_row2;	
+		$smarty->assign('options2',$arr_all2);
+		$smarty->assign('selecttype2',true);
+	}
+	
 ?>
 <script type="text/x-handlebars-template" id="ItemListTemplate">
 
 	<!-- LABELS: -->
 	<div class="row row-edit">
 		<div class="col-md-1"> <?=ID;?> </div>
-		<div class="col-md-2"> <?=DRIVERS;?> </div>
+		<div class="col-md-2"> <?=USERS;?> </div>
 		<div class="col-md-2"> <?=SCHEDULE_TIME;?> </div>
 		<div class="col-md-1"> <?=SEND_NUMBER;?> </div>
 		<div class="col-md-2"> <?=CONFIRM_TIME;?> </div>

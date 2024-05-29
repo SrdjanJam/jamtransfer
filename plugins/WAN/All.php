@@ -13,8 +13,18 @@ if (isset($type)) {
 		$filter = "  AND ".$type." = '" . $_REQUEST['Type'] . "'";
 	}
 }
+if (isset($type2)) {
+	if (!isset($_REQUEST['Type2']) or $_REQUEST['Type2'] == 0 or $_REQUEST['Type2'] == 99) {
+		$filter = "  AND ".$type2." != 0 ";
+	}
+	else {
+		$sql="SELECT AuthUserID from v4_AuthUsers WHERE AuthLevelID=".$_REQUEST['Type2'];
+		$filter = "  AND ".$type2." in (".$sql.")" ;
+	}
+}
 $page 		= $_REQUEST['page'];
 $length 	= $_REQUEST['length'];
+$sortOrder 	= $_REQUEST['sortOrder'];
 
 $start = ($page * $length) - $length;
 
@@ -22,6 +32,9 @@ if ($length > 0) {
 	$limit = ' LIMIT '. $start . ','. $length;
 }
 else $limit = '';
+
+if(empty($sortOrder)) $sortOrder = 'DESC';
+
 
 # init vars
 $out = array();
@@ -51,7 +64,7 @@ if ( $_REQUEST['Search'] != "" )
 }
 $dbTotalRecords = $db->getKeysBy($ItemName, '',$DB_Where);
 # test za LIMIT - trebalo bi ga iskoristiti za pagination! 'asc' . ' LIMIT 0,50'
-$dbk = $db->getKeysBy($ItemName, '' . $limit , $DB_Where);
+$dbk = $db->getKeysBy($ItemName . $sortOrder, '' . $limit , $DB_Where);
 
 if (count($dbk) != 0) {
     foreach ($dbk as $nn => $key)

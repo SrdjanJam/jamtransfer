@@ -139,7 +139,7 @@ if (isset($_REQUEST['Mail']) && $_REQUEST['Mail']==1) {
 }	
 
 function connectedCar($subdriver,$db) {
-	echo $sql="SELECT `VehicleID` FROM `v4_SubVehicles` WHERE `OwnerID`=".$_SESSION["UseDriverID"]." and `AssignSDID`=".$subdriver;
+	$sql="SELECT `VehicleID` FROM `v4_SubVehicles` WHERE `OwnerID`=".$_SESSION["UseDriverID"]." and `AssignSDID`=".$subdriver;
 	$r = $db->RunQuery($sql);
 	$res = $r->fetch_object();
 	if (count($res)>0) return ($res->VehicleID);

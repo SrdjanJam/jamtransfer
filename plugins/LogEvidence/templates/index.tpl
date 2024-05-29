@@ -8,6 +8,9 @@
 					</select>
 					<select name="cal_year"  id="cal_year" class="cal_year_edit" onchange="calendar()">
 						{html_options values=$year_val selected=$year_sel output=$year_out}
+					</select>					
+					<select name="level_id"  id="level_id" class="level_id_edit" onchange="calendar()">
+						{html_options values=$level_val selected=$level_sel output=$level_out}
 					</select>
 				</div>
 				<div id="cal" align="center">
@@ -32,7 +35,7 @@
 	function calendar() {
 		$.get(
 			'plugins/LogEvidence/calendar.php', 
-			{cal_month: $('#cal_month').val(), cal_year: $('#cal_year').val()},
+			{cal_month: $('#cal_month').val(), cal_year: $('#cal_year').val(), level_id: $('#level_id').val()},
 			function(data) {
 				$('#cal').html(data);
 			}

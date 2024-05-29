@@ -8,6 +8,8 @@
 	$smarty->assign('todo',false);
 	$smarty->assign('quickEmail',false);	
 	$smarty->assign('translatorPanel',false);
+	$smarty->assign('bookingConversionRate',false);
+	$smarty->assign('calculateProvision',false);	
 	// Check:
 	// $smarty->assign('bookingConversionRate',false);	
 
@@ -32,8 +34,8 @@
 		$smarty->assign('getRoutePrices',true);				
 	}	
 	if (in_array($_SESSION['AuthLevelID'],array(41,44,91,92,99))) {
-		require_once 'getUnfinishedPayment.php';
-		$smarty->assign('getUnfinishedPayment',true);							
+		if (!isset($_SESSION['UseDriverID'])) require_once 'getUnfinishedPayment.php';
+		if (!isset($_SESSION['UseDriverID'])) $smarty->assign('getUnfinishedPayment',true);							
 	}	
 	/*if (in_array($_SESSION['AuthLevelID'],array(41,44,91,92,99))) {
 		require_once 'getUnfinishedPayment.php';
@@ -44,8 +46,8 @@
 		$smarty->assign('actualTransfers',true);										
 	}	
 	if (in_array($_SESSION['AuthLevelID'],array(2,31,41,42,43,44,45,91,92,99))) {
-		require_once 'todo.php';
-		$smarty->assign('todo',true);
+		if (!isset($_SESSION['UseDriverID'])) require_once 'todo.php';
+		if (!isset($_SESSION['UseDriverID'])) $smarty->assign('todo',true);
 	}
 	/*if (in_array($_SESSION['AuthLevelID'],array(2,31,41,42,43,44,45,91,92,99))) {
 		$smarty->assign('quickEmail',true);	
@@ -55,11 +57,11 @@
 	}											
 
 	if (in_array($_SESSION['AuthLevelID'],array(2,31,41,42,43,44,45,91,92,99))) {
-		require_once 'bookingConversionRate.php';
-		$smarty->assign('bookingConversionRate',true);
+		if (!isset($_SESSION['UseDriverID'])) require_once 'bookingConversionRate.php';
+		if (!isset($_SESSION['UseDriverID'])) $smarty->assign('bookingConversionRate',true);
 	}	
 	
 	if (in_array($_SESSION['AuthLevelID'],array(2,31,41,42,43,44,45,91,92,99))) {
-		$smarty->assign('calculateProvision',true);
+		if (!isset($_SESSION['UseDriverID'])) $smarty->assign('calculateProvision',true);
 	}
 
