@@ -334,7 +334,7 @@
 							<!-- Opener dialog button: -->
 							<li><button type="button" id="opener-help" class="button-3">{$HELP}</button></li>
 							<li><button type="button" id="opener-message" class="button-3">{$MESSAGE}</button></li>
-
+							<li><a target="_blank" href='qrlog.php'><i class="fa fa-qrcode"></i>QR LOG</a></li>
 							<!-- Prev version: -->
 							<!-- <li> <h2><span class="m-r-sm text-muted">{$title} - {$smarty.session.log_title}</span></h2> </li> -->
 

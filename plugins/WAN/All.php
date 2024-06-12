@@ -15,11 +15,11 @@ if (isset($type)) {
 }
 if (isset($type2)) {
 	if (!isset($_REQUEST['Type2']) or $_REQUEST['Type2'] == 0 or $_REQUEST['Type2'] == 99) {
-		$filter = "  AND ".$type2." != 0 ";
+		$filter .= "  AND ".$type2." != 0 ";
 	}
 	else {
 		$sql="SELECT AuthUserID from v4_AuthUsers WHERE AuthLevelID=".$_REQUEST['Type2'];
-		$filter = "  AND ".$type2." in (".$sql.")" ;
+		$filter .= "  AND ".$type2." in (".$sql.")" ;
 	}
 }
 $page 		= $_REQUEST['page'];

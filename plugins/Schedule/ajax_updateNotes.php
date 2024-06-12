@@ -136,6 +136,16 @@ if (isset($_REQUEST['Mail']) && $_REQUEST['Mail']==1) {
 	$whtsup=$u->getAuthUserMob();
 	$message2="Your new or changed transfer ".$m->MOrderID . '-' . $d->TNo." https://cms.jamtransfer.com/cms/index.php?p=details&id=".$d->DetailsID;
 	send_whatsapp_message($whtsup,$message2);	
+	if ($d->SubDriver2>0) {
+		$u->getRow($d->SubDriver2);
+		$whtsup=$u->getAuthUserMob();
+		send_whatsapp_message($whtsup,$message2);
+		if ($d->SubDriver3>0) {
+			$u->getRow($d->SubDriver3);
+			$whtsup=$u->getAuthUserMob();
+			send_whatsapp_message($whtsup,$message2);
+		}
+	}	
 }	
 
 function connectedCar($subdriver,$db) {
