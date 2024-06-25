@@ -35,10 +35,15 @@ $flds = array();
 $DB_Where = " " . $_REQUEST['where'];
 $DB_Where .= $filter;
 
+
 if (isset($_REQUEST['orderFromDate']) && $_REQUEST['orderFromDate']>0) $DB_Where .= " AND AssignTime>='".$_REQUEST['orderFromDate']."'";
 if (isset($_REQUEST['orderToDate']) && $_REQUEST['orderToDate']>0) $DB_Where .= " AND AssignTime<='".$_REQUEST['orderToDate']."'";
 if (isset ($_REQUEST['subdriverID']) && $_REQUEST['subdriverID']>0) $DB_Where .= " AND AssignSDID=".$_REQUEST['subdriverID'];
-
+if (isset($_SESSION['UseDriverID']) && $_SESSION['UseDriverID']>0) {
+	$auk = $au->getKeysBy('AuthUserID', '', " WHERE DriverID=".$_SESSION['UseDriverID']);
+	$subdrivers= implode(', ', $auk);
+	$DB_Where .= " AND AssignSDID in (".$subdrivers.") ";
+}
 
 # dodavanje search parametra u qry
 # DB_Where sad ima sve potrebno za qry

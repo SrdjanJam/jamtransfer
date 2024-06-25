@@ -101,7 +101,8 @@ value=" WHERE {$ItemID} > 0">
 						<option value="DESC">{$DESC}</option>		
 					</select>
 				</div>
-
+				
+				{if not $PARTNERLOG}
 				<!-- Report By: -->
 				<div class="col-sm-3">
 					<b class="b-asd" style="margin-left:20px;">{$REPORT_BY}:</b>
@@ -111,7 +112,6 @@ value=" WHERE {$ItemID} > 0">
 						{/foreach}	
 					</select>
 				</div>
-
 				<!-- Filter By: -->	
 				<div class="col-sm-3">	
 					<b class="b-asd" style="margin-left:20px;">{$FILTER_BY}:</b>
@@ -120,8 +120,8 @@ value=" WHERE {$ItemID} > 0">
 							<option value="{$key}" {if $data.key == $key} selected="selected" {/if}>{$label}</option>
 						{/foreach}	
 					</select>
-					</div>
-
+				</div>
+				{/if}
 			</div>
 
 		{* </div>	<!-- End of sorting -->	 *}
@@ -130,15 +130,19 @@ value=" WHERE {$ItemID} > 0">
 		<!-- Client/Agent purchaser: -->
 		<div class="col-md-2 col-md-2-edit">
 			<small class="badge blue text-black badge-edit">{$PURCHASER}</small><br>
-			<input id='agentName' class="input-one" name='agentName'  placeholder="{$NAME_ID}" onchange="allItems();"/><br>				
-			<input id='agentOrder' class="input-one" name='agentOrder'  placeholder="{$ORDER_KEY_AGENT_ORDER}" onchange="allItems();"/><br>				
-			
+			{if $PARTNERLOG}
+			<input id='order' class="input-one" name='order'  placeholder="{$ORDERID}" onchange="allItems();"/><br>
+			{/if}			
+			{if not $PARTNERLOG}
+				<input id='agentName' class="input-one" name='agentName'  placeholder="{$NAME_ID}" onchange="allItems();"/><br>				
+				<input id='agentOrder' class="input-one" name='agentOrder'  placeholder="{$ORDER_KEY_AGENT_ORDER}" onchange="allItems();"/><br>				
 				<select id="Type2" class="w75 form-control select-top-edit below-select" onchange="allItems();">
 					<option value="0">{$ALL} {$USERS}</option>
 					{section name=pom2 loop=$options2}
 						<option value="{$options2[pom2].id}">{$options2[pom2].name}</option>
 					{/section}
 				</select>
+			{/if}
 		</div>
 
 		<!-- Transfer: -->
@@ -157,44 +161,54 @@ value=" WHERE {$ItemID} > 0">
 		<!-- Driver: -->
 		<div class="col-md-2 col-md-2-edit">
 			<small class="badge blue text-black badge-edit">{$PARTNER}</small><br>
+			{if not $PARTNERLOG}
 			<input id='driverName' class="input-one" name='driverName'  placeholder="{$NAME_ID}" onchange="allItems();"/><br>
+			{/if}
 			<select id="DriverConfStatusChoose" class="w75 form-control select-top-edit below-select" onchange="allItems();">		
 				<option value="-1">{$ALL} {$STATUS}</option>
 				{section name=pom loop=$options4}
 					<option value="{$options4[pom].id}">{$options4[pom].name}</option>
 				{/section}
 			</select>
-			<input type="checkbox" id="longTerm" name="longTerm"  value="" onchange="allItems();" />Long term	
-			<input type="checkbox" id="preOrder" name="preOrder"  value="" onchange="allItems();" />Pre Order	
+			{if not $PARTNERLOG}
+				<input type="checkbox" id="longTerm" name="longTerm"  value="" onchange="allItems();" />Long term	
+				<input type="checkbox" id="preOrder" name="preOrder"  value="" onchange="allItems();" />Pre Order	
+			{/if}
 		</div>
 
 		<!-- Passenger: -->
 		<div class="col-md-2 col-md-2-edit">
 			<small class="badge blue text-black badge-edit">{$PASSENGER}</small><br>
 			<input id='passengerData' class="input-one" name='passengerData'  placeholder="{$PASSENGER_DATA}" onchange="allItems();"/>					
-			<i class="fa fa-plane" style="color:#900"></i><input type="checkbox" id="flightTimeChecker" name="flightTimeChecker"  value="" onchange="allItems();" />{$FLIGHT_TIME_CHECKER}
-			<i class="fa fa-cubes" style="color:#900"></i><input type="checkbox" id="listExtras" name="listExtras"  value="" onchange="allItems();" />
+			{if not $PARTNERLOG}
+				<i class="fa fa-plane" style="color:#900"></i><input type="checkbox" id="flightTimeChecker" name="flightTimeChecker"  value="" onchange="allItems();" />{$FLIGHT_TIME_CHECKER}
+				<i class="fa fa-cubes" style="color:#900"></i><input type="checkbox" id="listExtras" name="listExtras"  value="" onchange="allItems();" />
+			{/if}
 		</div>	
 
 		<!-- Payment: -->
 		<div class="col-md-2 col-md-2-edit"> 
 			<small class="badge blue text-black badge-edit">{$PAYMENT}</small><br>
+			{if not $PARTNERLOG}
 			<input id='paymentNumber' class="input-one" name='paymentNumber'  placeholder="{$PAYMENT_INVOICE_NO}" onchange="allItems();"/>	
-			
-				<select id="PaymentMethod" class="w75 form-control select-top-edit below-select" onchange="allItems();">		
-					<option value="-1">{$ALL} {$PAYMENT}</option>
-					{section name=pom loop=$options3}
-						<option value="{$options3[pom].id}">{$options3[pom].name}</option>
-					{/section}
-				</select>
+			{/if}
+			<select id="PaymentMethod" class="w75 form-control select-top-edit below-select" onchange="allItems();">		
+				<option value="-1">{$ALL} {$PAYMENT}</option>
+				{section name=pom loop=$options3}
+					<option value="{$options3[pom].id}">{$options3[pom].name}</option>
+				{/section}
+			</select>
+			{if not $PARTNERLOG}
 				<i class="fa fa-money" style="color:#900"></i><input type="checkbox" id="paymentChecker" name="paymentChecker"  value="" onchange="allItems();" />{$CHECKER}
+			{/if}	
 		</div>
 		
 		<!-- Order: -->
 		<div class="col-md-2 col-md-2-edit order-edit">
 			<small class="badge blue text-black badge-edit">{$ORDER}</small><br>
+			{if not $PARTNERLOG}
 			<input id='order' class="input-one" name='order'  placeholder="{$ORDERID}" onchange="allItems();"/><br>
-						
+			{/if}			
 			<select id='yearsOrder' class="form-control select-top-edit addon" name='yearsOrder' value='0' onchange="allItems();">
 				<option value='0'>{$ALL_YEARS}</option>
 			</select>
@@ -203,9 +217,11 @@ value=" WHERE {$ItemID} > 0">
 			
 			<select id="Type" class="form-control select-top-edit addon" onchange="allItems();">
 				<option value="0">{$ALL} {$STATUS}</option>
+				{if not $PARTNERLOG}
 				{section name=pom loop=$options}
 					<option value="{$options[pom].id}">{$options[pom].name}</option>
 				{/section}
+				{/if}
 			</select>
 			<input id='orderToDate' class="datepicker datepicker-edit" name='orderToDate'  placeholder="{$TRANSFERTODATE}" onchange="allItems();" /><br>
 		</div>		

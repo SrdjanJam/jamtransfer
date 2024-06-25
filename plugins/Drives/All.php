@@ -96,6 +96,7 @@ $sql .=" GROUP BY PickupDate,SubDriver3 ";
 		$sd_price[$sdid]+=$row['price'];
 		$sd_workingdates[$sdid][]=$row['PickupDate'];
 	}	
+$sdids="0,";	
 foreach ($sd_not as $nn => $key) {
 	$sdids .= $nn.",";
 }	

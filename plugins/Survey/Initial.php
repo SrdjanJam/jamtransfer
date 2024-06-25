@@ -3,7 +3,7 @@ require_once '../../config.php';
 require_once ROOT . '/db/v4_Survey.class.php';
 $db = new v4_Survey();
 $keyName = 'ID';
-$ItemName='UserName ';
+$ItemName='Date ';
 #********************************
 # kolone za koje je moguc Search 
 # treba ih samo nabrojati ovdje

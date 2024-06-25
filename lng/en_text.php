@@ -1103,3 +1103,6 @@ define("IS_SORT_DESC","Is sort desc");
 
 //22.04.24
 define("REQUEST","Request");
+
+//24.06.24
+define("FINISH_TRANSFER","Finish Transfer");

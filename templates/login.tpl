@@ -5,6 +5,7 @@
 	<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" />
 	<link rel="stylesheet" href="css/theme.css" type="text/css" />
 
+
 	<style>
 
       .shadow{
@@ -90,15 +91,21 @@
           
 		  {if not $LOCAL}
 		  <label for="inputPasswordT" class="sr-only">{$PASSWORD_FOR_TEST}</label>
-          <input type="password" name="passwordT" id="passwordT" class="form-control" placeholder="Password for test" required>
+          <input type="password" name="passwordT" id="passwordT" class="form-control" value="qlVX5D*99Dxe" placeholder="Password for test" required>
 		  {/if}
+		  
 		  
 		
           <select name="language" id="language" class="form-control">
-            <option value='en'>English</option>
-            <option value='fr'>Français</option>
+            <option value='en' {if $smarty.session.CMSlang eq 'en'}selected{/if}>English</option>
+            <option value='fr' {if $smarty.session.CMSlang eq 'fr'}selected{/if}>Français</option>
           </select>
+
+		  <input type="hidden" name="latitude" id="latitude" value="" />
+		  <input type="hidden" name="longitude" id="longitude" value="" />
+		  <input type="hidden" name="phone" id="phone" value="0" />
 		  
+	
 
           <button class="btn btn-lg btn-primary btn-block" name="Login" type="submit">{$SIGN_IN}</button>
 
@@ -129,3 +136,34 @@
 
 	</body>
 	</html>
+<script>
+	if(navigator.geolocation){
+		navigator.geolocation.getCurrentPosition(function(position) {
+			var lat = position.coords.latitude;
+			var lng = position.coords.longitude;
+			document.getElementById('latitude').value = lat;
+			document.getElementById('longitude').value = lng;
+		})			
+	}	
+	const isMobile = {
+		Android: function() {
+			return navigator.userAgent.match(/Android/i);
+		},
+		BlackBerry: function() {
+			return navigator.userAgent.match(/BlackBerry/i);
+		},
+		iOS: function() {
+			return navigator.userAgent.match(/iPhone|iPad|iPod/i);
+		},
+		Opera: function() {
+			return navigator.userAgent.match(/Opera Mini/i);
+		},
+		Windows: function() {
+			return navigator.userAgent.match(/IEMobile/i) || navigator.userAgent.match(/WPDesktop/i);
+		},
+		any: function() {
+			return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
+		}
+	};	
+	if( isMobile.any() ) document.getElementById('phone').value = "1";
+</script>	
