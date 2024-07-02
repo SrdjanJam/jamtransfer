@@ -4,6 +4,10 @@ require_once 'config.php';
 	$_SESSION['UserAuthorized'] = false;
 	$_SESSION['AdminAccessToDriverProfile'] = false;
 	
+	if (PARTNERLOG) {
+		session_destroy();
+		header('location: '.ROOT_HOME);	
+	}	
 	if (session_status() != PHP_SESSION_ACTIVE || !isset($_SESSION['AuthUserID']) || $_SESSION['AuthUserID']==0) {
 		echo "<h1>YOU HAVE TO LOGIN FOR FINAL LOGOUT</h1>";
 		echo "<a href='https://wis.jamtransfer.com/login.php'>LOGIN</a>";

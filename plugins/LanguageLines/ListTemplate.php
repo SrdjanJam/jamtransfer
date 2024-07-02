@@ -11,7 +11,7 @@
 		</div>	
 		
 		<div class="col-md-2">
-			<a target='_tab' href="https://api.jamtransfer.com/api/delete-translations-cache?hash=d06161457d4c4b45e57d764c98051d86" style="color:blue;"><i class="fas fa-external-link"></i>&nbsp;<u><?=DELETE_CACHE;?></u></a>
+			<a target='_tab' href="https://prod.jamtransfer.com/api/delete-translations-cache?hash=d06161457d4c4b45e57d764c98051d86" style="color:blue;"><i class="fas fa-external-link"></i>&nbsp;<u><?=DELETE_CACHE;?></u></a>
 		</div>		
 					
 	</div>

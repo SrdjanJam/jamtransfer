@@ -77,7 +77,7 @@ Class v4_AgentPrices {
      * Save the active var class as a new row on table
      */
 	public function saveAsNew(){
-		$this->connection->RunQuery("INSERT INTO v4_AgentPrices (AgentID, RouteID, VehicleTypeID, Price) values ('".$this->myreal_escape_string($this->ID)."',
+		$this->connection->RunQuery("INSERT INTO v4_AgentPrices (AgentID, RouteID, VehicleTypeID, Price) values (
 		'".$this->myreal_escape_string($this->AgentID)."',
 		'".$this->myreal_escape_string($this->RouteID)."',		
 		'".$this->myreal_escape_string($this->VehicleTypeID)."',		

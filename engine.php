@@ -14,7 +14,6 @@ $RouteID=0;
 $VehicleTypeID=0;
 $VehicleID=0;
 $item=0;
-$isNew=false;
 $active_pages=array();
 $menu1=array();
 $pageName='';
@@ -27,6 +26,7 @@ $terminalID=0;
 require_once 'pathToVars.php';
 // LOGIN
 if(!isset($_SESSION['UserAuthorized']) or $_SESSION['UserAuthorized'] == false) {
+	if ($activePage<>"") setcookie("pageEx", $activePage, time() + (7*24*60*60),"/");
 	require_once 'login.php';
 	exit();	
 }

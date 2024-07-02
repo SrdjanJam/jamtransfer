@@ -1,17 +1,16 @@
 <?
 
 /*
- * CRON JOB za popunjavanje tabele v4_Customers
- * puni tabelu cutomerima koji su imali vise od 2 rezervacije
-
+* Menjanje status Customer-a 
+* prema dosadasnjim kupovinama
  */
 $root='/home/jamtrans/laravel/public/wis.jamtransfer.com';
 $cronjob=true;
 //require_once $root . '/config.php';
 define("DB_HOST", "127.0.0.1");
-$DB_USER="jamtrans_api";
-$DB_PASSWORD="i97zo5X&ftt4";
-$DB_NAME="jamtrans_test";
+$DB_USER="jamtrans_cms";
+$DB_PASSWORD="~5%OuH{etSL)";
+$DB_NAME="jamtrans_touradria";
 require_once $root . '/db/db.class.php';
 require_once $root . '/db/v4_OrderDetails.class.php';
 require_once $root . '/db/v4_Customers.class.php';
@@ -20,9 +19,10 @@ $db = new DataBaseMysql();
 $od = new v4_OrderDetails();
 $cs = new v4_Customers();
 
-$today=date("Y-m-d");
+//$today=date("Y-m-d");
+$today=date("Y-m-d", time()-600);
 $yearsago=date("Y-m-d", time()-365*24*3600);
-$where=" WHERE (OrderDate='".$today."' or OrderDate='".$yearsago."') and UserLevelID in (3,12) and CustomerID>1";
+$where=" WHERE (OrderDate='".$today."' or OrderDate='".$yearsago."') and UserLevelID in (3,12) and CustomerID>0";
 $keys=$od->getKeysBy('OrderID', 'ASC', $where);
 $cids=array();
 foreach ($keys as $key) {
@@ -30,7 +30,7 @@ foreach ($keys as $key) {
 	$cids[]=$od->getCustomerID();
 }
 $cids=array_unique($cids);
-print_r($cids);
+//print_r($cids);
 
 $sql  = "SELECT * FROM `v4_CustLevels`";
 $r = $db->RunQuery($sql);
@@ -45,6 +45,7 @@ foreach ($cids as $cid) {
 	$r = $db->RunQuery($sql);
 	$k=$r->fetch_object();
 	$count=$k->cnt;
+
 	$value=$k->sum;
 	
 	for ($i=0; $i<3; $i++) {
@@ -66,7 +67,7 @@ foreach ($cids as $cid) {
 	$cs->setNextLevelCount($nlc);
 	$cs->setNextLevelValue($nlv);
 	$cs->setDiscount($discount);
-	$cs->setCustType($type);
+	$cs->setLevelID($type);
 	$cs->saveRow();
 }	
 

@@ -19,6 +19,8 @@ Class v4_SubVehicles {
 	public $VehicleDescription; //text
 	public $VehicleCapacity; //int(10) unsigned
 	public $RaptorID; //int(10) unsigned
+	public $AssignSDID; //int(10) unsigned
+	public $AssignTime; //int(10) unsigned
 	public $Active; //tinyint(4)
 	public $connection;
 
@@ -32,12 +34,14 @@ Class v4_SubVehicles {
      * New object to the class. Don´t forget to save this new object "as new" by using the function $class->saveAsNew(); 
      *
      */
-	public function New_v4_SubVehicles($OwnerID,$VehicleTypeID,$VehicleDescription,$VehicleCapacity,$RaptorID,$Active){
+	public function New_v4_SubVehicles($OwnerID,$VehicleTypeID,$VehicleDescription,$VehicleCapacity,$RaptorID,$AssignSDID,$AssignTime,$Active){
 		$this->OwnerID = $OwnerID;
 		$this->VehicleTypeID = $VehicleTypeID;
 		$this->VehicleDescription = $VehicleDescription;
 		$this->VehicleCapacity = $VehicleCapacity;
 		$this->RaptorID = $RaptorID;
+		$this->AssignSDID = $AssignSDID;
+		$this->AssignTime = $AssignTime;
 		$this->Active = $Active;
 	}
 
@@ -57,6 +61,8 @@ Class v4_SubVehicles {
 			$this->VehicleDescription = $row["VehicleDescription"];
 			$this->VehicleCapacity = $row["VehicleCapacity"];
 			$this->RaptorID = $row["RaptorID"];
+			$this->AssignSDID = $row["AssignSDID"];
+			$this->AssignTime = $row["AssignTime"];
 			$this->Active = $row["Active"];
 		}
 	}
@@ -81,6 +87,8 @@ VehicleTypeID = '".$this->myreal_escape_string($this->VehicleTypeID)."',
 VehicleDescription = '".$this->myreal_escape_string($this->VehicleDescription)."', 
 VehicleCapacity = '".$this->myreal_escape_string($this->VehicleCapacity)."', 
 RaptorID = '".$this->myreal_escape_string($this->RaptorID)."', 
+AssignSDID = '".$this->myreal_escape_string($this->AssignSDID)."', 
+AssignTime = '".$this->myreal_escape_string($this->AssignTime)."', 
 Active = '".$this->myreal_escape_string($this->Active)."' WHERE VehicleID = '".$this->VehicleID."'");
 	return $result; 
 }
@@ -95,6 +103,8 @@ Active = '".$this->myreal_escape_string($this->Active)."' WHERE VehicleID = '".$
 			VehicleDescription, 
 			VehicleCapacity,
 			RaptorID, 
+			AssignSDID, 
+			AssignTime, 
 			Active
 		) values (
 		'".$this->myreal_escape_string($this->OwnerID)."', 
@@ -102,6 +112,8 @@ Active = '".$this->myreal_escape_string($this->Active)."' WHERE VehicleID = '".$
 		'".$this->myreal_escape_string($this->VehicleDescription)."', 
 		'".$this->myreal_escape_string($this->VehicleCapacity)."', 
 		'".$this->myreal_escape_string($this->RaptorID)."',
+		'".$this->myreal_escape_string($this->AssignSDID)."',
+		'".$this->myreal_escape_string($this->AssignTime)."',
 		'".$this->myreal_escape_string($this->Active)."')");
 		return $this->connection->insert_id(); //return insert_id 
 	}
@@ -161,6 +173,18 @@ Active = '".$this->myreal_escape_string($this->Active)."' WHERE VehicleID = '".$
 	 */
 	public function getRaptorID(){
 		return $this->RaptorID;
+	}	
+	/**
+	 * @return AssignSDID - int(10) unsigned
+	 */
+	public function getAssignSDID(){
+		return $this->AssignSDID;
+	}	
+	/**
+	 * @return AssignTime - int(10) unsigned
+	 */
+	public function getAssignTime(){
+		return $this->AssignTime;
 	}
 
 	/**
@@ -209,6 +233,18 @@ Active = '".$this->myreal_escape_string($this->Active)."' WHERE VehicleID = '".$
 	 */
 	public function setRaptorID($RaptorID){
 		$this->RaptorID = $RaptorID;
+	}	
+	/**
+	 * @param Type: int(10) unsigned
+	 */
+	public function setAssignSDID($AssignSDID){
+		$this->AssignSDID = $AssignSDID;
+	}	
+	/**
+	 * @param Type: int(10) unsigned
+	 */
+	public function setAssignTime($AssignTime){
+		$this->AssignTime = $AssignTime;
 	}
 
 	/**
@@ -232,6 +268,8 @@ Active = '".$this->myreal_escape_string($this->Active)."' WHERE VehicleID = '".$
 			'VehicleDescription' => $this->getVehicleDescription(),
 			'VehicleCapacity' => $this->getVehicleCapacity(),
 			'RaptorID' => $this->getRaptorID(),
+			'AssignSDID' => $this->getAssignSDID(),
+			'AssignTime' => $this->getAssignTime(),
 			'Active' => $this->getActive()		);
 		return $fieldValues;
 	}
@@ -243,7 +281,7 @@ Active = '".$this->myreal_escape_string($this->Active)."' WHERE VehicleID = '".$
      */
 	public function fieldNames(){
 		$fieldNames = array(
-			'VehicleID',			'OwnerID',			'VehicleTypeID',			'VehicleDescription',			'VehicleCapacity',	 	'RaptorID',		'Active'		);
+			'VehicleID',			'OwnerID',			'VehicleTypeID',			'VehicleDescription',			'VehicleCapacity',	 	'RaptorID',		'AssignSDID',		'AssignTime',		'Active'		);
 		return $fieldNames;
 	}
     /**

@@ -1718,6 +1718,46 @@ Handlebars.registerHelper("vehicleTypeSelect", function(id,fieldName) {
 
 });
 
+/*
+Prikaz SubVehiclesSubDrivers kao dropdown
+*/
+
+Handlebars.registerHelper("vehicleDriverSelect", function(id,fieldName,detailsID) {
+	function vehicleDriverSelectDropdown() {
+		var url = 'api/getVehicleDriver.php?callback=';
+		var selector = "<select data-detailsid=\""+detailsID+"\" class=\"w100 form-control "+fieldName+"\" name=\""+fieldName+"\"  value=\""+id+"\">";
+		selector += '<option value="0"> No vehicle</option>';
+		$.ajax({
+			type: 'POST',
+			url: url,
+			async: false,
+			contentType: "application/json",
+			dataType: 'jsonp',
+			cache: true,
+
+			success: function(data) {
+				$.each(data, function(i,val) {
+					selector += '<option value="' + val.VehicleID + '" ';
+
+					if (val.VehicleID == id) {
+						selector += ' selected="selected" ';
+					}
+
+					selector += '>' + val.VehicleDescription;
+					selector += '</option>';
+				});
+
+				selector += '</select>';
+			}
+		});
+
+		return selector;
+	}
+
+	return new Handlebars.SafeString(vehicleDriverSelectDropdown());
+
+});
+
 Handlebars.registerHelper("vehicleClassSelect", function(id,fieldName) {
 	function vehicleClassSelectDropdown() {
 		var selector = "<select class=\"w100\" name=\""+fieldName+"\" id=\""+fieldName+"\" >";

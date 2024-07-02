@@ -85,6 +85,8 @@
 				{{/compare}}
 				{{VehicleTypeName}}  x {{VehiclesNo}}<br>
 				<strong>{{DriversPrice}} € </strong><br>
+				{{ vehicleDriverSelect Car 'Car' DetailsID}}	
+
 				{{#compare ExtraCharge ">" 0}}
 					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#extras">
 						<i class="fa fa-cubes" style="color:#900"></i>
@@ -426,7 +428,23 @@
 				}
 			})
 			return false;
-		}				
+		}
+		$('.SubDriver').change(function(){
+			var sd=$('option:selected',this).val();
+			var detailsid = ($(this).attr('data-detailsid'));
+			var url = './plugins/Orders/changeSubVehicle.php'+
+				"?DetailsID=" + detailsid +
+				"&SubDriverID="+sd;
+			console.log(url);
+			$.ajax({
+				type: 'POST',
+				url: url,
+				async: true,
+				success: function(data) {
+					$.toaster('Vehicle changed', 'Done', 'success blue-2');
+				}
+			})
+		})	
 	</script>	
 </script>
 

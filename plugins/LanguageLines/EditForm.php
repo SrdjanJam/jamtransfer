@@ -22,7 +22,7 @@
 			onclick="return editSaveItem('{{id}}');">
 			<i class="fa fa-save"></i>
 			</button>			
-			<a target='_tab' href='https://api.jamtransfer.com/api/delete-translations-cache?hash=d06161457d4c4b45e57d764c98051d86'><?=DELETE_CACHE;?></a>
+			<a target='_tab' href='https://prod.jamtransfer.com/api/delete-translations-cache?hash=d06161457d4c4b45e57d764c98051d86'><?=DELETE_CACHE;?></a>
 		</div>
 	</div>
 

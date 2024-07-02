@@ -2,7 +2,8 @@
 	$smarty->assign('smallBoxes',false);	
 	$smarty->assign('charts',false);	
 	$smarty->assign('emptyRow',false);	
-	$smarty->assign('getOrder',false);				
+	$smarty->assign('getOrder',false);	
+	$smarty->assign('getRoutePrices',false);	
 	$smarty->assign('getUnfinishedPayment',false);							
 	$smarty->assign('actualTransfers',false);										
 	$smarty->assign('todo',false);

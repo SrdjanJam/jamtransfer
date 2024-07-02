@@ -324,7 +324,7 @@
 
 							<!-- Page title and database: -->
 							<h2 style="display:inline-block;margin: 15px 0 0 12px;vertical-align: super;font-size: 20px;">
-								<span class="m-r-sm text-muted">{$title}</span>
+								<span class="m-r-sm text-muted">{$title} - {$smarty.session.log_title}</span>
 								{if $fieldsSettings eq 1}<span class="m-r-sm text-muted"> / Fields Settings</span>{/if}
 							</h2>
 
@@ -335,12 +335,6 @@
 							{if not $MOBILE}<li><button type="button" id="opener-help" class="button-3">{$HELP}</button></li>{/if}
 							{if not $MOBILE}<li><button type="button" id="opener-message" class="button-3">{$MESSAGE}</button></li>{/if}
 							{if not $MOBILE and not $PARTNERLOG}<li><a target="_blank" href='qrlog.php'><i class="fa fa-qrcode"></i>QR LOG</a></li>{/if}
-							<!-- Prev version: -->
-							<!-- <li> <h2><span class="m-r-sm text-muted">{$title} - {$smarty.session.log_title}</span></h2> </li> -->
-
-							<!-- Logout: -->
-							{if not $MOBILE and not $PARTNERLOG}<li><a href='logout.php'><i class="fa fa-sign-out"></i>{$LOGOUT}</a></li>{/if}
-
 						</ul>
 						
 						<!-- Dialog printed results here: -->
@@ -431,7 +425,7 @@
 									</div>
 								</div>
 							
-							{if $existNew && !$PARTNER}
+							{if $existNew}
 								<div class="col-md-1"><a class="btn btn-primary btn-xs btn-xs-edit" href="{$currenturl}/new"><i class="fa fa-plus" aria-hidden="true"></i></a></div>
 							{/if}		
 
