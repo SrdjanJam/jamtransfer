@@ -1,4 +1,3 @@
-
 					{if $smallBoxes} 
 						{include file="plugins/Dashboard/templates/smallBoxes.tpl"}
 					{/if}					
@@ -57,6 +56,12 @@
 						{if $calculateProvision}
 							<section class="col-lg-6 xconnectedSortable"> 
 								{include file="plugins/Dashboard/templates/calculateProvision.tpl"} 			
+							</section><!-- /.Left col -->
+						{/if}						
+						
+						{if $calendar}
+							<section class="col-lg-12 xconnectedSortable">
+								{include file="plugins/Calendar/templates/index.tpl"} 			
 							</section><!-- /.Left col -->
 						{/if}
                     </div>	        

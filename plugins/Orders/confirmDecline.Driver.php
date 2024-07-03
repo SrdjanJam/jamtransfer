@@ -1,24 +1,12 @@
 <?
 	@session_start();
-	error_reporting(0);
-	require_once $_SERVER['DOCUMENT_ROOT'] . '/f/f.php';
-	
-
-	//echo '<pre>'; print_r($_REQUEST); echo '</pre>';
-		
-	// classes
-    require_once $_SERVER['DOCUMENT_ROOT'] . '/db/db.class.php';	
-	require_once $_SERVER['DOCUMENT_ROOT'] . '/db/v4_OrderDetails.class.php';
-	require_once $_SERVER['DOCUMENT_ROOT'] . '/db/v4_OrdersMaster.class.php';
-	require_once $_SERVER['DOCUMENT_ROOT'] . '/db/v4_DriversCD.class.php';
-	
-	
-	// Drivers
-	require_once $_SERVER['DOCUMENT_ROOT'] . '/db/v4_AuthUsers.class.php';
-	
-	// Log
-	require_once $_SERVER['DOCUMENT_ROOT'] . '/db/v4_OrderLog.class.php';
-	
+	error_reporting(E_ALL);
+	require_once '../../config.php';
+	require_once ROOT . '/db/v4_OrderDetails.class.php';
+	require_once ROOT . '/db/v4_OrdersMaster.class.php';
+	require_once ROOT . '/db/v4_DriversCD.class.php';
+	require_once ROOT . '/db/v4_AuthUsers.class.php';
+	require_once ROOT . '/db/v4_OrderLog.class.php';
     $db = new DataBaseMysql();	
 	$d = new v4_OrderDetails();
 	$m = new v4_OrdersMaster();
@@ -38,37 +26,7 @@
 	
 	$u->getRow($DriverID);
 	if($u->getAuthUserID() != $DriverID) die('Error: Inform support team!');
-
-/*
-	// get out - something wrong
-	if(!is_numeric($DetailsID)) die ('<h1>Error - Parameter not valid.</h1>');
-	if(!is_numeric($DriverID)) die ('<h1>Error - Parameter not valid.</h1>');
-
-
-
-    if($m->MOrderStatus == '3') die('<h1>Transfer has been Cancelled.</h1>');
-    if($d->TransferStatus == '3') die('<h1>Transfer has been Cancelled.</h1>');
-
-	if($m->MOrderKey != $OrderKey) die('<h1>Error - Parameter not valid.</h1>');
-
-	$u->getRow($DriverID);
-	if($u->getAuthUserID() != $DriverID) die ('<h1>Error - Parameter not valid.</h1>');	
-	
-	if($u->getAuthUserID() != $d->getDriverID() and $d->getDriverID() != '0') 
-	die('<h2>Error - transfer cannot be confirmed.</h2>');		
-
-
-
-
-	if($u->getAuthUserID() == $d->getDriverID() and $d->getDriverConfStatus() == '2') 
-	die('<h2>You have already confirmed this transfer.</h2>');	
-
-	if($u->getAuthUserID() == $d->getDriverID() and $d->getDriverConfStatus() == '4') 
-	die('<h2>You have already declined this transfer.</h2>');	
-*/	
-
 	if($d->TransferStatus == '4') die('<h1>Transfer wait for customer confirmation.</h1>'); 
-
 	// button pressed
 	if( isset($_REQUEST['Confirm']) ) { 
 		$dcd->setDetailsID($DetailsID);
@@ -99,7 +57,7 @@
 				}
 			}				
 			$d->setDriverExtraCharge($suma);
-			// kraj driver extras charge
+			// kraj punjenja driver extras charge
 			$d->setDriverConfStatus('2');
 			if($d->TransferStatus == '6') $d->setTransferStatus('1');	
 			if($d->TransferStatus == '0') $d->setTransferStatus('1');			
@@ -132,7 +90,6 @@
 			Pickup Point: ' . htmlspecialchars($_REQUEST['PickupPoint']) . '<br>
 			<br><br>
 			<span style="font-weight:bold">';
-			//$mailMessage .='Your Driver\'s Name: ' . htmlspecialchars($_REQUEST['SubDriverName']) . '<br>'; ne prikazivati
 			if ($u->getContractFile()=='inter') {
 				$mailMessage .='Dispach Telephone (do NOT send SMS, only for calls)';
 				$mailMessage .=': ' . htmlspecialchars($_REQUEST['SubDriverTel']) . '<br>';
@@ -167,7 +124,6 @@
 			$ol->setDetailsID($DetailsID);
 			$ol->setAction('Driver confirmed');
 			$ol->setTitle('Driver confirmed');
-			//$ol->setDescription('Driver ' . $u->getAuthUserRealName() . ' confirmed this transfer.');
 			$ol->setDescription('Driver ' . $u->getAuthUserRealName() . ' confirmed this transfer. Subdriver phone:'.$_REQUEST['SubDriverTel']);
 			$ol->setDateAdded(date("Y-m-d"));
 			$ol->setTimeAdded(date("H:i:s"));
@@ -188,7 +144,6 @@
 			$ol->setDetailsID($DetailsID);
 			$ol->setAction('Driver declined');
 			$ol->setTitle('Driver declined');
-			//$ol->setDescription('Driver ' . $u->getAuthUserCompany() . ' DECLINED this transfer.');			
 			$ol->setDescription('Driver ' . $u->getAuthUserCompany() . ' DECLINED this transfer for reason: '.$_REQUEST['DeclineReason'].' / '. $_REQUEST['DeclineMessage']);			
 			$ol->setDateAdded(date("Y-m-d"));
 			$ol->setTimeAdded(date("H:i:s"));

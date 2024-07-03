@@ -289,15 +289,15 @@
 
 				   </ul> <!-- End of nav metismenu -->
 				   
-				   
+					{if not $PARTNERLOG}
 				   <!-- Developing status: -->
-				   <ul id="status" style="list-style-type:none;">
+					<ul id="status" style="list-style-type:none;">
 						<li>{$A_ACTIVE}</li>
 						<li>{$T_TEST}</li>
 						<li>{$D_DEVELOPMENT}</li>
 						<li>{$P_PLAN}</li>
-				   </ul>
-
+					</ul>
+					{/if}
 				</div> <!-- End of sidebar-collapse -->
 				
 			</nav> <!-- End of navbar-default navbar-static-side -->
@@ -318,9 +318,9 @@
 							</div>
 
 							<!-- Refresh -->
-							<div class="navbar-header">
+							{*<div class="navbar-header">
 								<button type="button" class="minimalize-styl-2 btn btn-primary btn-primary-edit" id="cashe"><i class="fas fa-redo-alt"></i></button>
-							</div>
+							</div>*}
 
 							<!-- Page title and database: -->
 							<h2 style="display:inline-block;margin: 15px 0 0 12px;vertical-align: super;font-size: 20px;">
@@ -332,15 +332,9 @@
 
 						<ul class="nav navbar-top-links navbar-right">
 							<!-- Opener dialog button: -->
-							<li><button type="button" id="opener-help" class="button-3">{$HELP}</button></li>
-							<li><button type="button" id="opener-message" class="button-3">{$MESSAGE}</button></li>
-							<li><a target="_blank" href='qrlog.php'><i class="fa fa-qrcode"></i>QR LOG</a></li>
-							<!-- Prev version: -->
-							<!-- <li> <h2><span class="m-r-sm text-muted">{$title} - {$smarty.session.log_title}</span></h2> </li> -->
-
-							<!-- Logout: -->
-							<li><a href='logout.php'><i class="fa fa-sign-out"></i>{$LOGOUT}</a></li>
-
+							{if not $MOBILE}<li><button type="button" id="opener-help" class="button-3">{$HELP}</button></li>{/if}
+							{if not $MOBILE}<li><button type="button" id="opener-message" class="button-3">{$MESSAGE}</button></li>{/if}
+							{if not $MOBILE and not $PARTNERLOG}<li><a target="_blank" href='qrlog.php'><i class="fa fa-qrcode"></i>QR LOG</a></li>{/if}
 						</ul>
 						
 						<!-- Dialog printed results here: -->

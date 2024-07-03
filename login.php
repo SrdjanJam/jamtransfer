@@ -120,6 +120,8 @@ require_once('lng/' . $_SESSION['CMSLang'] . '_text.php');
 								$_SESSION['UserAuthorized'] = TRUE;
 								$_SESSION['UserImage'] = $row['Image'];
 								$_SESSION['UserEmail'] = $row['AuthUserMail'];
+								
+								if($_REQUEST['phone']==1) $_SESSION['mobile']=true;
 								$showLoginForm = false;
 								
 								$qu  = "UPDATE v4_AuthUsers SET LastVisited = '".date("Y-m-d H:i:s") ."' ";

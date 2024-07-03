@@ -146,6 +146,8 @@ if (isset($type2)) {
 				break;			
 		}		
 	}	
+// deo za partnera
+$filter .= " AND TransferStatus not in (3,6,9) AND DriverConfStatus>0 ";  
 
 if(!isset($_REQUEST['page'])) $_REQUEST['page']="";
 if(!isset($_REQUEST['length'])) $_REQUEST['length']="";
@@ -677,6 +679,32 @@ if (count($dbk) != 0) {
 		$detailFlds["TimeDiff"] = $TimeDiffArr[$key];
 		$detailFlds["PayConflictColor"] = $PayConflictColorArr[$key];
 		$detailFlds["PayDiff"] = $PayDiffArr[$key];
+		$vt->getRow($od->getVehicleType());
+		$detailFlds['VehicleClass'] = $vt->getVehicleClass();
+		if (isset($od->FlightNo)) {
+			$fglightno=$od->FlightNo;
+			$fglightno=str_replace(' ','',$fglightno);
+			$fglightno=str_replace('-','',$fglightno);
+			if (is_numeric(substr($fglightno, 2, 2))) {	
+				$cc = substr($fglightno, 0, 2);  	
+				$fn = substr($fglightno, 2);  	
+			}
+			else {
+				$cc = substr($fglightno, 0, 3);  	
+				$fn = substr($fglightno, 3);  			
+			}	
+			if ($cc=='EZY') $cc='U2';
+			if ($cc=='EZS') $cc='U2';
+			if ($cc=='EJU') $cc='U2';
+			$cc=strtoupper($cc);			
+			$Date=$od->PickupDate;
+			$Date=explode('-',$Date);
+			$year=$Date[0];
+			$month=$Date[1];
+			$day=$Date[2];	
+			$fs_link='https://www.flightstats.com/v2/flight-tracker/'.$cc.'/'.$fn.'?year='.$year.'&month='.$month.'&date='.$day;
+			$detailFlds['FsLink'] = $fs_link;
+		}		
 		
 		# get fields and values
 		$masterFlds = $om->fieldValues();
@@ -693,7 +721,16 @@ if (count($dbk) != 0) {
 		$masterFlds['UserName']=$users[$om->getMUserID()]->AuthUserRealName;
 		$masterFlds['Image']=$users[$om->getMUserID()]->Image;
 		
-		$out[] = array_merge($detailFlds , $masterFlds);    	  	
+		$oek = $oe->getKeysBy('ID', 'ASC', ' WHERE OrderDetailsID = ' . $key);
+		if(count($oek) > 0) {
+			foreach ($oek as $key => $value) {
+				$oe->getRow($value);
+				$oeServices[] = $oe->fieldValues();
+			}
+			//print_r($oeServices);
+			$detailFlds['oeServices']=$oeServices;
+		}		
+		$out[] = array_merge($detailFlds , $masterFlds );    	  	
     }
 }
 # send output back

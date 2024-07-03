@@ -31,7 +31,7 @@ if ($length > 0) {
 }
 else $limit = '';
 
-if(empty($sortOrder)) $sortOrder = 'ASC';
+if(empty($sortOrder)) $sortOrder = 'DESC';
 
 
 # init vars
@@ -41,6 +41,17 @@ $flds = array();
 # kombinacija where i filtera
 $DB_Where = " " . $_REQUEST['where'];
 $DB_Where .= $filter;
+
+if (isset($_SESSION['UseDriverID']))  {
+	$whereOD=" WHERE DriverID=".$_SESSION['UseDriverID'];
+	$odk = $od->getKeysBy("OrderID", '' , $whereOD);
+	$odid=array();
+	foreach($odk as $odx) {
+		$od->getRow($odx);
+		$odid[]=$od->getOrderID();
+	}	
+	$DB_Where .=" AND OrderID in (".implode(',',$odid).")";	
+}	
 
 # dodavanje search parametra u qry
 # DB_Where sad ima sve potrebno za qry
@@ -78,17 +89,11 @@ if (count($dbk) != 0) {
 		else {
 			$where2= "Where OrderID=".$db->OrderID." AND TNo=1";
 			$odk = $od->getKeysBy('DetailsID ', '' , $where2);
-			// print_r($odk);
-			// exit();
-
 			if(isset($odk[0])) $odk[0];
 			else $odk[0] = "";
 
 			$od->getRow($odk[0]);			
 			$routeName=$od->PickupName."-".$od->DropName;
-
-			// print_r($od);
-			// exit();
 		}	
 		$detailFlds["RouteNameEN"] = $routeName;		
 		$out[] = $detailFlds;    	

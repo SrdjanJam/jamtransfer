@@ -101,7 +101,6 @@
 	</style>
 
     <body>
-
         <div class="vehicles">
 			<h2>Assign vehicles</h2>
 			<div class="drop-wrapper">
@@ -140,7 +139,7 @@
 				{/section}
 				
 			</div> <!-- End of drag-wrapper -->
-	
+		<input type="hidden" id="mobile" name="mobile" value="{$MOBILE}">	
 		</div> <!-- End of vehicles -->
 		
 
@@ -198,7 +197,6 @@
 					if ($(this).find('.dropelement').length){
 						if($(this).attr('data-id') > 0){
 							
-							// alert('Vozilo je vec dodano');
 							location.reload();
 							
 						} else{
@@ -242,6 +240,25 @@
 			$(".driver_hide").click(function(){
 				$(this).parent().hide(300);
 			});
+
+			var mobile=$("#mobile").val();
+			if (mobile) {
+				$(".dropelement").click(function(){
+					$(this).css('color','green');
+					window.vid=$(this).attr('data-id');
+					changeOrder(window.vid,0);
+					if ($(this).parent().attr('data-id')>0) {
+						location.reload();
+					}
+				})			
+				$(".dropzoneN").click(function(){
+					if ($(this).attr('data-id')>0) {
+						window.sdid=$(this).attr('data-id');
+						changeOrder(window.vid,window.sdid);
+						location.reload();
+					}
+				})
+			}
 
 		{/literal}
 		</script>	
