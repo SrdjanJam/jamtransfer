@@ -83,27 +83,27 @@
 	$t->CustomerType="";
 	if($t->MUserLevelID==3 or $t->MUserLevelID==9) {
 		$mkeys=array_keys($customers);
-		if (in_array($t->MPaxEmail,$mkeys)) {
-			$ctype=$customers[$t->MPaxEmail];
+		if (in_array($t->CustomerID,$mkeys)) {
+			$ctype=$customers[$t->CustomerID];
 			switch ($ctype) {
 				case 0:
 					$t->CustomerType="Customer";
 					$t->CustomerTypeColor="white";
 					break;			
 				case 1:
-					$t->CustomerType="Premium";
+					$t->CustomerType="Level 1";
 					$t->CustomerTypeColor="#ADD8E6";										
 					break;			
 				case 2:
-					$t->CustomerType="Silver";
+					$t->CustomerType="Level 2";
 					$t->CustomerTypeColor="#C0C0C0";										
 					break;			
 				case 3:
-					$t->CustomerType="*** Gold";
+					$t->CustomerType="Level 3";
 					$t->CustomerTypeColor="#FFD700";															
 					break;			
 				case 4:
-					$t->CustomerType="**** Platinum";
+					$t->CustomerType="Level 4";
 					$t->CustomerTypeColor="#E5E4E2";					
 					break;
 			}	

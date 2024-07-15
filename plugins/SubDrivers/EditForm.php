@@ -32,6 +32,7 @@
 
 					<div class="row">
 						<div class="col-md-6">
+							<? if (!$isNew) { ?>
 							<div class="row">
 								<div class="col-md-3 "><label><?= IMAGE ?></label></div>
 								<div class="col-md-9">
@@ -45,19 +46,17 @@
 							<div class="row">
 								<div class="col-md-3 "></div>
 								<div class="col-md-9">
-									<form name="form" action="" method="POST" enctype="multipart/form-data">
-										<input type="file" name="imageFile" id="imageFile" class="hidden" 
-										onchange="return ajaxFileUpload();">
+										<input type="file" name="imageFile" id="imageFile" class="hidden" >
 										<input type="hidden" name="UserID" id="UserID" value="{{AuthUserID}}">
 										<br>
 										<button id="imgUpload" class="btn btn-xs btn-default" 
 											onclick="$('#imageFile').click();return false;">
 											<?= UPLOAD_NEW_IMAGE ?>
 										</button> <small>(200x200px)</small>
-									</form>
 									<br><br>
 								</div>
-							</div>					
+							</div>	
+							<? } ?>				
 							<div class="row">
 								<div class="col-md-3 "><label><?= ID ?></label></div>
 								<div class="col-md-9">
@@ -123,7 +122,7 @@
 									<?= READ_ONLY_FLD ?>>
 								</div>
 							</div>
-
+							<? if (!PARTNERLOG) {?>
 							<div class="row">
 								<div class="col-md-3 "><label><?= RAPTORID ?></label></div>
 								<div class="col-md-9">
@@ -140,14 +139,8 @@
 									<?= READ_ONLY_FLD ?>>
 								</div>
 							</div>														
+							<? } ?>
 
-
-
-
-
-
-
-						
 						</div>
 					</div>	
 		    	</div> {{!-- tab1 end --}}
@@ -173,57 +166,26 @@
 		});
 		
 		
-		
-		function ajaxFileUpload()
-		{
-			$("#loading")
-			.ajaxStart(function(){
-				$(this).show();
-			})
-			.ajaxComplete(function(){
-				$(this).hide();
-			});
-
-			var UserID = $("#UserID").val();
+		$("#imageFile").on("change", function(ev) {
+			var file = $(this)[0].files[0];
 			
-			$.ajaxFileUpload
-			(
-				{
-					url: 'saveProfileImage.php?UserID='+UserID,
-					secureuri:false,
-					fileElementId:'imageFile',
-					dataType: 'json',
-					//data:{UserID: UserID},
-					success: function (data, status)
-					{
-						if(typeof(data.error) != 'undefined')
-						{
-							if(data.error != '')
-							{
-								alert(data.error);
-							}else
-							{
-								//alert(data.msg);
-								$("#imageDiv > img").attr('src', 'upload/'+data.img);
-
-								$.get( "deleteTempImage.php?image="+data.img, function( data ) {
-								});
-							}
-						}
-
-					},
-					error: function (data, status, e)
-					{
-						// console.log(data);
-                        alert(e);
-					}
-					
-				}
-			)
+			var fd = new FormData();
+			fd.append('imageFile', file);
+			var UserID=$(this).next().val();
+			$.ajax({
+				url: "./plugins/SubDrivers/saveProfileImage.php?UserID="+UserID,
+				type: "POST",
+				processData: false,
+				contentType: false,
+				data: fd,
+				success: function (msg) {
+					toastr['success'](window.success);	
+					location.reload();
+				},
+			});
+			
+		});
 		
-			return false;
-
-		}
 
 		function validateUname (input) {
 			console.log(input);

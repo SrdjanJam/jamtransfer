@@ -147,7 +147,7 @@ if (isset($type2)) {
 		}		
 	}	
 // deo za partnera
-$filter .= " AND TransferStatus not in (3,6,9) AND DriverConfStatus>0 ";  
+//$filter .= " AND TransferStatus not in (3,6,9) AND DriverConfStatus>0 ";  
 
 if(!isset($_REQUEST['page'])) $_REQUEST['page']="";
 if(!isset($_REQUEST['length'])) $_REQUEST['length']="";
@@ -674,6 +674,8 @@ if (count($dbk) != 0) {
 			$pl->getRow($DropID);
 			$detailFlds["DropName"]=$pl->getPlaceNameEN();
 		}
+		$detailFlds["SubDriverName"]=$users[$od->getSubDriver()]->AuthUserRealName;
+		$detailFlds["SubDriverMob"]=$users[$od->getSubDriver()]->AuthUserMob;
 		
 		$detailFlds["ConflictColor"] = $ConflictColorArr[$key];
 		$detailFlds["TimeDiff"] = $TimeDiffArr[$key];

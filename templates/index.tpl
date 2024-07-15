@@ -324,7 +324,7 @@
 
 							<!-- Page title and database: -->
 							<h2 style="display:inline-block;margin: 15px 0 0 12px;vertical-align: super;font-size: 20px;">
-								<span class="m-r-sm text-muted">{$title} - {$smarty.session.log_title}</span>
+								<span class="m-r-sm text-muted">{$title}  {$smarty.session.log_title}</span>
 								{if $fieldsSettings eq 1}<span class="m-r-sm text-muted"> / Fields Settings</span>{/if}
 							</h2>
 

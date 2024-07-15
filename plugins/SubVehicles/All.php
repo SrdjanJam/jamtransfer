@@ -61,13 +61,12 @@ if ( $_REQUEST['Search'] != "" )
 $dbTotalRecords = $db->getKeysBy($ItemName . $sortOrder, '',$DB_Where);
 
 // prazan red za eventualni unos
-if (isset($_REQUEST['vehicleTypeID']) && $_REQUEST['vehicleTypeID']>0) {
+//if (isset($_REQUEST['vehicleTypeID']) && $_REQUEST['vehicleTypeID']>0) {
 	$db->getRow(0);	
 	$detailFlds = $db->fieldValues();
-	//$v->getRow( $_REQUEST['vehicleTypeID'] );
-	$detailFlds["VehicleTypeID"] = $_REQUEST['vehicleTypeID'];	
+	if (isset($_REQUEST['vehicleTypeID'])) $detailFlds["VehicleTypeID"] = $_REQUEST['vehicleTypeID'];	
 	$out[] = $detailFlds; 
-}
+//}
 
 # test za LIMIT - trebalo bi ga iskoristiti za pagination! 'asc' . ' LIMIT 0,50'
 $dbk = $db->getKeysBy($ItemName . $sortOrder, '' . $limit , $DB_Where);

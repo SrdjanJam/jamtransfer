@@ -87,6 +87,34 @@
 				<strong>{{DriversPrice}} € </strong><br>
 				{{ vehicleDriverSelect Car 'Car' DetailsID}}	
 
+
+				{{#compare DriverNotes "!==" ""}}
+					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#notes">
+						<i class="fa fa-envelope" style="color:#900"></i>
+					</button>
+					<div class="modal fade"  id="notes">
+						<div class="modal-dialog" style="width: fit-content;">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+								</div>
+								<div class="modal-body" style="padding:10px">
+									{{DriverNotes}}
+								</div>
+							</div>
+						</div>
+					</div>							
+				{{/compare}}	
+			</div>	
+
+			<div class="col-md-2">
+				<i class="fa fa-user"></i> <strong>{{PaxName}}</strong><br>
+				<small>
+					<i class="fa fa-phone"></i> <a href="tel:+ {{MPaxTel}}"> {{MPaxTel}}</a>
+				</small><br>					
+				<a href="{{FsLink}}" target="_blank"> {{FlightNo}}</a> {{FlightTime}}
 				{{#compare ExtraCharge ">" 0}}
 					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#extras">
 						<i class="fa fa-cubes" style="color:#900"></i>
@@ -116,45 +144,18 @@
 							</div>
 						</div>
 					</div>							
-				{{/compare}}
-				{{#compare DriverNotes "!==" ""}}
-					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#notes">
-						<i class="fa fa-envelope" style="color:#900"></i>
-					</button>
-					<div class="modal fade"  id="notes">
-						<div class="modal-dialog" style="width: fit-content;">
-							<div class="modal-content">
-								<div class="modal-header">
-									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-										<span aria-hidden="true">&times;</span>
-									</button>
-								</div>
-								<div class="modal-body" style="padding:10px">
-									{{DriverNotes}}
-								</div>
-							</div>
-						</div>
-					</div>							
-				{{/compare}}	
-			</div>	
-
-			<div class="col-md-2">
-				<i class="fa fa-user"></i> <strong>{{PaxName}}</strong><br>
-				<small>
-					<i class="fa fa-phone"></i> <a href="tel:+ {{MPaxTel}}"> {{MPaxTel}}</a>
-				</small><br>					
-				<a href="{{FsLink}}" target="_blank"> {{FlightNo}}</a> {{FlightTime}}
+				{{/compare}}				
 			</div>
 	
 			<div class="col-md-2">
 				{{paymentMethodText PaymentMethod}}<br>
 				{{#compare PayLater ">" 0}}<strong>{{PayLater}} € </strong><br>{{/compare}}
-				{{DriverPaymentAmt}} / {{driverPaymentText DriverPayment}}
 			</div>						
 			
 			<div class="col-md-2">
-				<span class="{{driverConfStyle DriverConfStatus}}">{{driverConfText DriverConfStatus}}</span><br>
+				<span class="{{driverConfStyle DriverConfStatus}}">{{driverConfText DriverConfStatus}}</span>
 				{{#compare DriverConfStatus "==" 1}}
+					<br>
 					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#confirm">
 						<?=CONFIRM;?> / <?=DECLINE;?>
 					</button>
@@ -168,7 +169,7 @@
 									<h4 class="modal-title"><?=CONFIRM;?></h4>
 								</div>
 								<div class="modal-body" style="padding:10px">
-									<div class="row" id="confirmDecline{{details.DetailsID}}">
+									<div class="row" id="confirmDecline{{DetailsID}}">
 										<div class="col-md-12">
 											<br>
 											<small><?= CONFIRM_DECLINE_INSTRUCTIONS ?></small>
@@ -183,14 +184,14 @@
 													<div class="col-md-2"><label><?= DRIVER_NAME ?></label></div>
 													<div class="col-md-8">
 														<input class="form-control" type="text" 
-														id="SubDriverName" placeholder="Please put DRIVERS NAME or OPERATOR (do not put YOUR COMPANY name)" value="{{details.SubDriverName}}" onfocus="if (this.value=='Please put DRIVERS NAME or OPERATOR (do not put YOUR COMPANY name)') this.value='';">
+														id="SubDriverName" placeholder="Please put DRIVERS NAME or OPERATOR (do not put YOUR COMPANY name)" value="{{SubDriverName}}" onfocus="if (this.value=='Please put DRIVERS NAME or OPERATOR (do not put YOUR COMPANY name)') this.value='';">
 													</div>
 												</div>
 												<div class="row">
 													<div class="col-md-2"><label><?= DRIVER_TEL ?></label></div>
 													<div class="col-md-8">
 														<input class="form-control" type="text" 
-														id="SubDriverTel" placeholder='International format (e.g +33...)' value="{{details.SubDriverMob}}" onfocus="if (this.value=='Please put phone number in international format (e.g +33...)') this.value='';">
+														id="SubDriverTel" placeholder='International format (e.g +33...)' value="{{SubDriverMob}}" onfocus="if (this.value=='Please put phone number in international format (e.g +33...)') this.value='';">
 													</div>
 												</div>
 												
@@ -254,7 +255,7 @@
 					</div>	
 				{{/compare}}						
 				{{#compare DriverConfStatus "==" 2}}
-					{{DriverConfDate}} {{DriverConfTime}}<br>
+					<small>{{DriverConfDate}} {{DriverConfTime}}</small><br>
 					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#complete">
 						<?=FINISH_TRANSFER;?>
 					</button>
@@ -429,7 +430,8 @@
 			})
 			return false;
 		}
-		$('.SubDriver').change(function(){
+		$('.Car').change(function(){
+			var thiscar=$(this);
 			var sd=$('option:selected',this).val();
 			var detailsid = ($(this).attr('data-detailsid'));
 			var url = './plugins/Orders/changeSubVehicle.php'+
@@ -440,8 +442,14 @@
 				type: 'POST',
 				url: url,
 				async: true,
+				contentType: 'application/json',
+				
 				success: function(data) {
+					data = $.parseJSON(data);
+					thiscar.parent().parent().find("#SubDriverName").val(data.username);
+					thiscar.parent().parent().find("#SubDriverTel").val(data.phone);
 					$.toaster('Vehicle changed', 'Done', 'success blue-2');
+					
 				}
 			})
 		})	

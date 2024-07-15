@@ -87,19 +87,17 @@
 			color: rgb(46, 52, 114);
 		}
 	
-		
-		/* @media screen ========================= */
-		@media screen and (max-width:1200px) {
+		@media screen and (max-width:768px) {
 
-			.drop-wrapper, .drop-wrapper .dropzoneN, .drag-wrapper {
-				/* width:100%; */
-				width: -webkit-fill-available;
+			.drop-wrapper, .drop-wrapper, .drag-wrapper {
+				/* width: -webkit-fill-available; */
+				width: 50%;
 			}
 
-
+			.drop-wrapper .dropzoneN{
+				width: -webkit-fill-available;
+			}
 		}
-
-
 	</style>
 
     <body>
@@ -148,7 +146,7 @@
 								{if $drivers[pom1].DriverID eq $transfers[pom2].SubDriver}
 									<!--dropelement -->
 									<div data-sort="{$transfers[pom2].PickupTime}" class="dropelement"  data-id="{$transfers[pom2].DetailsID}">
-										<a target="_blank" href="orders/detail/{$transfers[pom2].DetailsID}"
+										<span
 											title="<b>{$transfers[pom2].OrderID}-{$transfers[pom2].TNo} - {$transfers[pom2].PaxName} </b>" 
 											data-content="
 												<br/>{$FLIGHT_NO}: {$transfers[pom2].FlightNo}
@@ -169,7 +167,7 @@
 												{* <strong>{$transfers[pom2].PickupTime}</strong>
 												<i class="fa fa-car"></i><span>{$transfers[pom2].VehicleType}</span>							 *}
 											</div>
-										</a>
+										</span>
 									</div>
 
 								{/if}
@@ -191,7 +189,7 @@
 						{if $transfers[pom1].SubDriver eq 0}	
 
 							<div data-sort="{$transfers[pom1].PickupTime}" class="dropelement"  data-id="{$transfers[pom1].DetailsID}">
-								<a target="_blank" href="orders/detail/{$transfers[pom1].DetailsID}"
+								<span
 									title="<b>{$transfers[pom1].OrderID}-{$transfers[pom1].TNo} - {$transfers[pom1].PaxName} </b>" 
 									data-content="
 										<br/>{$FLIGHT_NO}: {$transfers[pom1].FlightNo}
@@ -212,14 +210,14 @@
 										{* <strong>{$transfers[pom1].PickupTime}</strong> *}
 										{* <i class="fa fa-car"></i><span>{$transfers[pom1].VehicleType}</span>							 *}
 									</div>
-								</a>
+								</span>
 							</div>
 						{/if}
 					{/section}
 
 				</div> <!-- /.sort -->
 			</div> <!-- /.drag-wrapper -->
-	
+			<input type="hidden" id="mobile" name="mobile" value="{$MOBILE}">	
 		</div><!-- End of .transfers -->
 		
 		<script>
@@ -268,7 +266,7 @@
 			function changeOrder(detailid,driverid,subvehicleid) {
 				var link = '{/literal}{$root_home}{literal}plugins/Distribution/update.php';
 				var param = "DetailsID="+detailid+"&SubDriverID="+driverid+"&SubVehicleID="+subvehicleid;
-				// alert (link+'?'+param);
+				//alert (link+'?'+param);
 				$.ajax({
 					type: 'POST',
 					url: link,
@@ -286,7 +284,6 @@
 
 					var driverid=$(this).attr('data-id');
 					var subvehicleid=$(this).attr('data-svid');
-					// alert(subvehicleid);
 
 					changeOrder(window.id,driverid,subvehicleid);
 					// Append to:
@@ -316,6 +313,25 @@
 				$(this).parent().parent().hide(300);
 			});
 
+			var mobile=$("#mobile").val();
+			if (mobile) {
+				$(".dropelement").click(function(){
+					$(this).css('color','green');
+					window.vid=$(this).attr('data-id');
+					changeOrder(window.vid,0,0);
+					if ($(this).parent().parent().attr('data-id')>0) {
+						location.reload();
+					}
+				})			
+				$(".dropzoneN").click(function(){
+					if ($(this).attr('data-id')>0) {
+						var sdid=$(this).attr('data-id');
+						var subvehicleid=$(this).attr('data-svid');
+						changeOrder(window.vid,sdid,subvehicleid);
+						location.reload();
+					}
+				})
+			}
 
 		{/literal}
 		</script>	

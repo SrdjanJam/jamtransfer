@@ -16,16 +16,20 @@ require_once 'Initial.php';
 	foreach ($detailFlds as $key=>$value) {
 		$detailFlds[$key] = stripslashes($value);
 	}
-	$where=" WHERE MUserID=53 AND MOrderStatus not in (3,9) AND MPaxEmail = '".$detailFlds['CustEmail']."' ";
-	$omk=$om->getKeysBy('MOrderID', 'ASC', $where);
-	$countom=count($omk);
-	$sumom=0;
-	if ($omk>0) {
-		foreach($omk as $key) {
-			$om->getRow($key);
-			$sumom+=$om->getMOrderPriceEUR();
+	$where=" WHERE CustomerID=".$db->getCustID()." ";
+	$odk=$od->getKeysBy('OrderID', 'ASC', $where);
+	$transfers=array();
+	if ($odk>0) {
+		foreach($odk as $key) {
+			$od->getRow($key);
+			$transfersrow = array(
+					"TransferID" => $od->getDetailsID(),
+					"TransferText" => $od->getOrderID().'-'.$od->getTNo()
+			);
+			$transfers[]=$transfersrow;
 		}	
 	}
+	$detailFlds['transfers']=$transfers;
 	$detailFlds['PersonalCode']="PC".substr(md5($detailFlds['CustEmail']),0,10);
 	$detailFlds['Language']=$detailFlds['CustLanguage'];
 	$out[] = $detailFlds;

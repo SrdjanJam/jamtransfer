@@ -176,8 +176,9 @@ function sendDriverNotification($OrderID, $OrderKey='') {
         $od->getRow($id);
 
         $link = '<a href="https://' . $_SERVER['SERVER_NAME'] . '/cms/dc.php?code='.$od->getDetailsID() .
-                '&control='.$orderKey.'&id='.$od->getDriverID().'">'. 
-                $od->getOrderID().'-'.$od->getTNo() .
+                '&control='.$orderKey.'&id='.$od->getDriverID().'">
+				https://cms.jamtransfer.com/cms/dcN.php?code='.$od->getDetailsID().'&control='.$orderKey.'&id='.$DriverID.
+                //$od->getOrderID().'-'.$od->getTNo() .
                 '</a>';
         $message .= $link . '<br>';
     }

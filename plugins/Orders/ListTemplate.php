@@ -112,7 +112,9 @@
 							<!-- Passanger: -->
 							<div class="col-md-2 small-box passenger {{ConflictColor}}" onclick="oneItem({{DetailsID}},'passenger');">
 								<div class="inner inner-edit">					
-									<i class="fa fa-user"></i> <strong>{{PaxName}}</strong><br>
+									<i class="fa fa-user"></i> <strong>{{PaxName}}</strong>
+									{{#compare CustomerID "!=" 0}}<span class="badge badge-info">Level {{custName CustomerID "Level"}}</span>{{/compare}}
+									<br>
 									<small>
 										<i class="fa fa-envelope-o"></i> {{MPaxEmail}}
 										<br>

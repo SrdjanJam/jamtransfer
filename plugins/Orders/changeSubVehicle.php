@@ -39,4 +39,6 @@ $ol->setIcon($icon);
 $ol->setShowToCustomer($showToCustomer);
 $ol->saveAsNew();
 
-
+$sd_array['username']=$users[$sv->getAssignSDID()]->AuthUserRealName;
+$sd_array['phone']=$users[$sv->getAssignSDID()]->AuthUserMob;
+echo json_encode($sd_array);	
