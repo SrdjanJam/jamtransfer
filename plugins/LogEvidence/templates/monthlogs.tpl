@@ -78,39 +78,76 @@ $(document).ready(function(){
 				{* Old *} {* <td class="td" style="background:rgb(206, 203, 23);border:1px solid black;" valign="top" class="cal_cell" {$style}> *}
 				<div class="grid-item-2" id="grid{$month_logs[pom].nom}">
 					<div class="days" id="day{$month_logs[pom].nom}">
-						{* <div class="cal_days l"><b>{$month_logs[pom].nom}</b></div> *}
-							<div class="cal_days l">
-								<b>{$month_logs[pom].nom}</b> 
-								{if $smarty.session.AuthLevelID eq '31' or isset($smarty.session.UseDriverID)}
-									<a target='_blank' href='{$root_home}distribution/{$month_logs[pom].date}'>{$DISTRIBUTION}</a>
-								{/if}	
-							</div>
-									<div class="show-data">
-										{* <div class="cal_days l"><b>{$month_logs[pom].nom}</b></div> *}
-										{* <br /> *}
-										<small class="small">
-											{* Second Section *}
-											{section name=pom2 loop=$month_logs[pom].logs}
+						<div class="cal_days l">
+							<b>{$month_logs[pom].nom}</b> 
+							{if $smarty.session.AuthLevelID eq '31' or isset($smarty.session.UseDriverID)}
+								<a target='_blank' href='{$root_home}distribution/{$month_logs[pom].date}'>{$DISTRIBUTION}</a>
+							{/if}	
+						</div>
+						<div class="show-data">
+							<small class="small">
+								{* Second Section *}
+								{section name=pom2 loop=$month_logs[pom].logs}
 
-												<small><a href=""
-													title="<b>{$month_logs[pom].logs[pom2].User}</b>" 
-													data-content="
-														<br/>Time: {$month_logs[pom].logs[pom2].Time}{$month_logs[pom].logs[pom2].TimeOff}
-														<br>Location: {$month_logs[pom].logs[pom2].Place}
-													" 
-													class="mytooltip">
-														{$month_logs[pom].logs[pom2].User}
-												</a></small> {$month_logs[pom].logs[pom2].Time}{$month_logs[pom].logs[pom2].TimeOff}<br>					
-												
-											{/section} {* / Second Section *}
-										</small>
-										
-									</div> {* / show-date *}
+									<small><a href=""
+										title="<b>{$month_logs[pom].logs[pom2].User}</b>" 
+										data-content="
+											<br/>Time: {$month_logs[pom].logs[pom2].Time}{$month_logs[pom].logs[pom2].TimeOff}
+											<br>Location: {$month_logs[pom].logs[pom2].Place}
+										" 
+										class="mytooltip">
+											{$month_logs[pom].logs[pom2].User}
+									</a></small> {$month_logs[pom].logs[pom2].Time}{$month_logs[pom].logs[pom2].TimeOff}<br>					
+									
+								{/section} {* / Second Section *}
+							</small>
+						</div> {* / show-date *}
 											
 									{* <br> *}
-							<small class="small-mini" style="display:none;">{NO_OF} <br>{$month_logs[pom].noOfLogs}</small>
-							
-					
+						<small class="small-mini" style="display:none;">{NO_OF} <br>{$month_logs[pom].noOfLogs}</small>
+						{if $smarty.request.level_id==1}
+						<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#owh{$month_logs[pom].date}">
+							Working Hours
+						</button>
+						<div class="modal fade"  id="owh{$month_logs[pom].date}">
+							<div class="modal-dialog" style="width: fit-content;">
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+											<span aria-hidden="true">&times;</span>
+										</button>
+										<h4 class="modal-title">Working Hours</h4>
+									</div>
+									<div class="modal-body" style="padding:10px">
+									{section name=pom3 loop=$office_users}
+										<div class="row">
+											<div class="col-md-4">
+												{$office_users[pom3].name}
+											</div>											
+											<div class="col-md-2">
+												{$office_users[pom3].level}
+											</div>											
+											<div class="col-md-2">
+												<input class="timepicker timepicker-edit form-control" type='text' name='start' id='start' value=''/>
+											</div>											
+											<div class="col-md-2">
+												<input class="timepicker timepicker-edit form-control"  type='text' name='end' id='end' value=''/>
+											</div>											
+											<div class="col-md-2">
+												<select name="cars" id="cars">
+													<option value="0">No shift</option>
+													<option value="1">Shift 1</option>
+													<option value="2">Shift 2</option>
+													<option value="3">Shift 3</option>
+												</select>
+											</div>
+										</div>	
+									{/section}
+									</div>
+								</div>
+							</div>
+						</div>	
+						{/if}		
 					</div> {* / days *}
 					{* close *}
 					<a class="close-gi" data-id ="{$month_logs[pom].nom}" style="display:none;">{$CLOSE}</a>		
@@ -126,6 +163,7 @@ $(document).ready(function(){
 			{* </div> *}
 		{/if}
 		
+
 	{/section} {* / First Section *}
 	
 {* </div> / .grid-container-2 *}
@@ -138,5 +176,6 @@ $(document).ready(function(){
 <script>
 {literal}
 	$(".mytooltip").popover({trigger:'hover', html:true, placement:'bottom'});
+
 {/literal}	
 </script>

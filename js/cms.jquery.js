@@ -1926,6 +1926,34 @@ Handlebars.registerHelper("userName", function(id, returnField) {
 
 });
 
+Handlebars.registerHelper("custName", function(id,returnField) {
+	function custNameFunc() {
+
+		var url =  'api/oneCustomer.php?callback=?&CustID='+id;
+		var cName = 'Customer not found';
+		console.log(url);
+		$.ajax({
+			type: 'POST',
+			url: url,
+			async: false,
+
+			contentType: "application/json",
+			dataType: 'jsonp',
+
+			success: function(data) {
+				var dataObj = {};
+				dataObj = data[0];
+				cName = dataObj[returnField];			
+			}
+		});
+
+		return cName;
+	}
+
+	return new Handlebars.SafeString(custNameFunc());
+
+});
+
 
 // maskiraj prvi dio email adrese
 Handlebars.registerHelper("maskEmail", function(email) {

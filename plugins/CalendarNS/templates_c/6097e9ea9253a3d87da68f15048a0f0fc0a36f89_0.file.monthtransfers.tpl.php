@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.32, created on 2024-06-28 06:52:19
+/* Smarty version 3.1.32, created on 2024-07-16 05:35:47
   from '/home/jamtrans/laravel/public/wis.jamtransfer.com/plugins/CalendarNS/templates/monthtransfers.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.32',
-  'unifunc' => 'content_667e5da3272e68_04351323',
+  'unifunc' => 'content_669606b395e4d6_06850009',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '6097e9ea9253a3d87da68f15048a0f0fc0a36f89' => 
     array (
       0 => '/home/jamtrans/laravel/public/wis.jamtransfer.com/plugins/CalendarNS/templates/monthtransfers.tpl',
-      1 => 1719557537,
+      1 => 1721108145,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_667e5da3272e68_04351323 (Smarty_Internal_Template $_smarty_tpl) {
+function content_669606b395e4d6_06850009 (Smarty_Internal_Template $_smarty_tpl) {
 echo '<script'; ?>
 >
 
@@ -139,7 +139,9 @@ for ($__section_pom2_1_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_p
 													<?php echo $_smarty_tpl->tpl_vars['month_transfers']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_pom']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_pom']->value['index'] : null)]['transfers'][(isset($_smarty_tpl->tpl_vars['__smarty_section_pom2']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_pom2']->value['index'] : null)]['PickupName'];?>
 -
 													<?php echo $_smarty_tpl->tpl_vars['month_transfers']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_pom']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_pom']->value['index'] : null)]['transfers'][(isset($_smarty_tpl->tpl_vars['__smarty_section_pom2']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_pom2']->value['index'] : null)]['DropName'];?>
-</small>
+<br> 
+													<?php echo $_smarty_tpl->tpl_vars['month_transfers']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_pom']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_pom']->value['index'] : null)]['transfers'][(isset($_smarty_tpl->tpl_vars['__smarty_section_pom2']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_pom2']->value['index'] : null)]['PaxNo'];?>
+ pax.</small>
 												</div><br>
 											<?php
 }

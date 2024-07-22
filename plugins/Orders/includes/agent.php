@@ -16,12 +16,21 @@
         </div>
     </div>	
     <div class="row dagent">	
+		{{#compare details.AgentID ">" "0"}}
         <div class="col-md-3 "><label><?= AGENT?></label></div>
         <div class="col-md-9">
-			{{#compare details.AgentID ">" "0"}}<strong>{{userName details.AgentID "AuthUserCompany"}}</strong>{{/compare}}
+			<strong>{{userName details.AgentID "AuthUserCompany"}}</strong>
             {{userSelect details.AgentID "0" "AgentIDeX"}}
             ({{details.AgentID}})
-        </div>													
+        </div>					
+		{{/compare}}			
+		{{#compare details.CustomerID ">" "0"}}
+        <div class="col-md-3 "><label><?= CUSTOMER?></label></div>
+        <div class="col-md-9">
+			<strong>{{custName details.CustomerID "CustName"}}</strong>
+            ({{details.CustomerID}})
+        </div>					
+		{{/compare}}						
     </div>
     <input type="hidden" name="UserID" id="UserID" value="{{details.UserID}}">		
     <input type="hidden" name="AgentID" id="AgentID" value="{{details.AgentID}}">	

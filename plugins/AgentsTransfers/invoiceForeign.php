@@ -121,7 +121,7 @@ foreach ($kd as $nn => $id) {
 
 	$driversPriceTotal += nfT($driversPrice+$driverextrasPrice);
 
-	$VATbase +=  ($fullPrice - $driversPrice - $provision) / ((100 + $vat) / 100);
+	$VATbase +=  ($fullPrice - $driversPrice - $driverextrasPrice - $provision) / ((100 + $vat) / 100);
 
 	
 } //endforeach

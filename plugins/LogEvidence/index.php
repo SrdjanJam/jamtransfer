@@ -42,12 +42,14 @@
 	$shyear->SmartyAssign();
 
 	$shlevel = new SmartyHtmlSelection("level",$smarty);
-	$shlevel->AddValue(91);
-	$shlevel->AddOutput("Administrators");
+	$shlevel->AddValue(1);
+	$shlevel->AddOutput("Office");	
 	//$shlevel->AddSelected(91);
-	$shlevel->AddValue(31);
+	$shlevel->AddValue(2);
 	$shlevel->AddOutput("Drivers");
-	$shlevel->AddValue(2);	
+	$shlevel->AddValue(3);	
 	$shlevel->AddOutput("Agents");
 	
 	$shlevel->SmartyAssign();
+	
+	

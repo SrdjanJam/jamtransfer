@@ -64,6 +64,7 @@ switch ($activePage) {
 
 			if (isset($_POST['orderid']) && $_POST['orderid']<>'') $orderid=$_POST['orderid'];	
 		}
+		if (PARTNERLOG) $activePage="bookOrders";		
 		break;
 		
 	case 'booking':
@@ -97,6 +98,12 @@ switch ($activePage) {
 		if ($pathVars->fetchByIndex($indexStart + 1)) { 
 			$VehicleTypeID=$pathVars->fetchByIndex($indexStart + 1);
 		}	
+		if (PARTNERLOG) $activePage="myVehicles";
+	
+		break;	
+		
+		case 'subDrivers':	
+		if (PARTNERLOG) $activePage="myDrivers";
 	
 		break;
 		
@@ -198,6 +205,7 @@ switch ($activePage) {
 				$includeFileTpl = "/vehicles.tpl";	
 			} else $_REQUEST['Date']=$pathVars->fetchByIndex($indexStart + 1);
 		}
+		if (PARTNERLOG) $activePage="transferAssign";
 		break;	
 	//za potvrdu transfera na whatsApp-u	
 	case 'rt':

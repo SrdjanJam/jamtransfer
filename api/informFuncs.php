@@ -91,8 +91,9 @@ function informNewDriver($OrderID, $TNo, $DriverID) {
 		$mailto = $au->getAuthUserMail();			
 		
 		$link = '<a href="https://cms.jamtransfer.com/cms/' .  '/dcN.php?code='.$od->getDetailsID() .
-				'&control='.$orderKey.'&id='.$DriverID.'">'. 
-				$od->getOrderID().'-'.$od->getTNo() .
+				'&control='.$orderKey.'&id='.$DriverID.'"> 
+				https://cms.jamtransfer.com/cms/dcN.php?code='.$od->getDetailsID().'&control='.$orderKey.'&id='.$DriverID.
+				//$od->getOrderID().'-'.$od->getTNo() .
 				'</a>';
 		$message .= $link . '<br>';
 	//}

@@ -64,8 +64,8 @@
 	if (!isset($_REQUEST['Date'])) $_REQUEST['Date']=date('Y-m-d');
 	
 	$where .= " AND PickupDate = '".$_REQUEST['Date']."' "; 
-	$where .= " AND TransferStatus < '6' AND TransferStatus != '3' AND TransferStatus != '4'
-				AND DriverConfStatus > '1' ";
+	$where .= " AND TransferStatus < '6' AND TransferStatus != '3' AND TransferStatus != '4' ";
+	//$where .= "	AND DriverConfStatus > '1' ";
 
 	$odArray = $od->getKeysBy($column, $order, $where);
 

@@ -93,7 +93,8 @@ $(document).ready(function(){
 													{$month_transfers[pom].transfers[pom2].PickupDate}
 													{$month_transfers[pom].transfers[pom2].PickupTime}<br>
 													{$month_transfers[pom].transfers[pom2].PickupName}-
-													{$month_transfers[pom].transfers[pom2].DropName}</small>
+													{$month_transfers[pom].transfers[pom2].DropName}<br> 
+													{$month_transfers[pom].transfers[pom2].PaxNo} pax.</small>
 												</div><br>
 											{/section} {* / Second Section *}
 										</small>

@@ -1,6 +1,6 @@
 <?php
 	error_reporting(E_PARSE);
-	
+	require_once("../../config.php");
 	$error = "";
 	$msg = "";
 	
@@ -12,7 +12,7 @@
 	$IMAGE = $_FILES[$fileElementName];
 	
 	// temp folder - relativan u odnosu na ovu skriptu
-	$tempFolder = $_SERVER['DOCUMENT_ROOT'] . '/cms/upload/';
+	$tempFolder = ROOT.'/wis/upload/';
 	
 	if(!empty($IMAGE['error']))
 	{
@@ -60,10 +60,7 @@
 				$msg .= " File Name: " . $IMAGE['name'] . ", ";
 				$msg .= " File Size: " . @filesize($IMAGE['tmp_name']);
 				$msg .= " File Type: " . $IMAGE['type'];
-			
-				//for security reason, we force to remove all uploaded file
-				//@unlink($_FILES['fileToUpload']);	
-			
+						
 				$imageData = addslashes(file_get_contents($IMAGE['tmp_name']));
 				
 				// spremi u temp folder, deleteTempImage.php ce kasnije sliku izbrisati
@@ -71,14 +68,12 @@
 			
 
 				// spremi sliku u BLOB polje u datoteci			
-				require_once $_SERVER['DOCUMENT_ROOT'] . '/db/db.class.php';
-				$db = new DataBaseMysql();
-			
-				$db->RunQuery("UPDATE v4_AuthUsers SET 
+				$query="UPDATE v4_AuthUsers SET 
 								DBImage = '".$imageData ."', 
 								DBImageType = '".$IMAGE['type']."' 
 								WHERE AuthUserID = " . $_REQUEST['UserID']
-							);
+							;
+				$db->RunQuery($query);
 				// spremljeno - showProfileImage.php prikazuje sliku
 				@unlink($tempFolder . $IMAGE['name']);
 			}			

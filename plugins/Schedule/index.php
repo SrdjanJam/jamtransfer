@@ -80,11 +80,11 @@ foreach ($olKeys as $olid) {
 
 
 // customers by email
-$qC = "SELECT `LevelID`,`CustEmail` FROM `v4_Customers`" ;
+$qC = "SELECT `LevelID`,`CustID` FROM `v4_Customers`" ;
 $rC = $db->RunQuery($qC);
 $customers=array();
 while ($tC = $rC->fetch_object()) {
-	$customers[$tC->CustEmail]=$tC->LevelID;
+	$customers[$tC->CustID]=$tC->LevelID;
 }
 
 

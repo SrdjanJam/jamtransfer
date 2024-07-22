@@ -5,6 +5,8 @@
 		WHERE `DetailsID`=".$_REQUEST['DetailsID'];
 	$r = $db->RunQuery($q);
 	
+	// slanje mail-ova?
+	
 	
 
 	

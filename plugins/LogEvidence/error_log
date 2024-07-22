@@ -1,22 +1,14 @@
-[24-May-2024 11:49:44 UTC] PHP Fatal error:  Uncaught Error: Call to a member function RunQuery() on null in /home/jamtrans/laravel/public/wis.jamtransfer.com/plugins/LogEvidence/calendar.php:88
+[22-Jul-2024 05:41:14 UTC] PHP Parse error:  syntax error, unexpected ',' in /home/jamtrans/laravel/public/wis.jamtransfer.com/plugins/LogEvidence/calendar.php on line 54
+[22-Jul-2024 05:41:29 UTC] PHP Parse error:  syntax error, unexpected ',' in /home/jamtrans/laravel/public/wis.jamtransfer.com/plugins/LogEvidence/calendar.php on line 54
+[22-Jul-2024 05:41:32 UTC] PHP Parse error:  syntax error, unexpected ',' in /home/jamtrans/laravel/public/wis.jamtransfer.com/plugins/LogEvidence/calendar.php on line 54
+[22-Jul-2024 05:41:34 UTC] PHP Parse error:  syntax error, unexpected ',' in /home/jamtrans/laravel/public/wis.jamtransfer.com/plugins/LogEvidence/calendar.php on line 54
+[22-Jul-2024 05:42:46 UTC] PHP Parse error:  syntax error, unexpected ',' in /home/jamtrans/laravel/public/wis.jamtransfer.com/plugins/LogEvidence/calendar.php on line 54
+[22-Jul-2024 05:56:03 UTC] PHP Fatal error:  require_once(): Failed opening required '/home/jamtrans/laravel/public/wis.jamtransfer.comv4_AuthUser.class.php' (include_path='.:/opt/cpanel/ea-php72/root/usr/share/pear') in /home/jamtrans/laravel/public/wis.jamtransfer.com/plugins/LogEvidence/calendar.php on line 11
+[22-Jul-2024 05:58:52 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method v4_AuthUsers::getKeys() in /home/jamtrans/laravel/public/wis.jamtransfer.com/plugins/LogEvidence/calendar.php:13
 Stack trace:
-#0 /home/jamtrans/laravel/public/wis.jamtransfer.com/plugins/LogEvidence/calendar.php(63): monthLogs('2024-04-29', Array, 1, 3, Array)
-#1 {main}
-  thrown in /home/jamtrans/laravel/public/wis.jamtransfer.com/plugins/LogEvidence/calendar.php on line 88
-[24-May-2024 11:50:57 UTC] PHP Fatal error:  Uncaught Error: Call to a member function RunQuery() on null in /home/jamtrans/laravel/public/wis.jamtransfer.com/plugins/LogEvidence/calendar.php:88
-Stack trace:
-#0 /home/jamtrans/laravel/public/wis.jamtransfer.com/plugins/LogEvidence/calendar.php(63): monthLogs('2024-04-29', Array, 1, 3, Array)
-#1 {main}
-  thrown in /home/jamtrans/laravel/public/wis.jamtransfer.com/plugins/LogEvidence/calendar.php on line 88
-[24-May-2024 11:52:16 UTC] PHP Fatal error:  Uncaught Error: Call to a member function RunQuery() on null in /home/jamtrans/laravel/public/wis.jamtransfer.com/plugins/LogEvidence/calendar.php:88
-Stack trace:
-#0 /home/jamtrans/laravel/public/wis.jamtransfer.com/plugins/LogEvidence/calendar.php(63): monthLogs('2024-04-29', Array, 1, 3, Array)
-#1 {main}
-  thrown in /home/jamtrans/laravel/public/wis.jamtransfer.com/plugins/LogEvidence/calendar.php on line 88
-[24-May-2024 11:52:28 UTC] PHP Fatal error:  Uncaught Error: Call to a member function RunQuery() on null in /home/jamtrans/laravel/public/wis.jamtransfer.com/plugins/LogEvidence/calendar.php:88
-Stack trace:
-#0 /home/jamtrans/laravel/public/wis.jamtransfer.com/plugins/LogEvidence/calendar.php(63): monthLogs('2024-04-29', Array, 1, 3, Array)
-#1 {main}
-  thrown in /home/jamtrans/laravel/public/wis.jamtransfer.com/plugins/LogEvidence/calendar.php on line 88
-[24-May-2024 12:30:22 UTC] PHP Parse error:  syntax error, unexpected 'in' (T_STRING) in /home/jamtrans/laravel/public/wis.jamtransfer.com/plugins/LogEvidence/calendar.php on line 87
-[24-May-2024 12:47:46 UTC] PHP Parse error:  syntax error, unexpected 'echo' (T_ECHO) in /home/jamtrans/laravel/public/wis.jamtransfer.com/plugins/LogEvidence/calendar.php on line 88
+#0 {main}
+  thrown in /home/jamtrans/laravel/public/wis.jamtransfer.com/plugins/LogEvidence/calendar.php on line 13
+[22-Jul-2024 06:03:12 UTC] PHP Parse error:  syntax error, unexpected '}' in /home/jamtrans/laravel/public/wis.jamtransfer.com/plugins/LogEvidence/calendar.php on line 18
+[22-Jul-2024 06:03:40 UTC] PHP Parse error:  syntax error, unexpected '}' in /home/jamtrans/laravel/public/wis.jamtransfer.com/plugins/LogEvidence/calendar.php on line 18
+[22-Jul-2024 06:03:53 UTC] PHP Parse error:  syntax error, unexpected '}' in /home/jamtrans/laravel/public/wis.jamtransfer.com/plugins/LogEvidence/calendar.php on line 18
+[22-Jul-2024 06:04:49 UTC] PHP Parse error:  syntax error, unexpected end of file in /home/jamtrans/laravel/public/wis.jamtransfer.com/plugins/LogEvidence/calendar.php on line 134

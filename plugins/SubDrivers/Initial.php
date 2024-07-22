@@ -15,6 +15,7 @@ $selectactive='Active';
 $aColumns = array(
 	'AuthUserID',
 	'AuthUserName',
+	'DriverID',
 	'AuthUserRealName',
 	'AuthUserCompany',
 	'AuthUserMail',

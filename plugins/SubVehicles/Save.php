@@ -12,26 +12,12 @@ foreach ($db->fieldNames() as $name) {
 		eval("\$db->set".$name."(\$content);");	
 	}	
 }	
-$upd = '';
-$newID = '';
 if ($keyName != '' and $keyValue != '') {
 	$res = $db->saveRow();
-	$upd = 'Updated';
-	if($res !== true) $upd = $res;
 }
 if ($keyName != '' and $keyValue == '') {
 	$db->setOwnerID($_SESSION['UseDriverID']);
 	$_REQUEST['VehicleID'] = $db->saveAsNew();
 }
-$out = array(
-	'update' => $upd,
-	'insert' => $newID
-);
-
-	
-
-# send output back
-$output = json_encode($out);
-if ($keyName != '' and $keyValue != '') echo $_REQUEST['VehicleID'];
-if ($keyName != '' and $keyValue == '') echo $_REQUEST['callback'] . '(' . $output . ')';
+echo $_REQUEST['VehicleID'];
 

@@ -236,11 +236,21 @@
 						<input type="checkbox" id="DefaultPasswordC" name="DefaultPasswordC">
 						<input type="hidden" id="DefaultPassword" name="DefaultPassword">
 					</div>
+				</div>					
+				<div class="row">
+					<div class="col-md-3 "><label><?=TRANSFERS?></label></div>
+					<div class="col-md-9">
+						{{#each transfers}}
+							<a target="_blank" href="orders/detail/{{TransferID}}"
+								class="badge blue text-black">
+								{{TransferText}}
+							</a>
+						{{/each}}					
+					</div>
 				</div>	
-				
 			</div>
 	    </div>
-		   
+	</div>	   
 </form>
 
 	<script>

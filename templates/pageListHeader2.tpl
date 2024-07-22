@@ -207,14 +207,13 @@ value=" WHERE {$ItemID} > 0">
 		<div class="col-md-2 col-md-2-edit order-edit">
 			<small class="badge blue text-black badge-edit">{$ORDER}</small><br>
 			{if not $PARTNERLOG}
-			<input id='order' class="input-one" name='order'  placeholder="{$ORDERID}" onchange="allItems();"/><br>
-			{/if}			
+			<input id='order' class="input-one" name='order'  placeholder="{$ORDERID}" onchange="allItems();"/><br>			
 			<select id='yearsOrder' class="form-control select-top-edit addon" name='yearsOrder' value='0' onchange="allItems();">
 				<option value='0'>{$ALL_YEARS}</option>
 			</select>
-			
+			{/if}
 			<input id='orderFromDate' class="datepicker datepicker-edit" name='orderFromDate'  placeholder="{$FROM_DATE}" onchange="allItems();" /><br>
-			
+			{if not $PARTNERLOG}
 			<select id="Type" class="form-control select-top-edit addon" onchange="allItems();">
 				<option value="0">{$ALL} {$STATUS}</option>
 				{if not $PARTNERLOG}
@@ -223,6 +222,7 @@ value=" WHERE {$ItemID} > 0">
 				{/section}
 				{/if}
 			</select>
+			{/if}
 			<input id='orderToDate' class="datepicker datepicker-edit" name='orderToDate'  placeholder="{$TRANSFERTODATE}" onchange="allItems();" /><br>
 		</div>		
 
