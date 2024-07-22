@@ -4,6 +4,35 @@
 */
 require_once "../../config.php";
 
+if ($_REQUEST["level_id"]==1) {
+	$levels=array(41,91);
+	$levelsT=implode(",", $levels);
+	$where=" WHERE `AuthLevelID` in (".$levelsT.") AND Active=1";
+	require_once ROOT . '/db/v4_AuthUsers.class.php';
+	require_once ROOT . '/db/v4_AuthLevels.class.php';
+	$au = new v4_AuthUsers();
+	$al = new v4_AuthLevels();
+	$alk=$al->getKeysBy('AuthLevelID','','');
+	foreach ($alk as $nn => $key) {
+		$al->getRow($key);
+		$levelName[$key]=$al->getAuthLevelName();
+	}
+	$auk=$au->getKeysBy('AuthUserRealName ASC','',$where);
+	$office_users=array();
+	if (count($auk) != 0) {
+		foreach ($auk as $nn => $key)
+		{
+			$row=array();
+			$row['name']=$users[$key]->AuthUserRealName;
+			$row['level']=$levelName[$users[$key]->AuthLevelID];
+			$office_users[]=$row;
+			//$office_users[]=$users[$key]->AuthUserRealName;
+		}
+	}
+}	
+if ($_REQUEST["level_id"]==2) $levels=array(31);
+if ($_REQUEST["level_id"]==3) $levels=array(2);
+
 
 
 if (!isset($_REQUEST["cal_month"])) {
@@ -51,7 +80,7 @@ $active .=	"ORDER BY DateTime DESC";
 $rec = $db->RunQuery($active) ;
 $lg_arr=array();
 while ($row = $rec->fetch_assoc() ) {
-	if ($users[$row['AuthUserID']]->AuthLevelID==$_REQUEST["level_id"]) $lg_arr[]=$row;
+	if (in_array($users[$row['AuthUserID']]->AuthLevelID, $levels)) $lg_arr[]=$row;
 }
 $rec=$lg_arr;
 $timestamp = mktime(0,0,0,$cMonth,1,$cYear);
@@ -62,6 +91,7 @@ for ($i=0; $i<($maxday+$startday); $i++) {
 		$fullDate = date("Y-m-d",mktime(0,0,0,$cMonth,($i - $startday + 1),$cYear));
 		$month_logs[]=monthLogs($fullDate,$rec,$i,$startday,$users);
 }	
+$smarty->assign('office_users',$office_users);
 $smarty->assign('month_logs',$month_logs);
 $smarty->assign('startday',$startday);
 $smarty->display('monthlogs.tpl');		

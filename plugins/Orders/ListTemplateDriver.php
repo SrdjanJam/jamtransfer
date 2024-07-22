@@ -35,7 +35,7 @@
 <script type="text/x-handlebars-template" id="ItemListTemplate">
 
 	{{#each Item}}
-		<div class="row {{color}} listTile" style="border-top:5px solid #ddd" id="t_{{ID}}">
+		<div class="row {{color}} listTile" style="border-top:5px solid #ddd" id="t_{{DetailsID}}">
 			<div class="col-md-2">
 				<strong>{{OrderID}}-{{TNo}}</strong><br>
 				{{MOrderKey}}<br>
@@ -43,11 +43,11 @@
 			</div>
 
 			<div class="col-md-2">
-				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#address">
+				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#address{{DetailsID}}">
 					{{PickupName}}<br>{{DropName}}
 				</button><br>
 					<!-- Modal content: --------------------------------------- -->
-					<div class="modal fade"  id="address">
+					<div class="modal fade"  id="address{{DetailsID}}">
 						<div class="modal-dialog" style="width: fit-content;">
 							<div class="modal-content">
 								<div class="modal-header">
@@ -89,10 +89,10 @@
 
 
 				{{#compare DriverNotes "!==" ""}}
-					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#notes">
+					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#notes{{DetailsID}}">
 						<i class="fa fa-envelope" style="color:#900"></i>
 					</button>
-					<div class="modal fade"  id="notes">
+					<div class="modal fade"  id="notes{{DetailsID}}">
 						<div class="modal-dialog" style="width: fit-content;">
 							<div class="modal-content">
 								<div class="modal-header">
@@ -116,10 +116,10 @@
 				</small><br>					
 				<a href="{{FsLink}}" target="_blank"> {{FlightNo}}</a> {{FlightTime}}
 				{{#compare ExtraCharge ">" 0}}
-					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#extras">
+					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#extras{{DetailsID}}">
 						<i class="fa fa-cubes" style="color:#900"></i>
 					</button>
-					<div class="modal fade"  id="extras">
+					<div class="modal fade"  id="extras{{DetailsID}}">
 						<div class="modal-dialog" style="width: fit-content;">
 							<div class="modal-content">
 								<div class="modal-header">
@@ -156,10 +156,10 @@
 				<span class="{{driverConfStyle DriverConfStatus}}">{{driverConfText DriverConfStatus}}</span>
 				{{#compare DriverConfStatus "==" 1}}
 					<br>
-					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#confirm">
+					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#confirm{{DetailsID}}">
 						<?=CONFIRM;?> / <?=DECLINE;?>
 					</button>
-					<div class="modal fade"  id="confirm">
+					<div class="modal fade"  id="confirm{{DetailsID}}">
 						<div class="modal-dialog" style="width: fit-content;">
 							<div class="modal-content">
 								<div class="modal-header">
@@ -254,12 +254,12 @@
 						</div>
 					</div>	
 				{{/compare}}						
-				{{#compare DriverConfStatus "==" 2}}
+				{{#compare DriverConfStatus ">" 1}}{{#compare DriverConfStatus "<" 4}}
 					<small>{{DriverConfDate}} {{DriverConfTime}}</small><br>
-					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#complete">
+					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#complete{{DetailsID}}">
 						<?=FINISH_TRANSFER;?>
 					</button>
-					<div class="modal fade"  id="complete">
+					<div class="modal fade"  id="complete{{DetailsID}}">
 						<div class="modal-dialog" style="width: fit-content;">
 							<div class="modal-content">
 								<div class="modal-header">
@@ -295,12 +295,12 @@
 							</div>
 						</div>
 					</div>	
-				{{/compare}}	
+				{{/compare}}{{/compare}}	
 				{{#compare FinalNote "!==" ""}}
-					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#fnotes">
+					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#fnotes{{DetailsID}}">
 						<i class="fa fa-envelope" style="color:#900"></i>
 					</button>
-					<div class="modal fade"  id="fnotes">
+					<div class="modal fade"  id="fnotes{{DetailsID}}">
 						<div class="modal-dialog" style="width: fit-content;">
 							<div class="modal-content">
 								<div class="modal-header">

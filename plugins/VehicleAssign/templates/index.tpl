@@ -45,7 +45,7 @@
 
 		.drag-wrapper{
             float: left;
-            width: 25%;
+            width: 20%;
 			min-height:100vh;
 			box-sizing: border-box;
 			background: #c1ccdb33;

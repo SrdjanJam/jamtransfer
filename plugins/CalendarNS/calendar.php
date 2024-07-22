@@ -45,7 +45,7 @@ for ($i=0; $i<($maxday+$startday); $i++) {
 }	
 $dayin = substr($dayin,0,strlen($dayin)-1);
 
-$active = "SELECT MOrderDate,MOrderTime,PickupDate,PickupTime,PickupName,DropName FROM `v4_OrderDetailsTemp`,`v4_OrdersMasterTemp` WHERE `TransferStatus`=6 and TNo=1 and `OrderDate` in (".$dayin.") and OrderID=MOrderID	";		
+$active = "SELECT MOrderDate,MOrderTime,PickupDate,PickupTime,PickupName,DropName,PaxNo FROM `v4_OrderDetailsTemp`,`v4_OrdersMasterTemp` WHERE `TransferStatus`=6 and TNo=1 and `OrderDate` in (".$dayin.") and OrderID=MOrderID	";		
 $rec = $db->RunQuery($active) ;
 $tr_arr=array();
 while ($row = $rec->fetch_assoc() ) {
