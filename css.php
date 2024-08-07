@@ -24,6 +24,7 @@
 	}
 	.grid-item-2 {
 		background:white;
+		padding: 2px;
 	}
 	.show-data .small{
 		font-size:16px;
