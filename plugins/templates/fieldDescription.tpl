@@ -2,12 +2,13 @@
     .wDescription{
         margin-top:20px;
         padding:5px;
-        font-style: italic;
-        background: #efefef;
+        /* font-style: italic; */
+        background: #F8F9FA;
         border-radius: 5px;
+        border: 1px solid rgb(197, 197, 197);
     }
     .wDescription h2{
-        color: cadetblue;
+        color: rgb(38, 172, 177);
     }
     .wDescription div{
         margin-top:10px;
@@ -18,7 +19,8 @@
     }
 
     .add-row-label{
-        color: cadetblue;
+        color: rgb(22, 24, 24);
+        font-weight: bold;
     }
 
     .add-row-item{
