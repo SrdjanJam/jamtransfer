@@ -158,9 +158,10 @@ function sendDriverNotification($OrderID, $OrderKey='') {
     $om = new v4_OrdersMaster();
     $od = new v4_OrderDetails();
 
-    $message .= $HELLO . '!<br><br>';
+    $message .= $HELLO . '!<br>';
     $message .= $TRANSFER_FOR_YOU .'<br>';
-
+	$message .= $od->getOrderID().'<br>'; 
+	
     $om->getRow($OrderID);
     $orderKey = $om->getMOrderKey();
 
@@ -177,7 +178,7 @@ function sendDriverNotification($OrderID, $OrderKey='') {
 
         $link = '<a href="https://' . $_SERVER['SERVER_NAME'] . '/cms/dc.php?code='.$od->getDetailsID() .
                 '&control='.$orderKey.'&id='.$od->getDriverID().'">
-				https://cms.jamtransfer.com/cms/dcN.php?code='.$od->getDetailsID().'&control='.$orderKey.'&id='.$DriverID.
+				https://cms.jamtransfer.com/cms/dc.php?code='.ltrim($od->getDetailsID()).'&control='.$orderKey.'&id='.ltrim($DriverID).
                 //$od->getOrderID().'-'.$od->getTNo() .
                 '</a>';
         $message .= $link . '<br>';
@@ -199,14 +200,14 @@ function sendDriverMessage($DetailsID) {
 	$om = new v4_OrdersMaster();
 
 	$message = HELLO . '! ';
-	$message .= TRANSFER_FOR_YOU;
+    $message .= $TRANSFER_FOR_YOU .'<br>';
+	$message .= $od->getOrderID().'-'.$od->getTNo().'<br>'; 
 
 	$k = $od->getKeysBy('DetailsID', 'asc', " WHERE DetailsID = '". $DetailsID . "'");
 	foreach($k as $nn => $id) {
 		$od->getRow($id);
 		$om->getRow($od->getOrderID());
-		$link = ' https://cms.jamtransfer.com/cms/dc.php?code='.$od->getDetailsID() .
-				'%26control='.$om->getMOrderKey().'%26id='.$od->getDriverID();
+		$link = ' https://cms.jamtransfer.com/cms/dc.php?code='.ltrim($od->getDetailsID()).'&control='.$om->getMOrderKey().'&id='.ltrim($od->getDriverID());
 		$message .= $link . ' ';
 	}
 	$message .= THANK_YOU . '!';

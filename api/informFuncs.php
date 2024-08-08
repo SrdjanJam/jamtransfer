@@ -82,17 +82,20 @@ function informNewDriver($OrderID, $TNo, $DriverID) {
 	$au->getRow($DriverID);
 	
 	$message .= 'Hello' . '!<br><br>';
-	$message .= 'We have new transfer(s) for you.<br>Please Confirm or Decline these transfers immediately using the link(s) below:<br><br>';
+	$message .= 'We have new transfer(s) for you.<br>';
 	$k = $od->getKeysBy('DetailsID', 'asc', " WHERE OrderID = '". $OrderID . "' AND TNo ='" . $TNo ."'");
 	//foreach($k as $nn => $id) {
 		$od->getRow($k[0]);
 		$om->getRow($od->getOrderID());
 		$orderKey = $om->getMOrderKey();
 		$mailto = $au->getAuthUserMail();			
+
+		$message .= $od->getOrderID().'<br>'; 
+		$message .= 'Please Confirm or Decline these transfers immediately using the link(s) below:<br><br>';
 		
-		$link = '<a href="https://cms.jamtransfer.com/cms/' .  '/dcN.php?code='.$od->getDetailsID() .
+		$link = '<a href="https://cms.jamtransfer.com/cms/' .  '/dc.php?code='.$od->getDetailsID() .
 				'&control='.$orderKey.'&id='.$DriverID.'"> 
-				https://cms.jamtransfer.com/cms/dcN.php?code='.$od->getDetailsID().'&control='.$orderKey.'&id='.$DriverID.
+				https://cms.jamtransfer.com/cms/dc.php?code='.$od->getDetailsID().'&control='.$orderKey.'&id='.$DriverID.
 				//$od->getOrderID().'-'.$od->getTNo() .
 				'</a>';
 		$message .= $link . '<br>';
