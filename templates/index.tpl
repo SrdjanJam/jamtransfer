@@ -253,7 +253,7 @@
 									<!--Header in navbar - Set as with cookie -->
 									<li class="nav-header nav-header-edit nav-header-edit-2">
 										<a href="satAsDriver/{$smarty.cookies.UseDriverID}" style="padding-left:5px;padding-right:0px;">
-											<h3 id="set-us-2">{$READY_FOR_SET_AS}: <i class="fas fa-sign-in-alt"></i></h3>
+											<h3 id="set-us-2">{$CLICK_FOR_SET_AS}: <i class="fas fa-sign-in-alt"></i></h3>
 											<h3 class="cut-name-2">{$smarty.cookies.UseDriverName}</h3>
 										</a>
 									</li>

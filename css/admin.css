@@ -15735,8 +15735,8 @@ h5 {
 /* Changed: */
 .nav > li.active > a {
     color: #fff;
-    background-image: linear-gradient(to bottom right,#5444444a,#0202024d);
-    /* background-image: linear-gradient(to bottom right,#615f6859,#0505052b); old */
+    background-image: linear-gradient(to bottom right, #3224244a, #0202024d);
+    /* background-image: linear-gradient(to bottom right,#5444444a,#0202024d); old */
     border-radius: 10px;
 }
 /* Changed: */
@@ -15745,7 +15745,8 @@ h5 {
     background-color: #00000012;
     /* background-color: #293846; old */
     /* background-color: #30303085; old 2 */
-    box-shadow: 2px 2px 4px #090a0a;
+    box-shadow: 1px 1px 1px #090a0a;
+    /* box-shadow: 2px 2px 4px #090a0a; old */
     color: #fff;
     border-radius: 10px;
 }
@@ -15872,12 +15873,12 @@ h5 {
 }
 /* Changed: */
 ul.nav-second-level {
-    background-image: linear-gradient(#b9646414, #00000017);
-    /* background-image: linear-gradient(#b9646414, #3b393945); old */
+    background-image: linear-gradient(#c1878714, #00000017);
+    /* background-image: linear-gradient(#b9646414, #00000017); old */
 }
 /* Changed: */
 .nav > li.active {
-    border-left: 4px solid #a37878;
+    /* border-left: 4px solid #a37878; */
     /* border-left: 4px solid #19aa8d; old */
     /* background: #524646; */
     border-radius:10px;
@@ -16706,7 +16707,8 @@ fieldset[disabled] .btn-white:hover {
 .popover,
 .progress,
 .progress-bar {
-    box-shadow: 0px 0px 4px 1px #888888;
+    box-shadow: 1px 1px 2px 0px #888888;
+    /* box-shadow: 0px 0px 4px 1px #888888; old */
     /* box-shadow: none; Old */
 }
 .btn-outline {
@@ -17607,9 +17609,13 @@ div.dt-button-info {
     display: inline-block;
 }
 .header .form-control {
-    padding: 6px 6px;
+    padding: 1px 3px;
+    font-size: 14px;
+    /* old
+    padding: 6px 6px; 
     font-weight: 600;
     font-size: 13px;
+    */
 }
 .form-control:focus,
 .single-line:focus {
