@@ -559,6 +559,18 @@ button.searchdrivers, button.conversion-rate{
     border-top:none !important;
 }
 
+/* LOG EVIDENCE: */
+.col-md-2-timepicker .clock-timepicker-popup{
+		left:auto !important;
+		top:auto !important;
+}
+.modal-body-edit .row{
+    padding: 2px;
+}
+.monthlogs.btn.btn-primary{
+    white-space: normal;
+}
+
 /* *************************************************************************************** */
 /* *************************************************************************************** */
 
@@ -1018,6 +1030,11 @@ button.searchdrivers, button.conversion-rate{
     select{
         width:50%;
     }
+
+    /* Log evidence: */
+    .dp_content select {
+		width: auto !important;
+	}
 
 }
 /* ===================================== */
