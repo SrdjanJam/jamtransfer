@@ -1037,7 +1037,7 @@ define("ROUTE_ID","Route ID");
 define("VEHICLE_TYPE_ID","Vehicle Type ID");
 
 // 22.8.23 ==========================================================
-define("READY_FOR_SET_AS","Ready for set as");
+define("CLICK_FOR_SET_AS","Click for set as");
 
 // 24.8.23===========================================================
 define("GATEWAY","Gateway");
