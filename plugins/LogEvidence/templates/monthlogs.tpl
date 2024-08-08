@@ -1,63 +1,3 @@
-<script>
-
-function resize(){
-
-	if ($(window).width() < 760) {
-
-		$(".small").hide();
-		$(".small-mini").show();
-		$('.show-data').hide();
-
-		$('.days').click(function(){
-			
-			var selector = '#' + $(this).attr('id')+' .show-data';
-			
-			var grid = '#' + $(this).parent().attr('id');
-			var classes=($(grid).attr('class'));
-			var x =classes.search("fullscreen");
-			
-			if(x == -1){
-				$(grid).toggleClass('fullscreen');
-				$(selector).show();
-				$('.close-gi').show();
-				$(".small").show();
-				$(".small-mini").hide();
-
-			}
-
-		}); // </.days
-
-		$('.close-gi').click(function(){
-			var grid = '#' + $(this).parent().attr('id');
-			$(grid).toggleClass('fullscreen');
-			$('.show-data').hide();
-			$('.close-gi').hide();
-			$(".small").hide();
-			$(".small-mini").show();
-		});
-			
-	} // </if $(window).width() < 760
-	else{
-		$('.show-data').show();
-		$(".small").show();
-		$(".small-mini").hide();
-		$('.close-gi').hide();
-		$('.grid-item-2').removeClass('fullscreen');
-	}
-
-} // End of resize function
-
-
-// Call the ready function:
-$(document).ready(function(){
-	resize();
-	$(window).resize(resize);
-});
-
-		
-</script>
-
-
 <div class="grid-container">
 	<div class="grid-item" style="background:#FDB5B5">{$dayNames[0]}</div>
 	<div class="grid-item" style="background:#f2f2f2">{$dayNames[1]}</div>
@@ -106,7 +46,7 @@ $(document).ready(function(){
 									{* <br> *}
 						<small class="small-mini" style="display:none;">{NO_OF} <br>{$month_logs[pom].noOfLogs}</small>
 						{if $smarty.request.level_id==1}
-						<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#owh{$month_logs[pom].date}">
+						<button type="button" class="monthlogs btn btn-primary btn-primary-edit" data-toggle="modal" data-target="#owh{$month_logs[pom].date}">
 							Working Hours
 						</button>
 						<div class="modal fade"  id="owh{$month_logs[pom].date}">
@@ -118,7 +58,8 @@ $(document).ready(function(){
 										</button>
 										<h4 class="modal-title">Working Hours</h4>
 									</div>
-									<div class="modal-body" style="padding:10px">
+									<div class="modal-body modal-body-edit" style="padding:10px">
+									
 									{section name=pom3 loop=$office_users}
 										<div class="row">
 											<div class="col-md-4">
@@ -127,10 +68,10 @@ $(document).ready(function(){
 											<div class="col-md-2">
 												{$office_users[pom3].level}
 											</div>											
-											<div class="col-md-2">
+											<div class="col-md-2 col-md-2-timepicker">
 												<input class="timepicker timepicker-edit form-control" type='text' name='start' id='start' value=''/>
 											</div>											
-											<div class="col-md-2">
+											<div class="col-md-2 col-md-2-timepicker">
 												<input class="timepicker timepicker-edit form-control"  type='text' name='end' id='end' value=''/>
 											</div>											
 											<div class="col-md-2">
@@ -175,7 +116,74 @@ $(document).ready(function(){
 
 <script>
 {literal}
+
 	$(".mytooltip").popover({trigger:'hover', html:true, placement:'bottom'});
 
-{/literal}	
+	// timepicker:
+	$('.timepicker').clockTimePicker();
+
+{/literal}
+</script>
+
+
+<script>
+
+function resize(){
+
+	if ($(window).width() < 760) {
+
+		// $(".btn.btn-primary-edit").replaceWith("<button class='.btn-primary-edit'>WH</button>");
+		$(".monthlogs.btn.btn-primary-edit").text("WH");
+		$(".small").hide();
+		$(".small-mini").show();
+		$('.show-data').hide();
+
+		$('.days').click(function(){
+			
+			var selector = '#' + $(this).attr('id')+' .show-data';
+			
+			var grid = '#' + $(this).parent().attr('id');
+			var classes=($(grid).attr('class'));
+			var x =classes.search("fullscreen");
+			
+			if(x == -1){
+				$(grid).toggleClass('fullscreen');
+				$(selector).show();
+				$('.close-gi').show();
+				$(".small").show();
+				$(".small-mini").hide();
+
+			}
+
+		}); // </.days
+
+		$('.close-gi').click(function(){
+			var grid = '#' + $(this).parent().attr('id');
+			$(grid).toggleClass('fullscreen');
+			$('.show-data').hide();
+			$('.close-gi').hide();
+			$(".small").hide();
+			$(".small-mini").show();
+		});
+			
+	} // </if $(window).width() < 760
+	else{
+		$('.show-data').show();
+		$(".small").show();
+		$(".small-mini").hide();
+		$('.close-gi').hide();
+		$('.grid-item-2').removeClass('fullscreen');
+		$(".monthlogs.btn.btn-primary-edit").text("Working Hourse");
+	}
+
+} // End of resize function
+
+
+// Call the ready function:
+$(document).ready(function(){
+	resize();
+	$(window).resize(resize);
+});
+
+		
 </script>
