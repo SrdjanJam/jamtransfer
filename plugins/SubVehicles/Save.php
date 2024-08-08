@@ -14,10 +14,24 @@ foreach ($db->fieldNames() as $name) {
 }	
 if ($keyName != '' and $keyValue != '') {
 	$res = $db->saveRow();
+	$msg1="updated";
 }
 if ($keyName != '' and $keyValue == '') {
 	$db->setOwnerID($_SESSION['UseDriverID']);
 	$_REQUEST['VehicleID'] = $db->saveAsNew();
+	$msg1="insert";
 }
+if ($_SESSION['AuthLevelID']==31) {
+	$mailto="jam.bgprogrameri@gmail.com";
+	$from_mail="cms@jamtransfer.com";
+	$from_name="System mail";
+	$replyto="";
+	$subject="Driver insert or update vehicle";
+	$attachment = '';
+	$whatsapp = 0;
+	$message=$_SESSION['AuthUserID']."-".$_SESSION['UserRealName']." ".$msg1." vehicle ".$_REQUEST['VehicleID'];
+	mail_html_send($mailto, $from_mail, $from_name, $replyto, $subject, $message, $attachment, $whatsapp);
+}	
 echo $_REQUEST['VehicleID'];
+
 
