@@ -1069,6 +1069,46 @@ function receiveMails($email,$pass,$range) {
     poziva: cms/dc.php, cms/a/sendUpdateEmail.php
 */
 
+function phoneCall($phone,$message) {
+	$key = "fa404096-f934-440f-b294-bced97af6768";
+	$secret = "JFctbNvHUU+gdUzBtWgnbA==";
+	$to = $phone;
+	//$fromNumber = "+447520652398";
+	$fromNumber = "+447441421833";
+	$locale = "en-US";
+	$payload = [
+	  "method" => "ttsCallout",
+	  "ttsCallout" => [
+		"cli" => $fromNumber,
+		"destination" => [
+		  "type" => "number",
+		  "endpoint" => $to
+		],
+		"locale" => $locale,
+		"text" => $message
+	  ]
+	];
+	$curl = curl_init();
+	curl_setopt_array($curl, [
+	  CURLOPT_HTTPHEADER => [
+		"Content-Type: application/json",
+		"Authorization: Basic " . base64_encode($key . ":" . $secret)
+	  ],
+	  CURLOPT_POSTFIELDS => json_encode($payload),
+	  CURLOPT_URL => "https://calling.api.sinch.com/calling/v1/callouts",
+	  CURLOPT_RETURNTRANSFER => true,
+	  CURLOPT_CUSTOMREQUEST => "POST",
+	]);
+	$response = curl_exec($curl);
+	$error = curl_error($curl);
+	curl_close($curl);
+	if ($error) {
+	  echo "cURL Error #:" . $error;
+	} else {
+	  echo $response;
+	}
+}
+
 function printReservation( $OrderID, $profile, $d, $m) {
     require ROOT .  '/LoadLanguage.php';
 ?>
@@ -5083,7 +5123,8 @@ function saveLog($UserID,$type) {
 		$lu->setLongitude($_REQUEST['longitude']);
 		$lu->setPlace($label);
 		$au->getRow($UserID);
-		if ($au->getAuthLevelID()==91) $lu->setType($type+2);
+		$levels=array(41,43,44,91,92,99);
+		if (in_array($au->getAuthLevelID(),$levels)) $lu->setType($type+2);
 		else $lu->setType($type);
 		$lu->setSessionID(session_id());
 		$id=$lu->saveAsNew();

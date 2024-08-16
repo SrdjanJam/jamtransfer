@@ -9,27 +9,27 @@
 		
 		<div class="col-md-12">
 
-			<div class="col-md-1">
+			<div class="col-xs-3 col-md-1">
 				<?=VEHICLEID;?>
 			</div>
 
-			<div class="col-md-2">
+			<div class="col-xs-9 col-md-2">
 				<?=VEHICLEDESCRIPTION;?>
 			</div>	
 
-			<div class="col-md-2">
+			<div class="col-xs-12 col-md-3 col-lg-2">
 				<?=VEHICLETYPEID;?>
 			</div>			
 			
-			<div class="col-md-1">
+			<div class="col-xs-3 col-md-1">
 				<?=VEHICLECAPACITY;?>
 			</div>
 
-			<div class="col-md-1">
+			<div class="col-xs-3 col-md-1">
 				<?=ACTIVE;?>
 			</div>
 
-			<div class="col-md-1">
+			<div class="col-xs-3 col-md-1">
 				<?=DELETE;?>
 			</div>
 
@@ -52,7 +52,7 @@
 		</div>
 	</div>
 	<? } ?>
-	<div class="col-md-12 newone">
+	<div class="row newone">
 		<div class="col-md-1">
 			<button id="newone" class="btn btn-primary btn-xs btn-xs-edit"><i class="fa fa-plus" aria-hidden="true"></i></button>
 		</div>	
@@ -68,45 +68,45 @@
 
 				<!-- VehicleID hidden -->
 
-				<div class="col-md-12">
+				<div class="col-md-12 editrow">
 
-					<div class="col-md-1 col-xs-3">
+					<div class="col-xs-3 col-md-1">
 						<input type="text"  name="VehicleID" class="VehicleID form-control" value="{{VehicleID}}" readonly>
 					</div>
 
 					<!-- VEHICLEDESCRIPTION -->
-					<div class="col-md-2">
+					<div class="col-xs-9 col-md-2">
 						<input type="text" name="VehicleDescription" id="VehicleDescription" class="w100 form-control" value="{{VehicleDescription}}" placeholder="New vehicle">
 					</div>
 
 					<!-- VEHICLETYPEID -->
-					<div class="col-md-2">
+					<div class="col-xs-12 col-md-3 col-lg-2">
 						{{ vehicleTypeSelect VehicleTypeID 'VehicleTypeID'}}	
 					</div>					
 					
 					<!-- VEHICLECAPACITY -->
-					<div class="col-md-1 col-xs-4">
+					<div class="col-xs-3 col-md-1">
 						<input type="text" name="VehicleCapacity" id="VehicleCapacity"  class="w100 form-control" value="{{VehicleCapacity}}">
 					</div>
 
 					<!-- ACTIVE -->
-					<div class="col-md-1 col-xs-6">
+					<div class="col-xs-3 col-md-1">
 						{{ yesNoSliderEdit Active 'Active'}}					
 					</div>
 
-					<div class="col-md-1 col-xs-2">
+					<div class="col-xs-3 col-md-1">
 						<button type="button" class="b-delete" data-id="{{VehicleID}}" style="color:red;" title="delete">
 							<i class="fas fa-trash-alt"></i>
 						</button>
 					</div>
 					<? if (!PARTNERLOG) { ?>
 						<!-- Expenses: -->
-					<div class="col-md-1 col-xs-6">
+					<div class="col-xs-6 col-md-1">
 						<span><a target='_blank' href='expenses/vehicles/{{VehicleID}}'><?=EXPENSES;?></a></span>
 					</div>				
 					
 					<!-- Tasks: -->
-					<div class="col-md-1 col-xs-6">
+					<div class="col-xs-6 col-md-1">
 						<span><a target='_blank' href='tasks/vehicles/{{VehicleID}}'><?=TASKS;?></a></span>
 					</div>		
 
@@ -116,7 +116,7 @@
 					</div>
 					
 					<!-- Paralel Tasks: -->
-					<div class="col-md-1 col-xs-6">
+					<div class=" col-xs-6 col-md-1">
 						<span><a target='_blank' href='tasks/paralelTasks/{{VehicleID}}/109'>Paralel</a></span>
 					</div>						
 					<? } ?>
@@ -133,7 +133,7 @@
 		$("#newone").click(function(){
 			location.reload();	
 		});
-		$('input, select').change(function(){
+		$('.editrow input, .edit row select').change(function(){
 			var base=window.rootbase;
 			// Doesn't work:
 			//if (window.location.host=='localhost') base=base+'/jamtransfer';

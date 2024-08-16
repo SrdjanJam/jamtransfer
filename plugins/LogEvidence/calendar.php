@@ -3,9 +3,8 @@
 	AJAX Script !!!!
 */
 require_once "../../config.php";
-
 if ($_REQUEST["level_id"]==1) {
-	$levels=array(41,91);
+	$levels=array(41,43,44,91,92,99);
 	$levelsT=implode(",", $levels);
 	$where=" WHERE `AuthLevelID` in (".$levelsT.") AND Active=1";
 	require_once ROOT . '/db/v4_AuthUsers.class.php';
@@ -23,12 +22,30 @@ if ($_REQUEST["level_id"]==1) {
 		foreach ($auk as $nn => $key)
 		{
 			$row=array();
+			$row['id']=$key;
 			$row['name']=$users[$key]->AuthUserRealName;
 			$row['level']=$levelName[$users[$key]->AuthLevelID];
 			$office_users[]=$row;
-			//$office_users[]=$users[$key]->AuthUserRealName;
 		}
 	}
+	require_once ROOT . '/db/v4_OfficeShift.class.php';
+	$os = new v4_OfficeShift();
+	require_once ROOT . '/db/v4_OfficeHours.class.php';
+	$oh=new v4_OfficeHours();	
+	$osk=$os->getKeysBy('ShiftName','','');
+	$office_shifts=array();
+	if (count($osk) != 0) {
+		foreach ($osk as $nn => $key)
+		{	
+			$os->getRow($key);
+			$row=array();
+			$row['id']=$key;
+			$row['name']=$os->getShiftName();
+			$row['begin']=substr($os->getBegin(),0,5);
+			$row['end']=substr($os->getEnd(),0,5);
+			$office_shifts[]=$row;
+		}
+	}	
 }	
 if ($_REQUEST["level_id"]==2) $levels=array(31);
 if ($_REQUEST["level_id"]==3) $levels=array(2);
@@ -89,14 +106,16 @@ $thismonth = getdate ($timestamp);
 $startday = $thismonth['wday'];
 for ($i=0; $i<($maxday+$startday); $i++) {
 		$fullDate = date("Y-m-d",mktime(0,0,0,$cMonth,($i - $startday + 1),$cYear));
-		$month_logs[]=monthLogs($fullDate,$rec,$i,$startday,$users);
+		$month_logs[]=monthLogs($fullDate,$rec,$i,$startday,$users,$office_users,$oh);
 }	
 $smarty->assign('office_users',$office_users);
+$smarty->assign('office_shifts',$office_shifts);
+$smarty->assign('date',$fullDate);
 $smarty->assign('month_logs',$month_logs);
 $smarty->assign('startday',$startday);
 $smarty->display('monthlogs.tpl');		
 
-function monthLogs($date,$rec,$count,$startday,$users)
+function monthLogs($date,$rec,$count,$startday,$users,$office_users,$oh)
 {
 	global $StatusDescription;
 	global $DriverConfStatus;
@@ -106,17 +125,33 @@ function monthLogs($date,$rec,$count,$startday,$users)
 	$noOfLogs = 0;
 	$arr = array();
 
+	// uzimanje smena
+	if ($_REQUEST["level_id"]==1) {
+		$where = " WHERE WorkDate='".$date."' ";
+		$ohk=$oh->getKeysBy('ID','',$where);
+		if (count($ohk)>0) {
+			foreach ($ohk as $key) {
+				$oh->getRow($key);
+				$begin_arr[$oh->getUserID()]=substr($oh->getBegin(),0,5);
+				$end_arr[$oh->getUserID()]=substr($oh->getEnd(),0,5);
+			}		
+		}	
+	}	
+
 	foreach ($rec as $row) { 
 		if (DateofDT($row['DateTime'])==$date && $row['Type']==1) {
 			if ((isset($_SESSION['UseDriverID']) && $users[$row['AuthUserID']]->DriverID==$_SESSION['UseDriverID']) ||
 			(!isset($_SESSION['UseDriverID']) && $users[$row['AuthUserID']]->DriverID==0)) {	
 				$noOfLogs += 1;
 				$row['Time']=TimeofDT($row['DateTime']);
+				if (isLate($row['AuthUserID'],$row['Time'],$begin_arr)) $row['TimeColor']="text-danger";
+				else $row['TimeColor']="";
 				$row['User']=$users[$row['AuthUserID']]->AuthUserRealName;
 				$row['TimeOff']="";
 				foreach ($rec as $row2) { 
-					if (DateofDT($row2['DateTime'])==$date && in_array($row2['Type'],array(2,4)) && $row2['AuthUserID']==$row['AuthUserID']) {
-						$row['TimeOff']="-".TimeofDT($row2['DateTime']);
+					if (DateofDT($row2['DateTime'])==$date && in_array($row2['Type'],array(2)) && $row2['AuthUserID']==$row['AuthUserID']) {
+						$row['TimeOff']=TimeofDT($row2['DateTime']);
+						if (isOnTime($row['AuthUserID'],$row['TimeOff'],$end_arr)) $row['TimeOffColor']="text-danger";
 					}
 				}
 				$arr[]= $row;
@@ -141,6 +176,15 @@ function DateofDT($datetime) {
 }
 function TimeofDT($datetime) {
 	$cdate=explode(" ",$datetime);
-	$cdate=$cdate[1];
+	$cdate=substr($cdate[1],0,5);
 	return $cdate;
 }	
+
+function IsLate($id,$time,$begin_arr) {
+	if ($time>$begin_arr[$id]) return true;
+	else return false;
+}
+function IsOnTime($id,$time,$end_arr) {
+	if ($time<$end_arr[$id]) return true;
+	else return false;
+}

@@ -49,7 +49,7 @@
 				{if $sdArray[pom].Transfers[pom2].UserLevelID eq '2'}
 					<i class='fa fa-user-secret'></i>
 						{if $sdArray[pom].Transfers[pom2].Image ne ""}
-							<img src='i/agents/{$sdArray[pom].Transfers[pom2].Image}'>	 
+							<img title='{$sdArray[pom].Transfers[pom2].AuthUserNote}' src='i/agents/{$sdArray[pom].Transfers[pom2].Image}'>	 
 						{else}	
 							<b>{$sdArray[pom].Transfers[pom2].AuthUserRealName}</b>			
 						{/if}

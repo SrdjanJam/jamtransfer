@@ -324,7 +324,7 @@
 
 							<!-- Page title and database: -->
 							<h2 style="display:inline-block;margin: 15px 0 0 12px;vertical-align: super;font-size: 20px;">
-								<span class="m-r-sm text-muted">{$title}  {$smarty.session.log_title}</span>
+								<span class="m-r-sm text-muted">{$title}</span>
 								{if $fieldsSettings eq 1}<span class="m-r-sm text-muted"> / Fields Settings</span>{/if}
 							</h2>
 
@@ -408,21 +408,19 @@
 
 							<div class="col-md-2 col-md-2-infoShow" id="infoShow"></div>
 
-								<div id="pageSelect" class=" pull-left pull-left-edit col-md-3"></div>
+								<div id="pageSelect" class=" pull-left pull-left-edit col-xs-12 col-md-3 col-lg-2"></div>
 							
 								{if not isset($pagelength)}{assign var="pagelength" value="10"}{/if}
 							
-								<div class="col-md-3" style="padding-bottom: 5px;">
+								<div class="col-xs-6 col-md-3 col-lg-2" style="padding-bottom: 5px;">
 									<i class="fa fa-eye edit-fa"></i>
-									<div class="form-group group-edit">
-										<select id="length" class="w75 form-control control-edit" style="width:50%;" onchange="allItems();">
-											<option value="5" {if $pagelength eq '5'} selected {/if}> 5 </option>
-											<option value="10" {if $pagelength eq '10'} selected {/if}> 10 </option>
-											<option value="20" {if $pagelength eq '20'} selected {/if}> 20 </option>
-											<option value="50" {if $pagelength eq '50'} selected {/if}> 50 </option>
-											<option value="100" {if $pagelength eq '100'} selected {/if}> 100 </option>
-										</select>
-									</div>
+									<select id="length" class="w75 form-control control-edit" style="width:50%;" onchange="allItems();">
+										<option value="5" {if $pagelength eq '5'} selected {/if}> 5 </option>
+										<option value="10" {if $pagelength eq '10'} selected {/if}> 10 </option>
+										<option value="20" {if $pagelength eq '20'} selected {/if}> 20 </option>
+										<option value="50" {if $pagelength eq '50'} selected {/if}> 50 </option>
+										<option value="100" {if $pagelength eq '100'} selected {/if}> 100 </option>
+									</select>
 								</div>
 							
 							{if $existNew}
@@ -430,19 +428,15 @@
 							{/if}		
 
 						{/if}
-						<div class="pull-right pull-right-edit col-md-2">
-							{$POWERED_BY} <strong><a href="https://taxicms.com/" target="_blank">{$TAXI_CMS}</a></strong>
-						</div>
-						
-						
 
 					</div> <!-- /.filter-wrapper --> 
-
 					<div class="backdrop"><div class="spiner"></div></div>
 
 				</div><!-- /.footer row -->
 				<!-- END OF FOOTER ================================================================================= -->
-
+				<div class="text-right">
+					{$POWERED_BY} <strong><a href="https://taxicms.com/" target="_blank">{$TAXI_CMS}</a></strong>
+				</div>
 			</div> <!-- End of page-wrapper -->
 
 		</div> <!-- End of wrapper -->

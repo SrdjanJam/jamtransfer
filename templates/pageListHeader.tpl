@@ -26,6 +26,7 @@
 <input type="hidden"  id="whereCondition" name="whereCondition" 
 value=" WHERE {$ItemID} > 0">
 
+<input type="hidden"  id="isNew" name="IsNew value="{$IsNew}">
 <input type="hidden"  id="routeID" name="routeID" value="{$RouteID}">
 <input type="hidden"  id="vehicleTypeID" name="vehicleTypeID" value="{$VehicleTypeID}">
 <input type="hidden"  id="vehicleID" name="vehicleID" value="{$VehicleID}">
@@ -47,7 +48,7 @@ value=" WHERE {$ItemID} > 0">
 	<div class="filter filter-one-edit">
 
 		{if isset($selecttype)}
-		<div class="col-md-2">
+		<div class="ol-xs-12 col-md-4 col-lg-2">
 			<i class="fa fa-list-ul edit-fa"></i>
 			<div class="form-group group-edit">
 			
@@ -61,7 +62,7 @@ value=" WHERE {$ItemID} > 0">
 		</div>
 		{/if}	
 		{if isset($selecttype2)}
-		<div class="col-md-2">
+		<div class="col-xs-12 col-md-4 col-lg-2">
 			<i class="fa fa-list-ul edit-fa"></i>
 			<div class="form-group group-edit">
 			
@@ -75,7 +76,7 @@ value=" WHERE {$ItemID} > 0">
 		</div>
 		{/if}		
 		{if isset($selecttype3)}
-		<div class="col-md-2">
+		<div class="col-xs-12 col-md-4 col-lg-2">
 			<i class="fa fa-list-ul edit-fa"></i>
 			<div class="form-group group-edit">
 			
@@ -89,14 +90,14 @@ value=" WHERE {$ItemID} > 0">
 		</div>
 		{/if}
 
-		<div class="col-md-2">
+		<div class="col-xs-12 col-md-4 col-lg-2">
 			<i class="fa fa-text-width edit-fa"></i>
 			<div class="form-group group-edit">
 				<input type="text" id="Search" class=" w75 form-control control-edit" onchange="allItems();" placeholder="Text + Enter to Search">
 			</div>
 		</div>
 		{if $pageList ne 'Orders'}
-		<div class="col-md-2">
+		<div class="col-xs-12 col-md-4 col-lg-2">
 			<i class="fa fa-sort-amount-asc edit-fa"></i>
 			<div class="form-group group-edit">
 				<select name="sortOrder" id="sortOrder" onchange="allItems();" class="form-control control-edit">
@@ -107,7 +108,7 @@ value=" WHERE {$ItemID} > 0">
 		</div>	
 		{/if}	
 		{if isset($selectactive)}		
-		<div class="col-md-2">
+		<div class="col-xs-12 col-md-4 col-lg-2">
 			<i class="fa fa-filter edit-fa"></i> 
 			<div class="form-group group-edit">
 				<select name="Active" id="Active" onchange="allItems();" class="form-control control-edit">
@@ -121,7 +122,7 @@ value=" WHERE {$ItemID} > 0">
 		{/if}	
 		
 		{if isset($selectapproved)}		
-		<div class="col-md-2">
+		<div class="col-xs-12 col-md-4 col-lg-2">
 			<i class="fa fa-filter edit-fa"></i> 
 			<div class="form-group group-edit">
 				<select name="Approved" id="Approved" onchange="allItems();" class="form-control control-edit">
@@ -134,7 +135,7 @@ value=" WHERE {$ItemID} > 0">
 		{/if}
 		
 		{if isset($selectsolved)}		
-		<div class="col-md-2">
+		<div class="col-xs-12 col-md-4 col-lg-2">
 			<i class="fa fa-filter edit-fa"></i> 
 			<div class="form-group group-edit">
 				<select name="Approved" id="Approved" onchange="allItems();" class="form-control control-edit">

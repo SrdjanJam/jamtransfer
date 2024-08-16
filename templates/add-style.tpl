@@ -232,19 +232,12 @@
     border-bottom-right-radius: 5px;
 }
 .nav-label-edit{
-    font-size: 18px;
-    /* font-style: italic; Off */
-    /*text-shadow: 2px 2px 1px #101010;*/
-    /* text-shadow: 2px 2px 1px #494949; Old */
 	font-family: 'Font Awesome';
-	font-weight: 400;
 }
 .nav-label-edit-2{
-    font-size: 17px !important;
     /*font-style: italic;*/
     /*text-shadow: 2px 2px 1px #101010;*/
 	font-family: 'Font Awesome';
-	font-weight: 400;
 }
 #side-menu .edit-fa{ text-shadow: 3px 3px 2px #494949; }
 .nav.nav-second-level > li.active a{
@@ -633,7 +626,7 @@ button.searchdrivers, button.conversion-rate{
 
 }
 
-@media screen and (min-width: 1221px){
+@media screen and (min-width: 1356px){
 
     .filter{
 		display: block;
@@ -649,7 +642,7 @@ button.searchdrivers, button.conversion-rate{
 
 }
 
-@media screen and (max-width: 1220px){
+@media screen and (max-width: 1356px){
 
 .filter-wrapper{
         display: none;
@@ -867,8 +860,11 @@ button.searchdrivers, button.conversion-rate{
         width: fit-content;
 	}
 
-    #wrapp-button{
-		float:none !important;
+    #wrapp-button{		
+		float:left;
+		@media only screen and (max-width: 1300px) {
+			float:none !important;
+		}		
 		margin:0 auto;
         width: fit-content;
 	}

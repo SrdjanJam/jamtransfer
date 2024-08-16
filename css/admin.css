@@ -1080,7 +1080,7 @@ html {
 }
 body {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 14px;
+    font-size: 5px;
     line-height: 1.42857143;
     color: #333;
     background-color: #fff;
@@ -2662,9 +2662,32 @@ output {
     line-height: 1.42857143;
     color: #555;
 }
+
+.form-control,
+.nav,
+.nav-label-edit,
+.footer,
+.fsize,
+div,button,option
+{
+	@media only screen and (min-width: 0px) {
+		font-size: 12px;
+	}						
+	@media only screen and (min-width: 1440px) {
+		font-size: 14.5px;
+	}	
+	@media only screen and (min-width: 1680px) {
+		font-size: 15px;
+	}	
+	@media only screen and (min-width: 1920px) {
+		font-size: 16px;
+	}
+
+}
 .form-control {
     display: block;
-    font-size: 14px;
+	
+
     line-height: 1.42857143;
     color: #555;
     background-color: #fff;

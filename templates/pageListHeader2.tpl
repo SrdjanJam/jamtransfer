@@ -75,27 +75,23 @@ value=" WHERE {$ItemID} > 0">
 
 
 <div class="row itemsheader itemsheader-edit">
-
-	<div id="wrapp-button">
-		<!-- Show-hide button: -->
-		<div id="filterToggle"><i class="fa fa-bars fa-bars-edit"></i></div>
-	</div>
-
-	<!-- Filter: -->
-	<div class="filter addedit">
-		<!-- Sorting: -->
-		{* Spare: *}
-		{* <div class="filterOlderAdd" style="padding:5px;float:left;margin-left:20px;"> *}
-
-			<!-- Sort by: -->
+	<div class="row"> 
+		<div class="col-md-2 col-lg-2" id="wrapp-button">
+			<!-- Show-hide button: -->
+			<div id="filterToggle"><i class="fa fa-bars fa-bars-edit"></i></div>
+		</div>
+		<div class="col-md-10 col-lg-10 filter addedit">
 			<div class="row">
-
-				<div class="col-sm-3">
+				<div class="col-xs-12 col-md-1 col-lg-1">
 					<b class="b-asd">{$SORT_BY}:</b>
+				</div>	
+				<div class="col-xs-12 col-md-2 col-lg-1">
 					<select id='sortField' class="select-top-edit" name='sortField' onchange="allItems();">
 						<option value="OrderDate">{$ORDER_DATE}</option>	
 						<option value="PickupDate">{$PICKUP_DATE}</option>		
-					</select>				
+					</select>	
+				</div>	
+				<div class="col-xs-12 col-md-2 col-lg-1">					
 					<select id='sortDirection' class="select-top-edit" name='sortDirection' onchange="allItems();">
 						<option value="ASC">{$ASC}</option>	
 						<option value="DESC">{$DESC}</option>		
@@ -104,8 +100,10 @@ value=" WHERE {$ItemID} > 0">
 				
 				{if not $PARTNERLOG}
 				<!-- Report By: -->
-				<div class="col-sm-3">
-					<b class="b-asd" style="margin-left:20px;">{$REPORT_BY}:</b>
+				<div class="col-md-1 col-lg-2">
+					<b class="b-asd">{$REPORT_BY}:</b>
+				</div>	
+				<div class="col-md-3 col-lg-2">
 					<select id='reportBy' class="select-top-edit" name='reportBy' onchange="allItems();">
 						{foreach from=$ReportBy item=label key=key}
 							<option value="{$key}" {if $data.key == $key} selected="selected" {/if}>{$label}</option>
@@ -113,8 +111,10 @@ value=" WHERE {$ItemID} > 0">
 					</select>
 				</div>
 				<!-- Filter By: -->	
-				<div class="col-sm-3">	
-					<b class="b-asd" style="margin-left:20px;">{$FILTER_BY}:</b>
+				<div class="col-md-1 col-lg-2">	
+					<b class="b-asd">{$FILTER_BY}:</b>
+				</div>	
+				<div class="col-md-2 col-lg-2">					
 					<select id='action' class="select-top-edit" name='action' onchange="allItems();">
 						{foreach from=$Action item=label key=key}
 							<option value="{$key}" {if $data.key == $key} selected="selected" {/if}>{$label}</option>
@@ -123,12 +123,11 @@ value=" WHERE {$ItemID} > 0">
 				</div>
 				{/if}
 			</div>
-
-		{* </div>	<!-- End of sorting -->	 *}
-		<br>
-
+		</div>
+	</div>	
+	<div class="row filter">
 		<!-- Client/Agent purchaser: -->
-		<div class="col-md-2 col-md-2-edit">
+		<div class="col-xs-6 col-md-2 col-md-2-edit col-lg-2">
 			<small class="badge blue text-black badge-edit">{$PURCHASER}</small><br>
 			{if $PARTNERLOG}
 			<input id='order' class="input-one" name='order'  placeholder="{$ORDERID}" onchange="allItems();"/><br>
@@ -146,7 +145,7 @@ value=" WHERE {$ItemID} > 0">
 		</div>
 
 		<!-- Transfer: -->
-		<div class="col-md-2 col-md-2-edit"> 
+		<div class="col-xs-6 col-md-2 col-md-2-edit col-lg-2"> 
 			<small class="badge blue text-black badge-edit">{$TRANSFER}</small><br>
 			<input id='locationName' class="input-one" name='locationName'  placeholder="{$LOCATION_NAME}" onchange="allItems();"/>
 			
@@ -159,7 +158,7 @@ value=" WHERE {$ItemID} > 0">
 		</div>
 
 		<!-- Driver: -->
-		<div class="col-md-2 col-md-2-edit">
+		<div class="col-xs-6 col-md-2 col-md-2-edit col-lg-2">
 			<small class="badge blue text-black badge-edit">{$PARTNER}</small><br>
 			{if not $PARTNERLOG}
 			<input id='driverName' class="input-one" name='driverName'  placeholder="{$NAME_ID}" onchange="allItems();"/><br>
@@ -177,7 +176,7 @@ value=" WHERE {$ItemID} > 0">
 		</div>
 
 		<!-- Passenger: -->
-		<div class="col-md-2 col-md-2-edit">
+		<div class="col-xs-6 col-md-2 col-md-2-edit col-lg-2">
 			<small class="badge blue text-black badge-edit">{$PASSENGER}</small><br>
 			<input id='passengerData' class="input-one" name='passengerData'  placeholder="{$PASSENGER_DATA}" onchange="allItems();"/>					
 			{if not $PARTNERLOG}
@@ -187,7 +186,7 @@ value=" WHERE {$ItemID} > 0">
 		</div>	
 
 		<!-- Payment: -->
-		<div class="col-md-2 col-md-2-edit"> 
+		<div class="col-xs-6 col-md-2 col-md-2-edit col-lg-2"> 
 			<small class="badge blue text-black badge-edit">{$PAYMENT}</small><br>
 			{if not $PARTNERLOG}
 			<input id='paymentNumber' class="input-one" name='paymentNumber'  placeholder="{$PAYMENT_INVOICE_NO}" onchange="allItems();"/>	
@@ -204,7 +203,7 @@ value=" WHERE {$ItemID} > 0">
 		</div>
 		
 		<!-- Order: -->
-		<div class="col-md-2 col-md-2-edit order-edit">
+		<div class="col-xs-6 col-md-2 col-md-2-edit order-edit col-lg-2">
 			<small class="badge blue text-black badge-edit">{$ORDER}</small><br>
 			{if not $PARTNERLOG}
 			<input id='order' class="input-one" name='order'  placeholder="{$ORDERID}" onchange="allItems();"/><br>			
@@ -212,7 +211,7 @@ value=" WHERE {$ItemID} > 0">
 				<option value='0'>{$ALL_YEARS}</option>
 			</select>
 			{/if}
-			<input id='orderFromDate' class="datepicker datepicker-edit" name='orderFromDate'  placeholder="{$FROM_DATE}" onchange="allItems();" /><br>
+			<input id='orderFromDate' class="datepicker datepicker-edit-2 datepicker-edit-2-small" name='orderFromDate'  placeholder="{$FROM_DATE}" onchange="allItems();" /><br>
 			{if not $PARTNERLOG}
 			<select id="Type" class="form-control select-top-edit addon" onchange="allItems();">
 				<option value="0">{$ALL} {$STATUS}</option>
@@ -223,13 +222,10 @@ value=" WHERE {$ItemID} > 0">
 				{/if}
 			</select>
 			{/if}
-			<input id='orderToDate' class="datepicker datepicker-edit" name='orderToDate'  placeholder="{$TRANSFERTODATE}" onchange="allItems();" /><br>
+			<input id='orderToDate' class="datepicker datepicker-edit-2 datepicker-edit-2-small" name='orderToDate'  placeholder="{$TRANSFERTODATE}" onchange="allItems();" /><br>
 		</div>		
-
-	</div> <!-- End of .filter -->
-
-
-</div> <!-- row itemsheader itemsheader-edit -->
+	</div>
+</div> <!-- End of .filter -->
 
 {* SCRIPT: *}
 <script>
@@ -249,10 +245,11 @@ value=" WHERE {$ItemID} > 0">
 	function resize(){
 		var filter = $('.filter');
 		var sirina = $(window).width();
-		if(sirina > 1551 && filter.is(':visible')){
+		if(sirina > 1365 && filter.is(':visible')){
 			filter.removeAttr('style');
 			$('#filterToggle').html('<i class="fa fa-bars fa-bars-edit"></i>Hide filters');
-		}if(sirina < 1550 && filter.is(':hidden')){
+		}
+		if(sirina < 1364 && filter.is(':hidden')){
 			$('#filterToggle').html('<i class="fa fa-bars fa-bars-edit"></i>Show filters');
 		}
 	}

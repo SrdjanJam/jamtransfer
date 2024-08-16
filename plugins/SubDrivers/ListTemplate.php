@@ -9,29 +9,29 @@
 	</div>				
 
 	<div class="row row-edit">
-		<div class="col-md-1">
+		<div class="col-xs-3 col-md-1">
 			<?=AUTHUSER_IMAGE;?>
 		</div>
 
-		<div class="col-md-1">
+		<div class="col-xs-3 col-md-1">
 			<?=ID;?>
 		</div>
 		
-		<div class="col-md-3">
+		<div class="col-xs-6 col-md-3">
 			<?=NAME;?>
 		</div>
 
-		<div class="col-md-1">
+		<div class="col-xs-6 col-md-2 col-lg-1">
 			<i class="fa fa-envelope"></i>
 			<?=EMAIL;?>
 		</div>
 
-		<div class="col-md-1">
+		<div class="col-xs-6 col-md-2 col-lg-1">
 			<i class="fa fa-phone"></i>
 			<?=PHONE;?>
 		</div>
 
-		<div class="col-md-1">
+		<div class="col-xs-3 col-md-1">
 			<?=ACTIVE;?>
 		</div>
 				
@@ -67,18 +67,18 @@
 			id="user_{{AuthUserID}}">
 
 				<!-- AUTHUSER_IMAGE: -->
-				<div class="col-md-1 col-xs-3">
+				<div class="col-xs-3 col-md-1">
 					<img src="api/showProfileImage.php?UserID={{AuthUserID}}" 
 						style="max-height:60px; max-width:60px;" 
 						class="img-thumbnail">
 				</div>
 
 				<!-- AUTHUSER_ID -->
-				<div class="col-md-1 col-xs-3">
+				<div class="col-xs-3 col-md-1">
 					{{AuthUserID}}
 				</div>
 				
-				<div class="col-md-3 col-xs-3">
+				<div class="col-xs-6 col-md-3 flow-text">
 					<strong>
 						{{#compare AuthUserRealName "!==" ""}}
 							{{AuthUserRealName}}
@@ -89,24 +89,22 @@
 				</div>
 
 				<!-- EMAIL -->
-				<div class="col-md-1 col-xs-3">
-					<small>{{AuthUserMail}}</small>
+				<div class="col-xs-6 col-md-2 col-lg-1">
+					{{AuthUserMail}}
 				</div>
 
 				<!-- PHONE -->
-				<div class="col-md-1 col-xs-3">
-				<small>
+				<div class="col-xs-6 col-md-2 col-lg-1">
 					{{#if AuthUserMob}}
 						{{AuthUserMob}}
 					{{else}}	
 						{{EmergencyPhone}}
 					{{/if}}						
-				</small>
 				</div>
 
 				
 				<!-- Active: -->
-				<div class="col-md-1 col-xs-3">
+				<div class="col-xs-3 col-md-1">
 					{{#compare Active "==" 1}}
 						<i class="fa fa-circle text-green"></i>
 					{{/compare}}
