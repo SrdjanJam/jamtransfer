@@ -8,6 +8,7 @@ Class v4_OfficeHours {
 	public $WorkDate; //date
 	public $Begin; //time
 	public $End; //time
+	public $Status; //time
 
 	public $connection;
 	
@@ -18,12 +19,13 @@ Class v4_OfficeHours {
 		return $this->connection->real_escape_string($string);
 	}
 
-	public function New_v4_LogUser($ID,$UserID,$WorkDate,$Begin,$End){
+	public function New_v4_LogUser($ID,$UserID,$WorkDate,$Begin,$End,$Status){
 		$this->ID = $ID;
 		$this->UserID = $UserID;
 		$this->WorkDate = $WorkDate;
 		$this->Begin = $Begin;
 		$this->End = $End;
+		$this->Status = $Status;
 	}
 
 	public function fieldValues(){
@@ -32,13 +34,14 @@ Class v4_OfficeHours {
 			'UserID' => $this->getUserID(),
 			'WorkDate' => $this->getWorkDate(),
 			'Begin' => $this->getBegin(),
-			'End' => $this->getEnd()
+			'End' => $this->getEnd(),
+			'Status' => $this->getStatus()
 			);
 		return $fieldValues;
 	}
 
 	public function fieldNames(){
-		$fieldNames = array('ID','UserID','WorkDate','Begin','End');
+		$fieldNames = array('ID','UserID','WorkDate','Begin','End','Status');
 		return $fieldNames;
 	}
 	
@@ -51,6 +54,7 @@ Class v4_OfficeHours {
 			$this->WorkDate = $row["WorkDate"];
 			$this->Begin = $row["Begin"];
 			$this->End = $row["End"];
+			$this->Status = $row["Status"];
 		}
 	}
 
@@ -64,19 +68,21 @@ Class v4_OfficeHours {
 		UserID = '".$this->myreal_escape_string($this->UserID)."', 
 		WorkDate = '".$this->myreal_escape_string($this->WorkDate)."', 
 		Begin = '".$this->myreal_escape_string($this->Begin)."', 
-		End = '".$this->myreal_escape_string($this->End)."' WHERE ID = '".$this->ID."'");
+		End = '".$this->myreal_escape_string($this->End)."',
+		Status = '".$this->myreal_escape_string($this->Status)."' WHERE ID = '".$this->ID."'");
 
 		return $result;
 
 	}
 
 	public function saveAsNew(){
-		$this->connection->RunQuery("INSERT INTO v4_OfficeHours (UserID, WorkDate, Begin, End)
+		$this->connection->RunQuery("INSERT INTO v4_OfficeHours (UserID, WorkDate, Begin, End, Status)
 		values (
 			'".$this->myreal_escape_string($this->UserID)."', 
 			'".$this->myreal_escape_string($this->WorkDate)."', 
 			'".$this->myreal_escape_string($this->Begin)."', 
-			'".$this->myreal_escape_string($this->End)."'
+			'".$this->myreal_escape_string($this->End)."',
+			'".$this->myreal_escape_string($this->Status)."'
 			)");
 
 		return $this->connection->insert_id(); //return insert_id 
@@ -111,6 +117,10 @@ Class v4_OfficeHours {
 	
 	public function getEnd(){
 		return $this->End;
+	}	
+	
+	public function getStatus(){
+		return $this->Status;
 	}
 
 
@@ -129,6 +139,9 @@ Class v4_OfficeHours {
 	}	
 	public function setEnd($End){
 		$this->End = $End;
+	}	
+	public function setStatus($Status){
+		$this->Status = $Status;
 	}	
 
 	public function v4_OfficeHours(){
