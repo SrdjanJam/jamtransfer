@@ -252,7 +252,7 @@ if ($r->num_rows>0) {
 			}
 			// hvatanje notifikacije
 			$ntk = $nt->getKeysBy('NotificationID', 'asc' , ' WHERE 
-				SubDriverID= '.$d->AuthUserID.' AND DateToSend = "'.$DateFrom.'" AND NotificationType=1');
+				UserID= '.$d->AuthUserID.' AND DateToSend = "'.$DateFrom.'" AND NotificationType=1');
 			$row['TimeToSend']="";
 			$row['NotificationID']=0;			
 			if (count($ntk)>0) {

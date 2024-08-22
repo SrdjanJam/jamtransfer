@@ -324,7 +324,7 @@
 
 							<!-- Page title and database: -->
 							<h2 style="display:inline-block;margin: 15px 0 0 12px;vertical-align: super;font-size: 20px;">
-								<span class="m-r-sm text-muted">{$title}</span>
+								<span class="m-r-sm text-muted">{$title}  {$smarty.session.log_title}</span>
 								{if $fieldsSettings eq 1}<span class="m-r-sm text-muted"> / Fields Settings</span>{/if}
 							</h2>
 
@@ -712,7 +712,56 @@
 	}); // End of document.ready
 
 
+	// enable this if you want to make only one call and not repeated calls automatically
+	// pushNotify();
 
+	// following makes an AJAX call to PHP to get notification every 10 secs
+	//first push
+	pushNotify();
+	setInterval(function() { pushNotify(); }, 60000);
+
+	function pushNotify() {
+		if (!("Notification" in window)) {
+			// checking if the user's browser supports web push Notification
+			alert("Web browser does not support desktop notification");
+		}
+		if (Notification.permission !== "granted")
+			Notification.requestPermission();
+		else {
+			var url="plugins/push-notify.php?userid="+{/literal}{$smarty.session.AuthUserID}{literal};
+			console.log(url);
+			$.ajax({
+				url: url,
+				type: "GET",
+				success: function(data, textStatus, jqXHR) {
+					// if PHP call returns data process it and show notification
+					// if nothing returns then it means no notification available for now
+					if ($.trim(data)) {
+						var data = jQuery.parseJSON(data);
+						notification = createNotification(data.title, data.icon, data.body, data.url);
+						// closes the web browser notification automatically after 5 secs
+						setTimeout(function() {
+							notification.close();
+						}, 10000);
+					}
+				},
+				error: function(jqXHR, textStatus, errorThrown) { }
+			});
+		}
+	};
+
+	function createNotification(title, icon, body, url) {
+		var notification = new Notification(title, {
+			icon: icon,
+			body: body,
+		});
+		// url that needs to be opened on clicking the notification
+		// finally everything boils down to click and visits right
+		notification.onclick = function() {
+			window.open(url);
+		};
+		return notification;
+	}
 
 </script>
 

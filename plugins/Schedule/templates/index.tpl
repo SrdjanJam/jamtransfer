@@ -244,6 +244,11 @@ hr {
 				<div class="col-sm-2">
 					<button type="submit" class="btn btn-primary btn-primary-edit">{$SHOW_SCHEDULE}</button>
 				</div>
+				<div class="col-sm-2">
+					<button type="button" class="btn btn-primary btn-primary-edit workingtime" data-date="{$DateFrom}" data-userid="{$smarty.session.UseDriverID}">
+						{$SET_WT}
+					</button>
+				</div>
 			</form> <!-- /form -->
 
 		</div> <!-- /.filter -->
@@ -346,7 +351,7 @@ $('.readytime').change(function(){
 	var sdid = $(this).attr('data-sdid');
 	var nid = $(this).attr('data-nid');
 	var url = "plugins/Schedule/readyTime.php";
-	var param = "TimeToSend="+ReadyTime+"&DateToSend="+ReadyDate+"&SubDriverID="+sdid+"&NotificationID="+nid;
+	var param = "TimeToSend="+ReadyTime+"&DateToSend="+ReadyDate+"&UserID="+sdid+"&NotificationID="+nid;
 	console.log(url+'?'+param);
 	$.ajax({
 		url: url,
@@ -359,4 +364,19 @@ $('.readytime').change(function(){
 	})	
 })
 
+$('.workingtime').click(function(){
+	var date=$(this).attr('data-date');
+	var userid=$(this).attr('data-userid');
+	var url="plugins/LogEvidence/makeDriversShift.php";
+	var param = "DriverID="+userid+"&Date="+date;
+	console.log(url+'?'+param);
+	$.ajax({
+		url: url,
+		type: "POST",
+		data: param,
+		success: function (data) {
+			toastr['success'](window.success);	
+		}
+	})		
+})
 </script>

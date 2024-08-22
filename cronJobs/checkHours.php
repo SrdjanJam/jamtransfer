@@ -7,8 +7,12 @@ $DB_PASSWORD="~5%OuH{etSL)";
 $DB_NAME="jamtrans_touradria";
 require_once $root . '/db/v4_OfficeHours.class.php';
 require_once $root . '/db/v4_LogUser.class.php';
+require_once $root . '/db/v4_CoInfo.class.php';
+require_once $root . '/db/v4_AuthUsers.class.php';
+
 $oh=new v4_OfficeHours();
 $lu=new v4_LogUser();
+$au=new v4_AuthUsers();
 date_default_timezone_set('Europe/Paris');
 $where= " WHERE WorkDate='".date("Y-m-d",time())." '";	
 $ohk=$oh->getKeysBy("ID","",$where);
@@ -24,16 +28,18 @@ if (count($ohk)>0) {
 		$luk=$lu->getKeysBy("ID","",$where1);
 		if (count($luk)==0) {
 			if ($begin<date('H:i:s',time())) {
+				$au->getRow($userid);
 				//echo $users[$userid]->AuthUserRealName;
 				switch ($oh->getStatus()) {
 					case 0:
-						$phone1=$users[$userid]->AuthUserMob;
+						$phone1=$au->getAuthUserMob();
 						send_whatsapp_message($phone1,$message1);
 						$oh->setStatus(1);
 						break;					
 					case 1:
-						$phone2="+381669236911";
-						$message2.="<br>".$users[$userid]->AuthUserRealName;
+						if ($au->getAuthLevelID()!=32) $phone2="+381669236911";
+						else $phone2="+381646597200";
+						$message2.="<br>".$au->getAuthUserRealName();
 						$message2.="<br>Confirm receipt at: https://wis.jamtransfer.com/plugins/LogEvidence/confirmReceipt.php?id=".$key;
 						send_whatsapp_message($phone2,$message2);
 						$oh->setStatus(2);
@@ -44,7 +50,15 @@ if (count($ohk)>0) {
 						send_whatsapp_message($phone3,$message3);
 						//phoneCall($phone3,$message3);
 						$oh->setStatus(4);
-						break;
+						break;					
+					case 4:
+						if ($au->getAuthLevelID()==32) {
+							$phone4="+385915375842";
+							$message2.="<br>".$au->getAuthUserRealName();
+							send_whatsapp_message($phone4,$message2);
+							$oh->setStatus(5);
+							break;
+						}
 				}
 				$oh->saveRow();		
 			}	

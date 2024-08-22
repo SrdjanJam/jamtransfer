@@ -5134,3 +5134,17 @@ function saveLog($UserID,$type) {
 
 }	
 
+function createNotification($userID,$message,$url) {
+	global $db;
+	require_once ROOT . '/db/v4_Notifications.class.php';
+	date_default_timezone_set('Paris/Europe');
+	$nt=new v4_Notifications;
+	$nt->setUserID($userID);
+	$nt->setDateToSend(date('Y-m-d'),time());
+	$nt->setTimeToSend(date('H:i:s'),time());
+	$nt->setMessage($message);
+	$nt->setUrl($url);
+	$nt->setNotificationType(5);
+	$nt->saveAsNew();
+}
+

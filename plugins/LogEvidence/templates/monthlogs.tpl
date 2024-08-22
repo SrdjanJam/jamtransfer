@@ -47,7 +47,7 @@
 											
 									{* <br> *}
 						<small class="small-mini" style="display:none;">{NO_OF} <br>{$month_logs[pom].noOfLogs}</small>
-						{if $smarty.request.level_id==1}
+						{if $smarty.request.level_id==1 or isset($smarty.session.UseDriverID)}
 						<button type="button" class="monthlogs btn btn-primary btn-primary-edit" data-toggle="modal" data-target="#owh{$month_logs[pom].date}"
 						data-date="{$month_logs[pom].date}">
 							Working Hours 
@@ -81,6 +81,7 @@
 												<input type='hidden' name='userid' class='userid' id='userid' value='{$office_users[pom3].id}'/>
 												<input type='hidden' name='date' class='date' id='date' value='{$month_logs[pom].date}'/>
 											</div>
+											{if !isset($smarty.session.UseDriverID)}
 											<div class="col-md-2">
 												<select class="shift form-control" name="shift" id="shift">
 													<option value="0"
@@ -98,6 +99,7 @@
 													{/section}
 												</select>
 											</div>
+											{/if}
 											<div class="col-md-1">
 												<i class="delete fa fa-trash" aria-hidden="true"
 													data-date="{$month_logs[pom].date}"

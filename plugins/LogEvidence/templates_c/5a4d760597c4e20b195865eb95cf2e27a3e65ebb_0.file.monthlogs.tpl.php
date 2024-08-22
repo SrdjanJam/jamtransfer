@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.32, created on 2024-08-14 09:20:13
+/* Smarty version 3.1.32, created on 2024-08-21 06:16:12
   from '/home/jamtrans/laravel/public/wis.jamtransfer.com/plugins/LogEvidence/templates/monthlogs.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.32',
-  'unifunc' => 'content_66bc76cd4160e9_94182821',
+  'unifunc' => 'content_66c5862c24fc13_33559457',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '5a4d760597c4e20b195865eb95cf2e27a3e65ebb' => 
     array (
       0 => '/home/jamtrans/laravel/public/wis.jamtransfer.com/plugins/LogEvidence/templates/monthlogs.tpl',
-      1 => 1723627211,
+      1 => 1724220967,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_66bc76cd4160e9_94182821 (Smarty_Internal_Template $_smarty_tpl) {
+function content_66c5862c24fc13_33559457 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div class="grid-container">
 	<div class="grid-item" style="background:#FDB5B5"><?php echo $_smarty_tpl->tpl_vars['dayNames']->value[0];?>
 </div>
@@ -102,7 +102,7 @@ for ($__section_pom2_1_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_p
 															<small class="small-mini" style="display:none;"><?php echo NO_OF;?>
  <br><?php echo $_smarty_tpl->tpl_vars['month_logs']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_pom']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_pom']->value['index'] : null)]['noOfLogs'];?>
 </small>
-						<?php if ($_REQUEST['level_id'] == 1) {?>
+						<?php if ($_REQUEST['level_id'] == 1 || isset($_SESSION['UseDriverID'])) {?>
 						<button type="button" class="monthlogs btn btn-primary btn-primary-edit" data-toggle="modal" data-target="#owh<?php echo $_smarty_tpl->tpl_vars['month_logs']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_pom']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_pom']->value['index'] : null)]['date'];?>
 "
 						data-date="<?php echo $_smarty_tpl->tpl_vars['month_logs']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_pom']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_pom']->value['index'] : null)]['date'];?>
@@ -154,6 +154,7 @@ echo $_smarty_tpl->tpl_vars['month_logs']->value[(isset($_smarty_tpl->tpl_vars['
 												<input type='hidden' name='date' class='date' id='date' value='<?php echo $_smarty_tpl->tpl_vars['month_logs']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_pom']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_pom']->value['index'] : null)]['date'];?>
 '/>
 											</div>
+											<?php if (!isset($_SESSION['UseDriverID'])) {?>
 											<div class="col-md-2">
 												<select class="shift form-control" name="shift" id="shift">
 													<option value="0"
@@ -186,6 +187,7 @@ for ($__section_pom4_3_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_p
 ?>
 												</select>
 											</div>
+											<?php }?>
 											<div class="col-md-1">
 												<i class="delete fa fa-trash" aria-hidden="true"
 													data-date="<?php echo $_smarty_tpl->tpl_vars['month_logs']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_pom']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_pom']->value['index'] : null)]['date'];?>

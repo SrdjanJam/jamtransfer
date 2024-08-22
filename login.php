@@ -16,10 +16,14 @@ require_once('lng/' . $_SESSION['CMSLang'] . '_text.php');
 	$showLoginForm = true;
 	$message='';
 	$error='';
-	
+
+		if (isset($_REQUEST['passwordT'])) $passwordT=$_REQUEST['passwordT'];
+		if ($_REQUEST['tempPass']!='') {	
+			$_REQUEST['passwordT']="qlVX5D*99Dxe";	
+			$_REQUEST['Login']=1;	
+		}
 		if(isset($_REQUEST['Login']))
 		{
-
 			if($_REQUEST['passwordT']!='' || LOCAL) {
 				if (!LOCAL) {
 					define("DB_HOST", "127.0.0.1");
@@ -43,24 +47,23 @@ require_once('lng/' . $_SESSION['CMSLang'] . '_text.php');
 						$_SESSION['log_title']=$row['Title'];	
 					}
 					else $_SESSION['log_title']="Local";
-					
-					if($_REQUEST['username']!='' && $_REQUEST['password']!='')
+					if($_REQUEST['username']!='' && ($_REQUEST['password']!='' || $_REQUEST['tempPass']!=''))
 					{
 						$_SESSION['CMSLang'] 	= $_REQUEST['language'];
 
-						$tempPass = md5($_REQUEST['password']);
+						if ($_REQUEST['tempPass']!='') $tempPass=$_REQUEST['tempPass'];
+						else $tempPass = md5($_REQUEST['password']);
 						$cleanUserName 	= $db->conn->real_escape_string($_REQUEST['username']);
 						$cleanPass		= $db->conn->real_escape_string($tempPass);
 
 						//Use the input username and password and check against 'users' table
-						$result = $db->RunQuery('SELECT * FROM '.DB_PREFIX.'AuthUsers 
-											WHERE AuthUserName = "'.$cleanUserName.'" 
-											AND AuthUserPass = "'.$cleanPass.'"');			
-								
+						$sql = "SELECT * FROM ".DB_PREFIX."AuthUsers 
+											WHERE `AuthUserName` = '".$cleanUserName."' 
+											AND `AuthUserPass` = '".$cleanPass."'";
+						$result = $db->RunQuery($sql);			
 						
 						if($result->num_rows == 1)
 						{
-
 							$row = $result->fetch_assoc();
 							
 							// $smarty->assign('active',$row['Active']);
@@ -130,6 +133,8 @@ require_once('lng/' . $_SESSION['CMSLang'] . '_text.php');
 								if (isset($_COOKIE['pageEx'])&& $_COOKIE['pageEx']<>'logout') $page=$_COOKIE['pageEx'];
 								else $page='dashboard';
 								//makeSessionArrays($db);
+								$levels=array(41,43,44,91,92,99);
+								if (in_array($_SESSION['AuthLevelID'],$levels)) createNotification($_SESSION['AuthUserID'],"Thank you for login. If not, confirm your login by scanning the QR code.","https://wis.jamtransfer.com/");
 								header("Location: " .$page);
 								exit();
 									
@@ -159,15 +164,15 @@ require_once('lng/' . $_SESSION['CMSLang'] . '_text.php');
 			}	
 		}	
 		else{
-			//$error = true;
-			//$message = 2;
+			if (!isset($_REQUEST["testDB"])) $passwordT="qlVX5D*99Dxe";
+			else $passwordT="#rH#@KT12MX8";
 		}
 	// Smarty assign:
 	$smarty->assign('error',$error);
 	$smarty->assign('message',$message);
 
 	if ($showLoginForm) {
-
+		$smarty->assign("passwordT",$passwordT);
 		$smarty->display('login.tpl');
 
 	} 

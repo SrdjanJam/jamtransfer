@@ -119,6 +119,9 @@
 			<a href='{$root_home}distribution/{$days[4]}'>
 				<i class="fa fa-arrow-right" aria-hidden="true"></i>		
 			</a>
+			<button type="button" class="btn btn-primary btn-primary-edit workingtime" data-date="{$DateFrom}" data-userid="{$smarty.session.UseDriverID}">
+				{$SET_WT}
+			</button>
 		</div> <!-- End of text-align: center -->
 
 		<div class="transfers">
@@ -222,6 +225,21 @@
 		
 		<script>
 		{literal}
+			$('.workingtime').click(function(){
+				var date=$(this).attr('data-date');
+				var userid=$(this).attr('data-userid');
+				var url="plugins/LogEvidence/makeDriversShift.php";
+				var param = "DriverID="+userid+"&Date="+date;
+				console.log(url+'?'+param);
+				$.ajax({
+					url: url,
+					type: "POST",
+					data: param,
+					success: function (data) {
+						toastr['success'](window.success);	
+					}
+				})		
+			})		
 			$("document").ready(function(){
 				hideDrivers();	
 			})

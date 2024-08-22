@@ -3,10 +3,12 @@
 	AJAX Script !!!!
 */
 require_once "../../config.php";
-if ($_REQUEST["level_id"]==1) {
-	$levels=array(41,43,44,91,92,99);
+if ($_REQUEST["level_id"]==1 || isset($_SESSION['UseDriverID'])) {
+	if ($_REQUEST["level_id"]==1) $levels=array(41,43,44,91,92,99);
+	if (isset($_SESSION['UseDriverID'])) $levels=array(32);
 	$levelsT=implode(",", $levels);
 	$where=" WHERE `AuthLevelID` in (".$levelsT.") AND Active=1";
+	if (isset($_SESSION['UseDriverID'])) $where.=" AND DriverID=".$_SESSION['UseDriverID'];
 	require_once ROOT . '/db/v4_AuthUsers.class.php';
 	require_once ROOT . '/db/v4_AuthLevels.class.php';
 	$au = new v4_AuthUsers();
@@ -49,8 +51,7 @@ if ($_REQUEST["level_id"]==1) {
 }	
 if ($_REQUEST["level_id"]==2) $levels=array(31);
 if ($_REQUEST["level_id"]==3) $levels=array(2);
-
-
+if (isset($_SESSION['UseDriverID'])) $levels=array(32);
 
 if (!isset($_REQUEST["cal_month"])) {
     if (!isset($_SESSION["cal_month"])) $cMonth = date("m");
@@ -126,7 +127,7 @@ function monthLogs($date,$rec,$count,$startday,$users,$office_users,$oh)
 	$arr = array();
 
 	// uzimanje smena
-	if ($_REQUEST["level_id"]==1) {
+	if ($_REQUEST["level_id"]==1 || isset($_SESSION['UseDriverID'])) {
 		$where = " WHERE WorkDate='".$date."' ";
 		$ohk=$oh->getKeysBy('ID','',$where);
 		if (count($ohk)>0) {
@@ -138,7 +139,7 @@ function monthLogs($date,$rec,$count,$startday,$users,$office_users,$oh)
 		}	
 	}	
 
-	foreach ($rec as $row) { 
+	foreach ($rec as $row) {		
 		if (DateofDT($row['DateTime'])==$date && $row['Type']==1) {
 			if ((isset($_SESSION['UseDriverID']) && $users[$row['AuthUserID']]->DriverID==$_SESSION['UseDriverID']) ||
 			(!isset($_SESSION['UseDriverID']) && $users[$row['AuthUserID']]->DriverID==0)) {	

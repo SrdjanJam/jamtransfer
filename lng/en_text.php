@@ -1106,3 +1106,5 @@ define("REQUEST","Request");
 
 //24.06.24
 define("FINISH_TRANSFER","Finish Transfer");
+//21.08.24
+define("SET_WT","Set working time");
