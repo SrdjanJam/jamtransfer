@@ -9,7 +9,7 @@
 	}
 
 	.select-top-edit.addon{
-		width:48%;
+		/* width:48%; */
 		display: inline;
 	}
 
@@ -61,6 +61,10 @@
 	}
 
 	.below-select{ width:100%; }
+
+	.row-filter-edit{
+		padding-top: 5px;
+	}
 
 </style>
 
@@ -125,7 +129,7 @@ value=" WHERE {$ItemID} > 0">
 			</div>
 		</div>
 	</div>	
-	<div class="row filter">
+	<div class="row filter row-filter-edit">
 		<!-- Client/Agent purchaser: -->
 		<div class="col-xs-6 col-md-2 col-md-2-edit col-lg-2">
 			<small class="badge blue text-black badge-edit">{$PURCHASER}</small><br>
