@@ -130,11 +130,11 @@ value=" WHERE {$ItemID} > 0">
 		<div class="col-xs-6 col-md-2 col-md-2-edit col-lg-2">
 			<small class="badge blue text-black badge-edit">{$PURCHASER}</small><br>
 			{if $PARTNERLOG}
-			<input id='order' class="input-one" name='order'  placeholder="{$ORDERID}" onchange="allItems();"/><br>
+				<input id='order' class="form-control input-one" name='order'  placeholder="{$ORDERID}" onchange="allItems();"/><br>
 			{/if}			
 			{if not $PARTNERLOG}
-				<input id='agentName' class="input-one" name='agentName'  placeholder="{$NAME_ID}" onchange="allItems();"/><br>				
-				<input id='agentOrder' class="input-one" name='agentOrder'  placeholder="{$ORDER_KEY_AGENT_ORDER}" onchange="allItems();"/><br>				
+				<input id='agentName' class="form-control input-one" name='agentName'  placeholder="{$NAME_ID}" onchange="allItems();"/><br>				
+				<input id='agentOrder' class="form-control input-one" name='agentOrder'  placeholder="{$ORDER_KEY_AGENT_ORDER}" onchange="allItems();"/><br>				
 				<select id="Type2" class="w75 form-control select-top-edit below-select" onchange="allItems();">
 					<option value="0">{$ALL} {$USERS}</option>
 					{section name=pom2 loop=$options2}
@@ -147,21 +147,25 @@ value=" WHERE {$ItemID} > 0">
 		<!-- Transfer: -->
 		<div class="col-xs-6 col-md-2 col-md-2-edit col-lg-2"> 
 			<small class="badge blue text-black badge-edit">{$TRANSFER}</small><br>
-			<input id='locationName' class="input-one" name='locationName'  placeholder="{$LOCATION_NAME}" onchange="allItems();"/>
-			
-				<input id='pickupFromDate' class="datepicker datepicker-edit-2 datepicker-edit-2-small" name='pickupFromDate'  placeholder="{$TRANSFERFROMDATE}" onchange="allItems();" style="width:100%;"/>
-				<!--<select id='yearsPickup' class="select-top-edit" name='yearsPickup' value='0' onchange="allItems();">
-					<option value='0'>All years</option>
-				</select>!-->
-				</br>
-				<input id='pickupToDate' class="datepicker datepicker-edit-2 datepicker-edit-2-small" name='pickupToDate'  placeholder="{$TRANSFERTODATE}" onchange="allItems();" style="width:100%;"/>				
+			<input id='locationName' class="form-control input-one" name='locationName'  placeholder="{$LOCATION_NAME}" onchange="allItems();"/>
+			<div class="row">
+				<div class="col-md-6 col-lg-6">
+					<input id='pickupFromDate' class="form-control datepicker datepicker-edit-2 datepicker-edit-2-small" name='pickupFromDate'  placeholder="{$TRANSFERFROMDATE}" onchange="allItems();" style="width:100%;"/>
+				</div>	
+				<div class="col-md-6 col-lg-6">
+					<input id='pickupToDate' class="form-control datepicker datepicker-edit-2 datepicker-edit-2-small" name='pickupToDate'  placeholder="{$TRANSFERTODATE}" onchange="allItems();" style="width:100%;"/>				
+				</div>	
+			</div>	
+			<!--<select id='yearsPickup' class="select-top-edit" name='yearsPickup' value='0' onchange="allItems();">
+				<option value='0'>All years</option>
+			</select>!-->
 		</div>
 
 		<!-- Driver: -->
 		<div class="col-xs-6 col-md-2 col-md-2-edit col-lg-2">
 			<small class="badge blue text-black badge-edit">{$PARTNER}</small><br>
 			{if not $PARTNERLOG}
-			<input id='driverName' class="input-one" name='driverName'  placeholder="{$NAME_ID}" onchange="allItems();"/><br>
+			<input id='driverName' class="form-control input-one" name='driverName'  placeholder="{$NAME_ID}" onchange="allItems();"/><br>
 			{/if}
 			<select id="DriverConfStatusChoose" class="w75 form-control select-top-edit below-select" onchange="allItems();">		
 				<option value="-1">{$ALL} {$STATUS}</option>
@@ -170,8 +174,14 @@ value=" WHERE {$ItemID} > 0">
 				{/section}
 			</select>
 			{if not $PARTNERLOG}
-				<input type="checkbox" id="longTerm" name="longTerm"  value="" onchange="allItems();" />Long term	
-				<input type="checkbox" id="preOrder" name="preOrder"  value="" onchange="allItems();" />Pre Order	
+			<div class="row">
+				<div class="col-md-6 col-lg-6">			
+					<input type="checkbox"  id="longTerm" name="longTerm"  value="" onchange="allItems();" /> Long term	
+				</div>	
+				<div class="col-md-6 col-lg-6">						
+					<input type="checkbox"  id="preOrder" name="preOrder"  value="" onchange="allItems();" /> Pre Order	
+				</div>	
+			</div>	
 			{/if}
 		</div>
 
@@ -180,8 +190,14 @@ value=" WHERE {$ItemID} > 0">
 			<small class="badge blue text-black badge-edit">{$PASSENGER}</small><br>
 			<input id='passengerData' class="input-one" name='passengerData'  placeholder="{$PASSENGER_DATA}" onchange="allItems();"/>					
 			{if not $PARTNERLOG}
-				<i class="fa fa-plane" style="color:#900"></i><input type="checkbox" id="flightTimeChecker" name="flightTimeChecker"  value="" onchange="allItems();" />{$FLIGHT_TIME_CHECKER}
-				<i class="fa fa-cubes" style="color:#900"></i><input type="checkbox" id="listExtras" name="listExtras"  value="" onchange="allItems();" />
+			<div class="row">
+				<div class="col-md-6 col-lg-6">				
+					<i class="fa fa-plane" style="color:#900"></i><input type="checkbox" id="flightTimeChecker" name="flightTimeChecker"  value="" onchange="allItems();" /> {$FLIGHT_TIME_CHECKER}
+				</div>	
+				<div class="col-md-6 col-lg-6">				
+					<i class="fa fa-cubes" style="color:#900"></i><input type="checkbox" id="listExtras" name="listExtras"  value="" onchange="allItems();" />
+				</div>	
+			</div>	
 			{/if}
 		</div>	
 
@@ -204,25 +220,42 @@ value=" WHERE {$ItemID} > 0">
 		
 		<!-- Order: -->
 		<div class="col-xs-6 col-md-2 col-md-2-edit order-edit col-lg-2">
-			<small class="badge blue text-black badge-edit">{$ORDER}</small><br>
+			<div class="row">
+				<div class="col-md-6 col-lg-6">		
+					<small class="badge blue text-black badge-edit">{$ORDER}</small>
+				</div>	
+				<div class="col-md-6 col-lg-6">	
+				<input id='order' class="form-control input-one" name='order'  placeholder="{$ORDERID}" onchange="allItems();"/><br>			
+				</div>	
+			</div>	
+
 			{if not $PARTNERLOG}
-			<input id='order' class="input-one" name='order'  placeholder="{$ORDERID}" onchange="allItems();"/><br>			
-			<select id='yearsOrder' class="form-control select-top-edit addon" name='yearsOrder' value='0' onchange="allItems();">
-				<option value='0'>{$ALL_YEARS}</option>
-			</select>
+			<div class="row">
+				<div class="col-md-6 col-lg-6">
+					<select id="Type" class="form-control select-top-edit addon" name="Type" value='0' onchange="allItems();">
+						<option value="0">{$ALL} {$STATUS}</option>
+						{if not $PARTNERLOG}
+						{section name=pom loop=$options}
+							<option value="{$options[pom].id}">{$options[pom].name}</option>
+						{/section}
+						{/if}
+					</select>				
+				</div>
+				<div class="col-md-6 col-lg-6">
+					<select id='yearsOrder' class="form-control select-top-edit addon" name='yearsOrder' onchange="allItems();">
+						<option value='0'>{$ALL_YEARS}</option>
+					</select>	
+				</div>
+			</div>
 			{/if}
-			<input id='orderFromDate' class="datepicker datepicker-edit-2 datepicker-edit-2-small" name='orderFromDate'  placeholder="{$FROM_DATE}" onchange="allItems();" /><br>
-			{if not $PARTNERLOG}
-			<select id="Type" class="form-control select-top-edit addon" onchange="allItems();">
-				<option value="0">{$ALL} {$STATUS}</option>
-				{if not $PARTNERLOG}
-				{section name=pom loop=$options}
-					<option value="{$options[pom].id}">{$options[pom].name}</option>
-				{/section}
-				{/if}
-			</select>
-			{/if}
-			<input id='orderToDate' class="datepicker datepicker-edit-2 datepicker-edit-2-small" name='orderToDate'  placeholder="{$TRANSFERTODATE}" onchange="allItems();" /><br>
+			<div class="row">
+				<div class="col-md-6 col-lg-6">
+					<input id='orderFromDate' class="form-control datepicker datepicker-edit-2 datepicker-edit-2-small" name='orderFromDate'  placeholder="{$FROM_DATE}" onchange="allItems();" /><br>			
+				</div>
+				<div class="col-md-6 col-lg-6">
+					<input id='orderToDate' class="form-control datepicker datepicker-edit-2 datepicker-edit-2-small" name='orderToDate'  placeholder="{$TRANSFERTODATE}" onchange="allItems();" /><br>
+				</div>	
+			</div>	
 		</div>		
 	</div>
 </div> <!-- End of .filter -->

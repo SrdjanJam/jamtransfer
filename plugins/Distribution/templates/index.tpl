@@ -119,7 +119,7 @@
 			<a href='{$root_home}distribution/{$days[4]}'>
 				<i class="fa fa-arrow-right" aria-hidden="true"></i>		
 			</a>
-			<button type="button" class="btn btn-primary btn-primary-edit workingtime" data-date="{$DateFrom}" data-userid="{$smarty.session.UseDriverID}">
+			<button type="button" class="btn btn-primary btn-primary-edit workingtime" data-date="{$smarty.request.Date}" data-userid="{$smarty.session.UseDriverID}">
 				{$SET_WT}
 			</button>
 		</div> <!-- End of text-align: center -->

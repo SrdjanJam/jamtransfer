@@ -13,7 +13,7 @@ if (isset($_REQUEST['Date']) && isset($_REQUEST['DriverID'])) {
 	$au=new v4_AuthUsers();
 	$pl=new v4_Places();
 	date_default_timezone_set('Europe/Paris');
-	$where= " WHERE DriverID=".$_REQUEST['DriverID']." AND TransferStatus not in (3,6) AND PickupDate='".date('Y-m-d',time())."' and subdriver>0";
+	$where= " WHERE DriverID=".$_REQUEST['DriverID']." AND TransferStatus not in (3,6) AND PickupDate='".$_REQUEST['Date']."' and subdriver>0";
 	$odk=$od->getKeysBy("DetailsID","",$where);
 	if (count($odk)>0) {
 		$begin=array();
@@ -40,12 +40,10 @@ if (isset($_REQUEST['Date']) && isset($_REQUEST['DriverID'])) {
 		foreach ($begin as $key=>$b) {
 			$au->getRow($key);	
 			if ($au->getIBAN()>0) {
-				echo $au->getIBAN();
 				$pl->getRow($au->getIBAN());
 				$sdplace=$pl->getPlaceNameEN();
 				$sdLat=$pl->getLatitude();
 				$sdLng=$pl->getLongitude();
-				echo $b['PickupID'];
 				$pl->getRow($b['PickupID']);
 				$rplace=$pl->getPlaceNameEN();
 				$rLat=$pl->getLatitude();
@@ -82,7 +80,7 @@ if (isset($_REQUEST['Date']) && isset($_REQUEST['DriverID'])) {
 				$ohk=$oh->getKeysBy("ID","",$where);
 				if (count($ohk)==1) $oh->getRow($ohk[0]);
 				$oh->setUserID($key);
-				$oh->setWorkDate(date('Y-m-d',time()));
+				$oh->setWorkDate($_REQUEST['Date']);
 				$oh->setBegin($timeB);
 				$oh->setEnd($timeE);
 				if (count($ohk)==1) $oh->saveRow();
