@@ -229,7 +229,7 @@ value=" WHERE {$ItemID} > 0">
 					<small class="badge blue text-black badge-edit">{$ORDER}</small>
 				</div>	
 				<div class="col-md-6 col-lg-6">	
-				<input id='order' class="form-control input-one" name='order'  placeholder="{$ORDERID}" onchange="allItems();"/><br>			
+				{if not $PARTNERLOG}<input id='order' class="form-control input-one" name='order'  placeholder="{$ORDERID}" onchange="allItems();"/>{/if}			
 				</div>	
 			</div>	
 
