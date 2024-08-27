@@ -215,7 +215,7 @@
 						<!-- PROFILE: -------------------------------------------------------------------------------- -->
 						<!-- Header in navbar - nav-header-top-edit -->
 						<li class="nav-header nav-header-top-edit">
-							<div class="dropdown profile-element" style="text-align:center;">
+							<div class="dropdown" style="text-align:center;">
 								<a data-toggle="dropdown" class="dropdown-toggle" href="#">
 								<span class="clear"> 
 								<span class="block m-t-xs">
@@ -324,7 +324,7 @@
 
 							<!-- Page title and database: -->
 							<h2 style="display:inline-block;margin: 15px 0 0 12px;vertical-align: super;font-size: 20px;">
-								<span class="m-r-sm text-muted">{$title}  {$smarty.session.log_title}</span>
+								<span class="m-r-sm text-muted">{$title}</span>
 								{if $fieldsSettings eq 1}<span class="m-r-sm text-muted"> / Fields Settings</span>{/if}
 							</h2>
 
@@ -394,42 +394,33 @@
 
 				{* FOOTER ===============================================================================================================*}
 				<div class="footer row footer-edit">
+					{if not $isNew and $pageList}
+						<!-- Show and Hide Filters buttons: -->
+						<div id="footer-filters">
+							<div id="filter-show" class="button-toggle"><i class="fa fa-bars fa-bars-edit"></i></div>
 
-					<!-- Show and Hide Filters buttons: -->
-					<div id="footer-filters">
-						<div id="filter-show" class="button-toggle"><i class="fa fa-bars fa-bars-edit"></i></div>
+						</div>
 
-					</div>
-
-					<!-- Filter -->
-					<div class="filter-wrapper">
-
-						{if not $isNew and $pageList}
-
+						<!-- Filter -->
+						<div class="filter-wrapper">
 							<div class="col-md-2 col-md-2-infoShow" id="infoShow"></div>
-
-								<div id="pageSelect" class=" pull-left pull-left-edit col-xs-12 col-md-3 col-lg-2"></div>
-							
-								{if not isset($pagelength)}{assign var="pagelength" value="10"}{/if}
-							
-								<div class="col-xs-6 col-md-3 col-lg-2" style="padding-bottom: 5px;">
-									<i class="fa fa-eye edit-fa"></i>
-									<select id="length" class="w75 form-control control-edit" style="width:50%;" onchange="allItems();">
-										<option value="5" {if $pagelength eq '5'} selected {/if}> 5 </option>
-										<option value="10" {if $pagelength eq '10'} selected {/if}> 10 </option>
-										<option value="20" {if $pagelength eq '20'} selected {/if}> 20 </option>
-										<option value="50" {if $pagelength eq '50'} selected {/if}> 50 </option>
-										<option value="100" {if $pagelength eq '100'} selected {/if}> 100 </option>
-									</select>
-								</div>
-							
+							<div id="pageSelect" class=" pull-left pull-left-edit col-xs-12 col-md-3 col-lg-2"></div>
+							{if not isset($pagelength)}{assign var="pagelength" value="10"}{/if}
+							<div class="col-xs-6 col-md-3 col-lg-2" style="padding-bottom: 5px;">
+								<i class="fa fa-eye edit-fa"></i>
+								<select id="length" class="w75 form-control control-edit" style="width:50%;" onchange="allItems();">
+									<option value="5" {if $pagelength eq '5'} selected {/if}> 5 </option>
+									<option value="10" {if $pagelength eq '10'} selected {/if}> 10 </option>
+									<option value="20" {if $pagelength eq '20'} selected {/if}> 20 </option>
+									<option value="50" {if $pagelength eq '50'} selected {/if}> 50 </option>
+									<option value="100" {if $pagelength eq '100'} selected {/if}> 100 </option>
+								</select>
+							</div>
 							{if $existNew}
 								<div class="col-md-1"><a class="btn btn-primary btn-xs btn-xs-edit" href="{$currenturl}/new"><i class="fa fa-plus" aria-hidden="true"></i></a></div>
 							{/if}		
-
-						{/if}
-
-					</div> <!-- /.filter-wrapper --> 
+						</div> <!-- /.filter-wrapper --> 
+					{/if}	
 					<div class="backdrop"><div class="spiner"></div></div>
 
 				</div><!-- /.footer row -->
