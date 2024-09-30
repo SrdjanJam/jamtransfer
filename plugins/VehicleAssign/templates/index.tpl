@@ -132,7 +132,7 @@
 					{if $vehicles[pom1].SubDriver eq 0}
 						<div class="dropzoneN" data-id='0'>
 							<div class="dropelement" data-sort="{$vehicles[pom1].VehicleCapacity}" data-id="{$vehicles[pom1].VehicleID}">
-								{$vehicles[pom1].VehicleDescription} / <i class="fa fa-user"></i>{$vehicles[pom1].VehicleCapacity}
+								{$vehicles[pom1].VehicleDescription}-{$vehicles[pom1].Year} / <i class="fa fa-user"></i>{$vehicles[pom1].VehicleCapacity} 
 							</div>
 						</div>
 					{/if}

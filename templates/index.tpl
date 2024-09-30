@@ -757,3 +757,31 @@
 </script>
 
 {/literal}
+</script>
+{/literal}
+{if $smarty.session.AuthLevelID eq 32}
+<script>
+	geolocation();
+	setTimeout(function(){		
+		window.location.reload(1);	
+		geolocation();
+	}, 300000);
+	function geolocation () {
+		var WEBSITEURL = 'https://' + $(location).attr('host');
+		if(navigator.geolocation){
+			navigator.geolocation.getCurrentPosition(function(position) {
+				var lat = position.coords.latitude;
+				var lng = position.coords.longitude;
+				var url= WEBSITEURL + '/plugins/SubDriverPanel/geoLocation.php?lat='+lat+'&lng='+lng;
+				console.log(url);
+				$.ajax({
+					url: url,
+					async: false,
+					success: function(data){
+					}
+				});
+			})		
+		}
+	}
+</script>
+{/if}

@@ -22,7 +22,8 @@ if ($keyName != '' and $keyValue == '') {
 	$msg1="insert";
 }
 if ($_SESSION['AuthLevelID']==31) {
-	$mailto="jam.bgprogrameri@gmail.com";
+	$mailto1="jam.bgprogrameri@gmail.com";
+	$mailto2="jam.ivan.markicevic@gmail.com";
 	$from_mail="cms@jamtransfer.com";
 	$from_name="System mail";
 	$replyto="";
@@ -30,7 +31,8 @@ if ($_SESSION['AuthLevelID']==31) {
 	$attachment = '';
 	$whatsapp = 0;
 	$message=$_SESSION['AuthUserID']."-".$_SESSION['UserRealName']." ".$msg1." vehicle ".$_REQUEST['VehicleID'];
-	mail_html_send($mailto, $from_mail, $from_name, $replyto, $subject, $message, $attachment, $whatsapp);
+	mail_html_send($mailto1, $from_mail, $from_name, $replyto, $subject, $message, $attachment, $whatsapp);
+	mail_html_send($mailto2, $from_mail, $from_name, $replyto, $subject, $message, $attachment, $whatsapp);
 }	
 echo $_REQUEST['VehicleID'];
 

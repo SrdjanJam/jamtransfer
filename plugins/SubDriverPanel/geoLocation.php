@@ -6,7 +6,7 @@
 	else $userID=0;	
 	if (!isset($_REQUEST['lat'])) $_REQUEST['lat']=1;
 	if (!isset($_REQUEST['lng'])) $_REQUEST['lng']=1;	
-	$device='ph/web';
+	$device='wis/web';
 	
 	$key='5b3ce3597851110001cf6248ec7fafd8eca44e0ca5590caf093aa7cb';
 	$json = file_get_contents('https://api.openrouteservice.org/geocode/reverse?api_key='.$key.'&point.lon='.$_REQUEST['lng'].'&point.lat='.$_REQUEST['lat']);   

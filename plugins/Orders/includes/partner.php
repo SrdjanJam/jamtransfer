@@ -127,7 +127,7 @@
 			<div class="row">
 				<div class="col-md-3 "><label>Confirmation link</label></div>
 				<div class="col-md-6 driver" id="confirlmLink">
-					<a href='https://<?= $_SERVER['SERVER_NAME'] ?>/cms/dc.php?
+					<a href='https://<?= $_SERVER['SERVER_NAME'] ?>/dc.php?
 						code={{details.DetailsID}}
 						&control={{master.MOrderKey}}
 						&id={{details.DriverID}}'

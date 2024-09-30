@@ -597,6 +597,14 @@ $DELETE_ROW = "Successful delete data";
 $USERS = "Users";
 $STATUS = "Staus";
 
+$PAX = "Pax No";
+$MOB = "Mobile phone";
+
+$VEHICLETYPEID = "Type";
+$VEHICLECAPACITY = "Max. passengers";
+$ONLINE = "Online";
+$CASH = "Cash";
+
 
 
 

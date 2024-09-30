@@ -140,7 +140,7 @@ function monthLogs($date,$rec,$count,$startday,$users,$office_users,$oh)
 	}	
 
 	foreach ($rec as $row) {		
-		if (DateofDT($row['DateTime'])==$date && $row['Type']==1) {
+		if (DateofDT($row['DateTime'])==$date && in_array($row['Type'],array(1,6))) {
 			if ((isset($_SESSION['UseDriverID']) && $users[$row['AuthUserID']]->DriverID==$_SESSION['UseDriverID']) ||
 			(!isset($_SESSION['UseDriverID']) && $users[$row['AuthUserID']]->DriverID==0)) {	
 				$noOfLogs += 1;
@@ -149,6 +149,8 @@ function monthLogs($date,$rec,$count,$startday,$users,$office_users,$oh)
 				else $row['TimeColor']="";
 				$row['User']=$users[$row['AuthUserID']]->AuthUserRealName;
 				$row['TimeOff']="";
+				if ($row['Type']==6) $row['CMScolor']="text-muted";
+				else $row['CMScolor']="";
 				foreach ($rec as $row2) { 
 					if (DateofDT($row2['DateTime'])==$date && in_array($row2['Type'],array(2)) && $row2['AuthUserID']==$row['AuthUserID']) {
 						$row['TimeOff']=TimeofDT($row2['DateTime']);

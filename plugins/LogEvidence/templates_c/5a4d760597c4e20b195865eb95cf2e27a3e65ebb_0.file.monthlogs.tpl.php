@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.32, created on 2024-08-21 06:16:12
+/* Smarty version 3.1.32, created on 2024-08-30 07:05:04
   from '/home/jamtrans/laravel/public/wis.jamtransfer.com/plugins/LogEvidence/templates/monthlogs.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.32',
-  'unifunc' => 'content_66c5862c24fc13_33559457',
+  'unifunc' => 'content_66d16f20709867_10646170',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '5a4d760597c4e20b195865eb95cf2e27a3e65ebb' => 
     array (
       0 => '/home/jamtrans/laravel/public/wis.jamtransfer.com/plugins/LogEvidence/templates/monthlogs.tpl',
-      1 => 1724220967,
+      1 => 1725001481,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_66c5862c24fc13_33559457 (Smarty_Internal_Template $_smarty_tpl) {
+function content_66d16f20709867_10646170 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div class="grid-container">
 	<div class="grid-item" style="background:#FDB5B5"><?php echo $_smarty_tpl->tpl_vars['dayNames']->value[0];?>
 </div>
@@ -83,7 +83,8 @@ for ($__section_pom2_1_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_p
 											<br>Location: <?php echo $_smarty_tpl->tpl_vars['month_logs']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_pom']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_pom']->value['index'] : null)]['logs'][(isset($_smarty_tpl->tpl_vars['__smarty_section_pom2']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_pom2']->value['index'] : null)]['Place'];?>
 
 										" 
-										class="mytooltip">
+										class="mytooltip <?php echo $_smarty_tpl->tpl_vars['month_logs']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_pom']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_pom']->value['index'] : null)]['logs'][(isset($_smarty_tpl->tpl_vars['__smarty_section_pom2']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_pom2']->value['index'] : null)]['CMScolor'];?>
+">
 											<?php echo $_smarty_tpl->tpl_vars['month_logs']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_pom']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_pom']->value['index'] : null)]['logs'][(isset($_smarty_tpl->tpl_vars['__smarty_section_pom2']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_pom2']->value['index'] : null)]['User'];?>
 
 									</a></small> 
@@ -93,7 +94,7 @@ for ($__section_pom2_1_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_p
 										<span class="<?php echo $_smarty_tpl->tpl_vars['month_logs']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_pom']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_pom']->value['index'] : null)]['logs'][(isset($_smarty_tpl->tpl_vars['__smarty_section_pom2']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_pom2']->value['index'] : null)]['TimeOffColor'];?>
 "><?php echo $_smarty_tpl->tpl_vars['month_logs']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_pom']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_pom']->value['index'] : null)]['logs'][(isset($_smarty_tpl->tpl_vars['__smarty_section_pom2']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_pom2']->value['index'] : null)]['TimeOff'];?>
 </span><br>					
-									
+										<hr>
 								<?php
 }
 }

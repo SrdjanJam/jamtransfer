@@ -19,10 +19,12 @@ $newID = '';
 if ($keyName != '' and $keyValue != '') {
 	$res = $db->saveRow();
 	$upd = 'Updated';
-	if($res !== true) $upd = $res;
+	if($res !== true) $upd = $res;	
 }
 if ($keyName != '' and $keyValue == '') {
 	$newID = $db->saveAsNew();
+	$message="You/your company have been entered into the WIS.JAMTRANSFER system. Your username and password will come soon. Login on https://wis.jamtransfer.com/.";
+	send_whatsapp_message($_REQUEST['AuthUserMob'],$message);		
 }
 $out = array(
 	'update' => $upd,

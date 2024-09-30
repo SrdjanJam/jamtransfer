@@ -16,6 +16,7 @@ Class v4_Modules {
 	public $Phase; 
 	public $Active;
 	public $IsDesc; //tinyint(1)
+	public $OnlyUsers; //tinyint(1)
 
 	public $connection;
 
@@ -43,12 +44,13 @@ Class v4_Modules {
 			'IsNew' => $this->getIsNew(),
 			'Phase' => $this->getPhase(),
 			'Active' => $this->getActive(),
-			'IsDesc' => $this->getIsDesc()
+			'IsDesc' => $this->getIsDesc(),
+			'OnlyUsers' => $this->getOnlyUsers()
 			);
 		return $fieldValues;
 	}
 	public function fieldNames(){
-		$fieldNames = array('ModulID','Name','Code','Base','ParentID','MenuOrder','Icon','Description','Help','IsNew','Phase','Active','IsDesc');
+		$fieldNames = array('ModulID','Name','Code','Base','ParentID','MenuOrder','Icon','Description','Help','IsNew','Phase','Active','IsDesc','OnlyUsers');
 		return $fieldNames;
 	}
 	
@@ -69,6 +71,7 @@ Class v4_Modules {
 			$this->Phase = $row["Phase"];
 			$this->Active = $row["Active"];
 			$this->IsDesc = $row["IsDesc"];
+			$this->OnlyUsers = $row["OnlyUsers"];
 		}
 	}
 
@@ -90,13 +93,13 @@ Help = '".$this->myreal_escape_string($this->Help)."',
 IsNew = '".$this->myreal_escape_string($this->IsNew)."',
 Phase = '".$this->myreal_escape_string($this->Phase)."',
 IsDesc = '".$this->myreal_escape_string($this->IsDesc)."',
+OnlyUsers = '".$this->myreal_escape_string($this->OnlyUsers)."',
 Active = '".$this->myreal_escape_string($this->Active)."' WHERE ModulID = '".$this->ModulID."'");
 	return $result; 
 }
 
 	public function saveAsNew(){
-		$this->connection->RunQuery("INSERT INTO v4_Modules_en (ModulID, Name, Code, Base, ParentID, MenuOrder, Icon, Description, Help, IsNew, Phase, Active, IsDesc) values ('".$this->myreal_escape_string($this->ModulID)."', '".$this->myreal_escape_string($this->Name)."', '".$this->myreal_escape_string($this->Code)."', '".$this->myreal_escape_string($this->Base)."', '".$this->myreal_escape_string($this->ParentID)."', '".$this->myreal_escape_string($this->MenuOrder)."','".$this->myreal_escape_string($this->Icon)."','".$this->myreal_escape_string($this->Description)."','".$this->myreal_escape_string($this->Help)."','".$this->myreal_escape_string($this->IsNew)."','".$this->myreal_escape_string($this->Phase)."','".$this->myreal_escape_string($this->Active)."','".$this->myreal_escape_string($this->IsDesc)."')");
-		$this->connection->RunQuery("INSERT INTO v4_Modules_fr (ModulID, Name, Code, Base, ParentID, MenuOrder, Icon, Description, Help, IsNew, Phase, Active, IsDesc) values ('".$this->myreal_escape_string($this->ModulID)."', '".$this->myreal_escape_string($this->Name)."', '".$this->myreal_escape_string($this->Code)."', '".$this->myreal_escape_string($this->Base)."', '".$this->myreal_escape_string($this->ParentID)."', '".$this->myreal_escape_string($this->MenuOrder)."','".$this->myreal_escape_string($this->Icon)."','".$this->myreal_escape_string($this->Description)."','".$this->myreal_escape_string($this->Help)."','".$this->myreal_escape_string($this->IsNew)."','".$this->myreal_escape_string($this->Phase)."','".$this->myreal_escape_string($this->Active)."','".$this->myreal_escape_string($this->IsDesc)."')");
+		$this->connection->RunQuery("INSERT INTO v4_Modules_en (ModulID, Name, Code, Base, ParentID, MenuOrder, Icon, Description, Help, IsNew, Phase, Active, IsDesc, OnlyUsers) values ('".$this->myreal_escape_string($this->ModulID)."', '".$this->myreal_escape_string($this->Name)."', '".$this->myreal_escape_string($this->Code)."', '".$this->myreal_escape_string($this->Base)."', '".$this->myreal_escape_string($this->ParentID)."', '".$this->myreal_escape_string($this->MenuOrder)."','".$this->myreal_escape_string($this->Icon)."','".$this->myreal_escape_string($this->Description)."','".$this->myreal_escape_string($this->Help)."','".$this->myreal_escape_string($this->IsNew)."','".$this->myreal_escape_string($this->Phase)."','".$this->myreal_escape_string($this->Active)."','".$this->myreal_escape_string($this->IsDesc)."','".$this->myreal_escape_string($this->OnlyUsers)."')");
 		return $this->connection->insert_id(); //return insert_id 
 	}
 	public function getKeysBy($column, $order, $where = NULL){
@@ -148,6 +151,9 @@ Active = '".$this->myreal_escape_string($this->Active)."' WHERE ModulID = '".$th
 	}
 	public function getIsDesc(){
 		return $this->IsDesc;
+	}	
+	public function getOnlyUsers(){
+		return $this->OnlyUsers;
 	}
 	
 	public function setModulID($ModulID){
@@ -188,6 +194,9 @@ Active = '".$this->myreal_escape_string($this->Active)."' WHERE ModulID = '".$th
 	}
 	public function setIsDesc($IsDesc){
 		$this->IsDesc = $IsDesc;
+	}	
+	public function setOnlyUsers($OnlyUsers){
+		$this->OnlyUsers = $OnlyUsers;
 	}
 
 	public function endv4_Modules(){

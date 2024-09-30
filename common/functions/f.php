@@ -176,9 +176,9 @@ function sendDriverNotification($OrderID, $OrderKey='') {
     foreach($k as $nn => $id) {
         $od->getRow($id);
 
-        $link = '<a href="https://' . $_SERVER['SERVER_NAME'] . '/cms/dc.php?code='.$od->getDetailsID() .
+        $link = '<a href="https://' . $_SERVER['SERVER_NAME'] . '/dc.php?code='.$od->getDetailsID() .
                 '&control='.$orderKey.'&id='.$od->getDriverID().'">
-				https://cms.jamtransfer.com/cms/dc.php?code='.ltrim($od->getDetailsID()).'&control='.$orderKey.'&id='.ltrim($DriverID).
+				https://wis.jamtransfer.com/dc.php?code='.ltrim($od->getDetailsID()).'&control='.$orderKey.'&id='.ltrim($DriverID).
                 //$od->getOrderID().'-'.$od->getTNo() .
                 '</a>';
         $message .= $link . '<br>';
@@ -207,7 +207,7 @@ function sendDriverMessage($DetailsID) {
 	foreach($k as $nn => $id) {
 		$od->getRow($id);
 		$om->getRow($od->getOrderID());
-		$link = ' https://cms.jamtransfer.com/cms/dc.php?code='.ltrim($od->getDetailsID()).'&control='.$om->getMOrderKey().'&id='.ltrim($od->getDriverID());
+		$link = ' https://wis.jamtransfer.com/dc.php?code='.ltrim($od->getDetailsID()).'&control='.$om->getMOrderKey().'&id='.ltrim($od->getDriverID());
 		$message .= $link . ' ';
 	}
 	$message .= THANK_YOU . '!';
@@ -1110,7 +1110,7 @@ function phoneCall($phone,$message) {
 }
 
 function printReservation( $OrderID, $profile, $d, $m) {
-    require ROOT .  '/LoadLanguage.php';
+    require ROOT .  '/lng/var-en.php';
 ?>
     <table width="100%" style="table-layout:fixed">
         <col width="200px">
@@ -1161,7 +1161,7 @@ function printReservation( $OrderID, $profile, $d, $m) {
             <td><?= $d->FlightTime  ?></td>
         </tr>
         <tr>
-            <td><?= $PAX?>:</td>
+            <td><?= $PAX ?>:</td>
             <td><?= $d->PaxNo  ?></td>
         </tr>
         <tr>
@@ -1212,21 +1212,6 @@ function printReservation( $OrderID, $profile, $d, $m) {
             <td>
 
             <?
-    #                   $ExtraServices  = $d->ExtraServices ;
-    #                   $ExtraSubtotals = $d->ExtraSubtotals ;
-    #                   $ExtraItems     = $d->ExtraItems ;
-    #
-    #                   foreach($ExtraServices as $rbr => $value) {
-    #                       if($ExtraSubtotals[$rbr] > 0) {
-    #                           echo '<div class="col-md-4">' . $ExtraItems[$rbr] . ' ';
-    #                           echo $value . '</div> ';
-    #
-    #                           echo '<div class="col-md-8">' . $ExtraSubtotals[$rbr] . ' ' . s('Currency')  . '</div>';
-    #                       }
-    #
-    #                   }
-
-    #                   echo '---';
 
             require_once ROOT . '/db/v4_OrderExtras.class.php';
             $ox = new v4_OrderExtras();
@@ -5095,6 +5080,9 @@ function saveLog($UserID,$type) {
 	$lu=new v4_LogUser();
 	$au=new v4_AuthUsers();
 	$typeD=$type+2;
+	$whereD=" WHERE `AuthUserID`=".$UserID." AND `Type`=2 AND DATE(`DateTime`)=CURDATE() ";
+	$lukD=$lu->getKeysBy("ID", "ASC", $whereD);	
+	if (count($lukD)==1) $lu->deleteRow($lukD[0]);
 	$where=" WHERE `AuthUserID`=".$UserID." AND `Type` in (".$type.",".$typeD.") AND DATE(`DateTime`)=CURDATE() ";
 	$luk=$lu->getKeysBy("ID", "ASC", $where);
 	if (count($luk)==0) {

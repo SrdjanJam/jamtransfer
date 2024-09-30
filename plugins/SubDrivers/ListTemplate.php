@@ -78,7 +78,7 @@
 					{{AuthUserID}}
 				</div>
 				
-				<div class="col-xs-6 col-md-3 flow-text">
+				<div class="col-xs-6 col-md-2 col-lg-2 flow-text">
 					<strong>
 						{{#compare AuthUserRealName "!==" ""}}
 							{{AuthUserRealName}}
@@ -89,7 +89,7 @@
 				</div>
 
 				<!-- EMAIL -->
-				<div class="col-xs-6 col-md-2 col-lg-1">
+				<div class="col-xs-6 col-md-2 col-lg-2">
 					{{AuthUserMail}}
 				</div>
 

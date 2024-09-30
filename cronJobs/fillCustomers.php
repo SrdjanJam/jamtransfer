@@ -59,7 +59,7 @@ while ($k = $r->fetch_object()) {
 			$cs->getRow($keys[0]);
 			$cs->setOrdersCount($k->cnt);
 			$cs->setOrdersValue($k->value);
-			$cs->setCustType($type);
+			$cs->setLevelID($type);
 			$cs->saveRow();
 		} 
 		else {
@@ -69,7 +69,7 @@ while ($k = $r->fetch_object()) {
 			$cs->setCustLastName($k->MPaxLastName);
 			$cs->setCustEmail($k->MPaxEmail);
 			$cs->setCustMobile($k->MPaxTel);
-			$cs->setCustType($type);			
+			$cs->setLevelID($type);			
 			$cs->saveAsNew();
 		}	
 	}

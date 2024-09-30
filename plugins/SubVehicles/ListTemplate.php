@@ -15,14 +15,14 @@
 
 			<div class="col-xs-9 col-md-2">
 				<?=VEHICLEDESCRIPTION;?>
-			</div>	
-
-			<div class="col-xs-12 col-md-3 col-lg-2">
-				<?=VEHICLETYPEID;?>
+			</div>				
+					
+			<div class="col-xs-3 col-md-1">
+				<?=VEHICLECAPACITY;?>
 			</div>			
 			
 			<div class="col-xs-3 col-md-1">
-				<?=VEHICLECAPACITY;?>
+				<?=YEAR;?>
 			</div>
 
 			<div class="col-xs-3 col-md-1">
@@ -33,6 +33,10 @@
 				<?=DELETE;?>
 			</div>
 
+			<div class="col-xs-12 col-md-3 col-lg-1">
+				<?=VEHICLETYPEID;?>
+			</div>
+			
 			<div class="col-md-1">
 				<?=EXPENSES;?>
 			</div>		
@@ -76,17 +80,17 @@
 
 					<!-- VEHICLEDESCRIPTION -->
 					<div class="col-xs-9 col-md-2">
-						<input type="text" name="VehicleDescription" id="VehicleDescription" class="w100 form-control" value="{{VehicleDescription}}" placeholder="New vehicle">
+						<input type="text" name="VehicleDescription" id="VehicleDescription" class="w100 form-control" value="{{VehicleDescription}}" placeholder="Insert Vehicle brand&type">
 					</div>
-
-					<!-- VEHICLETYPEID -->
-					<div class="col-xs-12 col-md-3 col-lg-2">
-						{{ vehicleTypeSelect VehicleTypeID 'VehicleTypeID'}}	
-					</div>					
 					
 					<!-- VEHICLECAPACITY -->
 					<div class="col-xs-3 col-md-1">
-						<input type="text" name="VehicleCapacity" id="VehicleCapacity"  class="w100 form-control" value="{{VehicleCapacity}}">
+						<input type="text" name="VehicleCapacity" id="VehicleCapacity"  class="w100 form-control" value="{{VehicleCapacity}}" placeholder="Max.pax">
+					</div>					
+					
+					<!-- YEAR -->
+					<div class="col-xs-3 col-md-1">
+						<input type="text" name="Year" id="Year"  class="w100 form-control" value="{{Year}}" placeholder="Year">
 					</div>
 
 					<!-- ACTIVE -->
@@ -100,6 +104,10 @@
 						</button>
 					</div>
 					<? if (!PARTNERLOG) { ?>
+					<!-- VEHICLETYPEID -->
+					<div class="col-xs-12 col-md-3 col-lg-1">
+						{{ vehicleTypeSelect VehicleTypeID 'VehicleTypeID'}}	
+					</div>						
 						<!-- Expenses: -->
 					<div class="col-xs-6 col-md-1">
 						<span><a target='_blank' href='expenses/vehicles/{{VehicleID}}'><?=EXPENSES;?></a></span>

@@ -29,18 +29,18 @@
 								{* Second Section *}
 								{section name=pom2 loop=$month_logs[pom].logs}
 
-									<small><a href=""
+									<small><a target="_blank" href="https://wis.jamtransfer.com/satAsDriver/{$month_logs[pom].logs[pom2].AuthUserID}"
 										title="<b>{$month_logs[pom].logs[pom2].User}</b>" 
 										data-content="
 											<br/>Time: {$month_logs[pom].logs[pom2].Time}-{$month_logs[pom].logs[pom2].TimeOff}
 											<br>Location: {$month_logs[pom].logs[pom2].Place}
 										" 
-										class="mytooltip">
+										class="mytooltip {$month_logs[pom].logs[pom2].CMScolor}">
 											{$month_logs[pom].logs[pom2].User}
 									</a></small> 
 										<span class="{$month_logs[pom].logs[pom2].TimeColor}">{$month_logs[pom].logs[pom2].Time}</span>-
 										<span class="{$month_logs[pom].logs[pom2].TimeOffColor}">{$month_logs[pom].logs[pom2].TimeOff}</span><br>					
-									
+										<hr>
 								{/section} {* / Second Section *}
 							</small>
 						</div> {* / show-date *}

@@ -23,7 +23,7 @@ if (isset($_REQUEST['order_key'])) {
 			}	
 			$message="Hello! We have new transfers for you. Please Confirm or Decline these transfers immediately using the link(s) below:<br>";
 			foreach($DetailsIDs as $detailid) { 
-				$message.="https://cms.jamtransfer.com/cms/dc.php?code=".$detailid."&control=".$_REQUEST['order_key']."&id=".$od->getDriverID()."<br>";
+				$message.="https://wis.jamtransfer.com/dc.php?code=".$detailid."&control=".$_REQUEST['order_key']."&id=".$od->getDriverID()."<br>";
 			}
 			$message.="Thank you!";
 			send_whatsapp_message($phone,$message);

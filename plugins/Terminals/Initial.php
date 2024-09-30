@@ -8,7 +8,7 @@ $dbT = new DataBaseMysql();
 $dbP = new v4_Places();
 
 $keyName = 'TerminalID';
-$ItemName='TerminalID ';
+$ItemName='CountryNameEN,PlaceNameEN ';
 $type='MP';
 #********************************
 # kolone za koje je moguc Search
@@ -17,6 +17,7 @@ $type='MP';
 #********************************
 $aColumns = array(
 	'TerminalID', // dodaj ostala polja!
-	'PlaceNameEN' // dodaj ostala polja!
+	'PlaceNameEN', // dodaj ostala polja!
+	'CountryNameEN'	
 );
 

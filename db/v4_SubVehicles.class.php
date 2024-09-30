@@ -18,6 +18,7 @@ Class v4_SubVehicles {
 	public $VehicleTypeID; //int(10) unsigned
 	public $VehicleDescription; //text
 	public $VehicleCapacity; //int(10) unsigned
+	public $Year; //int(10) unsigned
 	public $RaptorID; //int(10) unsigned
 	public $AssignSDID; //int(10) unsigned
 	public $AssignTime; //int(10) unsigned
@@ -34,11 +35,12 @@ Class v4_SubVehicles {
      * New object to the class. Don´t forget to save this new object "as new" by using the function $class->saveAsNew(); 
      *
      */
-	public function New_v4_SubVehicles($OwnerID,$VehicleTypeID,$VehicleDescription,$VehicleCapacity,$RaptorID,$AssignSDID,$AssignTime,$Active){
+	public function New_v4_SubVehicles($OwnerID,$VehicleTypeID,$VehicleDescription,$VehicleCapacity,$Year,$RaptorID,$AssignSDID,$AssignTime,$Active){
 		$this->OwnerID = $OwnerID;
 		$this->VehicleTypeID = $VehicleTypeID;
 		$this->VehicleDescription = $VehicleDescription;
 		$this->VehicleCapacity = $VehicleCapacity;
+		$this->Year = $Year;
 		$this->RaptorID = $RaptorID;
 		$this->AssignSDID = $AssignSDID;
 		$this->AssignTime = $AssignTime;
@@ -60,6 +62,7 @@ Class v4_SubVehicles {
 			$this->VehicleTypeID = $row["VehicleTypeID"];
 			$this->VehicleDescription = $row["VehicleDescription"];
 			$this->VehicleCapacity = $row["VehicleCapacity"];
+			$this->Year = $row["Year"];
 			$this->RaptorID = $row["RaptorID"];
 			$this->AssignSDID = $row["AssignSDID"];
 			$this->AssignTime = $row["AssignTime"];
@@ -86,6 +89,7 @@ OwnerID = '".$this->myreal_escape_string($this->OwnerID)."',
 VehicleTypeID = '".$this->myreal_escape_string($this->VehicleTypeID)."', 
 VehicleDescription = '".$this->myreal_escape_string($this->VehicleDescription)."', 
 VehicleCapacity = '".$this->myreal_escape_string($this->VehicleCapacity)."', 
+Year = '".$this->myreal_escape_string($this->Year)."', 
 RaptorID = '".$this->myreal_escape_string($this->RaptorID)."', 
 AssignSDID = '".$this->myreal_escape_string($this->AssignSDID)."', 
 AssignTime = '".$this->myreal_escape_string($this->AssignTime)."', 
@@ -102,6 +106,7 @@ Active = '".$this->myreal_escape_string($this->Active)."' WHERE VehicleID = '".$
 			VehicleTypeID, 
 			VehicleDescription, 
 			VehicleCapacity,
+			Year,
 			RaptorID, 
 			AssignSDID, 
 			AssignTime, 
@@ -111,6 +116,7 @@ Active = '".$this->myreal_escape_string($this->Active)."' WHERE VehicleID = '".$
 		'".$this->myreal_escape_string($this->VehicleTypeID)."', 
 		'".$this->myreal_escape_string($this->VehicleDescription)."', 
 		'".$this->myreal_escape_string($this->VehicleCapacity)."', 
+		'".$this->myreal_escape_string($this->Year)."', 
 		'".$this->myreal_escape_string($this->RaptorID)."',
 		'".$this->myreal_escape_string($this->AssignSDID)."',
 		'".$this->myreal_escape_string($this->AssignTime)."',
@@ -167,6 +173,12 @@ Active = '".$this->myreal_escape_string($this->Active)."' WHERE VehicleID = '".$
 	 */
 	public function getVehicleCapacity(){
 		return $this->VehicleCapacity;
+	}	
+	/**
+	 * @return Year - int(10) unsigned
+	 */
+	public function getYear(){
+		return $this->Year;
 	}	
 	/**
 	 * @return RaptorID - int(10) unsigned
@@ -231,6 +243,12 @@ Active = '".$this->myreal_escape_string($this->Active)."' WHERE VehicleID = '".$
 	/**
 	 * @param Type: int(10) unsigned
 	 */
+	public function setYear($Year){
+		$this->Year = $Year;
+	}	
+	/**
+	 * @param Type: int(10) unsigned
+	 */
 	public function setRaptorID($RaptorID){
 		$this->RaptorID = $RaptorID;
 	}	
@@ -267,6 +285,7 @@ Active = '".$this->myreal_escape_string($this->Active)."' WHERE VehicleID = '".$
 			'VehicleTypeID' => $this->getVehicleTypeID(),
 			'VehicleDescription' => $this->getVehicleDescription(),
 			'VehicleCapacity' => $this->getVehicleCapacity(),
+			'Year' => $this->getYear(),
 			'RaptorID' => $this->getRaptorID(),
 			'AssignSDID' => $this->getAssignSDID(),
 			'AssignTime' => $this->getAssignTime(),
@@ -281,7 +300,7 @@ Active = '".$this->myreal_escape_string($this->Active)."' WHERE VehicleID = '".$
      */
 	public function fieldNames(){
 		$fieldNames = array(
-			'VehicleID',			'OwnerID',			'VehicleTypeID',			'VehicleDescription',			'VehicleCapacity',	 	'RaptorID',		'AssignSDID',		'AssignTime',		'Active'		);
+			'VehicleID',			'OwnerID',			'VehicleTypeID',			'VehicleDescription',			'VehicleCapacity',		'Year',	 	'RaptorID',		'AssignSDID',		'AssignTime',		'Active'		);
 		return $fieldNames;
 	}
     /**

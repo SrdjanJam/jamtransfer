@@ -67,7 +67,7 @@
 		if (!isset($_SESSION['UseDriverID'])) $smarty->assign('calculateProvision',true);
 	}	
 	
-	if (in_array($_SESSION['AuthLevelID'],array(31))) {
+	if (in_array($_SESSION['AuthLevelID'],array(31,32))) {
 		require_once ROOT.'/plugins/Calendar/index.php';
 		$smarty->assign('calendar',true);
 	}

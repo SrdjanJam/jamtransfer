@@ -25,17 +25,21 @@ $smarty->assign('date2',true);
 				</div>
 
 				<div class="col-md-2">
-					<?=AUTH_USER_REAL_NAME;?>
+					<?=SUBDRIVERS;?>
 				</div>
 
-				<div class="col-md-2">
-					<?=EXPANCE_AMOUNT;?>
-				</div>
-				
 				<div class="col-md-2">
 					<?=EXPANCE_TITLE;?>
 				</div>
-
+				
+				<div class="col-md-1">
+					<?=IMAGE;?>
+				</div>
+				
+				<div class="col-md-2">
+					<?=EXPANCE_AMOUNT;?>
+				</div>				
+				
 				<div class="col-md-1">
 					<?=DISPLAYED_KM;?>
 				</div>

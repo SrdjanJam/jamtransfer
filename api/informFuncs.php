@@ -93,9 +93,9 @@ function informNewDriver($OrderID, $TNo, $DriverID) {
 		$message .= $od->getOrderID().'<br>'; 
 		$message .= 'Please Confirm or Decline these transfers immediately using the link(s) below:<br><br>';
 		
-		$link = '<a href="https://cms.jamtransfer.com/cms/' .  '/dc.php?code='.$od->getDetailsID() .
+		$link = '<a href="https://wis.jamtransfer.com/' .  '/dc.php?code='.$od->getDetailsID() .
 				'&control='.$orderKey.'&id='.$DriverID.'"> 
-				https://cms.jamtransfer.com/cms/dc.php?code='.$od->getDetailsID().'&control='.$orderKey.'&id='.$DriverID.
+				https://wis.jamtransfer.com/dc.php?code='.$od->getDetailsID().'&control='.$orderKey.'&id='.$DriverID.
 				//$od->getOrderID().'-'.$od->getTNo() .
 				'</a>';
 		$message .= $link . '<br>';

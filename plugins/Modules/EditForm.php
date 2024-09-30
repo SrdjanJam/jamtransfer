@@ -110,6 +110,14 @@
 					<div class="col-md-9">
 						{{yesNoSliderEdit Active 'Active' }}
 					</div>
+				</div>					
+				<div class="row">
+					<div class="col-md-3">
+						<label for="Parent"><?=ONLY_USERS;?></label>
+					</div>
+					<div class="col-md-9">
+						<input type="text" name="OnlyUsers" id="OnlyUsers" class="w1" value="{{OnlyUsers}}">
+					</div>
 				</div>				
 			</div>
 			<div class="col-md-6">

@@ -51,6 +51,7 @@
 		$row['VehicleID'] = $d->VehicleID;
 		$row['VehicleTypeID'] = $d->VehicleTypeID;
 		$row['VehicleDescription'] = $d->VehicleDescription;
+		$row['Year'] = $d->Year;
 		$row['VehicleCapacity'] = $d->VehicleCapacity;
 		$row['Active'] = $d->Active;
 		$svArray[] = $row;

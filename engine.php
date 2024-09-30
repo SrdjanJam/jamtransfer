@@ -30,7 +30,7 @@ if(!isset($_SESSION['UserAuthorized']) or $_SESSION['UserAuthorized'] == false) 
 	require_once 'login.php';
 	exit();	
 }
-else setcookie("pageEx", $activePage, time() + (7*24*60*60),"/");
+else if (!isset($_SESSION['UseDriverID'])) setcookie("pageEx", $activePage, time() + (7*24*60*60),"/");
 if (isset ($_SESSION['UseDriverID'])){
 	setcookie("UseDriverID", $_SESSION['UseDriverID'],time()+24*3600);
 	setcookie("UseDriverName", $_SESSION['UseDriverName'],time()+(24*3600));
@@ -56,6 +56,11 @@ if ($result->num_rows>0) {
 	foreach($mdk as $key) {
 		$md->getRow($key);
 		$row1=array();
+		if (!empty($md->getOnlyUsers())) $onlyusers=explode(",",$md->getOnlyUsers());
+		else $onlyusers=array();
+		if ((in_array($_SESSION['AuthUserID'],$onlyusers)) || count($onlyusers)==0) $display1=true;
+		else $display1=false;		
+		if (isset($_SESSION['UseDriverID'])) $display1=true;
 		$row1['title']=$md->getName();
 		$row1['link']=$md->getCode();
 		$active_pages[]=$md->getCode();			
@@ -73,6 +78,11 @@ if ($result->num_rows>0) {
 				$md->getRow($key2);
 				if ($md->getCode()=='setDriver') $setasdriver=true;
 				$row2=array();
+				if (!empty($md->getOnlyUsers())) $onlyusers=explode(",",$md->getOnlyUsers());
+				else $onlyusers=array();
+				if ((in_array($_SESSION['AuthUserID'],$onlyusers)) || count($onlyusers)==0) $display2=true;
+				else $display2=false;
+				if (isset($_SESSION['UseDriverID'])) $display2=true;
 				$row2['title']=$md->getName();
 				$row2['link']=$md->getCode();	
 				$row2['description']=$md->getDescription();	
@@ -84,17 +94,18 @@ if ($result->num_rows>0) {
 					$active_parent=true;
 				}	
 				else $row2['active']='';
-				if ($md->getMenuOrder()<100) $menu2[]=$row2;	
+				if ($md->getMenuOrder()<100 && $display2) $menu2[]=$row2;	
 			}
 		}
 		else $row1['arrow']='';	
 		if ($active_parent) $row1['active']='active';
 		else $row1['active']='';		
 		$row1['menu']=$menu2;	
-		$menu1[]=$row1;
+		if ($display1) $menu1[]=$row1;
 	}
 	$mdk = $md->getKeysBy('ModulID ' ,'asc', "where code='$activePage'");
-	if (count($mdk)==1 && in_array($activePage,$active_pages)) {
+	//if (count($mdk)==1 && in_array($activePage,$active_pages)) {
+	if (count($mdk)==1) {
 		$keyP=$mdk[0];
 		$md->getRow($keyP);
 		if (is_dir($modulesPath . '/'.$md->getBase())) {	
@@ -103,41 +114,13 @@ if ($result->num_rows>0) {
 			else $pageList=$md->getName();
 			require_once $modulesPath . '/'.$md->getBase().$includeFile;		
 		}	else echo "NO PAGE";
-		
-		/*$md->getRow($md->getParentID());
-		$parentFolder=$md->getBase();
-		$md->getRow($key);
-		if (is_dir($modulesPath . '/'.$parentFolder.'/'.$md->getBase())) {
-			require_once $modulesPath . '/'.$parentFolder.'/'.$md->getBase().$includefile;
-		
-			if (is_dir($modulesPath . '/'.$parentFolder.'/'.$md->getBase().'/templates')) 
-				$smarty->assign('page',$md->getName());		
-			else $smarty->assign('pageList',$md->getName());
-		}	
-		$smarty->assign('parentFolder',$parentFolder);
-		*/
+
 		if ($md->getIsNew()==1) $existNew=true;
 		if ($md->getIsDesc()==1) $isDesc=true;
 		else $isDesc=false;
 	}
-	else {
-		if (count($mdk)==1) header("Location: ". ROOT_HOME . '/dashboard');
-		else exit('Page not found');
-	}
-
-
-	/*if (isset($_SESSION['UseDriverID'])) $existNew=false;
-	if ($md->getName()=="SubDrivers") $existNew=true;
-	if ($md->getName()=="Vehicles") $existNew=true;
-	if ($md->getName()=="Actions") $existNew=true;
-	if ($md->getName()=="Request") $existNew=true;
-	if ($md->getName()=="Tasks") $existNew=true;
-	if ($md->getName()=="Orders") $existNew=false;
-	if ($md->getName()=="Invoices") $existNew=false;
-	if ($md->getName()=="Set Driver") $existNew=false;
-	if ($_SESSION['AuthLevelID']==42) $existNew=false;
-	if ($_SESSION['AuthUserID']==874) $existNew=true;
-	if ($md->getName()=="Articles") $existNew=true;*/
+	else header("Location: ". ROOT_HOME . '/dashboard');
+	
 
 	if ($specialpage2=='fieldsSettings') {
 		$smarty->assign('fieldsSettings',1);
