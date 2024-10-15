@@ -1,63 +1,39 @@
 <?
+
 	session_start();
-	// HTML HEADER - sve
-	require_once 'headerScripts.php';	
-	require_once 'config.php';
-
-?>
-<body>
-
-	<div class="container white">
-	<br>
- 
-
-<?
-
-	$_REQUEST['userid']=$_REQUEST['id'];
-
-	
-	//if($_SESSION['CLOSE'.$_REQUEST['code']] == true) die('<h1>Confirmation completed.</h1>You can close this window now.');
-	
 		
+	// HTML HEADER - sve
+	require_once 'config.php';
 	// classes
 	require_once 'db/v4_OrderDetails.class.php';
 	require_once 'db/v4_OrdersMaster.class.php';
 	require_once 'db/v4_DriversCD.class.php';
-	
-	// Drivers
 	require_once 'db/v4_AuthUsers.class.php';
-	
-	// Log
 	require_once 'db/v4_OrderLog.class.php';
-	
 	$d = new v4_OrderDetails();
 	$m = new v4_OrdersMaster();
 	$dcd = new v4_DriversCD();
 	$u = new v4_AuthUsers();
-	$ol= new v4_OrderLog();
+	$ol= new v4_OrderLog();	
 	
+	$_REQUEST['userid']=$_REQUEST['id'];
 	$showConfirmDecline = false;
-
 	// uzmi podatke u svakom slucaju
 	$DetailsID 	= $_REQUEST['code'];
 	$OrderKey 	= $_REQUEST['control'];
 	$DriverID	= $_REQUEST['id'];
-
 	// get out - something wrong
 	if(!is_numeric($DetailsID)) die ('<h1>Error - Parameter not valid.</h1>');
 	if(!is_numeric($DriverID)) die ('<h1>Error - Parameter not valid.</h1>');
-
 	$d->getRow($DetailsID);
 	$m->getRow($d->OrderID);
-
     //if($m->MOrderStatus == '3') die('<h1>Transfer has been Cancelled.</h1>');
     if($d->TransferStatus == '3') die('<h1>Transfer has been Cancelled.</h1>');
-	
-	 if($d->TransferStatus == '4') die('<h1>Transfer wait for customer confirmation.</h1>'); 
-
+	if($d->TransferStatus == '4') die('<h1>Transfer wait for customer confirmation.</h1>'); 
 	if($m->MOrderKey != $OrderKey) die('<h1>Error - Parameter not valid.</h1>');
-
+	
 	$u->getRow($DriverID);
+	
 	if($u->getAuthUserID() != $DriverID) die ('<h1>Error - Parameter not valid.</h1>');	
 	
 	if($u->getAuthUserID() != $d->getDriverID() and $d->getDriverID() != '0') 
@@ -68,10 +44,19 @@
 
 	if($u->getAuthUserID() == $d->getDriverID() and $d->getDriverConfStatus() == '4') 
 	die('<h2>You have already declined this transfer.</h2>');	
-	
-	// button pressed 
 
-
+	//redirektovanje i logovanje na profil
+	$userCode=md5($u->AuthUserPass);
+	$page="https://wis.jamtransfer.com/codeLogin.php?userCode=".$userCode."&userID=".$DriverID;
+	header("Location: " .$page);
+	exit();
+	require_once 'headerScripts.php';	
+?>
+<body>
+	<div class="container white">
+	<br>
+<?
+// button pressed 
 	if( isset($_REQUEST['Confirm']) ) {
 		$dcd->setDetailsID($DetailsID);
 		$dcd->setUserID($DriverID);
@@ -156,19 +141,6 @@
 			mail_html($mailto, 'driver-info@jamtransfer.com', 'JamTransfer.com', 'info@jamtransfer.com',
 		  	$subject , $mailMessage);
 			
-			/*mail_html('jamtransfercomtransfers@jamtransfer.freshdesk.com', 'driver-info@jamtransfer.com', 'JamTransfer', 'driver-info@jamtransfer.com',
-						  $subject.'-'.$agentmail, $mailMessage);				*/
-			// blok za premostavanje blokade primanja mail-ova preko ticketing-a
-			/*$agentmail=$mailto;
-			$agentmail_arr=explode('@',$agentmail);
-			$agentmail_pr=$agentmail_arr[1];
-			
-			if ($agentmail_pr<>'gmail.com' && $agentmail_pr<>'yahoo.com') {
-				mail_html('jamtransfercomtransfers@jamtransfer.freshdesk.com', 'driver-info@jamtransfer.com', 'JamTransfer', 'driver-info@jamtransfer.com',
-						  $subject.'-'.$agentmail, $mailMessage);	  					
-			}*/
-			// kraj bloka			
-
 			mail_html('cms@jamtransfer.com', 'driver-info@jamtransfer.com', 'JamTransfer.com', 'driver-info@jamtransfer.com',
 		  	$subject , $mailMessage);			
 			
@@ -199,6 +171,9 @@
 			$_SESSION['AuthUserNote1'] = $u->getAuthUserNote1();
 			$_SESSION['UserImage'] = $u->getImage();
 			$_SESSION['UserEmail'] = $u->getAuthUserMail();		
+			$upd_query="UPDATE `v4_OrderRequests` SET `ResponseDate`=NOW(),`ResponseTime`=NOW(),`ConfirmDecline`=1 WHERE 
+				`DriverID`=".$_REQUEST['DriverID']." AND `OrderID`=".$d->OrderID." AND `TNo`=".$d->TNo." AND `RequestType`=1";			
+			$result_upd = $db->RunQuery($upd_query);			
 			?>
 			<script>
 				alert("Please, check yours vehicles and drivers!")
@@ -227,11 +202,10 @@
 			$ol->setUserID($u->getAuthUserID());
 			$ol->setIcon('fa fa-remove bg-red');
 			$ol->setShowToCustomer('0');
-
 			$ol->saveAsNew();	
 			$subject = 'Important Update for Transfer: '. ' ' . $m->MOrderKey.'-'.$m->MOrderID . '-' . $d->TNo;			
 
-			echo $mailMessage = 'Driver ' . $u->getAuthUserCompany() .'<br>
+			$mailMessage = 'Driver ' . $u->getAuthUserCompany() .'<br>
 							has DECLINED the transfer:<br><br>' .
 							$d->OrderID .'-'.$d->TNo.'<br>for reason: '.$_REQUEST['DeclineReason'].' / '. $_REQUEST['DeclineMessage']. '
 							Passenger: '.$d->PaxName.'<br>
@@ -240,11 +214,13 @@
 							
 							
 			mail_html('cms@jamtransfer.com', 'transfer-update@jamtransfer.com', 'JamTransfer.com', 'info@jamtransfer.com',
-		  	$subject , $mailMessage);				
+		  	$subject , $mailMessage);
+			$upd_query="UPDATE `v4_OrderRequests` SET `ResponseDate`=NOW(),`ResponseTime`=NOW(),`ConfirmDecline`=2 WHERE 
+				`DriverID`=".$_REQUEST['DriverID']." AND `OrderID`=".$d->OrderID." AND `TNo`=".$d->TNo." AND `RequestType`=1";			
+			$result_upd = $db->RunQuery($upd_query);	
 		}
 		$dcd->saveAsNew();
 		$_SESSION['CLOSE'.$_REQUEST['code']] = true;
-		
 	} else {
 	
 		$showConfirmDecline = true;
@@ -255,6 +231,8 @@
 	
 ?>
 <script>
+
+
 		function confirmTransfer() {
 			
 			// mesto + u telefonu
@@ -292,15 +270,8 @@
 			//$("#dm").show(500);			// privremeno, posle izbrisati
 			
 		}	
-		
-		$('#DeclineReason').change(function(){
-			var rn = $('#DeclineReason').val();		
-			if (rn=='Availability') $('#dmta').attr("placeholder","Your time is:");
-			if (rn=='Price') $('#dmta').attr("placeholder","Your price is:");
-			if (rn=='Wrong') $('#dmta').attr("placeholder","Wrong details is:");			
-			if (rn=='Other') $('#dmta').attr("placeholder","Your reason is:");			
-			$("#dm").show(500);				
-		}); 
+
+
 		
 		// decline
 		function declineTransfer2() {
@@ -371,7 +342,7 @@
 						id="PickupPoint"></textarea>
 					</div>
 				</div>											
-				<div id="drr" class="row" style="display:none">
+				<div id="drr" class="row"> 
 					<div class="col-md-2">Decline reason:</div>
 					<div class="col-md-8">
 						<select name="DeclineReason" id="DeclineReason">
@@ -382,6 +353,18 @@
 							<option value="Other">Other</option>
 						</select>			
 					</div>
+					<script>
+					$("#drr").hide();	
+					$('#DeclineReason').change(function(){
+						$("#drr").show();
+						var rn = $('#DeclineReason').val();		
+						if (rn=='Availability') $('#dmta').attr("placeholder","Your time is:");
+						if (rn=='Price') $('#dmta').attr("placeholder","Your price is:");
+						if (rn=='Wrong') $('#dmta').attr("placeholder","Wrong details is:");			
+						if (rn=='Other') $('#dmta').attr("placeholder","Your reason is:");			
+						$("#dm").show(500);				
+					});
+					</script>	
 				</div>											
 				<div id="dm"class="row" style="display:none">
 					<div class="col-md-2">Decline message:</div>

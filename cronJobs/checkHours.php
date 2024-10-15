@@ -1,4 +1,5 @@
 <?php
+/*cronJob se salje*/
 $root='/home/jamtrans/laravel/public/wis.jamtransfer.com';
 define("DB_HOST", "127.0.0.1");
 
@@ -32,11 +33,14 @@ if (count($ohk)>0) {
 				//echo $users[$userid]->AuthUserRealName;
 				switch ($oh->getStatus()) {
 					case 0:
+						// Poruka zaposlenom i subdrajveru da se prijave
 						$phone1=$au->getAuthUserMob();
 						send_whatsapp_message($phone1,$message1);
 						$oh->setStatus(1);
 						break;					
 					case 1:
+						// Poruka menadzeru da se zaposleni u kancelariji nije prijavio
+						// Poruka suportu da se subdrajver nije prijavio
 						if ($au->getAuthLevelID()!=32) $phone2="+381669236911";
 						else $phone2="+381646597200";
 						$message2.="<br>".$au->getAuthUserRealName();
@@ -45,6 +49,7 @@ if (count($ohk)>0) {
 						$oh->setStatus(2);
 						break;					
 					case 2:
+						// telefonsko pozivanje subdrajvera
 						$phone3=$users[$userid]->AuthUserMob;
 						$message3="Hello. This is a generated call from Jam Transfer. You have not logged into the system today. Log in. Thank you.";
 						send_whatsapp_message($phone3,$message3);
@@ -52,6 +57,7 @@ if (count($ohk)>0) {
 						$oh->setStatus(4);
 						break;					
 					case 4:
+						// slanje poruke direktoru
 						if ($au->getAuthLevelID()==32) {
 							$phone4="+385915375842";
 							$message2.="<br>".$au->getAuthUserRealName();

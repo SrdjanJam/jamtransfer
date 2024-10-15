@@ -26,7 +26,7 @@
 			
 		</div>	
 	<div class="box-body actual-transfers" style="overflow-y: auto; max-height: 300px;">	
-		{$data}
+		{$dataAT}
 	</div>
 
 <script>

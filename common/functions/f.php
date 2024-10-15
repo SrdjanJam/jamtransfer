@@ -215,6 +215,28 @@ function sendDriverMessage($DetailsID) {
 	return $message;
 }
 
+function sendConfirmDeclineMessage($DetailsID,$DriverID) {
+	require_once $_SERVER['DOCUMENT_ROOT'] .'/db/v4_OrderDetails.class.php';
+	require_once $_SERVER['DOCUMENT_ROOT'] .'/db/v4_OrdersMaster.class.php';
+	$od = new v4_OrderDetails();
+	$om = new v4_OrdersMaster();
+
+	$message = HELLO . '! ';
+	$message .= 'We have new transfer for you.<br>';
+	$message .= $od->getOrderID().'-'.$od->getTNo().'<br>'; 
+	$message .= 'Please Confirm or Decline these transfer immediately using the link(s) below:<br>';	
+	$k = $od->getKeysBy('DetailsID', 'asc', " WHERE DetailsID = '". $DetailsID . "'");
+	foreach($k as $nn => $id) {
+		$od->getRow($id);
+		$om->getRow($od->getOrderID());
+		$link = ' https://wis.jamtransfer.com/dc.php?code='.ltrim($od->getDetailsID()).'&control='.$om->getMOrderKey().'&id='.ltrim($DriverID);
+		$message .= $link . ' ';
+	}
+	$message .= THANK_YOU . '!';
+	$message = str_replace("<br>"," ",$message);
+	return $message;
+}
+
 
 function Logo($color='black') { ?>
           <span style="font-family: Arial, sans-serif;" >
@@ -712,7 +734,8 @@ function getVehicleTypeName($vehicleTypeId) {
     $w = $db->RunQuery($q);
     $c = mysqli_fetch_object($w);
 
-    $v = 'VehicleTypeName'.Lang();
+    //$v = 'VehicleTypeName'.Lang();
+    $v = 'VehicleTypeName';
 
     return $c->$v; // $c->VehicleTypeName
 }
@@ -5111,15 +5134,14 @@ function saveLog($UserID,$type) {
 		$lu->setLongitude($_REQUEST['longitude']);
 		$lu->setPlace($label);
 		$au->getRow($UserID);
-		$levels=array(41,43,44,91,92,99);
+		$levels=array(41,43,44,32,91,92,99);
 		if (in_array($au->getAuthLevelID(),$levels)) $lu->setType($type+2);
 		else $lu->setType($type);
 		$lu->setSessionID(session_id());
 		$id=$lu->saveAsNew();
 		$_SESSION["UserLatitude"]=$_REQUEST['latitude'];
-		$_SESSION["UserLongitude"]=$_REQUEST['longitude'];	
-	}
-
+		$_SESSION["UserLongitude"]=$_REQUEST['longitude'];
+	} 
 }	
 
 function createNotification($userID,$message,$url) {

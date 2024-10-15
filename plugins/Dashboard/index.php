@@ -6,6 +6,8 @@
 	$smarty->assign('getRoutePrices',false);	
 	$smarty->assign('getUnfinishedPayment',false);							
 	$smarty->assign('actualTransfers',false);										
+	$smarty->assign('unConfirmedTransfers',false);										
+	$smarty->assign('unCompletedTransfers',false);										
 	$smarty->assign('todo',false);
 	$smarty->assign('quickEmail',false);	
 	$smarty->assign('translatorPanel',false);
@@ -15,7 +17,7 @@
 	// Check:
 	// $smarty->assign('bookingConversionRate',false);	
 
-	if (in_array($_SESSION['AuthLevelID'],array(2,31,41,43,44,45,91,92,99))) {
+	if (in_array($_SESSION['AuthLevelID'],array(2,41,43,44,45,91,92,99))) {
 		require_once 'smallBoxes.php'; 
 		$smarty->assign('smallBoxes',true);	
 	}	
@@ -27,7 +29,7 @@
 		require_once 'emptyRow.php';
 		$smarty->assign('emptyRow',true);	
 	}	
-	if (in_array($_SESSION['AuthLevelID'],array(2,31,41,43,44,45,91,92,99))) {
+	if (in_array($_SESSION['AuthLevelID'],array(2,41,43,44,45,91,92,99))) {
 		require_once 'getOrder.php';
 		$smarty->assign('getOrder',true);				
 	}	
@@ -43,7 +45,7 @@
 		require_once 'getUnfinishedPayment.php';
 		$smarty->assign('problemPayment',true);							
 	}*/		
-	if (in_array($_SESSION['AuthLevelID'],array(31,41,43,45,91,92,99))) {
+	if (in_array($_SESSION['AuthLevelID'],array(41,43,45,91,92,99))) {
 		require_once 'actualTransfers.php';
 		$smarty->assign('actualTransfers',true);										
 	}	
@@ -59,8 +61,10 @@
 	}											
 
 	if (in_array($_SESSION['AuthLevelID'],array(2,41,42,43,44,45,91,92,99))) {
-		if (!isset($_SESSION['UseDriverID'])) require_once 'bookingConversionRate.php';
-		if (!isset($_SESSION['UseDriverID'])) $smarty->assign('bookingConversionRate',true);
+		if (!isset($_SESSION['UseDriverID'])) {
+			require_once 'bookingConversionRate.php';
+			$smarty->assign('bookingConversionRate',true);
+		}	
 	}	
 	
 	if (in_array($_SESSION['AuthLevelID'],array(2,31,41,42,43,44,45,91,92,99))) {
@@ -70,5 +74,27 @@
 	if (in_array($_SESSION['AuthLevelID'],array(31,32))) {
 		require_once ROOT.'/plugins/Calendar/index.php';
 		$smarty->assign('calendar',true);
+	}	
+	
+	if (in_array($_SESSION['AuthLevelID'],array(2,31,41,42,43,44,45,91,92,99))) {
+			//if (isset($_SESSION['UseDriverID']) && $_SESSION['UseDriverID']==520) {
+			if (isset($_SESSION['UseDriverID'])) {
+				require_once 'unConfirmedTransfers.php';
+				$smarty->assign('unConfirmedTransfers',true);
+			}	
+	}	
+	if (in_array($_SESSION['AuthLevelID'],array(2,31,41,42,43,44,45,91,92,99))) {
+			//if (isset($_SESSION['UseDriverID']) && $_SESSION['UseDriverID']==520) {
+			if (isset($_SESSION['UseDriverID'])) {
+				require_once 'unComplitedTransfers.php';
+				$smarty->assign('unComplitedTransfers',true);
+			}	
+	}	
+	if (in_array($_SESSION['AuthLevelID'],array(2,31,41,42,43,44,45,91,92,99))) {
+			//if (isset($_SESSION['UseDriverID']) && $_SESSION['UseDriverID']==520) {
+			if (isset($_SESSION['UseDriverID'])) {
+				require_once 'presentTransfers.php';
+				$smarty->assign('presentTransfers',true);
+			}	
 	}
 

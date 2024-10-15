@@ -201,6 +201,8 @@
 		
 		//$html.="<img src='https://www.jamtransfer.com/cms/img/jam.png'>";
 		$html.=$footer;
+		// ubacen deo za bezuslovno potvrdjivanje
+		if ($requestType==1) $html=sendConfirmDeclineMessage($od->getDetailsID(),$DriverID);	
 	}
 
 	$message=$html;
@@ -219,7 +221,8 @@
 	$messageWA.="\n on the link bellow \n";
 	$messageWA.="https://wis.jamtransfer.com/rt/".$orderKey;
 	$messageWA.="\n Thank you, your JamTransfer";
-	send_whatsapp_message($phoneto,$messageWA);
+	//send_whatsapp_message($phoneto,$messageWA);
+	send_whatsapp_message($phoneto,$message);
 	
 
 

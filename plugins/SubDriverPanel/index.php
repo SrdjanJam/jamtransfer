@@ -24,7 +24,7 @@ function clearTime($time) {
 
 	
 $mydriver = $_SESSION['AuthUserID'];
-$_SESSION['DriverID'] = $mydriver;
+//$_SESSION['DriverID'] = $mydriver;
 
 $au->getRow($_SESSION['AuthUserID']);
 
@@ -184,7 +184,7 @@ if(count($odk) > 0) {
 		$details[]=$detail;
 	}
 }
-$smarty->assign('details',$details);
+$smarty->assign('details',$details);	
 function hasReturn($OrderID, $TNo,$od) {
 	$od2 = new v4_OrderDetails;
 	$where4 = " WHERE OrderID = '" . $OrderID . "' AND TNo > '".$TNo."'";

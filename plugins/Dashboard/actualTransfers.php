@@ -92,5 +92,5 @@
 	$smarty->assign('timeStart',$timeStart);
 	$smarty->assign('timeEnd',$timeEnd);
 	$smarty->assign('today',date('Y-m-d'));
-	$smarty->assign('data',$data);
+	$smarty->assign('dataAT',$data);
 	

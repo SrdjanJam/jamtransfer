@@ -20,12 +20,14 @@
 	$DetailsID 	= $_REQUEST['code'];
 	$OrderKey 	= $_REQUEST['control'];
 	$DriverID	= $_REQUEST['id'];
+	if ($DriverID==0) $DriverID=$_SESSION['UseDriverID'];
 
 	$d->getRow($DetailsID);
+	
 	$m->getRow($d->OrderID);
 	
 	$u->getRow($DriverID);
-	if($u->getAuthUserID() != $DriverID) die('Error: Inform support team!');
+	//if($u->getAuthUserID() != $DriverID) die('Error: Inform support team!');
 	if($d->TransferStatus == '4') die('<h1>Transfer wait for customer confirmation.</h1>'); 
 	// button pressed
 	if( isset($_REQUEST['Confirm']) ) { 
@@ -130,7 +132,10 @@
 			$ol->setUserID($u->getAuthUserID());
 			$ol->setIcon('fa fa-check bg-blue');
 			$ol->setShowToCustomer('0');
-			$ol->saveAsNew();			
+			$ol->saveAsNew();	
+			$upd_query="UPDATE `v4_OrderRequests` SET `ResponseDate`=NOW(),`ResponseTime`=NOW(),`ConfirmDecline`=1 WHERE 
+				`DriverID`=".$DriverID." AND `OrderID`=".$d->OrderID." AND `TNo`=".$d->TNo." AND `RequestType`=1";			
+			$result_upd = $db->RunQuery($upd_query);						
 		}
 		if($_REQUEST['Confirm'] == 'Declined') {
 			$dcd->setCD(2);			
@@ -163,7 +168,11 @@
 							Please select and inform another driver.';
 							
 			mail_html('cms@jamtransfer.com', 'transfer-update@jamtransfer.com', 'JamTransfer.com', $u->getAuthUserMail(),
-		  	$subject , $mailMessage);			 
+		  	$subject , $mailMessage);	
+			$upd_query="UPDATE `v4_OrderRequests` SET `ResponseDate`=NOW(),`ResponseTime`=NOW(),`ConfirmDecline`=2 WHERE 
+				`DriverID`=".$DriverID." AND `OrderID`=".$d->OrderID." AND `TNo`=".$d->TNo." AND `RequestType`=1";			
+			$result_upd = $db->RunQuery($upd_query);	
+			
 		}
 		$dcd->saveAsNew();
 	}

@@ -36,15 +36,15 @@
 
 	{{#each Item}}
 		<div class="row {{color}} listTile" style="border-top:5px solid #ddd" id="t_{{DetailsID}}">
-			<div class="col-md-2">
+			<div class="col-xs-4 col-md-2 col-lg-2">
 				<strong>{{OrderID}}-{{TNo}}</strong><br>
 				{{MOrderKey}}<br>
 				<small>{{displayTransferStatusText TransferStatus}}</small>
 			</div>
 
-			<div class="col-md-2">
+			<div class="col-xs-8 col-md-2 col-lg-2">
 				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#address{{DetailsID}}">
-					{{PickupName}}<br>{{DropName}}
+					<span class="fsize">{{PickupName}}<br>{{DropName}}</span>
 				</button><br>
 					<!-- Modal content: --------------------------------------- -->
 					<div class="modal fade"  id="address{{DetailsID}}">
@@ -68,10 +68,10 @@
 				{{#compare PickupDate ">=" "<?=date('Y')+1;?>-01-01"}}<span class="red-text">{{/compare}}
 				{{PickupDate}}
 				{{#compare PickupDate ">=" "<?=date('Y')+1;?>-01-01"}}</span>{{/compare}}
-				{{PickupTime}}							
+				{{PickupTime}}	
 			</div>
 			
-			<div class="col-md-2">
+			<div class="col-xs-6 col-md-2 col-lg-2">
 				{{#compare VehicleClass "<" 10}}
 					<i class="fa fa-car"></i>
 				{{/compare}}
@@ -109,11 +109,13 @@
 				{{/compare}}	
 			</div>	
 
-			<div class="col-md-2">
+			<div class="col-xs-6 col-md-2 col-lg-2">
 				<i class="fa fa-user"></i> <strong>{{PaxName}}</strong><br>
+				{{#compare DriverConfStatus ">" 1}}
 				<small>
 					<i class="fa fa-phone"></i> <a href="tel:+ {{MPaxTel}}"> {{MPaxTel}}</a>
-				</small><br>					
+				</small><br>	
+				{{/compare}}
 				<a href="{{FsLink}}" target="_blank"> {{FlightNo}}</a> {{FlightTime}}
 				{{#compare ExtraCharge ">" 0}}
 					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#extras{{DetailsID}}">
@@ -147,14 +149,15 @@
 				{{/compare}}				
 			</div>
 	
-			<div class="col-md-2">
+			<div class="col-xs-6 col-md-2 col-lg-2">
 				{{paymentMethodText PaymentMethod}}<br>
 				{{#compare PayLater ">" 0}}<strong>{{PayLater}} € </strong><br>{{/compare}}
 			</div>						
 			
-			<div class="col-md-2">
+			<div class="col-xs-6 col-md-2 col-lg-2">
 				<span class="{{driverConfStyle DriverConfStatus}}">{{driverConfText DriverConfStatus}}</span>
 				{{#compare DriverConfStatus "==" 1}}
+				{{#compare TransferStatus "!=" 3}}
 					<br>
 					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#confirm{{DetailsID}}">
 						<?=CONFIRM;?> / <?=DECLINE;?>
@@ -254,9 +257,10 @@
 						</div>
 					</div>	
 				{{/compare}}						
-				{{#compare DriverConfStatus ">" 1}}{{#compare DriverConfStatus "<" 4}}
+				{{/compare}}	
+				{{#compare DriverConfStatus ">" 1}}{{#compare DriverConfStatus "<" 4}}{{#compare Today ">=" PickupDate}}
 					<small>{{DriverConfDate}} {{DriverConfTime}}</small><br>
-					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#complete{{DetailsID}}">
+					<button  type="button" class="btn btn-primary mac" data-toggle="modal" data-target="#complete{{DetailsID}}">
 						<?=FINISH_TRANSFER;?>
 					</button>
 					<div class="modal fade"  id="complete{{DetailsID}}">
@@ -295,7 +299,7 @@
 							</div>
 						</div>
 					</div>	
-				{{/compare}}{{/compare}}	
+				{{/compare}}{{/compare}}{{/compare}}		
 				{{#compare FinalNote "!==" ""}}
 					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#fnotes{{DetailsID}}">
 						<i class="fa fa-envelope" style="color:#900"></i>

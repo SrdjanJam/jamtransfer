@@ -1,4 +1,5 @@
 <?	
+	if ($_SESSION['AuthLevelID']) define("PARTNERLOG", true);
 	if (PARTNERLOG) $partner="Driver";
 	else $partner="";
 	if (!$isNew && !$isEdit) require_once 'ListTemplate'.$partner.'.php';

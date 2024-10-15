@@ -23,6 +23,7 @@ if (isset($type2)) {
 		$filter .= "  AND ".$type2." = '" . $Type2 . "'";
 	}
 }
+	if ($_SESSION['AuthLevelID']==31) $filter .= " AND DriverConfStatus > '1'";
 	if (isset($_REQUEST['transfersFilter'])) {
 		$today              = strtotime("today 00:00");
 		$yesterday          = strtotime("yesterday 00:00");
@@ -488,7 +489,7 @@ if ($_REQUEST["action"]<>"null" && $_REQUEST["action"]<>"0") {
 	
 $odTotalRecords = $od->getFullOrderByDetailsID($sortField, $sortDirection, '' , $dbWhere);
 
-
+if (isset($_REQUEST["reportBy"])) {
 // report
 $sum=array();
 $dbWhere=str_replace('DetailsID','v4_OrderDetails.DetailsID',$dbWhere);
@@ -611,6 +612,7 @@ usort($sum,function($first,$second){
 	return $first < $second ? 1 : -1;
 
 });
+}
 $dbk = $od->getFullOrderByDetailsID($sortField, $sortDirection, $limit  , $dbWhere);
 
 if (count($dbk) != 0) {
@@ -731,7 +733,9 @@ if (count($dbk) != 0) {
 			}
 			//print_r($oeServices);
 			$detailFlds['oeServices']=$oeServices;
+			date_default_timezone_set('Europe/Paris');
 		}		
+		$detailFlds['Today']=date('Y-m-d');
 		$out[] = array_merge($detailFlds , $masterFlds );    	  	
     }
 }

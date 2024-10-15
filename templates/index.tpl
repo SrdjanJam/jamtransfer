@@ -335,6 +335,7 @@
 							{if not $MOBILE}<li><button type="button" id="opener-help" class="button-3">{$HELP}</button></li>{/if}
 							{if not $MOBILE}<li><button type="button" id="opener-message" class="button-3">{$MESSAGE}</button></li>{/if}
 							{if not $MOBILE and not $PARTNERLOG}<li><a target="_blank" href='qrlog.php'><i class="fa fa-qrcode"></i>QR LOG</a></li>{/if}
+							{if $smarty.session.AuthLevelID eq 32}<li><button type="button" id="confirmDayStart" class="button-3">Start of the day</button></li>{/if}
 						</ul>
 						
 						<!-- Dialog printed results here: -->
@@ -492,7 +493,18 @@
 <script>
 
 	$(document).ready(function(){
-
+		
+$('#confirmDayStart').click(function(){
+			var url = "api/confirmDayStart.php?confirm=1"
+			console.log(url);
+			$.ajax({
+				url: url,
+				type: "GET",
+				success: function(data) {
+					alert (data);
+				},
+			});
+		})
 		window.success = $("#success").val();
 		window.unsuccess = $("#unsuccess").val();
 		window.delete = $("#delete").val();
@@ -755,10 +767,8 @@
 	}
 
 </script>
+{/literal}
 
-{/literal}
-</script>
-{/literal}
 {if $smarty.session.AuthLevelID eq 32}
 <script>
 	geolocation();

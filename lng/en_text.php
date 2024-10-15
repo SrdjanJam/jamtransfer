@@ -1112,4 +1112,14 @@ define("SET_WT","Set working time");
 define("YEAR","Year");
 //23.09.24
 define("ONLY_USERS","Only for users id");
-
+//11.10.24
+define("UNCONFIRMED_TRANSFERS","Unconfirmed");
+//14.10.24
+define("PASSENGER_PAID_SERVICE","The passenger has paid for the service!");
+define("CHARGE_TO_PASSENGER","You will charge the transfer to the passenger!");
+define("DRIVER_ISSUE_INVOICE","You issue us an invoice.");
+define("DRIVER_RECIVE_INVOICE","We issue you an invoice.");
+define("INVOICE_VALUE","Invoice value:");
+define("PASSENGER_PAYMENT","Payments from passenger:");
+define("UNCOMPLETED_TRANSFERS","Uncomplited");
+define("VIEW_TRANSFER","View transfer");

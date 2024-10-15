@@ -69,7 +69,6 @@ require_once('lng/' . $_SESSION['CMSLang'] . '_text.php');
 							// $smarty->assign('active',$row['Active']);
 							if($row['Active'] == 1)
 							{
-								saveLog($row['AuthUserID'],1);
 								$sql = 'SELECT Average FROM v4_ExchangeRate WHERE Name = "EUR"';
 								$rEur = $db->RunQuery($sql);
 								$Eur = $rEur->fetch_assoc();
@@ -108,6 +107,7 @@ require_once('lng/' . $_SESSION['CMSLang'] . '_text.php');
 								}	
 
 								$_SESSION['AuthLevelID'] = $row['AuthLevelID'];
+								$_SESSION['DriverID'] = $row['DriverID'];
 								$_SESSION['MemberSince'] = $row['DateAdded'];
 								$_SESSION['AuthUserNote1'] = $row['AuthUserNote1'];
 								
@@ -133,6 +133,7 @@ require_once('lng/' . $_SESSION['CMSLang'] . '_text.php');
 								if (isset($_COOKIE['pageEx'])&& $_COOKIE['pageEx']<>'logout') $page=$_COOKIE['pageEx'];
 								else $page='dashboard';
 								//makeSessionArrays($db);
+								saveLog($row['AuthUserID'],1);
 								$levels=array(41,43,44,91,92,99);
 								if (in_array($_SESSION['AuthLevelID'],$levels)) createNotification($_SESSION['AuthUserID'],"Thank you for login. If not, confirm your login by scanning the QR code.","https://wis.jamtransfer.com/");
 								header("Location: " .$page);
