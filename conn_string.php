@@ -22,7 +22,7 @@ define("SITE_CODE", '1');
 	
 if (isset($_SESSION['mobile'])) define("MOBILE", true);
 else define("MOBILE", false);
-if (isset($_SESSION['AuthLevelID']) && in_array($_SESSION['AuthLevelID'],array(2,4,5,6,12,7,31))) define("PARTNERLOG", true);
+if (isset($_SESSION['AuthLevelID']) && in_array($_SESSION['AuthLevelID'],array(0,2,4,5,6,12,7,31))) define("PARTNERLOG", true);
 else define("PARTNERLOG", false);
  
 error_reporting(E_ALL & ~E_NOTICE & ~E_WARNING);

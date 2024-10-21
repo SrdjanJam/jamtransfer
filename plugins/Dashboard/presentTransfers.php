@@ -10,6 +10,7 @@
 	$timeend=date('Y-m-d',time()+3600*48);	
 	$where=" WHERE PickupDate>'".$timestart."' AND PickupDate<'".$timeend."' AND TransferStatus=1 AND DriverConfStatus in (2,3) AND DriverID=".$_SESSION['UseDriverID'];	
 	$odk=$od->getKeysBy('PickupDate,PickupTime','ASC',$where);
+	$details3=array();
 	foreach ($odk as $key) {
 		$od->getRow($key);
 		$detail_row=$od->fieldValues();

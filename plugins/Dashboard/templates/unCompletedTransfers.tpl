@@ -1,5 +1,5 @@
 {if $noOfTransfers2 gt 0}
-<div class="small-box bg-warning">
+<div class="box">
 	<div class="inner">
 		<h3 class="box-title">{$UNCOMPLETED_TRANSFERS}</h3><br>
 
@@ -58,9 +58,6 @@
 			</div>
 		{/section}	
 		<br><small style="font-size:14px">No of transfers: {$noOfTransfers2}</small>
-	</div>
-	<div class="icon">
-		<i class="fa fa-flag-checkered"></i>
 	</div>	
 </div>
 <br>

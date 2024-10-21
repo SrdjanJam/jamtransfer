@@ -9,6 +9,11 @@ $size=$pathVars->size();
 $specialpage=$pathVars->fetchByIndex($size - 1);
 $specialpage2=$pathVars->fetchByIndex($size - 2);	
 if ($size>0) $activePage=$pathVars->fetchByIndex($indexStart);
+if ($activePage=='code') {
+	$_REQUEST['tempPass']=md5($pathVars->fetchByIndex($indexStart + 1));
+	$indexStart+=2;
+	$activePage=$pathVars->fetchByIndex($indexStart);
+}
 
 switch ($activePage) {
 	case 'loginAsUser':
@@ -50,18 +55,41 @@ switch ($activePage) {
 		break;
 		
 	case 'orders':
+	case 'bookOrders':
 		$isEdit=false;
 
 		if ($pathVars->fetchByIndex($indexStart + 1)) { 
 			$transfersFilter=$pathVars->fetchByIndex($indexStart + 1);
 			if ($transfersFilter=='order') $orderid=$pathVars->fetchByIndex($indexStart + 2);
-			if ($transfersFilter=='detail') $detailid=$pathVars->fetchByIndex($indexStart + 2);
+			if ($transfersFilter=='detail') {
+				$detailid=$pathVars->fetchByIndex($indexStart + 2);
+				if ($pathVars->fetchByIndex($indexStart + 3) && $pathVars->fetchByIndex($indexStart + 4)) {
+					$key=$pathVars->fetchByIndex($indexStart + 3);
+					$userID=$pathVars->fetchByIndex($indexStart + 4);
+					require_once ROOT."/db/v4_OrderDetails.class.php";
+					require_once ROOT."/db/v4_OrdersMaster.class.php";
+					require_once ROOT."/db/v4_AuthUsers.class.php";
+					$od = new v4_OrderDetails;
+					$om = new v4_OrdersMaster;
+					$au = new v4_AuthUsers;
+					$od->getRow($detailid);
+					$orderID=$od->getOrderID();
+					$om->getRow($orderID);
+					if ($om->getMOrderKey()==$key) {
+						$au->getRow($userID);
+						$username=$au->getAuthUserName();
+						$tempPass=$au->getAuthUserPass();
+						$_REQUEST['username']=$username;
+						$_REQUEST['tempPass']=$tempPass;
+					}	
+				}	
+			}	
 		
 			if (is_numeric($transfersFilter)) {
 				$detailid=$pathVars->fetchByIndex($indexStart + 1);
 				$isEdit=true;
 			}
-
+			
 			if (isset($_POST['orderid']) && $_POST['orderid']<>'') $orderid=$_POST['orderid'];	
 		}
 		if (PARTNERLOG) $activePage="bookOrders";		
@@ -244,7 +272,13 @@ switch ($specialpage) {
 		$help=$activePage;
 		$activePage='tutorials';	
 	case 'new':
+		$isNew=true;	
+	case 'newDriver':
 		$isNew=true;
+		$newDriver=true;	
+	case 'newAgent':
+		$isNew=true;
+		$newAgent=true;
 	default:
 }
 

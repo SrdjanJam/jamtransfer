@@ -8,6 +8,7 @@
 	$smarty->assign('actualTransfers',false);										
 	$smarty->assign('unConfirmedTransfers',false);										
 	$smarty->assign('unCompletedTransfers',false);										
+	$smarty->assign('presentTransfers',false);										
 	$smarty->assign('todo',false);
 	$smarty->assign('quickEmail',false);	
 	$smarty->assign('translatorPanel',false);
@@ -86,8 +87,8 @@
 	if (in_array($_SESSION['AuthLevelID'],array(2,31,41,42,43,44,45,91,92,99))) {
 			//if (isset($_SESSION['UseDriverID']) && $_SESSION['UseDriverID']==520) {
 			if (isset($_SESSION['UseDriverID'])) {
-				require_once 'unComplitedTransfers.php';
-				$smarty->assign('unComplitedTransfers',true);
+				require_once 'unCompletedTransfers.php';
+				$smarty->assign('unCompletedTransfers',true);
 			}	
 	}	
 	if (in_array($_SESSION['AuthLevelID'],array(2,31,41,42,43,44,45,91,92,99))) {

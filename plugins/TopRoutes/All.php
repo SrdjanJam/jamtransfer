@@ -35,16 +35,6 @@ $flds = array();
 $DB_Where = " " . $_REQUEST['where'];
 $DB_Where .= $filter;
 
-// Nepotreban deo:
-// if ($_REQUEST['Type']==99) {
-// 	$sql="SELECT TerminalID FROM `v4_Terminals`";	
-// 	$result = $dbT->RunQuery($sql);
-// 	while($row = $result->fetch_array(MYSQLI_ASSOC)){
-// 		$terminals_arr.=$row['TerminalID'].",";
-// 	}
-// 	$terminals_arr = substr($terminals_arr,0,strlen($terminals_arr)-1);	
-// 	$DB_Where .= " AND TerminalID in (".$terminals_arr.")";
-// }
 
 # dodavanje search parametra u qry
 # DB_Where sad ima sve potrebno za qry
@@ -60,10 +50,10 @@ if ( $_REQUEST['Search'] != "" )
 		.$db->myreal_escape_string( $_REQUEST['Search'] )."%' OR ";
 	}
 	$DB_Where = substr_replace( $DB_Where, "", -3 );
-	$DB_Where .= ')';
+	$wherePlaces=" WHERE RouteName LIKE '%".$db->myreal_escape_string( $_REQUEST['Search'] )."%'";
+	$rtKeys=$dbR->getKeysBy('RouteID','',$wherePlaces);
+	$DB_Where .= " OR TopRouteID in (".implode(',',$rtKeys).")) ";
 }
-
-
 $dbTotalRecords = $db->getKeysBy($ItemName . $sortOrder, '',$DB_Where);
 # test za LIMIT - trebalo bi ga iskoristiti za pagination! 'asc' . ' LIMIT 0,50'
 $dbk = $db->getKeysBy($ItemName . $sortOrder, '' . $limit , $DB_Where);

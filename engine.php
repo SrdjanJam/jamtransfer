@@ -5,6 +5,8 @@
 $_SESSION['InitialRequest'] = $_SERVER['REQUEST_URI'];
 $help="menu";
 $isNew=false;
+$NewDriver=false;
+$NewAgent=false;
 $transfersFilter='';
 $includeFile='/index.php';
 $includeFileTpl='index.tpl';
@@ -25,6 +27,12 @@ $terminalID=0;
 
 require_once 'pathToVars.php';
 // LOGIN
+if ($activePage=="users" && $isNew) {
+	$_SESSION['UserAuthorized']=true;
+	$_SESSION['AuthLevelID']=0;
+	if ($newAgent) $_SESSION['UserRealName']="New agent";
+	if ($newDriver) $_SESSION['UserRealName']="New driver";
+}	
 if(!isset($_SESSION['UserAuthorized']) or $_SESSION['UserAuthorized'] == false) {
 	if ($activePage<>"") setcookie("pageEx", $activePage, time() + (7*24*60*60),"/");
 	require_once 'login.php';
@@ -104,8 +112,8 @@ if ($result->num_rows>0) {
 		if ($display1) $menu1[]=$row1;
 	}
 	$mdk = $md->getKeysBy('ModulID ' ,'asc', "where code='$activePage'");
-	//if (count($mdk)==1 && in_array($activePage,$active_pages)) {
-	if (count($mdk)==1) {
+	if (count($mdk)==1 && in_array($activePage,$active_pages)) {
+	//if (count($mdk)==1) {
 		$keyP=$mdk[0];
 		$md->getRow($keyP);
 		if (is_dir($modulesPath . '/'.$md->getBase())) {	
@@ -119,7 +127,7 @@ if ($result->num_rows>0) {
 		if ($md->getIsDesc()==1) $isDesc=true;
 		else $isDesc=false;
 	}
-	else header("Location: ". ROOT_HOME . '/dashboard');
+	else header("Location: ". ROOT_HOME . 'dashboard');
 	
 
 	if ($specialpage2=='fieldsSettings') {
@@ -165,7 +173,7 @@ if ($result->num_rows>0) {
 	require_once 'css.php';
 	$smarty->display("index.tpl");	
 }
-else echo "<h1>No menu options for this profile</h1>";
+//else echo "<h1>No menu options for this profile</h1>";
 
 
 

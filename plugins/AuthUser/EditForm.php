@@ -68,7 +68,7 @@
 									</form>
 									<br><br>
 								</div>
-							</div>		
+							</div>	
 							<div class="row">
 								<div class="col-md-3 "><label><?= ID ?></label></div>
 								<div class="col-md-9">
@@ -76,6 +76,7 @@
 								</div>
 							</div>
 							<? } ?>	
+							<? if ($_SESSION['AuthLevelID']!=0) { ?>									
 							<div class="row">
 								<div class="col-md-3 "><label><?= ACTIVE ?></label></div>
 								<div class="col-md-9">
@@ -96,7 +97,7 @@
 									{{languageSelect Language}}
 								</div>
 							</div>
-
+							<? } ?>	
 							<div class="row">
 								<div class="col-md-3 "><label><?= USER_NAME ?></label></div>
 								<div class="col-md-9">
@@ -112,16 +113,14 @@
 								</div>
 							</div>							
 
-							{{#compare AuthLevelID "!=" '2'}}
-								<div class="row">
-									<div class="col-md-3 "><label><?= REAL_NAME?></label></div>
-									<div class="col-md-9">
-										<input id="AuthUserRealName" name="AuthUserRealName" type="text"  class="w100"
-										 value="{{AuthUserRealName}}"
-										<?= READ_ONLY_FLD ?> required>
-									</div>
+							<div class="row">
+								<div class="col-md-3 "><label><?= REAL_NAME?></label></div>
+								<div class="col-md-9">
+									<input id="AuthUserRealName" name="AuthUserRealName" type="text"  class="w100"
+									 value="{{AuthUserRealName}}"
+									<?= READ_ONLY_FLD ?> required>
 								</div>
-							{{/compare}}
+							</div>
 
 							<div class="row">
 								<div class="col-md-3 "><label><?= COMPANY_NAME ?></label></div>
@@ -254,6 +253,7 @@
 								</div>
 							</div>
 							{{/compare}}
+							<? if ($_SESSION['AuthLevelID']!=0) { ?>
 							<div class="row">
 								<div class="col-md-3 "><label><?= MESSAGE_FOR_USER ?></label></div>
 								<div class="col-md-9">
@@ -263,7 +263,8 @@
 										{{AuthUserNote1}}
 									</textarea><br>
 								</div>
-							</div>		
+							</div>	
+							<? } ?>							
 						</div>	
 						<div class="col-md-6">
 
@@ -392,7 +393,7 @@
 							<div class="row">
 								<div class="col-md-3 "><label>Booking hours +- time zone</label></div>
 								<div class="col-md-9">
-									<input type="number" name="Temp_pass_active" class="w25" max='48' min='4'
+									<input type="number" name="Temp_pass_active" class="w25" max='168' min='4'
 									 value="{{Temp_pass_active}}"
 									<?= READ_ONLY_FLD ?>>
 								</div>
@@ -558,11 +559,9 @@
 									<?= READ_ONLY_FLD ?>> %
 								</div>
 							</div>
-
 							{{/compare}}
-						
 							<hr>
-
+							<? if (!$isNew) { ?>						
 							<div class="row">
 								<div class="col-md-3 "><label><?= DATE_ADDED ?></label></div>
 								<div class="col-md-9">
@@ -593,7 +592,7 @@
 									{{LastVisited}}
 								</div>
 							</div>
-						
+							<? } ?>	
 						</div>
 					</div>
 	    </div><!-- box-body-->

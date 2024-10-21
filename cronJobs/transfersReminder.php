@@ -80,6 +80,10 @@ foreach ($driverKeys as $key) {
 
 		$userEmail = $au->getAuthUserMail();
 		$userPhone = $au->getAuthUserMob();
+		$userCode=md5($au->getAuthUserPass());
+		$page="https://wis.jamtransfer.com/codeLogin.php?userCode=".$userCode."&userID=".$au->getAuthUserID();
+		
+		
 		//$userEmail = 'jam.bgprogrameri@gmail.com';
 		// START MAIL
 		$message = '<div style="width:1000px;margin:0 auto;border:solid 6px black;border-left:0;border-right:0;font-family:sans-serif"><div style="padding:12px;text-align:center"><img src="https://wis.jamtransfer.com/i/logo.png"></div><div style="padding:24px 36px;background:#eee"><p>Dear partner '.$au->getAuthUserRealName().',</p><p>Bellow is a list of ​<span style="text-decoration:underline">CURRENTLY</span> scheduled transfers for tomorrow ('.$dateTomorrow.'):</p><table style="width:100%;margin:24px auto;border:solid 1px black;text-align:center"><tr><th>Order</th><th>Status</th><th>Pickup time</th><th>Pickup location</th><th>Drop off location</th><th>Vehicle</th></tr>';
@@ -111,6 +115,7 @@ foreach ($driverKeys as $key) {
 
 		$message .= '</table>
 		<div style="color:red;text-align:center;border:solid 2px #ff8f8f;line-height:2em">
+			<a href="'.$page.'">Login on your prifile!</a><br>
 			View transfers and match them with your vehicles and drivers at 
 			<a href="https://wis.jamtransfer.com/distribution/'.$dateTomorrow.'">https://wis.jamtransfer.com/distribution/'.$dateTomorrow.'</a><br>
 			<small>Update your vehicles (<a href="https://wis.jamtransfer.com/myVehicles">https://wis.jamtransfer.com/myVehicles</a>),   
@@ -121,7 +126,8 @@ foreach ($driverKeys as $key) {
 			<p>Kind Regards,<br>JamTransfer</p>
 			<p style="margin:24px 0 0;text-align:center;font-size:small">This is an automatically generated email, please do not reply to this message.</p>
 		</div></div>';
-		$messageW .= 'View transfers and match them at <br>https://wis.jamtransfer.com/distribution/'.$dateTomorrow.'<br>';
+		$messageW .= 'Login: '.$page.'<br>';
+		$messageW .= 'View transfers and match them at: <br>https://wis.jamtransfer.com/distribution/'.$dateTomorrow.'<br>';
 		$messageW .= 'Kind Regards,<br>JamTransfer';
 		// END MAIL
 		mail_html($userEmail, $message);

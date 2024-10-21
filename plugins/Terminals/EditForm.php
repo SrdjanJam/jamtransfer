@@ -17,6 +17,10 @@
 					onclick="return editSaveItem('{{TerminalID}}');">
 					<i class="fa fa-save"></i>
 				</button>
+				<button class="btn btn-info" title="Top Routes" 
+				onclick="return topRoutes('{{TerminalID}}');">
+				<i class="fa fa-road"></i>
+				</button>				
 
 		</div>
 	</div>
@@ -118,8 +122,8 @@
 					</div>
 				{{/each}}
 			</div>
+			<a id="tr" style="display:none;" href='plugins/Terminals/TopRoutes_{{TerminalID}}.csv'></a> 
 	    </div>
-		   
 </form>
 
 	<script>
@@ -152,6 +156,23 @@ $
 		$("#PlaceCountry").change(function(){
 			$("#CountryNameEN").val( $("#PlaceCountry option:selected").text());
 		});
+		
+		function topRoutes(id) {
+			$.ajax({
+				type: 'GET',
+				url: 'plugins/Terminals/TopRoutes.Export.php?PlaceID='+id,		
+				success: function(data) {
+					$('#tr')[0].click();
+					$.ajax({
+						type: 'GET',
+						url: 'plugins/Terminals/DeleteTopRoutesFile.php?PlaceID='+id,		
+						success: function(data) {
+						}
+					})	
+				}						
+			})
+			
+		}			
 	</script>
 </script>
 

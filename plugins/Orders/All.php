@@ -733,9 +733,12 @@ if (count($dbk) != 0) {
 			}
 			//print_r($oeServices);
 			$detailFlds['oeServices']=$oeServices;
-			date_default_timezone_set('Europe/Paris');
 		}		
-		$detailFlds['Today']=date('Y-m-d');
+		date_default_timezone_set('Europe/Paris');
+		$fulltime=$od->getPickupDate()." ".$od->getPickupTime();
+		$transferEndTime=strtotime($fulltime)+1800;
+		if ($transferEndTime<time()) $detailFlds['showMarkCompleted']=1;
+		else $detailFlds['showMarkCompleted']=0;
 		$out[] = array_merge($detailFlds , $masterFlds );    	  	
     }
 }

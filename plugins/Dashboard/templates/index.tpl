@@ -17,9 +17,9 @@
 						</section>	
 						{/if}						
 						
-						{if $unComplitedTransfers}
+						{if $unCompletedTransfers}
 						<section class="col-lg-12 xconnectedSortable"> 
-							{include file="plugins/Dashboard/templates/unComplitedTransfers.tpl"} 
+							{include file="plugins/Dashboard/templates/unCompletedTransfers.tpl"} 
 						</section>	
 						{/if}						
 						

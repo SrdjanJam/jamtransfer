@@ -70,10 +70,13 @@ foreach ($driverKeys as $key) {
 		
         $userEmail = $au->getAuthUserMail();
 		$userPhone = $au->getAuthUserMob();	
+		$userCode=md5($au->getAuthUserPass());
+		$page="https://wis.jamtransfer.com/codeLogin.php?userCode=".$userCode."&userID=".$au->getAuthUserID();
 		
 		// START MAIL
-		$message = '<div style="width:1000px;margin:0 auto;border:solid 6px black;border-left:0;border-right:0;font-family:sans-serif"><div style="padding:12px;text-align:center"><img src="https://wis.jamtransfer.com/i/logo.png"></div><div style="padding:24px 36px;background:#eee"><p>Dear partner '.$au->getAuthUserRealName().',</p><p>Please <b>CONFIRM OR DECLINE</b> these transfers immediately:</p><table style="width:100%;margin:24px auto;border:solid 1px black;text-align:center"><tr><th>Order</th><th>Status</th><th>Pickup</th><th>View</th></tr>';
-		$messageW = 'Dear partner '.$au->getAuthUserRealName().', Please *CONFIRM OR DECLINE* these transfers immediately: <br>';
+		$message = '<div style="width:1000px;margin:0 auto;border:solid 6px black;border-left:0;border-right:0;font-family:sans-serif"><div style="padding:12px;text-align:center"><img src="https://wis.jamtransfer.com/i/logo.png"></div><div style="padding:24px 36px;background:#eee"><p>Dear partner '.$au->getAuthUserRealName().',</p><p>Please <a href="'.$page.'">Login</a> and <b>CONFIRM OR DECLINE</b> these transfers immediately:</p><table style="width:100%;margin:24px auto;border:solid 1px black;text-align:center"><tr><th>Order</th><th>Status</th><th>Pickup</th></tr>';
+		$messageW = 'Dear partner '.$au->getAuthUserRealName().', *CONFIRM OR DECLINE* these transfers immediately: <br>';
+		$messageW.= $page."<br>";
 		foreach ($transferKeys as $key) {
 			$od->getRow($key);
 			$message .= '<tr><td>'.$od->getOrderID().'-'.$od->getTNo().'</td><td>';
@@ -93,20 +96,16 @@ foreach ($driverKeys as $key) {
 			}
 
 			//$message .= '</td><td>'.$od->getPickupDate().' '.$od->getPickupTime().' - '.$od->getPickupName().'</td><td><a href="https://cms.jamtransfer.com/cms/index.php?p=transfersList&transfersFilter=details&id='.$key.'">View</a></td></tr>';
-			$message .= '</td><td>'.$od->getPickupDate().' '.$od->getPickupTime().' - '.$od->getPickupName().' - '.$od->getDropName().'</td><td><a href="https://wis.jamtransfer.com/bookOrders/detail/'.$key.'">View</a></td></tr>';
-			
+			$message .= '</td><td>'.$od->getPickupDate().' '.$od->getPickupTime().' - '.$od->getPickupName().' - '.$od->getDropName().'</td></tr>';	
 			$messageW .= $od->getPickupDate().' '.$od->getPickupTime().'<br>'.$od->getPickupName().'-'.$od->getDropName().' <br>';
-			$messageW .= 'https://wis.jamtransfer.com/dc.php?code='.ltrim($od->getDetailsID()).'&control='.$orderKey.'&id='.ltrim($od->getDriverID()).'<br>';
-			
 		}
 		$message .= '</table><p>Kind Regards,<br>JamTransfer</p><p style="margin:24px 0 0;text-align:center;font-size:small">This is an automatically generated email, please do not reply to this message.</p></div></div>';
 		$messageW .= 'Kind Regards,<br>JamTransfer';
 		// END MAIL
 
 		//echo $userEmail. ' - '. $message;	
-
 		mail_html($userEmail, $message);  
-		if (!empty($userPhone)) send_whatsapp_message($userPhone,$messageW);				
+		if (!empty($userPhone)) send_whatsapp_message($userPhone,$messageW);
     }
 }
 

@@ -226,7 +226,7 @@
 								</span>
 
 								<!-- Logout link: -->
-								<div style="margin-top:12px;text-decoration:underline;text-align:center;"><a href='logout.php'>{$LOGOUT} <i class="fa fa-sign-out"></i></a></div>
+								{if $smarty.session.AuthLevelID}<div style="margin-top:12px;text-decoration:underline;text-align:center;"><a href='logout.php'>{$LOGOUT} <i class="fa fa-sign-out"></i></a></div>{/if}
 
 								<ul class="dropdown-menu animated fadeInRight m-t-xs">
 									<li><a href="profile" data-param="">{$PROFILE}</a></li>

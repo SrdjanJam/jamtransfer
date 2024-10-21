@@ -68,17 +68,21 @@ foreach ($driverKeys as $key) {
 		}
 
         $userEmail = $au->getAuthUserMail();
-		$userPhone = $au->getAuthUserMob();		
-		
+		$userPhone = $au->getAuthUserMob();	
+		$userCode=md5($au->getAuthUserPass());
+		$page="https://wis.jamtransfer.com/codeLogin.php?userCode=".$userCode."&userID=".$au->getAuthUserID();
+		 
 		// START MAIL
-		$message = '<div style="width:1000px;margin:0 auto;border:solid 6px black;border-left:0;border-right:0;font-family:sans-serif"><div style="padding:12px;text-align:center"><img src="https://wis.jamtransfer.com/i/logo.png"></div><div style="padding:24px 36px;background:#eee"><p>Dear partner '.$au->getAuthUserRealName().',</p><p>Please <b>MARK AS A COMPLETED</b> this transfers immediately:</p><table style="width:100%;margin:24px auto;border:solid 1px black;text-align:center"><tr><th>Order</th><th>Pickup</th><th>View</th></tr>';
-		$messageW = 'Dear partner '.$au->getAuthUserRealName().', Please *MARK AS A COMPLETED* this transfers immediately:<br>';
+		$message = '<div style="width:1000px;margin:0 auto;border:solid 6px black;border-left:0;border-right:0;font-family:sans-serif"><div style="padding:12px;text-align:center"><img src="https://wis.jamtransfer.com/i/logo.png"></div><div style="padding:24px 36px;background:#eee"><p>Dear partner '.$au->getAuthUserRealName().',</p>';
+		$message.= '<p>Please <a href="'.$page.'">Login</a> and <b>MARK AS A COMPLETED</b> this transfers immediately:</p><table style="width:100%;margin:24px auto;border:solid 1px black;text-align:center"><tr><th>Order</th><th>Pickup</th></tr>';
+		$messageW = 'Dear partner '.$au->getAuthUserRealName().', Please Login and *MARK AS A COMPLETED* this transfers immediately:<br>';
+		$messageW.= $page."<br>";
 		foreach ($transferKeys as $key) {
 			$od->getRow($key);
 			$message .= '<tr><td>'.$od->getOrderID().'-'.$od->getTNo().'</td>';
-			$message .= '<td>'.$od->getPickupDate().' '.$od->getPickupTime().' - '.$od->getPickupName().' - '.$od->getDropName().'</td><td><a href="https://wis.jamtransfer.com/bookOrders/detail/'.$key.'">View</a></td></tr>';
+			$message .= '<td>'.$od->getPickupDate().' '.$od->getPickupTime().' - '.$od->getPickupName().' - '.$od->getDropName().'</td></tr>';
 			$messageW .= '*'.$od->getOrderID().'-'.$od->getTNo() . '* ' ;
-			$messageW .= $od->getPickupDate().' '.$od->getPickupTime().' - '.$od->getPickupName().'-'.$od->getDropName().'<br>https://wis.jamtransfer.com/bookOrders/detail/'.$key.'<br>';		
+			$messageW .= $od->getPickupDate().' '.$od->getPickupTime().' - '.$od->getPickupName().'-'.$od->getDropName().'<br>';		
 		}
 
 		$message .= '</table><p>Kind Regards,<br>JamTransfer</p><p style="margin:24px 0 0;text-align:center;font-size:small">This is an automatically generated email, please do not reply to this message.</p></div></div>';

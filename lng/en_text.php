@@ -1121,5 +1121,5 @@ define("DRIVER_ISSUE_INVOICE","You issue us an invoice.");
 define("DRIVER_RECIVE_INVOICE","We issue you an invoice.");
 define("INVOICE_VALUE","Invoice value:");
 define("PASSENGER_PAYMENT","Payments from passenger:");
-define("UNCOMPLETED_TRANSFERS","Uncomplited");
+define("UNCOMPLETED_TRANSFERS","Uncompleted");
 define("VIEW_TRANSFER","View transfer");

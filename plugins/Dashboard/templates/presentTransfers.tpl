@@ -1,5 +1,5 @@
 {if $noOfTransfers3 gt 0}
-<div class="small-box bg-info">
+<div class="box light-green">
 	<div class="inner">
 		<h3 class="box-title">{$TODAY}&{$TOMORROW}</h3><br>
 
@@ -15,7 +15,7 @@
 					<strong>{$details3[pom].PickupName} - {$details3[pom].DropName}</strong>
 				</div>	
 				<div  class="col-sm-2">
-					<a href='{$ROOT_WEB}/orders/detail/{$details3[pom].DetailsID}' class="btn btn-primary mac" >
+					<a href='{$ROOT}/orders/detail/{$details3[pom].DetailsID}' class="btn btn-primary mac" >
 						{$VIEW_TRANSFER}
 					</a>
 				</div>	
@@ -23,8 +23,5 @@
 		{/section}	
 		<br><small style="font-size:14px">No of transfers: {$noOfTransfers3}</small>
 	</div>
-	<div class="icon ">
-		<i class="fa fa-car"></i>
-	</div>	
 <br>
 {/if}	

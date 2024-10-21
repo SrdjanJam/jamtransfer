@@ -1,5 +1,5 @@
 {if $noOfTransfers gt 0}
-<div class="small-box bg-danger">
+<div class="box yellow">
 	<div class="inner">
 		<h3 class="box-title">{$UNCONFIRMED_TRANSFERS}</h3><br>
 		{section name=pom loop=$details}
@@ -165,9 +165,6 @@
 			</div>
 		{/section}	
 		<br><small style="font-size:14px">No of transfers: {$noOfTransfers}</small>
-	</div>
-	<div class="icon">
-		<i class="ion ion-ios7-alarm"></i>
 	</div>
 </div>
 <br>

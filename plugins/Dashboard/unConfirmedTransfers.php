@@ -13,6 +13,7 @@
 	$timestart=date('Y-m-d',time()-3600*24);
 	$where=" WHERE DriverID=".$_SESSION['UseDriverID']." AND RequestType=1 AND ConfirmDecline=0 ";	
 	$ork=$or->getKeysBy('RequestDate','',$where);
+	$details=array();
 	foreach ($ork as $key) {
 		$or->getRow($key);
 		$where=" WHERE PickupDate>'".$timestart."' AND TransferStatus=1 AND DriverConfStatus in (0,1,4) AND DriverID=0 AND OrderID=".$or->getOrderID()." AND TNo=".$or->getTNo();	
