@@ -13,6 +13,7 @@ Class v4_LogUser {
 	public $Type; //tinyint(1)
 	public $SessionID; //varchar(255)
 	public $DateTime; //datetime
+	public $Mob; //tinyint(1)
 
 	public $connection;
 	
@@ -23,7 +24,7 @@ Class v4_LogUser {
 		return $this->connection->real_escape_string($string);
 	}
 
-	public function New_v4_LogUser($ID,$IPAddress,$UserName,$AuthUserID,$Latitude,$Longitude,$Place,$Type,$SessionID,$DateTime){
+	public function New_v4_LogUser($ID,$IPAddress,$UserName,$AuthUserID,$Latitude,$Longitude,$Place,$Type,$SessionID,$DateTime,$Mob){
 		$this->ID = $ID;
 		$this->IPAddress = $IPAddress;
 		$this->UserName = $UserName;
@@ -34,6 +35,7 @@ Class v4_LogUser {
 		$this->Type = $Type;
 		$this->SessionID = $SessionID;
 		$this->DateTime = $DateTime;
+		$this->Mob = $Mob;
 	}
 
 	public function fieldValues(){
@@ -47,12 +49,13 @@ Class v4_LogUser {
 			'Place' => $this->getPlace(),
 			'Type' => $this->getType(),
 			'SessionID' => $this->getSessionID(),
-			'DateTime' => $this->getDateTime()
+			'DateTime' => $this->getDateTime(),
+			"Mob" => $this->getMob()
 			);
 		return $fieldValues;
 	}
 	public function fieldNames(){
-		$fieldNames = array('ID','IPAddress','UserName','AuthUserID','Latitude','Longitude','Place','Type','SessionID','DateTime');
+		$fieldNames = array('ID','IPAddress','UserName','AuthUserID','Latitude','Longitude','Place','Type','SessionID','DateTime','Mob');
 		return $fieldNames;
 	}
 	
@@ -70,6 +73,7 @@ Class v4_LogUser {
 			$this->Type = $row["Type"];
 			$this->SessionID = $row["SessionID"];
 			$this->DateTime = $row["DateTime"];
+			$this->Mob = $row["Mob"];
 		}
 	}
 
@@ -88,13 +92,15 @@ Class v4_LogUser {
 		Place = '".$this->myreal_escape_string($this->Place)."', 
 		Type = '".$this->myreal_escape_string($this->Type)."',
 		SessionID = '".$this->myreal_escape_string($this->SessionID)."',
-		DateTime = '".$this->myreal_escape_string($this->DateTime)."' WHERE ID = '".$this->ID."'");
+		DateTime = '".$this->myreal_escape_string($this->DateTime)."',
+		Mob = '".$this->myreal_escape_string($this->Mob)."'
+		WHERE ID = '".$this->ID."'");
 
 		return $result; 
 	}
 
 	public function saveAsNew(){
-		$this->connection->RunQuery("INSERT INTO v4_LogUser (IPAddress, UserName, AuthUserID, Latitude, Longitude, Place, Type, SessionID, DateTime)
+		$this->connection->RunQuery("INSERT INTO v4_LogUser (IPAddress, UserName, AuthUserID, Latitude, Longitude, Place, Type, SessionID, DateTime, Mob)
 		values (
 			'".$this->myreal_escape_string($this->IPAddress)."', 
 			'".$this->myreal_escape_string($this->UserName)."', 
@@ -104,7 +110,8 @@ Class v4_LogUser {
 			'".$this->myreal_escape_string($this->Place)."',
 			'".$this->myreal_escape_string($this->Type)."',
 			'".$this->myreal_escape_string($this->SessionID)."',
-			'".$this->myreal_escape_string($this->DateTime)."'
+			'".$this->myreal_escape_string($this->DateTime)."',
+			'".$this->myreal_escape_string($this->Mob)."',
 			)");
 
 		return $this->connection->insert_id(); //return insert_id 
@@ -160,6 +167,10 @@ Class v4_LogUser {
 	public function getDateTime(){
 		return $this->DateTime;
 	}
+
+	public function getMob(){
+		return $this->Mob;
+	}
 	
 
 	// SET FUNCTIONS:
@@ -192,6 +203,9 @@ Class v4_LogUser {
 	}	
 	public function setDateTime($DateTime){
 		$this->DateTime = $DateTime;
+	}
+	public function setMob($Mob){
+		$this->Mob = $Mob;
 	}
 
 
