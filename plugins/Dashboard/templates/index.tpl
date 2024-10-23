@@ -11,6 +11,12 @@
 					{/if}
 					
 					<div class="row">
+						{if $unAssignedTransfers}
+						<section class="col-lg-12 xconnectedSortable"> 
+							{include file="plugins/Dashboard/templates/unAssignedTransfers.tpl"} 
+						</section>	
+						{/if}					
+					
 						{if $unConfirmedTransfers}
 						<section class="col-lg-12 xconnectedSortable"> 
 							{include file="plugins/Dashboard/templates/unConfirmedTransfers.tpl"} 
@@ -27,8 +33,8 @@
 						<section class="col-lg-12 xconnectedSortable"> 
 							{include file="plugins/Dashboard/templates/presentTransfers.tpl"} 
 						</section>	
-						{/if}
-						
+						{/if}						
+												
 						{if $getOrder}
 						<section class="col-lg-6 xconnectedSortable"> 
 							{include file="plugins/Dashboard/templates/getOrder.tpl"} 			

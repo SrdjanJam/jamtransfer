@@ -1,7 +1,10 @@
 <?
 	require_once '../../config.php';
+	if ($_REQUEST['SubDriverID']>0) $status=3;
+	else $status=2;
 	$q = "UPDATE `v4_OrderDetails` SET `SubDriver`=".$_REQUEST['SubDriverID'].",
-		`Car`=".$_REQUEST['SubVehicleID']."
+		`Car`=".$_REQUEST['SubVehicleID'].",
+		`DriverConfStatus`=".$status."
 		WHERE `DetailsID`=".$_REQUEST['DetailsID'];
 	$r = $db->RunQuery($q);
 	

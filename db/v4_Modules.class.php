@@ -24,7 +24,7 @@ Class v4_Modules {
 
 	function __construct(){
 		$this->connection = new DataBaseMysql();
-		$this->table = "v4_Modules_".$_COOKIE['CMSLang'];
+		$this->table = "v4_Modules_".$_SESSION['CMSLang'];
 	}	
 	public function myreal_escape_string($string){
 		return $this->connection->real_escape_string($string);

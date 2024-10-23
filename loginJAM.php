@@ -99,7 +99,14 @@ require_once('lng/' . $_SESSION['CMSLang'] . '_text.php');
 								$_SESSION['OwnerID'] = $row['AuthUserID'];
 								$_SESSION['PermAuthUserID'] = $row['AuthUserID'];
 								$_SESSION['userCode'] = md5($row['AuthUserPass']);
-																
+
+								//za Josku premostavanje
+								if ($row['AuthUserID']==3088) {
+									$_SESSION['AuthUserID'] = 876;
+									$_SESSION['OwnerID'] = 876;
+									$_SESSION['PermAuthUserID'] = 876;									
+								}	
+
 								$_SESSION['AuthLevelID'] = $row['AuthLevelID'];
 								$_SESSION['DriverID'] = $row['DriverID'];
 								$_SESSION['MemberSince'] = $row['DateAdded'];
@@ -130,7 +137,11 @@ require_once('lng/' . $_SESSION['CMSLang'] . '_text.php');
 								saveLog($row['AuthUserID'],1);
 								$levels=array(41,43,44,91,92,99);
 								if (in_array($_SESSION['AuthLevelID'],$levels)) createNotification($_SESSION['AuthUserID'],"Thank you for login. If not, confirm your login by scanning the QR code.","https://wis.jamtransfer.com/");
-								header("Location: " .$page);
+								if (in_array($_SESSION['AuthLevelID'],array(2,3,4,5,6,12,44,45))) {
+									$page="https://cms.jamtransfer.com/cms/codeLogin.php?userCode=".$_SESSION['userCode']."&userID=".$_SESSION['AuthUserID'];
+									header("Location: ".$page);
+								}	
+								else header("Location: " .$page);
 								exit();
 									
 							}

@@ -5,6 +5,7 @@
 $_SESSION['InitialRequest'] = $_SERVER['REQUEST_URI'];
 $help="menu";
 $isNew=false;
+$isNewNL=false;
 $NewDriver=false;
 $NewAgent=false;
 $transfersFilter='';
@@ -27,9 +28,12 @@ $terminalID=0;
 
 require_once 'pathToVars.php';
 // LOGIN
-if ($activePage=="users" && $isNew) {
+if ($activePage=="users" && !isset($_SESSION['UserRealName']) && $isNew) {
 	$_SESSION['UserAuthorized']=true;
 	$_SESSION['AuthLevelID']=0;
+}	
+if ($_SESSION['AuthLevelID']==0) {
+	$active_pages[]="users";
 	if ($newAgent) $_SESSION['UserRealName']="New agent";
 	if ($newDriver) $_SESSION['UserRealName']="New driver";
 }	

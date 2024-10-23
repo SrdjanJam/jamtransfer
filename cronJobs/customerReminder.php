@@ -42,6 +42,7 @@ $sql .= "WHERE PickupDate = '".$dateTomorrow."' ";
 $sql .= "AND TransferStatus != '3' ";
 $sql .= "AND TransferStatus != '4' ";
 $sql .= "AND TransferStatus != '5' ";
+$sql .= "AND TransferStatus != '6' ";
 $sql .= "AND TransferStatus != '9' ";
 
 $sql .= "AND AgentID NOT IN (".$booking_system.")";
@@ -69,15 +70,14 @@ $r = $db->RunQuery($sql);
 $i = 0;
 
 while ($d = $r->fetch_object()) {
-        
     $om->getRow($d->OrderID);
     if($om->getMOrderID() == $d->OrderID) {
 
 		$userEmail = trim( $om->getMPaxEmail() );
 		$userPhone = $om->getMPaxTel();		
 		
-		$userEmail = "jam.bgprogrameri@gmail.com";
-		$userPhone = "+381646413504";
+		//$userEmail = "jam.bgprogrameri@gmail.com";
+		//$userPhone = "+381646413504";
 		
 		if($userEmail != '') { // ako je email prazan, ne salji nista
             // START MAIL
@@ -93,8 +93,15 @@ while ($d = $r->fetch_object()) {
                         <br>
                         Pickup Date: <strong>'.$d->PickupDate.'</strong><small> (Y-M-D)</small><br>
                         Pickup Time: <strong>'.$d->PickupTime.'</strong><small> (hours:minutes, 24h time format)</small><br>
-                        <br>
-                        <br>
+                        <br>';
+			if ($d->SubDriver>0 && !in_array($d->DriverID,array(843,876,556))) {
+				$au->getRow($d->SubDriver);
+				$message .= '	
+                        Driver\'s Name: <strong>'.$au->getAuthUserRealName().'</strong><br>
+                        Driver\'s Telephone: <strong>'.$au->getAuthUserMob().'</strong><br>
+                        <br>';
+			}	
+            $message .= '<br>
                         <strong>If there are any last minute changes to your itinerary, please send an e-mail to 
                         <a href="mailto:info@jamtransfer.com">info@jamtransfer.com</a></strong><br>
                         <br>
@@ -104,15 +111,26 @@ while ($d = $r->fetch_object()) {
                         <br>
                         </div>
             ';            
-			$messageW = 'Dear '.$d->PaxName.', we just wish to remind You of Your transfer '.$d->OrderID. '-' . $d->TNo .'<br>From: '.$d->PickupName.', '.$d->PickupAddress .'<br>To '.$d->DropName.', '.$d->DropAddress.'<br>Pickup Time is '.$d->PickupDate.' '.$d->PickupTime.'
-                        Kindest regards<br>https://jamtransfer.com/';
+			$messageW = 'Dear '.$d->PaxName.', we just wish to remind You of Your transfer ';
+			$messageW .= $d->OrderID. '-' . $d->TNo .'<br>';
+			$messageW .= 'From '.$d->PickupName.', '.$d->PickupAddress .'<br>';
+			$messageW .= 'To '.$d->DropName.', '.$d->DropAddress.'<br>';
+			$messageW .= 'Pickup Time is '.$d->PickupDate.' '.$d->PickupTime.'<br>';
+			if ($d->SubDriver>0 && !in_array($d->DriverID,array(843,876,556))) {
+				$au->getRow($d->SubDriver);
+				$messageW .= '	
+                        Driver\'s Name is '.$au->getAuthUserRealName().'<br>
+                        Driver\'s Telephone is '.$au->getAuthUserMob().'<br>';
+			}				
+            $messageW .= 'Kindest regards<br>https://jamtransfer.com/';
+						
 
 
             // END MAIL
-			//echo $userEmail."<br>".$message;
+			echo $userEmail."<br>".$message;
 			//echo $userPhone."<br>".$messageW;
-            mail_html($userEmail, $message);			
-			if (!empty($userPhone)) send_whatsapp_message($userPhone,$messageW);	
+            //mail_html($userEmail, $message);			
+			//if (!empty($userPhone) && in_array($d->PaymentMethod,array(2,3))) send_whatsapp_message($userPhone,$messageW);	
             //break; // samo za test, da ne idu svi mailovi
             $i++;
         } 

@@ -252,7 +252,7 @@ define("ORDER_KEY", "Clé de commande");
 define("ORDER_DATE", "Date de la commande");
 define("ORDER_LOG", "Calendrier");
 define("ORDER", "Commande");
-define("ORDERS", "Commandes");
+define("ORDERS", "Ordres");
 define("ORDERS_BY_B_DATE", "Par date de réservation");
 define("ORDERS_BY_TR_DATE", "Par date de transfert");
 define("OWNERID", "Titulaire de l’identifiant");
@@ -1028,6 +1028,7 @@ define("DRIVER_EXTRA_CHARGE", "Les frais supplémentaires pour le conducteur ");
 define("GROSS_MARGIN", "Marge brute");
 define("RATIO", "Ratio");
 // kraj prevoda
+
 // 3.7.23 ==========================================================
 define("NOT_PAID","Not Paid");
 
@@ -1082,3 +1083,66 @@ define("DRIVES","Drives");
 //16.11.23
 define("ASSIGN","Assign");
 define("UNASSIGN","Unassign");
+
+//13.12.23
+define("FIELDS_DESCRIPTIONS","Fields Descriptions");
+
+// 11.1.24
+define("SHOW_SCHEDULE","Show Schedule");
+
+// 6.2.24
+define("MONRI_ID","MonriID");
+define("AVANS","Avans");
+define("EU","EU");
+define("BUYER","Buyer");
+define("FISCALBILL","Fiscal Bill");
+
+// 05.03.24
+define("AV_DRIVERS","Available Drivers");
+define("SAT_AS_DRIVER","Sat as Driver");
+
+// 07.03.24
+define("TUNNEL_PASS_ID","Tunnel pass ID");
+define("VEHICLE_CATEGORY","Vehicle Category");
+define("TUNNEL_PASS_CODE","Tunnel Pass Code");
+define("PASS_NUMBER","Pass Number");
+define("ASSIGN_SDID","Assign SubDriver");
+define("ASSIGN_TIME","Assign Time");
+define("PASS_TIME","Pass Time");
+
+// 27.3.24
+define("SEND_RULE","Send Rule");
+define("SCHEDULE_TIME","Schedule Time");
+define("SEND_TIME_FIRST","Send Time First");
+define("SEND_TIME_LAST","Send Time Last");
+define("CONFIRM_TIME","Confirm Time");
+define("SEND_NUMBER","Send Number");
+
+//29.03.24
+define("RECEIVE","Receive");
+
+//4.4.24
+define("IS_SORT_DESC","Is sort desc");
+
+//22.04.24
+define("REQUEST","Request");
+
+//24.06.24
+define("FINISH_TRANSFER","Finish Transfer");
+//21.08.24
+define("SET_WT","Set working time");
+//12.09.24
+define("YEAR","Year");
+//23.09.24
+define("ONLY_USERS","Only for users id");
+//11.10.24
+define("UNCONFIRMED_TRANSFERS","Unconfirmed");
+//14.10.24
+define("PASSENGER_PAID_SERVICE","The passenger has paid for the service!");
+define("CHARGE_TO_PASSENGER","You will charge the transfer to the passenger!");
+define("DRIVER_ISSUE_INVOICE","You issue us an invoice.");
+define("DRIVER_RECIVE_INVOICE","We issue you an invoice.");
+define("INVOICE_VALUE","Invoice value:");
+define("PASSENGER_PAYMENT","Payments from passenger:");
+define("UNCOMPLETED_TRANSFERS","Uncompleted");
+define("VIEW_TRANSFER","View transfer");

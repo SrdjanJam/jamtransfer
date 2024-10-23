@@ -15,7 +15,7 @@
 					<strong>{$details3[pom].PickupName} - {$details3[pom].DropName}</strong>
 				</div>	
 				<div  class="col-sm-2">
-					<a href='{$ROOT}/orders/detail/{$details3[pom].DetailsID}' class="btn btn-primary mac" >
+					<a href='orders/detail/{$details3[pom].DetailsID}' class="btn btn-primary mac" >
 						{$VIEW_TRANSFER}
 					</a>
 				</div>	

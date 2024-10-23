@@ -88,15 +88,15 @@
 											onsubmit="return false;">
 												{$THIS_INFO_WILL_BE_SENT_TO_CUSTOMER}
 												<br><br>
-												<div class="row">
+												{*<div class="row">
 													<div class="col-md-2"><label>{$DRIVER_NAME}</label></div>
 													<div class="col-md-8">
 														<input class="form-control" type="text" 
 														id="SubDriverName" placeholder="Please put DRIVERS NAME or OPERATOR (do not put YOUR COMPANY name)" value="" onfocus="if (this.value=='Please put DRIVERS NAME or OPERATOR (do not put YOUR COMPANY name)') this.value='';">
 													</div>
-												</div>
+												</div>*}
 												<div class="row">
-													<div class="col-md-2"><label>{$DRIVER_TEL}</label></div>
+													<div class="col-md-2"><label>Dispach phone</label></div>
 													<div class="col-md-8">
 														<input class="form-control" type="text" 
 														id="SubDriverTel" placeholder='International format (e.g +33...)' value="" onfocus="if (this.value=='Please put phone number in international format (e.g +33...)') this.value='';">
@@ -134,6 +134,7 @@
 												<div class="row">
 													<div class="col-md-12">
 													<span>&nbsp Please, CHECK this transfer details before confirming transfer request!</span> 
+													<span>&nbsp Assign this transfer to your driver and vehicle after confirming transfer request!</span> 
 													<br>
 													<br>
 													<button class="btn btn-success" type="submit"
@@ -174,8 +175,8 @@
 		// mesto + u telefonu
 		var tel = $("#SubDriverTel").val() ;
 		var n = tel.indexOf('+');
-		if($("#SubDriverName").val() == '' || $("#SubDriverTel").val() == '') {
-			alert('Enter Driver name and Telephone number!');
+		if($("#SubDriverTel").val() == '') {
+			alert('Enter Telephone number!');
 			return false;
 		}
 		// da li je ispravan format?
@@ -187,7 +188,6 @@
 			"?code=" + detailsid +
 			"&control="+orderkey +
 			"&id="+ driverid +
-			"&SubDriverName="+ $("#SubDriverName").val() +
 			"&SubDriverTel="+ $("#SubDriverTel").val() +
 			"&PickupPoint="+ $("#PickupPoint").val() +
 			"&Confirm=Confirmed";

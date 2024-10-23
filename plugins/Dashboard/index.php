@@ -9,6 +9,7 @@
 	$smarty->assign('unConfirmedTransfers',false);										
 	$smarty->assign('unCompletedTransfers',false);										
 	$smarty->assign('presentTransfers',false);										
+	$smarty->assign('unAssignedTransfers',false);										
 	$smarty->assign('todo',false);
 	$smarty->assign('quickEmail',false);	
 	$smarty->assign('translatorPanel',false);
@@ -96,6 +97,12 @@
 			if (isset($_SESSION['UseDriverID'])) {
 				require_once 'presentTransfers.php';
 				$smarty->assign('presentTransfers',true);
+			}	
+	}	
+	if (in_array($_SESSION['AuthLevelID'],array(2,31,41,42,43,44,45,91,92,99))) {
+			if (isset($_SESSION['UseDriverID'])) {
+				require_once 'unAssignedTransfers.php';
+				$smarty->assign('unAssignedTransfers',true);
 			}	
 	}
 

@@ -1123,3 +1123,8 @@ define("INVOICE_VALUE","Invoice value:");
 define("PASSENGER_PAYMENT","Payments from passenger:");
 define("UNCOMPLETED_TRANSFERS","Uncompleted");
 define("VIEW_TRANSFER","View transfer");
+
+// novi prevod
+//23.10.24
+define("UNASSIGNED_TRANSFERS","Unassigned for next 3 days");
+

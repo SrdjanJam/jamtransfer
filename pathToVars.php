@@ -272,13 +272,16 @@ switch ($specialpage) {
 		$help=$activePage;
 		$activePage='tutorials';	
 	case 'new':
-		$isNew=true;	
+		$isNew=true;
+		break;	
 	case 'newDriver':
 		$isNew=true;
-		$newDriver=true;	
+		$newDriver=true;
+		break;	
 	case 'newAgent':
 		$isNew=true;
 		$newAgent=true;
+		break;
 	default:
 }
 
@@ -286,6 +289,7 @@ switch ($specialpage2) {
 	case 'fieldsSettings':
 	case 'fieldsDescription':
 		$isNew=true;
+		break;	
 	default:
 }
 	

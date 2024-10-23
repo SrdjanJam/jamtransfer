@@ -111,7 +111,7 @@ Class v4_LogUser {
 			'".$this->myreal_escape_string($this->Type)."',
 			'".$this->myreal_escape_string($this->SessionID)."',
 			'".$this->myreal_escape_string($this->DateTime)."',
-			'".$this->myreal_escape_string($this->Mob)."',
+			'".$this->myreal_escape_string($this->Mob)."'
 			)");
 
 		return $this->connection->insert_id(); //return insert_id 

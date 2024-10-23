@@ -12,9 +12,8 @@ $out = array();
 $db = new v4_SubVehicles();
 $sd = new v4_SubDrivers();
 $where= " WHERE 1=1 ";
-if (isset($_SESSION["UseDriverID"]) || isset($_SESSION["DriverID"])) {
-	if (isset($_SESSION["UseDriverID"])) $where=" WHERE OwnerID=".$_SESSION["UseDriverID"];
-	if (isset($_SESSION["DriverID"])) $where=" WHERE OwnerID=".$_SESSION["DriverID"];
+if (isset($_SESSION["UseDriverID"])) {
+	$where=" WHERE OwnerID=".$_SESSION["UseDriverID"];
 	$dbKeys = $db->getKeysBy('VehicleID', 'asc', $where);
 	foreach($dbKeys as $n => $ID) {
 		$db->getRow($ID);

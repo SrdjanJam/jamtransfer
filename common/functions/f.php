@@ -5133,6 +5133,7 @@ function saveLog($UserID,$type) {
 		$lu->setLatitude($_REQUEST['latitude']);
 		$lu->setLongitude($_REQUEST['longitude']);
 		$lu->setPlace($label);
+		if (isset($_SESSION['mobile'])) $lu->setMob(1);
 		$au->getRow($UserID);
 		$levels=array(41,43,44,32,91,92,99);
 		if (in_array($au->getAuthLevelID(),$levels)) $lu->setType($type+2);
