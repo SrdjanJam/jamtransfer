@@ -2,6 +2,12 @@
 /*
 	AJAX Script !!!!
 */
+$_SESSION['CMSLang']=$_REQUEST['lang'];
+$languageFile = '../../lng/' . $_SESSION['CMSLang'] . '_text.php';
+if ( file_exists( $languageFile) ) require_once $languageFile;
+require_once "../../config.php";
+
+
 require_once "../../config.php";
 
 

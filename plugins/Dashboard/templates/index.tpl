@@ -11,6 +11,7 @@
 					{/if}
 					
 					<div class="row">
+						{$driverSettingsExist}
 						{if $unAssignedTransfers}
 						<section class="col-lg-12 xconnectedSortable"> 
 							{include file="plugins/Dashboard/templates/unAssignedTransfers.tpl"} 
@@ -83,11 +84,18 @@
 							</section><!-- /.Left col -->
 						{/if}						
 						
+						{if $subDriverPanel}
+							<section class="col-lg-12 xconnectedSortable">
+								{include file="plugins/SubDriverPanel/templates/index.tpl"} 			
+							</section><!-- /.Left col -->
+						{/if}
+						
 						{if $calendar}
 							<section class="col-lg-12 xconnectedSortable">
 								{include file="plugins/Calendar/templates/index.tpl"} 			
 							</section><!-- /.Left col -->
-						{/if}
+						{/if}						
+						
                     </div>	        
 
 

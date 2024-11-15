@@ -72,7 +72,7 @@ if ($result->num_rows>0) {
 		else $onlyusers=array();
 		if ((in_array($_SESSION['AuthUserID'],$onlyusers)) || count($onlyusers)==0) $display1=true;
 		else $display1=false;		
-		if (isset($_SESSION['UseDriverID'])) $display1=true;
+		if (isset($_SESSION['UseDriverID']) && $_SESSION['AuthLevelID']!=31) $display1=true;
 		$row1['title']=$md->getName();
 		$row1['link']=$md->getCode();
 		$active_pages[]=$md->getCode();			
@@ -94,7 +94,7 @@ if ($result->num_rows>0) {
 				else $onlyusers=array();
 				if ((in_array($_SESSION['AuthUserID'],$onlyusers)) || count($onlyusers)==0) $display2=true;
 				else $display2=false;
-				if (isset($_SESSION['UseDriverID'])) $display2=true;
+				if (isset($_SESSION['UseDriverID']) && $_SESSION['AuthLevelID']!=31) $display2=true;
 				$row2['title']=$md->getName();
 				$row2['link']=$md->getCode();	
 				$row2['description']=$md->getDescription();	

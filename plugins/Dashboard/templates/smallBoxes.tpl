@@ -142,7 +142,7 @@
                             </a>
                         </div><!-- ./col -->      
 
-						<div class="col-lg-2 col-xs-6">
+						{*<div class="col-lg-2 col-xs-6">
                             <!-- small box -->
                             <a href="orders/notConfirmedToday">
                                 <div class="small-box bg-yellow">
@@ -188,8 +188,56 @@
                                     </span>
                                 </div>
                             </a>
-                        </div><!-- ./col -->
+                        </div><!-- ./col -->*}
 
+						<div class="col-lg-2 col-xs-6">
+                            <!-- small box -->
+                            <a href="orders/notConfirmedTodayTomorrow">
+                                <div class="small-box bg-yellow">
+                                    <div class="inner">
+                                        <h3>
+                                            {$notConfirmedOrdersTodayTomorrow}
+                                        </h3>
+                                        <div style="overflow-x: hidden;overflow-y: hidden;">
+                                            <p class="target">
+                                                {$TODAY}/{$TOMORROW_UNCORFIRMED_DECLINED}  
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="ion ion-ios7-alarm"></i>
+                                    </div>
+                                     <span class="small-box-footer">
+                                        {$MORE_INFO} <i class="fa fa-arrow-circle-right"></i>
+                                    </span>
+                                </div>
+                            </a>
+                        </div><!-- ./col -->							
+						
+						<div class="col-lg-2 col-xs-6">
+                            <!-- small box -->
+                            <a href="orders/notAssign">
+                                <div class="small-box bg-yellow">
+                                    <div class="inner">
+                                        <h3>
+                                            {$notAssign}
+                                        </h3>
+                                        <div style="overflow-x: hidden;overflow-y: hidden;">
+                                            <p class="target">
+                                                 {$NOT_ASSIGNED_3}
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="ion ion-ios7-alarm"></i>
+                                    </div>
+                                     <span class="small-box-footer">
+                                        {$MORE_INFO} <i class="fa fa-arrow-circle-right"></i>
+                                    </span>
+                                </div>
+                            </a>
+                        </div><!-- ./col -->	
+						
                         <div class="col-lg-2 col-xs-6">
                             <!-- small box -->
                             <a href="orders/declined">

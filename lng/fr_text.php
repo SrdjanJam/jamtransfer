@@ -111,7 +111,7 @@ define("DESCENDING", "Descendant");
 define("DETAIL_DESCRIPTION", "Veuillez entrer une description détaillée");
 define("DISPLAY_ALL", "Tout afficher");
 define("DISPLAY_NOT_CHECKED", "Affichage pas validé");
-define("DRIVER", "Compagnie de transport");
+define("DRIVER", "Conducteur");
 define("DRIVER_EMAIL", "Email du partenaire");
 define("DRIVER_ERROR", "Erreur du partenaire");
 define("DRIVER_NAME", "Le nom du partenaire");
@@ -121,7 +121,7 @@ define("DRIVERS_BALANCE", "Solde du partenaire");
 define("DRIVERS_WITH_TRANSFERS", "Les transferts du partenaire");
 define("DRIVERS_PRICE", "Les prix du partenaire");
 define("DRIVER_ROUTES", "Les itinéraires des partenaires");
-define("DRIVERS", "Partenaires");
+define("DRIVERS", "Conducteurs");
 define("DRIVER_STATUS", "Le statut du partenaire");
 define("DRIVER_TEL", "Le téléphone du partenaire");
 define("DROPOFF_ADDRESS", "Adresse d’arrivée");
@@ -847,6 +847,7 @@ define("VALUE_OF_RESERVATION","Valeur des réservations");
 
 define("DISTRIBUTION","Distribution");
 define("NO_OF_TRANSFERS","Nombre de transferts");
+define("NO_OF","Nombre de:");
 define("NOT_CONFIRMED","Pas confirmé");
 define("CONFIRMED","Confirmé");
 define("READY","Prêt");
@@ -921,7 +922,7 @@ define("NO_ROUTE","Pas d'itinéraire");
 define("SERVICE_NAME","Nom du service");
 define("DRIVERS_PRICE","Prix des chauffeurs");
 define("QUANTITY","Quantité");
-define("PARTNER_S","Les partenaires");
+define("PARTNER_S","Les conducteurs");
 define("SCHEDULE_FOR","Programmer pour");
 define("SUB_DRIVER","SubDriver");
 define("MESSAGE_FOR_DRIVER","Message pour le chauffeur");
@@ -929,7 +930,7 @@ define("MESSAGE_FROM_DRIVER","Message du chauffeur");
 define("RECEIVED_CASH","Espèces reçues");
 define("AGENT_REFERENCE","Référence de l'agent");
 define("OTHER_BOOKINGS","Autres réservations");
-define("PARTNER","Partenaire");
+define("PARTNER","Conducteur");
 define("DRIVER_COMPANY","La compagnie du chauffeur");
 define("PURCHASER","L’acheteur");
 
@@ -1030,119 +1031,147 @@ define("RATIO", "Ratio");
 // kraj prevoda
 
 // 3.7.23 ==========================================================
-define("NOT_PAID","Not Paid");
+define("NOT_PAID","Pas payé");
 
 // 26.7.23 =======================================================
-define("SUBDRIVER_BALANCE","SubDriver Balance");
-define("RECIEVED","Received");
-define("LAST_DAY","last day");
-define("PLAN","Plan");
-define("IN","In");
-define("UNAPPROVED_EXPENSES","Unapproved Expenses");
-define("BALANCE_TOTAL","Balance total");
-define("PRICES_FOR_ROUTE","Prices for route");
-define("NETO","Neto");
-define("ADDS","Adds");
-define("FINAL_PRICE","Final Price");
-define("MINUTES_FLIGHT_CONFLICT","minutes Flight Conflict");
+define("SUBDRIVER_BALANCE","Solde du SUBDRIVER");
+define("RECIEVED","Reçu");
+define("LAST_DAY","Dernier jour");
+define("PLAN","Le plan");
+define("IN","à");
+define("UNAPPROVED_EXPENSES","Dépenses non approuvées");
+define("BALANCE_TOTAL","Solde total");
+define("PRICES_FOR_ROUTE","Prix de l’itinéraire");
+define("NETO","Net");
+define("ADDS","Ajouter");
+define("FINAL_PRICE","Prix final");
+define("MINUTES_FLIGHT_CONFLICT","Conflit de vol de dernière minute");
 
 // 28.7.23 ==========================================================
-define("NUMBER_OF_DRIVERS","Number of Drives");
-define("FREE_DAYS","Free Days");
-define("SCHEDULE","Schedule");
+define("NUMBER_OF_DRIVERS","Le numéro du conducteur");
+define("FREE_DAYS","Les jours libres");
+define("SCHEDULE","L’horaire");
 
 // 02.08.23 ========================================================
-define("YESTERDAY","Yesterday");
+define("YESTERDAY","Hier");
 
 // 10.8.23 =========================================================
-define("AGENT_ID","Agent ID");
-define("ROUTE_ID","Route ID");
-define("VEHICLE_TYPE_ID","Vehicle Type ID");
+define("AGENT_ID","ID de l’Agent");
+define("ROUTE_ID","ID de l’itinéraire");
+define("VEHICLE_TYPE_ID","ID du type de véhicule");
 
 // 22.8.23 ==========================================================
-define("READY_FOR_SET_AS","Ready for set as");
+define("READY_FOR_SET_AS","Prêt pour");
 
 // 24.8.23===========================================================
 define("GATEWAY","Gateway");
-define("ORDER_ID","Order ID");
-define("CUSTOMER_IP","Customer IP");
-define("ORDER_NUMBER","Order Number");
-define("DATETIME_1","Datetime 1");
-define("DATETIME_2","Datetime 2");
-define("DATETIME_3","Datetime 3");
-define("CREATED","Created");
+define("ORDER_ID","ID de commande");
+define("CUSTOMER_IP","IP du client");
+define("ORDER_NUMBER","Numéro de commande");
+define("DATETIME_1","Date/heure 1");
+define("DATETIME_2","Date/heure 2");
+define("DATETIME_3","Date/heure 3");
+define("CREATED"," Créé");
 
 // 28.8.23============================================================
 define("URL","Url");
 
 // 13.9.23 ===========================================================
-define("PAY_LATER","Pay Later");
-define("CASH_IN","Cash in");
-define("DRIVES","Drives");
+define("PAY_LATER","Payer plus tard");
+define("CASH_IN","Encaisser en espèces");
+define("DRIVES","Conduit");
 
 //16.11.23
-define("ASSIGN","Assign");
-define("UNASSIGN","Unassign");
+define("ASSIGN","Assigner");
+define("UNASSIGN","Annuler l’attribution");
 
 //13.12.23
-define("FIELDS_DESCRIPTIONS","Fields Descriptions");
+define("FIELDS_DESCRIPTIONS","Descriptions");
 
 // 11.1.24
-define("SHOW_SCHEDULE","Show Schedule");
+define("SHOW_SCHEDULE","Voir l’horaire");
 
 // 6.2.24
 define("MONRI_ID","MonriID");
 define("AVANS","Avans");
 define("EU","EU");
-define("BUYER","Buyer");
-define("FISCALBILL","Fiscal Bill");
-
+define("BUYER","Client");
+define("FISCALBILL","Facture fiscale");
 // 05.03.24
-define("AV_DRIVERS","Available Drivers");
-define("SAT_AS_DRIVER","Sat as Driver");
+define("AV_DRIVERS","Conducteurs disponibles");
+define("SAT_AS_DRIVER","Assise à côté du conducteur");
 
 // 07.03.24
-define("TUNNEL_PASS_ID","Tunnel pass ID");
-define("VEHICLE_CATEGORY","Vehicle Category");
-define("TUNNEL_PASS_CODE","Tunnel Pass Code");
-define("PASS_NUMBER","Pass Number");
-define("ASSIGN_SDID","Assign SubDriver");
-define("ASSIGN_TIME","Assign Time");
-define("PASS_TIME","Pass Time");
+define("TUNNEL_PASS_ID","Numéro de carte du tunnel");
+define("VEHICLE_CATEGORY","La catégorie du véhicule");
+define("TUNNEL_PASS_CODE","Code d’accès pour le tunnel");
+define("PASS_NUMBER","Numéro de passe");
+define("ASSIGN_SDID","Attribuer un SubDriver");
+define("ASSIGN_TIME","Attribuer l’horaire");
+define("PASS_TIME","L’heure de passage du chauffeur");
 
 // 27.3.24
-define("SEND_RULE","Send Rule");
-define("SCHEDULE_TIME","Schedule Time");
-define("SEND_TIME_FIRST","Send Time First");
-define("SEND_TIME_LAST","Send Time Last");
-define("CONFIRM_TIME","Confirm Time");
-define("SEND_NUMBER","Send Number");
+define("SEND_RULE","Envoyer le réglement");
+define("SCHEDULE_TIME","Planifier l’horaire");
+define("SEND_TIME_FIRST","Envoyer l’horaire d’abord");
+define("SEND_TIME_LAST","Envoyer l’horaire en dernier");
+define("CONFIRM_TIME","Confirmer l’horaire");
+define("SEND_NUMBER","Envoyer le numéro");
 
 //29.03.24
-define("RECEIVE","Receive");
-
+define("RECEIVE","Recevoir");
 //4.4.24
 define("IS_SORT_DESC","Is sort desc");
 
 //22.04.24
-define("REQUEST","Request");
+define("REQUEST","Demande");
 
 //24.06.24
-define("FINISH_TRANSFER","Finish Transfer");
+define("FINISH_TRANSFER","Terminer le transfert");
 //21.08.24
-define("SET_WT","Set working time");
+define("SET_WT","Définir le temps de travail");
 //12.09.24
-define("YEAR","Year");
+define("YEAR","année");
 //23.09.24
-define("ONLY_USERS","Only for users id");
+define("ONLY_USERS","Uniquement pour les ID utilisateurs ");
 //11.10.24
-define("UNCONFIRMED_TRANSFERS","Unconfirmed");
+define("UNCONFIRMED_TRANSFERS","Pas confirmés");
 //14.10.24
-define("PASSENGER_PAID_SERVICE","The passenger has paid for the service!");
-define("CHARGE_TO_PASSENGER","You will charge the transfer to the passenger!");
-define("DRIVER_ISSUE_INVOICE","You issue us an invoice.");
-define("DRIVER_RECIVE_INVOICE","We issue you an invoice.");
-define("INVOICE_VALUE","Invoice value:");
-define("PASSENGER_PAYMENT","Payments from passenger:");
-define("UNCOMPLETED_TRANSFERS","Uncompleted");
-define("VIEW_TRANSFER","View transfer");
+define("PASSENGER_PAID_SERVICE","Le passager a payé pour le service!");
+define("CHARGE_TO_PASSENGER","Vous facturerez le transfert au passager!");
+define("DRIVER_ISSUE_INVOICE","Vous nous émettez une facture.");
+define("DRIVER_RECIVE_INVOICE","Nous vous émettons une facture.");
+define("INVOICE_VALUE","Le montant de la facture:");
+define("PASSENGER_PAYMENT","Paiement du passager:");
+define("UNCOMPLETED_TRANSFERS","Transferts non terminés");
+define("VIEW_TRANSFER","Voir le transfert");
+
+//23.10.24
+define("UNASSIGNED_TRANSFERS","Non attribué pour les 3 prochains jours");
+define("ASSIGN_VEHICLES","Affecter des véhicules");
+define("INSERT_VEHICLES","Insérer des véhicules");
+define("INSERT_DRIVERS","Insérer les conducteurs");
+define("DRIVERS_NOT_ENTERED","Vous n'avez entré aucun conducteur!");
+define("VEHICLES_NOT_ENTERED","Vous n'avez inscrit aucun véhicule!");
+define("NOT_ASSIGNED","Vous n'avez pas attribué de véhicules aux conducteurs!");
+define("NOT_ASSIGNED_3","Non attribué - les 3 prochains jours");
+
+//25.10.24
+define("DISPATCHER","Dispatcher");
+define("ENTER_PHONE_FORMAT","Entrez le numéro de téléphone au bon format en commençant par l’indicatif du pays (+___)");
+define("ENTER_PHONE","Entrez le numéro de téléphone !");
+define("DECLINE_REASON","La raison de votre refus");
+define("DECLINE_MESSAGE","Le message de regus");
+define("CHOSE_REASON","Choisissez le motif");													
+define("PRICE_INCORECT","Le prix ne me convient pas");	
+define("NO_AVAILABILITY","Pas de disponibilité");														
+define("WRONG_RESERVATION","Les informations de la réservation sont incorrectes");													
+define("OTHER","Autre");
+define("CHECK_TRANSFER_DETAILS","S’il vous plaît, VÉRIFIEZ les détails de ce transfert avant de confirmer votre demande !");
+define("ASSIGN_TRANSFER","ATTRIBUEZ ce transfert à votre chauffeur et à votre véhicule après avoir confirmé la demande de transfert !");
+define("TRANSFER_CONFIRMED","Transfert confirmé");
+define("TRANSFER_DECLINE","Transfert décliné");
+define("YOUR_REASON","Votre raison est la suivante :");
+define("YOUR_PRICE","Votre prix est de:");
+define("YOUR_TIME","Votre horaire est le suivant:");
+define("WRONG_DETAILS","Les informations erronées sont:");

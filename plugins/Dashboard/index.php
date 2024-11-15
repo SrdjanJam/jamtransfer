@@ -9,13 +9,15 @@
 	$smarty->assign('unConfirmedTransfers',false);										
 	$smarty->assign('unCompletedTransfers',false);										
 	$smarty->assign('presentTransfers',false);										
-	$smarty->assign('unAssignedTransfers',false);										
+	$smarty->assign('unAssignedTransfers',false);	
+	$smarty->assign('driverSettingsExist',false);	
 	$smarty->assign('todo',false);
 	$smarty->assign('quickEmail',false);	
 	$smarty->assign('translatorPanel',false);
 	$smarty->assign('bookingConversionRate',false);
 	$smarty->assign('calculateProvision',false);	
 	$smarty->assign('calendar',false);	
+	$smarty->assign('subDriverPanel',false);	
 	// Check:
 	// $smarty->assign('bookingConversionRate',false);	
 
@@ -76,24 +78,26 @@
 	if (in_array($_SESSION['AuthLevelID'],array(31,32))) {
 		require_once ROOT.'/plugins/Calendar/index.php';
 		$smarty->assign('calendar',true);
+	}		
+	
+	if (in_array($_SESSION['AuthLevelID'],array(32))) {
+		require_once ROOT.'/plugins/SubDriverPanel/index.php';
+		$smarty->assign('subDriverPanel',true);
 	}	
 	
 	if (in_array($_SESSION['AuthLevelID'],array(2,31,41,42,43,44,45,91,92,99))) {
-			//if (isset($_SESSION['UseDriverID']) && $_SESSION['UseDriverID']==520) {
 			if (isset($_SESSION['UseDriverID'])) {
 				require_once 'unConfirmedTransfers.php';
 				$smarty->assign('unConfirmedTransfers',true);
 			}	
 	}	
 	if (in_array($_SESSION['AuthLevelID'],array(2,31,41,42,43,44,45,91,92,99))) {
-			//if (isset($_SESSION['UseDriverID']) && $_SESSION['UseDriverID']==520) {
 			if (isset($_SESSION['UseDriverID'])) {
 				require_once 'unCompletedTransfers.php';
 				$smarty->assign('unCompletedTransfers',true);
 			}	
 	}	
 	if (in_array($_SESSION['AuthLevelID'],array(2,31,41,42,43,44,45,91,92,99))) {
-			//if (isset($_SESSION['UseDriverID']) && $_SESSION['UseDriverID']==520) {
 			if (isset($_SESSION['UseDriverID'])) {
 				require_once 'presentTransfers.php';
 				$smarty->assign('presentTransfers',true);
@@ -104,5 +108,8 @@
 				require_once 'unAssignedTransfers.php';
 				$smarty->assign('unAssignedTransfers',true);
 			}	
+	}	
+	if (in_array($_SESSION['AuthLevelID'],array(31))) {
+			if (isset($_SESSION['UseDriverID'])) $smarty->assign('driverSettingsExist',driverSettingsExist());
 	}
 

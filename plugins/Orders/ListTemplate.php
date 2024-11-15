@@ -79,7 +79,10 @@
 									{{#compare PickupDate ">=" "<?=date('Y')+1;?>-01-01"}}</span>{{/compare}}
 									<span>{{PickupTime}}</span>
 									</br>
-									<strong>{{PickupName}} - {{DropName}}</strong>
+									<a target='_blank' href='plugins/getRouteMap.php?DetailsID={{DetailsID}}'>
+										<i class="fa fa-map" aria-hidden="true">&nbsp;
+										</i><strong>{{PickupName}} - {{DropName}}</strong>
+									</a>
 									<br>						
 									<small><i class="fa fa-car"></i> {{VehicleTypeName}}*{{VehiclesNo}}</small>
 									{{#compare ExtraCharge ">" 0}}

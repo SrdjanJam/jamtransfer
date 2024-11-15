@@ -141,7 +141,7 @@
 		$("#newone").click(function(){
 			location.reload();	
 		});
-		$('.editrow input, .edit row select').change(function(){
+		$('.editrow input, .editrow select').change(function(){
 			var base=window.rootbase;
 			// Doesn't work:
 			//if (window.location.host=='localhost') base=base+'/jamtransfer';

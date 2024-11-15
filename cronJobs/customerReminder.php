@@ -93,13 +93,17 @@ while ($d = $r->fetch_object()) {
                         <br>
                         Pickup Date: <strong>'.$d->PickupDate.'</strong><small> (Y-M-D)</small><br>
                         Pickup Time: <strong>'.$d->PickupTime.'</strong><small> (hours:minutes, 24h time format)</small><br>
-                        <br>';
+						Pickup Point: '.$d->PickupPlace.'<br>';
 			if ($d->SubDriver>0 && !in_array($d->DriverID,array(843,876,556))) {
 				$au->getRow($d->SubDriver);
 				$message .= '	
                         Driver\'s Name: <strong>'.$au->getAuthUserRealName().'</strong><br>
                         Driver\'s Telephone: <strong>'.$au->getAuthUserMob().'</strong><br>
                         <br>';
+			}	else {
+				$message .= '	
+                        Driver/Dispatch\'s Telephone: <strong>'.$d->DriverTel.'</strong><br>
+                        <br>';		
 			}	
             $message .= '<br>
                         <strong>If there are any last minute changes to your itinerary, please send an e-mail to 
@@ -116,21 +120,25 @@ while ($d = $r->fetch_object()) {
 			$messageW .= 'From '.$d->PickupName.', '.$d->PickupAddress .'<br>';
 			$messageW .= 'To '.$d->DropName.', '.$d->DropAddress.'<br>';
 			$messageW .= 'Pickup Time is '.$d->PickupDate.' '.$d->PickupTime.'<br>';
+			$messageW .= 'Pickup Point is '.$d->PickupPlace.'<br>';
 			if ($d->SubDriver>0 && !in_array($d->DriverID,array(843,876,556))) {
 				$au->getRow($d->SubDriver);
 				$messageW .= '	
                         Driver\'s Name is '.$au->getAuthUserRealName().'<br>
                         Driver\'s Telephone is '.$au->getAuthUserMob().'<br>';
-			}				
+			}	else {
+				$messageW .= '	
+                        Driver/Dispatch\'s Telephone: <strong>'.$d->DriverTel.'</strong><br>';
+			}		
             $messageW .= 'Kindest regards<br>https://jamtransfer.com/';
 						
 
 
             // END MAIL
-			echo $userEmail."<br>".$message;
+			//echo $userEmail."<br>".$message;
 			//echo $userPhone."<br>".$messageW;
-            //mail_html($userEmail, $message);			
-			//if (!empty($userPhone) && in_array($d->PaymentMethod,array(2,3))) send_whatsapp_message($userPhone,$messageW);	
+            mail_html($userEmail, $message);			
+			if (!empty($userPhone) && in_array($d->PaymentMethod,array(2,3))) send_whatsapp_message($userPhone,$messageW);	
             //break; // samo za test, da ne idu svi mailovi
             $i++;
         } 

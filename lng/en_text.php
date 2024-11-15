@@ -111,7 +111,7 @@ define("DISCOUNT_PERCENT", "Discount %");
 define("DISCOUNT", "Discount");
 define("DISPLAY_ALL", "Display all");
 define("DISPLAY_NOT_CHECKED", "Display not checked");
-define("DRIVER", "Transport company");
+define("DRIVER", "Driver");
 define("DRIVER_EMAIL", "Driver's Email");
 define("DRIVER_ERROR", "Driver Error");
 define("DRIVER_NAME", "Driver's Name");
@@ -1124,7 +1124,33 @@ define("PASSENGER_PAYMENT","Payments from passenger:");
 define("UNCOMPLETED_TRANSFERS","Uncompleted");
 define("VIEW_TRANSFER","View transfer");
 
-// novi prevod
 //23.10.24
 define("UNASSIGNED_TRANSFERS","Unassigned for next 3 days");
+define("ASSIGN_VEHICLES","Assign vehicles");
+define("INSERT_VEHICLES","Insert vehicles");
+define("INSERT_DRIVERS","Insert drivers");
+define("DRIVERS_NOT_ENTERED","You have not entered any drivers!");
+define("VEHICLES_NOT_ENTERED","You have not entered any vehicles!");
+define("NOT_ASSIGNED","You have not assigned vehicles to drivers!");
+define("NOT_ASSIGNED_3","Not assigned - next 3 days");
 
+//25.10.24
+define("DISPATCHER","Dispatcher");
+define("ENTER_PHONE_FORMAT","Enter Phone number in right format starting with country code (+___)");
+define("ENTER_PHONE","Enter Telephone number!");
+define("DECLINE_REASON","Decline reason");
+define("DECLINE_MESSAGE","Decline message");
+define("CHOSE_REASON","Choose reason");													
+define("PRICE_INCORECT","Price incorect");	
+define("NO_AVAILABILITY","No availability");														
+define("WRONG_RESERVATION","Wrong reservation details");													
+define("OTHER","Other");
+define("CHECK_TRANSFER_DETAILS","Please, CHECK this transfer details before confirming transfer request!");
+define("ASSIGN_TRANSFER","ASSIGN this transfer to your driver and vehicle after confirming transfer request!");
+define("TRANSFER_CONFIRMED","Transfer Confirmed");
+define("TRANSFER_DECLINE","Transfer Decline");
+define("YOUR_REASON","Your reason is:");
+define("YOUR_PRICE","Your price is:");
+define("YOUR_TIME","Your time is:");
+define("WRONG_DETAILS","Wrong details is:");
+define("FUTURE_TRANSFERS","Future Transfers");

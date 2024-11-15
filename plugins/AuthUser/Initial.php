@@ -4,7 +4,7 @@ require_once '../../config.php';
 require_once ROOT . '/db/v4_AuthUsers.class.php';
 $db = new v4_AuthUsers();
 $keyName = 'AuthUserID';
-$ItemName='AuthUserName ';
+$ItemName='AuthUserRealName ';
 $type='AuthLevelID';
 $selectactive='Active';
 #********************************

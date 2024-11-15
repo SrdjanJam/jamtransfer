@@ -66,7 +66,7 @@
 			$d->setDriverID( $DriverID);
 			$d->setDriverName( $u->getAuthUserCompany() );
 			$d->setDriverEmail( $u->getAuthUserMail() );
-			$d->setDriverTel( $u->getAuthUserTel() );
+			$d->setDriverTel( $_REQUEST['DriverTel'] );
 			$d->setDriverConfDate( date("Y-m-d") );
 			$d->setDriverConfTime( date("H:i:s") );	
 			$d->setPickupPlace($_REQUEST['PickupPoint']);	
@@ -93,12 +93,12 @@
 			<br><br>
 			<span style="font-weight:bold">';
 			$mailMessage .='Dispach Telephone (do NOT send SMS, only for calls)';
-			$mailMessage .=': ' . htmlspecialchars($_REQUEST['SubDriverTel']) . '<br>';
+			$mailMessage .=': ' . htmlspecialchars($_REQUEST['DriverTel']) . '<br>';
 			if ($u->getContractFile()=='inter') {	
-				$mailMessage .='Driver  Telephone Number  : <u>will be sent 8 hours before the transfer</u></span>';
+				$mailMessage .='Driver Telephone Number: <u>will be sent 8 hours before the transfer</u></span>';
 			}	
 			else {		
-				$mailMessage .='Driver  Telephone Number  : <u>will be sent in transfer reminder</u></span>';				
+				$mailMessage .='Driver Telephone Number: <u>will be sent in transfer reminder</u></span>';				
 			}
 			$mailMessage .= '
 			<br>
@@ -125,7 +125,7 @@
 			$ol->setDetailsID($DetailsID);
 			$ol->setAction('Driver confirmed');
 			$ol->setTitle('Driver confirmed');
-			$ol->setDescription('Driver ' . $u->getAuthUserRealName() . ' confirmed this transfer. Dispach phone:'.$_REQUEST['SubDriverTel']);
+			$ol->setDescription('Driver ' . $u->getAuthUserRealName() . ' confirmed this transfer. Dispach phone:'.$_REQUEST['DriverTel']);
 			$ol->setDateAdded(date("Y-m-d"));
 			$ol->setTimeAdded(date("H:i:s"));
 			$ol->setUserID($u->getAuthUserID());

@@ -82,7 +82,7 @@ $(document).ready(function(){
 							<div class="cal_days l">
 								<b>{$month_transfers[pom].nom}</b> 
 								{if ($smarty.session.AuthLevelID eq '31' or isset($smarty.session.UseDriverID)) and $month_transfers[pom].noOfTransfers gt 0}
-									<a target='_blank' class='badge' href='{$root_home}distribution/{$month_transfers[pom].date}'>{$ASSIGN} {$VEHICLES}</a>
+									<a target='_blank' class='badge' href='{$root_home}distribution/{$month_transfers[pom].date}'>{$ASSIGN_VEHICLES}</a>
 								{/if}	
 							</div>
 									<div class="show-data">
@@ -110,7 +110,13 @@ $(document).ready(function(){
 												{/if}
 											
 												{$month_transfers[pom].transfers[pom2].PickupTime}&rarr;
-												<a href="orders/detail/{$month_transfers[pom].transfers[pom2].DetailsID}"
+												<a href="
+													{if $smarty.session.AuthLevelID ne '32'}
+													orders/detail/{$month_transfers[pom].transfers[pom2].DetailsID}
+													{else}
+													driverPanel/{$month_transfers[pom].transfers[pom2].PickupDate}
+													{/if}
+												"
 												title="<b>{$month_transfers[pom].transfers[pom2].OrderID}-{$month_transfers[pom].transfers[pom2].TNo} - {$month_transfers[pom].transfers[pom2].PaxName} </b>" 
 												data-content="
 													<br/>{$FLIGHT_NO}: {$month_transfers[pom].transfers[pom2].FlightNo}

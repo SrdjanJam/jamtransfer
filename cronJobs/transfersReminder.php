@@ -121,8 +121,9 @@ foreach ($driverKeys as $key) {
 			<small>Update your vehicles (<a href="https://wis.jamtransfer.com/myVehicles">https://wis.jamtransfer.com/myVehicles</a>),   
 			and drivers (<a href="https://wis.jamtransfer.com/myDrivers">https://wis.jamtransfer.com/myDrivers</a>) as needed and connect them.
 			(<a href="https://wis.jamtransfer.com/vehicleToDrivers">https://wis.jamtransfer.com/vehicleToDrivers</a>)</small>
-			<br>It is very IMPORTANT to check your dashboard on a daily basis and to ACCEPT or DECLINE every transfer in shortest period.
-		</div>
+			<br>
+			You can follow positions of your registered drivers and see transfer route on map (click on route) at <a href="https://wis.jamtransfer.com/myDrivesMonitor">https://wis.jamtransfer.com/myDrivesMonitor</a>		
+			</div>
 			<p>Kind Regards,<br>JamTransfer</p>
 			<p style="margin:24px 0 0;text-align:center;font-size:small">This is an automatically generated email, please do not reply to this message.</p>
 		</div></div>';

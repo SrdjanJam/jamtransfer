@@ -21,7 +21,7 @@
 				</div>	
 			</div>
 		{/section}	
-		<br><small style="font-size:14px">No of transfers: {$noOfTransfers3}</small>
+		<br><small style="font-size:14px">{NO_OF} {$noOfTransfers3}</small>
 	</div>
 <br>
 {/if}	

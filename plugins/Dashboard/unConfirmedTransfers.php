@@ -14,6 +14,7 @@
 	$where=" WHERE DriverID=".$_SESSION['UseDriverID']." AND RequestType=1 AND ConfirmDecline=0 ";	
 	$ork=$or->getKeysBy('RequestDate','',$where);
 	$details=array();
+	$did=$_SESSION['UseDriverID'];	
 	foreach ($ork as $key) {
 		$or->getRow($key);
 		$where=" WHERE PickupDate>'".$timestart."' AND TransferStatus=1 AND DriverConfStatus in (0,1,4) AND DriverID=0 AND OrderID=".$or->getOrderID()." AND TNo=".$or->getTNo();	
@@ -22,6 +23,7 @@
 			$od->getRow($odk[0]);
 			$detail_row=$od->fieldValues();
 			$detail_row['VehicleTypeName']=getVehicleTypeName($od->getVehicleType());
+			$detail_row['DriverTel']=$users[$did]->AuthUserMob;
 			$details[]=$detail_row;
 			$noOfTransfers += 1;
 		}	
@@ -32,6 +34,7 @@
 		$od->getRow($key);
 		$detail_row=$od->fieldValues();
 		$detail_row['VehicleTypeName']=getVehicleTypeName($od->getVehicleType());
+		$detail_row['DriverTel']=$users[$did]->AuthUserMob;
 		$om->getRow($od->getOrderID());
 		$detail_row['MOrderKey']=$om->getMOrderKey();
 		$oek = $oe->getKeysBy('ID', 'ASC', ' WHERE OrderDetailsID = ' . $key);

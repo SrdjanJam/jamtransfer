@@ -37,10 +37,10 @@ $out = array(
 	'update' => $upd,
 	'insert' => $newID
 );
-if ($_SESSION['AuthLevelID']==31) {
+/*if ($_SESSION['AuthLevelID']==31) {
 	$mailto1="jam.bgprogrameri@gmail.com";
 	$mailto2="jam.ivan.markicevic@gmail.com";
-	$from_mail="cms@jamtransfer.com";
+	$from_mail="cms@jamtransfer.com";/
 	$from_name="System mail";
 	$replyto="";
 	$subject="Driver insert or update subdriver";
@@ -49,7 +49,7 @@ if ($_SESSION['AuthLevelID']==31) {
 	$message=$_SESSION['AuthUserID']."-".$_SESSION['UserRealName']." ".$msg1." subdriver ".$_REQUEST['id'];
 	mail_html_send($mailto1, $from_mail, $from_name, $replyto, $subject, $message, $attachment, $whatsapp);
 	mail_html_send($mailto2, $from_mail, $from_name, $replyto, $subject, $message, $attachment, $whatsapp);
-}
+}*/
 # send output back
 $output = json_encode($out);
 echo $_REQUEST['callback'] . '(' . $output . ')';

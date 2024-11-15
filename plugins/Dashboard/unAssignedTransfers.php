@@ -10,7 +10,7 @@
 	$om = new v4_OrdersMaster();
 	$oe = new v4_OrderExtras();
 	$noOfTransfers = 0;	
-	$timestart=date('Y-m-d',time()+3600*24);
+	$timestart=date('Y-m-d',time()-3600*24);
 	$timeend=date('Y-m-d',time()+3600*24*4);
 	$details=array();
 

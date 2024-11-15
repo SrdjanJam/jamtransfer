@@ -28,3 +28,14 @@
 	$message="You have been assigned a vehicle: ".$sv->getVehicleDescription() .". Login on https://wis.jamtransfer.com/.";
 	send_whatsapp_message($phone,$message);	
 	
+	/*if ($_SESSION['AuthLevelID']==31) {
+		$mailto1="jam.bgprogrameri@gmail.com";
+		$from_mail="cms@jamtransfer.com";
+		$from_name="System mail";
+		$replyto="";
+		$subject="Driver assign vehicle";
+		$attachment = '';
+		$whatsapp = 0;
+		$message=$_SESSION['AuthUserID']."-".$_SESSION['UserRealName']." assign vehicle ".$_REQUEST['SubVehicleID'];
+		mail_html_send($mailto1, $from_mail, $from_name, $replyto, $subject, $message, $attachment, $whatsapp);
+	}	*/	

@@ -44,7 +44,7 @@
 	</div>		
 	<div class="row">
 		<div class="col-xs-12">		
-			<button type="button" class="btn btn-lg btn-info" data-toggle="modal" data-target="#adress">
+			{*<button type="button" class="btn btn-lg btn-info" data-toggle="modal" data-target="#adress">
 				{$details[pom].PickupName} &raquo; {$details[pom].DropName}
 			</button>
 
@@ -56,21 +56,21 @@
 								<span aria-hidden="true">&times;</span>
 							</button>
 						</div>
-						<div class="modal-body" style="padding:10px">
+						<div class="modal-body" style="padding:10px">*}
 							<div class="row">
-								<div class="col-md-12">
+								<div class="col-md-12 h3">
 									<a target="blank" href="{$details[pom].PickupAddressG}">{$details[pom].PickupName}, {$details[pom].PickupAddress}</a><br> 
 									<a target="blank" href="{$details[pom].DropAddressG}">{$details[pom].DropName}, {$details[pom].DropAddress}</a>
 								</div>
 							</div>
-						</div>
+						{*</div>
 					</div>
 				</div>
-			</div>		
+			</div>*}		
 		</div>	
 	</div><br>				
 	<div class="row">
-		<div class="col-xs-6">	
+		<div class="col-xs-6 h4">	
 			{$details[pom].PaxNo} pax &nbsp; <i class="fa fa-car {$details[pom].carColor} pad4px"></i> {$details[pom].vehicleType}
 			{$details[pom].carName}
 			{if $details[pom].moreCars gt 0} <strong> / {$details[pom].moreCars} cars </strong>{/if}
@@ -103,7 +103,7 @@
 				</div>		
 			{/if}
 		</div>	
-		<div class="col-xs-6 border border-dark">				
+		<div class="col-xs-6 border border-dark h4">				
 			<i class="fa fa-user"></i> {$details[pom].PaxName} <i class="fa fa-phone"></i> <a href="tel:{$details[pom].paxTel}">{$details[pom].paxTel}</a><br>		
 			<i class="fa fa-plane"></i> <a target="_blank" href="{$details[pom].fs_link}">{$details[pom].FlightNo}</a> {$details[pom].FlightTime}										
 		</div>	
@@ -155,10 +155,10 @@
 	
 	{if $details[pom].SubDriver eq $smarty.session.AuthUserID and $details[pom].PayLater gt 0}
 	<div class="row">
-		<div class="col-xs-6">		
+		<div class="col-xs-6 h5">		
 			<label>{$PAY_LATER}</label> <strong>{$details[pom].PayLater}</strong>
 		</div>
-		<div class="col-xs-6">	
+		<div class="col-xs-6 h5">	
 			<label>Amount Paid (EUR)</label>
 			<input type="number" name="cash" class="cash" size="5" step="0.01" placeholder="" value="{$details[pom].CashIn}"
 				data-detailid="{$details[pom].DetailsID}"/>

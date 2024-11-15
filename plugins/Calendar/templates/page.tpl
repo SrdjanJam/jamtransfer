@@ -1,44 +1,38 @@
 <div class="row-fluid">
-	<div class="">
+	<div class="container box box-info">
+		<div class="box-header">
+			<i class="fa fa-calendar"></i>
+			<div class="box-title">Calendar</div>
+		</div><!-- /.box-header -->
 		<div class="col-md-1" style="width:99% !important;">
 			<div class="dp_content">
 				<div align="center">
-					<select name="cal_month" id="cal_month" class="cal_month_edit" onchange="calendar()">
+					<select name="cal_month" id="cal_month" onchange="calendar()">
 						{html_options values=$month_val selected=$month_sel output=$month_out}
 					</select>
-					<select name="cal_year"  id="cal_year" class="cal_year_edit" onchange="calendar()">
+					<select name="cal_year"  id="cal_year" onchange="calendar()">
 						{html_options values=$year_val selected=$year_sel output=$year_out}
 					</select>
 				</div>
 				<div id="cal" align="center">
-					{* Glavni sadrzaj ukljucen ovde *}
-						{* 
-							<table></table>
-							<div class="dashboard-legend"></div>
-							<script></script>
-						*}
 				</div>
 				<br/><br/>
 			</div>
 		</div>
 	</div>
 </div>
-
-
-
 <script type="text/javascript">
 {literal}
 	calendar();
 	function calendar() {
-		var lang='{/literal}{$smarty.session.CMSLang}{literal}';
 		$.get(
 			'plugins/Calendar/calendar.php', 
-			{cal_month: $('#cal_month').val(), cal_year: $('#cal_year').val(), lang: lang},
+			{cal_month: $('#cal_month').val(), cal_year: $('#cal_year').val()},
 			function(data) {
 				$('#cal').html(data);
 			}
 		);
 		$('#xMonth').val($('#cal_month').val());
 	}	
-{/literal}	
+{/literal}		
 </script>

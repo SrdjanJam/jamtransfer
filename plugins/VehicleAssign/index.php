@@ -58,6 +58,8 @@
 	}
 	
 	$smarty->assign('vehicles',$svArray);
+	$smarty->assign('driverSettingsExist',driverSettingsExist());
+
 	
 
 

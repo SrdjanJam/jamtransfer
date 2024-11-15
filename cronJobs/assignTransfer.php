@@ -19,6 +19,7 @@ require_once $root . '/db/v4_OrderDetails.class.php';
 require_once $root . '/db/v4_OrdersMaster.class.php';
 require_once $root . '/db/v4_AuthUsers.class.php';
 require_once $root . '/db/v4_CoInfo.class.php';
+require_once $root . '/lng/en_text.php';
 require_once $root . '/PHPMailer-master/PHPMailerAutoload.php';
 $db = new DataBaseMysql();
 $od = new v4_OrderDetails();
@@ -75,7 +76,9 @@ foreach ($driverKeys as $key) {
 		$page="https://wis.jamtransfer.com/codeLogin.php?userCode=".$userCode."&userID=".$au->getAuthUserID();
 		
 		// START MAIL
-		$message = '<div style="width:1000px;margin:0 auto;border:solid 6px black;border-left:0;border-right:0;font-family:sans-serif"><div style="padding:12px;text-align:center"><img src="https://wis.jamtransfer.com/i/logo.png"></div><div style="padding:24px 36px;background:#eee"><p>Dear partner '.$au->getAuthUserRealName().',</p><p>Please <a href="'.$page.'">Login</a> and <b>ASSIGN DRIVER</b> to these transfers immediately:</p><table style="width:100%;margin:24px auto;border:solid 1px black;text-align:center"><tr><th>Order</th><th>Status</th><th>Pickup</th></tr>';
+		$message = '<div style="width:1000px;margin:0 auto;border:solid 6px black;border-left:0;border-right:0;font-family:sans-serif"><div style="padding:12px;text-align:center"><img src="https://wis.jamtransfer.com/i/logo.png"></div><div style="padding:24px 36px;background:#eee"><p>Dear partner '.$au->getAuthUserRealName().',</p><p>Please <a href="'.$page.'">Login</a> and <b>ASSIGN DRIVER</b> to these transfers immediately:</p>';
+		$message .= driverSettingsExist($au->getAuthUserID());
+		$message .= '<table style="width:100%;margin:24px auto;border:solid 1px black;text-align:center"><tr><th>Order</th><th>Status</th><th>Pickup</th></tr>';
 		$messageW = 'Dear partner '.$au->getAuthUserRealName().', *ASSIGN DRIVER* these transfers immediately: <br>';
 		$messageW.= $page."<br>";
 		foreach ($transferKeys as $key) {
@@ -162,4 +165,35 @@ function send_whatsapp_message($phone_to,$message) {
 	$response = curl_exec($curl);
 	$err = curl_error($curl);
 	curl_close($curl);
+}
+
+function subdriversExist($id) {
+    global $db;    
+	$q  = "SELECT * FROM `v4_AuthUsers` WHERE `Active`=1 and `DriverID`=".$id;
+    $w = $db->RunQuery($q);
+	if ($w->num_rows==0) return false;
+	else return true;
+}
+
+function subvehiclesExist($id) {
+	global $db;    
+	$q  = "SELECT * FROM `v4_SubVehicles` WHERE `Active`=1 and `OwnerID`=".$id;
+    $w = $db->RunQuery($q);
+	if ($w->num_rows==0) return false;
+	else return true;}
+
+function assignExist($id) {
+	global $db;    
+	$q  = "SELECT * FROM `v4_SubVehicles` WHERE `Active`=1 and AssignSDID>0 and `OwnerID`=".$id;
+    $w = $db->RunQuery($q);
+	if ($w->num_rows==0) return false;
+	else return true;
+}
+
+function driverSettingsExist($id) {
+	$status="";
+	if (!subdriversExist($id))	$status.="<span class='text-danger'>".DRIVERS_NOT_ENTERED."</span> <a target='_blank' href='myDrivers'>".INSERT_DRIVERS."</a><br>";
+	if (!subvehiclesExist($id)) $status.="<span class='text-danger'>".VEHICLES_NOT_ENTERED."</span> <a target='_blank' href='myVehicles'>".INSERT_VEHICLES."</a><br>";
+	if (!assignExist($id)) $status.="<span class='text-danger'>".NOT_ASSIGNED."</span> <a target='_blank' href='vehicleToDrivers'>".ASSIGN_VEHICLES."</a><br>";
+	return $status;	
 }

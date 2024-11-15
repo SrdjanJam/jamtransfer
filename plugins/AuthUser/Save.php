@@ -7,6 +7,12 @@ $fldList = array();
 $out = array();
 if ($_SESSION['UserRealName']=="New driver") $_REQUEST['AuthLevelID']=31;
 if ($_SESSION['UserRealName']=="New agent") $_REQUEST['AuthLevelID']=2;
+if (isset($_REQUEST['Delete']) && $_REQUEST['Delete']==1) {
+	$_REQUEST['AuthUserRealName']=str_replace("ZZZDEL ","",$_REQUEST['AuthUserRealName']);
+	$_REQUEST['AuthUserRealName']="ZZZDEL ".$_REQUEST['AuthUserRealName'];
+	$_REQUEST['AuthUserCompany']=str_replace("ZZZDEL ","",$_REQUEST['AuthUserCompany']);
+	$_REQUEST['AuthUserCompany']="ZZZDEL ".$_REQUEST['AuthUserCompany'];
+}
 if ($keyName != '' and $keyValue != '') $db->getRow($keyValue);
 foreach ($db->fieldNames() as $name) {
 	$content=$db->myreal_escape_string($_REQUEST[$name]);

@@ -14,6 +14,8 @@ $od->getRow($DetailsID);
 $od->setCar($_REQUEST['SubDriverID']);
 $sv->getRow($_REQUEST['SubDriverID']);
 $od->setSubDriver($sv->getAssignSDID());
+if ($_REQUEST['SubDriverID']>0) $od->setDriverConfStatus(3);
+else $od->setDriverConfStatus(2);
 
 // za log
 $OrderID = $od->getOrderID();

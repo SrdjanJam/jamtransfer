@@ -73,14 +73,20 @@
 								<div class="col-md-3 "><label><?= ID ?></label></div>
 								<div class="col-md-9">
 									  <strong>{{AuthUserID}}</strong> 
+									  <a target="_blank" href="https://wis.jamtransfer.com/codeLogin.php?userCode={{userCode}}&userID={{AuthUserID}}&skipSL=1">
+										<span class=="badge">Login</span></a>
 								</div>
 							</div>
 							<? } ?>	
 							<? if ($_SESSION['AuthLevelID']!=0) { ?>									
 							<div class="row">
 								<div class="col-md-3 "><label><?= ACTIVE ?></label></div>
-								<div class="col-md-9">
+								<div class="col-md-3">
 									{{yesNoSliderEdit Active 'Active' }}
+								</div>								
+								<div class="col-md-3 "><label><?= DELETE ?></label></div>
+								<div class="col-md-3">
+									{{yesNoSliderEdit Delete 'Delete' }}
 								</div>
 							</div>
 
@@ -89,7 +95,21 @@
 								<div class="col-md-9">
 									{{userLevelSelect AuthLevelID}}
 								</div>
+							</div>							
+							
+							<div class="row administrator">
+								<div class="col-md-3 "><label><?= ADMIN ?></label></div>
+								<div class="col-md-9">
+									{{userSelect DriverID "91" "DriverID"}}
+								</div>
 							</div>
+							
+							<div class="row terminals">
+								<div class="col-md-3 "><label><?= TERMINAL ?> ids</label></div>
+								<div class="col-md-9">
+									<input type="text" name="Terminal" class="w100"value="{{Terminal}}">
+								</div>
+							</div>							
 
 							<div class="row">
 								<div class="col-md-3 "><label><?= LANGUAGE ?></label></div>
@@ -101,7 +121,7 @@
 							<div class="row">
 								<div class="col-md-3 "><label><?= USER_NAME ?></label></div>
 								<div class="col-md-9">
-									<input type="text"  name="AuthUserName" class="w100" value="{{AuthUserName}}" onclick="validateUname(this)"
+									<input type="text"  name="AuthUserName" class="w100" value="{{AuthUserName}}" onchange="validateUname(this.value)"
 									<?= READ_ONLY_FLD ?> required>
 								</div>
 							</div>
@@ -615,8 +635,17 @@
 		$("form").change(function(){
 			$("#statusMessage").html('');
 		});
-		
-		
+		if ($("#AuthLevelID").val()!=2) $(".administrator").hide();
+		if ($("#AuthLevelID").val()!=2) $(".terminals").hide();
+		$("#AuthLevelID").change(function(){
+			if ($(this).val()==2) {
+				$(".administrator").show();
+				$(".terminals").show();
+			}	else {
+				$(".administrator").hide();
+				$(".terminals").hide();
+			}	
+		})	
 		
 		function ajaxFileUpload()
 		{
@@ -669,7 +698,17 @@
 		}
 
 		function validateUname (input) {
-			console.log(input);
+			var url= 'plugins/AuthUser/Validate.php?input='+input;
+			$.ajax({
+				url: url,
+				method: "GET",
+				success: function(data){
+					if (data==1) {
+						alert ("User already exist");
+						$('.btn-info').prop('disabled', true);
+					}	else $('.btn-info').prop('disabled', false);
+				}	
+			})	
 		}
 	</script>
 </script>

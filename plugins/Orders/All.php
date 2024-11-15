@@ -43,13 +43,21 @@ if (isset($type2)) {
 				$filter .= " AND DriverConfStatus = '1' AND TransferStatus < '3'";
 				break;			
 				
-			case 'notConfirmedToday': 
+			/*case 'notConfirmedToday': 
 				$filter .= " AND PickupDate = '".$today ."' AND (DriverConfStatus = '1' OR DriverConfStatus = '4') AND TransferStatus < '3'";
 				break;	
 				
 			case 'notConfirmedTomorrow':
 				$filter .= " AND PickupDate = '".$tomorrow ."' AND (DriverConfStatus = '1' OR DriverConfStatus = '4')  AND TransferStatus < '3'";
-				break;			
+				break;		*/	
+			
+			case 'notConfirmedTodayTomorrow':
+				$filter .= " AND (PickupDate = '".$tomorrow ."' OR PickupDate = '".$today ."') AND (DriverConfStatus = '1' OR DriverConfStatus = '4')  AND TransferStatus < '3'";
+				break;	
+				
+			case 'notAssign':
+				$filter .= " AND PickupDate > '".$today ."' AND PickupDate < ('".date('Y-m-d')."'+INTERVAL 4 DAY) AND DriverConfStatus = '2' AND TransferStatus < '3'";
+				break;						
 				
 			case 'confirmed':
 				$filter .= " AND (DriverConfStatus ='2' OR DriverConfStatus ='3') AND TransferStatus < '3'";
@@ -676,6 +684,7 @@ if (count($dbk) != 0) {
 			$pl->getRow($DropID);
 			$detailFlds["DropName"]=$pl->getPlaceNameEN();
 		}
+		$detailFlds["DriverName"]=$users[$od->getDriverID()]->AuthUserRealName;
 		$detailFlds["SubDriverName"]=$users[$od->getSubDriver()]->AuthUserRealName;
 		$detailFlds["SubDriverMob"]=$users[$od->getSubDriver()]->AuthUserMob;
 		

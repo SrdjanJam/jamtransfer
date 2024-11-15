@@ -4991,10 +4991,42 @@ function isLocalAgent ($agentID) {
 
 // vrati broj postojecih specificnih korisnickih imena iz v4_AuthUsers (ne smije biti >1)
 function usernameExists ($name) {
-    global $db;    $q  = 'SELECT * FROM v4_AuthUsers WHERE AuthUserName = "' . $name . '"';
+    global $db;    
+	$q  = 'SELECT * FROM v4_AuthUsers WHERE AuthUserName = "' . $name . '"';
     $w = $db->RunQuery($q);
 
     return $w->num_rows;
+}
+
+function subdriversExist() {
+    global $db;    
+	$q  = "SELECT * FROM `v4_AuthUsers` WHERE `Active`=1 and `DriverID`=".$_SESSION['UseDriverID'];
+    $w = $db->RunQuery($q);
+	if ($w->num_rows==0) return false;
+	else return true;
+}
+
+function subvehiclesExist() {
+	global $db;    
+	$q  = "SELECT * FROM `v4_SubVehicles` WHERE `Active`=1 and `OwnerID`=".$_SESSION['UseDriverID'];
+    $w = $db->RunQuery($q);
+	if ($w->num_rows==0) return false;
+	else return true;}
+
+function assignExist() {
+	global $db;    
+	$q  = "SELECT * FROM `v4_SubVehicles` WHERE `Active`=1 and AssignSDID>0 and `OwnerID`=".$_SESSION['UseDriverID'];
+    $w = $db->RunQuery($q);
+	if ($w->num_rows==0) return false;
+	else return true;
+}
+
+function driverSettingsExist() {
+	$status="";
+	if (!subdriversExist())	$status.="<span class='text-danger'>".DRIVERS_NOT_ENTERED."</span> <a target='_blank' href='myDrivers'>".INSERT_DRIVERS."</a><br>";
+	if (!subvehiclesExist()) $status.="<span class='text-danger'>".VEHICLES_NOT_ENTERED."</span> <a target='_blank' href='myVehicles'>".INSERT_VEHICLES."</a><br>";
+	if (!assignExist()) $status.="<span class='text-danger'>".NOT_ASSIGNED."</span> <a target='_blank' href='vehicleToDrivers'>".ASSIGN_VEHICLES."</a><br>";
+	return $status;	
 }
 
 function days_in_month($month, $year) { 
@@ -5103,10 +5135,12 @@ function saveLog($UserID,$type) {
 	$lu=new v4_LogUser();
 	$au=new v4_AuthUsers();
 	$typeD=$type+2;
-	$whereD=" WHERE `AuthUserID`=".$UserID." AND `Type`=2 AND DATE(`DateTime`)=CURDATE() ";
-	$lukD=$lu->getKeysBy("ID", "ASC", $whereD);	
-	if (count($lukD)==1) $lu->deleteRow($lukD[0]);
-	$where=" WHERE `AuthUserID`=".$UserID." AND `Type` in (".$type.",".$typeD.") AND DATE(`DateTime`)=CURDATE() ";
+	if ($type==2) {
+		$whereD=" WHERE `AuthUserID`=".$UserID." AND `Type`=2 AND DATE(`DateTime`)=CURDATE() ";
+		$lukD=$lu->getKeysBy("ID", "ASC", $whereD);	
+		if (count($lukD)==1) $lu->deleteRow($lukD[0]);
+	}
+	$where=" WHERE `AuthUserID`=".$UserID." AND `Type` in (".$type.",".$typeD.") AND DATE(`DateTime`)=CURDATE() AND IPAddress='91.150.99.84'";
 	$luk=$lu->getKeysBy("ID", "ASC", $where);
 	if (count($luk)==0) {
 		$current_ip=$_SERVER['REMOTE_ADDR'];
@@ -5159,3 +5193,41 @@ function createNotification($userID,$message,$url) {
 	$nt->saveAsNew();
 }
 
+function get_nearest_timezone($cur_lat, $cur_long, $country_code = '') {
+    $timezone_ids = ($country_code) ? DateTimeZone::listIdentifiers(DateTimeZone::PER_COUNTRY, $country_code)
+                                    : DateTimeZone::listIdentifiers();
+
+    if($timezone_ids && is_array($timezone_ids) && isset($timezone_ids[0])) {
+
+        $time_zone = '';
+        $tz_distance = 0;
+
+        //only one identifier?
+        if (count($timezone_ids) == 1) {
+            $time_zone = $timezone_ids[0];
+        } else {
+
+            foreach($timezone_ids as $timezone_id) {
+                $timezone = new DateTimeZone($timezone_id);
+                $location = $timezone->getLocation();
+                $tz_lat   = $location['latitude'];
+                $tz_long  = $location['longitude'];
+
+                $theta    = $cur_long - $tz_long;
+                $distance = (sin(deg2rad($cur_lat)) * sin(deg2rad($tz_lat))) 
+                + (cos(deg2rad($cur_lat)) * cos(deg2rad($tz_lat)) * cos(deg2rad($theta)));
+                $distance = acos($distance);
+                $distance = abs(rad2deg($distance));
+                // echo '<br />'.$timezone_id.' '.$distance; 
+
+                if (!$time_zone || $tz_distance > $distance) {
+                    $time_zone   = $timezone_id;
+                    $tz_distance = $distance;
+                } 
+
+            }
+        }
+        return  $time_zone;
+    }
+    return 'unknown';
+}

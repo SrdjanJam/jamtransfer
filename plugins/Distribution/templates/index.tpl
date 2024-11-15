@@ -104,7 +104,7 @@
 
 		<div style="text-align: center;">
 			<a class='marked' href='{$root_home}calendar'>{$CALENDAR}</a>	
-			&nbsp;&nbsp;&nbsp;&nbsp;
+			{*&nbsp;&nbsp;&nbsp;&nbsp;
 			&nbsp;&nbsp;&nbsp;&nbsp;			
 			<a href='{$root_home}distribution/{$days[2]}'>
 				<i class="fa fa-arrow-left" aria-hidden="true"></i>		
@@ -118,17 +118,18 @@
 
 			<a href='{$root_home}distribution/{$days[4]}'>
 				<i class="fa fa-arrow-right" aria-hidden="true"></i>		
-			</a>
+			</a>*}
+			<input type="text" id="PickupDate" name="PickupDate" class="w75 datepicker" value="{$smarty.request.Date}">
 			<button type="button" class="btn btn-primary btn-primary-edit workingtime" data-date="{$smarty.request.Date}" data-userid="{$smarty.session.UseDriverID}">
 				{$SET_WT}
-			</button>
+			</button>			
 		</div> <!-- End of text-align: center -->
 
 		<div class="transfers">
 <!-- Drop - left side: ========================================================== -->
 			<div class="drop-wrapper ">
 				<h3>{$DRIVERS}:</h3>
-			
+				{$driverSettingsExist}
 				{section name=pom1 loop=$drivers}
 					<div class="dropzoneN dropDrivers" data-svid="{$drivers[pom1].SubVehicleID}" data-id="{$drivers[pom1].DriverID}">
 						
@@ -225,6 +226,9 @@
 		
 		<script>
 		{literal}
+			$("#PickupDate").change(function(){
+				window.location.href = "{/literal}{$currenturl}{literal}/"+$("#PickupDate").val();
+			})
 			$('.workingtime').click(function(){
 				var date=$(this).attr('data-date');
 				var userid=$(this).attr('data-userid');

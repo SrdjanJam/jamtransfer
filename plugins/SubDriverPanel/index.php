@@ -27,11 +27,11 @@ $mydriver = $_SESSION['AuthUserID'];
 //$_SESSION['DriverID'] = $mydriver;
 
 $au->getRow($_SESSION['AuthUserID']);
-
+if (!isset($driverPanelDate)) $driverPanelDate=date("Y-m-d");
 $where2 .= " WHERE (SubDriver = '" . $mydriver . "' ";
 $where2 .= " OR SubDriver2 = '" . $mydriver . "' ";
 $where2 .= " OR SubDriver3 = '" . $mydriver . "') ";
-$where2 .= " AND PickupDate = '" . date("Y-m-d")."' ";
+$where2 .= " AND PickupDate = '" . $driverPanelDate."' ";
 $where2 .= " AND TransferStatus != 4 ";
 $where2 .= " AND TransferStatus != 9 ";
 $where2 .= " AND DriverConfStatus > 1 "; //status ready, samo cekirani transferi u ColumnView 
@@ -150,10 +150,6 @@ if(count($odk) > 0) {
 			$fs_link='https://www.flightstats.com/v2/flight-tracker/'.$cc.'/'.$fn.'?year='.$year.'&month='.$month.'&date='.$day;
 		}
 		if($od->SubPickupTime=="") $od->SubPickupTime=$od->PickupTime;
-		
-		//testing
-		$od->setSubDriverNote("TEST");
-		$od->setPickupNotes("TEST ccccc");
 		
 		
 		$detail=$od->fieldValues();

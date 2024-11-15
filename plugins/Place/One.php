@@ -30,6 +30,7 @@ require_once 'Initial.php';
     }
 	// geo sirina i duzina
 	if ($db->getLongitude()==0 || $db->getLatitude()==0) {
+		if ($db->getPlaceType()==1) $name .=" parking";
 		$ll=getLL($db->getPlaceNameEN());
 		$ll_arr=explode("/",$ll);
 		$detailFlds["Longitude"]=$ll_arr[0];
@@ -39,7 +40,7 @@ require_once 'Initial.php';
 	$name=$db->getPlaceNameEN();
 	$name = str_replace(" ","_",$name);
 	$name2.=$name.",_".$db->getCountryNameEN();
-	
+		
 	$url='https://en.wikipedia.org/w/api.php?action=query&prop=extracts&format=json&exintro=&titles='.$name2;
 						
 	$json = file_get_contents($url);  

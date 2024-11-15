@@ -62,6 +62,9 @@
 									<strong>{{DropName}}</strong><br>
 									{{DropAddress}}
 								</div>
+								<a target='_blank' href='plugins/getRouteMap.php?DetailsID={{DetailsID}}'>
+									<i class="fa fa-map" aria-hidden="true"></i> MAP
+								</a>
 							</div>
 						</div>
 					</div>
@@ -194,7 +197,7 @@
 													<div class="col-md-2"><label><?= DRIVER_TEL ?></label></div>
 													<div class="col-md-8">
 														<input class="form-control" type="text" 
-														id="SubDriverTel" placeholder='International format (e.g +33...)' value="{{SubDriverMob}}" onfocus="if (this.value=='Please put phone number in international format (e.g +33...)') this.value='';">
+														id="DriverTel" placeholder='International format (e.g +33...)' value="{{SubDriverMob}}" onfocus="if (this.value=='Please put phone number in international format (e.g +33...)') this.value='';">
 													</div>
 												</div>
 												
@@ -336,9 +339,9 @@
 		function confirmTransfer(detailsid, driverid, orderkey) {
 			
 			// mesto + u telefonu
-			var tel = $("#SubDriverTel").val() ;
+			var tel = $("#DriverTel").val() ;
 			var n = tel.indexOf('+');
-			if($("#SubDriverName").val() == '' || $("#SubDriverTel").val() == '') {
+			if($("#SubDriverName").val() == '' || $("#DriverTel").val() == '') {
 				alert('Enter Driver name and Telephone number!');
 				return false;
 			}
@@ -352,7 +355,7 @@
 				"&control="+orderkey +
 				"&id="+ driverid +
 				"&SubDriverName="+ $("#SubDriverName").val() +
-				"&SubDriverTel="+ $("#SubDriverTel").val() +
+				"&DriverTel="+ $("#DriverTel").val() +
 				"&PickupPoint="+ $("#PickupPoint").val() +
 				"&Confirm=Confirmed";
 			console.log(url);
@@ -453,7 +456,7 @@
 				success: function(data) {
 					data = $.parseJSON(data);
 					thiscar.parent().parent().find("#SubDriverName").val(data.username);
-					thiscar.parent().parent().find("#SubDriverTel").val(data.phone);
+					thiscar.parent().parent().find("#DriverTel").val(data.phone);
 					$.toaster('Vehicle changed', 'Done', 'success blue-2');
 					
 				}

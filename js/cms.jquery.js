@@ -116,7 +116,7 @@ function paginator(page, recordsTotal, length, callFunction) {
 
 		// PAGINATION DROPDOWN and BUTTONS -> #pageSelect div element
 		var selHtml = '<button class="btn btn-primary align" onclick="paginatorPrevPage();">Prev</button>  ';
-		selHtml += '<select id="pageSelector" onchange="'+ callFunction + ';" style="padding: 5px;width: 100px;border-radius:5px;box-shadow: 0px 0px 4px 1px #888888;">'; // ajax refresh prikaza
+		selHtml += '<select id="pageSelector" onchange="'+ callFunction + ';" style="padding: 2px;width:20%;border-radius:5px;box-shadow: 0px 0px 4px 1px #888888;">'; // ajax refresh prikaza
 		for (var i=1;i<=iMaxPages;i++)
 		{
 			selHtml += '<option value="'+i+'"';
@@ -665,9 +665,9 @@ Handlebars.registerHelper("yesNoSliderEdit", function(currentLevel, fieldName, d
 	function yesNoSlide() {
 		if (typeof currentLevel=='undefined') currentLevel=0;
 		if (defaultvalue=='1') currentLevel=1; 
-		yesNoInput = '<span style="float:left">No</span>';
-		yesNoInput+= '<input class="primer" style="width: 30px;float:left;margin:2px 5px 0 5px;" type="range" max="1" class="Choice" name="'+fieldName+'" value="'+currentLevel+'"/>';
-		yesNoInput+= '<span style="float:left;">Yes</span>';
+		//yesNoInput = '<span style="float:left">No</span>';
+		yesNoInput= '<input title="No/Yes" class="primer Choice" style="width: 30px; margin: auto;" type="range" min="0" max="1" step="1" name="'+fieldName+'" value="'+currentLevel+'"/>';
+		//yesNoInput+= '<span style="float:left;">Yes</span>';
 
 		// yesNoInput+= document.createElement('style');
 		// style.innerHTML = `

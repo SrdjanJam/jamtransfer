@@ -15,13 +15,13 @@
 					<strong>{$details4[pom].PickupName} - {$details4[pom].DropName}</strong>
 				</div>	
 				<div  class="col-sm-2">
-					<a href='{$ROOT_WEB}/distribution/{$details4[pom].PickupDate}' class="btn btn-primary mac" >
+					<a href='transferAssign/{$details4[pom].PickupDate}' class="btn btn-primary mac" >
 						{$ASSIGN}
 					</a>
 				</div>	
 			</div>
 		{/section}	
-		<br><small style="font-size:14px">No of transfers: {$noOfTransfers4}</small>
+		<br><small style="font-size:14px">{NO_OF} {$noOfTransfers4}</small>
 	</div>
 <br>
 {/if}	

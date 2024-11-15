@@ -15,6 +15,7 @@ if (isset($_REQUEST['userCode'])) {
 		if ($_REQUEST['userCode']==md5($au->getAuthUserPass()) && $_REQUEST['userID']==$au->getAuthUserID()) {
 			$_SESSION['log_title']="";
 			$_SESSION['UserName'] = $au->getAuthUserName();
+			$_REQUEST['username'] = $au->getAuthUserName();
 			$_SESSION['UserRealName'] = $au->getAuthUserRealName();
 			$_SESSION['UserCompany'] = $au->getAuthUserCompany();
 			$_SESSION['BrandName'] = $au->getBrandName();
@@ -26,7 +27,6 @@ if (isset($_REQUEST['userCode'])) {
 			$_SESSION['DriverID'] = $au->getDriverID();
 			$_SESSION['MemberSince'] = $au->getDateAdded();
 			$_SESSION['AuthUserNote1'] = $au->getAuthUserNote1();
-			$_SESSION['userCode'] = md5($au->getAuthUserPass());
 			$_SESSION['userCode'] = md5($au->getAuthUserPass());
 			$al->getRow($au->getAuthLevelID());
 			$_SESSION['MainGroupProfile'] = ucfirst(strtolower($al->getAuthLevelName()));
@@ -43,7 +43,7 @@ if (isset($_REQUEST['userCode'])) {
 			$qu .= " WHERE AuthUserID = '" .$_SESSION['AuthUserID']. "'";
 			$db->RunQuery($qu);
 			$page='dashboard';
-			saveLog($au->getAuthUserID(),1);
+			if (!isset($_REQUEST['skipSL'])) saveLog($au->getAuthUserID(),1);
 			header("Location: " .$page);
 			exit();
 		}   						

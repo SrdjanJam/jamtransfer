@@ -33,9 +33,13 @@
 											<label>{$ORDER}</label> {$details[pom].OrderID}-{$details[pom].TNo}<br>
 											<label>{$PICKUP_DATE}</label> {$details[pom].PickupDate}<br>
 											<label>{$PICKUP_TIME}</label> {$details[pom].PickupTime}<br>
-											<label>{$ROUTE}</label> <small>{$details[pom].PickupName} - {$details[pom].DropName}</small><br>
+											<label>{$ROUTE}</label> <small>{$details[pom].PickupName} - {$details[pom].DropName}
+												<a target='_blank' href='plugins/getRouteMap.php?DetailsID={$details[pom].DetailsID}'>
+													<i class="fa fa-map" aria-hidden="true"></i>MAP
+												</a>
+											</small><br>
 											<label>{$PICKUP_ADDRESS}</label> {$details[pom].PickupAddress}<br>
-											<label>{$DROPOFF_ADDRESS}</label> {$details[pom].DropAddress}
+											<label>{$DROPOFF_ADDRESS}</label> {$details[pom].DropAddress}<br>
 										</div>										
 										<div class="col-sm-4">	
 											<label>{$FLIGHT_NO}</label> {$details[pom].FlightNo}<br>
@@ -92,14 +96,14 @@
 													<div class="col-md-2"><label>{$DRIVER_NAME}</label></div>
 													<div class="col-md-8">
 														<input class="form-control" type="text" 
-														id="SubDriverName" placeholder="Please put DRIVERS NAME or OPERATOR (do not put YOUR COMPANY name)" value="" onfocus="if (this.value=='Please put DRIVERS NAME or OPERATOR (do not put YOUR COMPANY name)') this.value='';">
+														id="DriverName" placeholder="Please put DRIVERS NAME or OPERATOR (do not put YOUR COMPANY name)" value="" onfocus="if (this.value=='Please put DRIVERS NAME or OPERATOR (do not put YOUR COMPANY name)') this.value='';">
 													</div>
 												</div>*}
 												<div class="row">
-													<div class="col-md-2"><label>Dispach phone</label></div>
+													<div class="col-md-2"><label>{$DRIVER}/{$DISPATCHER} {$PHONE}</label></div>
 													<div class="col-md-8">
 														<input class="form-control" type="text" 
-														id="SubDriverTel" placeholder='International format (e.g +33...)' value="" onfocus="if (this.value=='Please put phone number in international format (e.g +33...)') this.value='';">
+														id="DriverTel" placeholder='International format (e.g +33...)' value="{$details[pom].DriverTel}" title="{$ENTER_PHONE_FORMAT}" data-et="{$ENTER_PHONE}">
 													</div>
 												</div>
 												
@@ -112,19 +116,19 @@
 													</div>
 												</div>											
 												<div id="drr" class="row" style="display:none">
-													<div class="col-md-2"><label>Decline reason</label></div>
+													<div class="col-md-2"><label>{$DECLINE_REASON}</label></div>
 													<div class="col-md-8">
 														<select name="DeclineReason" id="DeclineReason">
-															<option value="cr">Choose reason</option>													
-															<option value="Price">Price incorect</option>	
-															<option value="Availability">No availability</option>														
-															<option value="Wrong">Wrong reservation details</option>													
-															<option value="Other">Other</option>
+															<option value="cr">{$CHOSE_REASON}</option>													
+															<option value="Price">{$PRICE_INCORECT}</option>	
+															<option value="Availability">{$NO_AVAILABILITY}</option>														
+															<option value="Wrong">{$WRONG_RESERVATION}</option>													
+															<option value="Other">{$OTHER}</option>
 														</select>			
 													</div>
 												</div>											
 												<div id="dm" class="row" style="display:none">
-													<div class="col-md-2"><label>Decline message</label></div>
+													<div class="col-md-2"><label>{$DECLINE_MESSAGE}</label></div>
 													<div class="col-md-8">
 														<textarea id= 'dmta' class="form-control" cols="40" 
 														rows="5" name="DeclineMessage"
@@ -133,8 +137,8 @@
 												</div>												
 												<div class="row">
 													<div class="col-md-12">
-													<span>&nbsp Please, CHECK this transfer details before confirming transfer request!</span> 
-													<span>&nbsp Assign this transfer to your driver and vehicle after confirming transfer request!</span> 
+													<span>&nbsp {$CHECK_TRANSFER_DETAILS}</span> <BR>
+													<span>&nbsp {$ASSIGN_TRANSFER}</span> 
 													<br>
 													<br>
 													<button class="btn btn-success" type="submit"
@@ -162,33 +166,36 @@
 							</div>
 						</div>
 					</div>
+					<div class="modal fade" id="map">
+					</div>
 				</div>	
 			</div>
 		{/section}	
-		<br><small style="font-size:14px">No of transfers: {$noOfTransfers}</small>
+		<br><small style="font-size:14px">{NO_OF} {$noOfTransfers}</small>
 	</div>
 </div>
 <br>
 <script>
+{literal}
 	function confirmTransfer(detailsid, driverid, orderkey) {
 		
 		// mesto + u telefonu
-		var tel = $("#SubDriverTel").val() ;
+		var tel = $("#DriverTel").val() ;
 		var n = tel.indexOf('+');
-		if($("#SubDriverTel").val() == '') {
-			alert('Enter Telephone number!');
+		if($("#DriverTel").val() == '') {
+			alert ($("#DriverTel").attr('data-et'));
 			return false;
 		}
 		// da li je ispravan format?
 		if (n != 0) {
-			alert ('Enter Phone number in right format starting with country code (+___)');
+			alert ($("#DriverTel").attr('title'));
 			return false;
 		}	
 		var url = './plugins/Orders/confirmDecline.Driver.php'+
 			"?code=" + detailsid +
 			"&control="+orderkey +
 			"&id="+ driverid +
-			"&SubDriverTel="+ $("#SubDriverTel").val() +
+			"&DriverTel="+ $("#DriverTel").val() +
 			"&PickupPoint="+ $("#PickupPoint").val() +
 			"&Confirm=Confirmed";
 		console.log(url);
@@ -198,7 +205,7 @@
 			url: url,
 			async: true,
 			success: function(data) {
-				$.toaster('Transfer Confirmed', 'Done', 'success blue-2');
+				$.toaster('{/literal}{$TRANSFER_CONFIRMED} {$ASSIGN_TRANSFER}{literal}', 'Done', 'success blue-2');
 				location.reload();
 			}
 		});
@@ -217,10 +224,10 @@
 	$('#dmta').attr("placeholder","Your reason is:");	// privremeno, posle izbrisati
 	$('#DeclineReason').change(function(){ 
 		var rn = $('#DeclineReason').val(); 
-		if (rn=='Price') $('#dmta').attr("placeholder","Your price is:");
-		if (rn=='Availability') $('#dmta').attr("placeholder","Your time is:");
-		if (rn=='Wrong') $('#dmta').attr("placeholder","Wrong details is:");
-		if (rn=='Other') $('#dmta').attr("placeholder","Your reason is:");			
+		if (rn=='Price') $('#dmta').attr("placeholder","{/literal}{$YOUR_PRICE}{literal}");
+		if (rn=='Availability') $('#dmta').attr("placeholder","{/literal}{$YOUR_TIME}{literal}");
+		if (rn=='Wrong') $('#dmta').attr("placeholder","{/literal}{$WRONG_DETAILS}{literal}");
+		if (rn=='Other') $('#dmta').attr("placeholder","{/literal}{$YOUR_REASON}{literal}");			
 		$("#dm").show(500);			
 	}); 
 	
@@ -247,11 +254,12 @@
 			url: url,
 			async: true,
 			success: function(data) {
-				$.toaster('Transfer Declined', 'Done', 'success red');
+				$.toaster('{/literal}{$TRANSFER_DECLINE}{literal}', 'Done', 'success red');
 				location.reload();
 			}
 		})
 		return false;
 	}
+{/literal}
 </script>	
 {/if}	

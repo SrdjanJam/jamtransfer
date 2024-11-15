@@ -13,6 +13,9 @@ $detailFlds["DBImage"]='';
 foreach ($detailFlds as $key=>$value) {
 	$detailFlds[$key] = stripslashes($value);
 }
+$detailFlds['Deleted']=0;
+$detailFlds['userCode']= md5($db->getAuthUserPass());
+
 $out[] = $detailFlds;
 # send output back
 $output = json_encode($out);

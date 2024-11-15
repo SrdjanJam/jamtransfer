@@ -41,7 +41,8 @@ if (isset($_REQUEST['orderToDate']) && $_REQUEST['orderToDate']>0) $DB_Where .= 
 if (isset ($_REQUEST['subdriverID']) && $_REQUEST['subdriverID']>0) $DB_Where .= " AND AssignSDID=".$_REQUEST['subdriverID'];
 if (isset($_SESSION['UseDriverID']) && $_SESSION['UseDriverID']>0) {
 	$auk = $au->getKeysBy('AuthUserID', '', " WHERE DriverID=".$_SESSION['UseDriverID']);
-	$subdrivers= implode(', ', $auk);
+	$subdrivers="99999";
+	if (count($auk)>0) $subdrivers.= implode(', ', $auk);
 	$DB_Where .= " AND AssignSDID in (".$subdrivers.") ";
 }
 

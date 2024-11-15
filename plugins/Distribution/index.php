@@ -88,7 +88,6 @@
 		$transfers[]=$transfersR;
 		
 	}
-	
 	$smarty->assign('transfers',$transfers);
 	$startday=strtotime($_REQUEST['Date'])-3*24*3600;
 	$days=array();
@@ -96,6 +95,9 @@
 	{	
 		$days[]=gmdate('Y-m-d',$startday+$i*24*3600);
 	}	
+	//echo subvehiclesExist();
 	$smarty->assign('days',$days);	
+	$smarty->assign('driverSettingsExist',driverSettingsExist());
+	
 
 	

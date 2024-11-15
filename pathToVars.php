@@ -227,13 +227,16 @@ switch ($activePage) {
 		}
 		break;	
 	case 'distribution':
+	case 'transferAssign':
+	case 'myDrivesMonitor':
+	case 'drivesMonitor':
 		if ($pathVars->fetchByIndex($indexStart + 1)){
 			if($pathVars->fetchByIndex($indexStart + 1) =="vehicles"){
 				$includeFile = "/vehicles.php";
 				$includeFileTpl = "/vehicles.tpl";	
 			} else $_REQUEST['Date']=$pathVars->fetchByIndex($indexStart + 1);
 		}
-		if (PARTNERLOG) $activePage="transferAssign";
+		//if (PARTNERLOG && $activePage="distribution") $activePage="transferAssign";
 		break;	
 	//za potvrdu transfera na whatsApp-u	
 	case 'rt':
@@ -251,6 +254,11 @@ switch ($activePage) {
 	case 'partnerStatistic':
 		if ($pathVars->fetchByIndex($indexStart + 1)){
 			$terminalID=$pathVars->fetchByIndex($indexStart + 1);
+		}
+		break;	
+	case 'driverPanel':
+		if ($pathVars->fetchByIndex($indexStart + 1)){
+			$driverPanelDate=$pathVars->fetchByIndex($indexStart + 1);
 		}
 		break;
 		

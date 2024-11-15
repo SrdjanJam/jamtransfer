@@ -64,16 +64,16 @@
 								</div>
 							</div>
 							<div class="row">
-								<div class="col-md-3 "><label><?= STATUS ?></label></div>
+								<div class="col-md-3 "><label><?= ACTIVE ?></label></div>
 								<div class="col-md-9">
-									<!--{{yesNoSliderEdit Active 'Active' }}!-->
-									<select name="Active" id="Active">
+									{{yesNoSliderEdit Active 'Active' }}
+									<!--<select name="Active" id="Active">
 										{{#select Active}}
 											<option value="0"><?= NOT_ACTIVE?></option>
 											<option value="2"><?= SEMI?> <?= ACTIVE?></option>
 											<option value="1"><?= ACTIVE?></option>
 										{{/select}}
-									</select>
+									</select>!-->
 								</div>
 							</div>
 
@@ -83,7 +83,7 @@
 							<div class="row">
 								<div class="col-md-3 "><label><?= USER_NAME ?></label></div>
 								<div class="col-md-9">
-									<input type="text"  name="AuthUserName" class="w100" value="{{AuthUserName}}" onclick="validateUname(this)"
+									<input type="text"  name="AuthUserName" class="w100" value="{{AuthUserName}}" onchange="validateUname(this.value)"
 									<?= READ_ONLY_FLD ?> required>
 								</div>
 							</div>
@@ -188,7 +188,17 @@
 		
 
 		function validateUname (input) {
-			console.log(input);
+			var url= 'plugins/AuthUser/Validate.php?input='+input;
+			$.ajax({
+				url: url,
+				method: "GET",
+				success: function(data){
+					if (data==1) {
+						alert ("User already exist");
+						$('.btn-info').prop('disabled', true);
+					}	else $('.btn-info').prop('disabled', false);
+				}	
+			})	
 		}
 	</script>
 </script>

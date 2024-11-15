@@ -102,11 +102,11 @@
 
     <body>
         <div class="vehicles">
-			<h2>Assign vehicles</h2>
+			<h2>{$ASSIGN_VEHICLES}</h2>
 			<div class="drop-wrapper">
 				
 				<h3>{$DRIVERS}:</h3>
-
+				{$driverSettingsExist}
 				{section name=pom1 loop=$drivers} {* $vehicles changes to $drivers *}
 					
 					<div 
