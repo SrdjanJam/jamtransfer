@@ -1,8 +1,0 @@
-[22-Aug-2024 11:21:16 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method v4_Notifications::setSubDriverID() in /home/jamtrans/laravel/public/wis.jamtransfer.com/plugins/Schedule/readyTime.php:36
-Stack trace:
-#0 {main}
-  thrown in /home/jamtrans/laravel/public/wis.jamtransfer.com/plugins/Schedule/readyTime.php on line 36
-[22-Aug-2024 11:22:11 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method v4_Notifications::setSubDriverID() in /home/jamtrans/laravel/public/wis.jamtransfer.com/plugins/Schedule/readyTime.php:36
-Stack trace:
-#0 {main}
-  thrown in /home/jamtrans/laravel/public/wis.jamtransfer.com/plugins/Schedule/readyTime.php on line 36

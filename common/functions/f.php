@@ -5231,3 +5231,34 @@ function get_nearest_timezone($cur_lat, $cur_long, $country_code = '') {
     }
     return 'unknown';
 }
+
+function vincentyGreatCircleDistance(
+  $latitudeFrom, $longitudeFrom, $latitudeTo, $longitudeTo, $earthRadius = 6371000)
+{
+  // convert from degrees to radians
+  $latFrom = deg2rad($latitudeFrom);
+  $lonFrom = deg2rad($longitudeFrom);
+  $latTo = deg2rad($latitudeTo);
+  $lonTo = deg2rad($longitudeTo);
+
+  $lonDelta = $lonTo - $lonFrom;
+  $a = pow(cos($latTo) * sin($lonDelta), 2) +
+	pow(cos($latFrom) * sin($latTo) - sin($latFrom) * cos($latTo) * cos($lonDelta), 2);
+  $b = sin($latFrom) * sin($latTo) + cos($latFrom) * cos($latTo) * cos($lonDelta);
+
+  $angle = atan2(sqrt($a), $b);
+  return $angle * $earthRadius;
+}
+
+function makeBLOB($fileElementName,$newxsize,$newysize,$maxsize,$bgred,$bggreen,$bgblue) {
+	$IMAGE = array();
+	$IMAGE = $_FILES[$fileElementName];
+	$tempFolder = ROOT . '/upload/';
+	move_uploaded_file ( $IMAGE['tmp_name'] , $tempFolder . "image.jpg");
+	$filename = $tempFolder . "image.jpg";
+	$fileout = $tempFolder."thumb.jpg";
+	$newxsize = 200; $newysize = 150; $maxsize = 0; $bgred = 255; $bggreen = 255; $bgblue = 255;
+	require_once ROOT.'/common/class/img2thumb.php';
+	$new = new Img2Thumb($filename,$newxsize,$newysize,$fileout,$maxsize,$bgred,$bggreen,$bgblue);
+	return $imageData = addslashes(file_get_contents($tempFolder."thumb.jpg"));	
+}

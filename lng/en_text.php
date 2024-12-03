@@ -1153,4 +1153,13 @@ define("YOUR_REASON","Your reason is:");
 define("YOUR_PRICE","Your price is:");
 define("YOUR_TIME","Your time is:");
 define("WRONG_DETAILS","Wrong details is:");
+
+//14.11.24
 define("FUTURE_TRANSFERS","Future Transfers");
+define("DISTANCE","Distance");
+define("RESET","Reset");
+
+//28.11.24
+define("STANDARD","Standard");
+define("PREMIUM","Premium");
+define("FIRST_CLASS","First class");

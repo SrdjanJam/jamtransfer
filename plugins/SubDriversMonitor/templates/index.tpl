@@ -42,6 +42,7 @@
 						<i class="fa fa-user"></i><span>{$transfers[pom1].PaxNo}</span>
 					</div>
 					<div>{$transfers[pom1].PickupName}-{$transfers[pom1].DropName}</div>
+					<div>{$transfers[pom1].subDriver}</div>
 				</span>
 			</div>
 		{/section}

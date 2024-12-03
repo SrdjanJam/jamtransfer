@@ -20,8 +20,8 @@
 				<button class="btn btn-info" title="Top Routes" 
 				onclick="return topRoutes('{{TerminalID}}');">
 				<i class="fa fa-road"></i>
-				</button>				
-
+				</button>			
+				<a target='_tab' href='https://prod.jamtransfer.com/api/terminals/bust-cache?hash=d06161457d4c4b45e57d764c98051d86'><?=DELETE_CACHE;?></a>
 		</div>
 	</div>
 	

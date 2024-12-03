@@ -72,6 +72,7 @@ while($p = mysqli_fetch_object($w))
 			$placeName=trim($places['properties']['name']);
 			if (strtoupper(substr($placeName, 0, strlen($text)))==strtoupper($text)) { 
 				if (isAround($places['geometry']['coordinates'][0],$places['geometry']['coordinates'][1],$LongC,$LattC,$radius,$db)) {
+
 					$fromPlaces["2".$placeNameL] = array(
 														'ID' => 0,
 														'Place'=> $placeNameL." (api)",
@@ -111,24 +112,7 @@ ob_end_flush();
 
 function isAround($Long,$Latt,$LongC,$LattC,$radius,$db) {
 		$distance=vincentyGreatCircleDistance($LattC, $LongC, $Latt, $Long, $earthRadius = 6371000);
-		if ($distance<200) return true;
+		if ($distance<$radius*111000) return true;
 		else return false;
 }
 
-function vincentyGreatCircleDistance(
-  $latitudeFrom, $longitudeFrom, $latitudeTo, $longitudeTo, $earthRadius = 6371000)
-{
-  // convert from degrees to radians
-  $latFrom = deg2rad($latitudeFrom);
-  $lonFrom = deg2rad($longitudeFrom);
-  $latTo = deg2rad($latitudeTo);
-  $lonTo = deg2rad($longitudeTo);
-
-  $lonDelta = $lonTo - $lonFrom;
-  $a = pow(cos($latTo) * sin($lonDelta), 2) +
-    pow(cos($latFrom) * sin($latTo) - sin($latFrom) * cos($latTo) * cos($lonDelta), 2);
-  $b = sin($latFrom) * sin($latTo) + cos($latFrom) * cos($latTo) * cos($lonDelta);
-
-  $angle = atan2(sqrt($a), $b);
-  return $angle * $earthRadius / 1000;
-}	

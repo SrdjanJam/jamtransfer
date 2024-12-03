@@ -112,9 +112,9 @@ if (isset($_REQUEST["LongD"]) && $_REQUEST["LongD"]>0 && isset($_REQUEST["LattD"
 		while($pDT = mysqli_fetch_object($wDT)) {
 			$pl->getRow($pDT->TerminalID);
 			$distance=vincentyGreatCircleDistance($pl->Latitude, $pl->Longitude, $_REQUEST["Latt"], $_REQUEST["Long"], $earthRadius = 6371000);
-			if ($distance<200) $drivers[]=$pDT->DriverID;
+			if ($distance<222000) $drivers[]=$pDT->DriverID;
 			$distance=vincentyGreatCircleDistance($pl->Latitude, $pl->Longitude, $_REQUEST["LattD"], $_REQUEST["LongD"], $earthRadius = 6371000);
-			if ($distance<200) $drivers[]=$pDT->DriverID;
+			if ($distance<222000) $drivers[]=$pDT->DriverID;
 		}
 		$drivers=array_unique($drivers);
 		if (count($drivers)>0) {
@@ -670,24 +670,6 @@ function MakeCSV($cars_all) {
 	}	
 
 }
-
-function vincentyGreatCircleDistance(
-  $latitudeFrom, $longitudeFrom, $latitudeTo, $longitudeTo, $earthRadius = 6371000)
-{
-  // convert from degrees to radians
-  $latFrom = deg2rad($latitudeFrom);
-  $lonFrom = deg2rad($longitudeFrom);
-  $latTo = deg2rad($latitudeTo);
-  $lonTo = deg2rad($longitudeTo);
-
-  $lonDelta = $lonTo - $lonFrom;
-  $a = pow(cos($latTo) * sin($lonDelta), 2) +
-    pow(cos($latFrom) * sin($latTo) - sin($latFrom) * cos($latTo) * cos($lonDelta), 2);
-  $b = sin($latFrom) * sin($latTo) + cos($latFrom) * cos($latTo) * cos($lonDelta);
-
-  $angle = atan2(sqrt($a), $b);
-  return $angle * $earthRadius / 1000;
-}	
 
 function getAveragePrice ($OwnerID,$VehicleID) {
 	require_once '../db/db.class.php';

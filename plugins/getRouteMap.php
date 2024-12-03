@@ -2,24 +2,42 @@
 require_once '../config.php';
 require_once '../headerScripts.php';
 require_once ROOT . '/db/v4_Places.class.php';
-require_once ROOT . '/db/v4_OrderDetails.class.php';
-require_once ROOT . '/db/v4_DriverTerminals.class.php';
 $pl=new v4_Places;
-$od=new v4_OrderDetails;
-$dt = new v4_DriverTerminals();
 $api_key="5b3ce3597851110001cf6248ec7fafd8eca44e0ca5590caf093aa7cb";
-$where=" WHERE DetailsID=".$_REQUEST['DetailsID'];
-$odk=$od->getKeysBy('DetailsID','',$where);
-if (count($odk)==1) {
-	$od->getRow($odk[0]);
-	$pl->getRow($od->getPickupID());
-	$transfersR['PickupName']="From<br><h5>".$od->getPickupName()."</h5>";
-	$transfersR['DropName']="To<br><h5>".$od->getDropName()."</h5>";
+$found=false;
+if (isset($_REQUEST['DetailsID'])) {
+	require_once ROOT . '/db/v4_OrderDetails.class.php';
+	$od=new v4_OrderDetails;	
+	$where=" WHERE DetailsID=".$_REQUEST['DetailsID'];
+	$odk=$od->getKeysBy('DetailsID','',$where);
+	if (count($odk)==1) {
+		$found=true;
+		$od->getRow($odk[0]);
+		//$FromName=$od->getPickupName();
+		//$ToName=$od->getDropName();	
+		$FromID=$od->getPickupID();
+		$ToID=$od->getDropID();	
+	}
+}	
+if (isset($_REQUEST['RouteID'])) {
+	require_once ROOT . '/db/v4_Routes.class.php';
+	$rt=new v4_Routes;	
+	$rt->getRow($_REQUEST['RouteID']);
+	$found=true;
+	$FromID=$rt->getFromID();
+	$ToID=$rt->getToID();	
+}
+if ($found) {
+	$pl->getRow($FromID);
+	$FromName=$pl->getPlaceNameEN();
 	$plat=$pl->Latitude;
 	$plong=$pl->Longitude;	
-	$pl->getRow($od->getDropID());
+	$pl->getRow($ToID);
+	$ToName=$pl->getPlaceNameEN();
 	$dlat=$pl->Latitude;
-	$dlong=$pl->Longitude;
+	$dlong=$pl->Longitude;	
+	$transfersR['PickupName']="From<br><h5>".$FromName."</h5>";
+	$transfersR['DropName']="To<br><h5>".$ToName."</h5>";
 	if (($plat==0 && $plong==0) || ($dlat==0 && $dlong==0)) $transfersR['wrongll']="text-warning";
 	else $transfersR['wrongll']="";
 	$transfersR['pll']="[".$plat.",".$plong."]";
@@ -73,24 +91,5 @@ $smarty->assign('lat',$lat);
 $smarty->assign('long',$long);
 $smarty->assign('scale',$scale);
 $smarty->display('getRouteMap.tpl');	
-
-
-	function vincentyGreatCircleDistance(
-	  $latitudeFrom, $longitudeFrom, $latitudeTo, $longitudeTo, $earthRadius = 6371000)
-	{
-	  // convert from degrees to radians
-	  $latFrom = deg2rad($latitudeFrom);
-	  $lonFrom = deg2rad($longitudeFrom);
-	  $latTo = deg2rad($latitudeTo);
-	  $lonTo = deg2rad($longitudeTo);
-
-	  $lonDelta = $lonTo - $lonFrom;
-	  $a = pow(cos($latTo) * sin($lonDelta), 2) +
-		pow(cos($latFrom) * sin($latTo) - sin($latFrom) * cos($latTo) * cos($lonDelta), 2);
-	  $b = sin($latFrom) * sin($latTo) + cos($latFrom) * cos($latTo) * cos($lonDelta);
-
-	  $angle = atan2(sqrt($a), $b);
-	  return $angle * $earthRadius;
-	}
 
 

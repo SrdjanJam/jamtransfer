@@ -72,7 +72,7 @@
 					<div class="col-md-9">
 						<input type="hidden" name="FromID" id="FromID" value="{{FromID}}">
 						<input type="hidden" name="ToID" id="ToID" value="{{ToID}}">					
-						{{RouteName}}
+						<a target="_blank" href="plugins/getRouteMap.php?RouteID={{RouteID}}">{{RouteName}}</a>
 					</div>
 				</div>				
 				<? }?>
