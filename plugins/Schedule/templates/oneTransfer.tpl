@@ -4,12 +4,12 @@
 	width: 100%;
 }
 
-.col-md-3-edit, 
-.col-md-3-edit-add,
+.col-md-3-edit input, 
 .col-md-3-edit-add input,
-.col-md-6-edit{
-	padding-left: 0px;
-    padding-right: 0px;
+.col-md-6-edit input{
+	padding-left: 2px;
+    padding-right: 2px;
+	width: 80%;
 }
 
 .sub-card iframe{

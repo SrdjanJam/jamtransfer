@@ -597,6 +597,8 @@ button.searchdrivers, button.conversion-rate{
     min-width:100% !important;
     }
 
+ 
+
 }
 /* ===================================== */
 @media screen and (max-width:992px){
@@ -606,6 +608,14 @@ button.searchdrivers, button.conversion-rate{
     .tasks-edit [class*='col-md']{
         margin-bottom: 5px !important;
     }
+
+    .sub-card input{
+        width:80% !important;
+    }
+    .sub-card .row{
+        display: flex;
+    }
+
 }
 /* ===================================== */
 @media screen and (min-width: 1551px){
@@ -1198,8 +1208,8 @@ button.searchdrivers, button.conversion-rate{
 
     .row.row-shedule .clock-timepicker{
         display:block !important;
-        margin-top: 5px;
-        margin-bottom: 5px;
+        /* margin-top: 5px;
+        margin-bottom: 5px; */
     }
 
 
