@@ -134,9 +134,8 @@ require_once('lng/' . $_SESSION['CMSLang'] . '_text.php');
 								if (isset($_COOKIE['pageEx'])&& $_COOKIE['pageEx']<>'logout') $page=$_COOKIE['pageEx'];
 								else $page='dashboard';
 								//makeSessionArrays($db);
-								saveLog($row['AuthUserID'],1);
-								$levels=array(41,43,44,91,92,99);
-								if (in_array($_SESSION['AuthLevelID'],$levels)) createNotification($_SESSION['AuthUserID'],"Thank you for login. If not, confirm your login by scanning the QR code.","https://wis.jamtransfer.com/");
+								if ($_SESSION['AuthLevelID']<40) saveLog($row['AuthUserID'],1);
+								if (in_array($_SESSION['AuthLevelID'],$levels)) createNotification($_SESSION['AuthUserID'],"If you are not logged in, activate the link https://wis.jamtransfer.com/mobileLogin.php on your phones..","https://wis.jamtransfer.com/");
 								if (in_array($_SESSION['AuthLevelID'],array(2,3,4,5,6,12,44,45))) {
 									$page="https://cms.jamtransfer.com/cms/codeLogin.php?userCode=".$_SESSION['userCode']."&userID=".$_SESSION['AuthUserID'];
 									header("Location: ".$page);

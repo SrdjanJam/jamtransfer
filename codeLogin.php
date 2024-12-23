@@ -43,7 +43,7 @@ if (isset($_REQUEST['userCode'])) {
 			$qu .= " WHERE AuthUserID = '" .$_SESSION['AuthUserID']. "'";
 			$db->RunQuery($qu);
 			$page='dashboard';
-			if (!isset($_REQUEST['skipSL'])) saveLog($au->getAuthUserID(),1);
+			if (!isset($_REQUEST['skipSL']) && $au->getAuthLevelID()<40) saveLog($au->getAuthUserID(),1);
 			header("Location: " .$page);
 			exit();
 		}   						

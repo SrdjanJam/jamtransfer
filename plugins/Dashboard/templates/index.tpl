@@ -51,6 +51,12 @@
 						<section class="col-lg-6 xconnectedSortable"> 
 							{include file="plugins/Dashboard/templates/getUnfinishedPayment.tpl"} 			
 						</section>
+						{/if}						
+						
+						{if $problemPayment}						
+						<section class="col-lg-6 xconnectedSortable"> 
+							{include file="plugins/Dashboard/templates/problemPayment.tpl"} 			
+						</section>
 						{/if}
 
 						{if $todo}

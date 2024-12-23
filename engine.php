@@ -65,6 +65,7 @@ if ($result->num_rows>0) {
 	$md = new v4_Modules();
 	$mdk = $md->getKeysBy('MenuOrder ' ,'asc', "where Active=1 AND ParentID=0 AND ModulID in (".$modules_arr.")");
 	$setasdriver=false;
+	$active_pages[]="profile";
 	foreach($mdk as $key) {
 		$md->getRow($key);
 		$row1=array();
@@ -125,7 +126,10 @@ if ($result->num_rows>0) {
 				$pageName=$md->getName();
 			else $pageList=$md->getName();
 			require_once $modulesPath . '/'.$md->getBase().$includeFile;		
-		}	else echo "NO PAGE";
+		}	else {
+			echo $md->getBase();
+			//echo "NO PAGE";
+		}	
 
 		if ($md->getIsNew()==1) $existNew=true;
 		if ($md->getIsDesc()==1) $isDesc=true;

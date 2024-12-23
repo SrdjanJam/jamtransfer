@@ -48,9 +48,9 @@
 </style>
 
                     <!-- Small boxes (Stat box) -->
-                    <div class="row">
-
-                        <div class="col-lg-2 col-xs-6">
+                    <div id="top" class="row">
+						{if $smarty.session.AuthLevelID ne 31}
+                        <div class="col-lg-2 col-md-4 col-xs-6">
                             <!-- small box -->
                             <a href="orders/newTransfers">
                                 <div class="small-box xblue xwhite-text">
@@ -74,7 +74,7 @@
                             </a>
                         </div><!-- ./col -->
 
-                        {*<div class="col-lg-2 col-xs-6">
+                        {*<div class="col-lg-2 col-md-4 col-xs-6">
                             <!-- small box -->
                             <a href="orders/active">
                                 <div class="small-box bg-aqua">
@@ -98,7 +98,7 @@
                             </a>
                         </div><!-- ./col -->
 
-                        <div class="col-lg-2 col-xs-6">
+                        <div class="col-lg-2 col-md-4 col-xs-6">
                             <!-- small box -->
                             <a href="orders/confirmed">
                                 <div class="small-box xgreen  xwhite-text">
@@ -120,7 +120,7 @@
                             </a>
 						</div>*}
 
-                        <div class="col-lg-2 col-xs-6">
+                        <div class="col-lg-2 col-md-4 col-xs-6">
                             <!-- small box -->
                             <a href="orders/notConfirmed">
                                 <div class="small-box bg-warning">
@@ -142,7 +142,7 @@
                             </a>
                         </div><!-- ./col -->      
 
-						{*<div class="col-lg-2 col-xs-6">
+						{*<div class="col-lg-2 col-md-4 col-xs-6">
                             <!-- small box -->
                             <a href="orders/notConfirmedToday">
                                 <div class="small-box bg-yellow">
@@ -166,7 +166,7 @@
                             </a>
                         </div><!-- ./col -->	
 
-						<div class="col-lg-2 col-xs-6">
+						<div class="col-lg-2 col-md-4 col-xs-6">
                             <!-- small box -->
                             <a href="orders/notConfirmedTomorrow">
                                 <div class="small-box bg-orange">
@@ -190,7 +190,7 @@
                             </a>
                         </div><!-- ./col -->*}
 
-						<div class="col-lg-2 col-xs-6">
+						<div class="col-lg-2 col-md-4 col-xs-6">
                             <!-- small box -->
                             <a href="orders/notConfirmedTodayTomorrow">
                                 <div class="small-box bg-yellow">
@@ -214,7 +214,7 @@
                             </a>
                         </div><!-- ./col -->							
 						
-						<div class="col-lg-2 col-xs-6">
+						<div class="col-lg-2 col-md-4 col-xs-6">
                             <!-- small box -->
                             <a href="orders/notAssign">
                                 <div class="small-box bg-yellow">
@@ -238,7 +238,7 @@
                             </a>
                         </div><!-- ./col -->	
 						
-                        <div class="col-lg-2 col-xs-6">
+                        <div class="col-lg-2 col-md-4 col-xs-6">
                             <!-- small box -->
                             <a href="orders/declined">
                                 <div class="small-box red darken-2 xwhite-text">
@@ -260,7 +260,7 @@
                             </a>
                         </div><!-- ./col -->
 
-                        <div class="col-lg-2 col-xs-6">
+                        <div class="col-lg-2 col-md-4 col-xs-6">
                             <!-- small box -->
                             <a href="orders/tomorrow">
                                 <div class="small-box teal darken-2 xwhite-text">
@@ -281,5 +281,101 @@
                                 </div>
                             </a>
                         </div><!-- ./col -->
+						{else}
+							<div class="col-lg-3 col-md-3 col-xs-6">
+								<!-- small box -->
+								<a href="dashboard#unassigned">
+									<div class="small-box bg-yellow">
+										<div class="inner">
+											<h3>
+												{$noOfTransfers4}
+											</h3>
+											<div style="overflow-x: hidden;overflow-y: hidden;">
+												<p class="target">
+													 {$UNASSIGNED_TRANSFERS}
+												</p>
+											</div>
+										</div>
+										<div class="icon">
+											<i class="ion ion-ios7-alarm"></i>
+										</div>
+										 <span class="small-box-footer">
+											{$MORE_INFO} <i class="fa fa-arrow-circle-right"></i>
+										</span>
+									</div>
+								</a>
+							</div><!-- ./col -->	
+							<div class="col-lg-3 col-md-3 col-xs-6">
+								<!-- small box -->
+								<a href="dashboard#unconfirmed">
+									<div class="small-box bg-warning">
+										<div class="inner">
+											<h3>
+												{$noOfTransfers}
+											</h3>
+											<p>
+												{$UNCONFIRMED_TRANSFERS}
+											</p>
+										</div>
+										<div class="icon">
+											<i class="ion ion-ios7-alarm"></i>
+										</div>
+										 <span class="small-box-footer">
+											{$MORE_INFO} <i class="fa fa-arrow-circle-right"></i>
+										</span>
+									</div>
+								</a>
+							</div><!-- ./col -->  							
+							<div class="col-lg-3 col-md-3 col-xs-6">
+								<!-- small box -->
+								<a href="dashboard#uncompleted">
+									<div class="small-box bg-aqua">
+										<div class="inner">
+											<h3>
+												{$noOfTransfers2}
+											</h3>
+											<p>
+												{$UNCOMPLETED_TRANSFERS}
+											</p>
+										</div>
+										<div class="icon">
+											<i class="ion ion-ios7-alarm"></i>
+										</div>
+										 <span class="small-box-footer">
+											{$MORE_INFO} <i class="fa fa-arrow-circle-right"></i>
+										</span>
+									</div>
+								</a>
+							</div><!-- ./col -->  							
+							<div class="col-lg-3 col-md-3 col-xs-6">
+								<!-- small box -->
+								<a href="dashboard#todaytommorow">
+									<div class="small-box xgreen xwhite-text">
+										<div class="inner">
+											<h3>
+												{$noOfTransfers3}
+											</h3>
+											<p>
+												{$TODAY}&{$TOMORROW}
+											</p>
+										</div>
+										<div class="icon">
+											<i class="ion ion-ios7-alarm"></i>
+										</div>
+										 <span class="small-box-footer">
+											{$MORE_INFO} <i class="fa fa-arrow-circle-right"></i>
+										</span>
+									</div>
+								</a>
+							</div><!-- ./col -->  
+							<script>
+								$('document').ready(function(){
+									if (location.hash) {
+										let target = location.hash;
+										document.querySelector(target).scrollIntoView();
+									}
+								})	
+							</script>	
+						{/if}
 
                     </div><!-- /.row -->

@@ -5,6 +5,7 @@
 	$smarty->assign('getOrder',false);	
 	$smarty->assign('getRoutePrices',false);	
 	$smarty->assign('getUnfinishedPayment',false);							
+	$smarty->assign('problemPayment',false);							
 	$smarty->assign('actualTransfers',false);										
 	$smarty->assign('unConfirmedTransfers',false);										
 	$smarty->assign('unCompletedTransfers',false);										
@@ -21,7 +22,7 @@
 	// Check:
 	// $smarty->assign('bookingConversionRate',false);	
 
-	if (in_array($_SESSION['AuthLevelID'],array(2,41,43,44,45,91,92,99))) {
+	if (in_array($_SESSION['AuthLevelID'],array(2,31,41,43,44,45,91,92,99))) {
 		require_once 'smallBoxes.php'; 
 		$smarty->assign('smallBoxes',true);	
 	}	
@@ -44,11 +45,13 @@
 	if (in_array($_SESSION['AuthLevelID'],array(41,44,91,92,99))) {
 		if (!isset($_SESSION['UseDriverID'])) require_once 'getUnfinishedPayment.php';
 		if (!isset($_SESSION['UseDriverID'])) $smarty->assign('getUnfinishedPayment',true);							
+	}		
+	
+	if (in_array($_SESSION['AuthLevelID'],array(41,44,91,92,99))) {
+		if (!isset($_SESSION['UseDriverID'])) require_once 'problemPayment.php';
+		if (!isset($_SESSION['UseDriverID'])) $smarty->assign('problemPayment',true);							
 	}	
-	/*if (in_array($_SESSION['AuthLevelID'],array(41,44,91,92,99))) {
-		require_once 'getUnfinishedPayment.php';
-		$smarty->assign('problemPayment',true);							
-	}*/		
+		
 	if (in_array($_SESSION['AuthLevelID'],array(41,43,45,91,92,99))) {
 		require_once 'actualTransfers.php';
 		$smarty->assign('actualTransfers',true);										

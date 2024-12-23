@@ -616,6 +616,9 @@
 						</div>
 					</div>
 	    </div><!-- box-body-->
+		{{#compare AuthLevelID "==" '32'}}
+		<input type="hidden" name="DriverID" id="DriverID" value="{{DriverID}}">
+		{{/compare}}
 
 </form>
 	<script>

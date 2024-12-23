@@ -1,7 +1,7 @@
 {if $noOfTransfers4 gt 0}
 <div class="box light-green">
 	<div class="inner">
-		<h3 class="box-title">{UNASSIGNED_TRANSFERS}</h3><br>
+		<h3 id="unassigned" class="box-title">{$UNASSIGNED_TRANSFERS} <a href="dashboard#top"><i class="fa fa-arrow-circle-up"></i></a></h3><br>
 
 		{section name=pom loop=$details4}
 			<div class='row'>

@@ -1,7 +1,7 @@
 {if $noOfTransfers2 gt 0}
 <div class="box">
 	<div class="inner">
-		<h3 class="box-title">{$UNCOMPLETED_TRANSFERS}</h3><br>
+		<h3 id="uncompleted" class="box-title">{$UNCOMPLETED_TRANSFERS} <a href="dashboard#top"><i class="fa fa-arrow-circle-up"></i></a></h3><br>
 
 		{section name=pom loop=$details2}
 			<div class='row'>

@@ -1,7 +1,7 @@
 {if $noOfTransfers gt 0}
 <div class="box yellow">
 	<div class="inner">
-		<h3 class="box-title">{$UNCONFIRMED_TRANSFERS}</h3><br>
+		<h3 id="unconfirmed" class="box-title">{$UNCONFIRMED_TRANSFERS} <a href="dashboard#top"><i class="fa fa-arrow-circle-up"></i></a></h3><br>
 		{section name=pom loop=$details}
 			<div class='row'>
 				<div class="col-sm-2">

@@ -1,7 +1,7 @@
 {if $noOfTransfers3 gt 0}
 <div class="box light-green">
 	<div class="inner">
-		<h3 class="box-title">{$TODAY}&{$TOMORROW}</h3><br>
+		<h3 id="todaytommorow" class="box-title">{$TODAY}&{$TOMORROW} <a href="dashboard#top"><i class="fa fa-arrow-circle-up"></i></a></h3><br>
 
 		{section name=pom loop=$details3}
 			<div class='row'>
