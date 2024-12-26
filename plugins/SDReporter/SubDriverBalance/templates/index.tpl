@@ -6,8 +6,8 @@
 			<input type="submit" name='all' value='ALL'/> 
 		</form>
 	{/if}		
-	<div class="row" style="border-bottom:1px solid #000;">
-		<div class="col-md-2">
+	<div class="row sum-edit-2" style="border-bottom:1px solid #000;">
+		<div class="col-md-2 add-direction">
 			<strong>ID - Subdriver</strong>
 		</div>
 		<div class="col-md-1">
@@ -55,9 +55,9 @@
 	
 	
 	{section name=ind loop=$orders}
-		<div class="row" style="border-bottom:1px solid #000;">
+		<div class="row sum-edit-2" style="border-bottom:1px solid #000;">
 
-			<div class="col-md-2 pad1em">
+			<div class="col-md-2 pad1em add-direction">
 				<strong>{$orders[ind].AuthUserID}</strong> - {$orders[ind].AuthUserRealName}
 			</div>
 
