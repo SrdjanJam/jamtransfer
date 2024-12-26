@@ -137,7 +137,7 @@ switch ($activePage) {
 		
 	case 'expenses':
 	case 'tasks':
-	case 'drives':
+	case 'subdriverHistory':
 	case 'vehicleAssignHistory':
 		if ($pathVars->fetchByIndex($indexStart + 1)) { 
 			if ($pathVars->fetchByIndex($indexStart + 1)=='vehicles') {

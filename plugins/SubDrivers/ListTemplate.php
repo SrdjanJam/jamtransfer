@@ -118,7 +118,7 @@
 				<? if (!PARTNERLOG) { ?>
 				<!-- Drives: -->
 				<div class="col-md-1 col-xs-3">
-					<span><a target='_blank' href='drives/subdrivers/{{AuthUserID}}'><?=DRIVES;?></a></span>
+					<span><a target='_blank' href='subdriverHistory/subdrivers/{{AuthUserID}}'><?=DRIVES;?></a></span>
 				</div>				
 				
 				<!-- Vehicles: -->

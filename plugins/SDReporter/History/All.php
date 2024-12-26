@@ -58,9 +58,8 @@ if (isset($_REQUEST['subdriverID']) && $_REQUEST['subdriverID']>0) $sql .= " AND
 if (isset($_REQUEST['orderFromDate']) && $_REQUEST['orderFromDate']>0) $sql .= " AND PickupDate >='".$_REQUEST['orderFromDate']."'";
 if (isset($_REQUEST['orderToDate']) && $_REQUEST['orderToDate']>0) $sql .= " AND PickupDate <='".$_REQUEST['orderToDate']."'";
 $sql .= $filter;
-$sql .=" GROUP BY PickupDate,SubDriver ";
+$sql .=" GROUP BY PickupDate,SubDriver ORDER BY PickupDate DESC";
 $result = $dbT->RunQuery($sql);
-$min=$result->fetch_array(MYSQLI_ASSOC)['min'];
 while($row = $result->fetch_array(MYSQLI_ASSOC)){
 	$sdid=$row['SubDriver'];
 	$sd_not[$sdid]+=$row['quant']."<br>";
@@ -68,7 +67,10 @@ while($row = $result->fetch_array(MYSQLI_ASSOC)){
 	$sd_payLater[$sdid]+=$row['payLater'];
 	$sd_cashIn[$sdid]+=$row['cashIn'];
 	$sd_workingdates[$sdid][]=$row['PickupDate'];
+	$sd_min[$sdid]=$row['PickupDate'];
 }
+
+//$min=$result->fetch_array(MYSQLI_ASSOC)['min'];
 	
 $sql="SELECT `SubDriver2`,count(*) as quant, sum(DriversPrice) as price FROM `v4_OrderDetails` WHERE `TransferStatus` not in (3,9) AND `SubDriver2`>0 AND DriverConfStatus not in (0,1,2,4)  AND DriverID = '".$_SESSION['UseDriverID']."'";
 if (isset($_REQUEST['subdriverID']) && $_REQUEST['subdriverID']>0) $sql .= " AND SubDriver2 = ".$_REQUEST['subdriverID'];
@@ -137,14 +139,26 @@ if (count($dbk) != 0) {
 		$detailFlds["PayLater"]=number_format($sd_payLater[$key],2);
 		$detailFlds["CashIn"]=number_format($sd_cashIn[$key],2);
 		$detailFlds["CashDiff"]=$sd_payLater[$key]-$sd_cashIn[$key];
-		if (empty($_REQUEST['orderFromDate']) ) $_REQUEST['orderFromDate']=$min;
-		if (empty($_REQUEST['orderToDate'])) $_REQUEST['orderToDate']=date('Y-m-d');
-		$workingDaysAll=((strtotime($_REQUEST['orderToDate'])-strtotime($_REQUEST['orderFromDate']))/(3600*24))+1;
-		
+		if (empty($_REQUEST['orderFromDate']) ) $detailFlds["Date1"]=$sd_min[$key];
+		else $detailFlds["Date1"]=$_REQUEST['orderFromDate'];
+		if (empty($_REQUEST['orderToDate'])) $detailFlds["Date2"]=date('Y-m-d');
+		else $detailFlds["Date2"]=$_REQUEST['orderToDate'];
+		$workingDaysAll=((strtotime($detailFlds["Date2"])-strtotime($detailFlds["Date1"]))/(3600*24))+1;
 		$detailFlds["FreeDays"]=$workingDaysAll-count(array_filter(array_unique($sd_workingdates[$key])));
-		$detailFlds["Date1"]= $_REQUEST['orderFromDate'];
-		$detailFlds["Date2"]= $_REQUEST['orderToDate'];
+		
+		
+	        // CASH EXPENSES
+	        $qt  = "SELECT SUM(Amount) AS Trosak FROM v4_SubExpenses WHERE Card = 0 ";
+	        $qt .= "AND DriverID = '" . $key ."' ";
+	        //$qt .= "AND Datum >= '2018-08-01'";
+			$qt .= "AND Datum >= '" . $detailFlds["Date1"]."' ";
+				
+	        $wt = $dbT->RunQuery($qt);
+	        $t = $wt->fetch_object();
+		$detailFlds["Expenses"]= number_format($t->Trosak,2);		
+		$detailFlds["Balance"]= number_format($sd_cashIn[$key] - $t->Trosak,2);		
 
+		
 		$out[] = $detailFlds; 
 
     }	

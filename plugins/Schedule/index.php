@@ -2,19 +2,20 @@
 
 // Timetable sa prikazom transfera po vozacima za odabrani datum
 
-if (isset($_REQUEST["ScheduleDate"])) {
-	$DateFrom	= $_REQUEST["ScheduleDate"];
-	if (isset($_REQUEST["ScheduleDate2"])) $DateTo=$_REQUEST["ScheduleDate2"];
-	else $DateTo	= $_REQUEST["ScheduleDate"];
-}
-else {	
+if (!isset($_REQUEST["ScheduleDate"])) {
 	//if (!isset($_POST["DateFrom"])) $DateFrom = "2022-09-04";
 	if (!isset($_POST["DateFrom"])) $DateFrom = date('Y-m-d');
 	else $DateFrom	= $_POST["DateFrom"];
 	//if (!isset($_POST["DateTo"])) $DateTo = "2022-09-04";
 	if (!isset($_POST["DateTo"])) $DateTo = date('Y-m-d');
-	else $DateTo		= $_POST["DateTo"];
+	else $DateTo		= $_POST["DateTo"];	
 }
+else {
+	$DateFrom	= $_REQUEST["ScheduleDate"];
+	if (isset($_REQUEST["ScheduleDate2"])) $DateTo=$_REQUEST["ScheduleDate2"];
+	else $DateTo	= $_REQUEST["ScheduleDate"];
+}
+
 if (!isset($_POST["NoColumns"])) $NoColumns = 3;
 else $NoColumns	= $_POST["NoColumns"];
 if (!isset($_POST["DriverStatus"])) $DriverStatus = 0;
@@ -113,7 +114,7 @@ $q .= " AND TransferStatus < '6'";
 $q .= " AND TransferStatus != '4'"; 
 if ($DriverStatus==2) $q .= "	AND DriverConfStatus > 2 ";
 if ($DriverStatus==1) $q .= "	AND DriverConfStatus < 3 ";	
-if (isset($_REQUEST["subDriverID"])) $q .= " AND PayLater-CashIn<>0 ";
+//if (isset($_REQUEST["subDriverID"])) $q .= " AND PayLater-CashIn<>0 ";
 if (isset($_REQUEST["subDriverID"]) && $_REQUEST["subDriverID"]>0) $q .= " AND (SubDriver = ". $_REQUEST["subDriverID"] . " OR SubDriver2=". $_REQUEST["subDriverID"] . " OR SubDriver3=" . $_REQUEST["subDriverID"] .")";
 $q .= " AND AuthUserID=UserID ";
 $q .= " AND MorderID=OrderID ";
@@ -296,15 +297,15 @@ if ($r->num_rows>0) {
 				$key = array_search($t->SubDriver, array_column($sdArray, 'DriverID'));
 				require("oneTransfer.php"); // oneTransfer.php ===========================================================================
 			}		
-			if ($sd['DriverID']==$t->SubDriver2) {
+			if ($sd['DriverID']==$t->SubDriver2 && $t->SubDriver2<>$_SESSION['UseDriverID']) {
 				$key = array_search($t->SubDriver2, array_column($sdArray, 'DriverID'));
 				require("oneTransfer.php"); // oneTransfer.php ===========================================================================
 			}			
-			if ($sd['DriverID']==$t->SubDriver3) {
+			if ($sd['DriverID']==$t->SubDriver3 && $t->SubDriver3<>$_SESSION['UseDriverID']) {
 				$key = array_search($t->SubDriver3, array_column($sdArray, 'DriverID'));
 				require("oneTransfer.php"); // oneTransfer.php ===========================================================================
 			}			
-			if (($sd['DriverID']==$_SESSION['UseDriverID']) && $t->SubDriver==0) {
+			if (($sd['DriverID']==$_SESSION['UseDriverID']) && $t->SubDriver==0 && $t->TransferStatus!=3) {
 				$key=0;
 				require("oneTransfer.php"); // oneTransfer.php ===========================================================================
 			}	

@@ -108,7 +108,7 @@ $startday = $thismonth['wday'];
 for ($i=0; $i<($maxday+$startday); $i++) {
 		$fullDate = date("Y-m-d",mktime(0,0,0,$cMonth,($i - $startday + 1),$cYear));
 		$month_logs[]=monthLogs($fullDate,$rec,$i,$startday,$users,$office_users,$oh);
-}	
+}
 $smarty->assign('office_users',$office_users);
 $smarty->assign('office_shifts',$office_shifts);
 $smarty->assign('date',$fullDate);
@@ -138,9 +138,9 @@ function monthLogs($date,$rec,$count,$startday,$users,$office_users,$oh)
 			}		
 		}	
 	}	
-
+	$uid=array();
 	foreach ($rec as $row) {		
-		if (DateofDT($row['DateTime'])==$date && in_array($row['Type'],array(1,6))) {
+		if (DateofDT($row['DateTime'])==$date && in_array($row['Type'],array(1,6)) && !in_array($row['AuthUserID'],array(556,843,876))) {
 			if ((isset($_SESSION['UseDriverID']) && $users[$row['AuthUserID']]->DriverID==$_SESSION['UseDriverID']) ||
 			(!isset($_SESSION['UseDriverID']) && $users[$row['AuthUserID']]->DriverID==0)) {	
 				$noOfLogs += 1;
@@ -157,7 +157,10 @@ function monthLogs($date,$rec,$count,$startday,$users,$office_users,$oh)
 						if (isOnTime($row['AuthUserID'],$row['TimeOff'],$end_arr)) $row['TimeOffColor']="text-danger";
 					}
 				}
-				$arr[]= $row;
+				if (!in_array($row['AuthUserID'],$uid)) {
+					$arr[]= $row;
+					$uid[]=$row['AuthUserID'];
+				}	
 			}
 		}
 	}
