@@ -666,7 +666,7 @@ Handlebars.registerHelper("yesNoSliderEdit", function(currentLevel, fieldName, d
 		if (typeof currentLevel=='undefined') currentLevel=0;
 		if (defaultvalue=='1') currentLevel=1; 
 		//yesNoInput = '<span style="float:left">No</span>';
-		yesNoInput= '<input title="No/Yes" class="primer Choice" style="width: 30px; margin: auto;" type="range" min="0" max="1" step="1" name="'+fieldName+'" value="'+currentLevel+'"/>';
+		yesNoInput= '<input title="No/Yes" class="primer Choice" style="width: 30px;" type="range" min="0" max="1" step="1" name="'+fieldName+'" value="'+currentLevel+'"/>';
 		//yesNoInput+= '<span style="float:left;">Yes</span>';
 
 		// yesNoInput+= document.createElement('style');
