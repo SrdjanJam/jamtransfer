@@ -5023,9 +5023,9 @@ function assignExist() {
 
 function driverSettingsExist() {
 	$status="";
-	if (!subdriversExist())	$status.="<span class='text-danger'>".DRIVERS_NOT_ENTERED."</span> <a target='_blank' href='myDrivers'>".INSERT_DRIVERS."</a><br>";
-	if (!subvehiclesExist()) $status.="<span class='text-danger'>".VEHICLES_NOT_ENTERED."</span> <a target='_blank' href='myVehicles'>".INSERT_VEHICLES."</a><br>";
-	if (!assignExist()) $status.="<span class='text-danger'>".NOT_ASSIGNED."</span> <a target='_blank' href='vehicleToDrivers'>".ASSIGN_VEHICLES."</a><br>";
+	if (!subdriversExist())	$status.="<span class='text-danger'>".DRIVERS_NOT_ENTERED."</span> <a target='_blank' href='myDrivers'>".INSERT_DRIVERS."</a> <a href='https://www.taxicms.com/files/tutorials/WIS Drivers.mp4' target='_blank'>Tutorial</a><br>";
+	if (!subvehiclesExist()) $status.="<span class='text-danger'>".VEHICLES_NOT_ENTERED."</span> <a target='_blank' href='myVehicles'>".INSERT_VEHICLES."</a> <a href=https://www.taxicms.com/files/tutorials/WIS Vehicles.mp4' target='_blank'>Tutorial</a><br>";
+	if (!assignExist()) $status.="<span class='text-danger'>".NOT_ASSIGNED."</span> <a target='_blank' href='vehicleToDrivers'>".ASSIGN_VEHICLES."</a> <a href=https://www.taxicms.com/files/tutorials/WIS Vehicle Assign.mp4' target='_blank'>Tutorial</a><br>";
 	return $status;	
 }
 
@@ -5147,7 +5147,7 @@ function saveLog($UserID,$type) {
 		$visitor_ip=ip2long(ltrim(rtrim($current_ip)));
 		date_default_timezone_set('Europe/Paris');
 		$access_time=date("Y-m-d H:i:s");
-		if ($_REQUEST['longitude']=="20.4547323" && $_REQUEST['latitude']=="44.795393") $label="JT Office Belgrade";
+	if (($_REQUEST['longitude']=="20.4547323" && $_REQUEST['latitude']=="44.795393")||isset($_REQUEST["MobileLog"])) $label="JT Office Belgrade";
 		else {
 			$key='5b3ce3597851110001cf6248ec7fafd8eca44e0ca5590caf093aa7cb';
 			$url='https://api.openrouteservice.org/geocode/reverse?api_key='.$key.'&point.lon='.$_REQUEST['longitude'].'&point.lat='.$_REQUEST['latitude'];   
@@ -5162,17 +5162,18 @@ function saveLog($UserID,$type) {
 		}
 		$lu->setIPAddress($current_ip);
 		$lu->setDateTime($access_time);
-		$lu->setUserName($_REQUEST['username']);
 		$lu->setAuthUserID($UserID);
 		$lu->setLatitude($_REQUEST['latitude']);
 		$lu->setLongitude($_REQUEST['longitude']);
 		$lu->setPlace($label);
 		if (isset($_SESSION['mobile'])) $lu->setMob(1);
 		$au->getRow($UserID);
+		$lu->setUserName($au->getAuthUserName());
 		$levels=array(41,43,44,32,91,92,99);
-		if (in_array($au->getAuthLevelID(),$levels)) $lu->setType($type+2);
-		else $lu->setType($type);
-		$lu->setSessionID(session_id());
+		//if (in_array($au->getAuthLevelID(),$levels) && !isset($_REQUEST["MobileLog"])) $lu->setType($type+2);
+		//else $lu->setType($type);
+		//$lu->setSessionID(session_id());
+		$lu->setType($type);
 		$id=$lu->saveAsNew();
 		$_SESSION["UserLatitude"]=$_REQUEST['latitude'];
 		$_SESSION["UserLongitude"]=$_REQUEST['longitude'];

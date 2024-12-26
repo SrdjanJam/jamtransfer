@@ -1163,3 +1163,11 @@ define("RESET","Reset");
 define("STANDARD","Standard");
 define("PREMIUM","Premium");
 define("FIRST_CLASS","First class");
+
+//26.12.24
+define("RESERVATION_CODE", "Reservation Code");
+define("TRANSFER_ID", "Transfer ID");
+define("YOUR_CONTACT_INFO", 'Passenger info');
+define("SELECTED_VEHICLE", "Selected Vehicle");
+define("VEHICLE_CAPACITY", "Max.passengers");
+define('MOBILE_NUMBER', 'Mobile number');

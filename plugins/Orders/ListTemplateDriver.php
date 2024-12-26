@@ -37,6 +37,7 @@
 	{{#each Item}}
 		<div class="row {{color}} listTile" style="border-top:5px solid #ddd" id="t_{{DetailsID}}">
 			<div class="col-xs-4 col-md-2 col-lg-2">
+				<a target="_blank" href="https://wis.jamtransfer.com/plugins/Orders/printTransferDriver.php?DetailsID={{DetailsID}}"><i class="fa fa-print"></i></a>
 				<strong>{{OrderID}}-{{TNo}}</strong><br>
 				{{MOrderKey}}<br>
 				<small>{{displayTransferStatusText TransferStatus}}</small>
