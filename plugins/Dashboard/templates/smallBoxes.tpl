@@ -284,29 +284,6 @@
 						{else}
 							<div class="col-lg-3 col-md-3 col-xs-6">
 								<!-- small box -->
-								<a href="dashboard#unassigned">
-									<div class="small-box bg-yellow">
-										<div class="inner">
-											<h3>
-												{$noOfTransfers4}
-											</h3>
-											<div style="overflow-x: hidden;overflow-y: hidden;">
-												<p class="target">
-													 {$UNASSIGNED_TRANSFERS}
-												</p>
-											</div>
-										</div>
-										<div class="icon">
-											<i class="ion ion-ios7-alarm"></i>
-										</div>
-										 <span class="small-box-footer">
-											{$MORE_INFO} <i class="fa fa-arrow-circle-right"></i>
-										</span>
-									</div>
-								</a>
-							</div><!-- ./col -->	
-							<div class="col-lg-3 col-md-3 col-xs-6">
-								<!-- small box -->
 								<a href="dashboard#unconfirmed">
 									<div class="small-box bg-warning">
 										<div class="inner">
@@ -325,28 +302,7 @@
 										</span>
 									</div>
 								</a>
-							</div><!-- ./col -->  							
-							<div class="col-lg-3 col-md-3 col-xs-6">
-								<!-- small box -->
-								<a href="dashboard#uncompleted">
-									<div class="small-box bg-aqua">
-										<div class="inner">
-											<h3>
-												{$noOfTransfers2}
-											</h3>
-											<p>
-												{$UNCOMPLETED_TRANSFERS}
-											</p>
-										</div>
-										<div class="icon">
-											<i class="ion ion-ios7-alarm"></i>
-										</div>
-										 <span class="small-box-footer">
-											{$MORE_INFO} <i class="fa fa-arrow-circle-right"></i>
-										</span>
-									</div>
-								</a>
-							</div><!-- ./col -->  							
+							</div><!-- ./col -->  							 							
 							<div class="col-lg-3 col-md-3 col-xs-6">
 								<!-- small box -->
 								<a href="dashboard#todaytommorow">
@@ -368,6 +324,50 @@
 									</div>
 								</a>
 							</div><!-- ./col -->  
+							<div class="col-lg-3 col-md-3 col-xs-6">
+								<!-- small box -->
+								<a href="dashboard#uncompleted">
+									<div class="small-box bg-aqua">
+										<div class="inner">
+											<h3>
+												{$noOfTransfers2}
+											</h3>
+											<p>
+												{$UNCOMPLETED_TRANSFERS}
+											</p>
+										</div>
+										<div class="icon">
+											<i class="ion ion-ios7-alarm"></i>
+										</div>
+										 <span class="small-box-footer">
+											{$MORE_INFO} <i class="fa fa-arrow-circle-right"></i>
+										</span>
+									</div>
+								</a>
+							</div><!-- ./col --> 							
+							<div class="col-lg-3 col-md-3 col-xs-6">
+								<!-- small box -->
+								<a href="dashboard#unassigned">
+									<div class="small-box bg-yellow">
+										<div class="inner">
+											<h3>
+												{$noOfTransfers4}
+											</h3>
+											<div style="overflow-x: hidden;overflow-y: hidden;">
+												<p class="target">
+													 {$UNASSIGNED_TRANSFERS}
+												</p>
+											</div>
+										</div>
+										<div class="icon">
+											<i class="ion ion-ios7-alarm"></i>
+										</div>
+										 <span class="small-box-footer">
+											{$MORE_INFO} <i class="fa fa-arrow-circle-right"></i>
+										</span>
+									</div>
+								</a>
+							</div><!-- ./col -->								
 							<script>
 								$('document').ready(function(){
 									if (location.hash) {

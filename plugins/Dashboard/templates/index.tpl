@@ -12,15 +12,16 @@
 					
 					<div class="row">
 						{$driverSettingsExist}
-						{if $unAssignedTransfers}
-						<section class="col-lg-12 xconnectedSortable"> 
-							{include file="plugins/Dashboard/templates/unAssignedTransfers.tpl"} 
-						</section>	
-						{/if}					
-					
+									
 						{if $unConfirmedTransfers}
 						<section class="col-lg-12 xconnectedSortable"> 
 							{include file="plugins/Dashboard/templates/unConfirmedTransfers.tpl"} 
+						</section>	
+						{/if}						
+												
+						{if $presentTransfers}
+						<section class="col-lg-12 xconnectedSortable"> 
+							{include file="plugins/Dashboard/templates/presentTransfers.tpl"} 
 						</section>	
 						{/if}						
 						
@@ -29,13 +30,13 @@
 							{include file="plugins/Dashboard/templates/unCompletedTransfers.tpl"} 
 						</section>	
 						{/if}						
-						
-						{if $presentTransfers}
+								
+						{if $unAssignedTransfers}
 						<section class="col-lg-12 xconnectedSortable"> 
-							{include file="plugins/Dashboard/templates/presentTransfers.tpl"} 
+							{include file="plugins/Dashboard/templates/unAssignedTransfers.tpl"} 
 						</section>	
-						{/if}						
-												
+						{/if}	
+						
 						{if $getOrder}
 						<section class="col-lg-6 xconnectedSortable"> 
 							{include file="plugins/Dashboard/templates/getOrder.tpl"} 			
