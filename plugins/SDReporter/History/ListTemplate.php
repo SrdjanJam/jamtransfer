@@ -69,18 +69,18 @@
 	{{#each Item}}
 		<div>
 		
-			<div class="row {{color}} pad1em listTile orders-edit cursor-list"
+			<div class="row {{color}} pad1em listTile orders-edit cursor-list sum-edit-2"
 			id="t_{{DetailsID}}">
-				<div class="col-md-1">
+				<div class="col-md-1 add-direction">
 					{{AuthUserID}}
 				</div>
-				<div class="col-md-2">						
+				<div class="col-md-2 add-direction">						
 					{{SubDriverName}}
 				</div>						
-				<div class="col-md-1">						
+				<div class="col-md-1 add-direction">						
 					{{NoT}} 
 				</div>	
-				<div class="col-md-1">						
+				<div class="col-md-1 add-direction">						
 					{{FreeDays}} 
 				</div>							
 				<div class="col-md-1">						
