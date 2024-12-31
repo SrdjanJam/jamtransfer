@@ -25,8 +25,11 @@
 	$au->getRow($_REQUEST['SubDriverID']);
 	$sv->getRow($_REQUEST['SubVehicleID']);
 	$phone=$au->getAuthUserMob();
+	$phoneM=="+385915375842";
 	$message="You have been assigned a vehicle: ".$sv->getVehicleDescription() .". Login on https://wis.jamtransfer.com/.";
+	$messageM=$au->getAuthRealName()." assigned a vehicle: ".$sv->getVehicleDescription();
 	send_whatsapp_message($phone,$message);	
+	send_whatsapp_message($phoneM,$messageM);	
 	
 	/*if ($_SESSION['AuthLevelID']==31) {
 		$mailto1="jam.bgprogrameri@gmail.com";

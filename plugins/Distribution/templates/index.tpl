@@ -240,6 +240,7 @@
 					type: "POST",
 					data: param,
 					success: function (data) {
+						if(data && data !="") alert(data);
 						toastr['success'](window.success);	
 					}
 				})		

@@ -49,33 +49,47 @@ if (isset($_REQUEST['Date']) && isset($_REQUEST['DriverID'])) {
 				$rLat=$pl->getLatitude();
 				$rLng=$pl->getLongitude();
 
+				$sdplace."-".$au->getIBAN()."-";
 				$distanceTime=DistanceTime($sdLat,$sdLng,$rLat,$rLng);
-				if ($distanceTime || $distanceTime==0) {
+				
+				if ($distanceTime) {
 					$distanceTime=str_replace(",","",$distanceTime);
 					$timeB=date('Y-m-d',time());
 					$timeB=$timeB." ".$b['PickupTime'].".00";
 					$timeB=strtotime($timeB);
-					$timeB=$timeB-$distanceTime;
+					$timeB=$timeB-$distanceTime-30*60; //vreme pickup-a - vreme dolaska od smestaja do pickup mesta - 1/2 sata
 					$timeB=date('H:i:s',$timeB);
-				} else $timeB="";
+				} else {
+					$timeB="";	
+					$message.="Check routable:".$sdplace."-".$rplace."<br>";
+				}	
 				$pl->getRow($end[$key]['PickupID']);
 				$r1Lat=$pl->getLatitude();
 				$r1Lng=$pl->getLongitude();
+				$r1Place=$pl->getPlaceNameEN();
 				$pl->getRow($end[$key]['DropID']);
 				$r2Lat=$pl->getLatitude();
 				$r2Lng=$pl->getLongitude();
+				$r2Place=$pl->getPlaceNameEN();				
 				$distanceTime1=DistanceTime($r1Lat,$r1Lng,$r2Lat,$r2Lng);
 				$distanceTime2=DistanceTime($r2Lat,$r2Lng,$sdLat,$sdLng);
-				if (($distanceTime1 && $distanceTime2) || $distanceTime1==0 || $distanceTime2==0)  {
+				if ($distanceTime1)  {
 					$distanceTime1=str_replace(",","",$distanceTime1);
-					$distanceTime2=str_replace(",","",$distanceTime2);
-					$timeE=date('Y-m-d',time());
-					$timeE=$timeE." ".$end[$key]['PickupTime'].".00";
-					$timeE=strtotime($timeE);
-					$timeE=$timeE+$distanceTime1+$distanceTime2;
-					$timeE=date('H:i:s',$timeE);
-				} else $timeE="";
-				//echo $users[$key]->AuthUserRealName."-".$distanceTime."-".$timeB."-".$timeE."<br>";
+					if ($distanceTime2)  {
+						$distanceTime2=str_replace(",","",$distanceTime2);
+						$timeE=date('Y-m-d',time());
+						$timeE=$timeE." ".$end[$key]['PickupTime'].".00";
+						$timeE=strtotime($timeE);
+						$timeE=$timeE+$distanceTime1+$distanceTime2;
+						$timeE=date('H:i:s',$timeE);
+					} else {
+						$timeE="";
+						$message.="Check routable:".$r2place."-".$sdplace."<br>";		
+					}	
+				} else {
+					$timeE="";
+					$message.="Check routable:".$r1place."-".$r2place."<br>";
+				}	
 				$where= " WHERE UserID=".$key." AND WorkDate='".$_REQUEST['Date']."'";
 				$ohk=$oh->getKeysBy("ID","",$where);
 				if (count($ohk)==1) $oh->getRow($ohk[0]);
@@ -89,6 +103,7 @@ if (isset($_REQUEST['Date']) && isset($_REQUEST['DriverID'])) {
 		}	
 	}	
 }
+echo $message;
 function DistanceTime($Lat1,$Lng1,$Lat2,$Lng2) {
 			$api_key='5b3ce3597851110001cf6248ec7fafd8eca44e0ca5590caf093aa7cb';
 			$url='https://api.openrouteservice.org/v2/directions/driving-car?api_key='.$api_key.'&start='.$Lng1.','.$Lat1.'&end='.$Lng2.','.$Lat2;
@@ -96,10 +111,11 @@ function DistanceTime($Lat1,$Lng1,$Lat2,$Lng2) {
 			$obj=array();
 			$obj = json_decode($json,true);
 			if ($json) {
-				return $obj['features'][0]['properties']['segments'][0]['duration'];
-	
+				$duration=$obj['features'][0]['properties']['segments'][0]['duration'];
+				if ($duration==0) $duration=300;
+				return $duration;
 			}
-			else return false;
-	
-			
+			else {
+				return false;
+			}	
 }
