@@ -5,14 +5,14 @@
 			<h3>{$User}</h3>
 			<a href="https://wis.jamtransfer.com/schedule/{$smarty.request.DateFrom}/{$smarty.request.DateTo}/{$smarty.request.SubDriverID}" target="_blank">{$SCHEDULE}</a>
 		</div>
-		<div class="row" style="border-bottom:1px solid #000;">
+		<div class="row sum-edit-2" style="border-bottom:1px solid #000;">
 			<div class="col-md-1 add-direction">
 				<strong>OrderID</strong>
 			</div>
-			<div class="col-md-4">
+			<div class="col-md-4 add-direction">
 				<strong>Transfer Info</strong>
 			</div>
-			<div class="col-md-3">
+			<div class="col-md-3 add-direction">
 				<strong>Driver Notes</strong>
 			</div>
 			<div class="col-sm-2 ">
