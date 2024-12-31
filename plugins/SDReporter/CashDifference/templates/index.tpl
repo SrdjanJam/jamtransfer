@@ -6,7 +6,7 @@
 			<a href="https://wis.jamtransfer.com/schedule/{$smarty.request.DateFrom}/{$smarty.request.DateTo}/{$smarty.request.SubDriverID}" target="_blank">{$SCHEDULE}</a>
 		</div>
 		<div class="row" style="border-bottom:1px solid #000;">
-			<div class="col-md-1">
+			<div class="col-md-1 add-direction">
 				<strong>OrderID</strong>
 			</div>
 			<div class="col-md-4">
@@ -23,12 +23,12 @@
 			</div>
 		</div>	
 		{section name=ind loop=$orders}
-			<div class="row pad1em" style="border-bottom:1px solid #ddd;">
-				<div class="col-md-1">
+			<div class="row pad1em sum-edit-2" style="border-bottom:1px solid #ddd;">
+				<div class="col-md-1 add-direction">
 					<a href="https://wis.jamtransfer.com/plugins/Orders/printTransfer.php?OrderID=
 					{$orders[ind].OrderID}" target="_blank">{$orders[ind].OrderID}-{$orders[ind].TNo}</a>
 				</div>
-				<div class="col-md-4">
+				<div class="col-md-4 add-direction">
 					{$orders[ind].PickupDate} {$orders[ind].PickupTime}<br>
 					{$orders[ind].PaxName}<br>
 					{$orders[ind].PickupName}-{$orders[ind].DropName}
@@ -102,13 +102,14 @@
 								<option value="{$sdrivers[ind2].id}">{$sdrivers[ind2].name}</option>
 							{/section}
 						</select>
+						<div>
+							<button type="submit" class="btn btn-primary" name="submit" style="margin-top: 5px;">Submit</button>
+						</div>
+						
 					</div>
+					
 				</div>
 				<br>
-				<div class="row col-md-4">
-			    	<button type="submit" class="btn btn-primary" name="submit"
-					style="margin-left: 105px">Submit</button>
-				</div>
 
 				<div id="greska"></div>
 
