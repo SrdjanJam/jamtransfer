@@ -1,23 +1,14 @@
 <?
-/*
-require_once $_SERVER['DOCUMENT_ROOT'] . '/db/db.class.php';
-if (isset($_REQUEST['user'])) {
-	require_once $_SERVER['DOCUMENT_ROOT'] . '/cms/headerScripts.php';
-	require_once $_SERVER['DOCUMENT_ROOT'] . '/f2/f.php';
-}
-require_once $_SERVER['DOCUMENT_ROOT'] . '/db/v4_OrdersMaster.class.php';
-//require_once $_SERVER['DOCUMENT_ROOT'] . '/db/v4_OrderDetailsFR.class.php'; //Srdjan zakomentarisao 14.02.2019. Dodao naredni red. Mirandi je pucalo nije mogla da se otvori klasa u 30 redu.
-require_once $_SERVER['DOCUMENT_ROOT'] . '/db/v4_OrderDetails.class.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/db/v4_Routes.class.php'; 
-
-$db = new DataBaseMysql();
+if (isset($_REQUEST['user'])) require_once ROOT . '/headerScripts.php';
+require_once ROOT . '/db/v4_AuthUsers.class.php';
+require_once ROOT . '/db/v4_OrdersMaster.class.php';
+require_once ROOT . '/db/v4_OrderDetails.class.php';
+require_once ROOT . '/db/v4_Routes.class.php'; 
+$au = new v4_AuthUsers();
 $om = new v4_OrdersMaster();
-
-//$od = new v4_OrderDetailsFR(); 
 $od = new v4_OrderDetails(); 
-
-
 $ro = new v4_Routes();
+
 $ShowHidden = '0';
 if(isset($_REQUEST['ShowHidden'])) $ShowHidden = $_REQUEST['ShowHidden'];
 
@@ -25,8 +16,6 @@ $DriverID = $_SESSION['AuthUserID'];
 if($_REQUEST['user'] == 'lyon') $DriverID = '876';
 if($_REQUEST['user'] == 'nica') $DriverID = '843';
 if($_REQUEST['user'] == 'split') $DriverID = '556';
-
-
 
 $Month = $_REQUEST['Month'];
 $Year = $_REQUEST['Year'];
@@ -36,10 +25,7 @@ $totalCashIn = 0;
 
 // podaci o subdriveru
 $sd = getUser($SubDriverID);
-
-//echo '<pre>';print_r($_REQUEST);echo '</pre>';
-
-
+$smarty->assign('subdriver',$sd);
 if( isset($_REQUEST['submit']) or isset($_REQUEST['Save']) ) {
 
 
@@ -68,20 +54,7 @@ if( isset($_REQUEST['submit']) or isset($_REQUEST['Save']) ) {
                 $Description = $_REQUEST['Description'][$key];
                 $shifts = '1';
                
-/*
-                if($Description != '') {
-                    $startTime = '00:00';
-                    $endTime = '00:00';
-                    $pauzaStart = '00:00';
-                    $pauzaEnd = '00:00';
-                    $ukRedovno = '00:00';
-                    $ukPauza = '00:00';
-                    $ukNoc = '00:00';
-                    $ukNedjelja = '00:00';
-                    $ukPraznik = '00:00';
-                    $ukupno = '00:00';
-                }
-*/
+
                 $q  = "REPLACE INTO v4_WorkingHours ";
                 $q .= "(SubDriverID, forDate, shifts, startTime, endTime, pauzaStart, pauzaEnd, ukRedovno, ukPauza, ukNoc, ukNedjelja, 
                 ukPraznik, ukupno, weekNumber, Description, monthNumber, DriverID) ";
@@ -1040,85 +1013,33 @@ if( isset($_REQUEST['submit']) or isset($_REQUEST['Save']) ) {
   
      
 
-} else { // prikazi input form 
-
-?>
-    <body>
-    <style>
-        input, select { width: 200px; }
-        #RequiredFrom, #RequiredTo { visibility: hidden; padding-left: 4px; color: red; }
-        .formLabel { width: 100px; display: inline-block; }
-    </style>
-
-    <div class="container">
-        <h1><?= TRANSFER_LIST ?></h1><br><br>
-
-        <form action="" method="post" onsubmit="return validate()">
-
-            <input type="hidden" name="DriverID" value="<?= $DriverID ?>">
-
-            <div class="row">
-                <div class="formLabel"><?= MONTH ?>:</div>
-                <select name="Month">
-                    <option value="0">---</option>
-                    <?
-                        for ($i=1; $i<= 12; $i++) {
-                            $month = substr('0'.$i, -2);
-                            echo '<option value="'.$month.'">'.$month.'</option>';
-                        }
-                    ?>
-                </select>
-            </div>
-
-
-            <div class="row">
-                <div class="formLabel"><?= YEAR ?>:</div>
-                <select name="Year">
-					<option value="2024">2024</option>
-					<option value="2023">2023</option>
-					<option value="2022">2022</option>
-					<option value="2021">2021</option>
-					<option value="2020">2020</option>
-                    <option value="2019">2019</option>
-                    <option value="2018">2018</option>
-					<option value="2017">2017</option>
-
-                </select>
-            </div>
-
-            <div class="row">
-                <div class="formLabel"><?= DRIVER ?>:</div>
-                <select name="SubDriverID" id="SubDriverID">
-
-                    <option value="0"> --- </option>
-                    <?
-
-                        $q  = "SELECT AuthUserID, AuthUserRealName FROM v4_AuthUsers ";
-                        $q .= "WHERE DriverID = ".$DriverID." AND Active=1 ORDER BY AuthUserRealName ASC";
-                        $r  = $db->RunQuery($q);
-
-                        while($driver = $r->fetch_object()) {
-                            echo '<option value="'.$driver->AuthUserID.'">';
-                            echo $driver->AuthUserRealName.'</option>';
-                        }
-                    ?>
-
-                </select>
-            </div>
-
-            <div class="row">
-                <div class="formLabel">Show Hidden:</div><input type="checkbox" name="ShowHidden">
-                <br><br>
-                <input type="hidden" name="SortSubDriver" id="SortSubDriver" value="0">
-                <input type="submit" class="btn btn-primary" name="submit"
-                value="<?= SHOW_TRANSFERS ?>" style="margin-left: 105px">
-            </div>
-            
-        </form>
-    </div>
-
-<?
-}
+} else {
+	$where = " WHERE DriverID = ".$_SESSION['UseDriverID']." AND Active=1 ";
+	$auk=$au->getKeysBy('AuthUserRealName','',$where);
+	$shDrivers = new SmartyHtmlSelection("drivers",$smarty);
+	foreach ($auk as $key) {
+		$au->getRow($key);
+		$shDrivers->AddOutput($au->getAuthUserRealName());
+		$shDrivers->AddValue($key);
+	}
+	$shDrivers->SmartyAssign();
+	
+	$shMonths = new SmartyHtmlSelection("months",$smarty);
+	for ($i=1; $i<= 12; $i++) {
+		$month = substr('0'.$i, -2);
+		$shMonths ->AddOutput($month);
+		$shMonths ->AddValue($month);
+	}
+	$shMonths ->SmartyAssign();	
+	
+	$shYears = new SmartyHtmlSelection("years",$smarty);
+	for ($i=0; $i<= 4; $i++) {
+		$year = date('Y')-$i;
+		$shYears ->AddOutput($year);
+		$shYears ->AddValue($year);
+	}
+	$shYears ->SmartyAssign();
+}	
 ?>
 
 
@@ -1547,4 +1468,5 @@ function prazniciFR($date) {
     
     if( in_array($date, $prazniciFR)) return true;
     else return false;
-}*/
+}
+
