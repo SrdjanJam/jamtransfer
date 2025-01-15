@@ -145,6 +145,13 @@ foreach ($db->fieldNames() as $name) {
 			}	
 			// ako se promijenio vozac
 			if ($name == 'DriverID') {
+				$db->setSubDriver(0);
+				$db->setSubDriver2(0);
+				$db->setSubDriver3(0);
+				$db->setCar(0);
+				$db->setCar2(0);
+				$db->setCar3(0);
+				
 				// obavijesti starog vozaca
 				if ($old_content>0) $logDescription .= informOldDriver($db->getOrderID(),$db->getTNo(),$old_content) . '<br>';
 

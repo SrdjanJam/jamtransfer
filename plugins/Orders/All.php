@@ -157,6 +157,7 @@ if (isset($type2)) {
 	}	
 // deo za partnera
 //$filter .= " AND TransferStatus not in (3,6,9) AND DriverConfStatus>0 ";  
+$filter .= " AND TransferStatus not in (9) ";  
 
 if(!isset($_REQUEST['page'])) $_REQUEST['page']="";
 if(!isset($_REQUEST['length'])) $_REQUEST['length']="";
@@ -558,24 +559,24 @@ while ($result = $r->fetch_object()) {
 	}	
 	$row['ItemNumber']=$result->ItemNumber;
 	$ItemNumberSum+=$row['ItemNumber'];
-	$row['DriversPrice']=number_format($result->DriversPrice*$_SESSION['CurrencyRate'],2);
+	$row['DriversPrice']=number_format($result->DriversPrice,2);
 	$DriversPriceSum+=$result->DriversPrice;
-	$row['DetailPrice']=number_format($result->DetailPrice*$_SESSION['CurrencyRate'],2);
+	$row['DetailPrice']=number_format($result->DetailPrice,2);
 	$DetailPriceSum+=$result->DetailPrice;
-	$row['ExtraCharge']=number_format($result->ExtraCharge*$_SESSION['CurrencyRate'],2);
+	$row['ExtraCharge']=number_format($result->ExtraCharge,2);
 	$ExtraChargeSum+=$result->ExtraCharge;
-	$row['DriverExtraCharge']=number_format($result->DriverExtraCharge*$_SESSION['CurrencyRate'],2);
+	$row['DriverExtraCharge']=number_format($result->DriverExtraCharge,2);
 	$DriverExtraChargeSum+=$result->DriverExtraCharge;	
-	$row['Provision']=number_format($result->Provision*$_SESSION['CurrencyRate'],2);
+	$row['Provision']=number_format($result->Provision,2);
 	$ProvisionSum+=$result->Provision;	
-	$row['Discount']=number_format($result->Discount*$_SESSION['CurrencyRate'],2);
+	$row['Discount']=number_format($result->Discount,2);
 	$DiscountSum+=$result->Discount;		
 	$gm=$result->DetailPrice+$result->ExtraCharge-$result->Provision-$result->DriversPrice-$result->DriverExtraCharge;
-	$row['GrossMargin'] = number_format($gm*$_SESSION['CurrencyRate'],2);
+	$row['GrossMargin'] = number_format($gm,2);
 	
 	if($gm == 0){
 		$gm = 1;
-		$row['Ratio']=number_format(($gm*100/($result->DriversPrice+$result->DriverExtraCharge))*$_SESSION['CurrencyRate'],2);
+		$row['Ratio']=number_format(($gm*100/($result->DriversPrice+$result->DriverExtraCharge)),2);
 	}
 	
 	$sum[]=$row;
@@ -586,18 +587,18 @@ if ($_REQUEST["reportBy"]=="month(PickupDate)") $_REQUEST["reportBy"]="monthPick
 
 $row['Name']="TOTAL";
 $row['ItemNumber']=$ItemNumberSum;
-$row['DriversPrice']=number_format($DriversPriceSum*$_SESSION['CurrencyRate'],2);
-$row['DetailPrice']=number_format($DetailPriceSum*$_SESSION['CurrencyRate'],2);
-$row['ExtraCharge']=number_format($ExtraChargeSum*$_SESSION['CurrencyRate'],2);
+$row['DriversPrice']=number_format($DriversPriceSum,2);
+$row['DetailPrice']=number_format($DetailPriceSum,2);
+$row['ExtraCharge']=number_format($ExtraChargeSum,2);
 $row['DriverExtraCharge']=number_format($DriverExtraChargeSum,2);
-$row['Provision']=number_format($ProvisionSum*$_SESSION['CurrencyRate'],2);
-$row['Discount']=number_format($DiscountSum*$_SESSION['CurrencyRate'],2);
+$row['Provision']=number_format($ProvisionSum,2);
+$row['Discount']=number_format($DiscountSum,2);
 $gm=$DetailPriceSum+$ExtraChargeSum-$ProvisionSum-$DriversPriceSum-$DriverExtraChargeSum;
 $row['GrossMargin'] = number_format($gm,2);
 
 if($gm == 0){
 	$gm = 1;
-	$row['Ratio']=number_format(($gm*100/($DriversPriceSum+$DriverExtraChargeSum))*$_SESSION['CurrencyRate'],2);
+	$row['Ratio']=number_format(($gm*100/($DriversPriceSum+$DriverExtraChargeSum)),2);
 }
 
 $sum[]=$row;
@@ -641,10 +642,10 @@ if (count($dbk) != 0) {
 		$detailFlds = $od->fieldValues();
 
 		
-		$detailFlds['DriversPrice'] = number_format($od->getDriversPrice()*$_SESSION['CurrencyRate'],2);
-		$detailFlds['DetailPrice'] = number_format($od->getDetailPrice()*$_SESSION['CurrencyRate'],2);
-		$detailFlds['ExtraCharge'] = number_format($od->getExtraCharge()*$_SESSION['CurrencyRate'],2);
-		$detailFlds['DriverExtraCharge'] = number_format($od->getDriverExtraCharge()*$_SESSION['CurrencyRate'],2);
+		$detailFlds['DriversPrice'] = number_format($od->getDriversPrice(),2);
+		$detailFlds['DetailPrice'] = number_format($od->getDetailPrice(),2);
+		$detailFlds['ExtraCharge'] = number_format($od->getExtraCharge(),2);
+		$detailFlds['DriverExtraCharge'] = number_format($od->getDriverExtraCharge(),2);
 		$detailFlds['VehicleTypeName'] = $vehicletypes[$od->getVehicleType()]->VehicleTypeName;
 		# document key
 		/*$odock = $odoc->getKeysBy('DocumentDate', 'desc' , ' WHERE OrderID = ' . $OrderID);

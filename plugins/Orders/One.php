@@ -82,17 +82,17 @@ if ($DropID!=0) {
 }
 
 
-$detailFlds['DriversPrice'] = number_format($db->getDriversPrice()*$_SESSION['CurrencyRate'],2);
-$detailFlds['DetailPrice'] = number_format($db->getDetailPrice()*$_SESSION['CurrencyRate'],2);
-$detailFlds['ExtraCharge'] = number_format($db->getExtraCharge()*$_SESSION['CurrencyRate'],2);
-$detailFlds['DriverExtraCharge'] = number_format($db->getDriverExtraCharge()*$_SESSION['CurrencyRate'],2);
-$detailFlds['PayLater'] = number_format($db->getPayLater()*$_SESSION['CurrencyRate'],2);
-$detailFlds['PayNow'] = number_format($db->getPayNow()*$_SESSION['CurrencyRate'],2);
-$detailFlds['InvoiceAmount'] = number_format($db->getInvoiceAmount()*$_SESSION['CurrencyRate'],2);
-$detailFlds['Provision'] = number_format($db->getProvision()*$_SESSION['CurrencyRate'],2);
-$detailFlds['ProvisionAmount'] = number_format($db->getProvisionAmount()*$_SESSION['CurrencyRate'],2);
-$detailFlds['Discount'] = number_format($db->getDiscount()*$_SESSION['CurrencyRate'],2);
-$detailFlds['DriverPaymentAmt'] = number_format($db->getDriverPaymentAmt()*$_SESSION['CurrencyRate'],2);
+$detailFlds['DriversPrice'] = number_format($db->getDriversPrice(),2);
+$detailFlds['DetailPrice'] = number_format($db->getDetailPrice(),2);
+$detailFlds['ExtraCharge'] = number_format($db->getExtraCharge(),2);
+$detailFlds['DriverExtraCharge'] = number_format($db->getDriverExtraCharge(),2);
+$detailFlds['PayLater'] = number_format($db->getPayLater(),2);
+$detailFlds['PayNow'] = number_format($db->getPayNow(),2);
+$detailFlds['InvoiceAmount'] = number_format($db->getInvoiceAmount(),2);
+$detailFlds['Provision'] = number_format($db->getProvision(),2);
+$detailFlds['ProvisionAmount'] = number_format($db->getProvisionAmount(),2);
+$detailFlds['Discount'] = number_format($db->getDiscount(),2);
+$detailFlds['DriverPaymentAmt'] = number_format($db->getDriverPaymentAmt(),2);
 $detailFlds['DriversPriceEUR'] = number_format($db->getDriversPrice(),2);
 $detailFlds['DetailPriceEUR'] = number_format($db->getDetailPrice(),2);
 $detailFlds['ExtraChargeEUR'] = number_format($db->getExtraCharge(),2);

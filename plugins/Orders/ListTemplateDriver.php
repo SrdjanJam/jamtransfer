@@ -264,7 +264,7 @@
 				{{/compare}}	
 				{{#compare DriverConfStatus ">" 1}}{{#compare DriverConfStatus "<" 4}}
 					<small>{{DriverConfDate}} {{DriverConfTime}}</small><br>
-					{{#compare showMarkCompleted "==" 1}}
+					{{#compare showMarkCompleted "==" 1}}{{#compare TransferStatus "==" 1}}
 					<button  type="button" class="btn btn-primary mac" data-toggle="modal" data-target="#complete{{DetailsID}}">
 						<?=FINISH_TRANSFER;?>
 					</button>
@@ -304,8 +304,8 @@
 							</div>
 						</div>
 					</div>	
-					{{/compare}}
-				{{/compare}}{{/compare}}		
+					{{/compare}}{{/compare}}
+				{{/compare}}{{/compare}}			
 				{{#compare FinalNote "!==" ""}}
 					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#fnotes{{DetailsID}}">
 						<i class="fa fa-envelope" style="color:#900"></i>
@@ -342,7 +342,7 @@
 			// mesto + u telefonu
 			var tel = $("#DriverTel").val() ;
 			var n = tel.indexOf('+');
-			if($("#SubDriverName").val() == '' || $("#DriverTel").val() == '') {
+			if($("#DriverTel").val() == '') {
 				alert('Enter Driver name and Telephone number!');
 				return false;
 			}

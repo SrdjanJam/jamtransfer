@@ -50,7 +50,7 @@ $sum=array();
 
 $dbWhere = " " . $_REQUEST['where'];
 $sql="SELECT min(`PickupDate`) as min,`SubDriver`,`PickupDate`,count(*) as quant, 
-	sum(DriversPrice) as price,
+	sum(DetailPrice) as price,
 	sum(PayLater) as payLater,
 	sum(CashIn) as cashIn
 	FROM `v4_OrderDetails` WHERE `TransferStatus` not in (3,9) AND `SubDriver`>0 AND DriverConfStatus not in (0,1,2,4)  AND DriverID = '".$_SESSION['UseDriverID']."'";
@@ -72,7 +72,7 @@ while($row = $result->fetch_array(MYSQLI_ASSOC)){
 
 //$min=$result->fetch_array(MYSQLI_ASSOC)['min'];
 	
-$sql="SELECT `SubDriver2`,count(*) as quant, sum(DriversPrice) as price FROM `v4_OrderDetails` WHERE `TransferStatus` not in (3,9) AND `SubDriver2`>0 AND DriverConfStatus not in (0,1,2,4)  AND DriverID = '".$_SESSION['UseDriverID']."'";
+$sql="SELECT `SubDriver2`,`PickupDate`,count(*) as quant, sum(DetailPrice) as price FROM `v4_OrderDetails` WHERE `TransferStatus` not in (3,9) AND `SubDriver2`>0 AND DriverConfStatus not in (0,1,2,4)  AND DriverID = '".$_SESSION['UseDriverID']."'";
 if (isset($_REQUEST['subdriverID']) && $_REQUEST['subdriverID']>0) $sql .= " AND SubDriver2 = ".$_REQUEST['subdriverID'];
 if (isset($_REQUEST['orderFromDate']) && $_REQUEST['orderFromDate']>0) $sql .= " AND PickupDate >='".$_REQUEST['orderFromDate']."'";
 if (isset($_REQUEST['orderToDate']) && $_REQUEST['orderToDate']>0) $sql .= " AND PickupDate <='".$_REQUEST['orderToDate']."'";
@@ -82,10 +82,10 @@ $sql .=" GROUP BY PickupDate,SubDriver2 ";
 	while($row = $result->fetch_array(MYSQLI_ASSOC)){
 		$sdid=$row['SubDriver2'];
 		$sd_not[$sdid]+=$row['quant'];
-		$sd_price[$sdid]+=$row['price'];	
+		//$sd_price[$sdid]+=$row['price'];	
 		$sd_workingdates[$sdid][]=$row['PickupDate'];
 	}
-$sql="SELECT `SubDriver3`,count(*) as quant, sum(DriversPrice) as price FROM `v4_OrderDetails` WHERE `TransferStatus` not in (3,9) AND `SubDriver3`>0 AND DriverConfStatus not in (0,1,2,4)  AND DriverID = '".$_SESSION['UseDriverID']."'";
+$sql="SELECT `SubDriver3`,`PickupDate`,count(*) as quant, sum(DetailPrice) as price FROM `v4_OrderDetails` WHERE `TransferStatus` not in (3,9) AND `SubDriver3`>0 AND DriverConfStatus not in (0,1,2,4)  AND DriverID = '".$_SESSION['UseDriverID']."'";
 if (isset($_REQUEST['subdriverID']) && $_REQUEST['subdriverID']>0) $sql .= " AND SubDriver3 = ".$_REQUEST['subdriverID'];
 if (isset($_REQUEST['orderFromDate']) && $_REQUEST['orderFromDate']>0) $sql .= " AND PickupDate >='".$_REQUEST['orderFromDate']."'";
 if (isset($_REQUEST['orderToDate']) && $_REQUEST['orderToDate']>0) $sql .= " AND PickupDate <='".$_REQUEST['orderToDate']."'";
@@ -95,7 +95,7 @@ $sql .=" GROUP BY PickupDate,SubDriver3 ";
 	while($row = $result->fetch_array(MYSQLI_ASSOC)){
 		$sdid=$row['SubDriver3'];
 		$sd_not[$sdid]+=$row['quant'];
-		$sd_price[$sdid]+=$row['price'];
+		//$sd_price[$sdid]+=$row['price'];
 		$sd_workingdates[$sdid][]=$row['PickupDate'];
 	}	
 $sdids="0,";	

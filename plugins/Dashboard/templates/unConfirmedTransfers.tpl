@@ -103,7 +103,7 @@
 													<div class="col-md-2"><label>{$DRIVER}/{$DISPATCHER} {$PHONE}</label></div>
 													<div class="col-md-8">
 														<input class="form-control" type="text" 
-														id="DriverTel" placeholder='International format (e.g +33...)' value="{$details[pom].DriverTel}" title="{$ENTER_PHONE_FORMAT}" data-et="{$ENTER_PHONE}">
+														id="DriverTel{$details[pom].DetailsID}" placeholder='International format (e.g +33...)' value="{$details[pom].DriverTel}" title="{$ENTER_PHONE_FORMAT}" data-et="{$ENTER_PHONE}">
 													</div>
 												</div>
 												
@@ -112,13 +112,13 @@
 													<div class="col-md-8">
 														<textarea class="form-control" cols="40" 
 														rows="5" name="PickupPoint"
-														id="PickupPoint"></textarea>
+														id="PickupPoint{$details[pom].DetailsID}"></textarea>
 													</div>
 												</div>											
-												<div id="drr" class="row" style="display:none">
+												<div id="drr{$details[pom].DetailsID}" class="row" style="display:none">
 													<div class="col-md-2"><label>{$DECLINE_REASON}</label></div>
 													<div class="col-md-8">
-														<select name="DeclineReason" id="DeclineReason">
+														<select name="DeclineReason" data-id="{$details[pom].DetailsID}" class="DeclineReason" id="DeclineReason{$details[pom].DetailsID}">
 															<option value="cr">{$CHOSE_REASON}</option>													
 															<option value="Price">{$PRICE_INCORECT}</option>	
 															<option value="Availability">{$NO_AVAILABILITY}</option>														
@@ -127,10 +127,10 @@
 														</select>			
 													</div>
 												</div>											
-												<div id="dm" class="row" style="display:none">
+												<div id="dm{$details[pom].DetailsID}" class="row" style="display:none">
 													<div class="col-md-2"><label>{$DECLINE_MESSAGE}</label></div>
 													<div class="col-md-8">
-														<textarea id= 'dmta' class="form-control" cols="40" 
+														<textarea class='dmta' id='dmta{$details[pom].DetailsID}' class="form-control" cols="40" 
 														rows="5" name="DeclineMessage"
 														id="DeclineMessage"></textarea>
 													</div>
@@ -146,12 +146,12 @@
 														<i class="fa fa-check l"></i> {$CONFIRM}
 													</button>
 													<!-- novi blok !-->
-													<button id='decline1' class="btn btn-danger" type="submit" 
-													onclick="declineTransfer1()">
+													<button id="decline1{$details[pom].DetailsID}" class="btn btn-danger" type="submit" 
+													onclick="declineTransfer1('{$details[pom].DetailsID}','{$details[pom].DriverID}','{$details[pom].MOrderKey}')">
 														<i class="fa fa-remove l"></i> {$DECLINE}
 													</button>
 													
-													<button id='decline2' class="btn btn-danger" type="submit" style="display:none; "
+													<button id="decline2{$details[pom].DetailsID}" class="btn btn-danger" type="submit" style="display:none; "
 													onclick="declineTransfer2('{$details[pom].DetailsID}','{$details[pom].DriverID}','{$details[pom].MOrderKey}')" >
 														<i class="fa fa-remove l"></i> {$DECLINE}
 													</button>											
@@ -180,23 +180,26 @@
 	function confirmTransfer(detailsid, driverid, orderkey) {
 		
 		// mesto + u telefonu
-		var tel = $("#DriverTel").val() ;
+		id1="#DriverTel"+detailsid;
+		id2="#PickupPoint"+detailsid;
+		var tel = $(id1).val() ;
+		var pp = $(id2).val() ;
 		var n = tel.indexOf('+');
-		if($("#DriverTel").val() == '') {
-			alert ($("#DriverTel").attr('data-et'));
+		if($(id1).val() == '') {
+			alert ($(id1).attr('data-et'));
 			return false;
 		}
 		// da li je ispravan format?
 		if (n != 0) {
-			alert ($("#DriverTel").attr('title'));
+			alert ($(id1).attr('title'));
 			return false;
 		}	
 		var url = './plugins/Orders/confirmDecline.Driver.php'+
 			"?code=" + detailsid +
 			"&control="+orderkey +
 			"&id="+ driverid +
-			"&DriverTel="+ $("#DriverTel").val() +
-			"&PickupPoint="+ $("#PickupPoint").val() +
+			"&DriverTel="+ tel +
+			"&PickupPoint="+ pp +
 			"&Confirm=Confirmed";
 		console.log(url);
 
@@ -216,32 +219,39 @@
 	
 	// prosirivanje forme sa decline poljima
 	function declineTransfer1(detailsid, driverid, orderkey) {
-		
-		$("#decline1").hide();
-		$("#decline2").show();
-		$("#drr").show(500);		
+		var id1="#decline1"+detailsid;
+		var id2="#decline2"+detailsid;
+		var id3="#drr"+detailsid;
+		$(id1).hide();
+		$(id2).show();
+		$(id3).show(500);		
 	}	
-	$('#dmta').attr("placeholder","Your reason is:");	// privremeno, posle izbrisati
-	$('#DeclineReason').change(function(){ 
-		var rn = $('#DeclineReason').val(); 
-		if (rn=='Price') $('#dmta').attr("placeholder","{/literal}{$YOUR_PRICE}{literal}");
-		if (rn=='Availability') $('#dmta').attr("placeholder","{/literal}{$YOUR_TIME}{literal}");
-		if (rn=='Wrong') $('#dmta').attr("placeholder","{/literal}{$WRONG_DETAILS}{literal}");
-		if (rn=='Other') $('#dmta').attr("placeholder","{/literal}{$YOUR_REASON}{literal}");			
-		$("#dm").show(500);			
+	$('.dmta').attr("placeholder","Your reason is:");	// privremeno, posle izbrisati
+	$('.DeclineReason').change(function(){ 
+		var rn = $(this).val(); 
+		var detailsid=$(this).attr('data-id');
+		var id4="#dmta"+detailsid;
+		var id5="#dm"+detailsid;
+		if (rn=='Price') $(id4).attr("placeholder","{/literal}{$YOUR_PRICE}{literal}");
+		if (rn=='Availability') $(id4).attr("placeholder","{/literal}{$YOUR_TIME}{literal}");
+		if (rn=='Wrong') $(id4).attr("placeholder","{/literal}{$WRONG_DETAILS}{literal}");
+		if (rn=='Other') $(id4).attr("placeholder","{/literal}{$YOUR_REASON}{literal}");	
+
+		$(id5).show(500);			
 	}); 
 	
 	// decline
 	function declineTransfer2(detailsid, driverid, orderkey) {
-		var dmta = $("#dmta").val();
+		var id4="#dmta"+detailsid;
+		var dmta = $(id4).val();
 		dmta = dmta.trim();
 		if(dmta == '') {
 			alert('Enter Decline reason and message!');
 			return false;
 		}
-		  
-		var declinereason = $('#DeclineReason').val();
-		var declinemessage = $('#dmta').val();
+		var id6="#DeclineReason"+detailsid;  
+		var declinereason = $(id6).val();
+		var declinemessage = $(id4).val();
 		var url = './plugins/Orders/confirmDecline.Driver.php'+
 			"?code=" + detailsid +
 			"&control="+orderkey +
@@ -249,6 +259,7 @@
 			"&DeclineReason="+ declinereason +				
 			"&DeclineMessage="+ declinemessage +		
 			"&Confirm=Declined";
+		console.log (url);
 		$.ajax({
 			type: 'POST',
 			url: url,

@@ -11,15 +11,14 @@
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
      crossorigin=""></script>	 
-<a class='marked' href='{$root_home}calendar'>{$CALENDAR}</a>	
 
-<input type="text" id="PickupDate" name="PickupDate" class="w75 datepicker" value="{$smarty.request.Date}">
+{*<input type="text" id="PickupDate" name="PickupDate" class="w75 datepicker" value="{$smarty.request.Date}">*}
 <div class="row">
 	<div class="col-lg-9 col-md-9" id="map"></div>
 	<div class="col-lg-3 col-md-3">
-		<h3>{$ORDERS}:</h3>
+		<h3>{$TRANSFERS}:</h3>
 		{section name=pom1 loop=$transfers}
-			<div class="h6 element {$transfers[pom1].wrongll}" 
+			<div style="color:{$transfers[pom1].Color}" class="h6 element {$transfers[pom1].wrongll}" 
 				data-line="{$transfers[pom1].line}"
 				data-ll="{$transfers[pom1].mll}"
 				data-dd="{$transfers[pom1].dd}"
@@ -27,6 +26,8 @@
 				data-dll="{$transfers[pom1].dll}"
 				data-pickup="{$transfers[pom1].Pickup}"
 				data-drop="{$transfers[pom1].Drop}"
+				data-driverid="{$transfers[pom1].SubDriver}"
+				data-color="{$transfers[pom1].Color}"
 			>
 				<span
 					title="<b>{$transfers[pom1].OrderID}-{$transfers[pom1].TNo} - {$transfers[pom1].PaxName} </b>" 
@@ -42,17 +43,19 @@
 						<i class="fa fa-user"></i><span>{$transfers[pom1].PaxNo}</span>
 					</div>
 					<div>{$transfers[pom1].PickupName}-{$transfers[pom1].DropName}</div>
-					<div>{$transfers[pom1].subDriver}</div>
+					<div>{$transfers[pom1].subDriver} <span class="red">{$transfers[pom1].json}</span></div>
 				</span>
 			</div>
 		{/section}
+		<i style="color:blue" class="fa-solid fa-arrow-circle-up fa-xl"></i> Move - no transfer<br>
+		<i style="color:green" class="fa-solid fa-arrow-circle-up fa-xl"></i> Move - on transfer<br> 
+		<i style="color:#FFAC1C" class="fa-solid fa-arrow-circle-up fa-xl"></i> Move - to Pickup location<br>
+		<i style="color:red" class="fa-solid fa-stop fa-xl"></i> Stop 
 	</div>
 </div>
 <script>
 {literal}	
-$("#PickupDate").change(function(){
-	window.location.href = "{/literal}{$currenturl}{literal}/"+$("#PickupDate").val();
-})
+
 $(".mytooltip").popover({trigger:'hover', html:true, placement:'bottom'});
 var w=$("#map").width();
 if (w>1000) w=1000;
@@ -68,24 +71,27 @@ var map = L.map('map').setView([{/literal}{$lat}{literal}, {/literal}{$long}{lit
 $(".leaflet-attribution-flag").remove();
 $(".leaflet-control").remove();
 
-const carIcon = L.divIcon({
-    html: '<i class="fa fa-car fa-sm"></i>',
-    iconSize: [20, 20],
-    className: 'myDivIcon'
-});
-
 function onMapClick(e) {
     alert("You clicked the map at " + e.latlng);
 	var marker = L.marker(e.latlng).addTo(map);
 }
 //map.on('click', onMapClick);
 
+function showRoute(e) {
+	var driverid=e.target.options.id;
+	$(".element").each(function(){
+		did=$(this).attr('data-driverid');
+		if (driverid==did) $(this).trigger('click');
+	})
+}
+
 $(".element").click(function(){
 	$(".element").css("background-color", "");
 	$(this).css("background-color", "#ADD8E6");
+	var color=$(this).attr('data-color');
 	$("path").remove();
 	var Pline=JSON.parse($(this).attr("data-line"));
-	var polyline = L.polyline(Pline).addTo(map);
+	var polyline = L.polyline(Pline, {color:color}).addTo(map);
 	var LL=JSON.parse($(this).attr("data-ll"));
 	var PLL=JSON.parse($(this).attr("data-pll"));
 	var DLL=JSON.parse($(this).attr("data-dll"));
@@ -109,14 +115,21 @@ $(".element").click(function(){
 		radius: 500
 	}).addTo(map).bindPopup(Drop);		
 })
-{/literal}	
+	{/literal}	
 </script>
 {if isset($sdArray)}
 {section name=pom loop=$sdArray}
 	{if $sdArray[pom].foundlocation}
 		<script>
 		{literal}
-			var marker = L.marker({/literal}{$sdArray[pom].LL}{literal},{ icon:  carIcon}).addTo(map).bindPopup('{/literal}{$sdArray[pom].DriverName}, {$sdArray[pom].Vehicle}<br>{$sdArray[pom].Device}<br>{$sdArray[pom].Location}{literal}').openPopup();
+			carIcon = L.divIcon({
+				html: '{/literal}{$sdArray[pom].Icon}{literal}<span style="font-size:80%; text-shadow: 2px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000; color:yellow">'+
+					'{/literal}{$sdArray[pom].DriverName}{literal}'+
+				'</span>',
+				iconSize: [20, 20],
+				className: 'myDivIcon'
+			});		
+			var marker = L.marker({/literal}{$sdArray[pom].LL}{literal},{ icon:  carIcon, id: '{/literal}{$sdArray[pom].DriverID}{literal}'}).on('click',showRoute).addTo(map).bindPopup('{/literal}{$sdArray[pom].DriverName}, {$sdArray[pom].Vehicle}<br>{$sdArray[pom].Device}<br>{$sdArray[pom].Location}{literal}');
 		{/literal}	
 		</script>
 		{*<iframe src="https://maps.google.com/maps?q={$sdArray[pom].Lat},{$sdArray[pom].Lng} &z=12&output=embed"  frameborder="0" style="border:0"></iframe>*}
@@ -124,3 +137,4 @@ $(".element").click(function(){
 {/section}
 {/if}
 	
+

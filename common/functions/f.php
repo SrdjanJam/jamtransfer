@@ -724,20 +724,16 @@ function getPlaceCountryFromPlaceName ($placeName) {
 
 function getVehicleTypeName($vehicleTypeId) {
     $db = new DataBaseMysql();
-
-
-
-    $q  = " SELECT * FROM v4_VehicleTypes ";
-    //$q .= " WHERE VehicleClass = '{$vehicleTypeId}'"; // ovo je bilo do 03.03.2016
+    $q  = " SELECT VehicleTypeName,count(*) as cnt FROM v4_VehicleTypes ";
     $q .= " WHERE VehicleTypeID = '{$vehicleTypeId}'";
 
     $w = $db->RunQuery($q);
     $c = mysqli_fetch_object($w);
+	if ($c->cnt>0) return $c->VehicleTypeName;
+	else return "";
+    //$v = 'VehicleTypeName';
 
-    //$v = 'VehicleTypeName'.Lang();
-    $v = 'VehicleTypeName';
-
-    return $c->$v; // $c->VehicleTypeName
+    //return $c->$v; // $c->VehicleTypeName
 }
 
 function getVehicleDescription($vehicleTypeId) {

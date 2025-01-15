@@ -7,6 +7,7 @@ Class v4_LogUser {
 	public $IPAddress; //varchar(255)
 	public $UserName; //varchar(255)
 	public $AuthUserID; //int(11)
+	public $CustomerID; //int(11)
 	public $Latitude; //text
 	public $Longitude; //text
 	public $Place; //varchar(255)
@@ -24,11 +25,12 @@ Class v4_LogUser {
 		return $this->connection->real_escape_string($string);
 	}
 
-	public function New_v4_LogUser($ID,$IPAddress,$UserName,$AuthUserID,$Latitude,$Longitude,$Place,$Type,$SessionID,$DateTime,$Mob){
+	public function New_v4_LogUser($ID,$IPAddress,$UserName,$AuthUserID,$CustomerID,$Latitude,$Longitude,$Place,$Type,$SessionID,$DateTime,$Mob){
 		$this->ID = $ID;
 		$this->IPAddress = $IPAddress;
 		$this->UserName = $UserName;
 		$this->AuthUserID = $AuthUserID;
+		$this->CustomerID = $CustomerID;
 		$this->Latitude = $Latitude;
 		$this->Longitude = $Longitude;
 		$this->Place = $Place;
@@ -44,6 +46,7 @@ Class v4_LogUser {
 			'IPAddress' => $this->getIPAddress(),
 			'UserName' => $this->getUserName(),
 			'AuthUserID' => $this->getAuthUserID(),
+			'CustomerID' => $this->getCustomerID(),
 			'Latitude' => $this->getLatitude(),
 			'Longitude' => $this->getLongitude(),
 			'Place' => $this->getPlace(),
@@ -55,7 +58,7 @@ Class v4_LogUser {
 		return $fieldValues;
 	}
 	public function fieldNames(){
-		$fieldNames = array('ID','IPAddress','UserName','AuthUserID','Latitude','Longitude','Place','Type','SessionID','DateTime','Mob');
+		$fieldNames = array('ID','IPAddress','UserName','AuthUserID','CustomerID','Latitude','Longitude','Place','Type','SessionID','DateTime','Mob');
 		return $fieldNames;
 	}
 	
@@ -67,6 +70,7 @@ Class v4_LogUser {
 			$this->IPAddress = $row["IPAddress"];
 			$this->UserName = $row["UserName"];
 			$this->AuthUserID = $row["AuthUserID"];
+			$this->CustomerID = $row["CustomerID"];
 			$this->Latitude = $row["Latitude"];
 			$this->Longitude = $row["Longitude"];
 			$this->Place = $row["Place"];
@@ -87,6 +91,7 @@ Class v4_LogUser {
 		IPAddress = '".$this->myreal_escape_string($this->IPAddress)."', 
 		UserName = '".$this->myreal_escape_string($this->UserName)."', 
 		AuthUserID = '".$this->myreal_escape_string($this->AuthUserID)."', 
+		CustomerID = '".$this->myreal_escape_string($this->CustomerID)."', 
 		Latitude = '".$this->myreal_escape_string($this->Latitude)."', 
 		Longitude = '".$this->myreal_escape_string($this->Longitude)."', 
 		Place = '".$this->myreal_escape_string($this->Place)."', 
@@ -100,11 +105,12 @@ Class v4_LogUser {
 	}
 
 	public function saveAsNew(){
-		$this->connection->RunQuery("INSERT INTO v4_LogUser (IPAddress, UserName, AuthUserID, Latitude, Longitude, Place, Type, SessionID, DateTime, Mob)
+		$this->connection->RunQuery("INSERT INTO v4_LogUser (IPAddress, UserName, AuthUserID, CustomerID, Latitude, Longitude, Place, Type, SessionID, DateTime, Mob)
 		values (
 			'".$this->myreal_escape_string($this->IPAddress)."', 
 			'".$this->myreal_escape_string($this->UserName)."', 
 			'".$this->myreal_escape_string($this->AuthUserID)."', 
+			'".$this->myreal_escape_string($this->CustomerID)."', 
 			'".$this->myreal_escape_string($this->Latitude)."', 
 			'".$this->myreal_escape_string($this->Longitude)."',
 			'".$this->myreal_escape_string($this->Place)."',
@@ -142,6 +148,10 @@ Class v4_LogUser {
 
 	public function getAuthUserID(){
 		return $this->AuthUserID;
+	}
+	
+	public function getCustomerID(){
+		return $this->CustomerID;
 	}
 	
 	public function getLatitude(){
@@ -185,6 +195,9 @@ Class v4_LogUser {
 	}
 	public function setAuthUserID($AuthUserID){
 		$this->AuthUserID = $AuthUserID;
+	}	
+	public function setCustomerID($CustomerID){
+		$this->CustomerID = $CustomerID;
 	}	
 	public function setLatitude($Latitude){
 		$this->Latitude = $Latitude;

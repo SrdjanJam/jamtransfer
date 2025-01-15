@@ -17,7 +17,7 @@
 	$did=$_SESSION['UseDriverID'];	
 	foreach ($ork as $key) {
 		$or->getRow($key);
-		$where=" WHERE PickupDate>'".$timestart."' AND TransferStatus=1 AND DriverConfStatus in (0,1,4) AND DriverID=0 AND OrderID=".$or->getOrderID()." AND TNo=".$or->getTNo();	
+		$where=" WHERE PickupDate>'".$timestart."' AND TransferStatus=1 AND DriverConfStatus=0 AND DriverID=0 AND OrderID=".$or->getOrderID()." AND TNo=".$or->getTNo();	
 		$odk=$od->getKeysBy('PickupDate,PickupTime','ASC',$where);
 		if (count($odk)==1) {
 			$od->getRow($odk[0]);
