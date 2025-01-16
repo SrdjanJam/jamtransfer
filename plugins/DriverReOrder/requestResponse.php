@@ -233,7 +233,7 @@
 				<div class="mini_naslov">
 					<h2 style="border:none">Transfer reservation details</h2>	
 				</div>
-				<div id="detalji_lijevi_box" style="min-height:520px;width:68%;display:block;float:left;">   	  	
+				<div id="detalji_lijevi_box" style="width:68%;display:block;float:left;">   	  	
 					<span class="info_icon"></span>	
 					<strong class="table-legend-istaknuto"> Info: </strong>
 					<hr class="siva">
@@ -422,5 +422,4 @@
 	<div class="ui-resizable-handle ui-resizable-ne" style="z-index: 1003;"></div>
 	<div class="ui-resizable-handle ui-resizable-nw" style="z-index: 1004;"></div>
 </body>
-</html>	
-
+</html>
