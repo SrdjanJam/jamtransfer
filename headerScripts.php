@@ -52,7 +52,30 @@
 			  header .navbar-toggle {
 				display: none;   
 			  }
-			}			
+			}
+
+		</style>
+<!-- End of type="text/css" media="print" -->
+<!-- //////////////////////////////////// -->
+ 
+		<style>
+			@media screen and (max-width:768px){
+				#print-this-whole{
+					padding:5px;
+				}
+
+				#detalji_desni_box{
+					float:none !important;
+					width:100% !important;
+					overflow:hidden;
+				}
+
+				.logo_gost_poruka{
+					height: auto !important;
+				}
+
+			}
+
 		</style>
 
 
