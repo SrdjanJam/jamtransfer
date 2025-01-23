@@ -1,11 +1,23 @@
 <div class="white center">
-
-
-	{if !isset($smarty.post.all)}
-		<form action="" method="POST">
-			<input type="submit" name='all' value='ALL'/> 
-		</form>
-	{/if}		
+	<form action="" method="POST">
+		<div class="row">
+			<div class="col-md-1">
+				<label>On date</label>
+			</div>	
+			<div class="col-md-2">
+				<input class="form-control datepicker" type="text" value="{$requestday}" name="RequestDate">
+			</div>	
+			<div class="col-md-4">
+				<select class="form-control" name="Include" id="Include">
+					<option value="1"> With balance great than 0</option>
+					<option value="2"> All</option>
+				</select>
+			</div>
+			<div class="col-md-4">
+				<button type="submit" class="btn btn-primary" name="submit" style="margin-top: 5px;">Submit</button>
+			</div>	
+		</div>	
+	</form>
 	<div class="row sum-edit-2" style="border-bottom:1px solid #000;">
 		<div class="col-md-2 add-direction">
 			<strong>ID - Subdriver</strong>
@@ -15,7 +27,7 @@
 		</div>
 		<div class="col-sm-3 ">
 			<div class="col-sm-12 ">
-				<strong>Cash (until {$today})</strong>				
+				<strong>Cash (until {$requestday})</strong>				
 			</div>
 			<div class="col-sm-4 ">
 				<strong>Drives</strong>
@@ -33,7 +45,7 @@
 		</div>				
 		<div class="col-sm-3 ">
 			<div class="col-sm-12 ">
-				<strong>Cash ({$today})</strong>
+				<strong>Cash ({$requestday})</strong>
 			</div>					
 			<div class="col-sm-4 ">
 				<strong>Plan</strong>

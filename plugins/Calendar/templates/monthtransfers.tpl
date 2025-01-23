@@ -82,7 +82,7 @@ $(document).ready(function(){
 							<div class="cal_days l">
 								<b>{$month_transfers[pom].nom}</b> 
 								{if ($smarty.session.AuthLevelID eq '31' or isset($smarty.session.UseDriverID)) and $month_transfers[pom].noOfTransfers gt 0}
-									<a target='_blank' class='badge' href='{$root_home}distribution/{$month_transfers[pom].date}'>{$ASSIGN_VEHICLES}</a>
+									{*<a target='_blank' class='badge' href='{$root_home}distribution/{$month_transfers[pom].date}'>{$ASSIGN_VEHICLES}</a>*}
 								{/if}	
 							</div>
 									<div class="show-data">

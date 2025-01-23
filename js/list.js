@@ -65,6 +65,8 @@
 		if (typeof actionID=='undefined') actionID=0;			
 		var terminalID = $("#terminalID").val();
 		if (typeof terminalID=='undefined') terminalID=0;	
+		var CAU = $("#CAU").val();
+		if (typeof CAU=='undefined') CAU="000";	
 		if ($("#listExtras").is(':checked')) var listExtras=1;
 		else var listExtras=0;		
 		if ($("#paymentChecker").is(':checked')) var paymentChecker=1;
@@ -138,6 +140,7 @@
 		'&subdriverID='+subdriverID+
 		'&actionID='+actionID+
 		'&terminalID='+terminalID+
+		'&CAU='+CAU+
 		'&reportBy='+reportBy+
 		'&action='+action+		
 		'&lid='+lid+

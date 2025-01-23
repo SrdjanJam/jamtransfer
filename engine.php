@@ -25,6 +25,7 @@ $existNew=false;
 $SubDriverID=0;
 $ActionID=0;
 $terminalID=0;
+$CAU="";
 
 require_once 'pathToVars.php';
 // LOGIN
@@ -137,7 +138,6 @@ if ($result->num_rows>0) {
 	}
 	else header("Location: ". ROOT_HOME . 'dashboard');
 	
-
 	if ($specialpage2=='fieldsSettings') {
 		$smarty->assign('fieldsSettings',1);
 		$smarty->assign('levelID',$specialpage);
@@ -173,6 +173,7 @@ if ($result->num_rows>0) {
 	$smarty->assign('parentID',$md->getParentID());
 	$smarty->assign('ModulID',$keyP);
 	$smarty->assign('setasdriver',$setasdriver);
+	$smarty->assign('CAU',$CAU);
 
 
 		

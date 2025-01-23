@@ -1,4 +1,7 @@
 <?
+	$pageList="Tasks";
+	$pageName="";
+	
 	if (!$isNew) {
 		$smarty->assign('date1',true);
 		$smarty->assign('date2',true);		
@@ -12,7 +15,7 @@
 		require_once ROOT.'/db/v4_Actions.class.php';
 		$actions=array();
 		$ac = new v4_Actions();
-		$ack = $ac->getKeysBy('DisplayOrder ', '','WHERE Active=1');
+		$ack = $ac->getKeysBy('DisplayOrder ', '','WHERE Active=2');
 		foreach ($ack as $key)
 		{
 			$ac->getRow($key);
@@ -34,7 +37,8 @@
 		$smarty->assign('selectsubdriver',true);
 		$smarty->assign('subdrivers',$subdrivers);
 		require_once 'ListTemplate.php';
-	}	
+	}
 	require_once 'EditForm.php';
 	$smarty->assign('ItemID','ID');
 	$smarty->assign('pagelength',20);
+	

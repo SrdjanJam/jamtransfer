@@ -1,5 +1,23 @@
 <?
-/*
+//$DriverID = '843'; // $_SESSION['DriverID']
+
+//$dateFrom = $_REQUEST['DateFrom'];
+//$dateTo = $_REQUEST['DateTo'];
+// prethodni ponedjeljak
+//$testdate = date("Y-m-d",strtotime('last monday', strtotime('2018-05-01')) );
+
+// dan u tjednu 0=nedjelja 1=ponedjeljak
+//echo date('w', strtotime($testdate));
+// redni broj dana u godini
+//echo date('z', strtotime($testdate)) +1;
+
+
+
+//require_once $_SERVER['DOCUMENT_ROOT'] .'/cms/lng/en_text.php';
+
+ 
+// 23.07. Mandic zatrazio da se datum transfera prikaziva PickupDate (bio SubPickupDate) promjenjeno sve di je SubPickupDate, vrijeme treba ostati SubPickupTime - Promjenio Leo
+
 require_once $_SERVER['DOCUMENT_ROOT'] . '/db/db.class.php';
 if (isset($_REQUEST['user'])) {
 	require_once $_SERVER['DOCUMENT_ROOT'] . '/cms/headerScripts.php';
@@ -21,7 +39,7 @@ $ro = new v4_Routes();
 $ShowHidden = '0';
 if(isset($_REQUEST['ShowHidden'])) $ShowHidden = $_REQUEST['ShowHidden'];
 
-$DriverID = $_SESSION['AuthUserID'];
+$DriverID = $_SESSION['UseDriverID'];
 if($_REQUEST['user'] == 'lyon') $DriverID = '876';
 if($_REQUEST['user'] == 'nica') $DriverID = '843';
 if($_REQUEST['user'] == 'split') $DriverID = '556';
@@ -37,7 +55,34 @@ $totalCashIn = 0;
 // podaci o subdriveru
 $sd = getUser($SubDriverID);
 
-//echo '<pre>';print_r($_REQUEST);echo '</pre>';
+for ($i=1; $i<= 12; $i++) {
+	$month = substr('0'.$i, -2);
+	if (isset($_REQUEST['Month']) && $_REQUEST['Month']==$month) $selected="selected";
+	else $selected="";
+	$months[]='<option value="'.$month.'" '.$selected.'>'.$month.'</option>';
+}
+$smarty->assign('months',$months);
+
+$year_now=date('Y',time());
+for ($i=0; $i<= 5; $i++) {
+	$year=$year_now-$i;
+	if (isset($_REQUEST['Year']) && $_REQUEST['Year']==$year) $selected="selected";
+	else $selected="";	
+	$years[]='<option value="'.$year.'" '.$selected.'>'.$year.'</option>';
+}
+$smarty->assign('years',$years);
+
+$q  = "SELECT AuthUserID, AuthUserRealName FROM v4_AuthUsers ";
+$q .= "WHERE DriverID = ".$DriverID." AND Active=1 ORDER BY AuthUserRealName ASC";
+$r  = $db->RunQuery($q);
+
+while($driver = $r->fetch_object()) {
+	if (isset($_REQUEST['SubDriverID']) && $_REQUEST['SubDriverID']==$driver->AuthUserID) $selected="selected";
+	else $selected="";	
+	$drivers[]='<option value="'.$driver->AuthUserID.'" '.$selected.'>'.$driver->AuthUserRealName.'</option>';
+}
+$smarty->assign('drivers',$drivers);
+
 
 
 if( isset($_REQUEST['submit']) or isset($_REQUEST['Save']) ) {
@@ -213,7 +258,6 @@ if( isset($_REQUEST['submit']) or isset($_REQUEST['Save']) ) {
     ##########################################################################################
     ## PRIKAZIVANJE PODATAKA
     ########################################################################################## 
-
     $daysInMonth = days_in_month($Month, $Year);
  
     $where  = "WHERE PickupDate >= '" . $Year.'-'.$Month.'-01' . "' ";
@@ -237,9 +281,9 @@ if( isset($_REQUEST['submit']) or isset($_REQUEST['Save']) ) {
     if($ShowHidden) $odk2 = $od->getKeysBy("PickupDate", "ASC, PickupTime ASC",  $where.$where2);
 
     // GLAVNI DIV *********************************************************************************
+	ob_start();
     echo '<div class="grey lighten-2" style="font-size:13px;">';
  
-    echo '<br><div class="center"><h1>Liste de transfert de chauffeur</h1><h3>' . $sd->AuthUserRealName . '</h3>';
     echo $Year.'-'.$Month.'-01' . ' - ' . $Year.'-'.$Month.'-'.$daysInMonth;
 
     if ($ShowHidden) echo ' (' . count($odk2) . '/' . count($odk) . ' transfers)';
@@ -249,14 +293,8 @@ if( isset($_REQUEST['submit']) or isset($_REQUEST['Save']) ) {
 	$brojTransfera = count($odk);
 	$brojSkrivenihTransfera = count($odk2);
 
-
-
     echo '<br><br><button class="btn btn-default" onclick="$(\'.noPrint\').toggle(\'slow\');return false;">Show / Hide transfer details</button>';
-
-    echo '</div><br><br>';
-
-
-     echo '<form action="" method="POST">';
+    echo '<form action="" method="POST">';
     // Container start LISTA
     echo '<div class="container-fluid white pad4px">';
 
@@ -1037,88 +1075,13 @@ if( isset($_REQUEST['submit']) or isset($_REQUEST['Save']) ) {
     echo '</div></div><br><br><br>';
 
     echo '</div></form>'; // sve je u formu
-  
+	
+	$out2 = ob_get_contents();
+	ob_end_clean();
+	$smarty->assign('show_data',$out2);
      
+} 
 
-} else { // prikazi input form 
-
-?>
-    <body>
-    <style>
-        input, select { width: 200px; }
-        #RequiredFrom, #RequiredTo { visibility: hidden; padding-left: 4px; color: red; }
-        .formLabel { width: 100px; display: inline-block; }
-    </style>
-
-    <div class="container">
-        <h1><?= TRANSFER_LIST ?></h1><br><br>
-
-        <form action="" method="post" onsubmit="return validate()">
-
-            <input type="hidden" name="DriverID" value="<?= $DriverID ?>">
-
-            <div class="row">
-                <div class="formLabel"><?= MONTH ?>:</div>
-                <select name="Month">
-                    <option value="0">---</option>
-                    <?
-                        for ($i=1; $i<= 12; $i++) {
-                            $month = substr('0'.$i, -2);
-                            echo '<option value="'.$month.'">'.$month.'</option>';
-                        }
-                    ?>
-                </select>
-            </div>
-
-
-            <div class="row">
-                <div class="formLabel"><?= YEAR ?>:</div>
-                <select name="Year">
-					<option value="2024">2024</option>
-					<option value="2023">2023</option>
-					<option value="2022">2022</option>
-					<option value="2021">2021</option>
-					<option value="2020">2020</option>
-                    <option value="2019">2019</option>
-                    <option value="2018">2018</option>
-					<option value="2017">2017</option>
-
-                </select>
-            </div>
-
-            <div class="row">
-                <div class="formLabel"><?= DRIVER ?>:</div>
-                <select name="SubDriverID" id="SubDriverID">
-
-                    <option value="0"> --- </option>
-                    <?
-
-                        $q  = "SELECT AuthUserID, AuthUserRealName FROM v4_AuthUsers ";
-                        $q .= "WHERE DriverID = ".$DriverID." AND Active=1 ORDER BY AuthUserRealName ASC";
-                        $r  = $db->RunQuery($q);
-
-                        while($driver = $r->fetch_object()) {
-                            echo '<option value="'.$driver->AuthUserID.'">';
-                            echo $driver->AuthUserRealName.'</option>';
-                        }
-                    ?>
-
-                </select>
-            </div>
-
-            <div class="row">
-                <div class="formLabel">Show Hidden:</div><input type="checkbox" name="ShowHidden">
-                <br><br>
-                <input type="hidden" name="SortSubDriver" id="SortSubDriver" value="0">
-                <input type="submit" class="btn btn-primary" name="submit"
-                value="<?= SHOW_TRANSFERS ?>" style="margin-left: 105px">
-            </div>
-            
-        </form>
-    </div>
-
-<?
-}
 ?>
 
 
@@ -1547,4 +1510,5 @@ function prazniciFR($date) {
     
     if( in_array($date, $prazniciFR)) return true;
     else return false;
-}*/
+}
+

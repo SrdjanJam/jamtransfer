@@ -1,4 +1,4 @@
-<?	
+<?
 	require_once 'ListTemplate.php';
 	//subdrivers
 	$subdrivers=array();
@@ -14,6 +14,6 @@
 	}
 	$smarty->assign('selectsubdriver',true);
 	$smarty->assign('subdrivers',$subdrivers);	
-	$smarty->assign('ItemID','AuthUserID');
+	$smarty->assign('ItemID','ID');
+	$smarty->assign('pagelength',20);
 	
-		

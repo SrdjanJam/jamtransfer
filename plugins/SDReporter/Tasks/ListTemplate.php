@@ -14,11 +14,7 @@ $smarty->assign('date2',true);
 		</div>
 
 		<div class="col-md-2">
-			<?=TASK_DATE;?>
-		</div>
-
-		<div class="col-md-2">
-			<?=AUTH_USER_REAL_NAME;?>
+			<?=DRIVER;?>
 		</div>
 
 		<div class="col-md-2">
@@ -49,10 +45,6 @@ $smarty->assign('date2',true);
 		
 				<div class="col-md-1">
 					<strong>{{ID}}</strong>
-				</div>
-
-				<div class="col-md-2">
-					{{Datum}}
 				</div>
 
 				<div class="col-md-2">

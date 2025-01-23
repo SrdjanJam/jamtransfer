@@ -6,23 +6,13 @@ require_once 'Initial.php';
 
 @session_start();
 
-if (isset($selectapproved)) {
-	if (!isset($_REQUEST['Approved']) or $_REQUEST['Approved'] == 99) {
-		$filter .= "  AND ".$selectapproved." > -1 ";
-	}
-	else {
-		$filter .= "  AND ".$selectapproved." = " . $_REQUEST['Approved'] ;
-	}
-}
-
-
-class v4_SubActivityJoin extends v4_SubActivity {
+class v4_SubExpensesJoin extends v4_SubExpenses {
 	public function getKeysBy($column, $order, $where = NULL){
 		$keys = array(); $i = 0;
 		$result = $this->connection->RunQuery("
-			SELECT v4_SubActivity.ID, v4_AuthUsers.AuthUserRealName FROM v4_SubActivity 
-			LEFT JOIN v4_AuthUsers ON v4_SubActivity.DriverID = v4_AuthUsers.AuthUserID 
-			$where AND v4_SubActivity.Approved<9 ORDER BY $column $order");
+			SELECT v4_SubExpenses.ID, v4_AuthUsers.AuthUserRealName FROM v4_SubExpenses 
+			LEFT JOIN v4_AuthUsers ON v4_SubExpenses.DriverID = v4_AuthUsers.AuthUserID 
+			$where AND v4_SubExpenses.Approved<9 ORDER BY $column $order");
 		while($row = $result->fetch_array(MYSQLI_ASSOC)){
 			$keys[$i] = $row["ID"];
 			$i++;
@@ -30,8 +20,10 @@ class v4_SubActivityJoin extends v4_SubActivity {
 	return $keys;
 	}
 }
+
 # init class
-$se = new v4_SubActivityJoin();
+$se = new v4_SubExpensesJoin();
+$au = new v4_AuthUsers();
 
 #********************************************
 # ulazni parametri su where, status i search
@@ -51,21 +43,31 @@ if ($length > 0) {
 }
 else $limit = '';
 
-if(empty($sortOrder)) $sortOrder = 'ASC';
+if(empty($sortOrder)) $sortOrder = 'DESC';
 
 
 # init vars
 $out = array();
 $flds = array();
+
 # kombinacija where i filtera
 $DB_Where = " " . $_REQUEST['where'];
 $DB_Where .= $filter;
+if (isset($_SESSION['UseDriverID']))  $DB_Where .=	" AND OwnerID = '".$_SESSION['UseDriverID']."' ";
 if (isset($_REQUEST['vehicleID']) && $_REQUEST['vehicleID']>0) $DB_Where .= " AND VehicleID=".$_REQUEST['vehicleID'];
-if (isset($_REQUEST['subdriverID']) && $_REQUEST['subdriverID']>0) $DB_Where .= " AND v4_SubActivity.DriverID=".$_REQUEST['subdriverID'];
+if (isset($_REQUEST['subdriverID']) && $_REQUEST['subdriverID']>0) $DB_Where .= " AND v4_SubExpenses.DriverID=".$_REQUEST['subdriverID'];
 if (isset($_REQUEST['actionID']) && $_REQUEST['actionID']>0) $DB_Where .= " AND Expense=".$_REQUEST['actionID'];
 if (isset($_REQUEST['orderFromDate']) && $_REQUEST['orderFromDate']>0) $DB_Where .= " AND Datum >='".$_REQUEST['orderFromDate']."'";
 if (isset($_REQUEST['orderToDate']) && $_REQUEST['orderToDate']>0) $DB_Where .= " AND Datum <='".$_REQUEST['orderToDate']."'";
 
+if (isset($_REQUEST['CAU'])) {
+	$cash=intval($_REQUEST['CAU']/100);
+	$approved=intval(($_REQUEST['CAU']-$cash*100)/10);
+	$unapproved=$_REQUEST['CAU']-$cash*100-$approved*10;
+	if ($cash) $DB_Where .= " AND Card=0";
+	if ($approved) $DB_Where .= " AND Approved=1";
+	if ($unapproved) $DB_Where .= " AND Approved=0";
+}	
 #********************************
 # kolone za koje je moguc Search 
 # treba ih samo nabrojati ovdje
@@ -96,53 +98,40 @@ if ( $_REQUEST['Search'] != "" )
 	$DB_Where .= ')';
 }
 
-
-
-// 2017-02-13 za pretrazivanje po imenu vozaca potrebno je napraviti join -R
-$DB_Where = "LEFT JOIN v4_AuthUsers ON v4_SubActivity.DriverID = v4_AuthUsers.AuthUserID" . $DB_Where;
-
 $dbTotalRecords = $db->getKeysBy('ID ASC', '',$DB_Where);
 
 # test za LIMIT - trebalo bi ga iskoristiti za pagination! 'asc' . ' LIMIT 0,50'
 $dbk = $db->getKeysBy('ID ' . $sortOrder, '' . $limit , $DB_Where);
 
-//select za nazive vozila
-$sql="SELECT * FROM `v4_SubVehicles` WHERE `OwnerID`=".$_SESSION["OwnerID"]." and `Active`=1";
-
-
-
-$query=mysqli_query($dbf->conn, $sql) or die('Error in RequestCheckList query' . mysqli_connect_error());
-while($list = mysqli_fetch_object($query) ) {
-	$vehiclesnames[$list->VehicleID]=$list->VehicleDescription;	
-}	
-
-
 if (count($dbk) != 0) {
     foreach ($dbk as $nn => $key)  
     {	
     	$db->getRow($key);
+	   	$au->getRow($db->getDriverID());
 
 		// ako treba neki lookup, onda to ovdje
+		
+		
 		
 		# get all fields and values
 		$detailFlds = $db->fieldValues();
 		
 		// ako postoji neko custom polje, onda to ovdje.
 		// npr. $detailFlds["AuthLevelName"] = $nekaDrugaDB->getAuthLevelName().' nesto';
-		$detailFlds["AuthUserRealName"] = $users[$db->getDriverID()]->AuthUserRealName;
+		$detailFlds["AuthUserRealName"] = $au->getAuthUserRealName();
 		$ac->getRow($db->getExpense());
 		$detailFlds["ExpanceTitle"] = $ac->getTitle();
-		$detailFlds["VehicleDescription"] = $vehiclesnames[$db->VehicleID];
-
+		
 		$out[] = $detailFlds;
-    }
+	}
 }
+require_once("subDriverBalance.php");
 
 # send output back
 $output = array(
+'sum' =>$sum,
 'recordsTotal' => count($dbTotalRecords),
 'data' =>$out
 );
 
 echo $_GET['callback'] . '(' . json_encode($output) . ')';
-

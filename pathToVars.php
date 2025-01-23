@@ -139,12 +139,18 @@ switch ($activePage) {
 	case 'tasks':
 	case 'subdriverHistory':
 	case 'vehicleAssignHistory':
+	case 'tunnelPassAH':
+	case 'tunnelPassHistory':
+		$selectsubdriver=true;
 		if ($pathVars->fetchByIndex($indexStart + 1)) { 
 			if ($pathVars->fetchByIndex($indexStart + 1)=='vehicles') {
 				$VehicleID=$pathVars->fetchByIndex($indexStart + 2);
 			}			
 			if ($pathVars->fetchByIndex($indexStart + 1)=='subdrivers') {
 				$SubDriverID=$pathVars->fetchByIndex($indexStart + 2);
+				if ($pathVars->fetchByIndex($indexStart + 3)) {
+					$CAU=($pathVars->fetchByIndex($indexStart + 3));
+				}	
 			}			
 			if ($pathVars->fetchByIndex($indexStart + 1)=='actions') {
 				$ActionID=$pathVars->fetchByIndex($indexStart + 2);

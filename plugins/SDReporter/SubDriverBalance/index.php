@@ -13,12 +13,13 @@
 
 
 	//ispis headera
-	$today=date("Y-m-d");
-    $smarty->assign('today',$today);
+	
+	if($_POST['RequestDate']) $requestday=$_POST['RequestDate'];
+	else $requestday=date("Y-m-d");
+    $smarty->assign('requestday',$requestday);
 
-	// CASH-IN Ostalo od boge subdriver1-2-3 treba vuci samo sub1, jer prvi vozac naplacuje transfer
 	$q1  = "SELECT SubDriver, SUM(CashIn) AS Primljeno FROM v4_OrderDetails ";
-	$q1 .= "WHERE PickupDate >= '2018-08-01' AND PickupDate < '".$today."'";	
+	$q1 .= "WHERE PickupDate >= '2018-08-01' AND PickupDate < '".$requestday."'";	
 	$q1 .= " GROUP BY SubDriver ";			
 	$w1 = $db->RunQuery($q1);
 	$orders_arr=array();
@@ -28,9 +29,9 @@
 		$o_arr['Primljeno']=$od->Primljeno;
 		$orders_arr[]=$o_arr;
 	}
-	// CASH-IN for today
+	// CASH-IN for requestday
 	$q4  = "SELECT SubDriver, SUM(CashIn) AS Primljeno FROM v4_OrderDetails ";
-	$q4 .= "WHERE PickupDate = '".$today."'";	
+	$q4 .= "WHERE PickupDate = '".$requestday."'";	
 	$q4 .= " GROUP BY SubDriver ";		
 
 	$w4 = $db->RunQuery($q4);
@@ -41,9 +42,9 @@
 		$o_arr2['Primljeno']=$od2->Primljeno;
 		$orders_arr2[]=$o_arr2;
 	}
-	// CASH PLAN for today
+	// CASH PLAN for requestday
 	$q6  = "SELECT SubDriver, SUM(PayLater) AS CashPlan FROM v4_OrderDetails ";
-	$q6 .= "WHERE PickupDate = '".$today."'";	
+	$q6 .= "WHERE PickupDate = '".$requestday."'";	
 	$q6 .= " GROUP BY SubDriver ";			
 	$w6 = $db->RunQuery($q6);
 	$orders_arr3=array();
@@ -56,7 +57,7 @@
 	
 	// CASH EXPENSES
 	$q2  = "SELECT DriverID, SUM(Amount) AS Trosak FROM v4_SubExpenses WHERE Card = 0 ";
-	$q2 .= "AND Datum >= '2018-08-01' AND Datum < '".$today."' AND Approved=1";	
+	$q2 .= "AND Datum >= '2018-08-01' AND Datum < '".$requestday."' AND Approved=1";	
 	$q2 .= " GROUP BY DriverID ";			
 	
 	$w2 = $db->RunQuery($q2);
@@ -70,7 +71,7 @@
 
 	// CASH EXPENSES TODAY
 	$q5  = "SELECT DriverID, SUM(Amount) AS Trosak FROM v4_SubExpenses WHERE Card = 0 ";
-	$q5 .= "AND Datum = '".$today."' AND Approved=1";	
+	$q5 .= "AND Datum = '".$requestday."' AND Approved=1";	
 	$q5 .= " GROUP BY DriverID ";			
 	
 	$w5 = $db->RunQuery($q5);
@@ -84,7 +85,7 @@
 	
 	// Unapproved CASH EXPENSES
 	$q3  = "SELECT DriverID, SUM(Amount) AS Trosak FROM v4_SubExpenses WHERE Card = 0 AND Approved = 0 ";
-	$q3 .= "AND Datum >= '2018-08-01'"; 
+	$q3 .= "AND Datum >= '2018-08-01' AND Datum < '".$requestday."'"; 
 	$q3 .= " GROUP BY DriverID ";			
 	
 	$w3 = $db->RunQuery($q3);
@@ -98,7 +99,7 @@
 	
 	// Recived CASH 
 	$q7  = "SELECT v4_Actions.ReciverID AS RID, SUM(Amount) AS Trosak FROM v4_SubExpenses,v4_Actions WHERE v4_SubExpenses.Expense=v4_Actions.ID and v4_Actions.ReciverID>0 ";
-	$q7 .= "AND Datum >= '2018-08-01'"; 
+	$q7 .= "AND Datum >= '2018-08-01' AND Datum <= '".$requestday."'";  
 	$q7 .= "AND Approved =1 "; 
 	$q7 .= " GROUP BY v4_Actions.ReciverID ";			
 	
@@ -112,7 +113,7 @@
 	
 	// POLOG
 	$q8  = "SELECT DriverID, SUM(Amount) AS Trosak FROM v4_SubExpenses WHERE Expense=8 ";
-	$q8 .= "AND Datum >= '2018-08-01'"; 
+	$q8 .= "AND Datum >= '2018-08-01' AND Datum <= '".$requestday."'";  
 	$q8 .= " GROUP BY DriverID ";			
 	
 	$w8 = $db->RunQuery($q8);
@@ -175,8 +176,8 @@
 
 		$Balance = $Primljeno - $Trosak + $d->Balance + $RCash;			
 		$orders_row['BalanceT']=number_format(($Balance + $Primljeno2 - $Trosak3),2);
-
-		if(($orders_row['BalanceT'] != 0 && !isset($_POST['all'])) || isset($_POST['all'])) $orders[]=$orders_row;
+		$orders_row['Balance']=number_format($Balance,2);
+		if(($orders_row['BalanceT'] != 0 && !($_POST['submit'])) || $_POST['Include']==2) $orders[]=$orders_row;
 	}
 	$smarty->assign('orders',$orders);
 

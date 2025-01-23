@@ -28,6 +28,7 @@ $DB_Where .= $filter;
 
 if (isset($_REQUEST['orderFromDate']) && $_REQUEST['orderFromDate']>0) $DB_Where .= " AND PassTime>='".$_REQUEST['orderFromDate']."'";
 if (isset($_REQUEST['orderToDate']) && $_REQUEST['orderToDate']>0) $DB_Where .= " AND PassTime<='".$_REQUEST['orderToDate']."'";
+if (isset ($_REQUEST['subdriverID']) && $_REQUEST['subdriverID']>0) $DB_Where .= " AND  PassSDID=".$_REQUEST['subdriverID'];
 
 # dodavanje search parametra u qry
 # DB_Where sad ima sve potrebno za qry

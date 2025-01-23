@@ -30,9 +30,8 @@ value=" WHERE {$ItemID} > 0">
 <input type="hidden"  id="routeID" name="routeID" value="{$RouteID}">
 <input type="hidden"  id="vehicleTypeID" name="vehicleTypeID" value="{$VehicleTypeID}">
 <input type="hidden"  id="vehicleID" name="vehicleID" value="{$VehicleID}">
-<input type="hidden"  id="subdriverID" name="subdriverID" value="{$SubDriverID}">
-<input type="hidden"  id="actionID" name="actionID" value="{$ActionID}">
 <input type="hidden"  id="terminalID" name="terminalID" value="{$TerminalID}">
+<input type="hidden"  id="CAU" name="CAU" value="{$CAU}">
 
 <div class="row itemsheader itemsheader-edit">
 
@@ -142,6 +141,34 @@ value=" WHERE {$ItemID} > 0">
 					<option value="99" selected="selected">{$ALL}</option>			
 					<option value="1"> {$SOLVED} </option>
 					<option value="0"> {$NOT_SOLVED} </option>
+				</select>
+			</div>
+		</div>
+		{/if}		
+		
+		{if isset($selectsubdriver)}	
+		<div class="col-xs-12 col-md-4 col-lg-2">
+			<i class="fa fa-filter edit-fa"></i> 
+			<div class="form-group group-edit">
+				<select id="subdriverID" class="w75 form-control control-edit" onchange="allItems();">
+					<option value="0">{$ALL} {$USERS}</option>
+					{section name=pom2 loop=$subdrivers}
+						<option value="{$subdrivers[pom2].id}" {if $subdrivers[pom2].id eq $SubDriverID}selected{/if}>{$subdrivers[pom2].name}</option>
+					{/section}
+				</select>
+			</div>
+		</div>
+		{/if}
+		
+		{if isset($selectaction)}	
+		<div class="col-xs-12 col-md-4 col-lg-2">
+			<i class="fa fa-filter edit-fa"></i> 
+			<div class="form-group group-edit">
+				<select id="actionID" class="w75 form-control control-edit" onchange="allItems();">
+					<option value="0">{$ALL} {$ACTIONS}</option>
+					{section name=pom2 loop=$actions}
+						<option value="{$actions[pom2].ID}" {if $actions[pom2].ID eq $ActionID}selected{/if}>{$actions[pom2].Title}</option>
+					{/section}
 				</select>
 			</div>
 		</div>

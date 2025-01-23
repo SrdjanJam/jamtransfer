@@ -1,5 +1,5 @@
 <?
-require_once '../../config.php';
+require_once '../../../config.php';
 require_once ROOT . '/db/v4_TunnelPassAH.class.php';
 require_once ROOT . '/db/v4_TunnelPass.class.php';
 $db = new v4_TunnelPassAH();

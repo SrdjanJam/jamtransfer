@@ -23,7 +23,9 @@
             {{userSelect details.AgentID "0" "AgentIDeX"}}
             ({{details.AgentID}})
         </div>					
-		{{/compare}}			
+		{{/compare}}
+	</div>	
+	<div class="row dagent">	
 		{{#compare details.CustomerID ">" "0"}}
         <div class="col-md-3 "><label><?= CUSTOMER?></label></div>
         <div class="col-md-9">
