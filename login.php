@@ -87,6 +87,7 @@ require_once('lng/' . $_SESSION['CMSLang'] . '_text.php');
 					}	
 
 					$_SESSION['AuthLevelID'] = $row['AuthLevelID'];
+					if($row['AuthLevelID']==46) $_SESSION['UseDriverID']= $row['DriverID'];
 					$_SESSION['DriverID'] = $row['DriverID'];
 					$_SESSION['MemberSince'] = $row['DateAdded'];
 					$_SESSION['AuthUserNote1'] = $row['AuthUserNote1'];

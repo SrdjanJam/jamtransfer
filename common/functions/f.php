@@ -149,10 +149,10 @@ function pdfFooter($SiteID) {
 # Mail koji se salje vozacu sa zahtjevom da potvrdi transfer
 function sendDriverNotification($OrderID, $OrderKey='') {
 
-    require_once '../LoadLanguage.php';
+    //require_once '../LoadLanguage.php';
 
-    require_once '../db/v4_OrdersMaster.class.php';
-    require_once '../db/v4_OrderDetails.class.php';
+    require_once ROOT . '/db/v4_OrdersMaster.class.php';
+    require_once ROOT . '/db/v4_OrderDetails.class.php';
 
 
     $om = new v4_OrdersMaster();

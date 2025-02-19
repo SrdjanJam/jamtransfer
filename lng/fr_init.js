@@ -21,6 +21,7 @@ userLevels[42] = 'Translator';
 userLevels[43] = 'Routes Administrator';
 userLevels[44] = 'Accountant';
 userLevels[45] = 'Dispatcher';
+userLevels[46] = 'SDadmin';
 userLevels[81] = 'Set as a Driver';
 userLevels[91] = 'Admin';
 userLevels[92] = 'Menager';

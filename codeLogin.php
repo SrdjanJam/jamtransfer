@@ -24,6 +24,7 @@ if (isset($_REQUEST['userCode'])) {
 			$_SESSION['OwnerID'] = $au->getAuthUserID();
 			$_SESSION['PermAuthUserID'] = $au->getAuthUserID();
 			$_SESSION['AuthLevelID'] = $au->getAuthLevelID();
+			if($au->getAuthLevelID()==46) $_SESSION['UseDriverID']= $au->getDriverID();			
 			$_SESSION['DriverID'] = $au->getDriverID();
 			$_SESSION['MemberSince'] = $au->getDateAdded();
 			$_SESSION['AuthUserNote1'] = $au->getAuthUserNote1();

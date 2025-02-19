@@ -405,7 +405,12 @@ else {
 							$DriverCompanyFormated=$DriverCompany;
 							$FinalPriceFormated=nf($FinalPrice);
 						}	
-						
+						$DriverCompanyButton="<button 
+							data-ownerid='".$OwnerID."' 
+							data-mobile='".$au->getAuthUserMob()."'
+							data-mail='".$au->getAuthUserMail()."'
+							class='selectowner' type='button'>".$DriverCompany."</button>";
+
 						$sortHelpClass      = 1000+$VehicleTypeID;
 						$sortBy = $RouteID.$sortHelpClass.$FinalPrice;				
 						$cars[] = array(
@@ -413,6 +418,7 @@ else {
 							'RouteName'           => $RouteName,
 							'OwnerID'           => $OwnerID,
 							'DriverCompany'     => $DriverCompanyFormated,
+							'DriverCompanyButton'     => $DriverCompanyButton,
 							'StatusCompany'     => $statusComp,
 							'Contract'     		=> $contract,
 							'ProfileImage'      => $ProfileImage,

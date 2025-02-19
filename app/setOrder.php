@@ -50,12 +50,19 @@ if($pass) {
 		$content = chunk_split(base64_encode($content));
 		$mpdf->Output('../pdf/'.$OrderKey.'.pdf');
 		/* END PDF ***********************************************************************************************/
+		
 		mail_html($agentMail, 'confirmation@jamtransfer.com', 'JamTransfer', 'info@jamtransfer.com',
 				  $OrderKey, '<br>'.$html, $pdfFile);			
 		mail_html('cms@jamtransfer.com', 'confirmation@jamtransfer.com', 'JamTransfer', 'info@jamtransfer.com',
 				  'Agent: ' . $_SESSION['UserCompany'] . ' Order - '.$OrderKey, '<br>'.$html, $pdfFile);	
-		sendDriverNotification($omOrderID, $OrderKey); 		
+		sendDriverNotification($omOrderID, $OrderKey); 	
 	
-	echo "OK - Set Order: ".$OrderKey;
+		$final_responce = array(
+			'OrderKey'       => $OrderKey,
+			'OrderID'   => $omOrderID,
+			'InvoicePrice'  => $transferPrice2 
+		);
+	//echo "OK - Set Order: ".$OrderKey;
+	echo json_encode($final_responce);
 	header("HTTP/1.1 200 OK");
 }	

@@ -16,14 +16,12 @@
         </div>
     </div>	
     <div class="row dagent">	
-		{{#compare details.AgentID ">" "0"}}
         <div class="col-md-3 "><label><?= AGENT?></label></div>
         <div class="col-md-9">
 			<strong>{{userName details.AgentID "AuthUserCompany"}}</strong>
             {{userSelect details.AgentID "0" "AgentIDeX"}}
             ({{details.AgentID}})
         </div>					
-		{{/compare}}
 	</div>	
 	<div class="row dagent">	
 		{{#compare details.CustomerID ">" "0"}}

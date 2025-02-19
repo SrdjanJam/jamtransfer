@@ -102,6 +102,13 @@
 								<div class="col-md-9">
 									{{userSelect DriverID "91" "DriverID"}}
 								</div>
+							</div>							
+							
+							<div class="row sdadmindriver">
+								<div class="col-md-3 "><label><?= DRIVER ?></label></div>
+								<div class="col-md-9">
+									{{userSelect DriverID "31" "DriverID"}}
+								</div>
 							</div>
 							
 							<div class="row terminals">
@@ -640,6 +647,7 @@
 		});
 		if ($("#AuthLevelID").val()!=2) $(".administrator").hide();
 		if ($("#AuthLevelID").val()!=2) $(".terminals").hide();
+		if ($("#AuthLevelID").val()!=46) $(".sdadmindriver").hide();
 		$("#AuthLevelID").change(function(){
 			if ($(this).val()==2) {
 				$(".administrator").show();
@@ -647,6 +655,11 @@
 			}	else {
 				$(".administrator").hide();
 				$(".terminals").hide();
+			}			
+			if ($(this).val()==46) {
+				$(".sdadmindriver").show();
+			}	else {
+				$(".sdadmindriver").hide();
 			}	
 		})	
 		

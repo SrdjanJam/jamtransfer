@@ -291,10 +291,12 @@ switch ($specialpage) {
 	case 'newDriver':
 		$isNew=true;
 		$newDriver=true;
+		$entryForm='hidden';
 		break;	
 	case 'newAgent':
 		$isNew=true;
 		$newAgent=true;
+		$entryForm='hidden';		
 		break;
 	default:
 }

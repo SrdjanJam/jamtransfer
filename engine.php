@@ -8,6 +8,7 @@ $isNew=false;
 $isNewNL=false;
 $NewDriver=false;
 $NewAgent=false;
+$menuForm='';
 $transfersFilter='';
 $includeFile='/index.php';
 $includeFileTpl='index.tpl';
@@ -29,20 +30,19 @@ $CAU="";
 
 require_once 'pathToVars.php';
 // LOGIN
-if ($activePage=="users" && !isset($_SESSION['UserRealName']) && $isNew) {
-	$_SESSION['UserAuthorized']=true;
+$active_pages=array("users","registration");
+if (in_array($activePage,$active_pages) && !isset($_SESSION['AuthUserID'])) {
+	//$_SESSION['UserAuthorized']=true;
 	$_SESSION['AuthLevelID']=0;
-}	
-if ($_SESSION['AuthLevelID']==0) {
-	$active_pages[]="users";
-	if ($newAgent) $_SESSION['UserRealName']="New agent";
-	if ($newDriver) $_SESSION['UserRealName']="New driver";
-}	
-if(!isset($_SESSION['UserAuthorized']) or $_SESSION['UserAuthorized'] == false) {
+	$_SESSION['AuthUserID']=0;
+	$menuForm='hidden';		
+}
+	
+if((!isset($_SESSION['UserAuthorized']) or $_SESSION['UserAuthorized'] == false) && !in_array($activePage,$active_pages)) {
 	if ($activePage<>"") setcookie("pageEx", $activePage, time() + (7*24*60*60),"/");
 	require_once 'login.php';
 	exit();	
-}
+} 
 else if (!isset($_SESSION['UseDriverID'])) setcookie("pageEx", $activePage, time() + (7*24*60*60),"/");
 if (isset ($_SESSION['UseDriverID'])){
 	setcookie("UseDriverID", $_SESSION['UseDriverID'],time()+24*3600);
@@ -50,7 +50,7 @@ if (isset ($_SESSION['UseDriverID'])){
 }
 // kontrola pristupa
 $modules_arr='';
-if(isset($_SESSION['UseDriverID']) && $_SESSION['AuthLevelID']<>31) $AuthLevelID=81;
+if(isset($_SESSION['UseDriverID']) && !in_array($_SESSION['AuthLevelID'],array(31,46))) $AuthLevelID=81;
 else $AuthLevelID=$_SESSION['AuthLevelID'];	
 if ($_SESSION['AuthLevelID']==31) $_SESSION['UseDriverID']=$_SESSION['AuthUserID'];
 
@@ -174,6 +174,7 @@ if ($result->num_rows>0) {
 	$smarty->assign('ModulID',$keyP);
 	$smarty->assign('setasdriver',$setasdriver);
 	$smarty->assign('CAU',$CAU);
+	$smarty->assign('menuForm',$menuForm);
 
 
 		

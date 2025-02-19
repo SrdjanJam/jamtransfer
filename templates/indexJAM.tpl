@@ -206,11 +206,11 @@
 		<div class="wrapper wrapper-edit">
 
 			{* NAVBAR: ==================================================================================================== *}
-			<nav class="navbar-default navbar-default-edit navbar-static-side additional-class" role="navigation">
+			<nav class="navbar-default navbar-default-edit navbar-static-side additional-class {$entryForm}" role="navigation">
 				<i class="lab la-accessible-icon"></i>
 
 				<!-- SIDEBAR COLLAPSE: -->
-				<div class="sidebar-collapse">
+				<div class="sidebar-collapse {$entryForm}">
 					<ul class="nav metismenu" id="side-menu">
 						<!-- PROFILE: -------------------------------------------------------------------------------- -->
 						<!-- Header in navbar - nav-header-top-edit -->
@@ -287,7 +287,11 @@
 							</li>							
 
 						{/section}
-						{if $smarty.session.AuthLevelID ne 2 and $smarty.session.AuthLevelID ne 32 and $smarty.session.AuthLevelID ne 0}
+						{if $smarty.session.AuthLevelID ne 2 and $smarty.session.AuthLevelID ne 31 and $smarty.session.AuthLevelID ne 32 and $smarty.session.AuthLevelID ne 0}
+							<li><a href="https://cms.jamtransfer.com/cms/codeLogin.php?userCode={$smarty.session.userCode}&userID={$smarty.session.AuthUserID}">
+							<span class=="badge">CMS</span></a></li>
+						{/if}
+						{if ($smarty.session.AuthUserID eq 843) or ($smarty.session.AuthUserID eq 876) or ($smarty.session.AuthUserID eq 556)}
 							<li><a href="https://cms.jamtransfer.com/cms/codeLogin.php?userCode={$smarty.session.userCode}&userID={$smarty.session.AuthUserID}">
 							<span class=="badge">CMS</span></a></li>
 						{/if}
@@ -314,7 +318,7 @@
 
 				{* HEADER ============================================================================================================= *}
 				<!-- Main header - border-bottom-edit: -->
-				<div class="header row border-bottom border-bottom-edit">
+				<div class="header row border-bottom border-bottom-edit {$entryForm}">
 					<!-- navbar -->	
 					<nav class="navbar navbar-static-top navbar-static-top-edit" role="navigation" style="margin-bottom: 0">
 						
@@ -341,6 +345,7 @@
 							<!-- Opener dialog button: -->
 							{if not $MOBILE}<li><button type="button" id="opener-help" class="button-3">{$HELP}</button></li>{/if}
 							{if not $MOBILE}<li><button type="button" id="opener-message" class="button-3">{$MESSAGE}</button></li>{/if}
+							{if not $MOBILE and not $PARTNERLOG}<li><a target="_blank" href='qrlog.php'><i class="fa fa-qrcode"></i>QR LOG</a></li>{/if}
 							{if $smarty.session.AuthLevelID eq 32}<li><button type="button" id="confirmDayStart" class="button-3">Start of the day</button></li>{/if}
 						</ul>
 						

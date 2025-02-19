@@ -1,12 +1,12 @@
 <?
 $arr=array (
-			"ServiceID" => 392772,
+			"ServiceID" => 861905,
 			"ExtrasIDS" => array (3076,4117),
 			"PaxNo" => 3,
-			"transferDate" => "2024-05-01",
+			"transferDate" => "2025-05-01",
 			"transferTime" => "15:30",
 			"returnTransfer" => 1,
-			"returnDate" => "2024-05-02",
+			"returnDate" => "2025-05-02",
 			"returnTime" => "16:00",
 			"VehiclesNo" => 1,
 			"pickupAddress" => "Terminal airport",
@@ -21,7 +21,7 @@ $arr=array (
 			"notes" => "for test porpuse"
 		);	
 
-$url = "https://wis.jamtransfer.com/app/setOrder.php?code=ec6a6536ca304edf844d1d248a4f08dc";    
+$url = "https://wis.jamtransfer.com/app/setOrder.php?code=14e1b600b1fd579f47433b88e8d85291";    
 $content = json_encode($arr);
 $curl = curl_init($url);
 curl_setopt($curl, CURLOPT_HEADER, false);
