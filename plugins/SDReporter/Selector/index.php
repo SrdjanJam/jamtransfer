@@ -18,15 +18,15 @@
  
 // 23.07. Mandic zatrazio da se datum transfera prikaziva PickupDate (bio SubPickupDate) promjenjeno sve di je SubPickupDate, vrijeme treba ostati SubPickupTime - Promjenio Leo
 
-require_once $_SERVER['DOCUMENT_ROOT'] . '/db/db.class.php';
+require_once ROOT . '/db/db.class.php';
 if (isset($_REQUEST['user'])) {
-	require_once $_SERVER['DOCUMENT_ROOT'] . '/cms/headerScripts.php';
-	require_once $_SERVER['DOCUMENT_ROOT'] . '/f2/f.php';
+	require_once ROOT . '/cms/headerScripts.php';
+	require_once ROOT . '/f2/f.php';
 }
-require_once $_SERVER['DOCUMENT_ROOT'] . '/db/v4_OrdersMaster.class.php';
+require_once ROOT . '/db/v4_OrdersMaster.class.php';
 //require_once $_SERVER['DOCUMENT_ROOT'] . '/db/v4_OrderDetailsFR.class.php'; //Srdjan zakomentarisao 14.02.2019. Dodao naredni red. Mirandi je pucalo nije mogla da se otvori klasa u 30 redu.
-require_once $_SERVER['DOCUMENT_ROOT'] . '/db/v4_OrderDetails.class.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/db/v4_Routes.class.php'; 
+require_once ROOT . '/db/v4_OrderDetails.class.php';
+require_once ROOT . '/db/v4_Routes.class.php'; 
 
 $db = new DataBaseMysql();
 $om = new v4_OrdersMaster();
@@ -204,8 +204,7 @@ if( isset($_REQUEST['submit']) or isset($_REQUEST['Save']) ) {
                     
                 }
 
-        }
-        
+        } // End of foreach($_REQUEST['DateFrom']
         
         // MONTH SUMMARY - shifts = 4
         $startTime = '00:00';
@@ -230,8 +229,6 @@ if( isset($_REQUEST['submit']) or isset($_REQUEST['Save']) ) {
 
         $db->RunQuery($q);        
 
-        
-        
         // hide or delete unwanted records
         foreach($_REQUEST as $key => $value) {
 
@@ -250,11 +247,6 @@ if( isset($_REQUEST['submit']) or isset($_REQUEST['Save']) ) {
     ##########################################################################################
     ## KRAJ UPISA U TABLICE
     ##########################################################################################    
-
-
-
-
-
     ##########################################################################################
     ## PRIKAZIVANJE PODATAKA
     ########################################################################################## 
@@ -279,29 +271,30 @@ if( isset($_REQUEST['submit']) or isset($_REQUEST['Save']) ) {
     else $odk = $od->getKeysBy("PickupDate", "ASC, PickupTime ASC", $where.$where2);
 
     if($ShowHidden) $odk2 = $od->getKeysBy("PickupDate", "ASC, PickupTime ASC",  $where.$where2);
+    else $odk2 = array();
+
 
     // GLAVNI DIV *********************************************************************************
-	ob_start();
-    echo '<div class="grey lighten-2" style="font-size:13px;">';
- 
-    echo $Year.'-'.$Month.'-01' . ' - ' . $Year.'-'.$Month.'-'.$daysInMonth;
+	// ob_start();
 
-    if ($ShowHidden) echo ' (' . count($odk2) . '/' . count($odk) . ' transfers)';
-    else echo ' (' . count($odk) . ' transfers)';
-
-	//Za ukupan broj transfera na dnu stranice 23.07.2018 - zatrazio Mandic - Leo
+	// Za ukupan broj transfera na dnu stranice 23.07.2018 - zatrazio Mandic - Leo
 	$brojTransfera = count($odk);
 	$brojSkrivenihTransfera = count($odk2);
 
-    echo '<br><br><button class="btn btn-default" onclick="$(\'.noPrint\').toggle(\'slow\');return false;">Show / Hide transfer details</button>';
-    echo '<form action="" method="POST">';
-    // Container start LISTA
-    echo '<div class="container-fluid white pad4px">';
-
     $prijenosIzProslogMjeseca = true;
+
+?>
+
+<!-- SMARTY 1 -->
+
+<?php
   
-  
+  $rows = array();
     for($day = 1; $day <= $daysInMonth; $day++) {
+        $row = array();
+
+        ob_start();
+
         $dayTemp = '0'.$day;
         $day = substr($dayTemp, -2);
         // construct date
@@ -311,8 +304,6 @@ if( isset($_REQUEST['submit']) or isset($_REQUEST['Save']) ) {
 
         $weekNo = date("W", strtotime($dateFrom));
         $dayOfWeek = date("l", strtotime($dateFrom));
-
-
 
         $where  = "WHERE PickupDate = '" . $dateFrom . "' ";
         $where .= "AND DriverID = '". $DriverID ."' ";
@@ -332,11 +323,12 @@ if( isset($_REQUEST['submit']) or isset($_REQUEST['Save']) ) {
 
         if($ShowHidden)     $odk2 = $od->getKeysBy("PickupDate", "ASC, SubPickupTime ASC",  $where.$where2);
         
-        $lastDate = '';        
-               
-        //if( count($odk) > 0 ) { // prikazi transfere za $dateFrom
-        if(true) {        
-            if( count($odk) == 0 )  $slobodanDan = true; else $slobodanDan = false; 
+        $lastDate = '';
+// =================================================================================================
+// =================================================================================================
+// if( count($odk) > 0 ) { // prikazi transfere za $dateFrom
+//if(true) {        
+            if( count($odk) == 0 )  $slobodanDan = true; 
             foreach( $odk as $nn => $DetailsID ) {
                 $od->getRow($DetailsID);
                 $om->getRow($od->OrderID);
@@ -394,86 +386,88 @@ if( isset($_REQUEST['submit']) or isset($_REQUEST['Save']) ) {
                     $expectedArrival = $time->format('H:i');
 
                 }
-	
-                ?>
-                <!-- PODACI O TRANSFERU -->
-                <div class="row pad4px <?=$colorClass?> noPrint" style="border-top: 1px solid #ccc">
-                    <div class="col-md-1">
-                        <?= $icon ?><br>
-                        <?=dayToLang( date('l', strtotime($dateFrom)) )?><br>
-                        <strong class="l"><?=$dateFrom?></strong>
-                    </div>
-                    <div class="col-md-2">
-                        <span class="l">
-                            <?/*<span class="xblue-text"><?= $od->PickupDate ?> - <?=$od->SubPickupTime ?></span>*/?>
-                            <?= $od->SubPickupTime ?>
-                            <? if($expectedArrival != '') echo '(ETA: ' . $expectedArrival .')'?> 
-                            
-                            <? if($minutes > 90) echo '<i class="fa fa-pause s"></i>'.$emptyTimeH .':' . $emptyTimeM ; ?>
-                            <br>
-                        </span>
-                        <?= $om->MOrderKey ?> - <?= $om->MOrderID ?> - <?=$od->TNo ?><br>
-                        <?= $od->PaxName ?><br>
-                        <?= $om->MPaxTel ?>
-                    </div>
 
-                    <div class="col-md-2">
-                        <?= $od->PickupName ?><br>
-                        <?= $od->PickupAddress ?><br>
+                
+                $row['colorClass']=$colorClass;
+                $row['SubVehicleName'] = getSubVehicleName($od->Car);
+                $row['SubVehicleNameTwo'] = getSubVehicleName($od->Car2);
+                $row['SubVehicleNameThree'] = getSubVehicleName($od->Car3);
+                $row['PickupDate'] = $od->PickupDate;
+                $row['SubPickupTime'] = $od->SubPickupTime;
+                $row['MOrderKey'] = $om->MOrderKey;
+                $row['PaxName'] = $od->PaxName;
+                $row['MPaxTel'] = $om->MPaxTel;
+                $row['MOrderID'] = $om->MOrderID;
+                $row['TNo'] = $od->TNo;
+                $row['PickupName'] = $od->PickupName;
+                $row['PickupAddress'] = $od->PickupAddress;
+                $row['DropName'] = $od->DropName;
+                $row['DropAddress'] = $od->DropAddress;
+                $row['AuthUserRealName'] = $sd->AuthUserRealName;
+                $row['PayLater'] = $od->PayLater;
+                $row['PayNow'] = $od->PayNow;
+                $row['InvoiceAmount'] = $od->InvoiceAmount;
+                $row['SubDriver2'] = $od->SubDriver2;
+                $row['AuthUserRealName2'] = $sd2->AuthUserRealName;
+                $row['SubDriver3'] = $od->SubDriver3;
+                $row['AuthUserRealName3'] = $sd3->AuthUserRealName;
+                $row['DetailsID'] = $od->DetailsID;
+                $row['Expired'] = $od->Expired;
+                $row['SubDriverNote'] = $od->getSubDriverNote();
+                $row['dateFrom'] = $dateFrom;
+                $row['weekNo'] = $weekNo;
+                $row['dayOfYear'] = $dayOfYear;
+                $row['Description'] = $Description;
+                $row['praznik'] = $praznik;
+                $row['nedilja'] = $nedilja;
+                $row['startTime_1'] = $startTime_1;
+                $row['endTime_1'] = $endTime_1;
+                $row['pauzaStart_1'] = $pauzaStart_1;
+                $row['pauzaEnd_1'] = $pauzaEnd_1;
+                $row['ukRedovno_1'] = $ukRedovno_1;
+                $row['ukPauza_1'] = $ukPauza_1;
+                $row['ukNoc_1'] = $ukNoc_1;
+                $row['ukNedjelja_1'] = $ukNedjelja_1;
+                $row['ukPraznik_1'] = $ukPraznik_1;
+                $row['ukupno_1'] = $ukupno_1;
+                $row['color2'] = $color2;
+                $row['color1'] = $color1;
+                $row['hideShift2'] = $hideShift2;
+                $row['initialDisplay'] = $initialDisplay;
+                $row['startTime_2'] = $startTime_2;
+                $row['ukRedovno_2'] = $ukRedovno_2;
+                $row['ukPauza_2'] = $ukPauza_2;
+                $row['ukNoc_2'] = $ukNoc_2;
+                $row['ukNedjelja_2'] = $ukNedjelja_2;
+                $row['ukPraznik_2'] = $ukPraznik_2;
+                $row['ukupno_2'] = $ukupno_2;
+                $row['endTime_2'] = $endTime_2;
+                $row['pauzaStart_2'] = $pauzaStart_2;
+                $row['pauzaEnd_2'] = $pauzaEnd_2;
+                $row['ukRedovno'] = $ukRedovno;
+                $row['ukPauza'] = $ukPauza;
+                $row['ukNoc'] = $ukNoc;
+                $row['ukNedjelja'] = $ukNedjelja;
+                $row['ukPraznik'] = $ukPraznik;
+                $row['ukupno'] = $ukupno;
+                $row['slobodanDan'] = $slobodanDan;
+                $row['expectedArrival'] = $expectedArrival;
+                $row['minutes'] = $minutes;
+                $row['emptyTimeH'] = $emptyTimeH;
+                $row['emptyTimeM'] = $emptyTimeM;
+                $row['odk'] = $odk;
+                $row['day'] = $day;
+                $row['daysInMonth'] = $daysInMonth;
 
-                        <i class="fa fa-car"></i> <?= getSubVehicleName($od->Car) ?>
-                        <?
-                        if($sd2 != '') echo '<br><i class="fa fa-car"></i> '. getSubVehicleName($od->Car2);
-                        if($sd3 != '') echo '<br><i class="fa fa-car"></i> '. getSubVehicleName($od->Car3);
-                        ?>
-
-                    </div>
-
-                    <div class="col-md-2">
-                        <?= $od->DropName ?><br>
-                        <?= $od->DropAddress ?><br>
-                    </div>
-
-                    <div class="col-md-2">
-                        <?= trim( $sd->AuthUserRealName )?><br>
-
-                        Cash: <?= $od->PayLater ?> EUR<br>
-                        Online: <?= $od->PayNow ?> EUR<br>
-                        Invoice: <?= $od->InvoiceAmount ?> EUR
-
-                    </div>
-
-                    <div class="col-md-2">
-                        <?
-                        if($od->SubDriver2 != '') {
-                            echo $sd2->AuthUserRealName;
-                            echo '<br>';
-                        }
-                        if($od->SubDriver3 != '') {
-                            echo $sd3->AuthUserRealName;
-                            echo '<br>';
-                        }
-                        ?>
-						<p>Note: <?= $od->getSubDriverNote() ?></p>
-                    </div>
-
-                    <div class="col-md-1">
-                        <input type="hidden" name="Detail_<?= $od->DetailsID ?>" id="Det_<?= $od->DetailsID ?>" value="<?= $od->Expired?>">
-
-                        <input type="checkbox" id="Detail_<?= $od->DetailsID ?>"
-                            <? if($od->Expired) echo 'checked="checked"'; ?>
-                        onchange="toggleCheck('<?= $od->DetailsID ?>')" >
-
-                    </div>
-
-                </div>
-                <?  
-
+// SMARTY 2:
+                // PODACI O TRANSFERU
+            
                 $lastDate = $od->PickupDate;  
 				$totalValue += $od->getDetailPrice();
 				$totalCashIn += $od->PayLater;  
             }// end foreach odk
 
+           
 
             ###################################################################
             ## KRAJ DANA
@@ -515,114 +509,12 @@ if( isset($_REQUEST['submit']) or isset($_REQUEST['Save']) ) {
             if($ukupno_1 == '') $ukupno_1 = "00:00";
             
             if($Description == '') $Description = "Jour de congé";
-            ?>
-			
-            <input type="hidden" name="DateFrom[]" value="<?=$dateFrom?>">
-            <input type="hidden" name="WeekNumber[]" value="<?=$weekNo?>">
-            <?  
-                $color1 = 'grey lighten-2';
-                $color2 = 'grey lighten-1';
-                if ($slobodanDan) { 
-                    $color1 = 'xorange lighten-3 xblack-text';
-                    $color2 = 'xorange lighten-2 xblack-text';
-               
-                    
-            ?>
-            <div class="row pad4px <?=$color1?>">
-                <div class="col-md-1">
-                    <strong><?=$dateFrom?></strong><br>
-                    <?=dayToLang( date('l', strtotime($dateFrom)) )?>
-                    <? if(prazniciFR($dateFrom)) echo '<br><span class="red">HOLIDAY</span>'; ?>
-                </div>            
-                <div class="col-md-1"><strong>FREE</strong></div>
-                <div class="col-md-10">
-                    <input class="w100 xblack-text" type="text" name="Description[]" value="<?=$Description?>">
-                </div>
-            </div>
-            <? } else { ?>
-            <input type="hidden" name="Description[]">
-            <? } ?>
             
-            <? if(date('w', strtotime($dateFrom)) == '0' ) $nedilja = '1'; else $nedilja = 0; ?>
-            <input type="hidden" id="Nedjelja1_<?=$dayOfYear?>" value="<?=$nedilja?>">
-            <input type="hidden" id="Nedjelja2_<?=$dayOfYear?>" value="<?=$nedilja?>">
+              
             
-            <? if(prazniciFR($dateFrom)) $praznik = '1'; else $praznik = 0; ?>
-            <input type="hidden" id="Praznik1_<?=$dayOfYear?>" value="<?=$praznik?>">
-            <input type="hidden" id="Praznik2_<?=$dayOfYear?>" value="<?=$praznik?>">
-
-            <div class="row pad4px <?=$color1?>" id="RONDE_1_<?=$dayOfYear?>" xstyle="display:none">
-                <div class="col-md-1">
-                    <strong><?=$dateFrom?></strong><br>
-                    <?=dayToLang( date('l', strtotime($dateFrom)) )?>
-                    <? if(prazniciFR($dateFrom)) echo '<br><span class="red">HOLIDAY</span>'; ?>
-                </div>
-                <div class="col-md-1">
-                    RONDE 1<br>
-                    <button class="btn" style="background:transparent !important" title="Show-Hide RONDE 2"
-                    onclick="$('#RONDE_2_<?=$dayOfYear?>').toggle('slow');return false;"><i class="fa fa-sort"></i></button>
-                </div>
-                <div class="col-md-1">
-                    Debut:<br>
-                    <input class="timepicker w100" id="startTime_1_<?=$dayOfYear?>" name="startTime_1[]" value="<?=$startTime_1?>"
-                    onchange="timeDifference('1_<?=$dayOfYear?>', 'startTime_', 'endTime_', 'ukRedovno_','<?=$weekNo?>');">					
-                </div>
-
-                <div class="col-md-1">
-                    Fin:<br>
-                    <input class="timepicker w100" id="endTime_1_<?=$dayOfYear?>" name="endTime_1[]" value="<?=$endTime_1?>"
-                    onchange="timeDifference('1_<?=$dayOfYear?>', 'startTime_', 'endTime_', 'ukRedovno_','<?=$weekNo?>');">
-                </div>
-
-                <div class="col-md-1">
-                    Pause debut:<br>
-                    <input class="timepicker w100"  id="pauzaStart_1_<?=$dayOfYear?>" name="pauzaStart_1[]" value="<?=$pauzaStart_1?>"
-                    onchange="timeDifference('1_<?=$dayOfYear?>', 'pauzaStart_', 'pauzaEnd_', 'ukPauza_','<?=$weekNo?>');">
-                </div>
-
-                <div class="col-md-1">
-                    Pause fin:<br>
-                    <input class="timepicker w100"  id="pauzaEnd_1_<?=$dayOfYear?>" name="pauzaEnd_1[]" value="<?=$pauzaEnd_1?>"
-                    onchange="timeDifference('1_<?=$dayOfYear?>', 'pauzaStart_', 'pauzaEnd_', 'ukPauza_','<?=$weekNo?>');">
-                </div>
-
-                <div class="col-md-1">
-                    TOT. H. REGULIERES:<br>
-                    <input class="w100 ukRedovno<?=$weekNo?>" id="ukRedovno_1_<?=$dayOfYear?>" name="ukRedovno_1[]" value="<?=$ukRedovno_1?>" 
-				    onchange="timeTotal('1_<?=$dayOfYear?>','<?=$weekNo?>')" readonly>
-                </div>
-
-                <div class="col-md-1">
-                    TOTAL PAUSE:<br>
-                    <input class="w100 ukPauza<?=$weekNo?>" id="ukPauza_1_<?=$dayOfYear?>" name="ukPauza_1[]" value="<?=$ukPauza_1?>" 
-				    onchange="timeTotal('1_<?=$dayOfYear?>','<?=$weekNo?>')" readonly>
-                </div>
-
-                <div class="col-md-1">
-                    TOT.H. DE NUIT:<br>
-                    <input class="timepicker w100 ukNoc<?=$weekNo?>"  id="ukNoc_1_<?=$dayOfYear?>" name="ukNoc_1[]" value="<?=$ukNoc_1?>" 
-				    onchange="timeTotal('1_<?=$dayOfYear?>','<?=$weekNo?>')">
-                </div>
-
-                <div class="col-md-1">
-                    TOTAL DIMANCHE:<br>
-                    <input class="timepicker w100 ukNedjelja<?=$weekNo?>"  id="ukNedjelja_1_<?=$dayOfYear?>" name="ukNedjelja_1[]" value="<?=$ukNedjelja_1?>" 
-				    onchange="timeTotal('1_<?=$dayOfYear?>','<?=$weekNo?>')">
-                </div>
-
-                <div class="col-md-1">
-                    TOTAL JOURS FERIES:<br>
-                    <input class="timepicker w100 ukPraznik<?=$weekNo?>"  id="ukPraznik_1_<?=$dayOfYear?>" name="ukPraznik_1[]" value="<?=$ukPraznik_1?>" 
-				    onchange="timeTotal('1_<?=$dayOfYear?>','<?=$weekNo?>')">
-                </div>
-
-                <div class="col-md-1">
-                    TOTAL:<br>
-                    <input class="w100 ukupnoDan<?=$weekNo?>" id="ukupno_1_<?=$dayOfYear?>" name="ukupno_1[]" value="<?=$ukupno_1?>" readonly>
-                </div>
-
-            </div>
-
+           ?>
+<!-- SMARTY 3: -->
+<!-- SLOBODAN DAN -->
             <?
 
             // get previous working hours summary
@@ -662,228 +554,21 @@ if( isset($_REQUEST['submit']) or isset($_REQUEST['Save']) ) {
             if($ukupno_2 == '00:00') $initialDisplay = 'style="display:none"'; else $initialDisplay = '';
         
             ?>
-            <div class="row pad4px <?=$color2?> <?=$hideShift2?>" id="RONDE_2_<?=$dayOfYear?>" <?=$initialDisplay?>>
-                <div class="col-md-1">
-                    <strong><?=$dateFrom?></strong><br>
-                    <?=dayToLang( date('l', strtotime($dateFrom)) )?>
-                    <? if(prazniciFR($dateFrom)) echo '<br><span class="red">HOLIDAY</span>'; ?>
-                </div>
-                <div class="col-md-1">
-                    RONDE 2
-                </div>
-                <div class="col-md-1">
-                    Debut:<br>
-                    <input class="timepicker w100" id="startTime_2_<?=$dayOfYear?>" name="startTime_2[]" value="<?=$startTime_2 ?>"
-                    onchange="timeDifference('2_<?=$dayOfYear?>', 'startTime_', 'endTime_', 'ukRedovno_','<?=$weekNo?>');">
-                </div>
-
-                <div class="col-md-1">
-                    Fin:<br>
-                    <input class="timepicker w100" id="endTime_2_<?=$dayOfYear?>" name="endTime_2[]" value="<?=$endTime_2 ?>"
-                    onchange="timeDifference('2_<?=$dayOfYear?>', 'startTime_', 'endTime_', 'ukRedovno_','<?=$weekNo?>');">
-                </div>
-
-                <div class="col-md-1">
-                    Pause debut:<br>
-                    <input class="timepicker w100"  id="pauzaStart_2_<?=$dayOfYear?>" name="pauzaStart_2[]" value="<?=$pauzaStart_2 ?>"
-                    onchange="timeDifference('2_<?=$dayOfYear?>', 'pauzaStart_', 'pauzaEnd_', 'ukPauza_','<?=$weekNo?>');">
-                </div>
-
-                <div class="col-md-1">
-                    Pause fin:<br>
-                    <input class="timepicker w100"  id="pauzaEnd_2_<?=$dayOfYear?>" name="pauzaEnd_2[]" value="<?=$pauzaEnd_2 ?>"
-                    onchange="timeDifference('2_<?=$dayOfYear?>', 'pauzaStart_', 'pauzaEnd_', 'ukPauza_','<?=$weekNo?>');">
-                </div>
-
-                <div class="col-md-1">
-                    TOT. H. REGULIERES:<br>
-                    <input class="w100 ukRedovno<?=$weekNo?>" id="ukRedovno_2_<?=$dayOfYear?>" name="ukRedovno_2[]" value="<?=$ukRedovno_2 ?>" 
-				    onchange="timeTotal('2_<?=$dayOfYear?>','<?=$weekNo?>')" readonly>
-                </div>
-
-                <div class="col-md-1">
-                    TOTAL PAUSE:<br>
-                    <input class="w100 ukPauza<?=$weekNo?>" id="ukPauza_2_<?=$dayOfYear?>" name="ukPauza_2[]" value="<?=$ukPauza_2 ?>"
-                    onchange="timeTotal('2_<?=$dayOfYear?>','<?=$weekNo?>')" readonly>
-                </div>
-
-                <div class="col-md-1">
-                    TOT.H. DE NUIT:<br>
-                    <input class="timepicker w100 ukNoc<?=$weekNo?>"  id="ukNoc_2_<?=$dayOfYear?>" name="ukNoc_2[]" value="<?=$ukNoc_2 ?>"
-                    onchange="timeTotal('2_<?=$dayOfYear?>','<?=$weekNo?>')">
-                </div>
-
-                <div class="col-md-1">
-                    TOTAL DIMANCHE:<br>
-                    <input class="timepicker w100 ukNedjelja<?=$weekNo?>"  id="ukNedjelja_2_<?=$dayOfYear?>" name="ukNedjelja_2[]" value="<?=$ukNedjelja_2 ?>"
-                    onchange="timeTotal('2_<?=$dayOfYear?>','<?=$weekNo?>')">
-                </div>
-
-                <div class="col-md-1">
-                    TOTAL JOURS FERIES:<br>
-                    <input class="timepicker w100 ukPraznik<?=$weekNo?>"  id="ukPraznik_2_<?=$dayOfYear?>" name="ukPraznik_2[]" value="<?=$ukPraznik_2 ?>"
-                    onchange="timeTotal('2_<?=$dayOfYear?>','<?=$weekNo?>')">
-                </div>
-
-                <div class="col-md-1">
-                    TOTAL:<br>
-                    <input class="w100 ukupnoDan<?=$weekNo?>" id="ukupno_2_<?=$dayOfYear?>" name="ukupno_2[]" value="<?=$ukupno_2 ?>" readonly>
-                </div>
-
-            </div>
-
+            
+<!-- SMARTY 4 -->
         <?
 		
-      
-        } // end if odk > 0
-        else { 
-        
-            // nema transfera, slobodan dan
-            $q  = "SELECT * FROM v4_WorkingHours  ";
-            $q .= "WHERE SubDriverID  = '" . $SubDriverID . "' ";
-            $q .= "AND forDate  = '" . $dateFrom . "' ";
-            $q .= "AND shifts  = '1' ";
-            $q .= "AND DriverID = '" . $DriverID . "' ";
-
-            $r = $db->RunQuery($q);
-            if($r->num_rows > 0) {
-                $w = $r->fetch_object();
-                $startTime_1 = $w->startTime;
-                $endTime_1 = $w->endTime;
-                $pauzaStart_1 = $w->pauzaStart;
-                $pauzaEnd_1 = $w->pauzaEnd;
-			    $ukRedovno_1 = $w->ukRedovno;
-                $ukPauza_1 = $w->ukPauza;
-                $ukNoc_1 = $w->ukNoc;
-                $ukNedjelja_1 = $w->ukNedjelja;
-                $ukPraznik_1 = $w->ukPraznik;
-                $ukupno_1 = $w->ukupno;
-                $Description = $w->Description;
-            }
-            if($startTime_1 == '') $startTime_1 = "00:00";
-            if($endTime_1 == '') $endTime_1 = "00:00";
-            if($pauzaStart_1 == '') $pauzaStart_1 = "00:00";
-            if($pauzaEnd_1 == '') $pauzaEnd_1 = "00:00";
-            if($ukRedovno_1 == '') $ukRedovno_1 = "00:00";
-            if($ukPauza_1 == '') $ukPauza_1 = "00:00";
-            if($ukNoc_1 == '') $ukNoc_1 = "00:00";
-            if($ukNedjelja_1 == '') $ukNedjelja_1 = "00:00";
-            if($ukPraznik_1 == '') $ukPraznik_1 = "00:00";
-            if($ukupno_1 == '') $ukupno_1 = "00:00";
- 
-            // nema transfera, slobodan dan
-            $q  = "SELECT * FROM v4_WorkingHours  ";
-            $q .= "WHERE SubDriverID  = '" . $SubDriverID . "' ";
-            $q .= "AND forDate  = '" . $dateFrom . "' ";
-            $q .= "AND shifts  = '2' "; 
-            $q .= "AND DriverID = '" . $DriverID . "' ";
-                       
-            if($r->num_rows > 0) {
-                $w = $r->fetch_object();
-                $startTime_2 = $w->startTime;
-                $endTime_2 = $w->endTime;
-                $pauzaStart_2 = $w->pauzaStart;
-                $pauzaEnd_2 = $w->pauzaEnd;
-			    $ukRedovno_2 = $w->ukRedovno;
-	            $ukPauza_2 = $w->ukPauza;
-	            $ukNoc_2 = $w->ukNoc;
-	            $ukNedjelja_2 = $w->ukNedjelja;
-	            $ukPraznik_2 = $w->ukPraznik;
-	            $ukupno_2 = $w->ukupno;
-            }
-            if($startTime_2 == '') $startTime_2 = "00:00";
-            if($endTime_2 == '') $endTime_2 = "00:00";
-            if($pauzaStart_2 == '') $pauzaStart_2 = "00:00";
-            if($pauzaEnd_2 == '') $pauzaEnd_2 = "00:00";
-            if($ukRedovno_2 == '') $ukRedovno_2 = "00:00";
-            if($ukPauza_2 == '') $ukPauza_2 = "00:00";
-            if($ukNoc_2 == '') $ukNoc_2 = "00:00";
-            if($ukNedjelja_2 == '') $ukNedjelja_2 = "00:00";
-            if($ukPraznik_2 == '') $ukPraznik_2 = "00:00";
-            if($ukupno_2 == '') $ukupno_2 = "00:00";
+//  ==================================================================================================================
+// } // End of ifcount($odk) > 0 =================================================================================
+//else { 
+      ?>  
             
-            if($Description == '') $Description = "Jour de congé";
-                
-        
-            ?>
-            <input type="hidden" name="DateFrom[]" value="<?=$dateFrom?>">
-            <input type="hidden" name="WeekNumber[]" value="<?=$weekNo?>">
-            <div class="row pad4px red">
-                <div class="col-md-1 blue">
-                    <?=$dateFrom?><br>
-                    <?=dayToLang( date('l', strtotime($dateFrom)) )?>
-                </div>
-                <div class="col-md-1">
-                    Debut:<br>
-                    <input type="text"  class="timepicker w100"  id="startTime_1_<?=$dayOfYear?>" name="startTime_1[]" value="<?=$startTime_1 ?>">
-                </div>
-                <div class="col-md-1">
-                    Fin:<br>
-                    <input type="test"  class="timepicker w100" id="endTime_1_<?=$dayOfYear?>" name="endTime_1[]" value="<?=$endTime_1 ?>">
-                </div>
-                <div class="col-md-6">
-                    <br>
-                    <input class="w100 xblack-text" type="text" name="Description[]" value="<?=$Description?>">
-                    
-
-                    <input type="hidden"  id="pauzaStart_1_<?=$dayOfYear?>" name="pauzaStart_1[]" value="<?=$pauzaStart_1 ?>">
-
-                    <input type="hidden"  id="pauzaEnd_1_<?=$dayOfYear?>" name="pauzaEnd_1[]" value="<?=$pauzaEnd_1 ?>">
-
-                    <input type="hidden" class="ukRedovno<?=$weekNo?>" id="ukRedovno_1_<?=$dayOfYear?>" name="ukRedovno_1[]" value="<?=$ukRedovno_1 ?>">
- 
-                    <input type="hidden" class="ukPauza<?=$weekNo?>" id="ukPauza_1_<?=$dayOfYear?>" name="ukPauza_1[]" value="<?=$ukPauza_1 ?>">
-
-                    <input type="hidden" class="ukNoc<?=$weekNo?>"  id="ukNoc_1_<?=$dayOfYear?>" name="ukNoc_1[]" value="<?=$ukNoc_1 ?>">
-
-                    <input type="hidden" class="ukNedjelja<?=$weekNo?>"  id="ukNedjelja_1_<?=$dayOfYear?>" name="ukNedjelja_1[]" value="<?=$ukNedjelja_1 ?>">
-  
-                    <input type="hidden" class="ukPraznik<?=$weekNo?>"  id="ukPraznik_1_<?=$dayOfYear?>" name="ukPraznik_1[]" value="<?=$ukPraznik_1 ?>">
-
-                    <input type="hidden" class="ukupnoDan<?=$weekNo?>" id="ukupno_1_<?=$dayOfYear?>" name="ukupno_1[]" value="<?=$ukupno_2 ?>">
-                    
-                    
-                    <input type="hidden"  id="startTime_2_<?=$dayOfYear?>" name="startTime_2[]" value="<?=$startTime_2 ?>">
-
-                    <input type="hidden"  id="endTime_2_<?=$dayOfYear?>" name="endTime_2[]" value="<?=$endTime_2 ?>">
-
-                    <input type="hidden"  id="pauzaStart_2_<?=$dayOfYear?>" name="pauzaStart_2[]" value="<?=$pauzaStart_2 ?>">
-
-                    <input type="hidden"  id="pauzaEnd_2_<?=$dayOfYear?>" name="pauzaEnd_2[]" value="<?=$pauzaEnd_2 ?>">
-
-                    <input type="hidden" class="ukRedovno<?=$weekNo?>" id="ukRedovno_2_<?=$dayOfYear?>" name="ukRedovno_2[]" value="<?=$ukRedovno_2 ?>">
- 
-                    <input type="hidden" class="ukPauza<?=$weekNo?>" id="ukPauza_2_<?=$dayOfYear?>" name="ukPauza_2[]" value="<?=$ukPauza_2 ?>">
-
-                    <input type="hidden" class="ukNoc<?=$weekNo?>"  id="ukNoc_2_<?=$dayOfYear?>" name="ukNoc_2[]" value="<?=$ukNoc_2 ?>">
-
-                    <input type="hidden" class="ukNedjelja<?=$weekNo?>"  id="ukNedjelja_2_<?=$dayOfYear?>" name="ukNedjelja_2[]" value="<?=$ukNedjelja_2 ?>">
-  
-                    <input type="hidden" class="ukPraznik<?=$weekNo?>"  id="ukPraznik_2_<?=$dayOfYear?>" name="ukPraznik_2[]" value="<?=$ukPraznik_2 ?>">
-
-                    <input type="hidden" class="ukupnoDan<?=$weekNo?>" id="ukupno_2_<?=$dayOfYear?>" name="ukupno_2[]" value="<?=$ukupno_2 ?>">
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                </div>
-            </div>        
+            
+<!-- SMARTY 5: -->
+                   
         <?
-        }
-
+//} // End of else
+// ===========================================================================
         ###################################################################
         ## KRAJ TJEDNA
         ###################################################################
@@ -915,58 +600,30 @@ if( isset($_REQUEST['submit']) or isset($_REQUEST['Save']) ) {
             if($ukPraznik == '') $ukPraznik = "00:00";
             if($ukupno == '') $ukupno = "00:00";       
         
+            
         
         ?>
 
-            <input type="hidden" name="AfterDate[]" value="<?=$dateFrom?>">
-            <div class="row pink lighten-4 pad4px">
-
-                <div class="col-md-6 l">TJEDAN <?=date("W", strtotime($dateFrom));?></div>
-                <div class="col-md-1">
-                    TOT.H.REGULIERES:<br>
-                    <input class="w100 ukRedovno_w" id="ukRedovno_w<?=$weekNo?>" name="ukRedovno_w[]" 
-				    value="<?=$ukRedovno?>" readonly>
-                </div>
-
-                <div class="col-md-1">
-                    TOTAL PAUSE:<br>
-                    <input class="w100 ukPauza_w" id="ukPauza_w<?=$weekNo?>" name="ukPauza_w[]"
-				    value="<?=$ukPauza?>" readonly>
-                </div>
-
-                <div class="col-md-1">
-                    TOT.H. DE NUIT:<br>
-                    <input class="w100 ukNoc_w"  id="ukNoc_w<?=$weekNo?>" name="ukNoc_w[]"
-				    value="<?=$ukNoc?>" readonly>
-                </div>
-
-                <div class="col-md-1">
-                    TOTAL DIMANCHE:<br>
-                    <input class="w100 ukNedjelja_w"  id="ukNedjelja_w<?=$weekNo?>" name="ukNedjelja_w[]"
-				    value="<?=$ukNedjelja?>" readonly>
-                </div>
-
-                <div class="col-md-1">
-                    TOTAL JOURS FERIES:<br>
-                    <input class="w100 ukPraznik_w"  id="ukPraznik_w<?=$weekNo?>" name="ukPraznik_w[]"
-				    value="<?=$ukPraznik?>" readonly>
-                </div>
-
-                <div class="col-md-1">
-                    TOTAL:<br>
-                    <input class="w100 ukupno_w" id="ukupno_w<?=$weekNo?>" name="ukupno_w[]"
-				    value="<?=$ukupno?>" readonly>
-                </div>
-            </div>
-        
-        
-        
+<!-- SMARTY 6: -->
         
         <?
-        } // end if Sunday
-    } // end for $day
-    
 
+        } // end if Sunday
+
+        $row['content'] = ob_get_contents();
+	    ob_end_clean();
+
+        $row['dayToLang'] = dayToLang(date('l', strtotime($dateFrom)));
+
+        $rows[] = $row;
+
+    } // end for $day
+    // Test:
+    // echo"<pre>";
+    // print_r($rows);
+    // echo"</pre>";
+    
+    
     ###################################################################
     ## KRAJ MJESECA
     ###################################################################
@@ -996,94 +653,43 @@ if( isset($_REQUEST['submit']) or isset($_REQUEST['Save']) ) {
     if($ukNedjelja == '') $ukNedjelja = "00:00";
     if($ukPraznik == '') $ukPraznik = "00:00";
     if($ukupno == '') $ukupno = "00:00";
+
+
     
     ?>
+<!-- SMARTY 7: -->
 
-    <div class="row xgreen lighten-3 pad4px">
-        <div class="col-md-6 l">MJESEC <?=date("m", strtotime($dateFrom));?></div>
-        <div class="col-md-1">
-            TOT. H. REGULIERES:<br>
-            <input class="w100" id="ukRedovno_M" name="ukRedovno_M" value="<?=$ukRedovno?>" readonly>
-        </div>
+	<?php
+	// $out2 = ob_get_contents();
+	// ob_end_clean();
 
-        <div class="col-md-1">
-            TOTAL PAUSE:<br>
-            <input class="w100" id="ukPauza_M" name="ukPauza_M" value="<?=$ukPauza?>" readonly>
-        </div>
+    } // End of isset($_REQUEST['submit']) or isset($_REQUEST['Save'])
 
-        <div class="col-md-1">
-            TOT.H. DE NUIT:<br>
-            <input class="w100 "  id="ukNoc_M" name="ukNoc_M" value="<?=$ukNoc?>" readonly>
-        </div>
-
-        <div class="col-md-1">
-            TOTAL DIMANCHE:<br>
-            <input class="w100"  id="ukNedjelja_M" name="ukNedjelja_M" value="<?=$ukNedjelja?>" readonly>
-        </div>
-
-        <div class="col-md-1">
-            TOTAL JOURS FERIES:<br>
-            <input class="w100"  id="ukPraznik_M" name="ukPraznik_M" value="<?=$ukPraznik?>" readonly>
-        </div>
-
-        <div class="col-md-1">
-            TOTAL:<br>
-            <input class="w100 ukupno_M" id="ukupno_M" name="ukupno_M" value="<?=$ukupno?>" readonly>
-        </div>
-    </div>   
-    
-    <!-- SPREMI ZA KASNIJE -->
-    <input type="hidden" name="Month" value="<?= $Month?>">
-    <input type="hidden" name="Year" value="<?= $Year?>">
-    <input type="hidden" name="SubDriverID" value="<?= $SubDriverID?>">
-    
-<!-- 23.07.2018 - Mandic zatrazio na dnu da se ispise broj transfera, te ukupno novac zaradjen, na isti nacin kao na timetable-u - Dodao Leo! -->
-	<div class="row alert alert-success" style="margin-left:-15px;padding:25px 0px">
-		<div class="col-md-4"></div>
-		<div class="col-md-4"></div>
-		<div class="col-md-2" style="font-size:20px;color:black">
-			<?
-				if($ShowHidden){?>
-					<?= TRANSFERS.': '.$brojSkrivenihTransfera.'/'.$brojTransfera ?>
-				<?} else {?>
-					<?= TRANSFERS.': '.$brojTransfera ?>
-				<?}
-			?>
-		</div>		
-		<div class="col-md-2" style="font-size:20px;color:black">
-			<?= TOTAL_VALUE.': '.number_format($totalValue,2) ?> EUR</br>
-			<?= 'Total Cash: '.number_format($totalCashIn,2) ?> EUR
-		</div>
-	</div>
-
-    <?
-    //href promijenjen, kao user saljemo DriverID umjesto $_REQUEST['user']
-    echo '<br><br>';
-    
-    echo '<div class="row"><div class="col-md-12">';
-    
-    echo '<a class="btn xblue l" href="https://www.jamtransfer.com/cms/index.php?p=slct">Back</a>&nbsp;&nbsp;';
-    
-    echo '<a class="btn xgreen l center" href="https://www.jamtransfer.com/cms/index.php?p=monthlyReport&DriverID='.$DriverID.
-    '&SubDriverID='.$SubDriverID.'&Month='.$Month.'&Year='.$Year.'">Print Report</a>&nbsp;&nbsp;';
-
-    echo '<a class="btn xgreen l center xwhite-text" target="blank" href="https://www.jamtransfer.com/cms/index.php?p=transfersReport&DriverID='.$DriverID.
-    '&SubDriverID='.$SubDriverID.'&Month='.$Month.'&Year='.$Year.'&submit=yes">Transfers List</a>';
-    
-    echo '<button class="btn red pull-right l" type="submit" name="Save" value="Save">Save</button>';
-    
-    echo '</div></div><br><br><br>';
-
-    echo '</div></form>'; // sve je u formu
-	
-	$out2 = ob_get_contents();
-	ob_end_clean();
+    $smarty->assign('rows',$rows);
+    $smarty->assign('Year',$Year);
+    $smarty->assign('Month',$Month);
+    $smarty->assign('day',$day);    
+    $smarty->assign('daysInMonth',$daysInMonth);
+    $smarty->assign('ShowHidden',$ShowHidden);
+    $smarty->assign('odk2',$odk2);
+    $smarty->assign('odk',$odk);
+    $smarty->assign('SubDriverID',$SubDriverID);
 	$smarty->assign('show_data',$out2);
-     
-} 
+	$smarty->assign('ukRedovno',$ukRedovno);
+	$smarty->assign('ukPauza',$ukPauza);
+	$smarty->assign('ukNoc',$ukNoc);
+	$smarty->assign('ukNedjelja',$ukNedjelja);
+	$smarty->assign('ukPraznik',$ukPraznik);
+	$smarty->assign('ukupno',$ukupno);
+	$smarty->assign('brojSkrivenihTransfera',$brojSkrivenihTransfera);
+	$smarty->assign('brojTransfera',$brojTransfera);
+	$smarty->assign('icon',$icon);
+	$smarty->assign('totalValue',$totalValue);
+	$smarty->assign('totalCashIn',$totalCashIn);
+	$smarty->assign('ukupno_2',$ukupno_2);
+	$smarty->assign('ukRedovno',$ukRedovno);
 
 ?>
-
 
 
 <script>
