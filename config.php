@@ -176,7 +176,7 @@ $vehicletypes=$_SESSION['vehicletypes'];*/
 			`AcceptedPayment`,	
 			`IBAN`,	
 			`Active` 
-			FROM `v4_AuthUsers` WHERE Active>0" ;
+			FROM `v4_AuthUsers` WHERE Active>0 ORDER by AuthUserRealName" ;
 		$rU = $db->RunQuery($qU);
 		while ($u = $rU->fetch_object()) {
 			$users[$u->AuthUserID]=$u;

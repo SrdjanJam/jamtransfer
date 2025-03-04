@@ -1,29 +1,57 @@
+<div class="row">	
 	<div class="box-header">
 		<div class="box-tools pull-right">
 			{if $ordersD[pom].DriverConfStatus gt 0}
-				{*<button id='resendVoucher' class="btn btn-primary">{$RESEND_VOUCHER}</button>*}
-				<label id='lrv' style='display:none'>{$RESEND_VOUCHER} Reason</label>	
-				{*changeTransferReasonSelect $ordersD[pom].ChangeTransferReason*}
-				<button id='todriver' class="btn btn-primary" style='display:none'
-				onclick="return sendUpdateEmail('{$ordersD[pom].DriverEmail}','','','','','driver',' {$ordersD[pom].DetailsID}',this);">
-					{$TO_DRIVER}
-					<div></div>
+				<button type="button" class="btn btn-primary rv-modal"  
+					data-detailsid="{$ordersD[pom].DetailsID}"  
+					data-toggle="modal" data-target="#rvModal{$ordersD[pom].DetailsID}">
+					{$RESEND_VOUCHER}
 				</button>
-				<button id='topax' class="btn btn-primary" style='display:none'
-				onclick="return sendUpdateEmail('{$ordersD[pom].Master.MPaxEmail}','','','','','pax',' {$ordersD[pom].DetailsID}',this);">
-					{$TO_PAX}
-					<div></div>
-				</button>&nbsp;&nbsp;&nbsp;
+							<div class="modal fade"  id="rvModal{$ordersD[pom].DetailsID}">
+								<div class="modal-dialog" style="width: fit-content;">
+									<div class="modal-content">
+										<div class="modal-header">
+											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+												<span aria-hidden="true">&times;</span>
+											</button>
+											<h4 class="modal-title">{$RESEND_VOUCHER} {$ordersD[pom].OrderID} - {$ordersD[pom].TNo}</h4>
+										</div>
+										<div class="rv"></div>
+										<div class="modal-body row" style="padding:10px">
+											<div class="col-md-12">
+												<label class="" id='lrv{$ordersD[pom].DetailsID}'>{$RESEND_VOUCHER} Reason</label>
+											</div>
+											<div class="col-md-12">
+												{html_options id="rv{$ordersD[pom].DetailsID}" class="form-control" name=ChangeTransferReason options=$ChangeTransferReason}					
+											</div>
+											<div class="col-md-6">
+												<button id='todriver' class="btn btn-primary"
+												onclick="return sendUpdateEmail('{$ordersD[pom].DriverEmail}','','','','','driver',' {$ordersD[pom].DetailsID}',this);">
+													{$TO_DRIVER}
+												</button>
+												<button id='topax' class="btn btn-primary"
+												onclick="return sendUpdateEmail('{$ordersD[pom].Master.MPaxEmail}','','','','','pax',' {$ordersD[pom].DetailsID}',this);">
+													{$TO_PAX}
+												</button>
+											</div>	
+										</div>
+										
+										<div class="modal-footer">
+											<button type="button" class="btn btn-primary col-md-12 modalbutton" data-dismiss="modal">{$CLOSE}</button>
+										</div>
+									</div>
+								</div>
+							</div>	
 			{/if}
-			<button class="btn btn-info save" data-id="{$ordersD[pom].DetailsID}" title="{$SAVE}">
+			<button class="btn btn-success save" data-id="{$ordersD[pom].DetailsID}" title="{$SAVE}">
 				<i class="fa fa-save l"></i>
 			</button>
-			{*<a href="printTransfer.php?OrderID= {$ordersD[pom].OrderID}" class="btn btn-danger" title="{$PRINT_CONFIRMATION}" target="_blank">
+			<a href="plugins/Orders/printTransfer.php?OrderID= {$ordersD[pom].OrderID}" class="btn btn-info" title="{$PRINT_CONFIRMATION}" target="_blank">
 				<i class="fa fa-print l"></i>
-			</a>*}
+			</a>
 		</div>
 	</div>
-	
+</div>	
 	<div class="box-body"><form id="form{$ordersD[pom].DetailsID}">
 		<input type="hidden" name="UserName" id="UserName" value="{$smarty.session.UserName}">
 		<input type="hidden" name="AuthUserID" id="AuthUserID" value="{$smarty.session.AuthUserID}">
@@ -44,14 +72,34 @@
 				</div>
 				<div class="row">
 					<div class="col-md-3 "><label>{$BOOKED_BY}</label></div>
-					<div class="col-md-9">
-						{$ordersD[pom].UserName}( {$ordersD[pom].UserID})
+					<div class="col-md-3">
+						{html_options name=UserLevelID options=$authLevels selected=$ordersD[pom].UserLevelID class="form-control LevelID"}
+					</div>	
+					<div class="col-md-3">	
+						<select name="UserID" value="{$ordersD[pom].UserID}" class="form-control UserID">
+							<option value="-1" data-levelid="-1">Choose user</option>
+							{section name=ind loop=$users} 
+								<option value="{$users[ind].UserID}" data-levelid="{$users[ind].LevelID}"
+								{if $users[ind].UserID eq $ordersD[pom].UserID}SELECTED{/if}
+								>{$users[ind].UserName}</option>
+							{/section}
+						</select>						
 					</div>
 				</div>					
 				<div class="row">
 					<div class="col-md-3 "><label>Booked for</label></div>
-					<div class="col-md-9">
-						{$ordersD[pom].AgentName}({$ordersD[pom].UserID})
+					<div class="col-md-3">
+						{html_options name=AgentLevelID options=$authLevels class="form-control LevelID"}
+					</div>	
+					<div class="col-md-3">	
+						<select name="AgentID" value="{$ordersD[pom].AgentID}" class="form-control UserID">
+							<option value="-1" data-levelid="-1">Choose user</option>
+							{section name=ind loop=$users} 
+								<option value="{$users[ind].UserID}" data-levelid="{$users[ind].LevelID}"
+								{if $users[ind].UserID eq $ordersD[pom].AgentID}SELECTED{/if}
+								>{$users[ind].UserName}</option>
+							{/section}
+						</select>						
 					</div>
 				</div>	
 				{if $ordersD[pom].UserLevelID eq '2'}
@@ -95,12 +143,19 @@
 						{if $ordersD[pom].VehicleClass gt 19}
 							<i class="fa fa-car purple-text"></i>
 						{/if}
-
-						 {$ordersD[pom].VehicleTypeName}
-
-						{if $ordersD[pom].VehiclesNo gt 1}
-							x {$ordersD[pom].VehiclesNo}
+						{if $ordersD[pom].VehiclesAll|count gt 0}
+							<select name="VehicleID" value="{$ordersD[pom].VehicleID}">
+								{section name=ind2 loop=$ordersD[pom].VehiclesAll} 
+									<option value="{$ordersD[pom].VehiclesAll[ind2].VehicleTypeID}"
+									{if $ordersD[pom].VehiclesAll[ind2].VehicleID eq $ordersD[pom].VehicleID}SELECTED{/if}
+									>{$ordersD[pom].VehiclesAll[ind2].VehicleName}</option>
+								{/section}
+							</select>
+						{else}
+							{$ordersD[pom].VehicleTypeName}
 						{/if}
+						x 
+						<input id="VehiclesNo" name="VehiclesNo" type="number"  value="{$ordersD[pom].VehiclesNo}">
 					</div>									
 				</div>				
 				<div class="row">
@@ -208,10 +263,10 @@
 							<div class="col-md-6">
 								<select name="ExtrasID[]" value="{$ordersD[pom].ExtrasArr[pom2].ServiceID}" class="form-control ExtrasID">
 									<option value="-1">Choose extras</option>
-									{section name=pom3 loop=$extrasM} 
-										<option value="{$extrasM[pom3].ID}"
-										{if $extrasM[pom3].ID eq $ordersD[pom].ExtrasArr[pom2].MServiceID}SELECTED{/if}
-										>{$extrasM[pom3].ServiceEN}</option>
+									{section name=pom3 loop=$ordersD[pom].ExtrasAllArr} 
+										<option value="{$ordersD[pom].ExtrasAllArr[pom3].ID}"
+										{if $ordersD[pom].ExtrasAllArr[pom3].ID eq $ordersD[pom].ExtrasArr[pom2].ServiceID}SELECTED{/if}
+										>{$ordersD[pom].ExtrasAllArr[pom3].ServiceEN}</option>
 									{/section}
 								</select>
 							</div>
@@ -228,10 +283,10 @@
 						{/section}
 						<div class="row extrasrow">
 							<div class="col-md-6">
-								<select name="ExtrasID[]" value="{$ordersD[pom].ExtrasArr[pom2].ServiceID}" class="form-control ExtrasID">
+								<select name="ExtrasID[]" value="{$ordersD[pom].ExtrasArr[pom2].ServiceID}" class="form-control ExtrasID newExtras">
 									<option value="-1">Choose extras</option>
-									{section name=pom3 loop=$extrasM} 
-										<option value="{$extrasM[pom3].ID}">{$extrasM[pom3].ServiceEN}</option>
+									{section name=pom3 loop=$ordersD[pom].ExtrasAllArr} 
+										<option data-price="{$ordersD[pom].ExtrasAllArr[pom3].Price}" value="{$ordersD[pom].ExtrasAllArr[pom3].ID}">{$ordersD[pom].ExtrasAllArr[pom3].ServiceEN}</option>
 									{/section}
 								</select>
 							</div>
@@ -401,7 +456,17 @@
 							data-toggle="modal" data-target="#routeDriversModal{$ordersD[pom].DetailsID}">
 							<i class="fa fa-search"></i>
 						</button>
-					</div>	
+						{if $ordersD[pom].DriverConfStatus eq 0}
+							<a class="btn btn-primary" target='_blank' href='driverReOrder/{$ordersD[pom].OrderID}/{$ordersD[pom].TNo}'>
+								<i class="fa fa-balance-scale"></i>
+							</a>
+							{if $ordersD[pom].DetailPrice ne $ordersD[pom].Master.MTransferPrice}
+							<a class="btn btn-primary"target='_blank' href='driverReOrder/{$ordersD[pom].OrderID}/{$ordersD[pom].TNo}/1'>
+								<i class="fa fa-balance-scale">R</i>
+							</a>	
+							{/if}
+						{/if}
+					</div>		
 				</div>
 				<div class="modal fade"  id="routeDriversModal{$ordersD[pom].DetailsID}">
 					<div class="modal-dialog" style="width: fit-content;">

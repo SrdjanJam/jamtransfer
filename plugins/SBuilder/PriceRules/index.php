@@ -7,7 +7,7 @@ if (isset($_REQUEST['submit'])) {
 	$bs->setPriceRules(json_encode($_REQUEST['cell']));
 	$bs->saveRow();
 }
-if ($bs->getPriceRules()==NULL) {
+if (count(json_decode($bs->getPriceRules()))==0) {
 	$arrY=array();
 	for ($i = 0; $i < 24; $i++) {	
 		$arrX=array();	

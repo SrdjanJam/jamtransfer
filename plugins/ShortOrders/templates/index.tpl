@@ -70,11 +70,11 @@
 			</select>
 		</div>
 
-		<div class="col-md-2">
+		<div class="col-md-2">{$smarty.request.extraServices}
 			<select class="form-control" name="extraServices" id="extraServicesChoose">
 				<option value="-1"> {$ANY}</option>
-				<option value=">0" {if $smarty.request.extraServices eq ">0"}SELECT{/if}> {$ONLY_EXTRAS} </option>
-				<option value="=0" {if $smarty.request.extraServices eq "=0"}SELECT{/if}> {$NO_EXTRAS} </option>
+				<option value=">0" {if $smarty.request.extraServices eq ">0"}SELECTED{/if}> {$ONLY_EXTRAS} </option>
+				<option value="=0" {if $smarty.request.extraServices eq "=0"}SELECTED{/if}> {$NO_EXTRAS} </option>
 			</select>
 		</div>
 		<div class="col-md-2">
@@ -170,6 +170,22 @@
 			});   	
 		$('#headerform').submit();
 	})
+	
+	$(".rv").click(function(){
+		var id=$(this).attr("data-id");
+		$("#rv"+id).removeClass("hidden");
+		$("#lrv"+id).removeClass("hidden");
+		$(this).addClass("hidden");
+	})
+	
+	$(".LevelID").change(function(){
+		var levelid=$(this).find("option:selected").val();
+		$(this).parent().parent().find(".UserID").val(-1);
+		$(this).parent().parent().find(".UserID option").each(function(){
+			if ($(this).attr("data-levelid")==levelid) $(this).removeClass("hidden");
+			else $(this).addClass("hidden");
+		})
+	})
 	$(".drivers-modal").click(function(){
 		var id=$(this).attr("data-target");
 		var DetailsID=$(this).attr("data-detailsid");
@@ -206,33 +222,9 @@
 			}
 		})
 	})
+	extrasChanges();
 
-	$(".ExtrasID").change(function(){
-		if ($(this).find("option:selected").val()!=-1) {
-			$(this).parent().parent().find(".ExtrasPrice").removeClass("hidden");
-			$(this).parent().parent().find(".ExtrasQty").removeClass("hidden");
-			$(this).parent().parent().find(".multiple").removeClass("hidden");
-		}	
-		else {
-			$(this).parent().parent().find(".ExtrasPrice").addClass("hidden");
-			$(this).parent().parent().find(".ExtrasPrice").val(0);
-			$(this).parent().parent().find(".ExtrasQty").addClass("hidden");
-			$(this).parent().parent().find(".ExtrasQty").val(0);
-			$(this).parent().parent().find(".ExtrasQty").trigger("change");
-			$(this).parent().parent().find(".multiple").addClass("hidden");
-		}	
-	})	
-	$(".ExtrasPrice,.ExtrasQty").change(function(){
-		var price=Number(0);
-		var DetailsID=$(this).attr("data-id");
-		$(this).parent().parent().parent().find('.extrasrow').each(function(){
-			var pr=Number($(this).find(".ExtrasPrice").val());
-			$(this).find(".ExtrasPrice").val(pr.toFixed(2));
-			price=price+Number($(this).find(".ExtrasPrice").val())*Number($(this).find(".ExtrasQty").val());
-		})
-		$("#collapseExample"+DetailsID).find(".ExtraCharge").val(Number(price).toFixed(2));
-		$("#collapseExample"+DetailsID).find("#ExtraChargeShow").html(Number(price).toFixed(2));
-	})
+
 	$(".save").click(function(){
 		var id = $(this).attr("data-id");
 		var param=$("#form"+id).serialize();
@@ -247,13 +239,50 @@
 					toastr['success'](window.success);	
 					$("#headerform input").trigger("change");
 				}	
-				else toastr['fail']("Something wrong");	
+				else alert(data);	
 			},
 			error: function (data) {
 				toastr['fail']("Something wrong");	
 			}
 		})
 	})
+	function extrasChanges() {
+		$(".ExtrasID").change(function(){
+			if ($(this).find("option:selected").val()!=-1) {
+				$(this).parent().parent().find(".ExtrasPrice").val($(this).find("option:selected").attr("data-price"));
+				$(this).parent().parent().find(".ExtrasPrice").removeClass("hidden");
+				$(this).parent().parent().find(".ExtrasQty").val(1);
+				$(this).parent().parent().find(".ExtrasQty").removeClass("hidden");
+				$(this).parent().parent().find(".multiple").removeClass("hidden");
+			}	
+			else {
+				$(this).parent().parent().find(".ExtrasPrice").addClass("hidden");
+				$(this).parent().parent().find(".ExtrasPrice").val(0);
+				$(this).parent().parent().find(".ExtrasQty").addClass("hidden");
+				$(this).parent().parent().find(".ExtrasQty").val(0);
+				$(this).parent().parent().find(".ExtrasQty").trigger("change");
+				$(this).parent().parent().find(".multiple").addClass("hidden");
+			}	
+		})
+		$(".ExtrasPrice,.ExtrasQty").change(function(){
+			var price=Number(0);
+			var DetailsID=$(this).attr("data-id");
+			$(this).parent().parent().parent().find('.extrasrow').each(function(){
+				var pr=Number($(this).find(".ExtrasPrice").val());
+				$(this).find(".ExtrasPrice").val(pr.toFixed(2));
+				price=price+Number($(this).find(".ExtrasPrice").val())*Number($(this).find(".ExtrasQty").val());
+			})
+			$("#collapseExample"+DetailsID).find(".ExtraCharge").val(Number(price).toFixed(2));
+			$("#collapseExample"+DetailsID).find("#ExtraChargeShow").html(Number(price).toFixed(2));
+		})	
+		$(".newExtras").change(function() {
+			if ($(this).find("option:selected").val()!="-1") {
+				var newextras=$(this).parent().parent();
+				$(this).parent().parent().clone().insertAfter(newextras);
+				extrasChanges();
+			}
+		})			
+	}
 	function paginatorNextPage() {
 		var thisPage = $("#pageSelector").val();
 		$("#pageSelector").val(parseInt(thisPage) + parseInt(1)).change();

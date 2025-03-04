@@ -38,8 +38,95 @@
 	<div class="box-body ">
 	
 		<div class="nav-tabs-custom">
-  	
-
+					<? if ($newDriver) { ?>	
+							<input id="AuthLevelID" name="AuthLevelID" type="hidden" value="31"/>
+							<div class="row">
+								<div class="col-md-3 "><label><?= NAME?></label></div>
+								<div class="col-md-9">
+									<input id="AuthUserRealName" name="AuthUserRealName" type="text"  class="form-control"
+									<?= READ_ONLY_FLD ?> required>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-3 "><label><?= COMPANY_NAME ?></label></div>
+								<div class="col-md-9">
+									<input type="text" name="AuthUserCompany" class="form-control"
+									 value="{{AuthUserCompany}}"
+									<?= READ_ONLY_FLD ?> required>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-3 "><label><?= ADDRESS ?></label></div>
+								<div class="col-md-9">
+									<textarea class="textarea form-control" name="AuthCoAddress" id="AuthCoAddress" 
+									cols="40" rows="2"
+									 style="width:100%">
+										{{AuthCoAddress}}
+									</textarea><br>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-3 "><label><?= CITY ?></label></div>
+								<div class="col-md-9">
+									<input id="City" name="City" type="text"  class="form-control"
+									<?= READ_ONLY_FLD ?> required>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-3 "><label><?= ZIP ?></label></div>
+								<div class="col-md-9">
+									<input id="Zip" name="Zip" type="text" class="form-control"
+									<?= READ_ONLY_FLD ?>>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-3 "><label><?= COUNTRY ?></label></div>
+								<div class="col-md-9">
+									<select id="CountryName" name="CountryName" class="form-control" required">
+									{{#select CountryName}}
+										<option value=""> --- </option>
+										<?
+										require_once ROOT .'/db/v4_Countries.class.php';
+										$c = new v4_Countries();
+										$k = $c->getKeysBy('CountryName', 'asc');
+										foreach($k as $nn => $id) {
+											$c->getRow($id);
+											echo '<option value="'.$c->getCountryName().'">'.$c->getCountryName() . '</option>';
+										}
+										?>
+									{{/select}}	
+									</select>
+								</div>
+							</div>	
+							<div class="row">
+								<div class="col-md-3 "><label><?= EMAIL ?></label></div>
+								<div class="col-md-9">
+									<input id="AuthUserMail" name="AuthUserMail" type="email" class="form-control"
+									<?= READ_ONLY_FLD ?> required >
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-3 "><label><?= MOB ?></label></div>
+								<div class="col-md-9">
+									<input type="text" name="AuthUserMob" class="form-control"
+									<?= READ_ONLY_FLD ?> required >
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-3 "><label><?= USER_NAME ?></label></div>
+								<div class="col-md-9">
+									<input type="text"  name="AuthUserName" class="form-control" onchange="validateUname(this.value)"
+									<?= READ_ONLY_FLD ?> required>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-3 "><label><?= PASSWORD ?></label></div>
+								<div class="col-md-9">
+									<input type="hidden" name="AuthUserPass" value="{{AuthUserPass}}">
+									<input type="text"  name="AuthUserPassNew" class="form-control" required >
+								</div>
+							</div>								
+					<? } else { ?>
 					<div class="row">
 						<div class="col-md-6">
 							<? if (!$isNew) { ?>						
@@ -622,6 +709,7 @@
 							<? } ?>	
 						</div>
 					</div>
+					<? } ?>
 	    </div><!-- box-body-->
 		{{#compare AuthLevelID "==" '32'}}
 		<input type="hidden" name="DriverID" id="DriverID" value="{{DriverID}}">

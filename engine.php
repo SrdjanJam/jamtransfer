@@ -6,8 +6,8 @@ $_SESSION['InitialRequest'] = $_SERVER['REQUEST_URI'];
 $help="menu";
 $isNew=false;
 $isNewNL=false;
-$NewDriver=false;
-$NewAgent=false;
+$newDriver=false;
+$newAgent=false;
 $menuForm='';
 $transfersFilter='';
 $includeFile='/index.php';
@@ -37,7 +37,7 @@ if (in_array($activePage,$active_pages) && !isset($_SESSION['AuthUserID'])) {
 	$_SESSION['AuthUserID']=0;
 	$menuForm='hidden';		
 }
-	
+if ($_SESSION['AuthUserID']==0) $menuForm='hidden';	
 if((!isset($_SESSION['UserAuthorized']) or $_SESSION['UserAuthorized'] == false) && !in_array($activePage,$active_pages)) {
 	if ($activePage<>"") setcookie("pageEx", $activePage, time() + (7*24*60*60),"/");
 	require_once 'login.php';
@@ -48,6 +48,10 @@ if (isset ($_SESSION['UseDriverID'])){
 	setcookie("UseDriverID", $_SESSION['UseDriverID'],time()+24*3600);
 	setcookie("UseDriverName", $_SESSION['UseDriverName'],time()+(24*3600));
 }
+if (!isset($_SESSION['AuthLevelID'])) {
+	echo "<img width='300px' src='".ROOT_HOME."/i/logo.png' />";	
+	exit();
+}	
 // kontrola pristupa
 $modules_arr='';
 if(isset($_SESSION['UseDriverID']) && !in_array($_SESSION['AuthLevelID'],array(31,46))) $AuthLevelID=81;
@@ -162,6 +166,7 @@ if ($result->num_rows>0) {
 	$smarty->assign('TerminalID',$terminalID);
 	$smarty->assign('item',$item);
 	$smarty->assign('isNew',$isNew);
+	$smarty->assign('newDriver',$newDriver);
 	$smarty->assign('isDesc',$isDesc);
 	$smarty->assign('existNew',$existNew);
 	$smarty->assign('menu1',$menu1);

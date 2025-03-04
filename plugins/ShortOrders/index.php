@@ -5,6 +5,8 @@ require_once ROOT . '/db/v4_OrdersMaster.class.php';
 require_once ROOT . '/db/v4_OrderExtras.class.php';
 require_once ROOT . '/db/v4_Extras.class.php';
 require_once ROOT . '/db/v4_ExtrasMaster.class.php';
+require_once ROOT . '/db/v4_Vehicles.class.php';
+require_once ROOT . '/db/v4_AuthLevels.class.php';
 
 $au = new v4_AuthUsers();
 $od = new v4_OrderDetails();
@@ -12,6 +14,8 @@ $om = new v4_OrdersMaster();
 $oe = new v4_OrderExtras();
 $ex = new v4_Extras();
 $em = new v4_ExtrasMaster();
+$vh = new v4_Vehicles();
+$al = new v4_AuthLevels();
 $time1=microtime();
 
 if (!isset($_REQUEST['filterDatePeriod'])) $_REQUEST['filterDatePeriod']="OrderDate>=";
@@ -103,8 +107,10 @@ foreach ($odk as $key) {
 	
 	$oid_arr[]=$od->getOrderID();
 	$did_arr[]=$od->getDetailsID();
+	$drid_arr[]=$od->getDriverID();
 	$ordersD[]=$row;
 }
+// dodavanje iz OrderMaster tabele
 $oids=implode(",",$oid_arr);
 if (!empty($oids)) $whereOM=" WHERE `MOrderID` in (".$oids.")";
 else $whereOM=" WHERE `MOrderID`=0 ";
@@ -115,6 +121,7 @@ foreach ($omk as $key) {
 	$keys = array_keys(array_column($ordersD, 'OrderID'),$om->getMOrderID());
 	foreach($keys as $key) $ordersD[$key]['Master']=$row;
 }
+// dodavanje iz OrderExtras tabele
 $dids=implode(",",$did_arr);
 if (!empty($dids)) $whereOE=" WHERE `OrderDetailsID` in (".$dids.")";
 else $whereOE=" WHERE `OrderDetailsID`=0 ";
@@ -126,18 +133,56 @@ foreach ($oek as $key) {
 	$keys = array_keys(array_column($ordersD, 'DetailsID'),$oe->getOrderDetailsID());
 	foreach($keys as $key) $ordersD[$key]['ExtrasArr'][]=$row;	
 }
-$extrasmaster=array();
+// dodavanje iz Extras i Vehicles tabele
+$drids=implode(",",$drid_arr);
+if (!empty($drids)) $whereEX=" WHERE `OwnerID` in (".$drids.")";
+else $whereEX=" WHERE `OwnerID`=0 ";
+$exk=$ex->getKeysBy("OwnerID","",$whereEX);
+foreach ($exk as $key) {
+	$ex->getRow($key);
+	$row=$ex->fieldValues();
+	$keys = array_keys(array_column($ordersD, 'DriverID'),$ex->getOwnerID());
+	foreach($keys as $key) $ordersD[$key]['ExtrasAllArr'][]=$row;	
+}
+$vhk=$vh->getKeysBy("OwnerID","",$whereEX);
+foreach ($vhk as $key) {
+	$vh->getRow($key);
+	$row=$vh->fieldValues();
+	$row["VehicleName"]=$vehicletypes[$vh->getVehicleTypeID()]->VehicleTypeName;
+	
+	$keys = array_keys(array_column($ordersD, 'DriverID'),$vh->getOwnerID());
+	foreach($keys as $key) $ordersD[$key]['VehiclesAll'][]=$row;	
+}
+// uzimanje iz ExtrasMaster tabele
+/*$extrasmaster=array();
 $emk=$em->getKeysBy("ID",""," WHERE 1=1");
 foreach ($emk as $key) {
 	$em->getRow($key);
 	$extrasmaster[]=$em->fieldValues();
+}*/
+// uzimanje iz AuthLevels tabele
+$authlevels=array();
+$alk=$al->getKeysBy("AuthLevelID",""," WHERE 1=1");
+foreach ($alk as $key) {
+	$al->getRow($key);
+	$authlevels[$key]=$al->getAuthLevelName();
 }
+// uzimanje user-a
+$users_arr=array();
+foreach ($users as $user) {
+	$row["UserID"]=$user->AuthUserID;
+	$row["UserName"]=$user->AuthUserRealName;
+	$row["LevelID"]=$user->AuthLevelID;
+	$users_arr[]=$row;
+}	
 
 $smarty->assign('status_keys',array_keys($StatusDescription));
 
 $smarty->assign("pages",$pages);
+$smarty->assign("users",$users_arr);
 $smarty->assign("ordersD",$ordersD);
-$smarty->assign("extrasM",$extrasmaster);
+//$smarty->assign("extrasM",$extrasmaster);
+$smarty->assign("authLevels",$authlevels);
 
 $smarty->assign("countObject",$countObject);
 $smarty->assign("offsetFrom",$offsetFrom);

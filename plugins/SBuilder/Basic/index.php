@@ -7,6 +7,7 @@ if (isset($_REQUEST['submit'])) {
 		if(isset($_REQUEST[$name])) eval("\$bs->set".$name."(\$content);");	
 	}	
 	$bs->deleteRow($_SESSION["UseDriverID"]);
+	$bs->setPriceRules(json_encode(array()));
 	$bs->saveAsNew();
 }
 $bs->getRow($_SESSION["UseDriverID"]);
