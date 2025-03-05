@@ -23,7 +23,7 @@ foreach ($olk as $key) {
 	$logs[]=$ol->fieldValues();
 }
 $smarty->assign("logs",$logs);
-ob_start;
+ob_start();
 $smarty->display("orderLogs.tpl");
 $out = ob_get_contents();
 ob_end_clean();

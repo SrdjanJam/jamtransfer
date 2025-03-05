@@ -202,21 +202,21 @@
 					<div class="col-md-3 "><label>{$PICKUP_TIME}</label></div>
 					<div class="col-md-9">
 						<input type="text" name="PickupTime" class="w75 timepicker"
-						value=" {$ordersD[pom].PickupTime}">
+						value="{$ordersD[pom].PickupTime}">
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-md-3 "><label>{$FLIGHT_NO}</label></div>
 					<div class="col-md-9">
 						<input type="text" name="FlightNo" class="w75"
-						value=" {$ordersD[pom].FlightNo}">
+						value="{$ordersD[pom].FlightNo}">
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-md-3 "><label>{$FLIGHT_TIME}</label></div>
 					<div class="col-md-2">
 						<input type="text" name="FlightTime" class="w75 timepicker"
-						value=" {$ordersD[pom].FlightTime}">
+						value="{$ordersD[pom].FlightTime}">
 					</div>		
 				</div>
 				<div class="row">
