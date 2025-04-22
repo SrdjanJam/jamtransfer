@@ -8,6 +8,6 @@ if (isset($_REQUEST['lng']) && isset($_REQUEST['lat'])) {
 	$json = file_get_contents($url);   
 	$obj="";
 	$obj = json_decode($json,true);	
-	if ($json) echo ($obj['features'][0]['properties']['locality']);
+	if ($json) echo $obj['features'][0]['properties']['locality'].", ". $obj['features'][0]['properties']['neighbourhood'];
 }	
 else echo "";

@@ -291,12 +291,12 @@ switch ($specialpage) {
 	case 'newDriver':
 		$isNew=true;
 		$newDriver=true;
-		$entryForm='hidden';
+		$_SESSION['UserRealName']="New driver";
 		break;	
 	case 'newAgent':
 		$isNew=true;
 		$newAgent=true;
-		$entryForm='hidden';		
+		$_SESSION['UserRealName']="New agent";
 		break;
 	default:
 }

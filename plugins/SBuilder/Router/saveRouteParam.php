@@ -14,6 +14,9 @@ $rt->setLine($line);
 $rt->setDistance($_REQUEST['distance']);
 $rt->setDuration($_REQUEST['duration']);
 $rt->setPrice($_REQUEST['price']);
+$vPrices=json_encode($_REQUEST['vPrices']);
+$rt->setVPrices($vPrices);
+
 $rt->saveAsNew();
 $array=array();
 

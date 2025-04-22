@@ -76,6 +76,7 @@
 			</div>
 			
 			<div class="col-xs-6 col-md-2 col-lg-2">
+				<strong>{{PaxNo}}</strong> pax. &nbsp; <strong>{{DriversPrice}} € </strong><br>
 				{{#compare VehicleClass "<" 10}}
 					<i class="fa fa-car"></i>
 				{{/compare}}
@@ -88,7 +89,6 @@
 					<i class="fa fa-car purple-text"></i>
 				{{/compare}}
 				{{VehicleTypeName}}  x {{VehiclesNo}}<br>
-				<strong>{{DriversPrice}} € </strong><br>
 				{{ vehicleDriverSelect Car 'Car' DetailsID}}	
 
 

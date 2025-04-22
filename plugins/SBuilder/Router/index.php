@@ -60,6 +60,17 @@ $smarty->assign('lat',$lat);
 $smarty->assign('long',$long);
 $smarty->assign('scale',$scale);
 
+// za vozila
+require_once ROOT . '/db/sb_Vehicles.class.php';
+$vh = new sb_Vehicles();
+$where=" WHERE OwnerID=".$_SESSION["UseDriverID"];
+$vhk=$vh->getKeysBy("VehicleID","",$where);
+$vehicles=array();
+foreach ($vhk as $key) {
+	$vh->getRow($key);
+	$row=$vh->fieldValues();
+	$vehicles[]=$row;
+}
 //za unete rute
 require_once ROOT . '/db/sb_Routes.class.php';
 $rt = new sb_Routes();
@@ -72,9 +83,20 @@ foreach ($rtk as $key) {
 	$arr=json_decode($rt->getLine());
 	$mid=number_format((count($arr))/2,0);
 	$row['midll']=json_encode($arr[$mid]);
+	$vprices=json_decode($rt->getVPrices());
+	$vp_arr=array();
+	foreach ($vprices as $vp) {
+		$vp_row=array();
+		$vh->getRow($vp[0]);
+		$vp_row['name']=$vh->getVehicleName()." ".$vh->getMaxPax()." pax.";
+		$vp_row['price']=number_format($vp[1],2);
+		$vp_arr[]=$vp_row;
+	}	
+	$row['vprices']=$vp_arr;
 	$routes[]=$row;
 }	
 $smarty->assign('terminals',$terminals);
+$smarty->assign('vehicles',$vehicles);
 $smarty->assign('routes',$routes);
 
 ?>

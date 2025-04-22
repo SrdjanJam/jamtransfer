@@ -33,8 +33,41 @@
 					</a>
 				</div>				
 				<div class="col-lg-3 col-md-3">
-					<span>{$routes[pom1].Price} €</span>
-				</div>				
+					<button class="btn btn-primary rv-modal" data-toggle="modal" data-target="#rvModal{$routes[pom1].RouteID}">
+						{$routes[pom1].Price} €
+					</button>
+					<div class="modal fade"  id="rvModal{$routes[pom1].RouteID}">	
+						<div class="modal-dialog" style="width: fit-content;">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+									<h4 class="modal-title">{$routes[pom1].RouteName} - Vehicle Prices</h4>		
+								</div>	
+								<div class="modal-body row" style="padding:10px">
+									<div class="col-md-8">
+										<label>Name</label>
+									</div>										
+									<div class="col-md-4">
+										<label>Price</label>
+									</div>	
+								</div>		
+								{section name=pom2 loop=$routes[pom1].vprices}
+								<div class="modal-body row" style="padding:10px">
+									<div class="col-md-8">
+										{$routes[pom1].vprices[pom2]['name']}
+									</div>										
+									<div class="col-md-4">
+										{$routes[pom1].vprices[pom2]['price']}
+									</div>	
+								</div>									
+								{/section}
+							</div>
+						</div>	
+					</div>
+				</div>	
+				
 				<div class="col-lg-2 col-md-2">
 					<button data-id="{$routes[pom1].RouteID}" type="button" class="btn btn-warning delete">{$DELETE}</button>
 				</div>
@@ -91,7 +124,19 @@
 			<div class="col-lg-6 col-md-6">
 				<input id="Price" type="text" name="Price" value=""/>
 			</div>
-		</div><br>
+		</div>
+		{section name=pom2 loop=$vehicles}		
+		<div class="row nr" id="Price_row">
+			<div class="col-lg-6 col-md-6">
+				<label>{$vehicles[pom2].VehicleName} / {$vehicles[pom2].MaxPax}</label>
+			</div>			
+			<div class="col-lg-6 col-md-6">
+				<input class="vPrices" data-id="{$vehicles[pom2].VehicleID}" id="Price{$vehicles[pom2].VehicleID}" type="text" name="Price{$vehicles[pom2].VehicleID}" value="" placeholder="{$vehicles[pom2].PriceCoeff}"/>
+			</div>
+		</div>			
+		{/section}
+		
+		<br>
 		<input id="Line" type="hidden" name="Line" value=""/><br>
 		<div class="row nr">
 			<div class="col-lg-6 col-md-6">
@@ -197,6 +242,9 @@ function clearMap() {
 }
 $("#Price").change(function(){
 	if ($(this).val()!="") $('#Reset, #Save').show();
+	$(".vPrices").each(function(){
+		$(this).val(Number($(this).attr('placeholder')*$("#Price").val()).toFixed(2));
+	})
 })
 $("#Reset").click(function(){
 	$('input').val("");
@@ -204,6 +252,14 @@ $("#Reset").click(function(){
 	$('#Reset, #Save').hide();
 })
 $("#Save").click(function(){
+	var vp='[';
+	var i=0;
+	$(".vPrices").each(function(){
+		if (i>0) vp=vp+',';
+		i=1;
+		vp=vp+'['+$(this).attr("data-id")+','+$(this).val()+']';
+	})
+	vp=vp+']';
 	var parameters = {
 		from : $("#TID option:selected").text(),
 		fromLat : $("#TID option:selected").attr("data-lat"),
@@ -214,10 +270,11 @@ $("#Save").click(function(){
 		distance : $("#Distance").val(),
 		duration : $("#Duration").val(),
 		line : $("#Line").val(),
-		price : $("#Price").val()
+		price : $("#Price").val(),
+		vPrices : vp
 	}
 	var url='./plugins/SBuilder/Router/saveRouteParam.php';
-	console.log(url);
+	console.log(parameters);
 	$.ajax({
 		url:  url,
 		type: 'POST',
@@ -334,8 +391,12 @@ $(".route").click(function(){
 		}
 	})
 $("#TID").change(function(){
-	Route($("#TID option:selected").attr("data-lng"),$("#TID option:selected").attr("data-lat"),$("#To").attr("data-lng"),$("#To").attr("data-lat"));
+	var attr = $(this).attr('data-lng');
+	if(typeof attr !=='undefined') {
+		Route($("#TID option:selected").attr("data-lng"),$("#TID option:selected").attr("data-lat"),$("#To").attr("data-lng"),$("#To").attr("data-lat"));
+	}	
 })
+$(".mytooltip").popover({trigger:'hover', html:true, placement:'bottom'});
 {/literal}	
 </script>
 

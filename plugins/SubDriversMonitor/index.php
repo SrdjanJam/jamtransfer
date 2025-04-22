@@ -31,7 +31,7 @@ $dateH=date('H:i:s', time()+3600);
 	$where=" WHERE AuthLevelID=32 and Active=1 and DriverID=".$driverID;
 	$auk=$au->getKeysBy('AuthUserID','',$where);
 
-	if ($_SESSION['UseDriverID']!=876) {
+	if (!in_array($_SESSION['UseDriverID'],array(843,876))) {
 		foreach	($auk as $d) {
 			$au->getRow($d);
 			$row = array();
@@ -161,13 +161,15 @@ $dateH=date('H:i:s', time()+3600);
 			if($transfersR['VehicleType'] >= 200) {
 				$transfersR['VehicleType'] = 'FC'.($od->getVehicleType() - 200);
 			}	
-
+			
 			$pl->getRow($od->getPickupID());
 			$transfersR['Pickup']=$pl->PlaceNameEN;		
-			$plat=$sdArray[$od->getSubDriver()]['Lat'];
-			$plong=$sdArray[$od->getSubDriver()]['Lng'];
-			$mlat[]=$plat;
-			$mlong[]=$plong;
+			if ($sdArray[$od->getSubDriver()]['foundlocation']) {
+				$plat=$sdArray[$od->getSubDriver()]['Lat'];
+				$plong=$sdArray[$od->getSubDriver()]['Lng'];
+				$mlat[]=$plat;
+				$mlong[]=$plong;
+			}	
 			if ($od->getPickupTime()<date("H:i:s")) {
 				$pl->getRow($od->getDropID());
 				$transfersR['Color']='green';	
@@ -295,7 +297,6 @@ $dateH=date('H:i:s', time()+3600);
 	usort($sdArray, "cmp");	
 	
 	$smarty->assign('sdArray',$sdArray);
-	
 	$smarty->assign('transfers',$transfers);
 	$smarty->assign('lat',$lat);
 	$smarty->assign('long',$long);

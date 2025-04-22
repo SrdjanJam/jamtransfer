@@ -44,7 +44,7 @@
 			{$TO}:<br>
 			<div class="col-lg-6 col-md-6">
 				<input class="step1" id="To" type="text" name="From" value="" placeholder="pick on map or type"/>
-				<div id="select_optionsTo"  style="max-height:15em;overflow:auto"></div>
+				<div class="select_optionsTo hidden"  style="max-height:15em;overflow:auto"></div>
 			</div>		
 		</div>	
 		
@@ -73,7 +73,19 @@
 					<label>{$PAX} No:</label>
 				</div>			
 				<div class="col-lg-6 col-md-6">
-					<input id="PaxNo" type="number" name="PaxNo" value="" />
+					<input id="PaxNo" type="number" min="0" name="PaxNo" value="0" />
+				</div>				
+				<div class="col-lg-6 col-md-6">
+					<label>Children No:</label>
+				</div>			
+				<div class="col-lg-6 col-md-6">
+					<input id="Children" type="number" min="0" name="Children" value="0" />
+				</div>				
+				<div class="col-lg-6 col-md-6">
+					<label>Infants No:</label>
+				</div>			
+				<div class="col-lg-6 col-md-6">
+					<input id="Infants" type="number" min="0" name="Infants" value="0" />
 				</div>
 			</div><br>				
 			<div class="row step3 hidden">
@@ -106,9 +118,8 @@
 				</div>			
 			</div><br>				
 			<div class="row vehicles pattern hidden step8">
-				<div class="col-lg-4 col-md-4 vehiclename"></div>	
-				<div class="col-lg-2 col-md-2 maxpax"></div>	
-				<div class="col-lg-2 col-md-2 price"></div>	
+				<div class="col-lg-8 col-md-4 vehiclename"></div>	
+				<button type="button" class="col-lg-4 col-md-2 price bg-success"></button>	
 			</div><br>			
 		</div>
 	</div>
@@ -162,6 +173,65 @@
 			map.on('click', onMapClick);
 		} else $(".maps").addClass('hidden');
 		
+		$('.step1').on('click keyup', function(event) {
+			var ft=$(this).attr("id");
+			var className=ft+"Name";
+			var select_options="#select_options"+ft;
+			if ($(this).val().length > 2) {	
+				var html = '';
+				$.ajax({
+					url:  './plugins/SBuilder/Router/getPlace.php',
+					type: 'GET',
+					dataType: 'jsonp',
+					data: {
+						qry : $(this).val()
+					},
+					error: function() {
+						//callback();
+					},
+					success: function(res) {
+						if(res.length > 0) {
+							console.log(res);
+							$.each( res, function( index, item ){
+
+									var strike="";
+									var cstrike=""
+								html +=
+									strike+
+									'<button type="button" class="'+className+'" id="'+ item.ID +
+									'" data-name="'+item.Place+
+									'" data-long="'+item.Long+
+									'" data-latt="'+item.Latt+
+									'" data-country="'+item.Country+
+									'"'+'>'+item.Place +
+									'</button>'+
+									cstrike+
+									'<br>';
+							});
+							// data received
+							$(".select_optionsTo").html(html);
+							$(".select_optionsTo").removeClass("hidden");
+
+							// option selected
+							$(".ToName").click(function(){
+								$(".step2").removeClass("hidden");	
+								var Lng = $(this).attr('data-long');
+								var Lat = $(this).attr('data-latt');
+								var Name = $(this).attr('data-name');
+								$(".step1").val(Name);
+								$(".step1").attr('data-lng',Lng);
+								$(".step1").attr('data-lat',Lat);
+								$(".select_optionsTo").addClass("hidden");
+								var LatLng = new L.LatLng(Lat,Lng);
+								var marker = L.marker(LatLng).addTo(map);
+								Route($("#TID option:selected").attr('data-lon'),$("#TID option:selected").attr('data-lat'),Lng,Lat);
+							});						
+						}						
+					}
+				})	
+			}
+		})			
+		
 		function onMapClick(e) {
 			$(".step2").removeClass("hidden");	
 			$(".vehicles").not(":first").remove();			
@@ -190,7 +260,8 @@
 			var marker = L.marker(LatLng).addTo(map);
 			var LatLng = new L.LatLng(lat2, lng2);
 			var marker = L.marker(LatLng).addTo(map);
-			
+			var url='plugins/SBuilder/Router/getRoute.php'
+			console.log(url+"?lng1="+lng1+"&lat1="+lat1+"&lng2="+lng2+"&lat2="+lat2);
 			$.ajax({
 				url:  './plugins/SBuilder/Router/getRoute.php',
 				type: 'GET',
@@ -202,7 +273,7 @@
 					lat2 : lat2
 				},
 				error: function() {
-					//callback();
+					alert ("Problem with route");
 				},
 				success: function(data) {
 					var distance=data['distance'];
@@ -230,7 +301,6 @@
 			$(".leaflet-popup").remove();
 			$("path").remove();
 		}		
-
 	})
 	$(".step2").change(function(){
 		$(".step3").removeClass("hidden");
@@ -248,8 +318,12 @@
 	$(".step6").change(function(){
 		$(".step7").removeClass("hidden");
 	})	
-
+	$("#PaxNo,#Children,#Infants,#Date,#Time,#DateR,#TimeR").change(function(){
+		$(".vehicles").not(":first").remove();	
+		$(".step7").removeClass("hidden");
+	})	
 	$(".step7").click(function(){
+		$(".step7").addClass("hidden");
 		var terminalid=$("#TID option:selected").val();
 		var distance=$("#Distance").val();
 		var duration=$("#Duration").val();
@@ -259,9 +333,11 @@
 		var dateR=$("#DateR").val();
 		var timeR=$("#TimeR").val();
 		var paxNo=$("#PaxNo").val();
+		var children=$("#Children").val();
+		var infants=$("#Infants").val();
 		
 		var url='./plugins/SBuilder/Booking/getPrice.php';
-		console.log(url+"?line="+line);
+		console.log(url+"?terminalid="+terminalid+"&distance="+distance+"&duration="+duration+"&date="+date+"&time="+time+"&dateR="+dateR+"&timeR="+timeR+"&paxNo="+paxNo+"&line="+line);
 		$.ajax({
 			url:  './plugins/SBuilder/Booking/getPrice.php',
 			type: 'POST',
@@ -275,7 +351,9 @@
 				time : time,
 				dateR : dateR,
 				timeR : timeR,
-				paxNo : paxNo
+				paxNo : paxNo,
+				children : children,
+				infants : infants
 			},
 			error: function() {
 				//callback();
@@ -289,12 +367,16 @@
 					$(".vehicles:last").removeClass("pattern");
 					//$(".vehicles:last").find(".picture").text(item.Picture);
 					$(".vehicles:last").find(".vehiclename").text(item.VehicleName);
-					$(".vehicles:last").find(".maxpax").text(item.MaxPax);
-					$(".vehicles:last").find(".price").text(item.Price);
+					$(".vehicles:last").find(".price").text(item.Price.toFixed(2));
 				});
 			}
 		})	
 	})
+	
+
+	
+	
+
 
 {/literal}	
 </script>

@@ -4,6 +4,15 @@
 	$json = file_get_contents($link); 
 	$obj = json_decode($json,true);	
 	
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, $link);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
+
+$response = curl_exec($ch);
+
+curl_close($ch);
+
 	$excl_arr=array('devtype','client_id','company_id','note','fuel_tank_litres','expenses_per_h','expenses_per_km',
 					'device_id','custom_options','gps_device_id','last_change_time',
 					'satellites','app_instance_owner_id','last_active_time');

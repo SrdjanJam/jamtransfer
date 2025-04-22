@@ -538,7 +538,7 @@ while ($result = $r->fetch_object()) {
 	else {
 		$row['LogUserID']=0;
 		$row['LogAction']=0;		
-		if ($_REQUEST["reportBy"]=="UserID") $row['Name']=$users[$result->Name]->AuthUserRealName;
+		if ($_REQUEST["reportBy"]=="UserID") $row['Name']=$users[$result->Name]->AuthUserRealName."-".$users[$result->Name]->DriverID;
 		if ($_REQUEST["reportBy"]=="UserLevelID") $row['Name']=$levels_array[$result->Name];
 		if ($_REQUEST["reportBy"]=="PaymentMethod") $row['Name']=$PaymentMethod[$result->Name];
 		if ($_REQUEST["reportBy"]=="DriverConfStatus") $row['Name']=$DriverConfStatus[$result->Name];
