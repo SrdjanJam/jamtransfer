@@ -369,17 +369,18 @@ else {
 						$FinalPrice = $DriversPriceAdd2+$DriversPriceAdd2*$Provision/100;
 						$FinalPrice2 = $DriversPriceAdd2+$DriversPriceAdd2*$Provision2/100;
 						
-						$contractPrice=getContractPrice($VehicleTypeID, $RouteID, $AgentID);
-						if ($contractPrice>0) {
-							$FinalPrice=$contractPrice;
-							$Provision=0;
-							$contractDriverPrice=getContractDriverPrice($ServiceID);
-							if ($contractDriverPrice>0) {
-								$DriversPrice=$contractDriverPrice;
-								$addToPrice=0;
+						if (isset($AgentID) && is_numeric($AgentID)) {
+							$contractPrice=getContractPrice($VehicleTypeID, $RouteID, $AgentID);
+							if ($contractPrice>0) {
+								$FinalPrice=$contractPrice;
+								$Provision=0;
+								$contractDriverPrice=getContractDriverPrice($ServiceID);
+								if ($contractDriverPrice>0) {
+									$DriversPrice=$contractDriverPrice;
+									$addToPrice=0;
+								}	
 							}	
-						}	
-						
+						}
 						// zaokruzenje cijena
 						$FinalPrice = nf( round($FinalPrice,2) );
 						$FinalPrice2 = nf( round($FinalPrice2,2) );

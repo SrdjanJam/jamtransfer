@@ -52,13 +52,15 @@
 							<input type="hidden" name="AuthUserPass" value="{$AuthUserPass}">
 							<input type="text"  name="AuthUserPassNew" class="form-control">
 						</div>
-					</div>						
+					</div>	
+					{if $AuthLevelID ne 31}		
 					<div class="row">
 						<div class="col-md-3"><label>MobLog {$PASSWORD}</label></div>
 						<div class="col-md-9">
 							<input type="text" name="Temp_pass" value="{$Temp_pass}">
 						</div>
 					</div>	
+					{/if}
 				</div>
 				<div class="col-md-6">					
 					<div class="row">

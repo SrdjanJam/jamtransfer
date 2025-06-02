@@ -149,8 +149,6 @@ function pdfFooter($SiteID) {
 # Mail koji se salje vozacu sa zahtjevom da potvrdi transfer
 function sendDriverNotification($OrderID, $OrderKey='') {
 
-    //require_once '../LoadLanguage.php';
-
     require_once ROOT . '/db/v4_OrdersMaster.class.php';
     require_once ROOT . '/db/v4_OrderDetails.class.php';
 
@@ -158,9 +156,9 @@ function sendDriverNotification($OrderID, $OrderKey='') {
     $om = new v4_OrdersMaster();
     $od = new v4_OrderDetails();
 
-    $message .= $HELLO . '!<br>';
-    $message .= $TRANSFER_FOR_YOU .'<br>';
-	$message .= $od->getOrderID().'<br>'; 
+	$message .= 'Hello' . '!<br><br>';
+	$message .= 'We have new transfer(s) for you.<br>';	
+	$message .= $OrderID.'<br>'; 
 	
     $om->getRow($OrderID);
     $orderKey = $om->getMOrderKey();
@@ -177,20 +175,20 @@ function sendDriverNotification($OrderID, $OrderKey='') {
         $od->getRow($id);
 
         $link = '<a href="https://' . $_SERVER['SERVER_NAME'] . '/dc.php?code='.$od->getDetailsID() .
-                '&control='.$orderKey.'&id='.$od->getDriverID().'">
-				https://wis.jamtransfer.com/dc.php?code='.ltrim($od->getDetailsID()).'&control='.$orderKey.'&id='.ltrim($DriverID).
+                '&control='.$orderKey.'&id='.ltrim($od->getDriverID()).'">
+				https://wis.jamtransfer.com/dc.php?code='.ltrim($od->getDetailsID()).'&control='.$orderKey.'&id='.ltrim($od->getDriverID()).
                 //$od->getOrderID().'-'.$od->getTNo() .
                 '</a>';
         $message .= $link . '<br>';
     }
-    $message .= '<br><br>'.$THANK_YOU . '! <br><br><br>';
+    $message .= '<br><br>' . 'Thank You' . '! <br><br><br>';
     $message .= pdfFooter('1');
 
     $mailto = $od->getDriverEmail(); 
     mail_html($mailto, 'driver-info@jamtransfer.com', 'JamTransfer', 'info@jamtransfer.com',  
-          $NEW_TRANSFER . ' - ' . $OrderKey , $message);
+          "New transfer" . ' - ' . $OrderKey , $message);
     mail_html('cms@jamtransfer.com', 'driver-info@jamtransfer.com', 'JamTransfer', 'info@jamtransfer.com', 
-          $NEW_TRANSFER . ' - ' . $OrderKey , $message);
+          "New transfer" . ' - ' . $OrderKey , $message);
 }
 
 function sendDriverMessage($DetailsID) {
@@ -199,8 +197,8 @@ function sendDriverMessage($DetailsID) {
 	$od = new v4_OrderDetails();
 	$om = new v4_OrdersMaster();
 
-	$message = HELLO . '! ';
-    $message .= $TRANSFER_FOR_YOU .'<br>';
+	$message .= 'Hello' . '!<br><br>';
+	$message .= 'We have new transfer(s) for you.<br>';	
 	$message .= $od->getOrderID().'-'.$od->getTNo().'<br>'; 
 
 	$k = $od->getKeysBy('DetailsID', 'asc', " WHERE DetailsID = '". $DetailsID . "'");
@@ -210,7 +208,7 @@ function sendDriverMessage($DetailsID) {
 		$link = ' https://wis.jamtransfer.com/dc.php?code='.ltrim($od->getDetailsID()).'&control='.$om->getMOrderKey().'&id='.ltrim($od->getDriverID());
 		$message .= $link . ' ';
 	}
-	$message .= THANK_YOU . '!';
+	$message .= '<br><br>' . 'Thank You' . '! <br><br><br>';
 	$message = str_replace("<br>"," ",$message);
 	return $message;
 }
@@ -3944,7 +3942,7 @@ function PrintTransfer($OrderID) {
         $om->getRow($oKey[0]);
 
 
-        $dKey = $od->getKeysBy('DetailsID', 'ASC', ' WHERE OrderID = ' .$OrderID);
+        $dKey = $od->getKeysBy('DetailsID', 'ASC', ' WHERE OrderID = ' .$OrderID. ' AND TransferStatus!=9' );
         if(count($dKey) > 0) {
             $transferCount = count($dKey);
         }
@@ -3960,7 +3958,7 @@ function PrintTransfer($OrderID) {
     $detailPriceSum = $od->getDetailPrice();
 
     // Podaci o useru - Taxi site ili partner, agent
-    $AuthUserID = $od->getUserID();
+    $AuthUserID = $od->getAgentID();
     if($AuthUserID < 1) $AuthUserID = '53';
     $au->getRow($AuthUserID);
 
@@ -5098,6 +5096,14 @@ function getConnectedUserNamePlus($id) {
 // provizija prema funkciji
 function returnProvision2($price, $ownerid, $VehicleClass = 1) {
 	$priceCalc= 25.5-$price*0.0125+$price*$price*0.00000242;
+	if ($priceCalc<10) $priceCalc=10;
+	if ($price<40) $priceCalc=1000/$price;
+	return $priceCalc;		
+}
+
+function returnProvision2Back($price, $ownerid, $VehicleClass = 1) {
+	$priceCalc1= 25.5-$price*0.0125+$price*$price*0.00000242;
+	$priceCalc=(1-100/(100+$priceCalc1))*100;
 	if ($priceCalc<10) $priceCalc=10;
 	if ($price<40) $priceCalc=1000/$price;
 	return $priceCalc;		

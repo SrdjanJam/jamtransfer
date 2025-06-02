@@ -102,9 +102,10 @@
 	
     <div class="row dpassenger">
         <div class="col-md-3 "><label><?= NOTES ?></label></div>
-        <div class="col-md-9">
-            <br>
-            <small>{{details.PickupNotes}}</small>
-        </div>
+		<div class="col-md-9">
+			<textarea name="PickupNotes" class="textarea-edit" cols="40" rows="1"
+				style="width:100%">{{details.PickupNotes}}</textarea>
+		</div>			
     </div>
+		
 {{/compare}}

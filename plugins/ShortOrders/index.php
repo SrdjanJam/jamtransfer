@@ -18,13 +18,167 @@ $vh = new v4_Vehicles();
 $al = new v4_AuthLevels();
 $time1=microtime();
 
-if (!isset($_REQUEST['filterDatePeriod'])) $_REQUEST['filterDatePeriod']="OrderDate>=";
-if (!isset($_REQUEST['filterDate'])) $_REQUEST['filterDate']=date("Y-m-d",time()-3600*24*365);
-if (!isset($_REQUEST['sortOrder'])) $_REQUEST['sortOrder']="OrderDate DESC";
- 
+if (!isset($_REQUEST['sortOrder']) && !empty($_REQUEST['sortOrder'])) {
+	switch ($transfersFilter) {
+		case 'noDriver':
+			$_REQUEST['sortOrder'] = "PickupDate Asc";	
+			break;
+		case 'notConfirmed':
+			$_REQUEST['sortOrder'] = "PickupDate Asc";
+			break;			
+		case 'notConfirmedTodayTomorrow':
+			$_REQUEST['sortOrder'] = "PickupDate Asc";
+			break;	
+		case 'notAssign':
+			$_REQUEST['sortOrder'] = "PickupDate Asc";
+			break;						
+		case 'confirmed':
+			$_REQUEST['sortOrder'] = "PickupDate Asc";
+			break;			
+		case 'declined':
+			$_REQUEST['sortOrder'] = "PickupDate Asc";
+			break;			
+		case 'canceled':
+			$_REQUEST['sortOrder'] = "PickupDate Asc";
+			break;			
+		case 'noShow':
+			$_REQUEST['sortOrder'] = "PickupDate Desc";
+			break;			
+		case 'driverError':
+			$_REQUEST['sortOrder']= "PickupDate Desc";
+			break;			
+		case 'notCompleted':
+			$_REQUEST['sortOrder']= "PickupDate Asc";  
+			break;			
+		case 'active':
+			$_REQUEST['sortOrder']= "PickupDate Asc";
+			break;			
+		case 'newTransfers':
+			$_REQUEST['sortOrder']= "OrderDate Desc";
+			break;			
+		case 'tomorrow':
+			$_REQUEST['sortOrder']= "PickupDate Asc";  
+			break;			
+		case 'deleted':
+			$_REQUEST['sortOrder']= "OrderDate Desc";
+			break;			
+		case 'agent':
+			$_REQUEST['sortOrder']= "OrderDate Desc";
+			break;			
+		case 'notConfirmedAgent':
+			$_REQUEST['sortOrder']= "PickupDate Asc";
+			break;			
+		case 'invoice2':
+			$_REQUEST['sortOrder']= "OrderDate Desc";
+			break;			
+		case 'agentinvoice':
+			$_REQUEST['sortOrder']= "OrderDate Desc";
+			break;			
+		case 'online':
+			$_REQUEST['sortOrder']= "OrderDate Desc";
+			break;			
+		case 'cash':
+			$_REQUEST['sortOrder']= "OrderDate Desc";
+			break;			
+	}
+} else $_REQUEST['sortOrder']= "OrderDate Desc";
 
-$whereOD=" WHERE TransferStatus!=9 AND ";
-$whereOD.=$_REQUEST['filterDatePeriod']."'".$_REQUEST['filterDate']."'";
+$whereOD=" WHERE TransferStatus!=9";
+if (isset($transfersFilter) && !empty($transfersFilter)) {
+	switch ($transfersFilter) {
+		case 'noDriver':
+			$whereOD .= " AND DriverConfStatus ='0' AND TransferStatus < '3'";	
+			break;
+		case 'notConfirmed':
+			$whereOD .= " AND DriverConfStatus = '1' AND TransferStatus < '3'";
+			break;			
+		case 'notConfirmedTodayTomorrow':
+			$whereOD .= " AND (PickupDate = '".date("Y-m-d", time()+3600*24)  ."' OR PickupDate = '".date("Y-m-d", time())  ."') AND (DriverConfStatus = '1' OR DriverConfStatus = '4')  AND TransferStatus < '3'";
+			break;	
+		case 'notAssign':
+			$whereOD .= " AND PickupDate > '".date("Y-m-d", time()) ."' AND PickupDate < ('".date('Y-m-d')."'+INTERVAL 4 DAY) AND DriverConfStatus = '2' AND TransferStatus < '3'";
+			break;						
+		case 'confirmed':
+			$whereOD .= " AND (DriverConfStatus ='2' OR DriverConfStatus ='3') AND TransferStatus < '3'";
+			break;			
+		case 'declined':
+			$whereOD .= " AND DriverConfStatus ='4' AND TransferStatus < '3'";
+			break;			
+		case 'canceled':
+			$whereOD .= " AND TransferStatus = '3'";
+			break;			
+		case 'noShow':
+			$whereOD .= " AND DriverConfStatus = '5'";
+			break;			
+		case 'driverError':
+			$whereOD .= " AND DriverConfStatus = '6'";
+			break;			
+		case 'notCompleted':
+			$whereOD .= " AND TransferStatus < '3' AND PickupDate <  (CURRENT_DATE)-INTERVAL 1 DAY ";  
+			break;			
+		case 'active':
+			$whereOD .= " AND TransferStatus < '3'";
+			break;			
+		case 'newTransfers':
+			$whereOD .= " AND TransferStatus < '3' AND OrderDate >= '" . date("Y-m-d", time()-3600*24) . "' ";
+			break;			
+		case 'tomorrow':
+			$whereOD .= " AND TransferStatus < '3' AND PickupDate = '" . date("Y-m-d", time()+3600*24)  . "'";
+			break;			
+		case 'deleted':
+			$whereOD .= " AND TransferStatus = '9'";
+			break;			
+		case 'agent':
+			$whereOD .= " AND UserLevelID = '2'";
+			break;			
+		case 'notConfirmedAgent':
+			$whereOD .= " AND DriverConfStatus = '1' AND TransferStatus < '3' AND UserLevelID = '2'";
+			break;			
+		case 'invoice2':
+			$whereOD .= " AND PaymentMethod = '6'";
+			break;			
+		case 'agentinvoice':
+			$whereOD .= " AND (PaymentMethod = '4' OR PaymentMethod = '6')";
+			break;			
+		case 'online':
+			$whereOD .= " AND (PaymentMethod = '1' OR PaymentMethod = '3')";
+			break;			
+		case 'cash':
+			$whereOD .= " AND PaymentMethod = '2'";
+			break;			
+		case 'proforma':
+			$documentFilter = 1;
+			break;			
+		case 'invoice':
+			$documentFilter = 3;
+			break;			
+		case 'invoice':
+			$documentFilter = 3;
+			break;				
+		case 'noDate':
+			$whereOD .= " AND PickupDate = ' '";
+			break;				
+		case 'order':
+			$oid_arr=explode('-',$_REQUEST['orderid']);
+			if (count($oid_arr)>1) {
+				$oid=rtrim($oid_arr[0]);
+				$tn=rtrim($oid_arr[1]);
+				$whereOD .= " AND OrderID = ".$oid." AND TNo = ".$tn;
+			}
+			else $whereOD .= " AND OrderID = ".$_REQUEST['orderid'];					
+			break;				
+		case 'detail':
+			$whereOD .= " AND DetailsID = ".$_REQUEST['detailid'];		
+			$_REQUEST['orderToDate']=date('Y-m-d',time());				
+			break;			
+	}
+}		
+else {
+	if (!isset($_REQUEST['filterDatePeriod'])) $_REQUEST['filterDatePeriod']="OrderDate>=";
+	if (!isset($_REQUEST['filterDate'])) $_REQUEST['filterDate']=date("Y-m-d",time()-3600*24*365);
+	$whereOD.= " AND ". $_REQUEST['filterDatePeriod']."'".$_REQUEST['filterDate']."'";
+}	
+
 //$whereOD.="`OrderDate`>CURDATE()- INTERVAL 1 YEAR";
 if (isset($_REQUEST['extraServices']) && $_REQUEST['extraServices']!=-1) 
 	$whereOD.=" AND ExtraCharge".$_REQUEST['extraServices']." ";
@@ -78,7 +232,7 @@ if (isset($_REQUEST['Search']) && !empty($_REQUEST['Search'])) {
 }
 $smarty->assign('query',$whereOD);
 
-$odk=$od->getKeysBy("OrderDate Desc","",$whereOD);
+$odk=$od->getKeysBy($_REQUEST['sortOrder'],"",$whereOD);
 $countObject=count($odk);
 if (!isset($_REQUEST['pagelength'])) $_REQUEST['pagelength']=10;
 if (!isset($_REQUEST['pageno'])) $_REQUEST['pageno']=1;

@@ -99,10 +99,11 @@ $(document).ready(function(){
 													{else} <span style="color: #c00"><i class="fa fa-question"></i></span> 
 												{/if}
 											
-												{if $month_transfers[pom].transfers[pom2].DriverConfStatus eq '1'} <span style="color:#c00"><i class="fa fa-car"></i></span>
-													{else if $month_transfers[pom].transfers[pom2].DriverConfStatus eq '2'} <span class="text-orange"><i class="fa fa-info-circle"></i></span>
-													{else if $month_transfers[pom].transfers[pom2].DriverConfStatus eq '3'} <span class="text-blue"><i class="fa fa-car"></i></span>
-													{else if $month_transfers[pom].transfers[pom2].DriverConfStatus eq '4'} <span style="color:#c00"><i class="fa fa-thumbs-down"></i></span>
+												{if $month_transfers[pom].transfers[pom2].DriverConfStatus eq '0'} <span style="color:#c00"><i class="fa fa-car"></i></span>
+													{else if $month_transfers[pom].transfers[pom2].DriverConfStatus eq '1'} <span class="text-orange"><i class="fa fa-info-circle"></i></span>
+													{else if $month_transfers[pom].transfers[pom2].DriverConfStatus eq '2'} <span class="text-blue"><i class="fa fa-thumbs-up"></i></span>
+													{else if $month_transfers[pom].transfers[pom2].DriverConfStatus eq '3'} <span style="text-blue"><i class="fa fa fa-car"></i></span>
+													{else if $month_transfers[pom].transfers[pom2].DriverConfStatus eq '4'} <span style="color:#c00"><i class="fa fa-thumbs-down"></i> </i></span>
 													{else if $month_transfers[pom].transfers[pom2].DriverConfStatus eq '5'} <span style="color:#c00"><i class="fa fa-user-times"></i></span>
 													{else if $month_transfers[pom].transfers[pom2].DriverConfStatus eq '6'} <span style="color:#c00"><i class="fa fa-black-tie"></i></span>
 													{else if $month_transfers[pom].transfers[pom2].DriverConfStatus eq '7'} <span class="text-green"><i class="fa fa-check-square"></i></span>

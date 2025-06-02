@@ -19,6 +19,7 @@
 	$smarty->assign('calculateProvision',false);	
 	$smarty->assign('calendar',false);	
 	$smarty->assign('subDriverPanel',false);	
+	$smarty->assign('notReady',false);	
 	// Check:
 	// $smarty->assign('bookingConversionRate',false);	
 
@@ -116,3 +117,7 @@
 			if (isset($_SESSION['UseDriverID'])) $smarty->assign('driverSettingsExist',driverSettingsExist());
 	}
 
+	if (in_array($_SESSION['AuthLevelID'],array(41,42,43,44,45,91,92,99))) {
+			require_once 'notReady.php';
+			$smarty->assign('notReady',true);
+	}

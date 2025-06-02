@@ -420,32 +420,47 @@
 				<div class="row">
 					<div class="col-md-3 "><label>{$CASH}</label></div>
 					<div class="col-md-9">
-						<input type="text" name="PayLater" id="PayLater" class="w25"
-						value=" {$ordersD[pom].PayLater}"
+						{if !($ordersD[pom].PaymentMethod eq 2 or $ordersD[pom].PaymentMethod eq 3)}
+							<button type="button" class="extra"><i class="fa fa-plus" aria-hidden="true"></i></button>
+						{/if}	
+						<input type="text" name="PayLater" id="PayLater" class="w25 
+							{if !($ordersD[pom].PaymentMethod eq 2 or $ordersD[pom].PaymentMethod eq 3)}hidden{/if}"
+						value=" {$ordersD[pom].PayLater}" 
 						>
 					</div>
 				</div>					
 				<div class="row">
 					<div class="col-md-3 "><label>{$PAID_ONLINE}</label></div>
 					<div class="col-md-9">
-						<input type="text" name="PayNow" id="PayNow" class="w25"
+						{if !($ordersD[pom].PaymentMethod eq 1 or $ordersD[pom].PaymentMethod eq 3)}
+							<button type="button" class="extra"><i class="fa fa-plus" aria-hidden="true"></i></button>
+						{/if}						
+						<input type="text" name="PayNow" id="PayNow" class="w25 
+							{if !($ordersD[pom].PaymentMethod eq 1 or $ordersD[pom].PaymentMethod eq 3)}hidden{/if}"
 						value=" {$ordersD[pom].PayNow}"> 
-						<input type="text" name="MCardNumber" id="MCardNumber" class="w25"
+						<input type="text" name="MCardNumber" id="MCardNumber" class="w25
+							{if !($ordersD[pom].PaymentMethod eq 1 or $ordersD[pom].PaymentMethod eq 3)}hidden{/if}"
 						value=" {$ordersD[pom].Master.MCardNumber}">										
 					</div>
 				</div>														
 				<div class="row">
 					<div class="col-md-3 "><label>{$PAYMENT_FOR} (Invoice)</label></div>
 					<div class="col-md-9">
-						<input type="text" name="InvoiceAmount" id="InvoiceAmount" class="w25"
+						{if !($ordersD[pom].PaymentMethod eq 4 or $ordersD[pom].PaymentMethod eq 6)}
+							<button type="button" class="extra"><i class="fa fa-plus" aria-hidden="true"></i></button>
+						{/if}					
+						<input type="text" name="InvoiceAmount" id="InvoiceAmount" class="w25
+							{if !($ordersD[pom].PaymentMethod eq 4 or $ordersD[pom].PaymentMethod eq 6)}hidden{/if}"
 						value=" {$ordersD[pom].InvoiceAmount}"> 
 					</div>
 				</div>
 								
 				<div class="row">
 					<div class="col-md-3 "><label>{$DRIVER_NAME}</label></div>
-					<div class="col-md-9" id="DriverName{$ordersD[pom].DetailsID}">
-						{$ordersD[pom].DriverName} {$users[{$ordersD[pom].DriverID}].AuthRealName}
+					<div class="col-md-6" ">
+						<input type="text" name="DriverName" id="DriverName{$ordersD[pom].DetailsID}" value="{$ordersD[pom].DriverName} {$users[{$ordersD[pom].DriverID}].AuthRealName}">
+					</div>	
+					<div class="col-md-3">
 						<input type="hidden" name="DriverID" id="DriverID{$ordersD[pom].DetailsID}" value="{$ordersD[pom].DriverID}">
 						<button type="button" class="btn btn-primary drivers-modal" 
 							data-detailsid="{$ordersD[pom].DetailsID}"  
@@ -499,14 +514,14 @@
 				</div>
 				<div class="row">
 					<div class="col-md-3 "><label>{$DRIVER_TEL}</label></div>
-					<div class="col-md-9" id="DriverTel{$ordersD[pom].DetailsID}">
-						 {$ordersD[pom].DriverTel}
+					<div class="col-md-9">
+						 <input type="text" name="DriverTel" id="DriverTel{$ordersD[pom].DetailsID}" value="{$ordersD[pom].DriverTel}"/>
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-md-3 "><label>{$DRIVER_EMAIL}</label></div>
-					<div class="col-md-9" id="DriverEmail{$ordersD[pom].DetailsID}">
-						 {$ordersD[pom].DriverEmail}
+					<div class="col-md-9">
+						 <input type="text" name="DriverEmail" id="DriverEmail{$ordersD[pom].DetailsID}" value="{$ordersD[pom].DriverEmail}"/>
 					</div>
 				</div>
 				<div class="row">

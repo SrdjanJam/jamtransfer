@@ -49,6 +49,14 @@
 				</div>
 				<div class="row">
 					<div class="col-md-2">
+						<label for="OwnerIDs"><?=OWNERS_IDS;?></label>
+					</div>
+					<div class="col-md-10">
+						<input type="text" name="OwnersIDs" id="OwnersIDs" class="w100" value="{{OwnersIDs}}">
+					</div>
+				</div>				
+				<div class="row">
+					<div class="col-md-2">
 						<label for="Title"><?=RECIEVER_ID;?></label>
 					</div>
 					<div class="col-md-10">

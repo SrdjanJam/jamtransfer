@@ -39,7 +39,7 @@
 				<div class="col-sm-2 pad1em">
 					{$orders[ind].PayLater} €
 				</div>	
-				<div class="col-sm-2 {$color} pad1em">
+				<div class="col-sm-2 {$orders[ind].Color} pad1em">
 					{$orders[ind].CashIn} € 
 				</div>
 			</div>		
@@ -77,7 +77,7 @@
 						<label>Date From</label>
 					</div>
 					<div class="col-md-2">
-						<input type="text" value="0" name="DateFrom" class="datepicker">
+						<input type="text" value="0" name="DateFrom" class="form-control datepicker">
 					</div>
 				</div>
 
@@ -86,7 +86,7 @@
 						<label>Date To</label>
 					</div>
 					<div class="col-md-2">
-						<input type="text" value="0" name="DateTo" class="datepicker">
+						<input type="text" value="0" name="DateTo" class="form-control datepicker">
 					</div>
 				</div>
 
@@ -95,7 +95,7 @@
 						<label>SubDriver</label>
 					</div>
 					<div class="col-md-2">
-						<select name="SubDriverID" id="SubDriverID">
+						<select class="form-control" name="SubDriverID" id="SubDriverID">
 
 						    <option value="0"> --- </option>
 							{section name=ind2 loop=$sdrivers}
@@ -103,7 +103,7 @@
 							{/section}
 						</select>
 						<div>
-							<button type="submit" class="btn btn-primary" name="submit" style="margin-top: 5px;">Submit</button>
+							<button type="submit" class="btn btn-primary form-control" name="submit" style="margin-top: 5px;">Submit</button>
 						</div>
 						
 					</div>

@@ -73,7 +73,7 @@
 					{{AuthUserID}}
 				</div>
 				
-				<div class="col-sm-3 col-xs-6">
+				<div title="{{Terminal}}" class="col-sm-3 col-xs-6">
 					<strong>
 						{{#compare AuthUserRealName "!==" ""}}
 							{{AuthUserRealName}}

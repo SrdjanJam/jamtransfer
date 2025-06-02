@@ -2,7 +2,7 @@
 {{#compare tab "==" "order"}}
     <div class="row dorder">
         <div class="col-md-3 "><label><?= ID ?></label></div>
-        <div class="col-md-9">
+        <div class="col-md-6">
             <strong>{{details.OrderID}}-{{details.TNo}}</strong> {{transferStatusSelect details.TransferStatus}}
             <i class="fa fa-exchange"></i>
             {{#if details.RelatedTransfers.RelatedTransferText includeZero=true}}
@@ -16,6 +16,12 @@
                 </button>
             {{/if}}
         </div>
+		<div class="col-md-3">
+            <button id="saveR" class="badge blue text-black" title="Copy Transfer" 
+                onclick="return editSaveItem('{{details.DetailsID}}',2);"><?= COPY_TRANSFER ?>
+            </button>		
+		</div>
+		
     </div>
     <div class="row dorder">
         <div class="col-md-3 "><label><?= ORDER_KEY ?></label></div>

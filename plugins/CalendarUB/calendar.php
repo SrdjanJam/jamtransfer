@@ -2,15 +2,7 @@
 /*
 	AJAX Script !!!!
 */
-$_SESSION['CMSLang']=$_REQUEST['lang'];
-$languageFile = '../../lng/' . $_SESSION['CMSLang'] . '_text.php';
-if ( file_exists( $languageFile) ) require_once $languageFile;
 require_once "../../config.php";
-
-
-require_once "../../config.php";
-
-
 
 if (!isset($_REQUEST["cal_month"])) {
     if (!isset($_SESSION["cal_month"])) $cMonth = date("m");
@@ -50,33 +42,24 @@ for ($i=0; $i<($maxday+$startday); $i++) {
 	$dayin .= "'".$fullDate. "'," ;
 }	
 $dayin = substr($dayin,0,strlen($dayin)-1);
-
-$active = "SELECT * FROM ".DB_PREFIX."OrderDetails
-			WHERE PickupDate IN (".$dayin.") ";
-if (isset($_SESSION['UseDriverID']))  $active .=	"AND DriverID = '".$_SESSION['UseDriverID']."' ";
-if ($_SESSION['AuthLevelID']==32)  $active .=	"AND Subdriver = '".$_SESSION['AuthUserID']."' ";
-$active .=	"AND TransferStatus not in (4,6,9)
-			ORDER BY PickupDate, PickupTime ASC
-			";
+if ($_REQUEST["all"]==1) $filter_users="`MUserID`<>0";
+else $filter_users="`MUserID` not in (0,53)";
+//$active = "SELECT MOrderDate,MOrderTime,PickupDate,PickupTime,PickupName,DropName,PaxNo FROM `v4_OrderDetailsTemp`,`v4_OrdersMasterTemp` WHERE `TransferStatus`=6 and TNo=1 and `OrderDate` in (".$dayin.") and OrderID=MOrderID	";		
+$active = "SELECT `OrderDate`,`AgentID`,`CustomerID`,`PickupName`,`DropName`,`PickupDate`,`PickupTime` FROM `v4_OrderDetailsTemp` WHERE `UserID`>0 and `OrderID` in (SELECT MOrderID FROM `v4_OrdersMasterTemp` WHERE  `MUserLevelID` in (2,3) and ".$filter_users." and `MOrderKey` not in (SELECT `MCardNumber` FROM `v4_OrdersMaster` WHERE `MCardNumber`>0))";
 $rec = $db->RunQuery($active) ;
-$tr_arr=array();
-while ($row = $rec->fetch_assoc() ) {
-	$tr_arr[]=$row;
-}
-$rec=$tr_arr;
 $timestamp = mktime(0,0,0,$cMonth,1,$cYear);
 $maxday = date("t",$timestamp);
 $thismonth = getdate ($timestamp);
 $startday = $thismonth['wday'];
 for ($i=0; $i<($maxday+$startday); $i++) {
 		$fullDate = date("Y-m-d",mktime(0,0,0,$cMonth,($i - $startday + 1),$cYear));
-		$month_transfers[]=monthTransfers($fullDate,$rec,$i,$startday);
+		$month_transfers[]=monthTransfers($fullDate,$rec,$i,$startday,$users);
 }	
 $smarty->assign('month_transfers',$month_transfers);
 $smarty->assign('startday',$startday);
 $smarty->display('monthtransfers.tpl');		
 
-function monthTransfers($date,$rec,$count,$startday)
+function monthTransfers($date,$rec,$count,$startday,$users)
 {
 	global $StatusDescription;
 	global $DriverConfStatus;
@@ -85,12 +68,11 @@ function monthTransfers($date,$rec,$count,$startday)
 	$noOfTransfers = 0;
 	$arr = array();
 	foreach ($rec as $row) { 
-		// print_r($row);
-		if ($row['PickupDate']==$date) {
-			if ($row['TransferStatus'] != '3') $noOfTransfers += 1;
+		if ($row['OrderDate']==$date) {
+			if ($row['AgentID']<>53) $row['AgentName']=$users[$row['AgentID']]->AuthUserRealName;
+			$row['CustomerName']=$users[$row['CustomerID']]->AuthUserRealName;
+			$noOfTransfers += 1;
 			$arr[]= $row;
-			
-			// print_r($arr);
 		}
 	}
 	$dayofweek=($count % 7);
@@ -102,5 +84,3 @@ function monthTransfers($date,$rec,$count,$startday)
 	$dayTransfers['noOfTransfers']=$noOfTransfers;
     return $dayTransfers;
 }
-
-// print_r($arr); Empty array

@@ -5,8 +5,16 @@ require_once 'Initial.php';
 $keyValue = $_REQUEST['id'];
 $fldList = array();
 $out = array();
-if ($_SESSION['UserRealName']=="New driver") $_REQUEST['AuthLevelID']=31;
-if ($_SESSION['UserRealName']=="New agent") $_REQUEST['AuthLevelID']=2;
+if ($_SESSION['UserRealName']=="New driver") {
+	$_REQUEST['AuthLevelID']=31;
+	$_REQUEST['Active']=9;
+	$_REQUEST['Temp_pass']=create_order_key();
+}	
+if ($_SESSION['UserRealName']=="New agent") {
+	$_REQUEST['AuthLevelID']=2;
+	$_REQUEST['Active']=9;
+	$_REQUEST['Temp_pass']=create_order_key();	
+}	
 if (isset($_REQUEST['Delete']) && $_REQUEST['Delete']==1) {
 	$_REQUEST['AuthUserRealName']=str_replace("ZZZDEL ","",$_REQUEST['AuthUserRealName']);
 	$_REQUEST['AuthUserRealName']="ZZZDEL ".$_REQUEST['AuthUserRealName'];
@@ -31,32 +39,21 @@ if ($keyName != '' and $keyValue != '') {
 }
 if ($keyName != '' and $keyValue == '') {
 	$newID = $db->saveAsNew();
-	$mailto="office@jamtransfer.com";
 	$from_mail="cms@jamtransfer.com";
 	$from_name="System mail";
 	$replyto="";
 	$attachment = '';
 	$whatsapp = 0;
-	
-	if ($_SESSION['UserRealName']=="New driver") {
-		$messageWA="Your company have been entered into the WIS.JAMTRANSFER system and will be activated soon. Login on https://wis.jamtransfer.com/.";
-		$messageM="New driver have been entered into the system. ID:".$newID;
-		$subject="Insert new driver";
-		mail_html_send($mailto, $from_mail, $from_name, $replyto, $subject, $messageM, $attachment, $whatsapp);		
-	}	
-	else if ($_SESSION['UserRealName']=="New agent") {
-		$messageWA="Your company have been entered into the WIS.JAMTRANSFER system and will be activated soon. Login on https://wis.jamtransfer.com/.";
-		$messageM="New agent have been entered into the system. ID:".$newID;
-		$subject="Insert new agent";
-		mail_html_send($mailto, $from_mail, $from_name, $replyto, $subject, $messageM, $attachment, $whatsapp);
-	}
-	else {
-		$messageWA="You/your company have been entered into the WIS.JAMTRANSFER system. Your username and password will come soon. Login on https://wis.jamtransfer.com/.";
-	}	
 	$subject="Input confirmation";
+	
+	if ($_SESSION['UserRealName']=="New driver" || $_SESSION['UserRealName']=="New agent") 
+		$message="Your company have been applied to the WIS.JAMTRANSFER system. Confirmation link: https://wis.jamtransfer.com/plugins/AuthUser/Activate.php?key=".$_REQUEST['Temp_pass'];
+	else {
+		$message="You (your company) have been entered into the WIS.JAMTRANSFER system. Username and password will come soon. Login on https://wis.jamtransfer.com/.";
+		send_whatsapp_message($_REQUEST['AuthUserMob'],$message);		
+	}
 	$mailto=$_REQUEST['AuthUserMail'];
-	mail_html_send($mailto, $from_mail, $from_name, $replyto, $subject, $messageWA, $attachment, $whatsapp);
-	send_whatsapp_message($_REQUEST['AuthUserMob'],$messageWA);		
+	mail_html_send($mailto, $from_mail, $from_name, $replyto, $subject, $message, $attachment, $whatsapp);
 	if ($_SESSION['AuthLevelID']==0) {
 		unset ($_SESSION['UserAuthorized']);
 		unset ($_SESSION['UserRealName']);

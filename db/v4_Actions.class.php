@@ -15,6 +15,7 @@ Class v4_Actions {
 
 	public $ID; //int(10)
 	public $DisplayOrder; //int(4)
+	public $OwnersIDs; //int(4)
 	public $Active; //int(4)	
 	public $Title; //varchar(255)
 	public $ReciverID; //int(11)
@@ -30,9 +31,10 @@ Class v4_Actions {
      * New object to the class. Don´t forget to save this new object "as new" by using the function $class->saveAsNew(); 
      *
      */
-	public function New_v4_Actions($ID,$DisplayOrder,$Active,$Title,$ReciverID){
+	public function New_v4_Actions($ID,$DisplayOrder,$OwnersIDs,$Active,$Title,$ReciverID){
 		$this->ID = $ID;
 		$this->DisplayOrder = $DisplayOrder;
+		$this->OwnersIDs = $OwnersIDs;
 		$this->Active = $Active;		
 		$this->Title = $Title;
 		$this->ReciverID = $ReciverID;		
@@ -50,6 +52,7 @@ Class v4_Actions {
 		while($row = $result->fetch_array(MYSQLI_ASSOC)){
 			$this->ID = $row["ID"];
 			$this->DisplayOrder = $row["DisplayOrder"];
+			$this->OwnersIDs = $row["OwnersIDs"];
 			$this->Active = $row["Active"];			
 			$this->Title = $row["Title"];
 			$this->ReciverID = $row["ReciverID"];			
@@ -73,6 +76,7 @@ Class v4_Actions {
 		$result = $this->connection->RunQuery("UPDATE v4_Actions set 
 ID = '".$this->myreal_escape_string($this->ID)."', 
 DisplayOrder = '".$this->myreal_escape_string($this->DisplayOrder)."', 
+OwnersIDs = '".$this->myreal_escape_string($this->OwnersIDs)."', 
 Active = '".$this->myreal_escape_string($this->Active)."', 
 Title = '".$this->myreal_escape_string($this->Title)."', 
 ReciverID = '".$this->myreal_escape_string($this->ReciverID)."'
@@ -84,8 +88,9 @@ ReciverID = '".$this->myreal_escape_string($this->ReciverID)."'
      * Save the active var class as a new row on table
      */
 	public function saveAsNew(){
-		$this->connection->RunQuery("INSERT INTO v4_Actions (ID, DisplayOrder, Active, Title, ReciverID) values ('".$this->myreal_escape_string($this->ID)."',
+		$this->connection->RunQuery("INSERT INTO v4_Actions (ID, DisplayOrder, OwnersIDs, Active, Title, ReciverID) values ('".$this->myreal_escape_string($this->ID)."',
 		'".$this->myreal_escape_string($this->DisplayOrder)."',
+		'".$this->myreal_escape_string($this->OwnersIDs)."',
 		'".$this->myreal_escape_string($this->Active)."',		
 		'".$this->myreal_escape_string($this->Title)."',		
 		'".$this->myreal_escape_string($this->ReciverID)."')");
@@ -121,6 +126,13 @@ ReciverID = '".$this->myreal_escape_string($this->ReciverID)."'
 	public function getDisplayOrder(){
 		return $this->DisplayOrder;
 	}
+	
+	/**
+	 * @return OwnersIDs - int(4)
+	 */
+	public function getOwnersIDs(){
+		return $this->OwnersIDs;
+	}	
 
 	/**
 	 * @return Active - int(4)
@@ -160,6 +172,13 @@ ReciverID = '".$this->myreal_escape_string($this->ReciverID)."'
 	/**
 	 * @param Type: int(4)
 	 */
+	public function setOwnersIDs($OwnersIDs){
+		$this->OwnersIDs = $OwnersIDs;
+	}
+	
+	/**
+	 * @param Type: int(4)
+	 */
 	public function setActive($Active){
 		$this->Active = $Active;
 	}
@@ -188,6 +207,7 @@ ReciverID = '".$this->myreal_escape_string($this->ReciverID)."'
 		$fieldValues = array(
 			'ID' => $this->getID(),
 			'DisplayOrder' => $this->getDisplayOrder(),
+			'OwnersIDs' => $this->getOwnersIDs(),
 			'Active' => $this->getActive(),			
 			'Title' => $this->getTitle(),			
 			'ReciverID' => $this->getReciverID()		);
@@ -201,7 +221,7 @@ ReciverID = '".$this->myreal_escape_string($this->ReciverID)."'
      */
 	public function fieldNames(){
 		$fieldNames = array(
-			'ID',			'DisplayOrder',		'Active',			'Title',		'ReciverID'		);
+			'ID',			'DisplayOrder',		'OwnersIDs',		'Active',			'Title',		'ReciverID'		);
 		return $fieldNames;
 	}
     /**

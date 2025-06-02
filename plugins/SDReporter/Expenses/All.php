@@ -51,7 +51,7 @@ $out = array();
 $flds = array();
 
 # kombinacija where i filtera
-$DB_Where = " " . $_REQUEST['where'];
+$DB_Where = " " . $_REQUEST['where'] ." AND Approved<9 ";
 $DB_Where .= $filter;
 if (isset($_SESSION['UseDriverID']))  $DB_Where .=	" AND OwnerID = '".$_SESSION['UseDriverID']."' ";
 if (isset($_REQUEST['vehicleID']) && $_REQUEST['vehicleID']>0) $DB_Where .= " AND VehicleID=".$_REQUEST['vehicleID'];
@@ -97,7 +97,6 @@ if ( $_REQUEST['Search'] != "" )
 	$DB_Where = substr_replace( $DB_Where, "", -3 );
 	$DB_Where .= ')';
 }
-
 $dbTotalRecords = $db->getKeysBy('ID ASC', '',$DB_Where);
 
 # test za LIMIT - trebalo bi ga iskoristiti za pagination! 'asc' . ' LIMIT 0,50'

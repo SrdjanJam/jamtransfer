@@ -28,15 +28,17 @@
 		if( count($odk) > 0) {  
 			foreach ($odk as $key) {
 				$od->getRow($key);
-				$orders[]=$od->fieldValues();
+				
+				$order_row=$od->fieldValues();
 				$NumberOfTransfers += 1;
 				$TotalCashIn = $TotalCashIn + $od->CashIn;
 				$TotalPayLater = $TotalPayLater + $od->PayLater;
 				if($od->CashIn != $od->PayLater) {
-					$color = 'red';
+					$order_row['Color'] = 'red';
 					$NumberOfCashDiffTransfers += 1;
 				}
-				else $color = '';
+				else $order_row['Color'] = '';
+				$orders[]=$order_row;
 			}
 		}
 		$smarty->assign("orders",$orders);

@@ -151,6 +151,7 @@ foreach ($db->fieldNames() as $name) {
 				$db->setCar(0);
 				$db->setCar2(0);
 				$db->setCar3(0);
+				$db->setDriverConfStatus(1);
 				
 				// obavijesti starog vozaca
 				if ($old_content>0) $logDescription .= informOldDriver($db->getOrderID(),$db->getTNo(),$old_content) . '<br>';
@@ -313,6 +314,9 @@ if ($_REQUEST['return']==2) {
 	$db->setOrderDate(date("Y-m-d"));
 	$db->setTNo(1);	
 	$db->setDriverConfStatus(0);
+	$db->setStaffNote("");
+	$db->setPickupNotes("");
+	$db->setDropNotes("");
 	$db->setTransferStatus(4);
 	$db->saveAsNew();
 	$logAction = 'Insert';

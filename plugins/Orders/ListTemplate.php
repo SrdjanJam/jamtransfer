@@ -117,6 +117,7 @@
 								<div class="inner inner-edit">					
 									<i class="fa fa-user"></i> <strong>{{PaxName}}</strong>
 									{{#compare CustomerID "!=" 0}}<span class="badge badge-info">Level {{custName CustomerID "Level"}}</span>{{/compare}}
+									{{#if PickupNotes}}<small style="color:red"><i class="fa-solid fa-message"></i></small>{{/if}}				
 									<br>
 									<small>
 										<i class="fa fa-envelope-o"></i> {{MPaxEmail}}

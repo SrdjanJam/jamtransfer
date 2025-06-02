@@ -1171,3 +1171,9 @@ define("YOUR_CONTACT_INFO", 'Passenger info');
 define("SELECTED_VEHICLE", "Selected Vehicle");
 define("VEHICLE_CAPACITY", "Max.passengers");
 define('MOBILE_NUMBER', 'Mobile number');
+
+//24.04.25
+define("COPY_TRANSFER", "Copy Transfer");
+
+//15.05.25
+define("OWNERS_IDS", "Owners ID`s");

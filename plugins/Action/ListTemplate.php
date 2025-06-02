@@ -14,6 +14,10 @@
 		
 		<div class="col-md-1">
 			<?=ACTIONS_ID;?>
+		</div>		
+		
+		<div class="col-md-1">
+			<?=OWNERS_IDS;?>
 		</div>
 
 		<div class="col-md-3">
@@ -35,6 +39,10 @@
 		
 					<div class="col-md-1">
 						<strong>{{ID}}</strong>
+					</div>					
+					
+					<div class="col-md-1">
+						<strong>{{OwnersIDs}}</strong>
 					</div>
 
 					<div class="col-md-3">

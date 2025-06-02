@@ -8,7 +8,7 @@ require_once ROOT.'/db/v4_OrderLog.class.php';
 require_once ROOT.'/db/v4_OrderExtras.class.php';
 
 // ukljuci mail funkcije
-//require_once 'informFuncs.php';
+require_once ROOT.'/api/informFuncs.php';
 
 # init class
 $au = new v4_AuthUsers();
@@ -106,6 +106,7 @@ if ($message=="OK") {
 					$data['Car2']=0;				
 					$data['SubDriver3']=0;
 					$data['Car3']=0;
+					$data['DriverConfStatus']=1;
 					
 					// obavijesti starog vozaca
 					$logDescription .= informOldDriver($od->getOrderID(),$od->getTNo(),$value) . '<br>';

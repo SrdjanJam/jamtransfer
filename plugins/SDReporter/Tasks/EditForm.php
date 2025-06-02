@@ -74,8 +74,8 @@
 					<div class="col-md-8">
 						<select class="w100" name="Expense" id='actionsselect' value="{{Expense}}">
 							<?
-							foreach ($opis as $key=>$o) {
-								echo '<option value="'.$key.'">'.$o.'</option>';
+							foreach ($actions as $key=>$o) {
+								echo '<option value="'.$o['ID'].'">'.$o['Title'].'</option>';
 							}
 							?>
 						</select>
@@ -89,8 +89,8 @@
 						<select class="w100" name="DriverID">
 						{{#select DriverID}}
 							<?
-							foreach ($driverArr as $driver) {
-								echo '<option value="'.$driver->AuthUserID.'">'.$driver->AuthUserRealName.'</option>';
+							foreach ($subdrivers as $driver) {
+								echo '<option value="'.$driver['id'].'">'.$driver['name'].'</option>';
 							}
 							?>
 						{{/select}}
@@ -111,8 +111,8 @@
 						<select class="w100" name="VehicleID" <? if (!$isNew) { ?> disabled<? } ?> >
 						{{#select VehicleID}}
 							<?
-							foreach ($vehicleArr as $vehicle) {
-								echo '<option value="'.$vehicle->VehicleID.'">'.$vehicle->VehicleDescription.'</option>';
+							foreach ($vehicles as $vehicle) {
+								echo '<option value="'.$vehicle['id'].'">'.$vehicle['name'].'</option>';
 							}
 							?>
 						{{/select}}

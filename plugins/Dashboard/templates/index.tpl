@@ -11,7 +11,7 @@
 					{/if}
 					
 					<div class="row">
-						{$driverSettingsExist}
+						{*$driverSettingsExist*}
 									
 						{if $unConfirmedTransfers}
 						<section class="col-lg-12 xconnectedSortable"> 
@@ -32,14 +32,19 @@
 						{/if}						
 								
 						{if $unAssignedTransfers}
-						<section class="col-lg-12 xconnectedSortable"> 
+						{*<section class="col-lg-12 xconnectedSortable"> 
 							{include file="plugins/Dashboard/templates/unAssignedTransfers.tpl"} 
-						</section>	
+						</section>*}
 						{/if}	
 						
 						{if $getOrder}
 						<section class="col-lg-6 xconnectedSortable"> 
 							{include file="plugins/Dashboard/templates/getOrder.tpl"} 			
+						</section><!-- /.Left col -->
+						{/if}							
+						{if $notReady}
+						<section class="col-lg-6 xconnectedSortable"> 
+							{include file="plugins/Dashboard/templates/notReady.tpl"} 			
 						</section><!-- /.Left col -->
 						{/if}						
 						{if $getRoutePrices}

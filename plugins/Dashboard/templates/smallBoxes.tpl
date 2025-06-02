@@ -52,7 +52,7 @@
 						{if $smarty.session.AuthLevelID ne 31}
                         <div class="col-lg-2 col-md-4 col-xs-6">
                             <!-- small box -->
-                            <a href="orders/newTransfers">
+                            <a href="shortOrders/newTransfers">
                                 <div class="small-box xblue xwhite-text">
                                     <div class="inner">
                                         <h3>
@@ -76,7 +76,7 @@
 
                         {*<div class="col-lg-2 col-md-4 col-xs-6">
                             <!-- small box -->
-                            <a href="orders/active">
+                            <a href="shortOrders/active">
                                 <div class="small-box bg-aqua">
                                     <div class="inner">
                                         <h3>
@@ -100,7 +100,7 @@
 
                         <div class="col-lg-2 col-md-4 col-xs-6">
                             <!-- small box -->
-                            <a href="orders/confirmed">
+                            <a href="shortOrders/confirmed">
                                 <div class="small-box xgreen  xwhite-text">
                                     <div class="inner">
                                         <h3>
@@ -122,7 +122,7 @@
 
                         <div class="col-lg-2 col-md-4 col-xs-6">
                             <!-- small box -->
-                            <a href="orders/notConfirmed">
+                            <a href="shortOrders/notConfirmed">
                                 <div class="small-box bg-warning">
                                     <div class="inner">
                                         <h3>
@@ -144,7 +144,7 @@
 
 						{*<div class="col-lg-2 col-md-4 col-xs-6">
                             <!-- small box -->
-                            <a href="orders/notConfirmedToday">
+                            <a href="shortOrders/notConfirmedToday">
                                 <div class="small-box bg-yellow">
                                     <div class="inner">
                                         <h3>
@@ -168,7 +168,7 @@
 
 						<div class="col-lg-2 col-md-4 col-xs-6">
                             <!-- small box -->
-                            <a href="orders/notConfirmedTomorrow">
+                            <a href="shortOrders/notConfirmedTomorrow">
                                 <div class="small-box bg-orange">
                                     <div class="inner">
                                         <h3>
@@ -192,7 +192,7 @@
 
 						<div class="col-lg-2 col-md-4 col-xs-6">
                             <!-- small box -->
-                            <a href="orders/notConfirmedTodayTomorrow">
+                            <a href="shortOrders/notConfirmedTodayTomorrow">
                                 <div class="small-box bg-yellow">
                                     <div class="inner">
                                         <h3>
@@ -216,7 +216,7 @@
 						
 						<div class="col-lg-2 col-md-4 col-xs-6">
                             <!-- small box -->
-                            <a href="orders/notAssign">
+                            <a href="shortOrders/notAssign">
                                 <div class="small-box bg-yellow">
                                     <div class="inner">
                                         <h3>
@@ -240,7 +240,7 @@
 						
                         <div class="col-lg-2 col-md-4 col-xs-6">
                             <!-- small box -->
-                            <a href="orders/declined">
+                            <a href="shortOrders/declined">
                                 <div class="small-box red darken-2 xwhite-text">
                                     <div class="inner">
                                         <h3>
@@ -262,7 +262,7 @@
 
                         <div class="col-lg-2 col-md-4 col-xs-6">
                             <!-- small box -->
-                            <a href="orders/tomorrow">
+                            <a href="shortOrders/tomorrow">
                                 <div class="small-box teal darken-2 xwhite-text">
                                     <div class="inner">
                                         <h3>

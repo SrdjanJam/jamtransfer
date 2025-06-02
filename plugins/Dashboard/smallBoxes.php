@@ -19,8 +19,8 @@ $StatusDescription = array(
     $od = new v4_OrderDetails();
 	
 	if (($_SESSION['AuthLevelID'])!=31) {
-		if (isset($_SESSION['UseDriverID'])) $driverQ=" WHERE DriverID=".$_SESSION['UseDriverID']." AND ";
-		else $driverQ=" WHERE ";
+		if (isset($_SESSION['UseDriverID'])) $driverQ=" WHERE TransferStatus!=9 AND DriverID=".$_SESSION['UseDriverID']." AND ";
+		else $driverQ=" WHERE TransferStatus!=9 AND ";
 
 		$where = $driverQ.' PickupDate >= "'.date("Y-m-d").'" AND TransferStatus < "3"';
 		$k = $od->getKeysBy('DetailsID', 'asc', $where);

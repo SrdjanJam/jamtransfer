@@ -28,11 +28,14 @@
 			<h4>minimum provision 10%, minimum absolute provision 10Eur</h4>
 		
 			<div class="row booking-row">
-				<div class="col-md-6">
-					Basic price <input class="form-control" type="text" name="Price" size="5" id="Price" value="" placeholder="Price"> 
+				<div class="col-md-3">
+					<input class="form-control Price" type="text" size="5" data-type="Basic" value="" placeholder="Basic price"> 
+				</div>				
+				<div class="col-md-3">
+					<input class="form-control Price" type="text" size="5" data-type="Final" value="" placeholder="Final price"> 
 				</div>
 				<div class="col-md-6">
-					Calculated provision <input class="form-control" type="text" name="Provision" size="5" id="Provision" value="" disabled placeholder="Provision"> 
+					<input class="form-control" type="text" name="Provision" size="5" id="Provision" value="" disabled placeholder="Provision"> 
 				</div>					
 			</div>
         </div>
@@ -41,13 +44,15 @@
 	
 <script>	
 {literal}
-	$('#Price').on('change', function() {
+	$('.Price').on('change', function() {
 		var price = $(this).val();
+		var type = $(this).attr('data-type');
 		$.ajax({
 			url:  './api/calculateProvision.php',
 			type: 'GET',
 			data: {
-				price : price
+				price : price,
+				type : type
 			},
 
 			success: function(data) {

@@ -30,7 +30,7 @@
 	//if($u->getAuthUserID() != $DriverID) die('Error: Inform support team!');
 	if($d->TransferStatus == '4') die('<h1>Transfer wait for customer confirmation.</h1>'); 
 	// button pressed
-	if( isset($_REQUEST['Confirm']) ) { 
+	if(isset($_REQUEST['Confirm']) && $d->getDriverConfStatus()<2 && ($d->getDriverID()==$DriverID || $d->getDriverID()==0)) { 
 		$dcd->setDetailsID($DetailsID);
 		$dcd->setUserID($DriverID);
 		date_default_timezone_set('Europe/Paris');
@@ -174,4 +174,5 @@
 			
 		}
 		$dcd->saveAsNew();
-	}
+	} else $message = "Previously Confirmed";
+	echo $message;

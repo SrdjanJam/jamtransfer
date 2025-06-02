@@ -200,10 +200,10 @@
 			var olddriverid=$(this).parents().find('#DriverID'+DetailsID).val();
 			href=href.replace(olddriverid,$(this).attr("data-ownerid"));
 			$(this).parents().find('#confirlmLink'+DetailsID+' a').attr('href',href);
-			$(this).parents().find('#DriverName'+DetailsID).html($(this).html());
+			$(this).parents().find('#DriverName'+DetailsID).val($(this).html());
 			$(this).parents().find('#DriverID'+DetailsID).val($(this).attr("data-ownerid"));
-			$(this).parents().find('#DriverTel'+DetailsID).html($(this).attr("data-mobile"));
-			$(this).parents().find('#DriverEmail'+DetailsID).html($(this).attr("data-mail"));
+			$(this).parents().find('#DriverTel'+DetailsID).val($(this).attr("data-mobile"));
+			$(this).parents().find('#DriverEmail'+DetailsID).val($(this).attr("data-mail"));
 			$(this).parents().find('#DriverConfStatus'+DetailsID).html('<span class="{/literal}{$driverConfClass[1]}{literal}">{/literal}{$DriverConfStatus[1]}{literal}</span>');
 		})		
 	})
@@ -224,6 +224,10 @@
 	})
 	extrasChanges();
 
+	$(".extra").click(function(){
+		$(this).parent().find('input').removeClass('hidden');
+		$(this).addClass('hidden');
+	})
 
 	$(".save").click(function(){
 		var id = $(this).attr("data-id");

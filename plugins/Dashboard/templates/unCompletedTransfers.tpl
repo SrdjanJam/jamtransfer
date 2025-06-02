@@ -32,12 +32,12 @@
 										<i class="fa fa-check-circle l"></i> {$MARK_COMPLETED}
 									</button>	
 
-									<button class=" btn btn-default" onclick="$('#noShow').show('slow');">
+									<button class=" btn btn-default" onclick="$('#noShow').removeClass('hidden');">
 										<i class="fa fa-minus-square l"></i> {$MARK_NOSHOW} / {$MARK_DRIVER_ERROR}
 									</button>
 
 									<div class="row ">
-										<div id="noShow" class="col-md-12" style="display:none">
+										<div id="noShow" class="col-md-12 hidden">
 											<br>{$DETAIL_DESCRIPTION}:<br>
 											<textarea name="FinalNote" id="FinalNote" rows="5">{$details2[pom].FinalNote}</textarea>
 											<button class="btn btn-primary" 

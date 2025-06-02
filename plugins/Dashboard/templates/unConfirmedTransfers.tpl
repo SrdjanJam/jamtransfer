@@ -208,7 +208,7 @@
 			url: url,
 			async: true,
 			success: function(data) {
-				$.toaster('{/literal}{$TRANSFER_CONFIRMED} {$ASSIGN_TRANSFER}{literal}', 'Done', 'success blue-2');
+				$.toaster(data, 'Done', 'success blue-2');
 				location.reload();
 			}
 		});
@@ -265,7 +265,7 @@
 			url: url,
 			async: true,
 			success: function(data) {
-				$.toaster('{/literal}{$TRANSFER_DECLINE}{literal}', 'Done', 'success red');
+				$.toaster(data, 'Done', 'success red');
 				location.reload();
 			}
 		})
