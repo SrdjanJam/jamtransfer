@@ -17,71 +17,73 @@ $em = new v4_ExtrasMaster();
 $vh = new v4_Vehicles();
 $al = new v4_AuthLevels();
 $time1=microtime();
-
-if (!isset($_REQUEST['sortOrder']) && !empty($_REQUEST['sortOrder'])) {
+if (!isset($_REQUEST['sortOrder'])) {
 	switch ($transfersFilter) {
 		case 'noDriver':
-			$_REQUEST['sortOrder'] = "PickupDate Asc";	
+			$_REQUEST['sortOrder'] = "PickupDate ASC";	
 			break;
 		case 'notConfirmed':
-			$_REQUEST['sortOrder'] = "PickupDate Asc";
+			$_REQUEST['sortOrder'] = "PickupDate ASC";
 			break;			
 		case 'notConfirmedTodayTomorrow':
-			$_REQUEST['sortOrder'] = "PickupDate Asc";
+			$_REQUEST['sortOrder'] = "PickupDate ASC";
 			break;	
 		case 'notAssign':
-			$_REQUEST['sortOrder'] = "PickupDate Asc";
+			$_REQUEST['sortOrder'] = "PickupDate ASC";
 			break;						
 		case 'confirmed':
-			$_REQUEST['sortOrder'] = "PickupDate Asc";
+			$_REQUEST['sortOrder'] = "PickupDate ASC";
 			break;			
 		case 'declined':
-			$_REQUEST['sortOrder'] = "PickupDate Asc";
+			$_REQUEST['sortOrder'] = "PickupDate ASC";
 			break;			
 		case 'canceled':
-			$_REQUEST['sortOrder'] = "PickupDate Asc";
+			$_REQUEST['sortOrder'] = "PickupDate ASC";
 			break;			
 		case 'noShow':
-			$_REQUEST['sortOrder'] = "PickupDate Desc";
+			$_REQUEST['sortOrder'] = "PickupDate DESC";
 			break;			
 		case 'driverError':
-			$_REQUEST['sortOrder']= "PickupDate Desc";
+			$_REQUEST['sortOrder']= "PickupDate DESC";
 			break;			
 		case 'notCompleted':
-			$_REQUEST['sortOrder']= "PickupDate Asc";  
+			$_REQUEST['sortOrder']= "PickupDate ASC";  
 			break;			
 		case 'active':
-			$_REQUEST['sortOrder']= "PickupDate Asc";
+			$_REQUEST['sortOrder']= "PickupDate ASC";
 			break;			
 		case 'newTransfers':
-			$_REQUEST['sortOrder']= "OrderDate Desc";
+			$_REQUEST['sortOrder']= "OrderDate DESC";
 			break;			
 		case 'tomorrow':
-			$_REQUEST['sortOrder']= "PickupDate Asc";  
+			$_REQUEST['sortOrder']= "PickupDate ASC";  
 			break;			
 		case 'deleted':
-			$_REQUEST['sortOrder']= "OrderDate Desc";
+			$_REQUEST['sortOrder']= "OrderDate DESC";
 			break;			
 		case 'agent':
-			$_REQUEST['sortOrder']= "OrderDate Desc";
+			$_REQUEST['sortOrder']= "OrderDate DESC";
 			break;			
 		case 'notConfirmedAgent':
-			$_REQUEST['sortOrder']= "PickupDate Asc";
+			$_REQUEST['sortOrder']= "PickupDate ASC";
 			break;			
 		case 'invoice2':
-			$_REQUEST['sortOrder']= "OrderDate Desc";
+			$_REQUEST['sortOrder']= "OrderDate DESC";
 			break;			
 		case 'agentinvoice':
-			$_REQUEST['sortOrder']= "OrderDate Desc";
+			$_REQUEST['sortOrder']= "OrderDate DESC";
 			break;			
 		case 'online':
-			$_REQUEST['sortOrder']= "OrderDate Desc";
+			$_REQUEST['sortOrder']= "OrderDate DESC";
 			break;			
 		case 'cash':
-			$_REQUEST['sortOrder']= "OrderDate Desc";
-			break;			
+			$_REQUEST['sortOrder']= "OrderDate DESC";
+			break;		
+		default:	
+			$_REQUEST['sortOrder']= "OrderDate DESC";
+			break;
 	}
-} else $_REQUEST['sortOrder']= "OrderDate Desc";
+} 
 
 $whereOD=" WHERE TransferStatus!=9";
 if (isset($transfersFilter) && !empty($transfersFilter)) {

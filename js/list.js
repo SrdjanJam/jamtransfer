@@ -55,6 +55,10 @@
 		if (typeof sortDirection=='undefined') sortDirection='DESC';	
 		var routeID = $("#routeID").val();
 		if (typeof routeID=='undefined') routeID=0;	
+		var customerID = $("#customerID").val();
+		if (typeof customerID=='undefined') customerID=0;	
+		var userID = $("#userID").val();
+		if (typeof userID=='undefined') userID=0;	
 		var vehicleTypeID = $("#vehicleTypeID").val();
 		if (typeof vehicleTypeID=='undefined') vehicleTypeID=0;	
 		var vehicleID = $("#vehicleID").val();
@@ -138,6 +142,8 @@
 		'&vehicleTypeID='+vehicleTypeID+
 		'&vehicleID='+vehicleID+
 		'&subdriverID='+subdriverID+
+		'&customerID='+customerID+
+		'&userID='+userID+
 		'&actionID='+actionID+
 		'&terminalID='+terminalID+
 		'&CAU='+CAU+

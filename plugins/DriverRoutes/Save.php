@@ -20,7 +20,10 @@ if ($_REQUEST['DriverRoute']==0) {
 	require_once ("RemoveServices.php");	
 }	
 if ($_REQUEST['DriverRoute']==1) {
-	$result = $dbT->RunQuery("INSERT IGNORE INTO `v4_DriverRoutes`(`RouteID`,`OwnerID`,`Active`, `Approved`,`OneToTwo`,`TwoToOne`,`SurCategory`) VALUES (".$_REQUEST['RouteID'].",".$_SESSION['UseDriverID'].",1,1,1,1,1)");
+	$db->getRow($_REQUEST['RouteID']);
+	$from=$db->getFromID();
+	$to=$db->getToID();
+	$result = $dbT->RunQuery("INSERT IGNORE INTO `v4_DriverRoutes`(`RouteID`,`OwnerID`,`FromID`,`ToID`,`Active`, `Approved`,`OneToTwo`,`TwoToOne`,`SurCategory`) VALUES (".$_REQUEST['RouteID'].",".$_SESSION['UseDriverID'].",".$from.",".$to.",1,1,1,1,1)");
 	require_once ("InsertServices.php");
 }
 echo $_REQUEST['DriverRoute'];

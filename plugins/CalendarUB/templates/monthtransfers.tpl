@@ -91,8 +91,8 @@ $(document).ready(function(){
 												<div class="{$month_transfers[pom].transfers[pom2].color}">
 													<small><strong>{$month_transfers[pom].transfers[pom2].MOrderTime}</strong>
 													<strong>
-														{$month_transfers[pom].transfers[pom2].AgentName}
-														{$month_transfers[pom].transfers[pom2].CustomerName}
+														<a target='_blank' href='users/{$month_transfers[pom].transfers[pom2].AgentID}'>{$month_transfers[pom].transfers[pom2].AgentName}</a>
+														<a target='_blank' href='customers/{$month_transfers[pom].transfers[pom2].CustomerID}'>{$month_transfers[pom].transfers[pom2].CustomerName}</a>
 													</strong><br>
 													{$month_transfers[pom].transfers[pom2].PickupDate}
 													{$month_transfers[pom].transfers[pom2].PickupTime}<br>

@@ -63,14 +63,14 @@
 
 		<div class="col-md-2">
 			<select name="sortOrder" id="sortOrder" value="{$sortOrder}" class="form-control">
-				<option value="OrderDate DESC" {if $smarty.request.sortOrder eq "OrderDate DESC"}SELECT{/if}>{$ORDER_DATE} {$DESCENDING} </option>
-				<option value="OrderDate ASC" {if $smarty.request.sortOrder eq "OrderDate ASC"}SELECT{/if}>{$ORDER_DATE} {$ASCENDING} </option>
-				<option value="PickupDate DESC" {if $smarty.request.sortOrder eq "PickupDate DESC"}SELECT{/if}>{$PICKUP_DATE} {$DESCENDING} </option>
-				<option value="PickupDate ASC" {if $smarty.request.sortOrder eq "PickupDate ASC"}SELECT{/if}>{$PICKUP_DATE} {$ASCENDING} </option>
+				<option value="OrderDate DESC" {if $smarty.request.sortOrder eq "OrderDate DESC"}SELECTED{/if}>{$ORDER_DATE} {$DESCENDING} </option>
+				<option value="OrderDate ASC" {if $smarty.request.sortOrder eq "OrderDate ASC"}SELECTED{/if}>{$ORDER_DATE} {$ASCENDING} </option>
+				<option value="PickupDate DESC" {if $smarty.request.sortOrder eq "PickupDate DESC"}SELECTED{/if}>{$PICKUP_DATE} {$DESCENDING} </option>
+				<option value="PickupDate ASC" {if $smarty.request.sortOrder eq "PickupDate ASC"}SELECTED{/if}>{$PICKUP_DATE} {$ASCENDING} </option>
 			</select>
 		</div>
 
-		<div class="col-md-2">{$smarty.request.extraServices}
+		<div class="col-md-2">
 			<select class="form-control" name="extraServices" id="extraServicesChoose">
 				<option value="-1"> {$ANY}</option>
 				<option value=">0" {if $smarty.request.extraServices eq ">0"}SELECTED{/if}> {$ONLY_EXTRAS} </option>

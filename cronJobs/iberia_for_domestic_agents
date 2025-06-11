@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JAM Transfer - Partneri Newsletter</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .newsletter-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+            position: relative;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://wis.jamtransfer.com/i/logo.png') center/contain no-repeat;
+            opacity: 0.1;
+        }
+        
+        .logo {
+            width: 180px;
+            height: auto;
+            margin-bottom: 20px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        
+        .content {
+            padding: 40px 30px;
+        }
+        
+        .intro {
+            text-align: center;
+            margin-bottom: 40px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 30px;
+            border-radius: 15px;
+        }
+        
+        .intro h2 {
+            color: #2c3e50;
+            font-size: 1.8em;
+            margin-bottom: 15px;
+        }
+        
+        .airport-section {
+            margin-bottom: 40px;
+            border: 2px solid #e9ecef;
+            border-radius: 15px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .airport-section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .airport-header {
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .airport-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-size: cover;
+            background-position: center;
+            opacity: 0.3;
+            z-index: 1;
+        }
+        
+        .airport-header * {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .airport-header h3 {
+            font-size: 1.5em;
+            margin-bottom: 5px;
+        }
+        
+        .country-flag {
+            font-size: 2em;
+            margin-right: 10px;
+        }
+        
+        .destinations-grid {
+            padding: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 15px;
+        }
+        
+        .destination-card {
+            background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
+            border: 1px solid #dee2e6;
+            border-radius: 10px;
+            padding: 15px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+        
+        .destination-image {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+        
+        .airport-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin: 10px 0;
+        }
+        
+        .destination-card:hover {
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            transform: scale(1.02);
+        }
+        
+        .destination-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent);
+            transition: left 0.5s;
+        }
+        
+        .destination-card:hover::before {
+            left: 100%;
+        }
+        
+        .destination-name {
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+        
+        .price-range {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+        
+        .price-min {
+            font-size: 1.1em;
+        }
+        
+        .price-max {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+        
+        .features {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 30px;
+            margin: 30px 0;
+            border-radius: 15px;
+            text-align: center;
+        }
+        
+        .features h3 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .feature-item {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .feature-icon {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+        
+        .footer {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            text-align: center;
+            padding: 30px;
+        }
+        
+        .contact-info {
+            margin-bottom: 20px;
+        }
+        
+        .contact-info a {
+            color: #3498db;
+            text-decoration: none;
+        }
+        
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 20px 0;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(231, 76, 60, 0.4);
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(231, 76, 60, 0.6);
+        }
+        
+        /* Specifični background za svaki aerodrom */
+        .faro-bg::before {
+            background-image: url('https://wis.jamtransfer.com/i/website/destinations/faro.webp');
+        }
+        
+        .malaga-bg::before {
+            background-image: url('https://wis.jamtransfer.com/i/website/destinations/malaga.webp');
+        }
+        
+        .alicante-bg::before {
+            background-image: url('https://wis.jamtransfer.com/i/website/destinations/alicante.webp');
+        }
+        
+        .barcelona-bg::before {
+            background-image: url('https://wis.jamtransfer.com/i/website/destinations/barcelona.webp');
+        }
+        
+        .palma-bg::before {
+            background-image: url('https://wis.jamtransfer.com/i/website/destinations/palma_de_mallorca.webp');
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .destinations-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .content {
+                padding: 20px 15px;
+            }
+        }
+
+		/* Stilizovanje linkova */
+		a {
+			text-decoration: none;
+			color: inherit;
+			transition: all 0.3s ease;
+		}
+
+		/* Linkovi u naslovima aerodroma */
+		.airport-header h3 a {
+			color: white;
+			font-weight: bold;
+			text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+		}
+
+		.airport-header h3 a:hover {
+			text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+			transform: translateY(-1px);
+		}
+
+		/* Linkovi u destinacijama */
+		.destination-name a {
+			color: #2c3e50;
+			font-weight: 600;
+			padding: 2px 4px;
+			border-radius: 4px;
+			transition: all 0.3s ease;
+		}
+
+		.destination-name a:hover {
+			background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+			color: white;
+			transform: translateY(-1px);
+			box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+		}
+
+		/* Posebni hover efekti za različite aerodrome */
+		.faro-bg h3 a:hover {
+			background: rgba(255,255,255,0.2);
+			padding: 2px 8px;
+			border-radius: 4px;
+		}
+
+		.malaga-bg h3 a:hover {
+			background: rgba(255,255,255,0.2);
+			padding: 2px 8px;
+			border-radius: 4px;
+		}
+
+		.alicante-bg h3 a:hover {
+			background: rgba(255,255,255,0.2);
+			padding: 2px 8px;
+			border-radius: 4px;
+		}
+
+		.barcelona-bg h3 a:hover {
+			background: rgba(255,255,255,0.2);
+			padding: 2px 8px;
+			border-radius: 4px;
+		}
+
+		.palma-bg h3 a:hover {
+			background: rgba(255,255,255,0.2);
+			padding: 2px 8px;
+			border-radius: 4px;
+		}
+
+		/* Animacija za celu destination karticu kada se hover-uje link */
+		.destination-card:hover {
+			transform: translateY(-2px);
+			box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+		}
+
+		/* Active state za linkove */
+		.destination-name a:active {
+			transform: translateY(0);
+			box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+		}
+	</style>	
+</head>
+<body>
+    <div class="newsletter-container">
+        <div class="header">
+            <img src="https://wis.jamtransfer.com/i/logo.png" alt="JAM Transfer Logo" class="logo">
+            <h1>JAM TRANSFER</h1>
+            <p>Vaš pouzdan partner za aerodromski transfer</p>
+        </div>
+        
+        <div class="content">
+            <div class="intro">
+                <h2>🎯 Posebna ponuda za naše partnere!</h2>
+                <p>Poštovani partneri, predstavljamo vam našu kompletnu ponudu aerodromskih transfera za najpopularnije destinacije u Španiji i Portugalu. Konkurentne cene, profesionalna usluga, potpuna podrška.</p>
+            </div>
+            
+
+
+            <!-- FARO AERODROM -->
+            <div class="airport-section">
+                <div class="airport-header faro-bg">
+                    <h3><span class="country-flag">🇵🇹</span><a target="_blank" href="https://jamtransfer.com/taxi-transfers-from-faro+airport">FARO AERODROM - PORTUGAL</a></h3>
+                    <p>Algarve regija - najlepše plaže Portugala</p>
+                </div>
+                <div class="destinations-grid">
+                    <div class="destination-card">
+                        <div class="destination-name">🏖️ <a target="_blank" href="https://jamtransfer.com/taxi-transfers-from-faro+airport-to-vilamoura">Vilamoura</a></div>
+                        <div class="price-range">
+                            <span class="price-min">€22.02</span>
+                            <span>-</span>
+                            <span class="price-max">€39.58</span>
+                        </div>
+                    </div>
+                    <div class="destination-card">
+                        <div class="destination-name">🌊 <a target="_blank" href="https://jamtransfer.com/taxi-transfers-from-faro+airport-to-albufeira">Albufeira</a></div>
+                        <div class="price-range">
+                            <span class="price-min">€30.46</span>
+                            <span>-</span>
+                            <span class="price-max">€41.72</span>
+                        </div>
+                    </div>
+                    <div class="destination-card">
+                        <div class="destination-name">🏰 <a target="_blank" href="https://jamtransfer.com/taxi-transfers-from-faro+airport-to-tavira">Tavira</a></div>
+                        <div class="price-range">
+                            <span class="price-min">€31.45</span>
+                            <span>-</span>
+                            <span class="price-max">€55.63</span>
+                        </div>
+                    </div>
+                    <div class="destination-card">
+                        <div class="destination-name">🏖️ <a target="_blank" href="https://jamtransfer.com/taxi-transfers-from-faro+airport-to-alvor">Alvor</a></div>
+                        <div class="price-range">
+                            <span class="price-min">€51.66</span>
+                            <span>-</span>
+                            <span class="price-max">€70.78</span>
+                        </div>
+                    </div>
+                    <div class="destination-card">
+                        <div class="destination-name">⛵ <a target="_blank" href="https://jamtransfer.com/taxi-transfers-from-faro+airport-to-portimao">Portimão</a></div>
+                        <div class="price-range">
+                            <span class="price-min">€51.66</span>
+                            <span>-</span>
+                            <span class="price-max">€70.78</span>
+                        </div>
+                    </div>
+                    <div class="destination-card">
+                        <div class="destination-name">🌅 <a target="_blank" href="https://jamtransfer.com/taxi-transfers-from-faro+airport-to-lagos">Lagos</a></div>
+                        <div class="price-range">
+                            <span class="price-min">€65.09</span>
+                            <span>-</span>
+                            <span class="price-max">€88.46</span>
+                        </div>
+                    </div>
+                    <div class="destination-card">
+                        <div class="destination-name">🏖️ <a target="_blank" href="https://jamtransfer.com/taxi-transfers-from-faro+airport-to-praia+da+luz">Praia da Luz</a></div>
+                        <div class="price-range">
+                            <span class="price-min">€65.45</span>
+                            <span>-</span>
+                            <span class="price-max">€94.96</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- MALAGA AERODROM -->
+            <div class="airport-section">
+                <div class="airport-header malaga-bg">
+                    <h3><span class="country-flag">🇪🇸</span><a target="_blank" href="https://jamtransfer.com/taxi-transfers-from-malaga+airport">MALAGA AERODROM - ŠPANIJA</a></h3>
+                    <p>Costa del Sol - sunčana obala Andaluzije</p>
+                </div>
+                <div class="destinations-grid">
+                    <div class="destination-card">
+                        <div class="destination-name">🏙️ <a target="_blank" href="https://jamtransfer.com/taxi-transfers-from-malaga+airport-to-malaga">Malaga</a></div>
+                        <div class="price-range">
+                            <span class="price-min">€28.62</span>
+                            <span>-</span>
+                            <span class="price-max">€44.60</span>
+                        </div>
+                    </div>
+                    <div class="destination-card">
+                        <div class="destination-name">🏖️ <a target="_blank" href="https://jamtransfer.com/taxi-transfers-from-malaga+airport-to-benalmadena+costa">Benalmádena Costa</a></div>
+                        <div class="price-range">
+                            <span class="price-min">€31.00</span>
+                            <span>-</span>
+                            <span class="price-max">€55.32</span>
+                        </div>
+                    </div>
+                    <div class="destination-card">
+                        <div class="destination-name">🌊 <a target="_blank" href="https://jamtransfer.com/taxi-transfers-from-malaga+airport-to-fuengirola">Fuengirola</a></div>
+                        <div class="price-range">
+                            <span class="price-min">€38.34</span>
+                            <span>-</span>
+                            <span class="price-max">€56.02</span>
+                        </div>
+                    </div>
+                    <div class="destination-card">
+                        <div class="destination-name">💎 <a target="_blank" href="https://jamtransfer.com/taxi-transfers-from-malaga+airport-to-marbella">Marbella</a></div>
+                        <div class="price-range">
+                            <span class="price-min">€67.48</span>
+                            <span>-</span>
+                            <span class="price-max">€91.97</span>
+                        </div>
+                    </div>
+                    <div class="destination-card">
+                        <div class="destination-name">🏔️ <a target="_blank" href="https://jamtransfer.com/taxi-transfers-from-malaga+airport-to-nerja">Nerja</a></div>
+                        <div class="price-range">
+                            <span class="price-min">€72.50</span>
+                            <span>-</span>
+                            <span class="price-max">€119.15</span>
+                        </div>
+                    </div>
+                    <div class="destination-card">
+                        <div class="destination-name">🌅 <a target="_blank" href="https://jamtransfer.com/taxi-transfers-from-malaga+airport-to-estepona">Estepona</a></div>
+                        <div class="price-range">
+                            <span class="price-min">€87.00</span>
+                            <span>-</span>
+                            <span class="price-max">€142.52</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ALICANTE AERODROM -->
+            <div class="airport-section">
+                <div class="airport-header alicante-bg">
+                    <h3><span class="country-flag">🇪🇸</span><a target="_blank" href="https://jamtransfer.com/taxi-transfers-from-alicante+airport">ALICANTE AERODROM - ŠPANIJA</a></h3>
+                    <p>Costa Blanca - bela obala Španije</p>
+                </div>
+                <div class="destinations-grid">
+                    <div class="destination-card">
+                        <div class="destination-name">🏙️ <a target="_blank" href="https://jamtransfer.com/taxi-transfers-from-alicante+airport-to-alicante">Alicante</a></div>
+                        <div class="price-range">
+                            <span class="price-min">€38.06</span>
+                            <span>-</span>
+                            <span class="price-max">€66.17</span>
+                        </div>
+                    </div>
+                    <div class="destination-card">
+                        <div class="destination-name">🏖️ <a target="_blank" href="https://jamtransfer.com/taxi-transfers-from-alicante+airport-to-villajoyosa">Villajoyosa</a></div>
+                        <div class="price-range">
+                            <span class="price-min">€64.50</span>
+                            <span>-</span>
+                            <span class="price-max">€90.70</span>
+                        </div>
+                    </div>
+                    <div class="destination-card">
+                        <div class="destination-name">🎢 <a target="_blank" href="https://jamtransfer.com/taxi-transfers-from-alicante+airport-to-benidorm">Benidorm</a></div>
+                        <div class="price-range">
+                            <span class="price-min">€68.33</span>
+                            <span>-</span>
+                            <span class="price-max">€93.35</span>
+                        </div>
+                    </div>
+                    <div class="destination-card">
+                        <div class="destination-name">🌊 <a target="_blank" href="https://jamtransfer.com/taxi-transfers-from-alicante+airport-to-torrevieja">Torrevieja</a></div>
+                        <div class="price-range">
+                            <span class="price-min">€66.50</span>
+                            <span>-</span>
+                            <span class="price-max">€91.00</span>
+                        </div>
+                    </div>
+                    <div class="destination-card">
+                        <div class="destination-name">🏖️ <a target="_blank" href="https://jamtransfer.com/taxi-transfers-from-alicante+airport-to-playa+flamenca">Playa Flamenca</a></div>
+                        <div class="price-range">
+                            <span class="price-min">€69.50</span>
+                            <span>-</span>
+                            <span class="price-max">€94.00</span>
+                        </div>
+                    </div>
+                    <div class="destination-card">
+                        <div class="destination-name">⛵ <a target="_blank" href="https://jamtransfer.com/taxi-transfers-from-alicante+airport-to-javea+xabia">Javea (Xàbia)</a></div>
+                        <div class="price-range">
+                            <span class="price-min">€135.16</span>
+                            <span>-</span>
+                            <span class="price-max">€153.95</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BARCELONA AERODROM -->
+            <div class="airport-section">
+                <div class="airport-header barcelona-bg">
+                    <h3><span class="country-flag">🇪🇸</span><a target="_blank" href="https://jamtransfer.com/taxi-transfers-from-barcelona+airport">BARCELONA AERODROM - ŠPANIJA</a></h3>
+                    <p>Katalonija - kulturna prestonica</p>
+                </div>
+                <div class="destinations-grid">
+                    <div class="destination-card">
+                        <div class="destination-name">🏛️ <a target="_blank" href="https://jamtransfer.com/taxi-transfers-from-barcelona+airport-to-barcelona">Barcelona</a></div>
+                        <div class="price-range">
+                            <span class="price-min">€34.18</span>
+                            <span>-</span>
+                            <span class="price-max">€73.50</span>
+                        </div>
+                    </div>
+                    <div class="destination-card">
+                        <div class="destination-name">⚓ <a target="_blank" href="https://jamtransfer.com/taxi-transfers-from-barcelona+airport-to-barcelona+port">Barcelona Port</a></div>
+                        <div class="price-range">
+                            <span class="price-min">€43.96</span>
+                            <span>-</span>
+                            <span class="price-max">€67.90</span>
+                        </div>
+                    </div>
+                    <div class="destination-card">
+                        <div class="destination-name">🏖️ <a target="_blank" href="https://jamtransfer.com/taxi-transfers-from-barcelona+airport-to-blanes">Blanes</a></div>
+                        <div class="price-range">
+                            <span class="price-min">€126.02</span>
+                            <span>-</span>
+                            <span class="price-max">€162.90</span>
+                        </div>
+                    </div>
+                    <div class="destination-card">
+                        <div class="destination-name">🎢 <a target="_blank" href="https://jamtransfer.com/taxi-transfers-from-barcelona+airport-to-lloret+de+mar">Lloret de Mar</a></div>
+                        <div class="price-range">
+                            <span class="price-min">€129.46</span>
+                            <span>-</span>
+                            <span class="price-max">€175.55</span>
+                        </div>
+                    </div>
+                    <div class="destination-card">
+                        <div class="destination-name">🏰 <a target="_blank" href="https://jamtransfer.com/taxi-transfers-from-barcelona+airport-to-tarragona">Tarragona</a></div>
+                        <div class="price-range">
+                            <span class="price-min">€133.15</span>
+                            <span>-</span>
+                            <span class="price-max">€185.90</span>
+                        </div>
+                    </div>
+                    <div class="destination-card">
+                        <div class="destination-name">🎡 <a target="_blank" href="https://jamtransfer.com/taxi-transfers-from-barcelona+airport-to-port+aventura">Port Aventura</a></div>
+                        <div class="price-range">
+                            <span class="price-min">€140.45</span>
+                            <span>-</span>
+                            <span class="price-max">€195.90</span>
+                        </div>
+                    </div>
+                    <div class="destination-card">
+                        <div class="destination-name">🌊 <a target="_blank" href="https://jamtransfer.com/taxi-transfers-from-barcelona+airport-to-tossa+de+mar">Tossa de Mar</a></div>
+                        <div class="price-range">
+                            <span class="price-min">€153.95</span>
+                            <span>-</span>
+                            <span class="price-max">€210.66</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PALMA DE MALLORCA AERODROM -->
+            <div class="airport-section">
+                <div class="airport-header palma-bg">
+                    <h3><span class="country-flag">🇪🇸</span><a target="_blank" href="https://jamtransfer.com/taxi-transfers-from-palma+de+mallorca+airport">PALMA DE MALLORCA AERODROM</a></h3>
+                    <p>Balearska ostrva - mediteranski raj</p>
+                </div>
+                <div class="destinations-grid">
+                    <div class="destination-card">
+                        <div class="destination-name">🏖️ <a target="_blank" href="https://jamtransfer.com/taxi-transfers-from-palma+de+mallorca+airport-to-playa+de+palma+majorca">Playa de Palma</a></div>
+                        <div class="price-range">
+                            <span class="price-min">€34.18</span>
+                            <span>-</span>
+                            <span class="price-max">€56.95</span>
+                        </div>
+                    </div>
+                    <div class="destination-card">
+                        <div class="destination-name">🌊 <a target="_blank" href="https://jamtransfer.com/taxi-transfers-from-palma+de+mallorca+airport-to-el+arenal+majorca">El Arenal</a></div>
+                        <div class="price-range">
+                            <span class="price-min">€43.90</span>
+                            <span>-</span>
+                            <span class="price-max">€52.90</span>
+                        </div>
+                    </div>
+                    <div class="destination-card">
+                        <div class="destination-name">🏖️ <a target="_blank" href="https://jamtransfer.com/taxi-transfers-from-palma+de+mallorca+airport-to-illetas+majorca">Illetas</a></div>
+                        <div class="price-range">
+                            <span class="price-min">€50.56</span>
+                            <span>-</span>
+                            <span class="price-max">€114.40</span>
+                        </div>
+                    </div>
+                    <div class="destination-card">
+                        <div class="destination-name">🎉 <a target="_blank" href="https://jamtransfer.com/taxi-transfers-from-palma+de+mallorca+airport-to-magaluf+majorca">Magaluf</a></div>
+                        <div class="price-range">
+                            <span class="price-min">€56.45</span>
+                            <span>-</span>
+                            <span class="price-max">€71.95</span>
+                        </div>
+                    </div>
+                    <div class="destination-card">
+                        <div class="destination-name">🏖️ <a target="_blank" href="https://jamtransfer.com/taxi-transfers-from-palma+de+mallorca+airport-to-can+picafort+majorca">Can Picafort</a></div>
+                        <div class="price-range">
+                            <span class="price-min">€95.10</span>
+                            <span>-</span>
+                            <span class="price-max">€180.28</span>
+                        </div>
+                    </div>
+                    <div class="destination-card">
+                        <div class="destination-name">🏛️ <a target="_blank" href="https://jamtransfer.com/taxi-transfers-from-palma+de+mallorca+airport-to-alcudia+majorca">Alcudia</a></div>
+                        <div class="price-range">
+                            <span class="price-min">€98.64</span>
+                            <span>-</span>
+                            <span class="price-max">€180.28</span>
+                        </div>
+                    </div>
+                    <div class="destination-card">
+                        <div class="destination-name">🌊 <a target="_blank" href="https://jamtransfer.com/taxi-transfers-from-palma+de+mallorca+airport-to-cala+d+or+majorca">Cala d'Or</a></div>
+                        <div class="price-range">
+                            <span class="price-min">€101.23</span>
+                            <span>-</span>
+                            <span class="price-max">€186.96</span>
+                        </div>
+                    </div>
+                    <div class="destination-card">
+                        <div class="destination-name">🏖️ <a target="_blank" href="https://jamtransfer.com/taxi-transfers-from-palma+de+mallorca+airport-to-cala+bona+majorca">Cala Bona</a></div>
+                        <div class="price-range">
+                            <span class="price-min">€106.72</span>
+                            <span>-</span>
+                            <span class="price-max">€196.48</span>
+                        </div>
+                    </div>
+                    <div class="destination-card">
+                        <div class="destination-name">🌊 <a target="_blank" href="https://jamtransfer.com/taxi-transfers-from-palma+de+mallorca+airport-to-cala+millor+majorca">Cala Millor</a></div>
+                        <div class="price-range">
+                            <span class="price-min">€107.22</span>
+                            <span>-</span>
+                            <span class="price-max">€196.48</span>
+                        </div>
+                    </div>
+                    <div class="destination-card">
+                        <div class="destination-name">⛵ <a target="_blank" href="https://jamtransfer.com/taxi-transfers-from-palma+de+mallorca+airport-to-puerto+de+pollensa+majorca">Puerto de Pollensa</a></div>
+                        <div class="price-range">
+                            <span class="price-min">€111.90</span>
+                            <span>-</span>
+                            <span class="price-max">€133.90</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="features">
+                <h3>🌟 Zašto odabrati JAM Transfer?</h3>
+                <div class="features-grid">
+                    <div class="feature-item">
+                        <div class="feature-icon">👨‍💼</div>
+                        <h4>Meet & Greet</h4>
+                        <p>Vozač će vas sačekati na ugovorenom mestu</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">🚪</div>
+                        <h4>Door-to-Door</h4>
+                        <p>Direktan transfer do vašeg hotela</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">💯</div>
+                        <h4>Pouzdanost</h4>
+                        <p>Stotine zadovoljnih klijenata godišnje</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">🎯</div>
+                        <h4>Konkurentne cene</h4>
+                        <p>Najbolji odnos cene i kvaliteta</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <div class="contact-info">
+                <p><strong>📧 Email:</strong> <a target="_blank" href="mailto:info@jamtransfer.com">info@jamtransfer.com</a></p>
+                <p><strong>📞 Telefon:</strong> <a target="_blank" href="tel:++381116242858">011/6242858</a></p>
+                <p><strong>Adresa:</strong> Ljutice Bogdana 16, 11000 Beograd</p>
+                <p><strong>🌐 Website:</strong> <a target="_blank" href="https://jamtransfer.com">jamtransfer.com</a></p>
+            </div>
+            
+            <a target="_blank" href="https://jamtransfer.com" class="cta-button">
+                🚀 Rezervišite Transfer Sada! Ulogujte se Vašim korisničkim imenom i lozinkom!
+            </a>
+            
+            <p style="margin-top: 20px; opacity: 0.8;">
+                © 2025 JAM Transfer. Sva prava zadržana.
+            </p>
+        </div>
+    </div>
+</body>
+</html>

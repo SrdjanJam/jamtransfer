@@ -272,7 +272,7 @@ else {
 		$carsErrorMessage = array(); // greske
 
 		// ODAVDE KRECE
-		$drWhere = "WHERE RouteID in (".$routes_ids.") AND Active = '1'";
+		$drWhere = "WHERE RouteID in (".$routes_ids.") ";
 		if (isset($_SESSION['UseDriverID']) && $_SESSION['UseDriverID']>0) $drWhere .= " AND OwnerID=".$_SESSION['UseDriverID'];
 		// check for drivers for the route 
 		$driverRouteKeys = $dr->getKeysBy('RouteID', "ASC", $drWhere);
@@ -298,7 +298,7 @@ else {
 				// Driver Profiles iz v4_AuthUsers
 				$DriverCompany = $au->getAuthUserCompany();
 				// check for Services
-				$serviceKeys = $s->getKeysBy("ServiceID", "ASC", "WHERE RouteID = {$RouteID} AND OwnerID = {$OwnerID} AND Active = '1'");
+				$serviceKeys = $s->getKeysBy("ServiceID", "ASC", "WHERE RouteID = {$RouteID} AND OwnerID = {$OwnerID}");
 				if(count($serviceKeys) == 0) { // not found
 					$carsErrorMessage['title'] = $NO_VEHICLES;
 					$carsErrorMessage['text'] =  $NO_VEHICLES_EXT;
@@ -392,6 +392,7 @@ else {
 						$contract="";
 						$statusComp=$statusCompP; // preuzima status po drajver ruti;
 						if($au->getActive() == 0) $statusComp="<i>-Not active</i>";
+						if($dr->getActive() == 0) $statusComp="<i>-Not active route</i>";
 						if($DriversPrice < 1) $statusComp="<i>-No price</i>";
 						if(isVehicleOffDuty($VehicleID, $transferDate,$transferTime)) $statusComp="<i>-Off duty</i>";
 						if ($statusComp=="" && !isset($_REQUEST['type'])) {

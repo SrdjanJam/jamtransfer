@@ -21,6 +21,8 @@ if (isset($selectactive)) {
 		$filter .= "  AND ".$selectactive." = " . $_REQUEST['Active'] ;
 	}
 }
+if (isset($_REQUEST['userID']) && $_REQUEST['userID']>0) $filter .= " AND AuthUserID=".$_REQUEST['userID'];
+
 if (isset($_SESSION['UseDriverID']) && $_SESSION['UseDriverID']>0) 
 	$filter .= "  AND ((DriverID = " . $_SESSION['UseDriverID'] ." AND AuthLevelID=32) OR
 				 (AuthUserID =" . $_SESSION['UseDriverID'] ." AND AuthLevelID=31))";

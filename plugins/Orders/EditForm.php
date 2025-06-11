@@ -183,8 +183,8 @@
 		}			
 		// promena mobilnog nakon promene subdrivera
 		function changesubdriver (i) {
-			$('#SubDriver'+i+'Mob').attr('href','tel:'+($('#SubDriver'+i+' :selected').attr('data-tel')));
-			$('#SubDriver'+i+'Mob').text($('#SubDriver'+i+' :selected').attr('data-tel'));
+			$('#SubDriver'+i+'Mob').attr('href','tel:'+($('#SubDriver'+i+' :selected').attr('data-mob')));
+			$('#SubDriver'+i+'Mob').text($('#SubDriver'+i+' :selected').attr('data-mob'));
 		}		
 		changesubdriver ('');		
 		changesubdriver ('2');		

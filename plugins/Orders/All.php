@@ -512,7 +512,7 @@ $sql .=" as Name,
 	sum(DetailPrice) as DetailPrice,
 	sum(ExtraCharge) as ExtraCharge,
 	sum(DriverExtraCharge) as DriverExtraCharge,
-	sum(Provision) as Provision,
+	sum(ProvisionAmount) as Provision,
 	sum(Discount*DetailPrice/100) as Discount
 FROM v4_OrderDetails,v4_OrdersMaster";
 if ($_REQUEST["action"]<>"0") $sql .=",v4_OrderLog ";

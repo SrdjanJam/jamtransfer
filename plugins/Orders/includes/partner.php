@@ -179,13 +179,13 @@
             </div>	
             {{#compare details.SubDriver "!==" "0"}}
             <div class="row">
-                <div class="col-md-9">{{subdriverSelect details.SubDriver2 details.DriverID 'SubDriver2'}}  </div>	
-                <div class="col-md-3"><a id="SubDriver2Mob" href=""></a></div>	
+                <div class="col-md-8">{{subdriverSelect details.SubDriver2 details.DriverID 'SubDriver2'}}  </div>	
+                <div class="col-md-4"><a id="SubDriver2Mob" href=""></a></div>	
             </div>	
             {{#compare details.SubDriver2 "!==" "0"}}
             <div class="row">
-                <div class="col-md-9">{{subdriverSelect details.SubDriver3 details.DriverID 'SubDriver3'}}  </div>	
-                <div class="col-md-3"><a id="SubDriver3Mob" href=""></a></div>	
+                <div class="col-md-8">{{subdriverSelect details.SubDriver3 details.DriverID 'SubDriver3'}}  </div>	
+                <div class="col-md-4"><a id="SubDriver3Mob" href=""></a></div>	
             </div>	
             {{/compare}}
             {{/compare}}

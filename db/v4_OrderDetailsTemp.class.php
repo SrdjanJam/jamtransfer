@@ -92,10 +92,11 @@ Class v4_OrderDetailsTemp {
 	public $FinalNote; //text
 	public $SubFinalNote; //text
 	public $connection;
-
-	public function v4_OrderDetailsTemp(){
+	
+	function __construct(){
 		$this->connection = new DataBaseMysql();
-	}	public function myreal_escape_string($string){
+	} 
+	public function myreal_escape_string($string){
 		return $this->connection->real_escape_string($string);
 	}
 

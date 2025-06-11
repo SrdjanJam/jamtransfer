@@ -44,7 +44,7 @@ $flds = array();
 # kombinacija where i filtera
 $DB_Where = " " . $_REQUEST['where'];
 $DB_Where .= $filter;
-
+if (isset($_REQUEST['customerID']) && $_REQUEST['customerID']>0) $DB_Where .= " AND CustID=".$_REQUEST['customerID'];
 
 # dodavanje search parametra u qry
 # DB_Where sad ima sve potrebno za qry

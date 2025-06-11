@@ -40,8 +40,13 @@ switch ($activePage) {
 		
 	case 'routes':
 	case 'locations':
-	case 'users':
 		if ($pathVars->fetchByIndex($indexStart + 1)=="NT") $ActionID="NT";	
+		break;		
+		
+	case 'users':
+		if ($pathVars->fetchByIndex($indexStart + 1))
+			if ($pathVars->fetchByIndex($indexStart + 1)=="NT") $ActionID="NT";	
+			else $UserID=$pathVars->fetchByIndex($indexStart + 1);
 		break;		
 		
 	case 'driverReOrder':
@@ -55,6 +60,7 @@ switch ($activePage) {
 		break;
 		
 	case 'orders':
+	case 'shortOrders':
 	case 'bookOrders':
 		$isEdit=false;
 
@@ -93,6 +99,12 @@ switch ($activePage) {
 			if (isset($_POST['orderid']) && $_POST['orderid']<>'') $orderid=$_POST['orderid'];	
 		}
 		if (PARTNERLOG) $activePage="bookOrders";		
+		break;
+
+	case 'customers':
+		if ($pathVars->fetchByIndex($indexStart + 1)) { 
+			$CustomerID=$pathVars->fetchByIndex($indexStart + 1);
+		}	
 		break;
 		
 	case 'booking':

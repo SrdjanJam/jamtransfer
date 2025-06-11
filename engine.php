@@ -24,6 +24,8 @@ $pageName='';
 $pageList='';
 $existNew=false;
 $SubDriverID=0;
+$CustomerID=0;
+$UserID=0;
 $ActionID=0;
 $terminalID=0;
 $CAU="";
@@ -162,6 +164,8 @@ if ($result->num_rows>0) {
 	$smarty->assign('VehicleTypeID',$VehicleTypeID);
 	$smarty->assign('VehicleID',$VehicleID);
 	$smarty->assign('SubDriverID',$SubDriverID);
+	$smarty->assign('CustomerID',$CustomerID);
+	$smarty->assign('UserID',$UserID);
 	$smarty->assign('ActionID',$ActionID);
 	$smarty->assign('TerminalID',$terminalID);
 	$smarty->assign('item',$item);

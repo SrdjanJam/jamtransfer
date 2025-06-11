@@ -27,6 +27,8 @@
 value=" WHERE {$ItemID} > 0">
 
 <input type="hidden"  id="isNew" name="IsNew value="{$IsNew}">
+<input type="hidden"  id="customerID" name="customerID" value="{$CustomerID}">
+<input type="hidden"  id="userID" name="userID" value="{$UserID}">
 <input type="hidden"  id="routeID" name="routeID" value="{$RouteID}">
 <input type="hidden"  id="vehicleTypeID" name="vehicleTypeID" value="{$VehicleTypeID}">
 <input type="hidden"  id="vehicleID" name="vehicleID" value="{$VehicleID}">

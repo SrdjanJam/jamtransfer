@@ -34,7 +34,7 @@ $db = new DataBaseMysql();
 		$ttip .= NL.NL;
 
    	    # Pickup Time
-    	$dataNR .=    $driver . $row['PickupDate'] . ' &rarr; ';
+    	$dataNR .=    $row['PickupDate'] . ' &rarr; ';
 
 
         # Link & Tooltip

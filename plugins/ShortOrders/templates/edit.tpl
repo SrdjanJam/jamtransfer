@@ -143,7 +143,7 @@
 						{if $ordersD[pom].VehicleClass gt 19}
 							<i class="fa fa-car purple-text"></i>
 						{/if}
-						{if $ordersD[pom].VehiclesAll|count gt 0}
+						{if $ordersD[pom].VehiclesAll|count gt 0}{$ordersD[pom].VehicleType}
 							<select name="VehicleID" value="{$ordersD[pom].VehicleID}">
 								{section name=ind2 loop=$ordersD[pom].VehiclesAll} 
 									<option value="{$ordersD[pom].VehiclesAll[ind2].VehicleTypeID}"
