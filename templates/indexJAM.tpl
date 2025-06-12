@@ -416,9 +416,9 @@
 						<!-- Filter -->
 						<div class="filter-wrapper">
 							<div class="col-md-2 col-md-2-infoShow" id="infoShow"></div>
-							<div id="pageSelect" class=" pull-left pull-left-edit col-xs-12 col-md-3 col-lg-2"></div>
+							<div id="pageSelect" class=" pull-left pull-left-edit col-xs-7 col-md-3 col-lg-2"></div>
 							{if not isset($pagelength)}{assign var="pagelength" value="10"}{/if}
-							<div class="col-xs-6 col-md-3 col-lg-2" style="padding-bottom: 5px;">
+							<div class="col-xs-3 col-xs-edit col-md-3 col-lg-2" style="padding-bottom: 5px;">
 								<i class="fa fa-eye edit-fa"></i>
 								<select id="length" class="w75 form-control control-edit" style="width:50%;" onchange="allItems();">
 									<option value="5" {if $pagelength eq '5'} selected {/if}> 5 </option>
@@ -429,8 +429,8 @@
 								</select>
 							</div>
 							{if $existNew}
-								<div class="col-md-1"><a class="btn btn-primary btn-xs btn-xs-edit" href="{$currenturl}/new"><i class="fa fa-plus" aria-hidden="true"></i></a></div>
-							{/if}		
+								<div class="col-md-1 col-xs-2"><a class="btn btn-primary btn-xs btn-xs-edit" href="{$currenturl}/new"><i class="fa fa-plus" aria-hidden="true"></i></a></div>
+							{/if}
 						</div> <!-- /.filter-wrapper --> 
 					{/if}	
 					<div class="backdrop"><div class="spiner"></div></div>
