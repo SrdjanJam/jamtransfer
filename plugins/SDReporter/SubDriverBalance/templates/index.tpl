@@ -14,7 +14,7 @@
 				</select>
 			</div>
 			<div class="col-md-4">
-				<button type="submit" class="btn btn-primary" name="submit" style="margin-top: 5px;">Submit</button>
+				<button type="submit" class="btn btn-primary edit-btn-primary-subbalance" name="submit">Submit</button>
 			</div>	
 		</div>	
 	</form>

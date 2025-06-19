@@ -57,6 +57,12 @@ $(document).ready(function(){
 		
 </script>
 
+<style>
+.bac_color{
+	background: #EDF6FF;
+}
+</style>
+
 
 <div class="grid-container">
 	<div class="grid-item" style="background:#FDB5B5">{$dayNames[0]}</div>
@@ -76,7 +82,7 @@ $(document).ready(function(){
 			{* Old <td></td> *} <div class="grid-item-2"></div>
 			{else}
 				{* Old *} {* <td class="td" style="background:rgb(206, 203, 23);border:1px solid black;" valign="top" class="cal_cell" {$style}> *}
-				<div class="grid-item-2" id="grid{$month_transfers[pom].nom}">
+				<div class="grid-item-2 {$month_transfers[pom].bac_color}" id="grid{$month_transfers[pom].nom}">
 					<div class="days" id="day{$month_transfers[pom].nom}">
 						{* <div class="cal_days l"><b>{$month_transfers[pom].nom}</b></div> *}
 							<div class="cal_days l">

@@ -43,7 +43,7 @@
 				<div class="col-lg-1 col-md-1 col-xs-6">
 					<input class="form-control" id="PriceCoeff" type="text" name="PriceCoeff" value="{$vehicles[pom1].PriceCoeff}" placeholder="{$PRICE} Coeff."/>
 				</div>				
-				<div class="col-lg-2 col-md-2">
+				<div class="col-lg-2 col-md-2 col-xs-6">
 					<button type="submit" name="submit" class="btn btn-success" id="Save">{$SAVE}</button>	
 					{if $vehicles[pom1].VehicleID ne 0}	
 						<button data-id="{$vehicles[pom1].VehicleID}" type="button" class="btn btn-warning delete">{$DELETE}</button>
