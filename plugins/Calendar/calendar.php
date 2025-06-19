@@ -100,6 +100,9 @@ function monthTransfers($date,$rec,$count,$startday)
 	$dayTransfers['date']=$date;
 	$dayTransfers['transfers']=$arr;
 	$dayTransfers['noOfTransfers']=$noOfTransfers;
+	if($date == date("Y-m-d")) $dayTransfers['bac_color']="bac_color";
+	else $dayTransfers['bac_color']="";
+
     return $dayTransfers;
 }
 

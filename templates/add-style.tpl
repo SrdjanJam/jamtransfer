@@ -281,6 +281,10 @@
     border-right: none;
 }
 /* --------------------------------------------- */
+
+ .col-md-10 select{ 
+    width: 200px;
+}
 .row .listTile-edit{
     display: flex;
     /* flex-wrap: wrap; */
@@ -441,7 +445,7 @@ textarea{ width:90% !important; }
 
 /* Route */
 #TerminalID{
-	height:20px; z-index:1; width:405px;
+	height:20px; z-index:1;
 }
 #TerminalID option:hover{ background: #0088cc; color: white; }
 
@@ -1172,15 +1176,8 @@ button.searchdrivers, button.conversion-rate{
         top:130px !important;
         width:60% !important;
     }
-
-    .form-group.group-edit{ 
-        /* width:90%; prev */
-        /* width: 50%; */
-    }
-
     .expenses-image{
 		pointer-events: none; /* Turn off hover effect */
-
 		/* Testing for stretched on mobile: */
 		/* height: auto !important; */
         /* object-fit: cover !important; */
@@ -1192,33 +1189,24 @@ button.searchdrivers, button.conversion-rate{
 	}
 
     /* Treansfers orders: */
-    .pad1em{
-		flex-direction: column;
-	}
+    .pad1em{ flex-direction: column; }
 
-    select{
+    /* select{
         width:50%;
-    }
+    } */
 
-    .filter-one-edit{ 
-        text-align: center;
-    }
-    .form-group.group-edit{
-        margin: 5px;
-    }
+    .filter-one-edit{ text-align: center; }
+    .form-group.group-edit{ margin: 5px; }
 
     .row.row-shedule .clock-timepicker{
         display:block !important;
         /* margin-top: 5px;
         margin-bottom: 5px; */
     }
-
-
-    [class*="col-"] > *{ 
+    [class*="col-"] > *:not(select){ 
         /* float:none !important; */
         text-align: center !important;
     }
-
     .row-header .filter [class*="col-"]{
         margin: auto !important;
         width: 60% !important;
@@ -1227,33 +1215,35 @@ button.searchdrivers, button.conversion-rate{
         width: 100%;
         margin-bottom: 5px;
     }
-    .box-body .row .col-md-12{
-        margin-top: 40px;
-    }
+    .box-body .row .col-md-12{ margin-top: 40px; }
 
-    .btn-primary-edit.workingtime-edit{
-        margin: 3px;
-    }
+    .btn-primary-edit.workingtime-edit{ margin: 3px; }
 
-    #pageSelect{
-        padding-right: 0px !important;
-    }
+    #pageSelect{ padding-right: 0px !important; }
 
-    #pageSelector{
-        width: 30% !important;
-    }
+    #pageSelector{ width: 30% !important; }
 
-    .filter-wrapper .col-xs-edit{
-        padding: 0px !important;
-    }
+    .filter-wrapper .col-xs-edit{ padding: 0px !important; }
     .filter-wrapper select{
         width: 80% !important;
         padding-bottom: 0px !important;
         margin: 0px !important;
     }
-    .filter-wrapper .btn-xs-edit{
-        margin-left: 0px;
+    .filter-wrapper .btn-xs-edit{ margin-left: 0px; }
+
+    .edit-btn-primary-subbalance{ margin-top: 5px; }
+
+    .navbar-left-add h2{ font-size: 14px !important; }
+
+    ul.wysihtml5-toolbar{ display: block !important; }
+
+    .col-md-6 .rate-edit{ margin-top: 3px; }
+
+    .formIMG .row [class*="col-"]{
+        margin-top: 5px;
     }
+
+    
 
 }
 
