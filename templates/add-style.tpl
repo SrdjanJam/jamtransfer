@@ -84,9 +84,10 @@
     /* background-color: #36619f !important; border-color: #3c72bc !important; old */
     background-color: #6cc9e3 !important;
 }
-.nav.navbar-top-links.navbar-right{
+/* consider? */
+/* .nav.navbar-top-links.navbar-right{
     margin-top: 14px;
-}
+} */
 .cut-name{
     color: rgb(149 198 239);
     /* color:rgb(30 104 166); old */
