@@ -120,9 +120,9 @@
 				<i class="fa fa-arrow-right" aria-hidden="true"></i>		
 			</a>*}
 			<input type="text" id="PickupDate" name="PickupDate" class="w75 datepicker" value="{$smarty.request.Date}">
-			<button type="button" class="btn btn-primary btn-primary-edit workingtime" data-date="{$smarty.request.Date}" data-userid="{$smarty.session.UseDriverID}">
+			<button type="button" class="btn btn-primary btn-primary-edit workingtime workingtime-edit" data-date="{$smarty.request.Date}" data-userid="{$smarty.session.UseDriverID}">
 				{$SET_WT}
-			</button>			
+			</button>				
 		</div> <!-- End of text-align: center -->
 
 		<div class="transfers">
