@@ -84,7 +84,7 @@
     /* background-color: #36619f !important; border-color: #3c72bc !important; old */
     background-color: #6cc9e3 !important;
 }
-/* consider? */
+
 /* .nav.navbar-top-links.navbar-right{
     margin-top: 14px;
 } */
