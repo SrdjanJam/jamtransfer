@@ -85,9 +85,9 @@
     background-color: #6cc9e3 !important;
 }
 
-/* .nav.navbar-top-links.navbar-right{
+.nav.navbar-top-links.navbar-right{
     margin-top: 14px;
-} */
+}
 .cut-name{
     color: rgb(149 198 239);
     /* color:rgb(30 104 166); old */
@@ -283,9 +283,9 @@
 }
 /* --------------------------------------------- */
 
- .col-md-10 select{ 
+ /* .col-md-10 select{ 
     width: 200px;
-}
+} */
 .row .listTile-edit{
     display: flex;
     /* flex-wrap: wrap; */
@@ -622,6 +622,7 @@ button.searchdrivers, button.conversion-rate{
     .sub-card .row{
         display: flex;
     }
+    .row-second-edit{ display: flex; }
 
 }
 /* ===================================== */
@@ -1040,9 +1041,9 @@ button.searchdrivers, button.conversion-rate{
 		/* flex-direction: column; prev */
 	}
 
-    select{
+    /* select{
         width:50%;
-    }
+    } */
 
     /* Log evidence: */
     .dp_content select {
@@ -1053,9 +1054,9 @@ button.searchdrivers, button.conversion-rate{
 /* ===================================== */
 /* This max-width 991px is in bootstrap: */
 @media (max-width: 991px){
-    .select-top-edit, .datepicker-edit-2{
+    /* .select-top-edit, .datepicker-edit-2{
         width:50% !important;
-    }
+    } */
 
     .pad1em{
 		flex-direction: column;
@@ -1244,7 +1245,12 @@ button.searchdrivers, button.conversion-rate{
         margin-top: 5px;
     }
 
+    #sortField .select-top-edit, #sortDirection .select-top-edit{ width: 30% !important; }
+
+    .select-top-edit.addon { width: 100% !important}
     
+
+    /* 123 */
 
 }
 
