@@ -47,14 +47,14 @@
 	<div class="row collapse" id="header">
 		<div class="col-md-2">
 			<select name="filterDatePeriod" id="filterDatePeriod" class="form-control">
-				<option value="OrderDate>=" {if $smarty.request.filterDatePeriod eq "OrderDate>="}SELECT{/if}>{$AFTER_INCLUDING} {$ORDER_DATE}</option>
-				<option value="OrderDate>" {if $smarty.request.filterDatePeriod eq "OrderDate>"}SELECT{/if}> {$AFTER} {$ORDER_DATE}</option>
-				<option value="OrderDate<" {if $smarty.request.filterDatePeriod eq "OrderDate<"}SELECT{/if}> {$BEFORE} {$ORDER_DATE}</option>
-				<option value="OrderDate=" {if $smarty.request.filterDatePeriod eq "OrderDate="}SELECT{/if}> {$ON} {$ORDER_DATE}</option>		
-				<option value="PickupDate>=" {if $smarty.request.filterDatePeriod eq "PickupDate>="}SELECT{/if}> {$AFTER_INCLUDING} {$PICKUP_DATE}</option>
-				<option value="PickupDate>" {if $smarty.request.filterDatePeriod eq "PickupDate>"}SELECT{/if}> {$AFTER} {$PICKUP_DATE}</option>
-				<option value="PickupDate<" {if $smarty.request.filterDatePeriod eq "PickupDate<"}SELECT{/if}> {$BEFORE} {$PICKUP_DATE}</option>
-				<option value="PickupDate=" {if $smarty.request.filterDatePeriod eq "PickupDate="}SELECT{/if}> {$ON} {$PICKUP_DATE}</option>
+				<option value="OrderDate>=" {if $smarty.request.filterDatePeriod eq "OrderDate>="}SELECTED{/if}>{$AFTER_INCLUDING} {$ORDER_DATE}</option>
+				<option value="OrderDate>" {if $smarty.request.filterDatePeriod eq "OrderDate>"}SELECTED{/if}> {$AFTER} {$ORDER_DATE}</option>
+				<option value="OrderDate<" {if $smarty.request.filterDatePeriod eq "OrderDate<"}SELECTED{/if}> {$BEFORE} {$ORDER_DATE}</option>
+				<option value="OrderDate=" {if $smarty.request.filterDatePeriod eq "OrderDate="}SELECTED{/if}> {$ON} {$ORDER_DATE}</option>		
+				<option value="PickupDate>=" {if $smarty.request.filterDatePeriod eq "PickupDate>="}SELECTED{/if}> {$AFTER_INCLUDING} {$PICKUP_DATE}</option>
+				<option value="PickupDate>" {if $smarty.request.filterDatePeriod eq "PickupDate>"}SELECTED{/if}> {$AFTER} {$PICKUP_DATE}</option>
+				<option value="PickupDate<" {if $smarty.request.filterDatePeriod eq "PickupDate<"}SELECTED{/if}> {$BEFORE} {$PICKUP_DATE}</option>
+				<option value="PickupDate=" {if $smarty.request.filterDatePeriod eq "PickupDate="}SELECTED{/if}> {$ON} {$PICKUP_DATE}</option>
 			</select>
 		</div>
 		<div class="col-md-2">
@@ -63,10 +63,10 @@
 
 		<div class="col-md-2">
 			<select name="sortOrder" id="sortOrder" value="{$sortOrder}" class="form-control">
-				<option value="OrderDate DESC" {if $smarty.request.sortOrder eq "OrderDate DESC"}SELECTED{/if}>{$ORDER_DATE} {$DESCENDING} </option>
-				<option value="OrderDate ASC" {if $smarty.request.sortOrder eq "OrderDate ASC"}SELECTED{/if}>{$ORDER_DATE} {$ASCENDING} </option>
-				<option value="PickupDate DESC" {if $smarty.request.sortOrder eq "PickupDate DESC"}SELECTED{/if}>{$PICKUP_DATE} {$DESCENDING} </option>
 				<option value="PickupDate ASC" {if $smarty.request.sortOrder eq "PickupDate ASC"}SELECTED{/if}>{$PICKUP_DATE} {$ASCENDING} </option>
+				<option value="PickupDate DESC" {if $smarty.request.sortOrder eq "PickupDate DESC"}SELECTED{/if}>{$PICKUP_DATE} {$DESCENDING} </option>
+				<option value="OrderDate ASC" {if $smarty.request.sortOrder eq "OrderDate ASC"}SELECTED{/if}>{$ORDER_DATE} {$ASCENDING} </option>
+				<option value="OrderDate DESC" {if $smarty.request.sortOrder eq "OrderDate DESC"}SELECTED{/if}>{$ORDER_DATE} {$DESCENDING} </option>
 			</select>
 		</div>
 
@@ -78,7 +78,8 @@
 			</select>
 		</div>
 		<div class="col-md-2">
-			<strong>Process duration:<br> {$durtime}</strong>
+			{*<strong>Process duration:<br> {$durtime}</strong>*}
+			<button id="apply" class="form-contol btn-primary" type="button">Apply</button>
 		</div>	
 	</div>
 </form>
@@ -150,7 +151,8 @@
 {literal}
 	const ids = ["tablerows", "pageSelector", "countObject","offsetFrom","offsetTo","pageno","pagesno","durationTime"];
 
-	$('#headerform select, #headerform input').change(function(){
+	//$('#headerform select, #headerform input').change(function(){
+	$('#apply').click(function(){
 		event.preventDefault();
 		var param = $('#headerform').serialize();
 		console.log(window.location+'?'+param);

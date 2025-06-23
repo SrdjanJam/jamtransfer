@@ -287,10 +287,6 @@
 							</li>							
 
 						{/section}
-						{if $smarty.session.AuthLevelID ne 2 and $smarty.session.AuthLevelID ne 31 and $smarty.session.AuthLevelID ne 32 and $smarty.session.AuthLevelID ne 0}
-							<li><a href="https://cms.jamtransfer.com/cms/codeLogin.php?userCode={$smarty.session.userCode}&userID={$smarty.session.AuthUserID}">
-							<span class=="badge">CMS</span></a></li>
-						{/if}
 						{if ($smarty.session.AuthUserID eq 843) or ($smarty.session.AuthUserID eq 876) or ($smarty.session.AuthUserID eq 556)}
 							<li><a href="https://cms.jamtransfer.com/cms/codeLogin.php?userCode={$smarty.session.userCode}&userID={$smarty.session.AuthUserID}">
 							<span class=="badge">CMS</span></a></li>

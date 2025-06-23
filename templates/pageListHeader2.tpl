@@ -91,8 +91,8 @@ value=" WHERE {$ItemID} > 0">
 				</div>	
 				<div class="col-xs-12 col-md-2 col-lg-1">
 					<select id='sortField' class="select-top-edit" name='sortField' onchange="allItems();">
-						<option value="OrderDate">{$ORDER_DATE}</option>	
 						<option value="PickupDate">{$PICKUP_DATE}</option>		
+						<option value="OrderDate">{$ORDER_DATE}</option>	
 					</select>	
 				</div>	
 				<div class="col-xs-12 col-md-2 col-lg-1">					

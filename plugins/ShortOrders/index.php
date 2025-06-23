@@ -80,10 +80,12 @@ if (!isset($_REQUEST['sortOrder'])) {
 			$_REQUEST['sortOrder']= "OrderDate DESC";
 			break;		
 		default:	
-			$_REQUEST['sortOrder']= "OrderDate DESC";
+			if ( isset($_COOKIE['sortOrderCookie']) && $_COOKIE['sortOrderCookie'] !="") $_REQUEST['sortOrder']= $_COOKIE['sortOrderCookie'];
+			else $_REQUEST['sortOrder']= "PickupDate ASC";
 			break;
 	}
-} 
+} else setcookie("sortOrderCookie", $_REQUEST['sortOrder']);
+
 
 $whereOD=" WHERE TransferStatus!=9";
 if (isset($transfersFilter) && !empty($transfersFilter)) {
@@ -176,8 +178,19 @@ if (isset($transfersFilter) && !empty($transfersFilter)) {
 	}
 }		
 else {
-	if (!isset($_REQUEST['filterDatePeriod'])) $_REQUEST['filterDatePeriod']="OrderDate>=";
-	if (!isset($_REQUEST['filterDate'])) $_REQUEST['filterDate']=date("Y-m-d",time()-3600*24*365);
+	if (!isset($_REQUEST['filterDatePeriod'])) {
+		if ( isset($_COOKIE['dateFilterPeriodCookie']) && $_COOKIE['dateFilterPeriodCookie'] !="") $_REQUEST['filterDatePeriod']= $_COOKIE['dateFilterPeriodCookie'];
+		else 
+			$_REQUEST['filterDatePeriod']="PickupDate>=";
+	}
+	setcookie("dateFilterPeriodCookie", $_REQUEST['filterDatePeriod']);
+
+
+	if (!isset($_REQUEST['filterDate'])) {
+		if ( isset($_COOKIE['dateFilterCookie']) && $_COOKIE['dateFilterCookie'] !="") $_REQUEST['filterDate']= $_COOKIE['dateFilterCookie'];
+		else $_REQUEST['filterDate']=date("Y-m-d",time()-3600*24*365);
+	}	
+	setcookie("dateFilterCookie", $_REQUEST['filterDate']);
 	$whereOD.= " AND ". $_REQUEST['filterDatePeriod']."'".$_REQUEST['filterDate']."'";
 }	
 

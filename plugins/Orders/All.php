@@ -230,7 +230,7 @@ else $limit = ' LIMIT 0, ' .$length;
 
 //if(empty($sortOrder)) $sortOrder = 'ASC';
 if(empty($sortField)) $sortField = 'PickupDate';
-if(empty($sortDirection)) $sortDirection = 'DESC';
+if(empty($sortDirection)) $sortDirection = 'ASC';
 
 
 # init vars
@@ -523,7 +523,6 @@ if ($_REQUEST["action"]<>"0") {
 	if ($_REQUEST["lid"]<>"0") $sql .= " AND v4_OrderLog.UserID=".$_REQUEST["lid"];
 }
 $sql .= " AND v4_OrderDetails.OrderID=v4_OrdersMaster.MOrderID ";
-
 $sql .= " GROUP by Name";
 $r = $dbT->RunQuery($sql);
 //$result=$r->fetch_object();

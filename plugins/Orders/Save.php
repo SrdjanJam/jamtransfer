@@ -154,10 +154,10 @@ foreach ($db->fieldNames() as $name) {
 				$db->setDriverConfStatus(1);
 				
 				// obavijesti starog vozaca
-				if ($old_content>0) $logDescription .= informOldDriver($db->getOrderID(),$db->getTNo(),$old_content) . '<br>';
+				if ($old_content>0 && $_REQUEST['TransferStatus']<>4) $logDescription .= informOldDriver($db->getOrderID(),$db->getTNo(),$old_content) . '<br>';
 
 				// obavesti novog vozaca ako je driverconf status NOT CONFIRMED
-				if ($_REQUEST['DriverConfStatus']==1) $logDescription .= informNewDriver($db->getOrderID(),$db->getTNo(),$content) .'<br>';
+				if ($_REQUEST['DriverConfStatus']==1 && $_REQUEST['TransferStatus']<>4) $logDescription .= informNewDriver($db->getOrderID(),$db->getTNo(),$content) .'<br>';
 
 				// obavijesti kupca 
 				$customerDescription .= YOUR_NEW_DRIVER_NAME . ' : ' . $_REQUEST['DriverName'] . '<br>';
@@ -204,6 +204,8 @@ if (isset($_REQUEST['ServiceID'])) {
 			$oe->setDriverPrice($_REQUEST['DriverPrice'][$key]);
 			$oe->setPrice($_REQUEST['Price'][$key]);
 			$oe->setQty($_REQUEST['Qty'][$key]);
+			$oe->setDriverPriceSum($_REQUEST['DriverPrice'][$key]*$_REQUEST['Qty'][$key]);
+			$oe->setSum($_REQUEST['Price'][$key]*$_REQUEST['Qty'][$key]);
 			$oe->setOrderDetailsID($_REQUEST['DetailsID']);
 			if ($key>0) $oe->saveRow();	
 			else $oe->saveAsNew();

@@ -142,7 +142,7 @@
                             </a>
                         </div><!-- ./col -->      
 
-						{*<div class="col-lg-2 col-md-4 col-xs-6">
+						<div class="col-lg-2 col-md-4 col-xs-6">
                             <!-- small box -->
                             <a href="shortOrders/notConfirmedToday">
                                 <div class="small-box bg-yellow">
@@ -150,11 +150,9 @@
                                         <h3>
                                             {$notConfirmedOrdersToday}
                                         </h3>
-                                        <div style="overflow-x: hidden;overflow-y: hidden;">
-                                            <p class="target">
-                                                {$TODAY_UNCONFIRMED_DECLINED} 
-                                            </p>
-                                        </div>
+										<p>
+											{$TODAY_UNCONFIRMED_DECLINED} 
+										</p>
                                     </div>
                                     <div class="icon">
                                         <i class="ion ion-ios7-alarm"></i>
@@ -174,11 +172,9 @@
                                         <h3>
                                             {$notConfirmedOrdersTomorrow}
                                         </h3>
-                                        <div style="overflow-x: hidden;overflow-y: hidden;">
-                                            <p class="target">
-                                                {$TOMORROW_UNCORFIRMED_DECLINED} 
-                                            </p>
-                                        </div>
+										<p>
+											{$TOMORROW_UNCORFIRMED_DECLINED} 
+										</p>
                                     </div>
                                     <div class="icon">
                                         <i class="ion ion-ios7-alarm"></i>
@@ -188,9 +184,9 @@
                                     </span>
                                 </div>
                             </a>
-                        </div><!-- ./col -->*}
+                        </div><!-- ./col -->
 
-						<div class="col-lg-2 col-md-4 col-xs-6">
+						{*<div class="col-lg-2 col-md-4 col-xs-6">
                             <!-- small box -->
                             <a href="shortOrders/notConfirmedTodayTomorrow">
                                 <div class="small-box bg-yellow">
@@ -236,7 +232,7 @@
                                     </span>
                                 </div>
                             </a>
-                        </div><!-- ./col -->	
+                        </div><!-- ./col -->	*}
 						
                         <div class="col-lg-2 col-md-4 col-xs-6">
                             <!-- small box -->
