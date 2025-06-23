@@ -79,46 +79,57 @@ value=" WHERE {$ItemID} > 0">
 
 
 <div class="row itemsheader itemsheader-edit">
+	{* First filters: *}
 	<div class="row"> 
 		<div class="col-md-2 col-lg-2" id="wrapp-button">
 			<!-- Show-hide button: -->
 			<div id="filterToggle"><i class="fa fa-bars fa-bars-edit"></i></div>
 		</div>
+
 		<div class="col-md-10 col-lg-10 filter addedit">
-			<div class="row">
-				<div class="col-xs-12 col-md-1 col-lg-1">
-					<b class="b-asd">{$SORT_BY}:</b>
-				</div>	
-				<div class="col-xs-12 col-md-2 col-lg-1">
+			<div class="row row-second-edit">
+					
+				<div class="col-md-4 col-lg-4">
+					<span><b class="b-asd">{$SORT_BY}:</b></span>
 					<select id='sortField' class="select-top-edit" name='sortField' onchange="allItems();">
 						<option value="OrderDate">{$ORDER_DATE}</option>	
 						<option value="PickupDate">{$PICKUP_DATE}</option>		
-					</select>	
-				</div>	
-				<div class="col-xs-12 col-md-2 col-lg-1">					
+					</select>
 					<select id='sortDirection' class="select-top-edit" name='sortDirection' onchange="allItems();">
 						<option value="ASC">{$ASC}</option>	
 						<option value="DESC">{$DESC}</option>		
 					</select>
 				</div>
+				{* prev: *}
+				{* <div class="col-xs-12 col-md-2 col-lg-1">					
+					<select id='sortDirection' class="select-top-edit" name='sortDirection' onchange="allItems();">
+						<option value="ASC">{$ASC}</option>	
+						<option value="DESC">{$DESC}</option>		
+					</select>
+				</div> *}
 				
 				{if not $PARTNERLOG}
 				<!-- Report By: -->
-				<div class="col-md-1 col-lg-2">
+				{* Prev: *}
+				{* <div class="col-md-1 col-lg-2">
 					<b class="b-asd">{$REPORT_BY}:</b>
-				</div>	
-				<div class="col-md-3 col-lg-2">
+				</div>	 *}
+				<div class="col-md-3 col-lg-3">
+					<span><b class="b-asd">{$REPORT_BY}:</b></span>
 					<select id='reportBy' class="select-top-edit" name='reportBy' onchange="allItems();">
 						{foreach from=$ReportBy item=label key=key}
 							<option value="{$key}" {if $data.key == $key} selected="selected" {/if}>{$label}</option>
 						{/foreach}	
 					</select>
 				</div>
-				<!-- Filter By: -->	
-				<div class="col-md-1 col-lg-2">	
+
+				<!-- Filter By: -->
+				{* Prev: *}
+				{* <div class="col-md-1 col-lg-2">	
 					<b class="b-asd">{$FILTER_BY}:</b>
-				</div>	
-				<div class="col-md-2 col-lg-2">					
+				</div>	 *}
+				<div class="col-md-3 col-lg-3">	
+					<span><b class="b-asd">{$FILTER_BY}:</b></span>	
 					<select id='action' class="select-top-edit" name='action' onchange="allItems();">
 						{foreach from=$Action item=label key=key}
 							<option value="{$key}" {if $data.key == $key} selected="selected" {/if}>{$label}</option>
@@ -128,7 +139,8 @@ value=" WHERE {$ItemID} > 0">
 				{/if}
 			</div>
 		</div>
-	</div>	
+	</div> {* End of First filters *}
+
 	<div class="row filter row-filter-edit">
 		<!-- Client/Agent purchaser: -->
 		<div class="col-xs-6 col-md-2 col-md-2-edit col-lg-2">
@@ -295,3 +307,6 @@ value=" WHERE {$ItemID} > 0">
 	$(window).resize(resize);
 	
 </script>
+
+
+{* 123 *}
