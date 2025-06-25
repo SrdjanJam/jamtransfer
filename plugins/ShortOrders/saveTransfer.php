@@ -93,7 +93,7 @@ if ($message=="OK") {
 			//echo $data[$fld]. ' = '.$_GET[$fld] . '<br>';
 
 			// ako je nova vrijednost u polju
-			if($value != $_GET[$fld]) {
+			if(trim($value) != trim($_GET[$fld])) {
 
 				$logDescription .= 'Changed: '. $fld . ' <b>from:</b> ' . $value . ' <b>to:</b> ' . 
 									$_GET[$fld] . '<br>';
@@ -157,7 +157,7 @@ if ($message=="OK") {
 		}
 	}
 
-	if ($priceChanged) $logDescription .= '<b>PAYMENT DATA CHANGE</b>';  
+	if ($priceChanged) $logDescription .= '<b>PAYMENT DATA CHANGE</b><br>';  
 
 	// usporedi sto se promijenilo
 	// radi samo za polja koja su poslana GET-om
@@ -169,7 +169,7 @@ if ($message=="OK") {
 			$dataM[$fld] = $_GET[$fld];
 			if ($_GET['TransferStatus']==6) $dataM['PriceClassID']=1;
 			// ako je nova vrijednost u polju
-			if($value !== $_GET[$fld]) {
+			if(trim($value) != trim($_GET[$fld])) {
 				$logDescription .= 'Changed: '. $fld . ' <b>from:</b> ' . $value . ' <b>to:</b> ' . 
 									$_GET[$fld] . '<br>';
 

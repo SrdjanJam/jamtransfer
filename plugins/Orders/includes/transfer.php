@@ -87,7 +87,7 @@
             <div class="row dtransfer">
                 <div class="col-md-3">
                     <select name="Route" id="Route">
-                        <option value="-1"><?= NO_ROUTE ?></option>
+                        <option value="0"><?= NO_ROUTE ?></option>
                     </select>
                 </div>
             </div>

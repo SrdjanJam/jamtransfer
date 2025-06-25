@@ -17,6 +17,8 @@ foreach ($db->fieldNames() as $name) {
 	}	
 }	
 $db->setRouteNameEN($_REQUEST['RouteName']);
+$line=json_encode($_REQUEST['Line']);
+$db->setLine($line);
 
 $upd = '';
 $newID = '';

@@ -1,5 +1,20 @@
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/js/jquery.nice-select.min.js" integrity="sha512-NqYds8su6jivy1/WLoW8x1tZMRD7/1ZfhWG/jcRQLOzV1k1rIODCpMgoBnar5QXshKJGV7vi0LXLNXPoFsM5Zg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
+	<style>
+		.leaflet-popup-content-wrapper .leaflet-popup-content {
+			color:blue;
+			font-size: 70%;
+			width: 70%;
+		}
+		.greenroute {
+			color:green;
+		}
+	</style>
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+		 integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+		 crossorigin=""/>
+	<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+		 integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+		 crossorigin="">
+	</script>
 <script type="text/x-handlebars-template" id="ItemEditTemplate">
 <form id="ItemEditForm{{RouteID}}" class="form box box-info" enctype="multipart/form-data" method="post" onsubmit="return false;">
 	<div class="box-header">
@@ -73,6 +88,7 @@
 						<input type="hidden" name="FromID" id="FromID" value="{{FromID}}">
 						<input type="hidden" name="ToID" id="ToID" value="{{ToID}}">					
 						<a target="_blank" href="plugins/getRouteMap.php?RouteID={{RouteID}}">{{RouteName}}</a>
+						{{Lng1}},{{Lat1}} - {{Lng2}},{{Lat2}}
 					</div>
 				</div>				
 				<? }?>
@@ -119,7 +135,7 @@
 						<label for="Km"><?=KM;?></label>
 					</div>
 					<div class="col-md-9">
-						<input type="text" name="Km" id="Km" class="w100" value="{{Km}}">
+						<input type="text" name="Km" id="Km" class="w100" value="{{Km}}">{{Km2}}
 					</div>
 				</div>
 				<div class="row">
@@ -127,9 +143,22 @@
 						<label for="Duration"><?=DURATION;?></label>
 					</div>
 					<div class="col-md-9">
-						<input type="text" name="Duration" id="Duration" class="w100" value="{{Duration}}">
+						<input type="text" name="Duration" id="Duration" class="w100" value="{{Duration}}">{{Duration2}}
 					</div>
-				</div>
+				</div>				
+	
+				<input type="hidden" name="Line" id="Line" class="w100" value="{{Line}}">
+				<input type="hidden" name="TopRouteID" id="TopRouteID" class="w100" value="{{TopRouteID}}">
+				<input type="hidden" name="ConFaktor" id="ConFaktor" class="w100" value="{{ConFaktor}}">
+				<input type="hidden" name="LastChange" id="LastChange" class="w100" value="{{LastChange}}">
+				<input type="hidden" name="Lng" id="Lng" class="w100" value="{{Lng}}">
+				<input type="hidden" name="Lat" id="Lat" class="w100" value="{{Lat}}">
+
+				<div class="row">
+					<div class="col-md-12" id="map">{{Error}}</div>
+				</div>				
+
+				
 			</div>
 	    </div>
 </form>
@@ -223,7 +252,28 @@
 			}
 
 		} // End of surTerminals()	
-		
-	</script>
+	
+		/*var lng=$("#Lng").val();	
+		var lat=$("#Lat").val();		
+		var w=$("#map").width();
+		if (w>1000) w=1000;
+		else if(w>800) w=800;
+		h=w*0.7;
+		$("#map").width(500);
+		$("#map").height(350);
+		var map = L.map('map').setView([lat, lng], 15);
+			L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+			maxZoom: 19,
+			attribution: ''
+		}).addTo(map);
+		$(".leaflet-attribution-flag").remove();
+		$(".leaflet-control").remove();	
+		var line=$("#Steps").val();	
+		var Pline=JSON.parse(line);
+		var polyline = L.polyline(Pline).addTo(map);*/
+	</script>	
+
+
+	
 </script>
 

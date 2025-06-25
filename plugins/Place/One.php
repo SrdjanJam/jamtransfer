@@ -29,6 +29,8 @@ require_once 'Initial.php';
         $detailFlds[$key] = stripslashes($value);
     }
 	// geo sirina i duzina
+	$detailFlds["LongitudeOld"]=$detailFlds["Longitude"];
+	$detailFlds["LatitudeOld"]=$detailFlds["Latitude"];	
 	if ($db->getLongitude()==0 || $db->getLatitude()==0) {
 		if ($db->getPlaceType()==1) $name .=" parking";
 		$ll=getLL($db->getPlaceNameEN());

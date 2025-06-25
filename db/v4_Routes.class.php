@@ -30,6 +30,10 @@ Class v4_Routes {
 	public $RouteNameNL; //varchar(255)
 	public $Km; //int(5) unsigned
 	public $Duration; //int(5) unsigned
+	public $Line; 	
+	public $TopRouteID; 	
+	public $ConFaktor; 	
+	public $LastChange; 	
 	public $connection;
 
 	function __construct(){
@@ -42,7 +46,7 @@ Class v4_Routes {
      * New object to the class. Don´t forget to save this new object "as new" by using the function $class->saveAsNew(); 
      *
      */
-	public function New_v4_Routes($OwnerID,$FromID,$ToID,$Approved,$RouteName,$RouteNameEN,$RouteNameRU,$RouteNameFR,$RouteNameDE,$RouteNameIT,$RouteNameSE,$RouteNameNO,$RouteNameES,$RouteNameNL,$Km,$Duration){
+	public function New_v4_Routes($OwnerID,$FromID,$ToID,$Approved,$RouteName,$RouteNameEN,$RouteNameRU,$RouteNameFR,$RouteNameDE,$RouteNameIT,$RouteNameSE,$RouteNameNO,$RouteNameES,$RouteNameNL,$Km,$Duration,$Line,$TopRouteID,$ConFaktor,$LastChange	){
 		$this->OwnerID = $OwnerID;
 		$this->FromID = $FromID;
 		$this->ToID = $ToID;
@@ -59,6 +63,10 @@ Class v4_Routes {
 		$this->RouteNameNL = $RouteNameNL;
 		$this->Km = $Km;
 		$this->Duration = $Duration;
+		$this->Line = $Line;		
+		$this->TopRouteID = $TopRouteID;		
+		$this->ConFaktor = $ConFaktor;		
+		$this->LastChange = $LastChange;		
 	}
 
     /**
@@ -88,6 +96,10 @@ Class v4_Routes {
 			$this->RouteNameNL = $row["RouteNameNL"];
 			$this->Km = $row["Km"];
 			$this->Duration = $row["Duration"];
+			$this->Line = $row["Line"];			
+			$this->TopRouteID = $row["TopRouteID"];			
+			$this->ConFaktor = $row["ConFaktor"];			
+			$this->LastChange = $row["LastChange"];			
 		}
 	}
 
@@ -121,7 +133,12 @@ RouteNameNO = '".$this->myreal_escape_string($this->RouteNameNO)."',
 RouteNameES = '".$this->myreal_escape_string($this->RouteNameES)."', 
 RouteNameNL = '".$this->myreal_escape_string($this->RouteNameNL)."', 
 Km = '".$this->myreal_escape_string($this->Km)."', 
-Duration = '".$this->myreal_escape_string($this->Duration)."' WHERE RouteID = '".$this->RouteID."'");
+Duration = '".$this->myreal_escape_string($this->Duration)."', 
+Line = JSON_MERGE_PATCH(`Line`,'".$this->Line."'),
+TopRouteID = '".$this->myreal_escape_string($this->TopRouteID)."', 
+ConFaktor = '".$this->myreal_escape_string($this->ConFaktor)."', 
+LastChange = '".$this->myreal_escape_string($this->LastChange)."' 
+WHERE RouteID = '".$this->RouteID."'");
 	return $result; 
 }
 
@@ -129,7 +146,27 @@ Duration = '".$this->myreal_escape_string($this->Duration)."' WHERE RouteID = '"
      * Save the active var class as a new row on table
      */
 	public function saveAsNew(){
-		$this->connection->RunQuery("INSERT IGNORE INTO v4_Routes (OwnerID, FromID, ToID, Approved, RouteName, RouteNameEN, RouteNameRU, RouteNameFR, RouteNameDE, RouteNameIT, RouteNameSE, RouteNameNO, RouteNameES, RouteNameNL, Km, Duration) values ('".$this->myreal_escape_string($this->OwnerID)."', '".$this->myreal_escape_string($this->FromID)."', '".$this->myreal_escape_string($this->ToID)."', '".$this->myreal_escape_string($this->Approved)."', '".$this->myreal_escape_string($this->RouteName)."', '".$this->myreal_escape_string($this->RouteNameEN)."', '".$this->myreal_escape_string($this->RouteNameRU)."', '".$this->myreal_escape_string($this->RouteNameFR)."', '".$this->myreal_escape_string($this->RouteNameDE)."', '".$this->myreal_escape_string($this->RouteNameIT)."', '".$this->myreal_escape_string($this->RouteNameSE)."', '".$this->myreal_escape_string($this->RouteNameNO)."', '".$this->myreal_escape_string($this->RouteNameES)."', '".$this->myreal_escape_string($this->RouteNameNL)."', '".$this->myreal_escape_string($this->Km)."', '".$this->myreal_escape_string($this->Duration)."')");
+		$this->connection->RunQuery("INSERT IGNORE INTO v4_Routes (OwnerID, FromID, ToID, Approved, RouteName, RouteNameEN, RouteNameRU, RouteNameFR, RouteNameDE, RouteNameIT, RouteNameSE, RouteNameNO, RouteNameES, RouteNameNL, Km,Duration,Line,TopRouteID,ConFaktorID,LastChange) values (
+		'".$this->myreal_escape_string($this->OwnerID)."',
+		'".$this->myreal_escape_string($this->FromID)."',
+		'".$this->myreal_escape_string($this->ToID)."',
+		'".$this->myreal_escape_string($this->Approved)."',
+		'".$this->myreal_escape_string($this->RouteName)."',
+		'".$this->myreal_escape_string($this->RouteNameEN)."',
+		'".$this->myreal_escape_string($this->RouteNameRU)."',
+		'".$this->myreal_escape_string($this->RouteNameFR)."',
+		'".$this->myreal_escape_string($this->RouteNameDE)."',
+		'".$this->myreal_escape_string($this->RouteNameIT)."',
+		'".$this->myreal_escape_string($this->RouteNameSE)."',
+		'".$this->myreal_escape_string($this->RouteNameNO)."',
+		'".$this->myreal_escape_string($this->RouteNameES)."',
+		'".$this->myreal_escape_string($this->RouteNameNL)."',
+		'".$this->myreal_escape_string($this->Km)."',
+		'".$this->myreal_escape_string($this->Duration)."',
+		JSON_MERGE_PATCH(`Line`,'".$this->myreal_escape_string($this->Line)."'),
+		'".$this->myreal_escape_string($this->TopRouteID)."',
+		'".$this->myreal_escape_string($this->ConFaktor)."',
+		'".$this->myreal_escape_string($this->LastChange)."')");
 		return $this->connection->insert_id(); //return insert_id 
 	}
 
@@ -269,6 +306,34 @@ Duration = '".$this->myreal_escape_string($this->Duration)."' WHERE RouteID = '"
 	}
 
 	/**
+	 * @return Line - varchar(255)
+	 */
+	public function getLine(){
+		return str_replace("\"","",$this->Line);
+	}
+
+	/**
+	 * @return TopRoute - int(9) unsigned
+	 */
+	public function getTopRouteID(){
+		return $this->TopRouteID;
+	}	
+	
+	/**
+	 * @return ConFaktor - decimal(9,2) unsigned
+	 */
+	public function getConFaktor(){
+		return $this->ConFaktor;
+	}	
+	
+	/**
+	 * @return ConFaktor - date unsigned
+	 */
+	public function getLastChange(){
+		return $this->LastChange;
+	}
+
+	/**
 	 * @param Type: int(10) unsigned
 	 */
 	public function setOwnerID($OwnerID){
@@ -386,6 +451,34 @@ Duration = '".$this->myreal_escape_string($this->Duration)."' WHERE RouteID = '"
 	public function setDuration($Duration){
 		$this->Duration = $Duration;
 	}
+	
+	/**
+	 * @param Type: json
+	 */
+	public function setLine($Line){
+		$this->Line = $Line;
+	}		
+	
+	/**
+	 * @param Type: int(9)
+	 */
+	public function setTopRouteID($TopRouteID){
+		$this->TopRouteID = $TopRouteID;
+	}		
+	
+	/**
+	 * @param Type: decimal(9,2)
+	 */
+	public function setConFaktor($ConFaktor){
+		$this->ConFaktor = $ConFaktor;
+	}		
+	
+	/**
+	 * @param Type: date
+	 */
+	public function setLastChange($LastChange){
+		$this->LastChange = $LastChange;
+	}	
 
     /**
      * fieldValues - Load all fieldNames and fieldValues into Array. 
@@ -411,7 +504,12 @@ Duration = '".$this->myreal_escape_string($this->Duration)."' WHERE RouteID = '"
 			'RouteNameES' => $this->getRouteNameES(),
 			'RouteNameNL' => $this->getRouteNameNL(),
 			'Km' => $this->getKm(),
-			'Duration' => $this->getDuration()		);
+			'Duration' => $this->getDuration(),
+			'Line' => $this->getLine(),		
+			'TopRouteID' => $this->getTopRouteID(),		
+			'ConFaktor' => $this->getConFaktor(),		
+			'LastChange' => $this->getLastChange());
+			
 		return $fieldValues;
 	}
     /**
@@ -422,7 +520,7 @@ Duration = '".$this->myreal_escape_string($this->Duration)."' WHERE RouteID = '"
      */
 	public function fieldNames(){
 		$fieldNames = array(
-			'OwnerID',			'RouteID',			'FromID',			'ToID',			'Approved',			'RouteName',			'RouteNameEN',			'RouteNameRU',			'RouteNameFR',			'RouteNameDE',			'RouteNameIT',			'RouteNameSE',			'RouteNameNO',			'RouteNameES',			'RouteNameNL',			'Km',			'Duration'		);
+			'OwnerID',			'RouteID',			'FromID',			'ToID',			'Approved',			'RouteName',			'RouteNameEN',			'RouteNameRU',			'RouteNameFR',			'RouteNameDE',			'RouteNameIT',			'RouteNameSE',			'RouteNameNO',			'RouteNameES',			'RouteNameNL',			'Km',			'Duration',		'Line',		'TopRouteID',	'ConFaktor',	'LastChange' 	)  ;
 		return $fieldNames;
 	}
     /**

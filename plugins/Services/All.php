@@ -133,7 +133,7 @@ if (count($sk) != 0) {
 
 		$table_row.=$detailFlds["ServiceID"]. $dlm. $dbC2->getVehicleTypeID() . $dlm .
 				$dbC->getRouteName() . $dlm .
-				$dbC2->getVehicleTypeName() . $dlm . 
+				str_replace(",","-",$dbC2->getVehicleTypeName()) . $dlm . 
 				$detailFlds["ServicePrice1"] .  $dlm . $dbC->getKM(). $dlm .
 				"\n";
 

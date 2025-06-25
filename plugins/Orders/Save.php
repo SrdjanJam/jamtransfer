@@ -41,7 +41,7 @@ foreach ($db->fieldNames() as $name) {
 		eval("\$old_content=\$db->get".$name."();");	
 		eval("\$db->set".$name."(\$content);");	
 		if ($db->getTransferStatus()==6 && $_SESSION['AuthLevelID']==92) $db->setPriceClassID(1);
-		if(gettype($old_content)==gettype($content) && $old_content != $content) {
+		if(gettype($old_content)==gettype($content) && trim($old_content) != trim($content)) {
 			$logDescription .= 'Changed: '. $name . ' <b>from:</b> ' . $old_content . ' <b>to:</b> ' . 
 								$content . '<br>';
 			// ako se promenio status transfera
@@ -227,7 +227,7 @@ foreach ($om->fieldNames() as $name) {
 		$content=$om->myreal_escape_string($_REQUEST[$name]);
 		eval("\$old_content=\$om->get".$name."();");			
 		eval("\$om->set".$name."(\$content);");	
-		if(gettype($old_content)==gettype($content) && $old_content != $content) {
+		if(gettype($old_content)==gettype($content) && trim($old_content) != trim($content)) {
 			$logDescription .= 'Changed: '. $name . ' <b>from:</b> ' . $old_content . ' <b>to:</b> ' . $content . '<br>' ;
 		}		
 	}	

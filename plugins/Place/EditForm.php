@@ -139,7 +139,7 @@
 								<label for="Latitude"><?=LATITUDE;?></label>
 							</div>
 							<div class="col-md-9">
-								<input type="text" name="Latitude" id="Latitude" class="w100" value="{{Latitude}}"> 
+								<input type="text" name="Latitude" id="Latitude" class="w100" value="{{Latitude}}"> {{LatitudeOld}} 
 							</div>
 						</div>	
 						
@@ -148,7 +148,7 @@
 								<label for="Longitude"><?=LONGITUDE;?></label>
 							</div>
 							<div class="col-md-9">
-								<input type="text" name="Longitude" id="Longitude" class="w100" value="{{Longitude}}"> 
+								<input type="text" name="Longitude" id="Longitude" class="w100" value="{{Longitude}}"> {{LongitudeOld}}
 							</div>
 						</div>
 						
