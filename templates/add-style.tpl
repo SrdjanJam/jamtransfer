@@ -149,7 +149,7 @@
 }
 
 #show_items{
-    border: 1px solid #00000026; border-radius: 5px; padding: 15px; background: #c0c0c026; box-shadow: 0px 0px 5px 1px #898989;
+    border: 1px solid #00000026; border-radius: 5px; padding: 15px; background: #c0c0c026; box-shadow: 0px 0px 5px 1px #898989; color: #3a3a3a;
 }
 
 .row-edit div{ border-right:1px solid rgb(105, 131, 170); }
@@ -679,7 +679,7 @@ button.searchdrivers, button.conversion-rate{
 
 .form-group.group-edit {
     /* display: inline-block; */
-    width: 25%;
+    /* width: 25%; */
 }
 
 }
@@ -1198,7 +1198,11 @@ button.searchdrivers, button.conversion-rate{
     } */
 
     .filter-one-edit{ text-align: center; }
-    .form-group.group-edit{ margin: 5px; }
+    .form-group.group-edit{ 
+        margin: 5px; 
+        width:45%;
+        /* display: inline; */
+    }
 
     .row.row-shedule .clock-timepicker{
         display:block !important;
@@ -1248,11 +1252,10 @@ button.searchdrivers, button.conversion-rate{
     #sortField .select-top-edit, #sortDirection .select-top-edit{ width: 30% !important; }
 
     .select-top-edit.addon { width: 100% !important}
-    
 
-    /* 123 */
 
 }
+
 
 </style>
 
