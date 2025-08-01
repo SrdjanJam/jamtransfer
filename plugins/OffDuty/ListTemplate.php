@@ -34,7 +34,9 @@
 
 		</div>			
 	</div>
-
+	<div class="row">
+		<div class="col-md-1 col-xs-2"><i class="fa fa-plus clickplus" aria-hidden="true"></i></div>
+	</div>	
 	<!-- Main content: -->
 	{{#each Item}}
 		
@@ -117,11 +119,13 @@
 					$('#t_ .ID').val(data);
 				}				
 			});
-			
 		})
 
 		// Hide div:
 		$(document).ready(function(){
+			$('.clickplus').click(function(){
+				location.reload();
+			})	
 			$('.b-delete').click(function(){
 				if (confirm("Are you sure to delete this row?")) {
 

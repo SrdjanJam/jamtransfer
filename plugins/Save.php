@@ -26,3 +26,9 @@ $ms->saveAsNew();
 	$mailto = 'jam.bgprogrameri@gmail.com';
 	$subject = 'New WIS message for page '. $md->getName() . ' from ' . $_SESSION['UserRealName'] . ' - ' .$_SESSION['log_title'];
 	mail_html($mailto, 'cms@jamtransfer.com', 'JamTransfer.com', 'cms@jamtransfer.com', $subject , $mailMessage);
+	if ($_SESSION['AuthLevelID']==31) {
+		$mailto = 'info@jamtransfer.com';
+			mail_html($mailto, 'cms@jamtransfer.com', 'JamTransfer.com', 'cms@jamtransfer.com', $subject , $mailMessage);
+		$mailto = 'office@jamtransfer.com';
+			mail_html($mailto, 'cms@jamtransfer.com', 'JamTransfer.com', 'cms@jamtransfer.com', $subject , $mailMessage);
+	}	

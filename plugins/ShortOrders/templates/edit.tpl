@@ -101,6 +101,11 @@
 							{/section}
 						</select>						
 					</div>
+					<div class="col-md-3">	
+						{if $ordersD[pom].Image ne ""}
+							<img src='i/agents/{$ordersD[pom].Image}'>	 
+						{/if}
+					</div>
 				</div>	
 				{if $ordersD[pom].UserLevelID eq '2'}
 				<div class="row">
@@ -144,10 +149,10 @@
 							<i class="fa fa-car purple-text"></i>
 						{/if}
 						{if $ordersD[pom].VehiclesAll|count gt 0}{$ordersD[pom].VehicleType}
-							<select name="VehicleID" value="{$ordersD[pom].VehicleID}">
+							<select name="VehicleType" value="{$ordersD[pom].VehicleType}">
 								{section name=ind2 loop=$ordersD[pom].VehiclesAll} 
 									<option value="{$ordersD[pom].VehiclesAll[ind2].VehicleTypeID}"
-									{if $ordersD[pom].VehiclesAll[ind2].VehicleID eq $ordersD[pom].VehicleID}SELECTED{/if}
+									{if $ordersD[pom].VehiclesAll[ind2].VehicleTypeID eq $ordersD[pom].VehicleType}SELECTED{/if}
 									>{$ordersD[pom].VehiclesAll[ind2].VehicleName}</option>
 								{/section}
 							</select>
@@ -454,14 +459,26 @@
 						value=" {$ordersD[pom].InvoiceAmount}"> 
 					</div>
 				</div>
-								
+				<div class="row">
+					<div class="col-md-3 "><label>{$TERMINAL} Filter</label></div>	
+					<div class="col-md-6 "><button data-id="{$ordersD[pom].TerminalID}" type="button" class="form-control terminalfilter">{$ordersD[pom].TerminalName}</button></div>	
+					<div class="col-md-3 "><button type="button" class="form-control terminalfilterundo" disabled><i class="fa fa-undo" aria-hidden="true"></i></button></div>	
+				</div>				
 				<div class="row">
 					<div class="col-md-3 "><label>{$DRIVER_NAME}</label></div>
-					<div class="col-md-6" ">
-						<input type="text" name="DriverName" id="DriverName{$ordersD[pom].DetailsID}" value="{$ordersD[pom].DriverName} {$users[{$ordersD[pom].DriverID}].AuthRealName}">
+					<div class="col-md-8" ">
+						{*<input type="text" name="DriverName" id="DriverName{$ordersD[pom].DetailsID}" value="{$ordersD[pom].DriverName} {$users[{$ordersD[pom].DriverID}].AuthRealName}">*}
+						
+						<select name="DriverID" id="DriverID{$ordersD[pom].DetailsID}"  value="{$ordersD[pom].DriverID}">
+							{section name=ind3 loop=$drivers} 
+								<option value="{$drivers[ind3].UserID}"
+								{if $drivers[ind3].UserID eq $ordersD[pom].DriverID}SELECTED{/if}
+								>{$drivers[ind3].CountryUserName}</option>
+							{/section}
+						</select>
 					</div>	
-					<div class="col-md-3">
-						<input type="hidden" name="DriverID" id="DriverID{$ordersD[pom].DetailsID}" value="{$ordersD[pom].DriverID}">
+					<div class="col-md-1">
+						{*<input type="hidden" name="DriverID" id="DriverID{$ordersD[pom].DetailsID}" value="{$ordersD[pom].DriverID}">*}
 						<button type="button" class="btn btn-primary drivers-modal" 
 							data-detailsid="{$ordersD[pom].DetailsID}"  
 							data-routeid="{$ordersD[pom].RouteID}"  
@@ -481,7 +498,7 @@
 							</a>	
 							{/if}
 						{/if}
-					</div>		
+					</div>	
 				</div>
 				<div class="modal fade"  id="routeDriversModal{$ordersD[pom].DetailsID}">
 					<div class="modal-dialog" style="width: fit-content;">
@@ -527,7 +544,7 @@
 				<div class="row">
 					<div class="col-md-3"><label>{$DRIVER_STATUS}</label></div>
 					<div class="col-md-3 driver" id="DriverConfStatus{$ordersD[pom].DetailsID}">
-						{html_options class="form-control" name=DriverConfStatus options=$DriverConfStatus selected=$ordersD[pom].DriverConfStatus}					
+						{html_options class="form-control DriverConfStatus" name=DriverConfStatus options=$DriverConfStatus selected=$ordersD[pom].DriverConfStatus}					
 					</div>
 					<div class="col-md-6">		
 						<span class="{$driverConfClass[{$ordersD[pom].DriverConfStatus}]}">
@@ -537,6 +554,15 @@
 							{$ordersD[pom].DriverConfDate}  {$ordersD[pom].DriverConfTime}
 						{/if}
 					</div>					
+				</div>
+				<div class="finalnote row {if $ordersD[pom].DriverConfStatus lt 5}hidden{/if}">
+					<div class="col-md-3 "><label>{$FINAL_NOTE}</label></div>
+					<div class="col-md-9">
+						<div id="summernote">
+							<textarea class="textarea" name="FinalNotes"  cols="40" rows="4"
+							style="width:100%">{$ordersD[pom].FinalNotes}</textarea>
+						</div>
+					</div>
 				</div>
 				<div class="row">
 					<div class="col-md-3 "><label>Confirmation link</label></div>
@@ -567,7 +593,14 @@
 						value="{if $ordersD[pom].DriverPaymentAmt gt 0} {$ordersD[pom].DriverPaymentAmt}{/if}{if $ordersD[pom].DriverPaymentAmt eq 0} {$ordersD[pom].DriversPrice}{/if}"
 						 readonly>
 					</div>
-				</div>								
+				</div>
+				<div class="row">
+					<div class="col-md-3 "><label>{$SUBDRIVERS}</label></div>
+					<div class="col-md-9">
+						{$ordersD[pom].Subdriver} {$ordersD[pom].SubdriverMob} {$ordersD[pom].Subdriver2} {$ordersD[pom].Subdriver2Mob} 				
+					</div>
+				</div>
+				
 				<div class="row">
 					<div class="col-md-3 "><label>{$MESSAGE}</label></div>
 					<div class="col-md-9">

@@ -28,9 +28,10 @@
 
 		</div>	
 	</div>
-
+	<div class="row">
+		<div class="col-md-1 col-xs-2"><i class="fa fa-plus clickplus" aria-hidden="true"></i></div>
+	</div>	
 	{{#each Item}}
-		
 		<!-- Main Content: -->
 		<div class="row {{color}} pad1em listTile listTitleEdit cursor-list" 
 		style="border-top:1px solid #ddd"
@@ -66,33 +67,32 @@
 			</form>		
 
 		</div> <!-- End of .row -->
-
-
 	{{/each}}
 	<script>
 
-		$('input').change(function(){
-			var base=window.location.origin;
-			if (window.location.host=='localhost') base=base+'/jamtransfer';		
-			var link = base+'/plugins/SpecialDates/Save.php';
-
-			var id=$(this).attr("data-id");
-			var param = $("#t_"+id).find("form").serialize();
-			
-			console.log(link+'?'+param);
-			$.ajax({
-				type: 'POST',
-				url: link,
-				data: param,
-				success: function(data) {
-					$('#t_ .ID').val(data);
-				}				
-			});
-			
-		});
-		
-		// Hide div:
+		// Hide div:=
 		$(document).ready(function(){
+			$('.clickplus').click(function(){
+				location.reload();
+			})				
+			$('input').change(function(){
+				var base=window.location.origin;
+				if (window.location.host=='localhost') base=base+'/jamtransfer';		
+				var link = base+'/plugins/SpecialDates/Save.php';
+
+				var id=$(this).attr("data-id");
+				var param = $("#t_"+id).find("form").serialize();
+				
+				console.log(link+'?'+param);
+				$.ajax({
+					type: 'POST',
+					url: link,
+					data: param,
+					success: function(data) {
+						$('#t_ .ID').val(data);
+					}				
+				});
+			});			
 			$('.b-delete').click(function(){
 				if (confirm("Are you sure to delete this row?")) {
 
@@ -119,6 +119,6 @@
     			return false;
 			});
 		});
-
-
+	</script>
 </script>
+	

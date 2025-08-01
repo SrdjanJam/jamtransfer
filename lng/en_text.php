@@ -1177,3 +1177,8 @@ define("COPY_TRANSFER", "Copy Transfer");
 
 //15.05.25
 define("OWNERS_IDS", "Owners ID`s");
+
+//22.07.25
+define("CON_FACTOR", "Conversion factor");
+//01.08.25
+define("ROUTABLE", "Routable");

@@ -7,6 +7,7 @@
 	$arr_all[]=$arr_row;	
 	$smarty->assign('options',$arr_all);
 	$smarty->assign('selecttype',true);
+	$smarty->assign('selectapproved',true);
 
 ?>
 
@@ -23,7 +24,7 @@
 		</div>	
 
 		<div class="col-md-1">
-			<?=ACTIVE;?>
+			<?=APPROVED;?>
 		</div>
 					
 	</div>

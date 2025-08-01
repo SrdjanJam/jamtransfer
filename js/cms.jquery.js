@@ -1316,7 +1316,7 @@ Ispis vozaca i cijena po ruti
 */
 
 Handlebars.registerHelper("listDriversByRoute", function(RouteID, PickupDate, PickupTime, VehicleType, AgentID) {
-	function listDrivers(RouteID,  PickupDate, PickupTime) {
+	function listDrivers(RouteID,  PickupDate, PickupTime, AgentID) {
 		var url = 'api/getCarsAjax.php?RouteID='+RouteID+'&TransferDate='+PickupDate+'&TransferTime='+PickupTime+'&AgentID='+AgentID+'&callback=';
 		var list = '';
 		var funcArgs = '';
@@ -1432,7 +1432,7 @@ Handlebars.registerHelper("countrySelect", function(id,fieldName, returnIdAs) {
 
 			success: function(data) {
 				$.each(data, function(i,val) {
-					selector += '<option value="' + val.CountryID + '" ';
+					selector += '<option data-cc="' + val.CountryCode+'" value="' + val.CountryID + '" ';
 
 					if (val.CountryID == id) {
 						selector += ' selected="selected" ';

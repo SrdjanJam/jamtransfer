@@ -56,6 +56,15 @@
 
 				<div class="row">
 					<div class="col-md-3">
+						<label for="PlaceType"><?=PLACETYPE;?></label>
+					</div>
+					<div class="col-md-9">
+						{{placeTypeSelect PlaceType 'PlaceType' }}
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-md-3">
 						<label for="PlaceNameEN"><?=PLACENAMEEN;?></label>
 					</div>
 					<div class="col-md-9">
@@ -71,15 +80,6 @@
 					</div>
 					<div class="col-md-9">
 						<input type="text" name="PlaceNameSEO" id="PlaceNameSEO" class="w100" value="{{PlaceNameSEO}}">
-					</div>
-				</div>
-
-				<div class="row">
-					<div class="col-md-3">
-						<label for="PlaceType"><?=PLACETYPE;?></label>
-					</div>
-					<div class="col-md-9">
-						{{placeTypeSelect PlaceType 'PlaceType' }}
 					</div>
 				</div>
 
@@ -134,6 +134,14 @@
 
 				<div class="row">
 					<div class="col-md-6">
+						<div class="row"> 
+							<div class="col-md-3">
+								<label for="Longitude"><?=LONGITUDE;?></label>
+							</div>
+							<div class="col-md-9">
+								<input type="text" name="Longitude" id="Longitude" class="w100" value="{{Longitude}}"> {{LongitudeOld}}
+							</div>
+						</div>					
 						<div class="row">
 							<div class="col-md-3">
 								<label for="Latitude"><?=LATITUDE;?></label>
@@ -142,15 +150,14 @@
 								<input type="text" name="Latitude" id="Latitude" class="w100" value="{{Latitude}}"> {{LatitudeOld}} 
 							</div>
 						</div>	
-						
-						<div class="row"> 
+						<div class="row">
 							<div class="col-md-3">
-								<label for="Longitude"><?=LONGITUDE;?></label>
+								<button type="button" class='Routable button btn btn-info'><?=ROUTABLE;?></button>
 							</div>
 							<div class="col-md-9">
-								<input type="text" name="Longitude" id="Longitude" class="w100" value="{{Longitude}}"> {{LongitudeOld}}
 							</div>
-						</div>
+						</div>							
+						
 						
 						<div class="row">
 							<div class="col-md-3">
@@ -165,7 +172,7 @@
 					<div class="col-md-6">
 						<div class="row">
 							<div class="col-md-3">
-								<iframe src="https://maps.google.com/maps?q={{Latitude}}, {{Longitude}}&z=10&output=embed"  frameborder="0" style="border:0"></iframe>
+								<iframe id="framemap" src="https://maps.google.com/maps?q={{Latitude}}, {{Longitude}}&z=10&output=embed" frameborder="0" style="border:0"></iframe>
 							</div>
 						</div>
 						<div class="row">
@@ -232,9 +239,41 @@
 			$("#PlaceNameSEO").val( getSlug( place , '+') );
 		});
 		
+		$("#PlaceNameEN").change(function(){
+			var place = $("#PlaceNameEN").val();
+			var cc=$("#PlaceCountry Option:selected").attr('data-cc');
+			var pt=$("#PlaceType Option:selected").val();
+			if (pt!=2) var layers="venue";
+			if (pt==2) var layers="locality";
+			var url='plugins/Place/getLL.php?Place='+place+'&Layers='+layers+'&CC='+cc;
+			console.log(url)
+			$.ajax({
+				type: 'GET',
+				url: url,	
+				dataType: 'json',				
+				success: function(data) {
+					$("#Longitude").val(data.Lng);
+					$("#Latitude").val(data.Lat);
+					$("#Elevation").val(data.Elv);
+					var srcnew="https://maps.google.com/maps?q="+data.Lat+","+data.Lng+"&z=10&output=embed";
+					$("#framemap").attr("src",srcnew);
+				}						
+			})			
+		});		
+		
 		$("#PlaceCountry").change(function(){
 			$("#CountryNameEN").val( $("#PlaceCountry option:selected").text());
-		});		
+		});	
+		$(".Routable").click(function(){
+			var btn=$(this);
+			routable(btn);
+		})		
+		$("document").ready(function(){
+			if ($("#Longitude").val()) {
+				var btn=$('.Routable');
+				routable(btn);
+			}
+		})			
 		function topRoutes(id) {
 			$.ajax({
 				type: 'GET',
@@ -250,7 +289,22 @@
 				}						
 			})
 			
-		}		
+		}			
+		function routable(btn) {	
+			var Lng=$(btn).parent().parent().parent().find('#Longitude').val();
+			var Lat=$(btn).parent().parent().parent().find('#Latitude').val();
+			console.log('plugins/Place/ifRoutable.php?Lat='+Lat+'&Lng='+Lng);
+			var msg=$(btn).parent().next();
+			$.ajax({
+				type: 'GET',
+				url: 'plugins/Place/ifRoutable.php?Lat='+Lat+'&Lng='+Lng,		
+				success: function(data) {
+					$(msg).html(data).css('font-weight', 'bold');
+				}						
+			})
+		}	
+		
+	
 	</script>
 </script>
 

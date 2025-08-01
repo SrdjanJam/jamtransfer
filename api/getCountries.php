@@ -18,7 +18,8 @@ if($_REQUEST['returnIdAs'] == 'ID') {
 		$co->getRow($ID);
 			$out[] = array(
 						'CountryID'		=> $co->getCountryID(), 
-						'CountryName' 	=> $co->getCountryName()
+						'CountryName' 	=> $co->getCountryName(),
+						'CountryCode' 	=> $co->getCountryCode()
 			);
 	
 	}

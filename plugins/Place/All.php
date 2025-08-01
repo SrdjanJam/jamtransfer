@@ -9,6 +9,9 @@ if (isset($type)) {
 	if (!isset($_REQUEST['Type']) or $_REQUEST['Type'] == 0 or $_REQUEST['Type'] == 99) {
 		$filter = "  AND ".$type." != 0 ";
 	}
+	else if($_REQUEST['Type'] == -1 ) {
+		$filter = "  AND ".$type." = 0";
+	}
 	else {
 		$filter = "  AND ".$type." = '" . $_REQUEST['Type'] . "'";
 	}
@@ -46,9 +49,9 @@ if ($_REQUEST['Type']==99) {
 	$terminals_arr = substr($terminals_arr,0,strlen($terminals_arr)-1);	
 	$DB_Where .= " AND PlaceID in (".$terminals_arr.")";
 }
-if (isset($_REQUEST['actionID']) && $_REQUEST['actionID']=="NT") {
+if (isset($_REQUEST['exclude']) && $_REQUEST['exclude']=="NT") {
 	$DB_Where .= " AND (Longitude=0 OR Latitude=0)";
-	$DB_Where .= " AND (`PlaceID` in (SELECT `FromID` FROM `v4_Routes`) OR `PlaceID` in (SELECT `ToID` FROM `v4_Routes`))";
+	$DB_Where .= " AND (`PlaceID` in (SELECT `FromID` FROM `v4_Routes`) OR `PlaceID` in (SELECT `ToID` FROM `v4_Routes` WHERE Approved=1))";
 }
 # dodavanje search parametra u qry
 # DB_Where sad ima sve potrebno za qry

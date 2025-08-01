@@ -67,6 +67,8 @@
 		if (typeof subdriverID=='undefined') subdriverID=0;	
 		var actionID = $("#actionID").val();
 		if (typeof actionID=='undefined') actionID=0;			
+		var exclude = $("#exclude").val();
+		if (typeof exclude=='undefined') exclude=0;			
 		var terminalID = $("#terminalID").val();
 		if (typeof terminalID=='undefined') terminalID=0;	
 		var CAU = $("#CAU").val();
@@ -145,6 +147,7 @@
 		'&customerID='+customerID+
 		'&userID='+userID+
 		'&actionID='+actionID+
+		'&exclude='+exclude+
 		'&terminalID='+terminalID+
 		'&CAU='+CAU+
 		'&reportBy='+reportBy+

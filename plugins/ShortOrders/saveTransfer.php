@@ -100,6 +100,7 @@ if ($message=="OK") {
 				
 				// ako se promijenio vozac
 				if ($fld == 'DriverID') {
+					$data['DriverName']=$users[$data['DriverID']]->AuthUserRealName;
 					$data['SubDriver']=0;
 					$data['Car']=0;
 					$data['SubDriver2']=0;

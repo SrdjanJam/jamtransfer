@@ -80,7 +80,7 @@ $(document).ready(function(){
 		{/if}
 		{if $month_transfers[pom].dayofweek eq '-1'} 
 			{* Old <td></td> *} <div class="grid-item-2"></div>
-			{else}
+			{else} 
 				{* Old *} {* <td class="td" style="background:rgb(206, 203, 23);border:1px solid black;" valign="top" class="cal_cell" {$style}> *}
 				<div class="grid-item-2 {$month_transfers[pom].bac_color}" id="grid{$month_transfers[pom].nom}">
 					<div class="days" id="day{$month_transfers[pom].nom}">
@@ -119,7 +119,7 @@ $(document).ready(function(){
 												{$month_transfers[pom].transfers[pom2].PickupTime}&rarr;
 												<a href="
 													{if $smarty.session.AuthLevelID ne '32'}
-													orders/detail/{$month_transfers[pom].transfers[pom2].DetailsID}
+													shortOrders/detail/{$month_transfers[pom].transfers[pom2].DetailsID}
 													{else}
 													driverPanel/{$month_transfers[pom].transfers[pom2].PickupDate}
 													{/if}

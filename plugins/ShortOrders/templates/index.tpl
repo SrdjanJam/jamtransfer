@@ -9,7 +9,7 @@
 		</div>
 		<div id="transferStatusSelect" class="col-md-2">
 			<i class="fa fa-list-ul"></i>
-			<select class="w75 form-control" id="transferStatusSelect" name="transferStatus" style="width:50%;">
+			<select class="w75 form-control f_ch" id="transferStatusSelect" name="transferStatus" style="width:50%;">
 				<option value="0">---</option>
 				{section name=pom loop=$status_keys}
 					<option value="{$status_keys[pom]}" {if $smarty.request.transferStatus eq $status_keys[pom]}selected{/if}>{$StatusDescription[{$status_keys[pom]}]}</option>
@@ -18,21 +18,21 @@
 		</div>
 		<div class="col-md-2">
 			<i class="fa fa-eye edit-fa"></i>
-			<select id="length" name="pagelength" class="w75 form-control control-edit" style="width:50%;">
+			<select id="length" name="pagelength" class="w75 form-control control-edit f_ch" style="width:50%;">
 				<option value="5" {if $smarty.request.pagelength eq '5'} selected {/if}> 5 </option>
 				<option value="10" {if $smarty.request.pagelength eq '10'} selected {/if}> 10 </option>
 				<option value="20" {if $smarty.request.pagelength eq '20'} selected {/if}> 20 </option>
 				<option value="50" {if $smarty.request.pagelength eq '50'} selected {/if}> 50 </option>
 				<option value="100" {if $smarty.request.pagelength eq '100'} selected {/if}> 100 </option>
 			</select>
-		</div>		
+		</div>	
 		<div class="col-md-2">
 			<i class="fa fa-search"></i>
 			<input class="" type="text" name="Search" class=" w75" value="{$smarty.request.Search}" placeholder="Text + Enter to Search">
 		</div>			
 		<div id="pageSelect" class="col-md-2">
 			<button class="btn btn-primary align" onclick="paginatorPrevPage();">Prev</button>
-			<select id="pageSelector" name="pageno" style="padding: 2px;width:20%;border-radius:5px;box-shadow: 0px 0px 4px 1px #888888;">
+			<select class="f_ch" id="pageSelector" name="pageno" style="padding: 2px;width:20%;border-radius:5px;box-shadow: 0px 0px 4px 1px #888888;">
 				{section name=pom loop=$pages}
 					<option value="{$pages[pom]}" {if $smarty.request.pageno eq $pages[pom]}selected{/if}>{$pages[pom]}</option>
 				{/section}	
@@ -63,8 +63,8 @@
 
 		<div class="col-md-2">
 			<select name="sortOrder" id="sortOrder" value="{$sortOrder}" class="form-control">
-				<option value="PickupDate ASC" {if $smarty.request.sortOrder eq "PickupDate ASC"}SELECTED{/if}>{$PICKUP_DATE} {$ASCENDING} </option>
-				<option value="PickupDate DESC" {if $smarty.request.sortOrder eq "PickupDate DESC"}SELECTED{/if}>{$PICKUP_DATE} {$DESCENDING} </option>
+				<option value="PickupDate ASC, PickupTime ASC" {if $smarty.request.sortOrder eq "PickupDate ASC PickupTime ASC"}SELECTED{/if}>{$PICKUP_DATE} {$ASCENDING} </option>
+				<option value="PickupDate DESC, PickupTime DESC" {if $smarty.request.sortOrder eq "PickupDate DESC, PickupTime DESC"}SELECTED{/if}>{$PICKUP_DATE} {$DESCENDING} </option>
 				<option value="OrderDate ASC" {if $smarty.request.sortOrder eq "OrderDate ASC"}SELECTED{/if}>{$ORDER_DATE} {$ASCENDING} </option>
 				<option value="OrderDate DESC" {if $smarty.request.sortOrder eq "OrderDate DESC"}SELECTED{/if}>{$ORDER_DATE} {$DESCENDING} </option>
 			</select>
@@ -89,7 +89,10 @@
 		<div class="">	
 			<div class="row">
 				<div class="col-md-2">
-					<i class="fa fa-user"></i> <strong>{$ordersD[pom].PaxName}</strong><br>
+					<i class="fa fa-user"></i> <strong>{$ordersD[pom].PaxName}</strong>							
+					{if $ordersD[pom].Image ne ""}
+						<img src='i/agents/{$ordersD[pom].Image}'>	 
+					{/if}
 					<small>
 						<i class="fa fa-envelope-o"></i> {$ordersD[pom].Master.MPaxEmail}
 						<br>
@@ -153,6 +156,49 @@
 
 	//$('#headerform select, #headerform input').change(function(){
 	$('#apply').click(function(){
+		sbm_header();
+	})	
+	$('.f_ch').change(function(){
+		sbm_header();
+	})
+	$('.DriverConfStatus').change(function(){
+		if ($(this).find('option:selected').val()>4) {
+			$(this).parent().parent().next().removeClass("hidden");
+		}
+	})
+	$('.terminalfilter').click(function(){
+		$(this).attr("disabled",true);
+		$(this).parent().next().find(".terminalfilterundo").attr("disabled",false);
+		var tid=$(this).attr('data-id');
+		var url= "plugins/ShortOrders/filterTerminalDrivers.php?tid="+tid;
+		var thisbox=$(this).parent().parent().next().find("select");
+		$.ajax({
+			url: url,
+			type: "GET",
+			success: function (data) {
+				thisbox.find("option").addClass("hidden");
+				var length=0
+				thisbox.find("option").each(function(){
+					var thisid=$(this);
+					var tids=JSON.parse(data);
+					$.each(tids, function(i, item) {
+						if (Number(item.DriverID) == Number(thisid.val())) {
+							thisid.removeClass("hidden");
+							length=length+Number(1);
+						}	
+					});
+				});
+				thisbox.attr('size',Number(length));	
+			}
+		})	
+	})	
+	$('.terminalfilterundo').click(function(){
+		$(this).attr("disabled",true);
+		$(this).parent().parent().find(".terminalfilter").attr("disabled",false);
+		$(this).parent().parent().next().find("select option").removeClass("hidden");
+		$(this).parent().parent().next().find("select").attr('size',0);	
+	})		
+	function sbm_header() {
 		event.preventDefault();
 		var param = $('#headerform').serialize();
 		console.log(window.location+'?'+param);
@@ -171,8 +217,8 @@
 				}
 			});   	
 		$('#headerform').submit();
-	})
-	
+	}
+
 	$(".rv").click(function(){
 		var id=$(this).attr("data-id");
 		$("#rv"+id).removeClass("hidden");
@@ -243,7 +289,7 @@
 			success: function (data) {
 				if (data==="OK") {
 					toastr['success'](window.success);	
-					$("#headerform input").trigger("change");
+					sbm_header();
 				}	
 				else alert(data);	
 			},

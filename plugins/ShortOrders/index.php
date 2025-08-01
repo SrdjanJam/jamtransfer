@@ -20,43 +20,46 @@ $time1=microtime();
 if (!isset($_REQUEST['sortOrder'])) {
 	switch ($transfersFilter) {
 		case 'noDriver':
-			$_REQUEST['sortOrder'] = "PickupDate ASC";	
+			$_REQUEST['sortOrder'] = "PickupDate ASC, PickupTime ASC";	
 			break;
 		case 'notConfirmed':
-			$_REQUEST['sortOrder'] = "PickupDate ASC";
+			$_REQUEST['sortOrder'] = "PickupDate ASC, PickupTime ASC";
+			break;			
+		case 'notConfirmedToday':
+			$_REQUEST['sortOrder'] = "PickupDate ASC, PickupTime ASC";
 			break;			
 		case 'notConfirmedTodayTomorrow':
-			$_REQUEST['sortOrder'] = "PickupDate ASC";
+			$_REQUEST['sortOrder'] = "PickupDate ASC, PickupTime ASC";
 			break;	
 		case 'notAssign':
-			$_REQUEST['sortOrder'] = "PickupDate ASC";
+			$_REQUEST['sortOrder'] = "PickupDate ASC, PickupTime ASC";
 			break;						
 		case 'confirmed':
-			$_REQUEST['sortOrder'] = "PickupDate ASC";
+			$_REQUEST['sortOrder'] = "PickupDate ASC, PickupTime ASC";
 			break;			
 		case 'declined':
-			$_REQUEST['sortOrder'] = "PickupDate ASC";
+			$_REQUEST['sortOrder'] = "PickupDate ASC, PickupTime ASC";
 			break;			
 		case 'canceled':
-			$_REQUEST['sortOrder'] = "PickupDate ASC";
+			$_REQUEST['sortOrder'] = "PickupDate ASC, PickupTime ASC";
 			break;			
 		case 'noShow':
-			$_REQUEST['sortOrder'] = "PickupDate DESC";
+			$_REQUEST['sortOrder'] = "PickupDate DESC, PickupTime DESC";
 			break;			
 		case 'driverError':
-			$_REQUEST['sortOrder']= "PickupDate DESC";
+			$_REQUEST['sortOrder']= "PickupDate DESC, PickupTime DESC";
 			break;			
 		case 'notCompleted':
-			$_REQUEST['sortOrder']= "PickupDate ASC";  
+			$_REQUEST['sortOrder']= "PickupDate ASC, PickupTime ASC";  
 			break;			
 		case 'active':
-			$_REQUEST['sortOrder']= "PickupDate ASC";
+			$_REQUEST['sortOrder']= "PickupDate ASC, PickupTime ASC";
 			break;			
 		case 'newTransfers':
 			$_REQUEST['sortOrder']= "OrderDate DESC";
 			break;			
 		case 'tomorrow':
-			$_REQUEST['sortOrder']= "PickupDate ASC";  
+			$_REQUEST['sortOrder']= "PickupDate ASC, PickupTime ASC";  
 			break;			
 		case 'deleted':
 			$_REQUEST['sortOrder']= "OrderDate DESC";
@@ -65,7 +68,7 @@ if (!isset($_REQUEST['sortOrder'])) {
 			$_REQUEST['sortOrder']= "OrderDate DESC";
 			break;			
 		case 'notConfirmedAgent':
-			$_REQUEST['sortOrder']= "PickupDate ASC";
+			$_REQUEST['sortOrder']= "PickupDate ASC, PickupTime ASC";
 			break;			
 		case 'invoice2':
 			$_REQUEST['sortOrder']= "OrderDate DESC";
@@ -81,14 +84,16 @@ if (!isset($_REQUEST['sortOrder'])) {
 			break;		
 		default:	
 			if ( isset($_COOKIE['sortOrderCookie']) && $_COOKIE['sortOrderCookie'] !="") $_REQUEST['sortOrder']= $_COOKIE['sortOrderCookie'];
-			else $_REQUEST['sortOrder']= "PickupDate ASC";
+			else $_REQUEST['sortOrder']= "PickupDate ASC, PickupTime ASC";	
 			break;
 	}
 } else setcookie("sortOrderCookie", $_REQUEST['sortOrder']);
 
 
 $whereOD=" WHERE TransferStatus!=9";
+$smarty->assign("transfersFilterExist",0);
 if (isset($transfersFilter) && !empty($transfersFilter)) {
+	$smarty->assign("transfersFilterExist",1);
 	switch ($transfersFilter) {
 		case 'noDriver':
 			$whereOD .= " AND DriverConfStatus ='0' AND TransferStatus < '3'";	
@@ -99,6 +104,12 @@ if (isset($transfersFilter) && !empty($transfersFilter)) {
 		case 'notConfirmedTodayTomorrow':
 			$whereOD .= " AND (PickupDate = '".date("Y-m-d", time()+3600*24)  ."' OR PickupDate = '".date("Y-m-d", time())  ."') AND (DriverConfStatus = '1' OR DriverConfStatus = '4')  AND TransferStatus < '3'";
 			break;	
+		case 'notConfirmedToday':
+			$whereOD .= " AND (PickupDate = '".date("Y-m-d", time())  ."') AND (DriverConfStatus = '1' OR DriverConfStatus = '4')  AND TransferStatus < '3'";
+			break;	
+		case 'notConfirmedTomorrow':
+			$whereOD .= " AND (PickupDate = '".date("Y-m-d", time()+3600*24)  ."') AND (DriverConfStatus = '1' OR DriverConfStatus = '4')  AND TransferStatus < '3'";
+			break;				
 		case 'notAssign':
 			$whereOD .= " AND PickupDate > '".date("Y-m-d", time()) ."' AND PickupDate < ('".date('Y-m-d')."'+INTERVAL 4 DAY) AND DriverConfStatus = '2' AND TransferStatus < '3'";
 			break;						
@@ -245,8 +256,19 @@ if (isset($_REQUEST['Search']) && !empty($_REQUEST['Search'])) {
 	
 	/*	'v4_AuthUsers.AuthUserRealName'*/
 }
+if (isset($_SESSION['UseDriverID'])) $whereOD.=" AND DriverID=".$_SESSION['UseDriverID']; 
 $smarty->assign('query',$whereOD);
 
+// route terminals
+$qT = "SELECT `RouteID`,`TerminalID`,`PlaceNameEN` FROM `v4_RoutesTerminals`,`v4_Places` Where PlaceID=TerminalID" ;
+$rT = $db->RunQuery($qT);
+$terminals=array();
+while ($t = $rT->fetch_object()) {
+	$terminals_row=array();
+	$terminals_row["TerminalID"]=$t->TerminalID;
+	$terminals_row["Name"]=$t->PlaceNameEN;
+	$terminals[$t->RouteID]=$terminals_row;
+}
 $odk=$od->getKeysBy($_REQUEST['sortOrder'],"",$whereOD);
 $countObject=count($odk);
 if (!isset($_REQUEST['pagelength'])) $_REQUEST['pagelength']=10;
@@ -273,6 +295,12 @@ foreach ($odk as $key) {
 	$row['VehicleTypeName']=$vehicletypes[$od->getVehicleType()]->VehicleTypeName;
 	$row['MessageWhtsApp']=sendDriverMessage($od->getDetailsID());
 	$row['DriverTel']=$users[$od->getDriverID()]->AuthUserMob;
+	$row['Subdriver']=$users[$od->getSubdriver()]->AuthUserRealName;
+	$row['SubdriverMob']=$users[$od->getSubdriver()]->AuthUserMob;
+	$row['Image']=$users[$od->getAgentID()]->Image;
+	$row['AuthUserNote']=$users[$od->getAgentID()]->AuthUserNote;
+	$row['TerminalID']=$terminals[$od->getRouteID()]['TerminalID'];
+	$row['TerminalName']=$terminals[$od->getRouteID()]['Name'];
 	
 	$oid_arr[]=$od->getOrderID();
 	$did_arr[]=$od->getDetailsID();
@@ -339,16 +367,32 @@ foreach ($alk as $key) {
 // uzimanje user-a
 $users_arr=array();
 foreach ($users as $user) {
-	$row["UserID"]=$user->AuthUserID;
-	$row["UserName"]=$user->AuthUserRealName;
-	$row["LevelID"]=$user->AuthLevelID;
-	$users_arr[]=$row;
+	$row2=array();
+	if (!empty($user->AuthUserRealName)) {
+		$row["UserID"]=$user->AuthUserID;
+		$row["UserName"]=rtrim($user->AuthUserRealName);
+		$row["LevelID"]=$user->AuthLevelID;
+		if ($user->AuthLevelID==31) {
+			$row["Country"]=$user->Country;
+		}
+		$users_arr[]=$row;
+		if ($user->AuthLevelID==31 && !empty($user->AuthUserRealName)) {
+			$row2["UserID"]=$user->AuthUserID;
+			$row2["CountryUserName"]=$user->Country."-".rtrim($user->AuthUserRealName);
+			$drivers_arr[]=$row2;
+		}
+	}
 }	
+usort($drivers_arr,function($first,$second){
+	return $first["CountryUserName"] > $second["CountryUserName"];
+});	
+
 
 $smarty->assign('status_keys',array_keys($StatusDescription));
 
 $smarty->assign("pages",$pages);
 $smarty->assign("users",$users_arr);
+$smarty->assign("drivers",$drivers_arr);
 $smarty->assign("ordersD",$ordersD);
 //$smarty->assign("extrasM",$extrasmaster);
 $smarty->assign("authLevels",$authlevels);

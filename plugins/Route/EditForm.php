@@ -145,6 +145,25 @@
 					<div class="col-md-9">
 						<input type="text" name="Duration" id="Duration" class="w100" value="{{Duration}}">{{Duration2}}
 					</div>
+				</div>					
+				<div class="row">
+					<div class="col-md-3">
+						<label><?=TOP_ROUTE;?>*<?=CON_FACTOR;?></label>
+					</div>
+					<div class="col-md-9">
+						<input type="hidden" name="TopRouteID" id="TopRouteID" class="w100" value="{{TopRouteID}}">
+						<input type="hidden" name="ConFaktor" id="ConFaktor" class="w100" value="{{ConFaktor}}">
+						{{TopRouteName}} * {{ConFaktor}}
+					</div>
+				</div>					
+				<div class="row">
+					<div class="col-md-3">
+						<label><?=LASTCHANGE;?></label>
+					</div>
+					<div class="col-md-9">
+						<input type="hidden" name="LastChange" id="LastChange" class="w100" value="{{LastChange}}">
+						{{LastChange2}}
+					</div>
 				</div>				
 	
 				<input type="hidden" name="Line" id="Line" class="w100" value="{{Line}}">

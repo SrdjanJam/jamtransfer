@@ -24,43 +24,72 @@ $result2 = $dbT->RunQuery("SELECT TerminalID from v4_RoutesTerminals WHERE Route
 	}
 $detailFlds["Duration2"]=$detailFlds["Duration"];
 $detailFlds["Km2"]=$detailFlds["Km"];
-//if ($detailFlds["LastChange"]<date('Y-m-d', time()-183*24*3600) )	{
+$detailFlds["LastChange2"]=$detailFlds["LastChange"];
+$detailFlds["Line"]=json_decode($db->getLine());
+if ($detailFlds["LastChange"]<date('Y-m-d', time()-183*24*3600) )	{
 	$pl->getRow($db->getFromID());
 	$lng1=$pl->getLongitude();
 	$lat1=$pl->getLatitude();
 	$pl->getRow($db->getToID());
 	$lng2=$pl->getLongitude();
 	$lat2=$pl->getLatitude();
+	// preuzimanje podataka iz API-ja
 	$transfersR=getRouteParam($lng1,$lat1,$lng2,$lat2);
+	$detailFlds["Duration"]=$transfersR['duration'];
+	$detailFlds["Km"]=$transfersR['distance'];
+	$detailFlds["Steps"]=$transfersR['steps'];
+	$detailFlds["StepsEncode"]=json_encode($transfersR['steps']);
+	$detailFlds["Line"]=$transfersR['line'];
+	$detailFlds["Error"]=$transfersR['error'];
+
+	
 	$detailFlds["Lng1"]=$lng1;
 	$detailFlds["Lat1"]=$lat1;
 	$detailFlds["Lng2"]=$lng2;
 	$detailFlds["Lat2"]=$lat2;
-	$detailFlds["Duration"]=$transfersR['duration'];
-	$detailFlds["Km"]=$transfersR['distance'];
-	//$detailFlds["Steps"]=$transfersR['steps'];
-	//$detailFlds["StepsEncode"]=json_encode($transfersR['steps']);
-	$detailFlds["Line"]=$transfersR['line'];
-	$detailFlds["TopRouteID"]=getTopRouteID($transfersR['line']);
-	$detailFlds["ConFaktor"]=getConFaktor($detailFlds["TopRouteID"]);
+	$detailFlds["TopRouteID"]=getTopRouteID($db,$dbT,$_REQUEST['ItemID'],json_decode($detailFlds["Line"]));
+	if ($detailFlds["TopRouteID"]>0) $detailFlds["ConFaktor"]=getConFaktor($db,$detailFlds["TopRouteID"],$detailFlds["Duration"],$detailFlds["Km"]);
 	$detailFlds["LastChange"]=date("Y-m-d");
-	$detailFlds["Lng"]=($lng1+$lng2)/2;
-	$detailFlds["Lat"]=($lat1+$lat2)/2;
-	$detailFlds["Error"]=$transfersR['error'];
-//}
+}
+if ($detailFlds["TopRouteID"]>0) {
+	$db->getRow($detailFlds["TopRouteID"]);
+	$detailFlds["TopRouteName"]=$db->getRouteName();
+}	
+
 $out[] = $detailFlds;
 # send output back
 $output = json_encode($out);
 echo $output;
 
-function getTopRouteID($line) {
-	// ovde algoritam za trazenje najbliskije top rute
-	return 100;
+function getTopRouteID($db,$dbT,$id,$line) {
+	$max_line=0;
+	$max_route_id=0;
+	$sql="SELECT `RouteID` FROM `v4_RoutesTerminals` WHERE `TerminalID` in (SELECT `TerminalID` FROM `v4_RoutesTerminals` WHERE `RouteID`=".$_REQUEST['ItemID'].") and `RouteID` in (SELECT TopRouteID from v4_TopRoutes)";	
+	$result = $dbT->RunQuery($sql);
+	while($row = $result->fetch_array(MYSQLI_ASSOC)){
+		$db->getRow($row['RouteID']);
+		$route_line=json_decode($db->getLine());
+		$counter=0;
+		foreach ($route_line as $rl) {
+			if (in_array($rl,$line)) {
+				$counter++;
+			}	
+		}
+		if ($counter>$max_line) {
+			$max_line=$counter;
+			$max_route_id=$db->getRouteID();
+		}	
+	}
+	//echo $max_route_id;
+	return $max_route_id;
 }	
 
-function getConFaktor($id) {
-	// ovde algoritam za izracunavanje konverzionog faktora
-	return 1;
+function getConFaktor($db,$id,$duration,$km) {
+	$db->getRow($id);
+	$distance_coef=$km/$db->getKm();
+	$duration_coef=$duration/$db->getDuration();
+	$coef=($distance_coef+$duration_coef)/2;
+	return $coef;
 }	
 
 function getRouteParam($lng1,$lat1,$lng2,$lat2) {

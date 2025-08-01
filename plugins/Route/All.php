@@ -15,6 +15,13 @@ if (isset($type)) {
 		$filter = "  AND ".$type." = '" . $_REQUEST['Type'] . "'";
 	}
 }
+
+if (isset($selectapproved)) {
+	if ($_REQUEST['Approved'] != 99) {
+			$filter .= "  AND ".$selectapproved." = " . $_REQUEST['Approved'] ;
+	}
+}
+
 $page 		= $_REQUEST['page'];
 $length 	= $_REQUEST['length'];
 $sortOrder 	= $_REQUEST['sortOrder'];
@@ -73,9 +80,8 @@ else if ($_REQUEST['Type']>0) {
 	else $DB_Where .= " AND RouteID not in (".$routes_arr.")";
 }	
 $date_start=date('Y-m-d',time()-482*24*3600);
-if (isset($_REQUEST['actionID']) && $_REQUEST['actionID']=="NT") {
-	$DB_Where .= " AND (RouteID not in (SELECT RouteID FROM v4_RoutesTerminals)
-						OR LastChange<'".$date_start."')";
+if (isset($_REQUEST['exclude']) && $_REQUEST['exclude']=="NT") {
+	$DB_Where .= " AND (RouteID not in (SELECT RouteID FROM v4_RoutesTerminals) OR LINE=']')";
 }
 # dodavanje search parametra u qry
 # DB_Where sad ima sve potrebno za qry

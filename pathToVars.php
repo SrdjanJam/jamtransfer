@@ -69,6 +69,7 @@ switch ($activePage) {
 			if ($transfersFilter=='order') $orderid=$pathVars->fetchByIndex($indexStart + 2);
 			if ($transfersFilter=='detail') {
 				$detailid=$pathVars->fetchByIndex($indexStart + 2);
+				$_REQUEST['detailid']=$pathVars->fetchByIndex($indexStart + 2);
 				if ($pathVars->fetchByIndex($indexStart + 3) && $pathVars->fetchByIndex($indexStart + 4)) {
 					$key=$pathVars->fetchByIndex($indexStart + 3);
 					$userID=$pathVars->fetchByIndex($indexStart + 4);

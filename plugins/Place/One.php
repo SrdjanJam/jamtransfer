@@ -32,8 +32,13 @@ require_once 'Initial.php';
 	$detailFlds["LongitudeOld"]=$detailFlds["Longitude"];
 	$detailFlds["LatitudeOld"]=$detailFlds["Latitude"];	
 	if ($db->getLongitude()==0 || $db->getLatitude()==0) {
-		if ($db->getPlaceType()==1) $name .=" parking";
-		$ll=getLL($db->getPlaceNameEN());
+		$ct->getRow($db->getPlaceCountry());
+		$country_prefix=$ct->getCountryCode();
+		$name=$db->getPlaceNameEN();
+		if ($db->getPlaceType()<>2) $layers="venue";
+		if ($db->getPlaceType()==2) $layers="locality";
+
+		$ll=getLL($name,$layers,$country_prefix);
 		$ll_arr=explode("/",$ll);
 		$detailFlds["Longitude"]=$ll_arr[0];
 		$detailFlds["Latitude"]=$ll_arr[1];
@@ -115,19 +120,18 @@ require_once 'Initial.php';
 	$output = json_encode($out);
 	echo $output;
 	
-function getLL($name) {
+function getLL($name,$layers,$country_prefix) {
 	$api_key="5b3ce3597851110001cf6248ec7fafd8eca44e0ca5590caf093aa7cb";
-	$layers="coarse";
 	$source1="whosonfirst";
 	$source2="geonames";
 	$text=str_replace(" ","%20",$name);
-	$url="https://api.openrouteservice.org/geocode/search?api_key=".$api_key."&start&layers=".$layers."&sources=".$source1.",".$source2."&text=".$text;
+	$url="https://api.openrouteservice.org/geocode/search?api_key=".$api_key."&start&layers=".$layers."&boundary.country=".$country_prefix."&sources=".$source1.",".$source2."&text=".$text;
 	$json = file_get_contents($url);   
 	$obj="";
 	$obj = json_decode($json,true);	
 	if ($obj) {
 		$long=$obj['features'][0]['geometry']['coordinates'][0];	
 		$latt=$obj['features'][0]['geometry']['coordinates'][1]; 
-		if ($long>0 && $latt>0) return $long."/".$latt;
+		return $long."/".$latt;
 	}	
 }	

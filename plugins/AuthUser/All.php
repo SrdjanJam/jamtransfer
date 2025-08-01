@@ -14,10 +14,10 @@ if (isset($type)) {
 	}
 }
 if (isset($selectactive)) {
-	if (!isset($_REQUEST['Active']) or $_REQUEST['Active'] == 99) {
-		$filter .= "  AND ".$selectactive." > -1 ";
+	if (!isset($_REQUEST['Active'])) {
+		$filter .= "  AND ".$selectactive." = 1 ";
 	}
-	else {
+	else if ($_REQUEST['Active'] != 99) {
 		$filter .= "  AND ".$selectactive." = " . $_REQUEST['Active'] ;
 	}
 }

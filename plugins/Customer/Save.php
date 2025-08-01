@@ -17,7 +17,7 @@ foreach ($db->fieldNames() as $name) {
 	}
 	$db->setCustLanguage($_REQUEST['Language']);
 }
-if ($_REQUEST['DefaultPassword']=="ON") $db->setCustPass("6znIOHgCaaYKv8bHzlo4oeVrzs4wDV7zNecW5jKt6PJSMNkpobt2e"); 
+if ($_REQUEST['DefaultPassword']=="ON") $db->setCustPass("$2y$10$5jwDjgdrgXqsqT6VcZ1M9O.RxDNdE.KwsIr/1rt5GZMCv41bgZtCe"); 
 
 $upd = '';
 

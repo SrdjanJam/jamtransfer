@@ -14,7 +14,7 @@
             </div><!-- /. tools -->
         </div>
         <div class="box-body get-order">
-			<form action="orders/order" method="post"> 
+			<form action="shortOrders/order" method="post"> 
 				<div class="row">
 					<div class="col-md-4">{$TRANSFER_ORDER_NUMBER} </div>
 					<div class="col-md-3">

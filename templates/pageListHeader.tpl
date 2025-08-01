@@ -26,7 +26,8 @@
 <input type="hidden"  id="whereCondition" name="whereCondition" 
 value=" WHERE {$ItemID} > 0">
 
-<input type="hidden"  id="isNew" name="IsNew value="{$IsNew}">
+<input type="hidden"  id="exclude" name="exclude" value="{$ActionID}">
+<input type="hidden"  id="isNew" name="IsNew" value="{$IsNew}">
 <input type="hidden"  id="customerID" name="customerID" value="{$CustomerID}">
 <input type="hidden"  id="userID" name="userID" value="{$UserID}">
 <input type="hidden"  id="routeID" name="routeID" value="{$RouteID}">
@@ -113,8 +114,8 @@ value=" WHERE {$ItemID} > 0">
 			<i class="fa fa-filter edit-fa"></i> 
 			<div class="form-group group-edit">
 				<select name="Active" id="Active" onchange="allItems();" class="form-control control-edit">
-					<option value="99" selected="selected">{$ALL}</option>			
-					<option value="1"> {$ACTIVE} </option>
+					<option value="99">{$ALL}</option>			
+					<option value="1" {if !isset($smarty.request.Active)}selected{/if}> {$ACTIVE}</option>
 					{if isset($selectactive2)}<option value="2"> {$SEMI_ACTIVE} </option>{/if}
 					<option value="0"> {$NOT_ACTIVE} </option>
 				</select>
