@@ -25,7 +25,7 @@ $result2 = $dbT->RunQuery("SELECT TerminalID from v4_RoutesTerminals WHERE Route
 $detailFlds["Duration2"]=$detailFlds["Duration"];
 $detailFlds["Km2"]=$detailFlds["Km"];
 $detailFlds["LastChange2"]=$detailFlds["LastChange"];
-$detailFlds["Line"]=json_decode($db->getLine());
+//$detailFlds["Line"]=json_decode($db->getLine());
 if ($detailFlds["LastChange"]<date('Y-m-d', time()-183*24*3600) )	{
 	$pl->getRow($db->getFromID());
 	$lng1=$pl->getLongitude();
@@ -37,20 +37,23 @@ if ($detailFlds["LastChange"]<date('Y-m-d', time()-183*24*3600) )	{
 	$transfersR=getRouteParam($lng1,$lat1,$lng2,$lat2);
 	$detailFlds["Duration"]=$transfersR['duration'];
 	$detailFlds["Km"]=$transfersR['distance'];
-	$detailFlds["Steps"]=$transfersR['steps'];
-	$detailFlds["StepsEncode"]=json_encode($transfersR['steps']);
+	//$detailFlds["Steps"]=$transfersR['steps'];
+	//$detailFlds["StepsEncode"]=json_encode($transfersR['steps']);
 	$detailFlds["Line"]=$transfersR['line'];
 	$detailFlds["Error"]=$transfersR['error'];
 
 	
-	$detailFlds["Lng1"]=$lng1;
+	/*$detailFlds["Lng1"]=$lng1;
 	$detailFlds["Lat1"]=$lat1;
 	$detailFlds["Lng2"]=$lng2;
-	$detailFlds["Lat2"]=$lat2;
+	$detailFlds["Lat2"]=$lat2;*/
 	$detailFlds["TopRouteID"]=getTopRouteID($db,$dbT,$_REQUEST['ItemID'],json_decode($detailFlds["Line"]));
 	if ($detailFlds["TopRouteID"]>0) $detailFlds["ConFaktor"]=getConFaktor($db,$detailFlds["TopRouteID"],$detailFlds["Duration"],$detailFlds["Km"]);
 	$detailFlds["LastChange"]=date("Y-m-d");
 }
+$midleline=number_format(count(json_decode($detailFlds["Line"]))/2,0);
+$detailFlds["Lat"]=json_decode($detailFlds["Line"])[$midleline][0];
+$detailFlds["Lng"]=json_decode($detailFlds["Line"])[$midleline][1];
 if ($detailFlds["TopRouteID"]>0) {
 	$db->getRow($detailFlds["TopRouteID"]);
 	$detailFlds["TopRouteName"]=$db->getRouteName();

@@ -429,7 +429,7 @@
 							<button type="button" class="extra"><i class="fa fa-plus" aria-hidden="true"></i></button>
 						{/if}	
 						<input type="text" name="PayLater" id="PayLater" class="w25 
-							{if !($ordersD[pom].PaymentMethod eq 2 or $ordersD[pom].PaymentMethod eq 3)}hidden{/if}"
+							{if (!($ordersD[pom].PaymentMethod eq 2 or $ordersD[pom].PaymentMethod eq 3)) and $ordersD[pom].PayLater eq 0}hidden{/if}"
 						value=" {$ordersD[pom].PayLater}" 
 						>
 					</div>
@@ -441,7 +441,7 @@
 							<button type="button" class="extra"><i class="fa fa-plus" aria-hidden="true"></i></button>
 						{/if}						
 						<input type="text" name="PayNow" id="PayNow" class="w25 
-							{if !($ordersD[pom].PaymentMethod eq 1 or $ordersD[pom].PaymentMethod eq 3)}hidden{/if}"
+							{if (!($ordersD[pom].PaymentMethod eq 1 or $ordersD[pom].PaymentMethod eq 3)) and $ordersD[pom].PayNow eq 0}hidden{/if}"
 						value=" {$ordersD[pom].PayNow}"> 
 						<input type="text" name="MCardNumber" id="MCardNumber" class="w25
 							{if !($ordersD[pom].PaymentMethod eq 1 or $ordersD[pom].PaymentMethod eq 3)}hidden{/if}"
@@ -455,7 +455,7 @@
 							<button type="button" class="extra"><i class="fa fa-plus" aria-hidden="true"></i></button>
 						{/if}					
 						<input type="text" name="InvoiceAmount" id="InvoiceAmount" class="w25
-							{if !($ordersD[pom].PaymentMethod eq 4 or $ordersD[pom].PaymentMethod eq 6)}hidden{/if}"
+							{if (!($ordersD[pom].PaymentMethod eq 4 or $ordersD[pom].PaymentMethod eq 6) and $ordersD[pom].InvoiceAmount eq 0)}hidden{/if}"
 						value=" {$ordersD[pom].InvoiceAmount}"> 
 					</div>
 				</div>
@@ -559,8 +559,8 @@
 					<div class="col-md-3 "><label>{$FINAL_NOTE}</label></div>
 					<div class="col-md-9">
 						<div id="summernote">
-							<textarea class="textarea" name="FinalNotes"  cols="40" rows="4"
-							style="width:100%">{$ordersD[pom].FinalNotes}</textarea>
+							<textarea class="textarea" name="FinalNote"  cols="40" rows="4"
+							style="width:100%">{$ordersD[pom].FinalNote}</textarea>
 						</div>
 					</div>
 				</div>

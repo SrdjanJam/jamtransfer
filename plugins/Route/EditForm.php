@@ -1,21 +1,21 @@
-	<style>
-		.leaflet-popup-content-wrapper .leaflet-popup-content {
-			color:blue;
-			font-size: 70%;
-			width: 70%;
-		}
-		.greenroute {
-			color:green;
-		}
-	</style>
-	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-		 integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
-		 crossorigin=""/>
-	<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-		 integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
-		 crossorigin="">
-	</script>
-<script type="text/x-handlebars-template" id="ItemEditTemplate">
+		<style>
+			.leaflet-popup-content-wrapper .leaflet-popup-content {
+				color:blue;
+				font-size: 70%;
+				width: 70%;
+			}
+			.greenroute {
+				color:green;
+			}
+		</style>
+		<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+			 integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+			 crossorigin=""/>
+		<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+			 integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+			 crossorigin="">
+		</script>
+<script type="text/x-handlebars-template" id="ItemEditTemplate">	
 <form id="ItemEditForm{{RouteID}}" class="form box box-info" enctype="multipart/form-data" method="post" onsubmit="return false;">
 	<div class="box-header">
 		<div class="box-tools pull-right">
@@ -42,7 +42,7 @@
 
 	<div class="box-body ">
         <div class="row">
-			<div class="col-md-12 ">
+			<div class="col-md-6 ">
 				<div class="row hidden">
 					<div class="col-md-3">
 						<label for="OwnerID"><?=OWNERID;?></label>
@@ -129,61 +129,64 @@
 						<input type="text" name="RouteName" id="RouteName" class="w100" value="{{RouteName}}">
 					</div>
 				</div>
-
-				<div class="row">
-					<div class="col-md-3">
-						<label for="Km"><?=KM;?></label>
+				<? if (!$isNew) { ?>
+					<div class="row">
+						<div class="col-md-3">
+							<label for="Km"><?=KM;?></label>
+						</div>
+						<div class="col-md-9">
+							<input type="text" name="Km" id="Km" class="w100" value="{{Km}}">{{Km2}}
+						</div>
 					</div>
-					<div class="col-md-9">
-						<input type="text" name="Km" id="Km" class="w100" value="{{Km}}">{{Km2}}
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-md-3">
-						<label for="Duration"><?=DURATION;?></label>
-					</div>
-					<div class="col-md-9">
-						<input type="text" name="Duration" id="Duration" class="w100" value="{{Duration}}">{{Duration2}}
-					</div>
-				</div>					
-				<div class="row">
-					<div class="col-md-3">
-						<label><?=TOP_ROUTE;?>*<?=CON_FACTOR;?></label>
-					</div>
-					<div class="col-md-9">
-						<input type="hidden" name="TopRouteID" id="TopRouteID" class="w100" value="{{TopRouteID}}">
-						<input type="hidden" name="ConFaktor" id="ConFaktor" class="w100" value="{{ConFaktor}}">
-						{{TopRouteName}} * {{ConFaktor}}
-					</div>
-				</div>					
-				<div class="row">
-					<div class="col-md-3">
-						<label><?=LASTCHANGE;?></label>
-					</div>
-					<div class="col-md-9">
-						<input type="hidden" name="LastChange" id="LastChange" class="w100" value="{{LastChange}}">
-						{{LastChange2}}
-					</div>
-				</div>				
-	
-				<input type="hidden" name="Line" id="Line" class="w100" value="{{Line}}">
-				<input type="hidden" name="TopRouteID" id="TopRouteID" class="w100" value="{{TopRouteID}}">
-				<input type="hidden" name="ConFaktor" id="ConFaktor" class="w100" value="{{ConFaktor}}">
-				<input type="hidden" name="LastChange" id="LastChange" class="w100" value="{{LastChange}}">
-				<input type="hidden" name="Lng" id="Lng" class="w100" value="{{Lng}}">
-				<input type="hidden" name="Lat" id="Lat" class="w100" value="{{Lat}}">
-
-				<div class="row">
-					<div class="col-md-12" id="map">{{Error}}</div>
-				</div>				
-
-				
+					<div class="row">
+						<div class="col-md-3">
+							<label for="Duration"><?=DURATION;?></label>
+						</div>
+						<div class="col-md-9">
+							<input type="text" name="Duration" id="Duration" class="w100" value="{{Duration}}">{{Duration2}}
+						</div>
+					</div>					
+					<div class="row">
+						<div class="col-md-3">
+							<label for="Line"><?=LINE;?></label>
+						</div>
+						<div class="col-md-9">
+							<textarea name="Line" id="Line" class="w100">{{Line}}</textarea>
+						</div>
+					</div>					
+					<div class="row">
+						<div class="col-md-6">
+							<label><?=TOP_ROUTE;?>*<?=CON_FACTOR;?></label>
+						</div>
+						<div class="col-md-3">
+							<input type="hidden" name="TopRouteID" id="TopRouteID" class="w100" value="{{TopRouteID}}">
+							<input type="hidden" name="ConFaktor" id="ConFaktor" class="w100" value="{{ConFaktor}}">
+							{{TopRouteName}} * {{ConFaktor}}
+						</div>
+					</div>					
+					<div class="row">
+						<div class="col-md-3">
+							<label><?=LASTCHANGE;?></label>
+						</div>
+						<div class="col-md-9">
+							<input type="hidden" name="LastChange" id="LastChange" class="w100" value="{{LastChange}}">
+							{{LastChange2}}
+						</div>
+					</div>				
+		
+					<input type="hidden" name="Lng" id="Lng" class="w100" value="{{Lng}}">
+					<input type="hidden" name="Lat" id="Lat" class="w100" value="{{Lat}}">		
+				<? } ?>
 			</div>
+			<? if (!$isNew) { ?><div class="col-md-6" id="map"></div><?  } ?>
+							
 	    </div>
 </form>
-
-
+		 	
 	<script>
+
+
+
 
 		//bootstrap WYSIHTML5 - text editor
 		$(".textarea").wysihtml5({
@@ -271,28 +274,28 @@
 			}
 
 		} // End of surTerminals()	
-	
-		/*var lng=$("#Lng").val();	
-		var lat=$("#Lat").val();		
-		var w=$("#map").width();
-		if (w>1000) w=1000;
-		else if(w>800) w=800;
-		h=w*0.7;
-		$("#map").width(500);
-		$("#map").height(350);
-		var map = L.map('map').setView([lat, lng], 15);
-			L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-			maxZoom: 19,
-			attribution: ''
-		}).addTo(map);
-		$(".leaflet-attribution-flag").remove();
-		$(".leaflet-control").remove();	
-		var line=$("#Steps").val();	
-		var Pline=JSON.parse(line);
-		var polyline = L.polyline(Pline).addTo(map);*/
-	</script>	
-
-
-	
+		$("document").ready(function(){
+			var lng=$("#Lng").val();	
+			var lat=$("#Lat").val();	
+			var km=$("#Km").val();		
+			if (km<20) scale=12;
+			else if (km<50) scale=11;
+			else if (km<100) scale=10;
+			else if (km<200) scale=9;
+			else scale=8;
+			$("#map").width(500);
+			$("#map").height(350);
+			var map = L.map('map').setView([lat,lng], scale);
+				L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+				maxZoom: 19,
+				attribution: ''
+			}).addTo(map);
+			$(".leaflet-attribution-flag").remove();
+			$(".leaflet-control").remove();	
+			var line=$("#Line").val();	
+			var Pline=JSON.parse(line);
+			var polyline = L.polyline(Pline).addTo(map);
+		})
+	</script>		
 </script>
 

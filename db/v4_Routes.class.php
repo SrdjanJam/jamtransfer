@@ -146,7 +146,7 @@ WHERE RouteID = '".$this->RouteID."'");
      * Save the active var class as a new row on table
      */
 	public function saveAsNew(){
-		$this->connection->RunQuery("INSERT IGNORE INTO v4_Routes (OwnerID, FromID, ToID, Approved, RouteName, RouteNameEN, RouteNameRU, RouteNameFR, RouteNameDE, RouteNameIT, RouteNameSE, RouteNameNO, RouteNameES, RouteNameNL, Km,Duration,Line,TopRouteID,ConFaktorID,LastChange) values (
+		$this->connection->RunQuery("INSERT IGNORE INTO v4_Routes (OwnerID, FromID, ToID, Approved, RouteName, RouteNameEN, RouteNameRU, RouteNameFR, RouteNameDE, RouteNameIT, RouteNameSE, RouteNameNO, RouteNameES, RouteNameNL, Km,Duration,TopRouteID,ConFaktor,LastChange) values (
 		'".$this->myreal_escape_string($this->OwnerID)."',
 		'".$this->myreal_escape_string($this->FromID)."',
 		'".$this->myreal_escape_string($this->ToID)."',
@@ -163,7 +163,6 @@ WHERE RouteID = '".$this->RouteID."'");
 		'".$this->myreal_escape_string($this->RouteNameNL)."',
 		'".$this->myreal_escape_string($this->Km)."',
 		'".$this->myreal_escape_string($this->Duration)."',
-		JSON_MERGE_PATCH(`Line`,'".$this->myreal_escape_string($this->Line)."'),
 		'".$this->myreal_escape_string($this->TopRouteID)."',
 		'".$this->myreal_escape_string($this->ConFaktor)."',
 		'".$this->myreal_escape_string($this->LastChange)."')");
