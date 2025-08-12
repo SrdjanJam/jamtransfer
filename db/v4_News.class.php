@@ -107,17 +107,19 @@ CreatedDate = '".$this->myreal_escape_string($this->CreatedDate)."'
      * Save the active var class as a new row on table
      */
 	public function saveAsNew(){
-		$this->connection->RunQuery("INSERT INTO v4_News (NewsID, Keywords, Header, ShortHtml, Html, PublishingDate, Date, Image, ImageThumb, Link, Active, CreatedBy, CreatedDate) values ('".$this->myreal_escape_string($this->NewsID)."',
+		$this->connection->RunQuery("INSERT INTO v4_News (NewsID, Keywords, Header, ShortHtml, Html, PublishingDate, Date, Image, ImageThumb, Link, Active, CreatedBy, CreatedDate) values (
+		'".$this->myreal_escape_string($this->NewsID)."',
 		'".$this->myreal_escape_string($this->Keywords)."',
 		'".$this->myreal_escape_string($this->Header)."',
 		'".$this->myreal_escape_string($this->ShortHtml)."',		
 		'".$this->myreal_escape_string($this->Html)."',		
-		'".$this->myreal_escape_string($this->Date)."',
+		'".$this->myreal_escape_string($this->PublishingDate)."',
+		'".$this->myreal_escape_string(date("Y-m-d"),time())."',
 		'".$this->myreal_escape_string($this->Image)."',
 		'".$this->myreal_escape_string($this->ImageThumb)."',
 		'".$this->myreal_escape_string($this->Link)."',
 		'".$this->myreal_escape_string($this->Active)."',
-		'".$this->myreal_escape_string($this->CreatedBy)."',
+		'".$this->myreal_escape_string($_SESSION['AuthUserID'])."',
 		'".$this->myreal_escape_string($this->CreatedDate)."'
 		)");
 		return $this->connection->insert_id(); //return insert_id 
@@ -269,6 +271,13 @@ CreatedDate = '".$this->myreal_escape_string($this->CreatedDate)."'
 		$this->Html = $Html;
 	}
 
+	/**
+	 * @param Type: varchar(10)
+	 */
+	public function setPublishingDate($PublishingDate){
+		$this->PublishingDate = $PublishingDate;
+	}	
+	
 	/**
 	 * @param Type: varchar(10)
 	 */

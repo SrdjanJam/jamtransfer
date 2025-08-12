@@ -68,14 +68,14 @@
 		$smarty->assign('translatorPanel',true);	
 	}											
 
-	if (in_array($_SESSION['AuthLevelID'],array(2,41,42,43,44,45,91,92,99))) {
+	if (in_array($_SESSION['AuthLevelID'],array(2,41,43,44,45,91,92,99))) {
 		if (!isset($_SESSION['UseDriverID'])) {
 			require_once 'bookingConversionRate.php';
 			$smarty->assign('bookingConversionRate',true);
 		}	
 	}	
 	
-	if (in_array($_SESSION['AuthLevelID'],array(2,31,41,42,43,44,45,91,92,99))) {
+	if (in_array($_SESSION['AuthLevelID'],array(2,31,41,43,44,45,91,92,99))) {
 		if (!isset($_SESSION['UseDriverID'])) $smarty->assign('calculateProvision',true);
 	}	
 	
@@ -117,7 +117,7 @@
 			if (isset($_SESSION['UseDriverID'])) $smarty->assign('driverSettingsExist',driverSettingsExist());
 	}
 
-	if (in_array($_SESSION['AuthLevelID'],array(41,42,43,44,45,91,92,99))) {
+	if (in_array($_SESSION['AuthLevelID'],array(41,43,44,45,91,92,99))) {
 			require_once 'notReady.php';
 			$smarty->assign('notReady',true);
 	}
