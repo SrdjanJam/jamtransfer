@@ -120,7 +120,7 @@
 					<br>
 					<strong>{$ordersD[pom].DropName}</strong>
 					<br>
-					{if $ordersD[pom].StaffNote}<small style="color:red">STAFF NOTE</small>{/if}	
+					{if $ordersD[pom].StaffNote}<small style="color:#000;background: orange;">STAFF NOTE</small>{/if}
 				</div>
 				<div class="col-md-3">
 					{if $ordersD[pom].DriverName}
