@@ -55,7 +55,7 @@ require_once('lng/' . $_SESSION['CMSLang'] . '_text.php');
 					
 					if ($row['CountryName']=='Serbia' &&  $row['AuthLevelID']==2) {	
 						$_SESSION['Currency'] = 'EUR';
-						$_SESSION['ExchFaktor'] = 1.035;
+						$_SESSION['ExchFaktor'] = 1;
 					}		
 					else { 
 						$_SESSION['Currency'] = 'EUR';	

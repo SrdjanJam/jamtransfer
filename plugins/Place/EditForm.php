@@ -207,7 +207,18 @@
 						{{Drivers}}
 					</div>
 				</div>
+				
+				<div class="row">			
+					<div class="col-md-3 "><label><?= NEARBY_LOCATIONS ?></label></div>
+					<div class="col-md-9" id='nearbylocations'>
+						{{#each NearbyLocations}}
+							<button data-route="{{FromID}}-{{PlaceID}}" type="button" class='btn btn-info NearbyLocations' {{Disabled}}>{{PlaceName}}</button>
+						{{/each}}	
+					</div>				
+				</div>			
+				
 				<a id="tr" style="display:none;" href='plugins/Place/TopRoutes_{{PlaceID}}.csv'></a>
+
 
 			</div>
 	    </div>
@@ -273,7 +284,22 @@
 				var btn=$('.Routable');
 				routable(btn);
 			}
-		})			
+		})	
+			
+		$(".NearbyLocations").click(function(){
+			var route=$(this).attr("data-route");	
+			var rt=this;
+			var url='plugins/Place/InsertRoute.php?Route='+route;
+			console.log(url);
+			$.ajax({
+				type: 'GET',
+				url: url,		
+				success: function() {
+					$(rt).prop('disabled', true);
+				}						
+			})
+
+		})	
 		function topRoutes(id) {
 			$.ajax({
 				type: 'GET',

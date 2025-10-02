@@ -1,3 +1,4 @@
+
 <script type="text/x-handlebars-template" id="ItemEditTemplate">
 <form id="ItemEditForm{{TerminalID}}" class="form box box-info" enctype="multipart/form-data" method="post" onsubmit="return false;">
 	<div class="box-header">
@@ -20,6 +21,10 @@
 				<button class="btn btn-info" title="Top Routes" 
 				onclick="return topRoutes('{{TerminalID}}');">
 				<i class="fa fa-road"></i>
+				</button>					
+				<button class="btn btn-info" title="JSON" 
+				onclick="return getJson('{{TerminalID}}');">
+				<i class="fa fa-file"></i>
 				</button>			
 				<a target='_tab' href='https://prod.jamtransfer.com/api/terminals/bust-cache?hash=d06161457d4c4b45e57d764c98051d86'><?=DELETE_CACHE;?></a>
 		</div>
@@ -35,6 +40,7 @@
 					</div>
 					<div class="col-md-9">
 						{{TerminalID}}
+						<input type="hidden" name="PlaceNameSEO" id="PlaceNameSEO{{TerminalID}}" class="w00" value="{{PlaceNameSEO}}">
 					</div>
 				</div>
 				<br>
@@ -91,6 +97,9 @@
 						<label for="text"><?=DESCRIPTION;?></label>
 					</div>
 					<div class="col-md-9">
+						{{#if HtmlExist}}
+							<a target="_blank" href="https://wis.jamtransfer.com/site_terminals/{{PlaceNameSEO}}.html"><?=EXTERNAL;?> HTML</a><br>
+						{{/if}}
 						{{{des_arr.en}}}
 						<!--<textarea name="des"  style="resize:none;width:100%;min-height:200px;">{{des_arr.en}}</textarea>!-->
 					</div>
@@ -107,27 +116,32 @@
 				{{/each}}
 			</div>
 			<div class="col-md-6">
-				<span><?=AV_DRIVERS;?> </span>	
-				<a target="_blank" href="/partnerStatistic/{{TerminalID}}">Driver Statistic</a>				
-				{{#each Drivers}}
-					<div class="row">
-						<div class="col-md-6">
-							{{AuthUserRealName}}
-						</div>							
-						<div class="col-md-6">
-							<a  target="_blank" 
-								href="satAsDriver/{{AuthUserID}}"><?=SAT_AS_DRIVER;?>
-							</a> 
-						</div>	
-					</div>
-				{{/each}}
+				<div class="row">
+					<span><?=AV_DRIVERS;?> </span>	
+					<a target="_blank" href="/partnerStatistic/{{TerminalID}}">Driver Statistic</a>				
+					{{#each Drivers}}
+						<div class="row">
+							<div class="col-md-6">
+								{{AuthUserRealName}}
+							</div>							
+							<div class="col-md-6">
+								<a  target="_blank" 
+									href="satAsDriver/{{AuthUserID}}"><?=SAT_AS_DRIVER;?>
+								</a> 
+							</div>	
+						</div>
+					{{/each}}
+				</div>
+				<div class="row" id="faq{{TerminalID}}">
+				
+				</div>
+				
 			</div>
 			<a id="tr" style="display:none;" href='plugins/Terminals/TopRoutes_{{TerminalID}}.csv'></a> 
 	    </div>
 </form>
-
 	<script>
-$(".textarea").destroy();
+		$(".textarea").destroy();
 		//bootstrap WYSIHTML5 - text editor
 		$(".textarea").wysihtml5({
 				"font-styles": true, //Font styling, e.g. h1, h2, etc. Default true
@@ -169,6 +183,18 @@ $
 						success: function(data) {
 						}
 					})	
+				}						
+			})
+			
+		}			
+		function getJson(id) {
+			$.ajax({
+				type: 'GET',
+				url: 'plugins/Terminals/TopRoutes.Json.php?PlaceID='+id,		
+				success: function(data) {
+					var klasa = $(data).attr('class');
+					//toastr[klasa](data);
+					$('#faq'+id).html(data);
 				}						
 			})
 			

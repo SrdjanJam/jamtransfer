@@ -291,7 +291,8 @@ else {
 				$r->getRow($RouteID);
 				$RouteName=$r->getRouteName();
 				$Km=$r->getKm();
-				
+				$ConFaktor=1;		
+
 				if($dr->getFromID() == $FromID  and $dr->getOneToTwo() == '0') $statusCompP="<i>-No direction</i>";
 				$OwnerID = $dr->getOwnerID();
 				if($au->getRow($OwnerID)===false) continue;
@@ -334,8 +335,13 @@ else {
 						$SurCategory    = $s->getSurCategory();
 						$DRSurCategory  = $dr->getSurCategory();
 						$VSurCategory   = $v->getSurCategory();
-						$sur = array();
-						$sur = Surcharges($OwnerID, $SurCategory, $s->getServicePrice1(),
+						$DriversPrice = $s->getServicePrice1();
+						$Provision = returnProvision($DriversPrice, $s->getOwnerID(), $VehicleClass);
+						$Provision2 = returnProvision2($DriversPrice, $s->getOwnerID(), $VehicleClass);
+						$CalculatedPrice = $DriversPrice+$DriversPrice*$Provision/100;
+						$CalculatedPrice2 = $DriversPrice+$DriversPrice*$Provision2/100;
+						
+						$sur = Surcharges($OwnerID, $SurCategory, $CalculatedPrice,
 										  $transferDate, $transferTime,
 										  $returnDate, $returnTime,
 										  $RouteID, $VehicleID, $ServiceID,
@@ -358,29 +364,43 @@ else {
 										$sur['S8Price'] +
 										$sur['S9Price'] +
 										$sur['S10Price'] +
+										$sur['NightPrice'];						
+						$sur2 = Surcharges($OwnerID, $SurCategory, $CalculatedPrice,
+										  $transferDate, $transferTime,
+										  $returnDate, $returnTime,
+										  $RouteID, $VehicleID, $ServiceID,
+										  $VSurCategory, $DRSurCategory
+										  );
+						$addToPrice2 =   $sur['MonPrice'] +
+										$sur['TuePrice'] +
+										$sur['WedPrice'] +
+										$sur['ThuPrice'] +
+										$sur['FriPrice'] +
+										$sur['SatPrice'] +
+										$sur['SunPrice'] +
+										$sur['S1Price'] +
+										$sur['S2Price'] +
+										$sur['S3Price'] +
+										$sur['S4Price'] +
+										$sur['S5Price'] +
+										$sur['S6Price'] +
+										$sur['S7Price'] +
+										$sur['S8Price'] +
+										$sur['S9Price'] +
+										$sur['S10Price'] +
 										$sur['NightPrice'];
-						$DriversPrice = $s->getServicePrice1();
-						$DriversPriceAdd = $DriversPrice + $addToPrice;
-						$specialDatesPrice = calculateSpecialDates($OwnerID,$DriversPriceAdd,$transferDate, $transferTime);
-						$DriversPriceAdd2 = $DriversPriceAdd+$specialDatesPrice;
-						$addToPrice=$addToPrice+$specialDatesPrice;
-						$Provision = returnProvision($DriversPriceAdd2, $s->getOwnerID(), $VehicleClass);
-						$Provision2 = returnProvision2($DriversPriceAdd2, $s->getOwnerID(), $VehicleClass);
-						$FinalPrice = $DriversPriceAdd2+$DriversPriceAdd2*$Provision/100;
-						$FinalPrice2 = $DriversPriceAdd2+$DriversPriceAdd2*$Provision2/100;
+						$CalculatedPriceAdd = $CalculatedPrice + $addToPrice;
+						$CalculatedPriceAdd2 = $CalculatedPrice2 + $addToPrice2;
+						$specialDatesPrice = calculateSpecialDates($OwnerID,$CalculatedPriceAdd,$transferDate, $transferTime);
+						$specialDatesPrice2 = calculateSpecialDates($OwnerID,$CalculatedPriceAdd2,$transferDate, $transferTime);
 						
-						if (isset($AgentID) && is_numeric($AgentID)) {
-							$contractPrice=getContractPrice($VehicleTypeID, $RouteID, $AgentID);
-							if ($contractPrice>0) {
-								$FinalPrice=$contractPrice;
-								$Provision=0;
-								$contractDriverPrice=getContractDriverPrice($ServiceID);
-								if ($contractDriverPrice>0) {
-									$DriversPrice=$contractDriverPrice;
-									$addToPrice=0;
-								}	
-							}	
-						}
+						
+						$FinalPrice = $CalculatedPriceAdd+$specialDatesPrice;
+						$FinalPrice2 = $CalculatedPriceAdd2+$specialDatesPrice2;
+						
+						$addToPrice=$addToPrice+$specialDatesPrice;
+						$addToPrice2=$addToPrice+$specialDatesPrice;
+						
 						// zaokruzenje cijena
 						$FinalPrice = nf( round($FinalPrice,2) );
 						$FinalPrice2 = nf( round($FinalPrice2,2) );

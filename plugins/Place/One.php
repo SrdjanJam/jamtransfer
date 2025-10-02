@@ -113,7 +113,37 @@ require_once 'Initial.php';
 		$detailFlds["Terminal"]=1;
 	}	
 
-	
+	#nearby locations
+	$where=" WHERE PlaceID!=".$_REQUEST['ItemID'];
+	$plk = $db->getKeysBy('PlaceID', 'asc' , $where);
+	$nearbylocations=array();
+	if(count($plk) > 0) {
+		foreach ($plk as $key => $value) {
+			$db->getRow($value);
+			$nearbylocation=array();
+			$distance=vincentyGreatCircleDistance($db->getLatitude(), $db->getLongitude(), $detailFlds["Latitude"], $detailFlds["Longitude"]);
+			if ($distance<222000 && $detailFlds["CountryNameEN"]==$db->getCountryNameEN()) {
+				$nearbylocation['PlaceID']=$db->getPlaceID();
+				$nearbylocation['FromID']=$detailFlds["PlaceID"];				
+				$result = $dbT->RunQuery("SELECT count(*) as cnt FROM v4_Routes WHERE 
+					(FromID=".$nearbylocation['PlaceID']." 
+					AND ToID=".$nearbylocation['FromID'].") OR
+					(ToID=".$nearbylocation['PlaceID']." 
+					AND FromID=".$nearbylocation['FromID'].")");
+				$row = $result->fetch_array(MYSQLI_ASSOC);
+				if ($row['cnt']==1) $nearbylocation['Disabled']="disabled";
+				else $nearbylocation['Disabled']="";
+				$nearbylocation['PlaceName']=$db->getPlaceNameEN();
+				$nearbylocations[]=$nearbylocation;
+			}
+		}	
+	}
+	function cmp($a, $b) {
+		return strcmp($a["PlaceName"], $b["PlaceName"]);
+	}	
+	usort($nearbylocations, "cmp");
+	$detailFlds['NearbyLocations']=$nearbylocations;
+
 	$out[] = $detailFlds;
 
 	# send output back

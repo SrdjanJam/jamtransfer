@@ -102,6 +102,15 @@
 					<div class="col-md-9">
 						{{yesNoSliderEdit Published 'Published' }}
 					</div>
+				</div>				
+				
+				<div class="row">
+					<div class="col-md-3">
+						<label for="Published">Schema</label>
+					</div>
+					<div class="col-md-9">
+						{{yesNoSliderEdit Scheme 'Scheme' }}
+					</div>
 				</div>
 
 				<div class="row">

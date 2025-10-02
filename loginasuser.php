@@ -18,7 +18,7 @@ if($result->num_rows == 1)
 				
 		if ($row['CountryName']=='Serbia' &&  $row['AuthLevelID']==2) {				//$_SESSION['Currency'] = 'RSD';
 			$_SESSION['Currency'] = 'EUR';
-			$_SESSION['ExchFaktor'] = 1.035;					
+			$_SESSION['ExchFaktor'] = 1;					
 		}				
 		else {
 			$_SESSION['Currency'] = 'EUR';	

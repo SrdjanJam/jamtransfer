@@ -5,18 +5,21 @@ require_once 'Initial.php';
 	# init vars
 	$out = array();
 
-
-
 	$db->getRow($_REQUEST['ItemID']);
 
 	# get fields and values
 	$detailFlds = $db->fieldValues();
+	$dbP->getRow($_REQUEST['ItemID']);
 
 	# remove slashes 
 	foreach ($detailFlds as $key=>$value) {
 		$detailFlds[$key] = stripslashes($value);
 	}
-	
+	$detailFlds['PlaceNameSEO']=$dbP->getPlaceNameSEO();
+	$filename = "../../site_terminals/".$dbP->getPlaceNameSEO().".html";
+	if (file_exists($filename)) $detailFlds['HtmlExist']=1;
+	else $detailFlds['HtmlExist']=0;
+
 	$arr=json_decode($detailFlds['Description']);
 	if (gettype($arr)!="object") {
 		$arr=array();
@@ -33,7 +36,7 @@ require_once 'Initial.php';
 	else {
 		$detailFlds['language']=" ";
 		$detailFlds['disabled']='';
-	}	
+	}
 	$result = $dbT->RunQuery("SELECT * FROM v4_DriverTerminals WHERE TerminalID=".$_REQUEST['ItemID']); 
 	while($row = $result->fetch_array(MYSQLI_ASSOC)){
 		$driverID=$row['DriverID'];

@@ -14,8 +14,6 @@ require_once '../../headerScripts.php';
 </html>	
 <?
 function PrintTransferDriver($DetailsID) {
-	//echo '<pre>'; print_r($_REQUEST); echo '</pre>';
-
 
 	if(!empty($DetailsID) and is_numeric($DetailsID)) {
 		//$OrderID = $_REQUEST['OrderID'];
@@ -80,14 +78,7 @@ function PrintTransferDriver($DetailsID) {
 	<div id="thankyou" class="white grid">
 	 	<div class="grid white">
 
-	 		<div class="col-1-1 pad1em" style="min-height:800px">
-<!--
-	 			<p>
-	 				<span class="l"><strong><?= $au->getAuthUserCompany() ?></strong></span>	<br>
-	 				<?= $au->getAuthCoAddress() ?><br>
-	 				<?= $au->getAuthUserMail() ?> <?= $au->getAuthUserTel() ?><br>
-	 			</p>
--->	 			
+	 		<div class="col-1-1 pad1em" style="min-height:800px">			
 	 			<h3><?= RESERVATION_CODE ?>: <strong><?= $om->getMOrderKey().'-'.$om->getMOrderID().'-'.$od->getTNo() ?></strong></h3>
 	 			<small><?= $om->getMOrderDate().' '. $om->getMOrderTime() ?></small>
 	 			<br>
@@ -145,7 +136,6 @@ function PrintTransferDriver($DetailsID) {
 				</div>					
 				<? } ?>
 			
-			
 				<p class="line eee"></p>
 				
 				<h3 class="aaa"><?= YOUR_CONTACT_INFO ?></h3><p class="line eee"></p>
@@ -153,14 +143,7 @@ function PrintTransferDriver($DetailsID) {
 				<div class="w75">
 					<?= $om->getMPaxFirstName(). ' ' . $om->getMPaxLastName() ?>
 				</div>
-				<br>
-<?/*				
-				<div class="w25 aaa"><?=  EMAIL ?>:</div>
-				<div class="w75">
-					<?= maskEmail($om->getMPaxEmail()) ?>
-				</div>
-				<br>
-*/?>				
+				<br>				
 				<div class="w25 aaa"><?=  MOBILE_NUMBER ?>:</div>
 				<div class="w75">
 					<?= $om->getMPaxTel() ?>
@@ -187,19 +170,7 @@ function PrintTransferDriver($DetailsID) {
 				<div class="w75">
 					<?= getVehicleTypeName( $od->getVehicleType() ) ?> x <?= $od->getVehiclesNo(); ?>
 				</div>
-				<br>
-				
-<!--	Vozaci ne smeju da vide ukupnu cenu, zakomentarisao Srdjan na zahtev Dejana i Stefana
-				<div class="w25 aaa"><?= PRICE ?>:</div>
-				<div class="w75">
-					<strong>
-						<?= Eur2($detailPriceSum,$om->getMOrderCurrency()) . ' ' . 
-								$om->getMOrderCurrency() ?>
-					</strong>
-					<? if($od->getDiscount() > 0) echo '(-' . $od->getDiscount() .'%)';?>
-				</div>
-				<br>
--->				
+				<br>			
 				<p class="line eee"></p>
 				<div class="w25 aaa" style="vertical-align:top"><?= NOTES ?>:</div>
 				<div class=" w75">
@@ -227,46 +198,15 @@ function PrintTransferDriver($DetailsID) {
 								Eur2( $ox->getSum(),$om->getMOrderCurrency() ) . 
 								' ' . $om->getMOrderCurrency() . 
 							'</div>';
-
-					
 						}
-						
 						echo '<p class="line eee"></p>';	
 					}
-				
-				
-				
 				?>
 
-				
-<!--			<div class="w25 "><strong><?=  TOTAL ?>:</strong></div>
-				<div class="w75">
-					<strong><?= nf($detailPriceSum) . ' ' . 
-								$om->getMOrderCurrency() ?></strong>
-				</div>
-
-				<p class="line eee"></p>
-			
-				<? if($om->getMPayNow() > 0) {?>
-				<div class="green pad1em">
-				<div class="w25 "><strong><?=  PAY_NOW ?>:</strong></div>
-				<div class="w75">
-					<strong><?= Eur2( $od->getPayNow(),$om->getMOrderCurrency() )  . ' ' . 
-								$om->getMOrderCurrency() ?></strong>
-				</div>
-				</div>
-				<br>
-				<?}?>
--->
 				<div class="red lighten-2 pad1em">
 				<div class="w25 "><strong><?=  PAY_LATER ?>:</strong></div>
 				<div class="w75">
-					<strong><?= Eur2($od->getPayLater()*$_SESSION['CurrencyRate'],$om->getMOrderCurrency() ) . ' ' . 
-								$_SESSION['Currency2'] ?></strong>
-					<? if($_SESSION['Currency2']=='HRK') {?>	
-						/ <strong><?= Eur2($od->getPayLater(),$om->getMOrderCurrency() ) . ' ' . 
-									$om->getMOrderCurrency() ?></strong>			
-					<? }?>	
+					<strong><?= $od->getPayLater() ?> EUR</strong>
 				</div>
 				</div>
 				<br>

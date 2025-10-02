@@ -1185,3 +1185,5 @@ define("ROUTABLE", "Routable");
 //12.08.25
 define("PUBLISHING_DATE", "Publishing date");
 define("SHORT_CONTENT", "Short content");
+//08.09.25
+define("EXTERNAL", "External");

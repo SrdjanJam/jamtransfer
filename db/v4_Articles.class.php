@@ -24,6 +24,7 @@ Class v4_Articles {
 	public $Slug; //varchar(255)
 	public $Article; //mediumtext
 	public $Published; //tinyint(1)
+	public $Scheme; //tinyint(1)
 	public $LastChange; //timestamp
 	public $UserID; //int(11)
 	public $connection;
@@ -38,7 +39,7 @@ Class v4_Articles {
      * New object to the class. Don´t forget to save this new object "as new" by using the function $class->saveAsNew(); 
      *
      */
-	public function New_v4_Articles($Language,$Page,$Position,$HTMLBefore,$HTMLAfter,$Classes,$Title,$Slug,$Article,$Published,$LastChange,$UserID){
+	public function New_v4_Articles($Language,$Page,$Position,$HTMLBefore,$HTMLAfter,$Classes,$Title,$Slug,$Article,$Published,$Scheme,$LastChange,$UserID){
 		$this->Language = $Language;
 		$this->Page = $Page;
 		$this->Position = $Position;
@@ -49,6 +50,7 @@ Class v4_Articles {
 		$this->Slug = $Slug;
 		$this->Article = $Article;
 		$this->Published = $Published;
+		$this->Scheme = $Scheme;
 		$this->LastChange = $LastChange;
 		$this->UserID = $UserID;
 	}
@@ -74,6 +76,7 @@ Class v4_Articles {
 			$this->Slug = $row["Slug"];
 			$this->Article = $this->connection->real_escape_string($row["Article"]);
 			$this->Published = $row["Published"];
+			$this->Scheme = $row["Scheme"];
 			$this->LastChange = $row["LastChange"];
 			$this->UserID = $row["UserID"];
 		}
@@ -104,6 +107,7 @@ Title = '".$this->myreal_escape_string($this->Title)."',
 Slug = '".$this->myreal_escape_string($this->Slug)."', 
 Article = '".$this->myreal_escape_string($this->Article)."', 
 Published = '".$this->myreal_escape_string($this->Published)."', 
+Scheme = '".$this->myreal_escape_string($this->Scheme)."', 
 LastChange = '".$this->myreal_escape_string($this->LastChange)."', 
 UserID = '".$this->myreal_escape_string($this->UserID)."' WHERE ID = '".$this->ID."'");
 	return $result; 
@@ -113,10 +117,14 @@ UserID = '".$this->myreal_escape_string($this->UserID)."' WHERE ID = '".$this->I
      * Save the active var class as a new row on table
      */
 	public function saveAsNew(){
-		$this->connection->RunQuery("INSERT INTO v4_Articles (Language, Page, Position, HTMLBefore, HTMLAfter, Classes, Title, Slug, Article, Published, LastChange, UserID) values ('".$this->myreal_escape_string($this->Language)."', '".$this->myreal_escape_string($this->Page)."', '".$this->myreal_escape_string($this->Position)."', '".$this->myreal_escape_string($this->HTMLBefore)."', '".$this->myreal_escape_string($this->HTMLAfter)."', '".$this->myreal_escape_string($this->Classes)."',
+		$this->connection->RunQuery("INSERT INTO v4_Articles (Language, Page, Position, HTMLBefore, HTMLAfter, Classes, Title, Slug, Article, Published, Scheme, LastChange, UserID) values ('".$this->myreal_escape_string($this->Language)."', '".$this->myreal_escape_string($this->Page)."', '".$this->myreal_escape_string($this->Position)."', '".$this->myreal_escape_string($this->HTMLBefore)."', '".$this->myreal_escape_string($this->HTMLAfter)."', '".$this->myreal_escape_string($this->Classes)."',
 		'".$this->myreal_escape_string($this->Title)."',
 		'".$this->myreal_escape_string($this->Slug)."',
-		'".$this->myreal_escape_string($this->Article)."', '".$this->myreal_escape_string($this->Published)."', '".$this->myreal_escape_string($this->LastChange)."', '".$this->myreal_escape_string($this->UserID)."')");
+		'".$this->myreal_escape_string($this->Article)."',
+		'".$this->myreal_escape_string($this->Published)."',
+		'".$this->myreal_escape_string($this->Scheme)."',
+		'".$this->myreal_escape_string($this->LastChange)."',
+		'".$this->myreal_escape_string($this->UserID)."')");
 		return $this->connection->insert_id(); //return insert_id 
 	}
 
@@ -211,6 +219,13 @@ UserID = '".$this->myreal_escape_string($this->UserID)."' WHERE ID = '".$this->I
 	 */
 	public function getPublished(){
 		return $this->Published;
+	}	
+	
+	/**
+	 * @return Scheme - tinyint(1)
+	 */
+	public function getScheme(){
+		return $this->Scheme;
 	}
 
 	/**
@@ -302,6 +317,13 @@ UserID = '".$this->myreal_escape_string($this->UserID)."' WHERE ID = '".$this->I
 	 */
 	public function setPublished($Published){
 		$this->Published = $Published;
+	}	
+	
+	/**
+	 * @param Type: tinyint(1)
+	 */
+	public function setScheme($Scheme){
+		$this->Scheme = $Scheme;
 	}
 
 	/**
@@ -337,6 +359,7 @@ UserID = '".$this->myreal_escape_string($this->UserID)."' WHERE ID = '".$this->I
 			'Slug' => $this->getSlug(),
 			'Article' => $this->getArticle(),
 			'Published' => $this->getPublished(),
+			'Scheme' => $this->getScheme(),
 			'LastChange' => $this->getLastChange(),
 			'UserID' => $this->getUserID()		);
 		return $fieldValues;
@@ -349,7 +372,7 @@ UserID = '".$this->myreal_escape_string($this->UserID)."' WHERE ID = '".$this->I
      */
 	public function fieldNames(){
 		$fieldNames = array(
-			'ID',			'Language',			'Page',			'Position',			'HTMLBefore',			'HTMLAfter',			'Classes',			'Title',			'Slug',	'Article',			'Published',			'LastChange',			'UserID'		);
+			'ID',			'Language',			'Page',			'Position',			'HTMLBefore',			'HTMLAfter',			'Classes',			'Title',			'Slug',	'Article',			'Published',			'Scheme',	'LastChange',			'UserID'		);
 		return $fieldNames;
 	}
     /**
