@@ -98,7 +98,10 @@
 					</div>
 					<div class="col-md-9">
 						{{#if HtmlExist}}
-							<a target="_blank" href="https://wis.jamtransfer.com/site_terminals/{{PlaceNameSEO}}.html"><?=EXTERNAL;?> HTML</a><br>
+							<a target="_blank" href="https://wis.jamtransfer.com/site_terminals/{{PlaceNameSEO}}.html">HTML</a>
+						{{/if}}						
+						{{#if FaqExist}}
+							<a target="_blank" href="https://wis.jamtransfer.com/faq/{{PlaceNameSEO}}.html">FAQ</a><br>
 						{{/if}}
 						{{{des_arr.en}}}
 						<!--<textarea name="des"  style="resize:none;width:100%;min-height:200px;">{{des_arr.en}}</textarea>!-->
