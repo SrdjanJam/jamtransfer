@@ -236,6 +236,24 @@
 						<input type="text" name="co_googleplus" id="co_googleplus" class="w100" value="{{co_googleplus}}">
 					</div>
 				</div>
+
+				<div class="row">
+					<div class="col-md-3">
+						<label for="ta_rate"><?=TA_RATE;?></label>
+					</div>
+					<div class="col-md-9">
+						<input type="text" name="ta_rate" id="ta_rate" class="w100" value="{{ta_rate}}">
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-md-3">
+						<label for="ta_number"><?=TA_NUMBER;?></label>
+					</div>
+					<div class="col-md-9">
+						<input type="text" name="ta_number" id="ta_number" class="w100" value="{{ta_number}}">
+					</div>
+				</div>
 			</div>
 	    </div>
 </form>

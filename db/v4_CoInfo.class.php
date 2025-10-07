@@ -37,7 +37,9 @@ Class v4_CoInfo {
 	public $co_youtube; //varchar(255)
 	public $co_googleplus; //varchar(255)
 	public $co_todo; //text
-	public $connection;
+	public $ta_rate; //int 5
+	public $ta_number; //decimal(6,2)
+	public $connection; 
 
 	function __construct(){
 		$this->connection = new DataBaseMysql();
@@ -49,7 +51,7 @@ Class v4_CoInfo {
      * New object to the class. Don´t forget to save this new object "as new" by using the function $class->saveAsNew(); 
      *
      */
-	public function New_v4_CoInfo($co_name,$co_address,$co_tel,$co_fax,$co_city,$co_country,$co_zip,$co_email,$co_taxno,$co_bank,$co_accountno,$co_iban,$co_swift,$co_domestictax,$co_foreigntax,$co_eurinfo,$co_paymentinfo,$co_facebook,$co_twitter,$co_linkedin,$co_youtube,$co_googleplus,$co_todo){
+	public function New_v4_CoInfo($co_name,$co_address,$co_tel,$co_fax,$co_city,$co_country,$co_zip,$co_email,$co_taxno,$co_bank,$co_accountno,$co_iban,$co_swift,$co_domestictax,$co_foreigntax,$co_eurinfo,$co_paymentinfo,$co_facebook,$co_twitter,$co_linkedin,$co_youtube,$co_googleplus,$co_todo,$ta_rate,$ta_number){
 		$this->co_name = $co_name;
 		$this->co_address = $co_address;
 		$this->co_tel = $co_tel;
@@ -73,6 +75,8 @@ Class v4_CoInfo {
 		$this->co_youtube = $co_youtube;
 		$this->co_googleplus = $co_googleplus;
 		$this->co_todo = $co_todo;
+		$this->ta_rate = $ta_rate;
+		$this->ta_number = $ta_number;
 	}
 
     /**
@@ -109,6 +113,8 @@ Class v4_CoInfo {
 			$this->co_youtube = $row["co_youtube"];
 			$this->co_googleplus = $row["co_googleplus"];
 			$this->co_todo = $row["co_todo"];
+			$this->ta_rate = $row["ta_rate"];
+			$this->ta_number = $row["ta_number"];
 		}
 	}
 
@@ -149,7 +155,10 @@ co_twitter = '".$this->myreal_escape_string($this->co_twitter)."',
 co_linkedin = '".$this->myreal_escape_string($this->co_linkedin)."', 
 co_youtube = '".$this->myreal_escape_string($this->co_youtube)."', 
 co_googleplus = '".$this->myreal_escape_string($this->co_googleplus)."', 
-co_todo = '".$this->myreal_escape_string($this->co_todo)."' WHERE ID = '".$this->ID."'");
+co_todo = '".$this->myreal_escape_string($this->co_todo)."',
+ta_rate = '".$this->myreal_escape_string($this->ta_rate)."',
+ta_number = '".$this->myreal_escape_string($this->ta_number)."',
+ WHERE ID = '".$this->ID."'");
 	return $result; 
 }
 
@@ -157,7 +166,7 @@ co_todo = '".$this->myreal_escape_string($this->co_todo)."' WHERE ID = '".$this-
      * Save the active var class as a new row on table
      */
 	public function saveAsNew(){
-		$this->connection->RunQuery("INSERT INTO v4_CoInfo (co_name, co_address, co_tel, co_fax, co_city, co_country, co_zip, co_email, co_taxno, co_bank, co_accountno, co_iban, co_swift, co_domestictax, co_foreigntax, co_eurinfo, co_paymentinfo, co_facebook, co_twitter, co_linkedin, co_youtube, co_googleplus, co_todo) values ('".$this->myreal_escape_string($this->co_name)."', '".$this->myreal_escape_string($this->co_address)."', '".$this->myreal_escape_string($this->co_tel)."', '".$this->myreal_escape_string($this->co_fax)."', '".$this->myreal_escape_string($this->co_city)."', '".$this->myreal_escape_string($this->co_country)."', '".$this->myreal_escape_string($this->co_zip)."', '".$this->myreal_escape_string($this->co_email)."', '".$this->myreal_escape_string($this->co_taxno)."', '".$this->myreal_escape_string($this->co_bank)."', '".$this->myreal_escape_string($this->co_accountno)."', '".$this->myreal_escape_string($this->co_iban)."', '".$this->myreal_escape_string($this->co_swift)."', '".$this->myreal_escape_string($this->co_domestictax)."', '".$this->myreal_escape_string($this->co_foreigntax)."', '".$this->myreal_escape_string($this->co_eurinfo)."', '".$this->myreal_escape_string($this->co_paymentinfo)."', '".$this->myreal_escape_string($this->co_facebook)."', '".$this->myreal_escape_string($this->co_twitter)."', '".$this->myreal_escape_string($this->co_linkedin)."', '".$this->myreal_escape_string($this->co_youtube)."', '".$this->myreal_escape_string($this->co_googleplus)."', '".$this->myreal_escape_string($this->co_todo)."')");
+		$this->connection->RunQuery("INSERT INTO v4_CoInfo (co_name, co_address, co_tel, co_fax, co_city, co_country, co_zip, co_email, co_taxno, co_bank, co_accountno, co_iban, co_swift, co_domestictax, co_foreigntax, co_eurinfo, co_paymentinfo, co_facebook, co_twitter, co_linkedin, co_youtube, co_googleplus, co_todo,ta_rate,ta_number) values ('".$this->myreal_escape_string($this->co_name)."', '".$this->myreal_escape_string($this->co_address)."', '".$this->myreal_escape_string($this->co_tel)."', '".$this->myreal_escape_string($this->co_fax)."', '".$this->myreal_escape_string($this->co_city)."', '".$this->myreal_escape_string($this->co_country)."', '".$this->myreal_escape_string($this->co_zip)."', '".$this->myreal_escape_string($this->co_email)."', '".$this->myreal_escape_string($this->co_taxno)."', '".$this->myreal_escape_string($this->co_bank)."', '".$this->myreal_escape_string($this->co_accountno)."', '".$this->myreal_escape_string($this->co_iban)."', '".$this->myreal_escape_string($this->co_swift)."', '".$this->myreal_escape_string($this->co_domestictax)."', '".$this->myreal_escape_string($this->co_foreigntax)."', '".$this->myreal_escape_string($this->co_eurinfo)."', '".$this->myreal_escape_string($this->co_paymentinfo)."', '".$this->myreal_escape_string($this->co_facebook)."', '".$this->myreal_escape_string($this->co_twitter)."', '".$this->myreal_escape_string($this->co_linkedin)."', '".$this->myreal_escape_string($this->co_youtube)."', '".$this->myreal_escape_string($this->co_googleplus)."', '".$this->myreal_escape_string($this->co_todo)."')");
 		return $this->connection->insert_id(); //return insert_id 
 	}
 
@@ -346,6 +355,20 @@ co_todo = '".$this->myreal_escape_string($this->co_todo)."' WHERE ID = '".$this-
 	}
 
 	/**
+	 * @return ta_rate - decimal(6,2)
+	 */
+	public function getta_rate(){
+		return $this->ta_rate;
+	}
+
+	/**
+	 * @return ta_number - int(5)
+	 */
+	public function getta_number(){
+		return $this->ta_number;
+	}
+
+	/**
 	 * @param Type: int(10)
 	 */
 	public function setID($ID){
@@ -513,6 +536,22 @@ co_todo = '".$this->myreal_escape_string($this->co_todo)."' WHERE ID = '".$this-
 		$this->co_todo = $co_todo;
 	}
 
+	/**
+	 * @param Type: decimal(6,2)
+	 */
+	public function setta_rate($ta_rate){
+		$this->ta_rate = $ta_rate;
+	}
+
+	/**
+	 * @param Type: int(5)
+	 */
+	public function setta_number($ta_number){
+		$this->ta_number = $ta_number;
+	}
+
+	
+
     /**
      * fieldValues - Load all fieldNames and fieldValues into Array. 
      *
@@ -544,7 +583,10 @@ co_todo = '".$this->myreal_escape_string($this->co_todo)."' WHERE ID = '".$this-
 			'co_linkedin' => $this->getco_linkedin(),
 			'co_youtube' => $this->getco_youtube(),
 			'co_googleplus' => $this->getco_googleplus(),
-			'co_todo' => $this->getco_todo()		);
+			'co_todo' => $this->getco_todo(),		
+			'ta_rate' => $this->getta_rate(),		
+			'ta_number' => $this->getta_number()	
+		);
 		return $fieldValues;
 	}
     /**
@@ -555,7 +597,7 @@ co_todo = '".$this->myreal_escape_string($this->co_todo)."' WHERE ID = '".$this-
      */
 	public function fieldNames(){
 		$fieldNames = array(
-			'ID',			'co_name',			'co_address',			'co_tel',			'co_fax',			'co_city',			'co_country',			'co_zip',			'co_email',			'co_taxno',			'co_bank',			'co_accountno',			'co_iban',			'co_swift',			'co_domestictax',			'co_foreigntax',			'co_eurinfo',			'co_paymentinfo',			'co_facebook',			'co_twitter',			'co_linkedin',			'co_youtube',			'co_googleplus',			'co_todo'		);
+			'ID',			'co_name',			'co_address',			'co_tel',			'co_fax',			'co_city',			'co_country',			'co_zip',			'co_email',			'co_taxno',			'co_bank',			'co_accountno',			'co_iban',			'co_swift',			'co_domestictax',			'co_foreigntax',			'co_eurinfo',			'co_paymentinfo',			'co_facebook',			'co_twitter',			'co_linkedin',			'co_youtube',			'co_googleplus',			'co_todo','ta_rate','ta_number'		);
 		return $fieldNames;
 	}
     /**
