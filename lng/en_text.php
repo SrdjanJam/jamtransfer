@@ -1187,3 +1187,6 @@ define("PUBLISHING_DATE", "Publishing date");
 define("SHORT_CONTENT", "Short content");
 //08.09.25
 define("EXTERNAL", "External");
+//07.10.25
+define("TA_RATE", "TA.Rate");
+define("TA_NUMBER", "TA.Number");
