@@ -365,30 +365,30 @@ else {
 										$sur['S9Price'] +
 										$sur['S10Price'] +
 										$sur['NightPrice'];						
-						$sur2 = Surcharges($OwnerID, $SurCategory, $CalculatedPrice,
+						$sur2 = Surcharges($OwnerID, $SurCategory, $CalculatedPrice2,
 										  $transferDate, $transferTime,
 										  $returnDate, $returnTime,
 										  $RouteID, $VehicleID, $ServiceID,
 										  $VSurCategory, $DRSurCategory
 										  );
-						$addToPrice2 =   $sur['MonPrice'] +
-										$sur['TuePrice'] +
-										$sur['WedPrice'] +
-										$sur['ThuPrice'] +
-										$sur['FriPrice'] +
-										$sur['SatPrice'] +
-										$sur['SunPrice'] +
-										$sur['S1Price'] +
-										$sur['S2Price'] +
-										$sur['S3Price'] +
-										$sur['S4Price'] +
-										$sur['S5Price'] +
-										$sur['S6Price'] +
-										$sur['S7Price'] +
-										$sur['S8Price'] +
-										$sur['S9Price'] +
-										$sur['S10Price'] +
-										$sur['NightPrice'];
+						$addToPrice2 =   $sur2['MonPrice'] +
+										$sur2['TuePrice'] +
+										$sur2['WedPrice'] +
+										$sur2['ThuPrice'] +
+										$sur2['FriPrice'] +
+										$sur2['SatPrice'] +
+										$sur2['SunPrice'] +
+										$sur2['S1Price'] +
+										$sur2['S2Price'] +
+										$sur2['S3Price'] +
+										$sur2['S4Price'] +
+										$sur2['S5Price'] +
+										$sur2['S6Price'] +
+										$sur2['S7Price'] +
+										$sur2['S8Price'] +
+										$sur2['S9Price'] +
+										$sur2['S10Price'] +
+										$sur2['NightPrice'];
 						$CalculatedPriceAdd = $CalculatedPrice + $addToPrice;
 						$CalculatedPriceAdd2 = $CalculatedPrice2 + $addToPrice2;
 						$specialDatesPrice = calculateSpecialDates($OwnerID,$CalculatedPriceAdd,$transferDate, $transferTime);
@@ -399,7 +399,7 @@ else {
 						$FinalPrice2 = $CalculatedPriceAdd2+$specialDatesPrice2;
 						
 						$addToPrice=$addToPrice+$specialDatesPrice;
-						$addToPrice2=$addToPrice+$specialDatesPrice;
+						$addToPrice2=$addToPrice2+$specialDatesPrice2;
 						
 						// zaokruzenje cijena
 						$FinalPrice = nf( round($FinalPrice,2) );
@@ -459,6 +459,7 @@ else {
 							'DriversPrice'      => nf($DriversPrice), // cista vozacka cijena
 							'OneWayPrice'       => nf($OneWayPrice), // cijena za jedan smjer sa dodacima
 							'AddToPrice'       => nf($addToPrice), // dodaci na cenu
+							'AddToPrice2'       => nf($addToPrice2), // dodaci na cenu
 							'Provision'       => nf($Provision), // dodaci na cenu
 							'Provision2'       => nf($Provision2), // dodaci na cenu
 							'Rating'            => $Rating,

@@ -19,6 +19,7 @@ Class v4_Terminals {
 	public $ImageBG; //varchar(255)
 	public $MPOrder; //int(2)
 	public $Description; //longtext
+	public $LastChange; //longtext
 	
 	public $connection;
 
@@ -32,13 +33,14 @@ Class v4_Terminals {
      * New object to the class. Don´t forget to save this new object "as new" by using the function $class->saveAsNew(); 
      *
      */
-	public function New_v4_Terminals($TerminalID,$MP,$ImageMP,$ImageBG,$MPOrder,$Description){
+	public function New_v4_Terminals($TerminalID,$MP,$ImageMP,$ImageBG,$MPOrder,$Description,$LastChange){
 		$this->TerminalID = $TerminalID; // Check
 		$this->MP = $MP;
 		$this->ImageMP = $ImageMP;
 		$this->ImageBG = $ImageBG;
 		$this->MPOrder = $MPOrder;
 		$this->Description = $Description;
+		$this->LastChange = $LastChange;
 	}
 
     /**
@@ -57,6 +59,7 @@ Class v4_Terminals {
 			$this->ImageBG = $row["ImageBG"];
 			$this->MPOrder = $row["MPOrder"];
 			$this->Description = $row["Description"];
+			$this->LastChange = $row["LastChange"];
 		}
 	}
 
@@ -80,10 +83,10 @@ Class v4_Terminals {
 		ImageMP = '".$this->myreal_escape_string($this->ImageMP)."', 
 		ImageBG = '".$this->myreal_escape_string($this->ImageBG)."', 
 		MPOrder = '".$this->myreal_escape_string($this->MPOrder)."', 
-		Description = JSON_MERGE_PATCH(`Description`,'".$this->Description."') WHERE TerminalID = '".$this->TerminalID."'");
+		Description = JSON_MERGE_PATCH(`Description`,'".$this->Description."'), 
+		LastChange = '".$this->myreal_escape_string($this->LastChange)."' WHERE TerminalID = '".$this->TerminalID."'");
 		return $result; 
 	}
-
 
     /**
      * Returns array of keys order by $column -> name of column $order -> desc or acs
@@ -141,6 +144,13 @@ Class v4_Terminals {
 	 */
 	public function getDescription(){
 		return $this->Description;
+	}	
+	
+	/**
+	 * @return LastChange - varchar(255)
+	 */
+	public function getLastChange(){
+		return $this->LastChange;
 	}
 
 	
@@ -182,6 +192,13 @@ Class v4_Terminals {
 	 */
 	public function setDescription($Description){
 		$this->Description = $Description;
+	}	
+	
+	/**
+	 * @param Type: int(2)
+	 */
+	public function setLastChange($LastChange){
+		$this->LastChange = $LastChange;
 	}
 
 	/**
@@ -202,7 +219,8 @@ Class v4_Terminals {
 			'ImageMP' => $this->getImageMP(),
 			'ImageBG' => $this->getImageBG(),
 			'MPOrder' => $this->getMPOrder(),
-			'Description' => $this->getDescription()	);
+			'Description' => $this->getDescription(),	
+			'LastChange' => $this->getLastChange());
 		return $fieldValues;
 	}
     /**
@@ -213,7 +231,7 @@ Class v4_Terminals {
      */
 	public function fieldNames(){
 		$fieldNames = array(
-			'TerminalID',			'MP',			'ImageMP',			'ImageBG',			'MPOrder',			'Description'		);
+			'TerminalID',			'MP',			'ImageMP',			'ImageBG',			'MPOrder',			'Description',			'LastChange'		);
 		return $fieldNames;
 	}
     /**

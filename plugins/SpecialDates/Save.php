@@ -24,6 +24,10 @@ if ($keyName != '' and $keyValue == '') {
 	$_REQUEST['ID'] = $db->saveAsNew();
 }
 
+$message="Owner:".$users[$db->getOwnerID()]->AuthUserRealName.", Date:".$db->getSpecialDate()." Percent:".$db->getCorrectionPercent();
+mail_html('office@jamtransfer.com', 'cms@jamtransfer.com', 'JamTransfer', 'office@jamtransfer.com',  
+          "Special date change", $message);
+
 $out = array(
 	'update' => $upd,
 	'insert' => $newID

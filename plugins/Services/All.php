@@ -112,7 +112,7 @@ if (count($sk) != 0) {
 		$out[] = $detailFlds;
 	}
 }
-$sk = $s->getServicesByRouteName('v4_Routes.RouteName ' . $sortOrder . ', v4_Services.VehicleTypeID ASC', '', $DB_Where);
+/*$sk = $s->getServicesByRouteName('v4_Routes.RouteName ' . $sortOrder . ', v4_Services.VehicleTypeID ASC', '', $DB_Where);
 if (count($sk) != 0) {
     foreach ($sk as $nn => $key)
     {
@@ -146,7 +146,7 @@ $csv = ob_get_contents();
 ob_end_clean();
 $fp = fopen('PriceList_'.($_SESSION['UseDriverID']).'.csv', 'w');
 fwrite($fp, $csv);
-fclose($fp);	
+fclose($fp);*/	
 
 # send output back
 $output = array(

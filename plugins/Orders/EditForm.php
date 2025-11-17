@@ -293,11 +293,17 @@
 		$('#AgentIDeX').change(function() {
 			$('#AgentID').val($(this).val());
 		})			
-		$('#AuthLevelID').change(function() {
+		$('.booked_by #AuthLevelID').change(function() {
 			$('#UserLevelID').val($(this).val());
 			$('#UserIDeX option').hide();
+			//$('#AgentIDeX option').hide();
+			$('.booked_by *[data-levelid="'+$(this).val()+'"]').show();
+		})			
+		$('.booked_for #AuthLevelID').change(function() {
+			$('#UserLevelID').val($(this).val());
+			//$('#UserIDeX option').hide();
 			$('#AgentIDeX option').hide();
-			$('*[data-levelid="'+$(this).val()+'"]').show();
+			$('.booked_for *[data-levelid="'+$(this).val()+'"]').show();
 		})	
 		$('document').ready(function() {
 			$('#UserIDeX option').hide();

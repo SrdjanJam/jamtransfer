@@ -39,14 +39,17 @@
                 </div>
                 <div class="modal-body" style="padding:10px">
                     <strong>
-                    <div class="col-md-3"><?=DRIVER_COMPANY;?></div>
-                    <div class="col-md-1"><?=TYPE;?></div>
-                    <div class="col-md-1 right"><?=NETO;?></div>												
-                    <div class="col-md-1 right"><?=ADDS;?></div>
-                    <div class="col-md-1 right"><?=PROVISION;?> (%)</div>
-                    <div class="col-md-2 right"><?=FINAL_PRICE;?></div>
-                    <div class="col-md-1 right"><?=PROVISION;?>2 (%)</div>
-                    <div class="col-md-2 right"><?=FINAL_PRICE;?>2</div>
+					<div class='row'>
+						<div class="col-md-2"><?=DRIVER_COMPANY;?></div>
+						<div class="col-md-1"><?=TYPE;?></div>
+						<div class="col-md-1 right"><?=NETO;?></div>												
+						<div class="col-md-1 right"><?=PROVISION;?> (%)</div>
+						<div class="col-md-1 right"><?=ADDS;?></div>						
+						<div class="col-md-2 right"><?=FINAL_PRICE;?></div>
+						<div class="col-md-1 right"><?=PROVISION;?>2 (%)</div>
+						<div class="col-md-1 right"><?=ADDS;?>2</div>
+						<div class="col-md-2 right"><?=FINAL_PRICE;?>2</div>
+					</div>
                     </strong><br>
                     {{listDriversByRoute details.RouteID details.PickupDate details.PickupTime details.VehicleType details.AgentID}}
                 </div>

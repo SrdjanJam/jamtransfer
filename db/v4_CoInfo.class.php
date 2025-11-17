@@ -157,7 +157,7 @@ co_youtube = '".$this->myreal_escape_string($this->co_youtube)."',
 co_googleplus = '".$this->myreal_escape_string($this->co_googleplus)."', 
 co_todo = '".$this->myreal_escape_string($this->co_todo)."',
 ta_rate = '".$this->myreal_escape_string($this->ta_rate)."',
-ta_number = '".$this->myreal_escape_string($this->ta_number)."',
+ta_number = '".$this->myreal_escape_string($this->ta_number)."'
  WHERE ID = '".$this->ID."'");
 	return $result; 
 }
@@ -166,9 +166,9 @@ ta_number = '".$this->myreal_escape_string($this->ta_number)."',
      * Save the active var class as a new row on table
      */
 	public function saveAsNew(){
-		$this->connection->RunQuery("INSERT INTO v4_CoInfo (co_name, co_address, co_tel, co_fax, co_city, co_country, co_zip, co_email, co_taxno, co_bank, co_accountno, co_iban, co_swift, co_domestictax, co_foreigntax, co_eurinfo, co_paymentinfo, co_facebook, co_twitter, co_linkedin, co_youtube, co_googleplus, co_todo,ta_rate,ta_number) values ('".$this->myreal_escape_string($this->co_name)."', '".$this->myreal_escape_string($this->co_address)."', '".$this->myreal_escape_string($this->co_tel)."', '".$this->myreal_escape_string($this->co_fax)."', '".$this->myreal_escape_string($this->co_city)."', '".$this->myreal_escape_string($this->co_country)."', '".$this->myreal_escape_string($this->co_zip)."', '".$this->myreal_escape_string($this->co_email)."', '".$this->myreal_escape_string($this->co_taxno)."', '".$this->myreal_escape_string($this->co_bank)."', '".$this->myreal_escape_string($this->co_accountno)."', '".$this->myreal_escape_string($this->co_iban)."', '".$this->myreal_escape_string($this->co_swift)."', '".$this->myreal_escape_string($this->co_domestictax)."', '".$this->myreal_escape_string($this->co_foreigntax)."', '".$this->myreal_escape_string($this->co_eurinfo)."', '".$this->myreal_escape_string($this->co_paymentinfo)."', '".$this->myreal_escape_string($this->co_facebook)."', '".$this->myreal_escape_string($this->co_twitter)."', '".$this->myreal_escape_string($this->co_linkedin)."', '".$this->myreal_escape_string($this->co_youtube)."', '".$this->myreal_escape_string($this->co_googleplus)."', '".$this->myreal_escape_string($this->co_todo)."')");
-		return $this->connection->insert_id(); //return insert_id 
-	}
+        $this->connection->RunQuery("INSERT INTO v4_CoInfo (co_name, co_address, co_tel, co_fax, co_city, co_country, co_zip, co_email, co_taxno, co_bank, co_accountno, co_iban, co_swift, co_domestictax, co_foreigntax, co_eurinfo, co_paymentinfo, co_facebook, co_twitter, co_linkedin, co_youtube, co_googleplus, co_todo,ta_rate,ta_number) values ('".$this->myreal_escape_string($this->co_name)."', '".$this->myreal_escape_string($this->co_address)."', '".$this->myreal_escape_string($this->co_tel)."', '".$this->myreal_escape_string($this->co_fax)."', '".$this->myreal_escape_string($this->co_city)."', '".$this->myreal_escape_string($this->co_country)."', '".$this->myreal_escape_string($this->co_zip)."', '".$this->myreal_escape_string($this->co_email)."', '".$this->myreal_escape_string($this->co_taxno)."', '".$this->myreal_escape_string($this->co_bank)."', '".$this->myreal_escape_string($this->co_accountno)."', '".$this->myreal_escape_string($this->co_iban)."', '".$this->myreal_escape_string($this->co_swift)."', '".$this->myreal_escape_string($this->co_domestictax)."', '".$this->myreal_escape_string($this->co_foreigntax)."', '".$this->myreal_escape_string($this->co_eurinfo)."', '".$this->myreal_escape_string($this->co_paymentinfo)."', '".$this->myreal_escape_string($this->co_facebook)."', '".$this->myreal_escape_string($this->co_twitter)."', '".$this->myreal_escape_string($this->co_linkedin)."', '".$this->myreal_escape_string($this->co_youtube)."', '".$this->myreal_escape_string($this->co_googleplus)."', '".$this->myreal_escape_string($this->co_todo)."', '".$this->myreal_escape_string($this->ta_rate)."','".$this->myreal_escape_string($this->ta_number)."')");
+        return $this->connection->insert_id();
+    }
 
     /**
      * Returns array of keys order by $column -> name of column $order -> desc or acs

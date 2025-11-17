@@ -16,8 +16,8 @@
 	
 	$rt->setFromID($fromID);
 	$rt->setToID($toID);
-	$rt->setRouteNameEN($fromName."-".$toName);
-	$rt->setRouteName($fromName."-".$toName);
+	$rt->setRouteNameEN($fromName." - ".$toName);
+	$rt->setRouteName($fromName." - ".$toName);
 	$rt->saveAsNew();
 ?>
 

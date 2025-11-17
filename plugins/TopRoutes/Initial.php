@@ -20,6 +20,6 @@ $type='Main';
 # Search ce ih sam pretraziti
 #********************************
 $aColumns = array(
-	'TopRouteID', // dodaj ostala polja!
+	'TopRouteID' // dodaj ostala polja!
 );
 

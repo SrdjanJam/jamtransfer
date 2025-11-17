@@ -53,7 +53,16 @@
 					
 					<!-- VEHICLENAME -->
 					<div class="col-md-2">
-						{{VehicleName}}
+						{{#compare VehicleID ">" 0}}
+							{{VehicleName}}
+						{{/compare}}
+						{{#compare VehicleID "==" 0}}
+							<select class='form-control' name='VehicleID'>
+							{{#each Vehicles}}
+								<option value='{{VehicleID}}'>{{VehicleName}}</option>
+							{{/each}}
+						{{/compare}}	
+						</select>
 					</div>
 
 					<!-- STARTDATE -->

@@ -65,20 +65,31 @@ if ( $_REQUEST['Search'] != "" )
 	$DB_Where = substr_replace( $DB_Where, "", -3 );
 	$DB_Where .= ')';
 }
-
-
-
+$where = " WHERE OwnerID = ".$_SESSION['UseDriverID'];
+$vk=$v->getKeysBy("VehicleID","",$where);
+$vehicles=array();
+if (count($vk)>0) {
+	$row=array();
+	foreach($vk as $key) {
+		$v->getRow($key);
+		$row['VehicleID']=$v->getVehicleID();
+		$row['VehicleName']=$v->getVehicleName();
+		$vehicles[]=$row;
+	}	
+}	
 $dbTotalRecords = $db->getKeysBy('ID ASC', '',$DB_Where);
 // prazan red za eventualni unos
-if (isset($_REQUEST['vehicleID']) && $_REQUEST['vehicleID']>0) {
+
+
 	$db->getRow(0);	
 	$detailFlds = $db->fieldValues();
 	$v->getRow( $_REQUEST['vehicleID'] );
 	$vt->getRow($v->getVehicleTypeID() );
 	$detailFlds["VehicleName"] = $vt->getVehicleTypeName();
 	$detailFlds["VehicleID"] = $_REQUEST['vehicleID'];	
+	$detailFlds["Vehicles"] = $vehicles;	
 	$out[] = $detailFlds; 
-}	
+	
 
 # test za LIMIT - trebalo bi ga iskoristiti za pagination! 'asc' . ' LIMIT 0,50'
 $dbk = $db->getKeysBy($ItemName, '' . $limit , $DB_Where);

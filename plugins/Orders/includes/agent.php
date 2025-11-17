@@ -1,32 +1,33 @@
 {{#compare tab "==" "agent"}}	
-    <div class="row dagent">
+    <!---<div class="row dagent">
         <div class="col-md-3 "><label><?= LEVEL?></label></div>
         <div class="col-md-9">
             {{userLevelSelect details.UserLevelID}}
         </div>
-    </div>						
-    <div class="row dagent">
-        <div class="col-md-3 "><label><?= BOOKED_BY?></label></div>
+    </div>!--->							
+    <div class="row dagent booked_by">
+        <div class="col-md-1 "><label><?= BOOKED_BY?></label></div>
+        <div class="col-md-2">{{userLevelSelect ""}}</div>		
         <div class="col-md-9">
             <strong>{{userName details.UserID "AuthUserRealName"}}</strong>
             {{userSelect details.UserID "0" "UserIDeX"}}
-            
             ({{details.UserID}})
 
         </div>
-    </div>	
-    <div class="row dagent">	
-        <div class="col-md-3 "><label><?= AGENT?></label></div>
+    </div>
+    <div class="row dagent booked_for">	
+        <div class="col-md-1 "><label><?= BOOKED_FOR?></label></div>
+        <div class="col-md-2">{{userLevelSelect details.UserLevelID}}</div>
         <div class="col-md-9">
 			<strong>{{userName details.AgentID "AuthUserCompany"}}</strong>
             {{userSelect details.AgentID "0" "AgentIDeX"}}
             ({{details.AgentID}})
         </div>					
-	</div>	
+	</div>
 	<div class="row dagent">	
 		{{#compare details.CustomerID ">" "0"}}
-        <div class="col-md-3 "><label><?= CUSTOMER?></label></div>
-        <div class="col-md-9">
+        <div class="col-md-1 "><label><?= CUSTOMER?></label></div>
+        <div class="col-md-11">
 			<strong>{{custName details.CustomerID "CustName"}}</strong>
             ({{details.CustomerID}})
         </div>					
