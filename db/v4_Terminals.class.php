@@ -19,6 +19,7 @@ Class v4_Terminals {
 	public $ImageBG; //varchar(255)
 	public $MPOrder; //int(2)
 	public $Description; //longtext
+	public $Visits; //int(5)
 	
 	public $connection;
 
@@ -32,13 +33,14 @@ Class v4_Terminals {
      * New object to the class. Don´t forget to save this new object "as new" by using the function $class->saveAsNew(); 
      *
      */
-	public function New_v4_Terminals($TerminalID,$MP,$ImageMP,$ImageBG,$MPOrder,$Description){
+	public function New_v4_Terminals($TerminalID,$MP,$ImageMP,$ImageBG,$MPOrder,$Description,$Visits){
 		$this->TerminalID = $TerminalID; // Check
 		$this->MP = $MP;
 		$this->ImageMP = $ImageMP;
 		$this->ImageBG = $ImageBG;
 		$this->MPOrder = $MPOrder;
 		$this->Description = $Description;
+		$this->Visits = $Visits;
 	}
 
     /**
@@ -57,6 +59,7 @@ Class v4_Terminals {
 			$this->ImageBG = $row["ImageBG"];
 			$this->MPOrder = $row["MPOrder"];
 			$this->Description = $row["Description"];
+			$this->Visits = $row["Visits"];
 		}
 	}
 
@@ -79,7 +82,8 @@ Class v4_Terminals {
 		MP = '".$this->myreal_escape_string($this->MP)."', 
 		ImageMP = '".$this->myreal_escape_string($this->ImageMP)."', 
 		ImageBG = '".$this->myreal_escape_string($this->ImageBG)."', 
-		MPOrder = '".$this->myreal_escape_string($this->MPOrder)."', 
+		MPOrder = '".$this->myreal_escape_string($this->MPOrder)."',
+		Visits = '".$this->myreal_escape_string($this->Visits)."',
 		Description = JSON_MERGE_PATCH(`Description`,'".$this->Description."') WHERE TerminalID = '".$this->TerminalID."'");
 		return $result; 
 	}
@@ -143,6 +147,13 @@ Class v4_Terminals {
 		return $this->Description;
 	}
 
+	/**
+	 * @return Visits - int(5)
+	 */
+	public function getVisits(){
+		return $this->Visits;
+	}
+
 	
 
 	public function setTerminalID($TerminalID){
@@ -185,6 +196,13 @@ Class v4_Terminals {
 	}
 
 	/**
+	 * @param Type: int(5)
+	 */
+	public function setVisits($Visits){
+		$this->Visits = $Visits;
+	}
+
+	/**
 	 * @param Type: longtext
 	 */
 	
@@ -202,7 +220,9 @@ Class v4_Terminals {
 			'ImageMP' => $this->getImageMP(),
 			'ImageBG' => $this->getImageBG(),
 			'MPOrder' => $this->getMPOrder(),
-			'Description' => $this->getDescription()	);
+			'Description' => $this->getDescription(),
+			'Visits' => $this->getVisits()
+		);
 		return $fieldValues;
 	}
     /**
@@ -213,7 +233,7 @@ Class v4_Terminals {
      */
 	public function fieldNames(){
 		$fieldNames = array(
-			'TerminalID',			'MP',			'ImageMP',			'ImageBG',			'MPOrder',			'Description'		);
+			'TerminalID',			'MP',			'ImageMP',			'ImageBG',			'MPOrder',			'Description',	'Visits'		);
 		return $fieldNames;
 	}
     /**

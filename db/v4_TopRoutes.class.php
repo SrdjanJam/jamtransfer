@@ -16,6 +16,7 @@ Class v4_TopRoutes {
 	public $TopRouteID; //int(10) unsigned
 	public $Main; //int(1)
 	public $Description; //varchar 255
+	public $Visits;
 	
 	public $connection;
 
@@ -29,10 +30,11 @@ Class v4_TopRoutes {
      * New object to the class. Don´t forget to save this new object "as new" by using the function $class->saveAsNew(); 
      *
      */
-	public function New_v4_TopRoutes($TopRouteID,$Main,$Description){
+	public function New_v4_TopRoutes($TopRouteID,$Main,$Description,$Visits){
 		$this->TopRouteID = $TopRouteID; // Check
 		$this->Main = $Main;
 		$this->Description = $Description;
+		$this->Visits = $Visits;
 	}
 
     /**
@@ -48,6 +50,7 @@ Class v4_TopRoutes {
 			$this->TopRouteID = $row["TopRouteID"];
 			$this->Main = $row["Main"];
 			$this->Description = $row["Description"];
+			$this->Visits = $row["Visits"];
 		}
 	}
 
@@ -67,7 +70,8 @@ Class v4_TopRoutes {
 	public function saveRow(){
 		$result = $this->connection->RunQuery("UPDATE v4_TopRoutes set 
 		TopRouteID = '".$this->myreal_escape_string($this->TopRouteID)."', 
-		Main = '".$this->myreal_escape_string($this->Main)."', 
+		Main = '".$this->myreal_escape_string($this->Main)."',
+		Visits = '".$this->myreal_escape_string($this->Visits)."',
 		Description = JSON_MERGE_PATCH(`Description`,'".$this->Description."') WHERE TopRouteID = '".$this->TopRouteID."'");
 		
 		return $result; 
@@ -110,6 +114,13 @@ Class v4_TopRoutes {
 	public function getDescription(){
 		return $this->Description;
 	}
+
+	/** 
+	* @return Visits - int(5)
+	*/
+	public function getVisits(){
+		return $this->Visits;
+	}
 	
 
 	public function setTopRouteID($TopRouteID){
@@ -130,6 +141,13 @@ Class v4_TopRoutes {
 		$this->Description = $Description;
 	}
 
+	/**
+	 * @param Type: int(5)
+	 */
+	public function setVisits($Visits){
+		$this->Visits = $Visits;
+	}
+
 	
 
 
@@ -138,6 +156,7 @@ Class v4_TopRoutes {
 			'TopRouteID' => $this->getTopRouteID(),
 			'Main' => $this->getMain(),
 			'Description' => $this->getDescription(),
+			'Visits' => $this->getVisits(),
 		);
 		return $fieldValues;
 	}
@@ -149,7 +168,7 @@ Class v4_TopRoutes {
      */
 	public function fieldNames(){
 		$fieldNames = array(
-			'TopRouteID','Main', 'Description'	);
+			'TopRouteID','Main', 'Description','Visits'	);
 		return $fieldNames;
 	}
     /**
