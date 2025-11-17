@@ -1,19 +1,27 @@
 <?
+// CronJob azurira json Schema. FAQ i html
+$root='/home/jamtrans/laravel/public/wis.jamtransfer.com';
+define("DB_HOST", "127.0.0.1");
 
-require_once '../../config.php';
+$DB_USER="jamtrans_cms";
+$DB_PASSWORD="~5%OuH{etSL)";
+$DB_NAME="jamtrans_touradria";
 
-require_once '../../db/db.class.php';
-require_once '../../db/v4_Services.class.php';
-require_once '../../db/v4_Terminals.class.php';
-require_once '../../db/v4_Places.class.php';
-require_once '../../db/v4_Routes.class.php';
-require_once '../../db/v4_TopRoutes.class.php';
-require_once '../../db/v4_DriverRoutes.class.php';
-require_once '../../db/v4_AuthUsers.class.php';
-require_once '../../db/v4_Vehicles.class.php';
-require_once '../../db/v4_VehicleTypes.class.php';
-require_once '../../db/v4_Articles.class.php';
-require_once '../../db/v4_CoInfo.class.php';
+
+//require_once $root.'/config.php';
+require_once $root.'/common/functions/f.php';
+require_once $root.'/db/db.class.php';
+require_once $root.'/db/v4_Services.class.php';
+require_once $root.'/db/v4_Terminals.class.php';
+require_once $root.'/db/v4_Places.class.php';
+require_once $root.'/db/v4_Routes.class.php';
+require_once $root.'/db/v4_TopRoutes.class.php';
+require_once $root.'/db/v4_DriverRoutes.class.php';
+require_once $root.'/db/v4_AuthUsers.class.php';
+require_once $root.'/db/v4_Vehicles.class.php';
+require_once $root.'/db/v4_VehicleTypes.class.php';
+require_once $root.'/db/v4_Articles.class.php';
+require_once $root.'/db/v4_CoInfo.class.php';
 $dbT = new DataBaseMysql();
 $s  = new v4_Services();
 $t  = new v4_Terminals();
@@ -27,251 +35,249 @@ $vt = new v4_VehicleTypes();
 $sa = new v4_Articles();
 $ci = new v4_CoInfo();
 
+$where = " WHERE `LastChange`>'0000-00-00' AND `LastChange`< (NOW()- INTERVAL 15 DAY)";
+$tkeys= $t->getKeysBy("LastChange ASC","Limit 1", $where);
+foreach ($tkeys as $tk) {
+	$routes=array();
+	$pl->getRow($tk);
+	$terminalname=$pl->getPlaceNameEN();
+	$terminalnameurl=$pl->getPlaceNameSEO();
+	$t->getRow($tk);
+	$imageurl="https://jamtransfer.com".$t->getImageMP();
+	$mainroutes = $tr->getKeysBy("TopRouteID", "ASC", "WHERE Main=1");
+	$rWhere = "WHERE (FromID = '".$tk."' or ToID = '".$tk."') AND Approved = '1' AND RouteID in (SELECT `TopRouteID` FROM `v4_TopRoutes`)";
+		$routes = $r->getKeysBy('RouteID', "ASC", $rWhere);
 
-$routes=array();
-$PlaceID=ltrim($_REQUEST["PlaceID"]);
-$pl->getRow($PlaceID);
-$terminalname=$pl->getPlaceNameEN();
-$terminalnameurl=$pl->getPlaceNameSEO();
-$t->getRow($PlaceID);
-$imageurl="https://jamtransfer.com".$t->getImageMP();
-$mainroutes = $tr->getKeysBy("TopRouteID", "ASC", "WHERE Main=1");
-$rWhere = "WHERE (FromID = '".$PlaceID."' or ToID = '".$PlaceID."') AND Approved = '1' AND RouteID in (SELECT `TopRouteID` FROM `v4_TopRoutes`)";
-	$routes = $r->getKeysBy('RouteID', "ASC", $rWhere);
+	$transferDate   = date("Y-m-d",time()+3600*24*3);
+	$transferTime   = "12:00";
+	$returnDate     = '';
+	$returnTime     = '';
+	$terminal=array();
 
-$transferDate   = date("Y-m-d",time()+3600*24*3);
-$transferTime   = "12:00";
-$returnDate     = '';
-$returnTime     = '';
-$terminal=array();
+	if (count($routes)>0) {	
+		$toproutes = array(); 
+		foreach ($routes as $rt) {
+			$r->getRow($rt);
+			$Km=$r->getKm();
+			$Duration=$r->getDuration();
+			$fromID=$pl->getRow($r->getFromID());
+			$from=$pl->getPlaceNameSEO();
+			$fromPlace=$pl->getPlaceNameEN();
+			$fromCountry=$pl->getCountryNameEN();
+			$toID=$pl->getRow($r->getToID());
+			$to=$pl->getPlaceNameSEO();
+			$toPlace=$pl->getPlaceNameEN();
+			$toCountry=$pl->getCountryNameEN();
+			$Link="https://jamtransfer.com/taxi-transfers-from-".$from."-to-".$to;	
+			$NameURL=$from."-to-".$to;	
+				
+			// Izlazni podaci koje koriste skripte za display
+			$drivers = array(); // podaci o vozacima
 
-if (count($routes)>0) {	
-	$toproutes = array(); 
-	foreach ($routes as $rt) {
-		$r->getRow($rt);
-		$Km=$r->getKm();
-		$Duration=$r->getDuration();
-		$fromID=$pl->getRow($r->getFromID());
-		$from=$pl->getPlaceNameSEO();
-		$fromPlace=$pl->getPlaceNameEN();
-		$fromCountry=$pl->getCountryNameEN();
-		$toID=$pl->getRow($r->getToID());
-		$to=$pl->getPlaceNameSEO();
-		$toPlace=$pl->getPlaceNameEN();
-		$toCountry=$pl->getCountryNameEN();
-		$Link="https://jamtransfer.com/taxi-transfers-from-".$from."-to-".$to;	
-		$NameURL=$from."-to-".$to;	
-			
-		// Izlazni podaci koje koriste skripte za display
-		$drivers = array(); // podaci o vozacima
+			// ODAVDE KRECE
+			$drWhere = "WHERE RouteID=".$rt;
+			// check for drivers for the route 
+			$driverRouteKeys = $dr->getKeysBy('RouteID', "ASC", $drWhere);
+			$services=array();
+			if (count($driverRouteKeys) > 0) {
+				// ako su pronadjene DriverRoutes, obradi svaku
+				foreach($driverRouteKeys as $dri => $rowId) {
+					$dr->getRow($rowId);
+					$RouteID=$dr->getRouteID();
+					$OwnerID = $dr->getOwnerID();
+					if($au->getRow($OwnerID)===false) continue;
+					$au->getRow($OwnerID);
+					if($au->getActive()<>1) continue;
+					// check for Services
+					$serviceKeys = $s->getKeysBy("ServiceID", "ASC", "WHERE RouteID = {$RouteID} AND OwnerID = {$OwnerID}");
+					if(count($serviceKeys) > 0) { 
+						foreach($serviceKeys as $si => $sId) {
+							$s->getRow($sId);
+							$DriversPrice = $s->getServicePrice1();
+							if ($DriversPrice==0) continue;
+							$ServiceID = $s->getServiceID();
+							$Correction= $s->getCorrection();
+							$v->getRow($s->getVehicleID());
+							$VehicleTypeID  = $v->getVehicleTypeID();
+							$VehicleCapacity= $v->getVehicleCapacity();
+							$VehicleID      = $v->getVehicleID();
+							$ReturnDiscount = $v->getReturnDiscount();
+							$vt->getRow($VehicleTypeID);
+							$Vehicle = getVehicleTypeName($v->getVehicleTypeID()); 
+		
+							/*
 
-		// ODAVDE KRECE
-		$drWhere = "WHERE RouteID=".$rt;
-		// check for drivers for the route 
-		$driverRouteKeys = $dr->getKeysBy('RouteID', "ASC", $drWhere);
-		$services=array();
-		if (count($driverRouteKeys) > 0) {
-			// ako su pronadjene DriverRoutes, obradi svaku
-			foreach($driverRouteKeys as $dri => $rowId) {
-				$dr->getRow($rowId);
-				$RouteID=$dr->getRouteID();
-				$OwnerID = $dr->getOwnerID();
-				if($au->getRow($OwnerID)===false) continue;
-				$au->getRow($OwnerID);
-				if($au->getActive()<>1) continue;
-				// check for Services
-				$serviceKeys = $s->getKeysBy("ServiceID", "ASC", "WHERE RouteID = {$RouteID} AND OwnerID = {$OwnerID}");
-				if(count($serviceKeys) > 0) { 
-					foreach($serviceKeys as $si => $sId) {
-						$s->getRow($sId);
-						$DriversPrice = $s->getServicePrice1();
-						if ($DriversPrice==0) continue;
-						$ServiceID = $s->getServiceID();
-						$Correction= $s->getCorrection();
-						$v->getRow($s->getVehicleID());
-						$VehicleTypeID  = $v->getVehicleTypeID();
-						$VehicleCapacity= $v->getVehicleCapacity();
-						$VehicleID      = $v->getVehicleID();
-						$ReturnDiscount = $v->getReturnDiscount();
-						$vt->getRow($VehicleTypeID);
-						$Vehicle = getVehicleTypeName($v->getVehicleTypeID()); 
-	
-						/*
+								Ovdje upada dio sa izracunavanjem cijena ovisno o:
+								- return discount
+								- danu u tjednu
+								- sezoni
+								- je li nocna voznja
 
-							Ovdje upada dio sa izracunavanjem cijena ovisno o:
-							- return discount
-							- danu u tjednu
-							- sezoni
-							- je li nocna voznja
+								Sve te faktore treba prikazati kupcu kao dodatak na osnovnu cijenu.
+								Ako je Return transfer, Surcharges vraca zbrojene dodatke za oba transfera!
 
-							Sve te faktore treba prikazati kupcu kao dodatak na osnovnu cijenu.
-							Ako je Return transfer, Surcharges vraca zbrojene dodatke za oba transfera!
+							*/
+							$SurCategory    = $s->getSurCategory();
+							$DRSurCategory  = $dr->getSurCategory();
+							$VSurCategory   = $v->getSurCategory();
+							
+							$Provision = getProvision($DriversPrice, $s->getOwnerID(), $VehicleClass);
+							$CalculatedPrice = $DriversPrice+$DriversPrice*$Provision/100;
+							$sur = Adds($OwnerID, $SurCategory, $CalculatedPrice,
+											  $transferDate, $transferTime,
+											  $returnDate, $returnTime,
+											  $RouteID, $VehicleID, $ServiceID,
+											  $VSurCategory, $DRSurCategory
+											  );
+										  
+							$Driver=$OwnerID." ".$users[$OwnerID]->AuthUserRealName;	
+							$min=1+$sur['MinPercent']/100;				  
+							$max=1+$sur['MaxPercent']/100;
 
-						*/
-						$SurCategory    = $s->getSurCategory();
-						$DRSurCategory  = $dr->getSurCategory();
-						$VSurCategory   = $v->getSurCategory();
-						
-						$Provision = getProvision($DriversPrice, $s->getOwnerID(), $VehicleClass);
-						$CalculatedPrice = $DriversPrice+$DriversPrice*$Provision/100;
-						$sur = Adds($OwnerID, $SurCategory, $CalculatedPrice,
-										  $transferDate, $transferTime,
-										  $returnDate, $returnTime,
-										  $RouteID, $VehicleID, $ServiceID,
-										  $VSurCategory, $DRSurCategory
-										  );
-									  
-						$Driver=$OwnerID." ".$users[$OwnerID]->AuthUserRealName;	
-						$min=1+$sur['MinPercent']/100;				  
-						$max=1+$sur['MaxPercent']/100;
-
-						$FinalPrice = number_format($CalculatedPrice,0);
-						$FinalPriceMin = number_format($CalculatedPrice*$min,0);
-						$FinalPriceMax = number_format($CalculatedPrice*$max,0);
-						/*
-						** KRAJ OBRADE CIJENA
-						*/
-						$services[] = array(	
-							'Driver'        => $Driver,
-							'Vehicle'       => $Vehicle,
-							'MaxPax'       	=> $VehicleCapacity,
-							'finalPrice'    => $FinalPrice,
-							'minPrice'      => $FinalPriceMin,
-							'maxPrice'      => $FinalPriceMax,
-							'Sort'			=> (1000+$VehicleTypeID)." ".(10000+nf($FinalPriceMin)),
-							'PriceAdds' => $sur );
-					} // end foreach services
-					usort($services, function($a, $b) {
-						return $a['Sort'] > $b['Sort'];
-					});
-					$comp="";
-					foreach ($services as $key => $service) {
-						if ($comp==$service['Vehicle']) unset($services[$key]);
-						else $comp=$service['Vehicle'];	
-					}		
-					foreach ($services as $key =>$serv) {
-						unset($services[$key]['Sort']);
-						unset($services[$key]['Driver']);
-						unset($services[$key]['RouteID']);
-						unset($services[$key]['PriceAdds']['MinPercent']);
-						unset($services[$key]['PriceAdds']['MaxPercent']);
-						if (count($services[$key]['PriceAdds'])==0) unset($services[$key]['PriceAdds']);
+							$FinalPrice = number_format($CalculatedPrice,0);
+							$FinalPriceMin = number_format($CalculatedPrice*$min,0);
+							$FinalPriceMax = number_format($CalculatedPrice*$max,0);
+							/*
+							** KRAJ OBRADE CIJENA
+							*/
+							$services[] = array(	
+								'Driver'        => $Driver,
+								'Vehicle'       => $Vehicle,
+								'MaxPax'       	=> $VehicleCapacity,
+								'finalPrice'    => $FinalPrice,
+								'minPrice'      => $FinalPriceMin,
+								'maxPrice'      => $FinalPriceMax,
+								'Sort'			=> (1000+$VehicleTypeID)." ".(10000+nf($FinalPriceMin)),
+								'PriceAdds' => $sur );
+						} // end foreach services
+						usort($services, function($a, $b) {
+							return $a['Sort'] > $b['Sort'];
+						});
+						$comp="";
+						foreach ($services as $key => $service) {
+							if ($comp==$service['Vehicle']) unset($services[$key]);
+							else $comp=$service['Vehicle'];	
+						}		
+						foreach ($services as $key =>$serv) {
+							unset($services[$key]['Sort']);
+							unset($services[$key]['Driver']);
+							unset($services[$key]['RouteID']);
+							unset($services[$key]['PriceAdds']['MinPercent']);
+							unset($services[$key]['PriceAdds']['MaxPercent']);
+							if (count($services[$key]['PriceAdds'])==0) unset($services[$key]['PriceAdds']);
+						}
 					}
 				}
 			}
+			$toproutes[] = array(
+					'RouteID'           => $RouteID,
+					'FromPlace'         => $fromPlace,
+					'ToPlace'         	=> $toPlace,
+					'FromCountry'       => $fromCountry,
+					'ToCountry'       	=> $toCountry,
+					'Link'         		=> $Link,
+					'NameURL'         	=> $NameURL,
+					'Km'                => $Km,
+					'Duration'          => $Duration,
+					'Services'			=> $services);
 		}
-		$toproutes[] = array(
-				'RouteID'           => $RouteID,
-				'FromPlace'         => $fromPlace,
-				'ToPlace'         	=> $toPlace,
-				'FromCountry'       => $fromCountry,
-				'ToCountry'       	=> $toCountry,
-				'Link'         		=> $Link,
-				'NameURL'         	=> $NameURL,
-				'Km'                => $Km,
-				'Duration'          => $Duration,
-				'Services'			=> $services);
+		usort($toproutes, function($a, $b) {
+			return $a['RouteID'] > $b['RouteID'];
+		});
+		$comp="";
+			
+
+		/*foreach ($toproutes as $key =>$c) {
+			unset($toproutes[$key]['RouteID']);
+		}*/	
+			
+		$terminal['Name']=$terminalname;
+		$terminal['Image']=$imageurl;
+		$terminal['ValidTo']=date("Y-m-d",time()+3600*24*180);
+		$tripAdvisor=getTripAdvisorData($ci);
+		$terminal['ratingValue']=number_format($tripAdvisor['value'],2);
+		$terminal['ratingCount']=number_format($tripAdvisor['count'],0);
+		$terminal['faq']=getFAQ($sa);
+		$terminal['Routes']=$toproutes;
 	}
-	usort($toproutes, function($a, $b) {
-		return $a['RouteID'] > $b['RouteID'];
-	});
-	$comp="";
-		
-
-	/*foreach ($toproutes as $key =>$c) {
-		unset($toproutes[$key]['RouteID']);
-	}*/	
-		
-	$terminal['Name']=$terminalname;
-	$terminal['Image']=$imageurl;
-	$terminal['ValidTo']=date("Y-m-d",time()+3600*24*180);
-	$tripAdvisor=getTripAdvisorData($ci);
-	$terminal['ratingValue']=number_format($tripAdvisor['value'],2);
-	$terminal['ratingCount']=number_format($tripAdvisor['count'],0);
-	$terminal['faq']=getFAQ($sa);
-	$terminal['Routes']=$toproutes;
-	
-}
-$generator = new JAMTransferSchemaGenerator();
-// Generiši Popular Routes Section
-$prs='<div class="route-grid">';
-foreach ($terminal['Routes'] as $route) {
-	if (empty($route['Services']) || !in_array($route['RouteID'],$mainroutes) ) continue;
-	$minimum=100000;
-	foreach($route['Services'] as $s) {
-		if ($s['minPrice']<$minimum) $minimum=$s['minPrice'];	
-	}	
-	$prs.='<div class="route-item">';
-    $prs.='<a href="'.$route['Link'].'" class="route-link">'.$route['FromPlace'].' to '.$route['ToPlace'].'</a>';
-    $prs.='<div class="route-details">Distance: '.$route['Km'].' km | Duration: '.$route['Duration'].' min | From €'.number_format($minimum,0).'</div>';
-    $prs.='</div>';	
-}
-$prs.='</div>';	
-// Zamena <!-- Popular Routes Section -->
-$ch = curl_init();
-$url=ROOT_HOME.'/site_terminals/'.$terminalnameurl.'.html';
-curl_setopt($ch, CURLOPT_URL, $url);
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($ch, CURLOPT_HEADER, false);
-
-$html_content = curl_exec($ch);	
-$http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-curl_close($ch);
-if ($http_code==200) {
+	$generator = new JAMTransferSchemaGenerator();
+	// Generiši Popular Routes Section
+	$prs='<div class="route-grid">';
+	foreach ($terminal['Routes'] as $route) {
+		if (empty($route['Services']) || !in_array($route['RouteID'],$mainroutes) ) continue;
+		$minimum=100000;
+		foreach($route['Services'] as $s) {
+			if ($s['minPrice']<$minimum) $minimum=$s['minPrice'];	
+		}	
+		$prs.='<div class="route-item">';
+		$prs.='<a href="'.$route['Link'].'" class="route-link">'.$route['FromPlace'].' to '.$route['ToPlace'].'</a>';
+		$prs.='<div class="route-details">Distance: '.$route['Km'].' km | Duration: '.$route['Duration'].' min | From €'.number_format($minimum,0).'</div>';
+		$prs.='</div>';	
+	}
+	$prs.='</div>';	
+	// Zamena <!-- Popular Routes Section -->
+	$filename=$root.'/site_terminals/'.$terminalnameurl.'.html';
+	$file_handle = fopen($filename, "r");
+	$html_content = fread($file_handle, filesize($filename));
+	fclose($file_handle);
 	$pattern = '/<div class="route-item">.*?<\/div>\s*<\/div>/s';
 	$replacement = '';
 	$result = preg_replace($pattern, $replacement, $html_content);
+	
 	$pattern = '/(<div class="route-grid">).*?(<\/div>\s*?)(?=\s*<\/div>)/s';
 	$result2 = preg_replace($pattern, $prs, $result, 1);
-	unlink(ROOT.'/site_terminals/'.$terminalnameurl.'.html');
-	$fp = fopen(ROOT.'/site_terminals/'.$terminalnameurl.'.html', 'w');
+	unlink($root.'/site_terminals/'.$terminalnameurl.'.html');
+	$fp = fopen($root.'/site_terminals/'.$terminalnameurl.'.html', 'w');
 	fwrite($fp, $result2);
-}
 
-// generisanje i snimanje schema terminala i main ruta
-$schemaTerminal="";
-foreach ($terminal['Routes'] as $route) {
-	$schema = $generator->createTravelActionSchema($route, $terminal);
-	$schemaRoute="";
-	$schemaRoute.='<script type="application/ld+json">';
-	$schemaRoute.=json_encode($schema, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
-	$schemaRoute.='</script>' . PHP_EOL;
-	if (in_array($route['RouteID'],$mainroutes)) $schemaTerminal.=$schemaRoute;
-	$faqSchema= $generator->generateFAQSchema($terminal,$route['NameURL'],$mainroutes,$route['RouteID']);
-	$schemaRoute.='<script type="application/ld+json">';
-	$schemaRoute.=json_encode($faqSchema, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
-	$schemaRoute.='</script>' . PHP_EOL;	
+	// generisanje i snimanje schema terminala i main ruta
+	$schemaTerminal="";
+	foreach ($terminal['Routes'] as $route) {
+		$schema = $generator->createTravelActionSchema($route, $terminal);
+		$schemaRoute="";
+		$schemaRoute.='<script type="application/ld+json">';
+		$schemaRoute.=json_encode($schema, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+		$schemaRoute.='</script>' . PHP_EOL;
+		if (in_array($route['RouteID'],$mainroutes)) $schemaTerminal.=$schemaRoute;
+		$faqSchema= $generator->generateFAQSchema($terminal,$route['NameURL'],$mainroutes,$route['RouteID']);
+		$schemaRoute.='<script type="application/ld+json">';
+		$schemaRoute.=json_encode($faqSchema, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+		$schemaRoute.='</script>' . PHP_EOL;	
+		ob_start(); 
+		echo $schemaRoute;
+		$schemaPrint = ob_get_contents();
+		ob_end_clean();
+		unlink($root.'/schemas/'.$route['NameURL'].'.html');
+		$fp = fopen($root.'/schemas/'.$route['NameURL'].'.html', 'w');
+		fwrite($fp, $schemaPrint);	
+	}
+	$faqSchema = $generator->generateFAQSchema($terminal,$terminalnameurl,$mainroutes,0);
+	$schemaTerminal.='<script type="application/ld+json">';
+	$schemaTerminal.=json_encode($faqSchema, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+	$schemaTerminal.='</script>' . PHP_EOL;
+
 	ob_start(); 
-	echo $schemaRoute;
+	echo $schemaTerminal;
 	$schemaPrint = ob_get_contents();
 	ob_end_clean();
-	unlink(ROOT.'/schemas/'.$route['NameURL'].'.html');
-	$fp = fopen(ROOT.'/schemas/'.$route['NameURL'].'.html', 'w');
-	fwrite($fp, $schemaPrint);	
+	unlink($root.'/schemas/'.$terminalnameurl.'.html');
+	
+	$fp = fopen($root.'/schemas/'.$terminalnameurl.'.html', 'w');
+	fwrite($fp, $schemaPrint);
+	
+	$t->setLastChange(date("Y-m-d"));	
+	$t->saveRow();
+	//echo date("Y-m-d");
+
+	/*if ($fp) echo "<div class='success'>JSON shema formatted!</div>";
+	else echo "<div class='error'>JSON shema not formatted!</div>";*/
 }
-$faqSchema = $generator->generateFAQSchema($terminal,$terminalnameurl,$mainroutes,0);
-$schemaTerminal.='<script type="application/ld+json">';
-$schemaTerminal.=json_encode($faqSchema, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
-$schemaTerminal.='</script>' . PHP_EOL;
-
-ob_start(); 
-echo $schemaTerminal;
-$schemaPrint = ob_get_contents();
-ob_end_clean();
-unlink(ROOT.'/schemas/'.$terminalnameurl.'.html');
-$fp = fopen(ROOT.'/schemas/'.$terminalnameurl.'.html', 'w');
-fwrite($fp, $schemaPrint);
-$t->setLastChange(date("Y-m-d"));	
-$t->saveRow();
-echo date("Y-m-d");
-
-/*if ($fp) echo "<div class='success'>JSON shema formatted!</div>";
-else echo "<div class='error'>JSON shema not formatted!</div>";*/
-
 
 // Dodavanje dogovorene provizije na osnovnu cijenu
 function getProvision($price, $ownerid, $VehicleClass = 1) {
-    require_once '../../db/db.class.php';
+	$root='/home/jamtrans/laravel/public/wis.jamtransfer.com';
+
+    require_once $root.'/db/db.class.php';
     $dbT = new DataBaseMysql();
 
         // ako je u decimalama, zaokruzi na cijeli broj
@@ -294,21 +300,18 @@ function getProvision($price, $ownerid, $VehicleClass = 1) {
                 if      ($priceR >= $d->R1Low and $priceR <= $d->R1Hi) $provision=$d->R1Percent ;
                 else if ($priceR >= $d->R2Low and $priceR <= $d->R2Hi) $provision=$d->R2Percent ;
                 else if ($priceR >= $d->R3Low and $priceR <= $d->R3Hi) $provision=$d->R3Percent ;
-                else $provision=$price;
             }
             // PREMIUM CLASS
             if($VehicleClass >= 11 and $VehicleClass < 21) {
                 if      ($priceR >= $d->PR1Low and $priceR <= $d->PR1Hi) $provision=$d->PR1Percent ;
                 else if ($priceR >= $d->PR2Low and $priceR <= $d->PR2Hi) $provision=$d->PR2Percent ;
                 else if ($priceR >= $d->PR3Low and $priceR <= $d->PR3Hi) $provision=$d->PR3Percent ;
-                else $provision=$price;
             }
             // FIRST CLASS
             if($VehicleClass >= 21) {
                 if      ($priceR >= $d->FR1Low and $priceR <= $d->FR1Hi) $provision=$d->FR1Percent ;
                 else if ($priceR >= $d->FR2Low and $priceR <= $d->FR2Hi) $provision=$d->FR2Percent ;
                 else if ($priceR >= $d->FR3Low and $priceR <= $d->FR3Hi) $provision=$d->FR3Percent ;
-                else $provision=$price;
             }
         }
         if ($provision==0) {
@@ -321,7 +324,8 @@ function getProvision($price, $ownerid, $VehicleClass = 1) {
 }
 
 function vehicleTypeName($vehicleTypeID) {
-    require_once '../../db/db.class.php';
+	$root='/home/jamtrans/laravel/public/wis.jamtransfer.com';
+    require_once $root.'/db/db.class.php';
     $dbT = new DataBaseMysql();
 
     $w = $dbT->RunQuery("SELECT * FROM v4_VehicleTypes WHERE VehicleTypeID = '{$vehicleTypeID}'");
@@ -331,11 +335,12 @@ function vehicleTypeName($vehicleTypeID) {
 }
 
 function calculateSpecialDates($OwnerID, $amount, $transferDate, $transferTime, $returnDate='', $returnTime='') {
+	$root='/home/jamtrans/laravel/public/wis.jamtransfer.com';
 
     if( empty($OwnerID) or empty($amount) or empty($transferDate)  or empty($transferTime) ) return 0;
 
-    require_once '../../db/db.class.php';
-    require_once '../../db/v4_SpecialDates.class.php';
+    require_once $root.'/db/db.class.php';
+    require_once $root.'/db/v4_SpecialDates.class.php';
     $sd = new v4_SpecialDates();
 
     $add1 = 0;
@@ -364,21 +369,21 @@ function calculateSpecialDates($OwnerID, $amount, $transferDate, $transferTime, 
 function Adds($OwnerID, $SurCategory, $base, $tDate, $tTime, $rDate='', $rTime='',
                      $RouteID='', $VehicleID='', $ServiceID='',
                      $VSurCategory='', $DRSurCategory='') {
-
+	$root='/home/jamtrans/laravel/public/wis.jamtransfer.com';
     // Variables
     $sur = array();
     $finished = false;
     for($i=1; $i<=4;$i++) {
 		switch($i) {
 			case '4':
-				require_once ROOT.'/db/v4_SurGlobal.class.php';
+				require_once $root.'/db/v4_SurGlobal.class.php';
 				$sc = new v4_SurGlobal();
 
 				$sck = $sc->getKeysBy('ID', 'asc', ' WHERE OwnerID = ' . $OwnerID);
 				if (count($sck) > 0) $sc->getRow($sck[0]);
 				break;
 			case '2':
-				require_once ROOT.'/db/v4_SurVehicle.class.php';
+				require_once $root.'/db/v4_SurVehicle.class.php';
 				$sc = new v4_SurVehicle();
 				$where = ' WHERE OwnerID = ' . $OwnerID . ' AND VehicleID = ' . $VehicleID;
 				$sck = $sc->getKeysBy('ID', 'asc', $where);
@@ -387,7 +392,7 @@ function Adds($OwnerID, $SurCategory, $base, $tDate, $tTime, $rDate='', $rTime='
 				}
 				break;
 			case '3':
-				require_once ROOT.'/db/v4_SurRoute.class.php';
+				require_once $root.'/db/v4_SurRoute.class.php';
 				$sc = new v4_SurRoute();
 				$where = ' WHERE OwnerID = ' . $OwnerID . ' AND DriverRouteID = ' . $RouteID;
 				$sck = $sc->getKeysBy('DriverRouteID', 'asc', $where);
@@ -396,7 +401,7 @@ function Adds($OwnerID, $SurCategory, $base, $tDate, $tTime, $rDate='', $rTime='
 				}
 				break;
 			case '1':
-				require_once ROOT.'/db/v4_SurService.class.php';
+				require_once $root.'/db/v4_SurService.class.php';
 				$sc = new v4_SurService();
 				$where = ' WHERE OwnerID = ' . $OwnerID . ' AND ServiceID = ' . $ServiceID;
 				$sck = $sc->getKeysBy('ID', 'asc', $where);
@@ -407,7 +412,7 @@ function Adds($OwnerID, $SurCategory, $base, $tDate, $tTime, $rDate='', $rTime='
 		}
 		$minPercent=0;
 		$maxPercent=0;
-		require_once ROOT.'/db/v4_SpecialDates.class.php';
+		require_once $root.'/db/v4_SpecialDates.class.php';
 		$sd = new v4_SpecialDates();
 		$start=date("Y-m-d",time());
 		$where = ' WHERE OwnerID = ' . $OwnerID . ' AND SpecialDate > "'.$start.'"';
@@ -786,6 +791,7 @@ class JAMTransferSchemaGenerator {
     }
     
     function generateFAQSchema($jsonData,$nameurl,$mainroutes,$id) {
+		$root='/home/jamtrans/laravel/public/wis.jamtransfer.com';
         $faqItems = [];
         $processedRoutes = [];
         
@@ -938,8 +944,8 @@ class JAMTransferSchemaGenerator {
 			$faqhtml.='</div>';	
 		}
 		$faqhtml.='</div>';	
-		if ($id==0) $baseURL=ROOT.'/faq/'.$nameurl.'.html';
-		else $baseURL=ROOT.'/faq/routes/'.$id.'.html';
+		if ($id==0) $baseURL=$root.'/faq/'.$nameurl.'.html';
+		else $baseURL=$root.'/faq/routes/'.$id.'.html';
 		unlink($baseURL);
 		$fp = fopen($baseURL, 'w');
 		fwrite($fp, $faqhtml);		

@@ -187,12 +187,13 @@ if (isset($transfersFilter) && !empty($transfersFilter)) {
 			$_REQUEST['orderToDate']=date('Y-m-d',time());				
 			break;			
 	}
+	if (isset($_REQUEST['filterDatePeriod']) && isset($_REQUEST['filterDate'])) 
+		$whereOD.= " AND ". $_REQUEST['filterDatePeriod']."'".$_REQUEST['filterDate']."'";
 }		
 else {
 	if (!isset($_REQUEST['filterDatePeriod'])) {
 		if ( isset($_COOKIE['dateFilterPeriodCookie']) && $_COOKIE['dateFilterPeriodCookie'] !="") $_REQUEST['filterDatePeriod']= $_COOKIE['dateFilterPeriodCookie'];
-		else 
-			$_REQUEST['filterDatePeriod']="PickupDate>=";
+		else $_REQUEST['filterDatePeriod']="PickupDate>=";
 	}
 	setcookie("dateFilterPeriodCookie", $_REQUEST['filterDatePeriod']);
 

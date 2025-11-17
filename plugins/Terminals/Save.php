@@ -40,7 +40,10 @@ if ($keyName != '' and $keyValue != '') {
 $out = array(
 	'update' => $upd
 );
-
+# cuvanje bakcground slike u tabeli v4_Places
+$dbP->getRow($keyValue);
+$dbP->setImage($_REQUEST['ImageBG']);
+$dbP->saveRow();
 # send output back
 $output = json_encode($out);
 echo $_REQUEST['callback'] . '(' . $output . ')';

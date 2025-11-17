@@ -1190,3 +1190,6 @@ define("EXTERNAL", "External");
 //07.10.25
 define("TA_RATE", "TA.Rate");
 define("TA_NUMBER", "TA.Number");
+//10.11.25
+define("NEARBY_LOCATIONS", "Nearby locations");
+define("BOOKED_FOR", "Booked for");

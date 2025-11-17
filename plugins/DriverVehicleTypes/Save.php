@@ -4,7 +4,7 @@ require_once 'Initial.php';
 
 if ($_REQUEST['DriverVehicle']==0) {
 	$result = $dbT->RunQuery("DELETE FROM `v4_Vehicles` WHERE `VehicleTypeID`=".$_REQUEST['VehicleTypeID']." AND `OwnerID`=".$_SESSION['UseDriverID']);
-	$result = $dbT->RunQuery("DELETE FROM `v4_Services` WHERE `VehicleTypeID`=".$_REQUEST['VehicleTypeID']." AND `OwnerID`=".$_SESSION['UseDriverID']);
+	//$result = $dbT->RunQuery("DELETE FROM `v4_Services` WHERE `VehicleTypeID`=".$_REQUEST['VehicleTypeID']." AND `OwnerID`=".$_SESSION['UseDriverID']);
 	$VehicleID=0;
 }	
 if ($_REQUEST['DriverVehicle']==1) {

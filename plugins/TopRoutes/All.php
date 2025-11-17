@@ -11,7 +11,7 @@ if (isset($type)) {
 	}
 
 }
-
+else $filter =" 1=1 ";
 
 $page 		= (int) $_REQUEST['page'];
 $length 	= $_REQUEST['length'];
@@ -35,24 +35,25 @@ $flds = array();
 $DB_Where = " " . $_REQUEST['where'];
 $DB_Where .= $filter;
 
-
 # dodavanje search parametra u qry
 # DB_Where sad ima sve potrebno za qry
 if ( $_REQUEST['Search'] != "" )
 {
-	$DB_Where .= " AND (";
-
+	$DB_Where .= " AND ((";
 	for ( $i=0 ; $i< count($aColumns) ; $i++ )
 	{
 		# If column name exists
 		if ($aColumns[$i] != " ")
-		$DB_Where .= $aColumns[$i]." LIKE '%"
-		.$db->myreal_escape_string( $_REQUEST['Search'] )."%' OR ";
+			$DB_Where .= $aColumns[$i]." LIKE '%"
+			.$db->myreal_escape_string( $_REQUEST['Search'] )."%' OR ";
 	}
 	$DB_Where = substr_replace( $DB_Where, "", -3 );
+	$DB_Where .= ") ";
+	
 	$wherePlaces=" WHERE RouteName LIKE '%".$db->myreal_escape_string( $_REQUEST['Search'] )."%'";
 	$rtKeys=$dbR->getKeysBy('RouteID','',$wherePlaces);
-	$DB_Where .= " OR TopRouteID in (".implode(',',$rtKeys).")) ";
+	if (count($rtKeys)>0) $DB_Where .= " OR TopRouteID in (".implode(',',$rtKeys).")";
+	$DB_Where .= ")";
 }
 $dbTotalRecords = $db->getKeysBy($ItemName . $sortOrder, '',$DB_Where);
 # test za LIMIT - trebalo bi ga iskoristiti za pagination! 'asc' . ' LIMIT 0,50'

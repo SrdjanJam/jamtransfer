@@ -83,15 +83,16 @@
 			<div class="modal-content">
 				<div class="modal-header" style="padding:10px">
 					<strong>
-					<div class="col-md-3">Driver Company</div>
+					<div class="col-md-2">Driver Company</div>
 					<div class="col-md-1">Type</div>
 					<div class="col-md-1 right">Pr/km</div>												
 					<div class="col-md-1 right">APr/km</div>												
-					<div class="col-md-1 right">Neto</div>												
-					<div class="col-md-1 right">Adds</div>
+					<div class="col-md-1 right">Neto</div>	
 					<div class="col-md-1 right">Prov.(%)</div>
+					<div class="col-md-1 right">Adds</div>
 					<div class="col-md-1 right">Final</div>
 					<div class="col-md-1 right">Prov2.(%)</div>
+					<div class="col-md-1 right">Adds2</div>					
 					<div class="col-md-1 right">Final2</div>
 					</strong>
 				</div>				
@@ -322,15 +323,16 @@
 						rn=val.RouteName
 					}			
 					list += '<div class="row selectable selectable-edit '+select+'">';
-					list += '<div class="col-md-3">' + val.DriverCompany + val.StatusCompany + '</div>';
+					list += '<div class="col-md-2">' + val.DriverCompany + val.StatusCompany + '</div>';
 					list += '<div class="col-md-1">' + val.VehicleTypeID + '</div>';
 					list += '<div class="col-md-1">' + val.PriceKm + '</div>';
 					list += '<div class="col-md-1">' + val.APriceKm + '</div>';
 					list += '<div class="col-md-1 right">' + val.DriversPrice + '</div>';	   /* Neto */					
+					list += '<div class="col-md-1 right">' + val.Provision + '</div>';		  /* Provision */					
 					list += '<div title="Surcharges" data-content="' + surcharges + '" class="col-md-1 right mytooltip">' + val.AddToPrice + '</div>';		  /* Additions */
-					list += '<div class="col-md-1 right">' + val.Provision + '</div>';		  /* Provision */
 					list += '<div class="col-md-1 right">' + val.FinalPrice + '</div>';		 /* FinalPrice */
 					list += '<div class="col-md-1 right">' + val.Provision2 + '</div>';		  /* Provision */
+					list += '<div class="col-md-1 right">' + val.AddToPrice2 + '</div>';		  /* Additions2 */					
 					list += '<div class="col-md-1 right">' + val.FinalPrice2 + '</div>';		 /* FinalPrice */
 					list += '</div>';
 				});

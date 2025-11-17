@@ -18,7 +18,10 @@ require_once 'Initial.php';
 	$detailFlds['PlaceNameSEO']=$dbP->getPlaceNameSEO();
 	$filename = "../../site_terminals/".$dbP->getPlaceNameSEO().".html";
 	if (file_exists($filename)) $detailFlds['HtmlExist']=1;
-	else $detailFlds['HtmlExist']=0;
+	else $detailFlds['HtmlExist']=0;	
+	$filename = "../../faq/".$dbP->getPlaceNameSEO().".html";
+	if (file_exists($filename)) $detailFlds['FaqExist']=1;
+	else $detailFlds['FaqExist']=0;
 
 	$arr=json_decode($detailFlds['Description']);
 	if (gettype($arr)!="object") {

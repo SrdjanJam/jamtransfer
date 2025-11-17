@@ -3,7 +3,10 @@
 	
 	$route_name = "";
 	$vehicle_name = "";
-	
+
+	require_once ROOT . '/db/v4_AuthUsers.class.php';	
+	$au = new v4_AuthUsers();
+
 	if	($_REQUEST['rulesType']=='') $_REQUEST['rulesType']='global';
 	switch ($_REQUEST['rulesType']) {
 		case 'global':
@@ -67,7 +70,14 @@
 		foreach ($db->fieldNames() as $name) {
 			$content=$db->myreal_escape_string($_REQUEST[$name]);
 			if(isset($_REQUEST[$name])) {
+				eval("\$value=\$db->get".$name."();");					
 				eval("\$db->set".$name."(\$content);");	
+				if ($_REQUEST[$name]<>$value) {
+					$au->getRow($db->getOwnerID());
+					$message=$au->getAuthUserRealName().", Rules type: ".$_REQUEST['rulesType'].", ".$name.": ".$value." -> ".$_REQUEST[$name];
+					mail_html('office@jamtransfer.com', 'cms@jamtransfer.com', 'JamTransfer', 'office@jamtransfer.com',  
+						"Price rules change", $message);						
+				}	
 			}	
 		}
 		if (isset($_REQUEST['ID']) && $_REQUEST['ID']>0) $db->saveRow();

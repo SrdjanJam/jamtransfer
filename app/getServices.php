@@ -45,6 +45,9 @@ if($pass) {
 	// Izlazni podaci koje koriste skripte za display 
 	$cars = array(); // podaci o vozilima
 	$drivers = array(); // podaci o vozacima
+	// Ovde ide blok za ispitivanje konverzije prema top ruti
+	$ConFaktor=1;
+
 	# check if such route exists
 	$routesKeys = $r->getKeysBy('RouteID','asc',"WHERE (FromID = {$FromID} AND ToID = {$ToID}) OR (FromID = {$ToID} AND ToID = {$FromID})");
 	if(count($routesKeys) > 0) {
@@ -55,6 +58,7 @@ if($pass) {
         $driverRouteKeys = $dr->getKeysBy('OwnerID', "ASC", $drWhere);
         if (count($driverRouteKeys) > 0) {
             foreach($driverRouteKeys as $dri => $rowId) {
+
                 if($dr->getRow($rowId)===false) continue;
                 if($dr->getFromID() == $FromID  and $dr->getOneToTwo() == '0') continue;
                 if($dr->getFromID() == $ToID  and $dr->getTwoToOne() == '0') continue;
@@ -67,7 +71,6 @@ if($pass) {
 
                 $Driver = $au->getAuthUserName();
                 $DriverCompany = $au->getAuthUserCompany();
-		
                 $serviceKeys = $s->getKeysBy("ServiceID", "ASC", "WHERE RouteID = {$id} AND OwnerID = {$OwnerID} AND Active = '1'");
                 if(count($serviceKeys) > 0) { 
                     foreach($serviceKeys as $si => $sId) {
@@ -83,12 +86,28 @@ if($pass) {
                         $vt->getRow($VehicleTypeID);
                         $VehicleClass   = $vt->getVehicleClass();
                         $VehicleDescription = getVehicleDescription( $v->getVehicleTypeID() ); // do 2017-11-23 je bilo $vt->getDescription(); -R
-
                             $SurCategory    = $s->getSurCategory();
                             $DRSurCategory  = $dr->getSurCategory();
                             $VSurCategory   = $v->getSurCategory();
+							// vozaceva osnovna cijena za jedan smjer
+							$DriversPrice = $s->ServicePrice1;
+							// dodavanje provizije na osnovnu cenu
+							// sistem provizije po rangovima
+							$CalculatedPrice= calculateBasePrice($DriversPrice, $s->OwnerID, $VehicleClass);
+							// sistem provizije po formuli
+							//$notformula=false;
+							// ako nema provizija po rangovima onda se ide po formuli
+							if ($CalculatedPrice==$DriversPrice) $CalculatedPrice=calculateFormulaBasePrice($DriversPrice);
+							// ako je naknadna provizija po rangovima onda se vracamo na vozacku cenu
+							//if (true) $CalculatedPrice=calculateFormulaBasePrice($DriversPrice);
+							/*else {
+								// ako ima provizija po rangovima uzima se vozacka cena pa se na nju dodaju dodaci
+								//na kraju se racuna provizija
+								$CalculatedPrice=$DriversPrice;
+								$notformula=true;
+							}*/	
                             $sur = array();
-                            $sur = Surcharges($OwnerID, $SurCategory, $s->getServicePrice1(),
+                            $sur = Surcharges($s->OwnerID, $SurCategory, $CalculatedPrice,
                                               $transferDate, $transferTime,
                                               $returnDate, $returnTime,
                                               $dr->getID(), $VehicleID, $ServiceID,
@@ -112,26 +131,25 @@ if($pass) {
                                             $sur['S9Price'] +
                                             $sur['S10Price'] +
                                             $sur['NightPrice'];
-                            if($returnTransfer==1) {
-                                $DriversPrice = $s->getServicePrice1();
-								$DiscountPrice = $DriversPrice - ($DriversPrice * $ReturnDiscount / 100);
-                                $DriversPrice = $DriversPrice + $DiscountPrice + $addToPrice;
-                                $specialDatesPrice = calculateSpecialDates($OwnerID,$DriversPrice/2,$transferDate, $transferTime, $returnDate, $returnTime);
-                                $DriversPrice = $DriversPrice + $specialDatesPrice;
-                                $OneWayPrice = ($DriversPrice) / 2;
-                                $OneWayPrice = calculateBasePrice($OneWayPrice, $s->getOwnerID(), $VehicleClass);
-                                $FinalPrice = calculateBasePrice($DriversPrice, $s->getOwnerID(), $VehicleClass);
-								$FinalPrice = nf( round($FinalPrice/2,2) )*2;
-                            }
-                            else {
-                                $DriversPrice = $s->getServicePrice1();
-                                $DriversPrice = $DriversPrice + $addToPrice;	
-                                $specialDatesPrice = calculateSpecialDates($OwnerID,$DriversPrice,$transferDate, $transferTime);
+							// dodavanje dodataka na cenu sa provizijom
+							$FinalPrice = $CalculatedPrice+ $addToPrice;
+							// racunanje dodatka za Special Dates	
+							if ($returnTransfer) $specialDatesPrice = calculateSpecialDates($s->OwnerID, $FinalPrice/2, $transferDate, $transferTime, $returnDate, $returnTime);
+							else $specialDatesPrice = calculateSpecialDates($s->OwnerID, $FinalPrice, $transferDate, $transferTime, $returnDate, $returnTime);
+							// dodavanje dodataka za Special Dates
+							$FinalPrice = $FinalPrice + $specialDatesPrice;
+							// ako je provizija po rangu onda se ovde dodaje
+							//if ($notformula) $FinalPrice= calculateBasePrice($FinalPrice, $service->OwnerID, $VehicleClass);				
+							// mnozenje konverzacionim faktorom Top rute
+							$FinalPrice = nf($FinalPrice*$ConFaktor, 2);
+							if ($returnTransfer) {
+								// cena po smeru
+								$OneWayPrice = $FinalPrice / 2;
+								// zaokruzena finalna cena kada je return transfer
+								$FinalPrice = nf(round($FinalPrice / 2, 2)) * 2;
+							}	
+							else $OneWayPrice = $FinalPrice;
 
-                                $DriversPrice = $DriversPrice + $specialDatesPrice;
-                                $OneWayPrice = calculateBasePrice($DriversPrice, $s->getOwnerID(), $VehicleClass);
-                                $FinalPrice = $OneWayPrice;
-                            }
                             // zaokruzenje cijena
                             $FinalPrice = nf( round($FinalPrice,2) );
 
@@ -178,7 +196,12 @@ function calculateBasePrice($price, $ownerid) {
 		}
 		return '0';	
 }
-
+function calculateFormulaBasePrice($price) {
+	$priceCalc= 25.5-$price*0.0125+$price*$price*0.00000242;
+	if ($priceCalc<10) $priceCalc=10;
+	if ($price<40) $priceCalc=1000/$price;
+	return $price+($price*$priceCalc/100);		
+}
 function isVehicleOffDuty($vehicleID, $transferDate, $transferTime) {
     $cnt = 0;
     require_once $_SERVER['DOCUMENT_ROOT'] . '/db/db.class.php';

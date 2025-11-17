@@ -43,6 +43,16 @@
 						<input type="hidden" name="PlaceNameSEO" id="PlaceNameSEO{{TerminalID}}" class="w00" value="{{PlaceNameSEO}}">
 					</div>
 				</div>
+				<br>				
+				<!-- LAST CHANGE -->
+				<div class="row">
+					<div class="col-md-3">
+						<label for="LastChange"><?=LASTCHANGE;?></label>
+					</div>
+					<div class="col-md-9">
+						<input type="text" name="LastChange" id="LastChange{{TerminalID}}" class="w75 datepicker" value="{{LastChange}}">
+					</div>
+				</div>
 				<br>
 				<!-- MP: -->
 				<div class="row">
@@ -98,7 +108,10 @@
 					</div>
 					<div class="col-md-9">
 						{{#if HtmlExist}}
-							<a target="_blank" href="https://wis.jamtransfer.com/site_terminals/{{PlaceNameSEO}}.html"><?=EXTERNAL;?> HTML</a><br>
+							<a target="_blank" href="https://wis.jamtransfer.com/site_terminals/{{PlaceNameSEO}}.html">HTML</a>
+						{{/if}}						
+						{{#if FaqExist}}
+							<a target="_blank" href="https://wis.jamtransfer.com/faq/{{PlaceNameSEO}}.html">FAQ</a><br>
 						{{/if}}
 						{{{des_arr.en}}}
 						<!--<textarea name="des"  style="resize:none;width:100%;min-height:200px;">{{des_arr.en}}</textarea>!-->
@@ -131,6 +144,15 @@
 							</div>	
 						</div>
 					{{/each}}
+				</div>
+				<div>
+					<a target='_blank' href='https://wis.jamtransfer.com/plugins/Terminals/RouteDescriptionSaver.php?PlaceID={{TerminalID}}&main=1'>
+						Main Routes Description Saver
+					</a>					
+					
+					<a target='_blank' href='https://wis.jamtransfer.com/plugins/Terminals/RouteDescriptionSaver.php?PlaceID={{TerminalID}}&main=0'>
+						Top Routes Description Saver
+					</a>
 				</div>
 				<div class="row" id="faq{{TerminalID}}">
 				
@@ -194,7 +216,7 @@ $
 				success: function(data) {
 					var klasa = $(data).attr('class');
 					//toastr[klasa](data);
-					$('#faq'+id).html(data);
+					$('#LastChange'+id).val(data);
 				}						
 			})
 			
