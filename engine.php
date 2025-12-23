@@ -15,6 +15,7 @@ $includeFileTpl='index.tpl';
 $orderid=0;
 $detailid=0;
 $RouteID=0;
+$PlaceID=0;
 $VehicleTypeID=0;
 $VehicleID=0;
 $item=0;
@@ -161,6 +162,7 @@ if ($result->num_rows>0) {
 	$smarty->assign('orderid',$orderid);
 	$smarty->assign('detailid',$detailid);
 	$smarty->assign('RouteID',$RouteID);
+	$smarty->assign('PlaceID',$PlaceID);
 	$smarty->assign('VehicleTypeID',$VehicleTypeID);
 	$smarty->assign('VehicleID',$VehicleID);
 	$smarty->assign('SubDriverID',$SubDriverID);

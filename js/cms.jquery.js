@@ -462,6 +462,27 @@ return new Handlebars.SafeString(userLevelsDropdown());
 
 });
 
+Handlebars.registerHelper("inputLevelSelect", function(currentLevel) {
+	function inputLevelsDropdown() {
+		var userLevelsSelect = '<select name="InputLevelID" id="InputLevelID"><option value="0"> --- </option>';
+
+		$.each (userLevels, function(i, val) {
+			userLevelsSelect += '<option value="'+i+'" ';
+			if (i == currentLevel) {
+				userLevelsSelect += 'selected="selected" ';
+			}
+			userLevelsSelect += '>' + val + '</option>';
+		});
+
+		userLevelsSelect += '</select>';
+
+		return  userLevelsSelect;
+	}
+
+return new Handlebars.SafeString(inputLevelsDropdown());
+
+});
+
 /*
 Prikaz AuthLevelID polja kao checkbox
 uzima podatke iz userLevels objekta u lng/en_init.js!
@@ -1209,7 +1230,51 @@ Handlebars.registerHelper("userSelect", function(id,levelId,field) {
 
 });
 
+/*
+Prikaz Customers kao dropdown
+*/
 
+Handlebars.registerHelper("customerSelect", function(id,field) {
+	function customerSelectDropdown() {
+
+		var url = 'api/getCustomers.php?callback=';
+		
+		console.log(url);
+		var selector = "<select class=\"w100\" name=\""+field+"\" id=\""+field+"\">";
+
+		selector += '<option value="0"> --- </option>';
+
+		$.ajax({
+			type: 'POST',
+			url: url,
+			async: false,
+			contentType: "application/json",
+			dataType: 'jsonp',
+			error: function(data) {
+				alert("Error getting customers");
+			},
+			success: function(data) {
+				$.each(data, function(i,val) {
+					selector += '<option value="' + val.CustID + '" ';
+					selector += 'data-mob="'+val.CustMobile +'" ';
+					selector += 'data-email="'+val.CustEmail +'" ';
+					if (val.CustID == id) {
+						selector += ' selected="selected" ';
+					}
+					selector += '>' + val.CustFirstName + ' ' + val.CustLastName ;
+					selector += '</option>';
+				});
+
+				selector += '</select>';
+			}
+		});
+
+		return selector;
+	}
+
+	return new Handlebars.SafeString(customerSelectDropdown());
+
+});
 
 
 /*
@@ -2345,6 +2410,7 @@ function sendUpdateEmail(mailTo, mailFrom, fromName, subject, message, profile, 
 			dataType: 'jsonp',
 			success: function(data) {
 				$responseButton.children("div").html(data);
+				toastr['success'](window.success);	
 			}
 		});
 	}

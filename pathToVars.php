@@ -39,14 +39,24 @@ switch ($activePage) {
 		break;		
 		
 	case 'routes':
-	case 'locations':
-		if ($pathVars->fetchByIndex($indexStart + 1)=="NT") $ActionID="NT";	
+		if ($pathVars->fetchByIndex($indexStart + 1)) {
+			if ($pathVars->fetchByIndex($indexStart + 1)=="NT") $ActionID="NT";	
+			else $RouteID=$pathVars->fetchByIndex($indexStart + 1);
+		}	
 		break;		
 		
+	case 'locations':
+		if ($pathVars->fetchByIndex($indexStart + 1)) {
+			if ($pathVars->fetchByIndex($indexStart + 1)=="NT") $ActionID="NT";	 
+			else $PlaceID=$pathVars->fetchByIndex($indexStart + 1);
+		}	
+		break;	
+		
 	case 'users':
-		if ($pathVars->fetchByIndex($indexStart + 1))
+		if ($pathVars->fetchByIndex($indexStart + 1)) {
 			if ($pathVars->fetchByIndex($indexStart + 1)=="NT") $ActionID="NT";	
 			else $UserID=$pathVars->fetchByIndex($indexStart + 1);
+		}	
 		break;		
 		
 	case 'driverReOrder':
@@ -290,7 +300,7 @@ switch ($activePage) {
 				$item=$pathVars->fetchByIndex($indexStart + 2);
 				// ovde ubaciti program koji vrsi konekciju master i driver tabela	
 				require ROOT."/plugins/makeDriverConnection.php";
-			}			
+			}
 		}	
 }
 

@@ -87,8 +87,8 @@
 					<div class="col-md-9">
 						<input type="hidden" name="FromID" id="FromID" value="{{FromID}}">
 						<input type="hidden" name="ToID" id="ToID" value="{{ToID}}">					
-						<a target="_blank" href="plugins/getRouteMap.php?RouteID={{RouteID}}">{{RouteName}}</a>
-						{{Lng1}},{{Lat1}} - {{Lng2}},{{Lat2}}
+						<a target="_blank" href="locations/{{FromID}}">{{PickUP}}</a> - <a target="_blank" href="locations/{{ToID}}">{{Drop}}</a> {{Lng1}},{{Lat1}} - {{Lng2}},{{Lat2}}
+						<a target="_blank" href="plugins/getRouteMap.php?RouteID={{RouteID}}">MAP</a>						
 					</div>
 				</div>				
 				<? }?>
@@ -151,7 +151,7 @@
 							<label for="Line"><?=LINE;?></label>
 						</div>
 						<div class="col-md-9">
-							<textarea name="Line" id="Line" class="w100">{{Line}}</textarea>
+							<textarea name="Line" id="Line" class="w100">{{Line}}</textarea>{{Error}}
 						</div>
 					</div>					
 					<div class="row">
@@ -278,11 +278,12 @@
 			var lng=$("#Lng").val();	
 			var lat=$("#Lat").val();	
 			var km=$("#Km").val();		
-			if (km<20) scale=12;
-			else if (km<50) scale=11;
-			else if (km<100) scale=10;
-			else if (km<200) scale=9;
-			else scale=8;
+			if (km<20) scale=11;
+			else if (km<50) scale=10;
+			else if (km<100) scale=9;
+			else if (km<200) scale=8;
+			else if (km<400) scale=7;
+			else scale=6;
 			$("#map").width(500);
 			$("#map").height(350);
 			var map = L.map('map').setView([lat,lng], scale);

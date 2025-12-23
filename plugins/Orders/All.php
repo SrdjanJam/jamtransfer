@@ -15,7 +15,7 @@ if (isset($type)) {
 }
 if (isset($type2)) {
 	if (!isset($_REQUEST['Type2']) or $_REQUEST['Type2'] == 0 or $_REQUEST['Type2'] == 99) {
-		$filter .= "  AND ".$type2." != 0 ";
+		//$filter .= "  AND ".$type2." != 0 ";
 	}
 	else {
 		if ($_REQUEST['Type2']==7) $Type2=2;
@@ -161,21 +161,23 @@ $filter .= " AND TransferStatus not in (9) ";
 
 if(!isset($_REQUEST['page'])) $_REQUEST['page']="";
 if(!isset($_REQUEST['length'])) $_REQUEST['length']="";
-if(!isset($_REQUEST['orderFromDate']) || empty($_REQUEST['orderFromDate'])) {
-	if(isset($_COOKIE['orderFromDateC'])) $_REQUEST['orderFromDate']=$_COOKIE['orderFromDateC'];
-	else $_REQUEST['orderFromDate']=date('Y-m-d',time()-365*24*3600);
-}	
-if(!isset($_REQUEST['pickupFromDate']) || empty($_REQUEST['pickupFromDate'])) { 
-	if(isset($_COOKIE['pickupFromDateC'])) $_REQUEST['pickupFromDate']=$_COOKIE['pickupFromDateC'];
-	else $_REQUEST['pickupFromDate']=date('Y-m-d',time()-365*24*3600);
-}
-if(!isset($_REQUEST['orderToDate']) || empty($_REQUEST['orderToDate'])) {
-	if(isset($_COOKIE['orderToDateC'])) $_REQUEST['orderToDate']=$_COOKIE['orderToDateC'];
-	else $_REQUEST['orderToDate']=date('Y-m-d',time());
-}	
-if(!isset($_REQUEST['pickupToDate']) || empty($_REQUEST['pickupToDate'])) { 
-	if(isset($_COOKIE['pickupToDateC'])) $_REQUEST['pickupToDate']=$_COOKIE['pickupToDateC'];
-	else $_REQUEST['pickupToDate']=date('Y-m-d',time()+365*24*3600);
+if ((!isset($_REQUEST['orderid']) || $_REQUEST['orderid']==0) && (!isset($_REQUEST['detailid']) || $_REQUEST['detailid']==0)) {
+	if(!isset($_REQUEST['orderFromDate']) || empty($_REQUEST['orderFromDate'])) {
+		if(isset($_COOKIE['orderFromDateC'])) $_REQUEST['orderFromDate']=$_COOKIE['orderFromDateC'];
+		else $_REQUEST['orderFromDate']=date('Y-m-d',time()-365*24*3600);
+	}
+	if(!isset($_REQUEST['orderToDate']) || empty($_REQUEST['orderToDate'])) {
+		if(isset($_COOKIE['orderToDateC'])) $_REQUEST['orderToDate']=$_COOKIE['orderToDateC'];
+		else $_REQUEST['orderToDate']=date('Y-m-d',time());
+	}	
+	if(!isset($_REQUEST['pickupFromDate']) || empty($_REQUEST['pickupFromDate'])) { 
+		if(isset($_COOKIE['pickupFromDateC'])) $_REQUEST['pickupFromDate']=$_COOKIE['pickupFromDateC'];
+		else $_REQUEST['pickupFromDate']=date('Y-m-d',time()-365*24*3600);
+	}	
+	if(!isset($_REQUEST['pickupToDate']) || empty($_REQUEST['pickupToDate'])) { 
+		if(isset($_COOKIE['pickupToDateC'])) $_REQUEST['pickupToDate']=$_COOKIE['pickupToDateC'];
+		else $_REQUEST['pickupToDate']=date('Y-m-d',time()+365*24*3600);
+	}
 }
 if(!isset($_REQUEST['paymentNumber'])) $_REQUEST['paymentNumber']="";
 if(!isset($_REQUEST['order'])) $_REQUEST['order']="";
@@ -495,7 +497,6 @@ if ($_REQUEST["action"]<>"null" && $_REQUEST["action"]<>"0") {
 		$dbWhere .= " AND DetailsID in (".$list_tl.")";
 	}
 }
-	
 $odTotalRecords = $od->getFullOrderByDetailsID($sortField, $sortDirection, '' , $dbWhere);
 
 if (isset($_REQUEST["reportBy"])) {
@@ -537,7 +538,7 @@ while ($result = $r->fetch_object()) {
 	else {
 		$row['LogUserID']=0;
 		$row['LogAction']=0;		
-		if ($_REQUEST["reportBy"]=="UserID") $row['Name']=$users[$result->Name]->AuthUserRealName."-".$users[$result->Name]->DriverID;
+		if ($_REQUEST["reportBy"]=="UserID" || $_REQUEST["reportBy"]=="AgentID") $row['Name']=$users[$result->Name]->AuthUserRealName."-".$users[$result->Name]->DriverID;
 		if ($_REQUEST["reportBy"]=="UserLevelID") $row['Name']=$levels_array[$result->Name];
 		if ($_REQUEST["reportBy"]=="PaymentMethod") $row['Name']=$PaymentMethod[$result->Name];
 		if ($_REQUEST["reportBy"]=="DriverConfStatus") $row['Name']=$DriverConfStatus[$result->Name];
@@ -718,10 +719,11 @@ if (count($dbk) != 0) {
 			$fs_link='https://www.flightstats.com/v2/flight-tracker/'.$cc.'/'.$fn.'?year='.$year.'&month='.$month.'&date='.$day;
 			$detailFlds['FsLink'] = $fs_link;
 		}		
-		
+		$detailFlds['AgentName']=$users[$od->getAgentID()]->AuthUserRealName;
+		$detailFlds['DetailPricePlus']=$od->getDetailPrice()+$od->getExtraCharge();
 		# get fields and values
 		$masterFlds = $om->fieldValues();
-		if ($longTerm==1) {
+		if ($longTerm==1 && $masterFlds['MCardNumber']>0) {
 			$sqlDP="SELECT count(*) as Broj, sum(`DriversPrice`) as DriversPriceOrig FROM `v4_OrderDetailsTemp` WHERE `OrderID`=(SELECT `MOrderID` FROM `v4_OrdersMasterTemp` WHERE `MOrderKey`='".$masterFlds['MCardNumber']."')";
 			$r = $dbT->RunQuery($sqlDP);
 			$result=$r->fetch_object();

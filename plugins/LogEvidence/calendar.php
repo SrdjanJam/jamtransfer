@@ -10,8 +10,10 @@ if ($_REQUEST["level_id"]==1 || isset($_SESSION['UseDriverID'])) {
 	$where=" WHERE `AuthLevelID` in (".$levelsT.") AND Active=1";
 	if (isset($_SESSION['UseDriverID'])) $where.=" AND DriverID=".$_SESSION['UseDriverID'];
 	require_once ROOT . '/db/v4_AuthUsers.class.php';
+	require_once ROOT . '/db/v4_Customers.class.php';
 	require_once ROOT . '/db/v4_AuthLevels.class.php';
 	$au = new v4_AuthUsers();
+	$cu = new v4_Customers();
 	$al = new v4_AuthLevels();
 	$alk=$al->getKeysBy('AuthLevelID','','');
 	foreach ($alk as $nn => $key) {
@@ -51,6 +53,7 @@ if ($_REQUEST["level_id"]==1 || isset($_SESSION['UseDriverID'])) {
 }	
 if ($_REQUEST["level_id"]==2) $levels=array(31);
 if ($_REQUEST["level_id"]==3) $levels=array(2);
+if ($_REQUEST["level_id"]==4) $levels=array(3);
 if (isset($_SESSION['UseDriverID'])) $levels=array(32);
 
 if (!isset($_REQUEST["cal_month"])) {
@@ -98,7 +101,10 @@ $active .=	"ORDER BY DateTime DESC";
 $rec = $db->RunQuery($active) ;
 $lg_arr=array();
 while ($row = $rec->fetch_assoc() ) {
-	if (in_array($users[$row['AuthUserID']]->AuthLevelID, $levels)) $lg_arr[]=$row;
+	if (in_array($users[$row['AuthUserID']]->AuthLevelID, $levels)) {
+		if ($row['CustomerID']==0) $lg_arr[]=$row; 
+		else $lg_arr[]=$row;
+	}	
 }
 $rec=$lg_arr;
 $timestamp = mktime(0,0,0,$cMonth,1,$cYear);
@@ -107,7 +113,7 @@ $thismonth = getdate ($timestamp);
 $startday = $thismonth['wday'];
 for ($i=0; $i<($maxday+$startday); $i++) {
 		$fullDate = date("Y-m-d",mktime(0,0,0,$cMonth,($i - $startday + 1),$cYear));
-		$month_logs[]=monthLogs($fullDate,$rec,$i,$startday,$users,$office_users,$oh);
+		$month_logs[]=monthLogs($fullDate,$rec,$i,$startday,$users,$office_users,$oh,$cu);
 }
 $smarty->assign('office_users',$office_users);
 $smarty->assign('office_shifts',$office_shifts);
@@ -116,11 +122,12 @@ $smarty->assign('month_logs',$month_logs);
 $smarty->assign('startday',$startday);
 $smarty->display('monthlogs.tpl');		
 
-function monthLogs($date,$rec,$count,$startday,$users,$office_users,$oh)
+function monthLogs($date,$rec,$count,$startday,$users,$office_users,$oh,$cu)
 {
 	global $StatusDescription;
 	global $DriverConfStatus;
 	global $db;
+	global $cu;
 
 	$data = '';
 	$noOfLogs = 0;
@@ -147,7 +154,14 @@ function monthLogs($date,$rec,$count,$startday,$users,$office_users,$oh)
 				$row['Time']=TimeofDT($row['DateTime']);
 				if (isLate($row['AuthUserID'],$row['Time'],$begin_arr)) $row['TimeColor']="text-danger";
 				else $row['TimeColor']="";
-				$row['User']=$users[$row['AuthUserID']]->AuthUserRealName;
+				if ($row['CustomerID']==0) $row['User']=$users[$row['AuthUserID']]->AuthUserRealName;
+				else {
+					require_once ROOT . '/db/v4_Customers.class.php';
+					$cu = new v4_Customers();
+
+					$cu->getRow($row['CustomerID']);
+					$row['User']=$cu->getCustFirstName()." ".$cu->getCustLastName();
+				}	
 				$row['TimeOff']="";
 				if ($row['Type']==6) $row['CMScolor']="text-muted";
 				else $row['CMScolor']="";
@@ -157,9 +171,16 @@ function monthLogs($date,$rec,$count,$startday,$users,$office_users,$oh)
 						if (isOnTime($row['AuthUserID'],$row['TimeOff'],$end_arr)) $row['TimeOffColor']="text-danger";
 					}
 				}
-				if (!in_array($row['AuthUserID'],$uid)) {
-					$arr[]= $row;
-					$uid[]=$row['AuthUserID'];
+				if ($row['CustomerID']==0) {
+					if (!in_array($row['AuthUserID'],$uid)) {
+						$arr[]= $row;
+						$uid[]=$row['AuthUserID'];
+					}	
+				} else {
+					if (!in_array($row['CustomerID'],$uid)) {
+						$arr[]= $row;
+						$uid[]=$row['CustomerID'];
+					}	
 				}	
 			}
 		}

@@ -293,7 +293,7 @@
 		$('#AgentIDeX').change(function() {
 			$('#AgentID').val($(this).val());
 		})			
-		$('.booked_by #AuthLevelID').change(function() {
+		$('.booked_by #InputLevelID').change(function() {
 			$('#UserLevelID').val($(this).val());
 			$('#UserIDeX option').hide();
 			//$('#AgentIDeX option').hide();
@@ -304,8 +304,12 @@
 			//$('#UserIDeX option').hide();
 			$('#AgentIDeX option').hide();
 			$('.booked_for *[data-levelid="'+$(this).val()+'"]').show();
+			if ($(this).val()==3) $('.customers').show();	
+			else $('.customers').hide();	
 		})	
 		$('document').ready(function() {
+			$('.customers').hide();
+			if ($('.booked_for #AuthLevelID').val()==3) $('.customers').show();	
 			$('#UserIDeX option').hide();
 			$('#AgentIDeX option').hide();			
 			$('*[data-levelid="'+$('#UserLevelID').val()+'"]').show();

@@ -122,7 +122,8 @@ require_once 'Initial.php';
 			$db->getRow($value);
 			$nearbylocation=array();
 			$distance=vincentyGreatCircleDistance($db->getLatitude(), $db->getLongitude(), $detailFlds["Latitude"], $detailFlds["Longitude"]);
-			if ($distance<222000 && $detailFlds["CountryNameEN"]==$db->getCountryNameEN()) {
+			//if ($distance<333000 && $detailFlds["CountryNameEN"]==$db->getCountryNameEN()) {
+			if ($distance<222000) {
 				$nearbylocation['PlaceID']=$db->getPlaceID();
 				$nearbylocation['FromID']=$detailFlds["PlaceID"];				
 				$result = $dbT->RunQuery("SELECT count(*) as cnt FROM v4_Routes WHERE 
@@ -156,7 +157,14 @@ function getLL($name,$layers,$country_prefix) {
 	$source2="geonames";
 	$text=str_replace(" ","%20",$name);
 	$url="https://api.openrouteservice.org/geocode/search?api_key=".$api_key."&start&layers=".$layers."&boundary.country=".$country_prefix."&sources=".$source1.",".$source2."&text=".$text;
-	$json = file_get_contents($url);   
+	//$json = file_get_contents($url); 
+	$ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); // Returns data as string instead of outputting it
+    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true); // Follows redirects automatically
+    curl_setopt($ch, CURLOPT_TIMEOUT, 10);          // Prevents the script from hanging 
+    $json = curl_exec($ch);
+	curl_close($ch);
 	$obj="";
 	$obj = json_decode($json,true);	
 	if ($obj) {

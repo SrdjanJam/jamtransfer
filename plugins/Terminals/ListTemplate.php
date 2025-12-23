@@ -7,6 +7,7 @@
 	
 	$smarty->assign('options',$arr_all);
 	$smarty->assign('selecttype',true);
+	$smarty->assign('visit_desc',true);
 	
 ?>
 <script type="text/x-handlebars-template" id="ItemListTemplate">
@@ -17,9 +18,13 @@
 			<?=TERMINAL_ID;?>
 		</div>
 
-		<div class="col-md-5">
+		<div class="col-md-4">
 			<?=PLACENAMEEN;?>
 			<?=COUNTRYNAMEEN;?>
+		</div>		
+		
+		<div class="col-md-4">
+			<?=VISITS;?>
 		</div>	
 			
 		<div class="col-md-2">
@@ -38,9 +43,13 @@
 					{{TerminalID}}
 				</div>
 
-				<div class="col-sm-5">
+				<div class="col-sm-4">
 					<strong>{{PlaceNameEN}}</strong> -
 					{{CountryNameEN}}
+				</div>				
+				
+				<div class="col-sm-4">
+					<strong>{{Visits}}</strong>
 				</div>
 
 			</div>

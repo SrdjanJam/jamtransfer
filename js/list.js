@@ -55,6 +55,8 @@
 		if (typeof sortDirection=='undefined') sortDirection='DESC';	
 		var routeID = $("#routeID").val();
 		if (typeof routeID=='undefined') routeID=0;	
+		var placeID = $("#placeID").val();
+		if (typeof placeID=='undefined') placeID=0;	
 		var customerID = $("#customerID").val();
 		if (typeof customerID=='undefined') customerID=0;	
 		var userID = $("#userID").val();
@@ -141,6 +143,7 @@
 		'&longTerm='+longTerm+
 		'&preOrder='+preOrder+
 		'&routeID='+routeID+
+		'&placeID='+placeID+
 		'&vehicleTypeID='+vehicleTypeID+
 		'&vehicleID='+vehicleID+
 		'&subdriverID='+subdriverID+

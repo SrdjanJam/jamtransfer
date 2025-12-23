@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="format-detection" content="telephone=no">
+    <title>JAM Transfer - Partnerska Ponuda za Turističke Agencije | Zima 2025/26</title>
+    <!--[if mso]>
+    <style type="text/css">
+        body, table, td {font-family: Arial, Helvetica, sans-serif !important;}
+    </style>
+    <![endif]-->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: #fff;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #0066cc 0%, #004c99 100%);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+        }
+        
+        .logo {
+            max-width: 200px;
+            height: auto;
+            margin-bottom: 20px;
+        }
+        
+        .header h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        
+        .header p {
+            font-size: 16px;
+            opacity: 0.95;
+        }
+        
+        .intro {
+            padding: 40px 20px;
+            text-align: center;
+            background-color: #f8f9fa;
+            border-bottom: 3px solid #0066cc;
+        }
+        
+        .intro h2 {
+            color: #0066cc;
+            margin-bottom: 15px;
+            font-size: 26px;
+        }
+        
+        .intro p {
+            font-size: 16px;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+        
+        .content {
+            padding: 20px;
+        }
+        
+        .airport-section {
+            margin-bottom: 50px;
+            background-color: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        
+        .airport-header {
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 20px;
+            border-left: 5px solid #0066cc;
+        }
+        
+        .airport-image {
+            width: 120px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-right: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+        }
+        
+        .airport-info {
+            flex: 1;
+        }
+        
+        .airport-info h3 {
+            color: #0066cc;
+            font-size: 22px;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        
+        .airport-info h3 a {
+            color: #0066cc;
+            text-decoration: none;
+        }
+        
+        .airport-info h3 a:hover {
+            color: #004c99;
+            text-decoration: underline;
+        }
+        
+        .flight-info {
+            background-color: #e3f2fd;
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 14px;
+            display: inline-block;
+            margin-top: 5px;
+        }
+        
+        .flight-info strong {
+            color: #0066cc;
+        }
+        
+        .destinations {
+            padding: 20px;
+        }
+        
+        .destination-item {
+            background-color: #fff;
+            border: 1px solid #e0e0e0;
+            padding: 15px;
+            margin-bottom: 12px;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            border-left: 3px solid #0066cc;
+        }
+        
+        .destination-item:hover {
+            box-shadow: 0 4px 12px rgba(0,102,204,0.15);
+            transform: translateX(5px);
+            border-left-color: #004c99;
+        }
+        
+        .destination-item h4 {
+            color: #0066cc;
+            margin-bottom: 8px;
+            font-size: 18px;
+            font-weight: 600;
+            padding-left: 20px;
+            position: relative;
+        }
+        
+        .destination-item h4::before {
+            content: "▸";
+            position: absolute;
+            left: 0;
+            color: #0066cc;
+            font-size: 16px;
+        }
+        
+        .destination-item h4 a {
+            color: #0066cc;
+            text-decoration: none;
+        }
+        
+        .destination-item h4 a:hover {
+            color: #004c99;
+            text-decoration: underline;
+        }
+        
+        .destination-details {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        .partner-benefits {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 50px 20px;
+            margin: 40px 0;
+        }
+        
+        .partner-benefits h2 {
+            color: #0066cc;
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 28px;
+            font-weight: 600;
+        }
+        
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        
+        .benefit {
+            background-color: #fff;
+            padding: 25px;
+            border-radius: 8px;
+            border-left: 4px solid #0066cc;
+            transition: all 0.3s ease;
+        }
+        
+        .benefit:hover {
+            box-shadow: 0 5px 15px rgba(0,102,204,0.2);
+            transform: translateY(-3px);
+        }
+        
+        .benefit h3 {
+            color: #0066cc;
+            font-size: 18px;
+            margin-bottom: 12px;
+            font-weight: 600;
+            padding-left: 20px;
+            position: relative;
+        }
+        
+        .benefit h3::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #0066cc;
+            font-size: 24px;
+            line-height: 18px;
+        }
+        
+        .benefit p {
+            font-size: 14px;
+            line-height: 1.7;
+            color: #555;
+        }
+        
+        .b2b-highlight {
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            color: white;
+            padding: 40px 20px;
+            margin: 30px 0;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(40,167,69,0.3);
+        }
+        
+        .b2b-highlight h3 {
+            font-size: 26px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        
+        .b2b-highlight ul {
+            list-style: none;
+            padding: 0;
+            max-width: 600px;
+            margin: 20px auto;
+        }
+        
+        .b2b-highlight ul li {
+            padding: 12px 0;
+            font-size: 16px;
+        }
+        
+        .b2b-highlight ul li::before {
+            content: "✓ ";
+            font-weight: bold;
+            margin-right: 10px;
+            font-size: 18px;
+        }
+        
+        .cta-section {
+            background: linear-gradient(135deg, #0066cc 0%, #004c99 100%);
+            color: white;
+            padding: 50px 20px;
+            text-align: center;
+        }
+        
+        .cta-section h2 {
+            font-size: 28px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background-color: #fff;
+            color: #0066cc;
+            padding: 15px 35px;
+            text-decoration: none;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: 600;
+            margin: 10px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+        
+        .cta-button:hover {
+            background-color: #f8f9fa;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+        }
+        
+        .footer {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            padding: 30px 20px;
+            text-align: center;
+        }
+        
+        .footer a {
+            color: #3498db;
+            text-decoration: none;
+        }
+        
+        .footer a:hover {
+            text-decoration: underline;
+        }
+        
+        @media (max-width: 768px) {
+            .airport-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .airport-image {
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+            
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <img src="https://wis.jamtransfer.com/i/logo.png" alt="JAM Transfer Logo" class="logo" style="display: block; max-width: 200px; height: auto; margin: 0 auto 20px auto;">
+            <h1>Ski Transfer Ponuda za Turističke Agencije</h1>
+            <p>Sezona 2025/26 - Povezivanje aerodroma sa najlepšim ski resortima Evrope</p>
+        </div>
+
+        <!-- Intro Section -->
+        <div class="intro">
+            <h2>Premium Airport Transfer Partner za Vašu Agenciju</h2>
+            <p>JAM Transfer nudi profesionalne taxi i shuttle usluge od svih glavnih evropskih aerodroma do ski destinacija. Svi naši transferi uključuju praćenje leta, meet&greet na terminalu, pomoć sa prtljagom i ski opremom. Idealno za agencije koje organizuju grupne ski pakete i individualna putovanja.</p>
+        </div>
+
+        <!-- B2B Highlight -->
+        <div class="b2b-highlight">
+            <h3>B2B Ponuda za Agencije</h3>
+            <ul>
+                <li>Partnerske provizije</li>
+                <li>Instant online rezervacije 24/7</li>
+                <li>Dedikovan account manager za vašu agenciju</li>
+                <li>Besplatno otkazivanje do 36h pre polaska</li>
+            </ul>
+        </div>
+
+        <!-- Content Section -->
+        <div class="content">
+            <h2 style="text-align: center; color: #0066cc; margin-bottom: 40px; font-size: 26px;">Aerodrom i Ski Destinacije</h2>
+
+            <!-- Geneva Airport -->
+            <div class="airport-section">
+                <div class="airport-header">
+                    <img src="https://wis.jamtransfer.com/i/website/destinations/geneva.webp" alt="Geneva Airport" class="airport-image" style="display: block; width: 120px; height: 80px; object-fit: cover; border-radius: 8px; margin-right: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.15);">
+                    <div class="airport-info">
+                        <h3><a href="https://jamtransfer.com/taxi-transfers-from-geneva+airport" target="_blank">Geneva Airport (GVA)</a></h3>
+                        <div class="flight-info">
+                            <strong>Aviokompanija:</strong> Air Serbia + easyJet (direktni letovi)
+                        </div>
+                    </div>
+                </div>
+                <div class="destinations">
+                    <div class="destination-item">
+                        <h4><a href="https://jamtransfer.com/taxi-transfers-from-geneva+airport-to-chamonix" target="_blank">Chamonix</a> - 1.5h</h4>
+                        <div class="destination-details">
+                            Najpoznatije skijalište u Alpima, podnožje Mont Blanca - idealno za napredne skijaše i ljubitelje off-piste
+                        </div>
+                    </div>
+                    <div class="destination-item">
+                        <h4><a href="https://jamtransfer.com/taxi-transfers-from-geneva+airport-to-les+gets" target="_blank">Les Gets</a> - 1.5h</h4>
+                        <div class="destination-details">
+                            Deo Portes du Soleil regiona (650km staza), porodično prijatno selo sa autentičnim francuskim šarmom
+                        </div>
+                    </div>
+                    <div class="destination-item">
+                        <h4><a href="https://jamtransfer.com/taxi-transfers-from-geneva+airport-to-morzine" target="_blank">Morzine</a> - 1.5h</h4>
+                        <div class="destination-details">
+                            Glavno mesto Portes du Soleil, tradicionalno selo sa odličnim après-ski ponudom
+                        </div>
+                    </div>
+                    <div class="destination-item">
+                        <h4><a href="https://jamtransfer.com/taxi-transfers-from-geneva+airport-to-avoriaz" target="_blank">Avoriaz</a> - 1.5h</h4>
+                        <div class="destination-details">
+                            Futuristički car-free resort na 1800m, omiljeno mesto snowboardera
+                        </div>
+                    </div>
+                    <div class="destination-item">
+                        <h4><a href="https://jamtransfer.com/taxi-transfers-from-geneva+airport-to-meribel" target="_blank">Méribel</a> - 2h</h4>
+                        <div class="destination-details">
+                            Srce Trois Vallées (najveći ski region na svetu - 600km staza)
+                        </div>
+                    </div>
+                    <div class="destination-item">
+                        <h4><a href="https://jamtransfer.com/taxi-transfers-from-geneva+airport-to-courchevel" target="_blank">Courchevel</a> - 2h</h4>
+                        <div class="destination-details">
+                            Najprestižniji francuski resort, 5-zvezdični hoteli i Michelin restorani
+                        </div>
+                    </div>
+                    <div class="destination-item">
+                        <h4><a href="https://jamtransfer.com/taxi-transfers-from-geneva+airport-to-val+thorens" target="_blank">Val Thorens</a> - 2.5h</h4>
+                        <div class="destination-details">
+                            Najviši evropski resort (2300m), garantovan sneg od novembra do maja
+                        </div>
+                    </div>
+                    <div class="destination-item">
+                        <h4><a href="https://jamtransfer.com/taxi-transfers-from-geneva+airport-to-val+d+isere" target="_blank">Val d'Isère</a> - 2.5h</h4>
+                        <div class="destination-details">
+                            Legendarno olimpijsko skijalište, deo Espace Killy regiona (300km)
+                        </div>
+                    </div>
+                    <div class="destination-item">
+                        <h4><a href="https://jamtransfer.com/taxi-transfers-from-geneva+airport-to-tignes" target="_blank">Tignes</a> - 2.5h</h4>
+                        <div class="destination-details">
+                            Deo Espace Killy, mogućnost skijanja preko celog leta na ledenjaku
+                        </div>
+                    </div>
+                    <div class="destination-item">
+                        <h4><a href="https://jamtransfer.com/taxi-transfers-from-geneva+airport-to-les+deux+alpes" target="_blank">Les Deux Alpes</a> - 2.5h</h4>
+                        <div class="destination-details">
+                            Moderni resort sa ledenjačkim skijanjem, popularan kod mladih
+                        </div>
+                    </div>
+                    <div class="destination-item">
+                        <h4><a href="https://jamtransfer.com/taxi-transfers-from-geneva+airport-to-alpe+d+huez" target="_blank">Alpe d'Huez</a> - 2.5h</h4>
+                        <div class="destination-details">
+                            "Ostrvo sunca" - 300 sunčanih dana godišnje, poznati po Tour de France usponu
+                        </div>
+                    </div>
+                    <div class="destination-item">
+                        <h4><a href="https://jamtransfer.com/taxi-transfers-from-geneva+airport-to-verbier" target="_blank">Verbier (Švajcarska)</a> - 2h</h4>
+                        <div class="destination-details">
+                            Prestižni švajcarski resort u 4 Valleys regionu, raj za napredne skijaše
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Zurich Airport -->
+            <div class="airport-section">
+                <div class="airport-header">
+                    <img src="https://wis.jamtransfer.com/i/website/destinations/zurich.webp" alt="Zurich Airport" class="airport-image" style="display: block; width: 120px; height: 80px; object-fit: cover; border-radius: 8px; margin-right: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.15);">
+                    <div class="airport-info">
+                        <h3><a href="https://jamtransfer.com/taxi-transfers-from-zurich+airport" target="_blank">Zurich Airport (ZRH)</a></h3>
+                        <div class="flight-info">
+                            <strong>Aviokompanija:</strong> Air Serbia, Swiss (direktni let)
+                        </div>
+                    </div>
+                </div>
+                <div class="destinations">
+                    <div class="destination-item">
+                        <h4><a href="https://jamtransfer.com/taxi-transfers-from-zurich+airport-to-davos" target="_blank">Davos</a> - 2h</h4>
+                        <div class="destination-details">
+                            Najveće švajcarsko skijalište po visini, domaćin World Economic Forum
+                        </div>
+                    </div>
+                    <div class="destination-item">
+                        <h4><a href="https://jamtransfer.com/taxi-transfers-from-zurich+airport-to-st+moritz" target="_blank">St. Moritz</a> - 3h</h4>
+                        <div class="destination-details">
+                            Najluksuzniji švajcarski resort, dva puta domaćin Zimskih olimpijskih igara
+                        </div>
+                    </div>
+                    <div class="destination-item">
+                        <h4><a href="https://jamtransfer.com/taxi-transfers-from-zurich+airport-to-arosa" target="_blank">Arosa</a> - 2.5h</h4>
+                        <div class="destination-details">
+                            Miran porodični resort, deo Arosa-Lenzerheide ski regiona
+                        </div>
+                    </div>
+                    <div class="destination-item">
+                        <h4><a href="https://jamtransfer.com/taxi-transfers-from-zurich+airport-to-flims" target="_blank">Flims-Laax</a> - 1.5-2h</h4>
+                        <div class="destination-details">
+                            Najveći švajcarski resort, raj za snowboardere sa legendaryim Freestyle parkom
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Milan Airports -->
+            <div class="airport-section">
+                <div class="airport-header">
+                    <img src="https://wis.jamtransfer.com/i/website/destinations/milan.webp" alt="Milan Airports" class="airport-image" style="display: block; width: 120px; height: 80px; object-fit: cover; border-radius: 8px; margin-right: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.15);">
+                    <div class="airport-info">
+                        <h3><a href="https://jamtransfer.com/taxi-transfers-from-milan+malpensa+airport" target="_blank">Milan Airports (Malpensa & Bergamo)</a></h3>
+                        <div class="flight-info">
+                            <strong>Aviokompanija:</strong> Air Serbia (Malpensa direktno), Wizz Air (Bergamo direktno)
+                        </div>
+                    </div>
+                </div>
+                <div class="destinations">
+                    <div class="destination-item">
+                        <h4><a href="https://jamtransfer.com/taxi-transfers-from-milan+malpensa+airport-to-bormio" target="_blank">Bormio</a> - 3h od Malpensa / 2.5h od Bergama</h4>
+                        <div class="destination-details">
+                            Poznato italijansko skijalište, Ski World Cup staze
+                        </div>
+                    </div>
+                    <div class="destination-item">
+                        <h4><a href="https://jamtransfer.com/taxi-transfers-from-milan+malpensa+airport-to-livigno" target="_blank">Livigno</a> - 3-3.5h od Malpensa / 2.5-3h od Bergama</h4>
+                        <div class="destination-details">
+                            Duty-free zona, odlične cene, duge sezone zbog visine (1800m)
+                        </div>
+                    </div>
+                    <div class="destination-item">
+                        <h4><a href="https://jamtransfer.com/taxi-transfers-from-milan+malpensa+airport-to-madonna+di+campiglio" target="_blank">Madonna di Campiglio</a> - 2.5h od oba</h4>
+                        <div class="destination-details">
+                            Elegantan italijanski resort u Dolomitima, omiljeno kod italijanske aristokratije
+                        </div>
+                    </div>
+                    <div class="destination-item">
+                        <h4><a href="https://jamtransfer.com/taxi-transfers-from-milan+malpensa+airport-to-cortina+d+ampezzo" target="_blank">Cortina d'Ampezzo</a> - 4h od Malpensa / 3.5h od Bergama</h4>
+                        <div class="destination-details">
+                            "Kraljica Dolomita", prestižno olimpijsko mesto, domaćin Zimskih OI 2026
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bergamo Airport - Dedicated Section -->
+            <div class="airport-section">
+                <div class="airport-header">
+                    <img src="https://wis.jamtransfer.com/i/website/destinations/bergamo.webp" alt="Bergamo Airport" class="airport-image" style="display: block; width: 120px; height: 80px; object-fit: cover; border-radius: 8px; margin-right: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.15);">
+                    <div class="airport-info">
+                        <h3><a href="https://jamtransfer.com/taxi-transfers-from-bergamo+airport" target="_blank">Bergamo Airport (BGY)</a></h3>
+                        <div class="flight-info">
+                            <strong>Aviokompanija:</strong> Wizz Air (direktni let)
+                        </div>
+                    </div>
+                </div>
+                <div class="destinations">
+                    <div class="destination-item">
+                        <h4><a href="https://jamtransfer.com/taxi-transfers-from-bergamo+airport-to-ponte+di+legno" target="_blank">Ponte di Legno</a> - 2h</h4>
+                        <div class="destination-details">
+                            Povezan sa Tonale, preko 100km staza, odličan odnos cene i kvaliteta
+                        </div>
+                    </div>
+                    <div class="destination-item">
+                        <h4><a href="https://jamtransfer.com/taxi-transfers-from-bergamo+airport-to-aprica" target="_blank">Aprica</a> - 1.5h</h4>
+                        <div class="destination-details">
+                            Porodično prijatan resort, dobre cene, blizu Bergama
+                        </div>
+                    </div>
+                    <div class="destination-item">
+                        <h4><a href="https://jamtransfer.com/taxi-transfers-from-bergamo+airport-to-bormio" target="_blank">Bormio</a> - 2.5h</h4>
+                        <div class="destination-details">
+                            Poznato italijansko skijalište sa Ski World Cup stazama
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Venice Airport -->
+            <div class="airport-section">
+                <div class="airport-header">
+                    <img src="https://wis.jamtransfer.com/i/website/destinations/venice.webp" alt="Venice Airport" class="airport-image" style="display: block; width: 120px; height: 80px; object-fit: cover; border-radius: 8px; margin-right: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.15);">
+                    <div class="airport-info">
+                        <h3><a href="https://jamtransfer.com/taxi-transfers-from-venice+airport" target="_blank">Venice Airport (VCE)</a></h3>
+                        <div class="flight-info">
+                            <strong>Aviokompanija:</strong> Air Serbia (direktni let)
+                        </div>
+                    </div>
+                </div>
+                <div class="destinations">
+                    <div class="destination-item">
+                        <h4><a href="https://jamtransfer.com/taxi-transfers-from-venice+airport-to-cortina+d+ampezzo" target="_blank">Cortina d'Ampezzo</a> - 2h</h4>
+                        <div class="destination-details">
+                            Legendarni resort u Dolomitima, domaćin Zimskih OI 2026
+                        </div>
+                    </div>
+                    <div class="destination-item">
+                        <h4><a href="https://jamtransfer.com/taxi-transfers-from-venice+airport-to-kronplatz" target="_blank">Kronplatz (Plan de Corones)</a> - 2.5h</h4>
+                        <div class="destination-details">
+                            Jedan od najboljih restorana na vrhovima u Alpima, muzeji na planini
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Salzburg Airport -->
+            <div class="airport-section">
+                <div class="airport-header">
+                    <img src="https://wis.jamtransfer.com/i/website/destinations/salzburg.webp" alt="Salzburg Airport" class="airport-image" style="display: block; width: 120px; height: 80px; object-fit: cover; border-radius: 8px; margin-right: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.15);">
+                    <div class="airport-info">
+                        <h3><a href="https://jamtransfer.com/taxi-transfers-from-salzburg+airport" target="_blank">Salzburg Airport (SZG)</a></h3>
+                        <div class="flight-info">
+                            <strong>Aviokompanija:</strong> Air Serbia (sezonski direktni letovi)
+                        </div>
+                    </div>
+                </div>
+                <div class="destinations">
+                    <div class="destination-item">
+                        <h4><a href="https://jamtransfer.com/taxi-transfers-from-salzburg+airport-to-zell+am+see" target="_blank">Zell am See</a> - 1h</h4>
+                        <div class="destination-details">
+                            Slikovito jezero i planina, deo Ski Amadé regiona (270km staza)
+                        </div>
+                    </div>
+                    <div class="destination-item">
+                        <h4><a href="https://jamtransfer.com/taxi-transfers-from-salzburg+airport-to-kaprun" target="_blank">Kaprun</a> - 1h</h4>
+                        <div class="destination-details">
+                            Pored Zell am See, ledenjačko skijanje od oktobra do maja
+                        </div>
+                    </div>
+                    <div class="destination-item">
+                        <h4><a href="https://jamtransfer.com/taxi-transfers-from-salzburg+airport-to-saalbach" target="_blank">Saalbach-Hinterglemm</a> - 1h</h4>
+                        <div class="destination-details">
+                            270km staza, legendaran après-ski, jedna od najboljih ski arewa u Austriji
+                        </div>
+                    </div>
+                    <div class="destination-item">
+                        <h4><a href="https://jamtransfer.com/taxi-transfers-from-salzburg+airport-to-bad+gastein" target="_blank">Bad Gastein</a> - 1.5h</h4>
+                        <div class="destination-details">
+                            Belle Époque arhitektura, termalni izvori, deo Ski Amadé
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ljubljana Airport -->
+            <div class="airport-section">
+                <div class="airport-header">
+                    <img src="https://wis.jamtransfer.com/i/website/destinations/ljubljana.webp" alt="Ljubljana Airport" class="airport-image" style="display: block; width: 120px; height: 80px; object-fit: cover; border-radius: 8px; margin-right: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.15);">
+                    <div class="airport-info">
+                        <h3><a href="https://jamtransfer.com/taxi-transfers-from-ljubljana+airport" target="_blank">Ljubljana Airport (LJU)</a></h3>
+                        <div class="flight-info">
+                            <strong>Aviokompanija:</strong> Air Serbia direktni letovi
+                        </div>
+                    </div>
+                </div>
+                <div class="destinations">
+                    <div class="destination-item">
+                        <h4><a href="https://jamtransfer.com/taxi-transfers-from-ljubljana+airport-to-kranjska+gora" target="_blank">Kranjska Gora</a> - 1h</h4>
+                        <div class="destination-details">
+                            Najpoznatije slovenačko skijalište, blizu italijanske granice
+                        </div>
+                    </div>
+                    <div class="destination-item">
+                        <h4><a href="https://jamtransfer.com/taxi-transfers-from-ljubljana+airport-to-bled" target="_blank">Vogel (Bled)</a> - 1h</h4>
+                        <div class="destination-details">
+                            Skijanje sa pogledom na čuveno jezero Bled
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Nice Airport -->
+            <div class="airport-section">
+                <div class="airport-header">
+                    <img src="https://wis.jamtransfer.com/i/website/destinations/nice.webp" alt="Nice Airport" class="airport-image" style="display: block; width: 120px; height: 80px; object-fit: cover; border-radius: 8px; margin-right: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.15);">
+                    <div class="airport-info">
+                        <h3><a href="https://jamtransfer.com/taxi-transfers-from-nice+airport" target="_blank">Nice Airport (NCE)</a></h3>
+                        <div class="flight-info">
+                            <strong>Aviokompanija:</strong> Air Serbia, Wizz Air
+                        </div>
+                    </div>
+                </div>
+                <div class="destinations">
+                    <div class="destination-item">
+                        <h4><a href="https://jamtransfer.com/taxi-transfers-from-nice+airport-to-isola+2000" target="_blank">Isola 2000</a> - 1.5h</h4>
+                        <div class="destination-details">
+                            Najbliže skijalište Azurnoj obali, mogućnost skijanja i plaže istog dana
+                        </div>
+                    </div>
+                    <div class="destination-item">
+                        <h4><a href="https://jamtransfer.com/taxi-transfers-from-nice+airport-to-auron" target="_blank">Auron</a> - 1.5h</h4>
+                        <div class="destination-details">
+                            Južnofrancuski šarm, dobri uslovi za skijanje
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Memmingen Airport -->
+            <div class="airport-section">
+                <div class="airport-header">
+                    <img src="https://wis.jamtransfer.com/i/website/destinations/memmingen.webp" alt="Memmingen Airport" class="airport-image" style="display: block; width: 120px; height: 80px; object-fit: cover; border-radius: 8px; margin-right: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.15);">
+                    <div class="airport-info">
+                        <h3><a href="https://jamtransfer.com/taxi-transfers-from-memmingen+airport" target="_blank">Memmingen Airport (FMM)</a></h3>
+                        <div class="flight-info">
+                            <strong>Aviokompanija:</strong> Wizz Air (direktni let)
+                        </div>
+                    </div>
+                </div>
+                <div class="destinations">
+                    <div class="destination-item">
+                        <h4><a href="https://jamtransfer.com/taxi-transfers-from-memmingen+airport-to-oberstdorf" target="_blank">Oberstdorf</a> - 1h</h4>
+                        <div class="destination-details">
+                            Najjužniji nemački ski resort, domaćin FIS Nordic World Ski Championships
+                        </div>
+                    </div>
+                    <div class="destination-item">
+                        <h4><a href="https://jamtransfer.com/taxi-transfers-from-memmingen+airport-to-ischgl" target="_blank">Ischgl (Austrija)</a> - 2h</h4>
+                        <div class="destination-details">
+                            "Ibiza Alpa" - legendarni après-ski i odlično skijanje
+                        </div>
+                    </div>
+                    <div class="destination-item">
+                        <h4><a href="https://jamtransfer.com/taxi-transfers-from-memmingen+airport-to-st+anton" target="_blank">St. Anton (Austrija)</a> - 2.5h</h4>
+                        <div class="destination-details">
+                            Rodno mesto alpskog skijanja, ekstremne off-piste staze
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Basel/Mulhouse Airport -->
+            <div class="airport-section">
+                <div class="airport-header">
+                    <img src="https://wis.jamtransfer.com/i/website/destinations/mulhouse_basel_freiburg.webp" alt="Basel/Mulhouse Airport" class="airport-image" style="display: block; width: 120px; height: 80px; object-fit: cover; border-radius: 8px; margin-right: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.15);">
+                    <div class="airport-info">
+                        <h3><a href="https://jamtransfer.com/taxi-transfers-from-basel+mulhouse+freiburg+airport" target="_blank">Basel/Mulhouse Airport (BSL/MLH)</a></h3>
+                        <div class="flight-info">
+                            <strong>Aviokompanija:</strong> Wizz Air (direktni let)
+                        </div>
+                    </div>
+                </div>
+                <div class="destinations">
+                    <div class="destination-item">
+                        <h4><a href="https://jamtransfer.com/taxi-transfers-from-basel+mulhouse+freiburg+airport-to-engelberg" target="_blank">Engelberg</a> - 2h</h4>
+                        <div class="destination-details">
+                            Švajcarski resort sa najvećom rotirućom žičarom, odličan off-piste
+                        </div>
+                    </div>
+                    <div class="destination-item">
+                        <h4><a href="https://jamtransfer.com/taxi-transfers-from-basel+mulhouse+freiburg+airport-to-verbier" target="_blank">Verbier</a> - 2.5h</h4>
+                        <div class="destination-details">
+                            Prestižni resort u 4 Valleys regionu
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sofia Airport -->
+            <div class="airport-section">
+                <div class="airport-header">
+                    <img src="https://wis.jamtransfer.com/i/website/destinations/sofia.webp" alt="Sofia Airport" class="airport-image" style="display: block; width: 120px; height: 80px; object-fit: cover; border-radius: 8px; margin-right: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.15);">
+                    <div class="airport-info">
+                        <h3><a href="https://jamtransfer.com/taxi-transfers-from-sofia+airport" target="_blank">Sofia Airport (SOF)</a></h3>
+                        <div class="flight-info">
+                            <strong>Aviokompanija:</strong> Air Serbia (direktni let)
+                        </div>
+                    </div>
+                </div>
+                <div class="destinations">
+                    <div class="destination-item">
+                        <h4><a href="https://jamtransfer.com/taxi-transfers-from-sofia+airport-to-borovets" target="_blank">Borovets</a> - 1.5h</h4>
+                        <div class="destination-details">
+                            Najstarije bugarsko skijalište u Rila planinama
+                        </div>
+                    </div>
+                    <div class="destination-item">
+                        <h4><a href="https://jamtransfer.com/taxi-transfers-from-sofia+airport-to-bansko" target="_blank">Bansko</a> - 2.5-3h</h4>
+                        <div class="destination-details">
+                            Najpoznatiji bugarski ski resort, domaćin svetskog kupa. Izuzetna vrednost za novac - 50-70% jeftinije od alpskih skijalista!
+                        </div>
+                    </div>
+                    <div class="destination-item">
+                        <h4><a href="https://jamtransfer.com/taxi-transfers-from-sofia+airport-to-pamporovo" target="_blank">Pamporovo</a> - 3-3.5h</h4>
+                        <div class="destination-details">
+                            "Sunčani resort" - najviše sunčanih dana u Bugarskoj
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Munich Airport -->
+            <div class="airport-section">
+                <div class="airport-header">
+                    <img src="https://wis.jamtransfer.com/i/website/destinations/munich.webp" alt="Munich Airport" class="airport-image" style="display: block; width: 120px; height: 80px; object-fit: cover; border-radius: 8px; margin-right: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.15);">
+                    <div class="airport-info">
+                        <h3><a href="https://jamtransfer.com/taxi-transfers-from-munich+airport" target="_blank">Munich Airport (MUC)</a></h3>
+                        <div class="flight-info">
+                            <strong>Aviokompanija:</strong> Lufthansa (direktni let)
+                        </div>
+                    </div>
+                </div>
+                <div class="destinations">
+                    <div class="destination-item">
+                        <h4><a href="https://jamtransfer.com/taxi-transfers-from-munich+airport-to-garmisch+partenkirchen" target="_blank">Garmisch-Partenkirchen</a> - 1.5h</h4>
+                        <div class="destination-details">
+                            Najviši vrh Nemačke, olimpijski ski resort
+                        </div>
+                    </div>
+                    <div class="destination-item">
+                        <h4><a href="https://jamtransfer.com/taxi-transfers-from-munich+airport-to-berchtesgaden" target="_blank">Berchtesgaden</a> - 2h</h4>
+                        <div class="destination-details">
+                            Spektakularna alpska scenografija u Bavarskim Alpima
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Barcelona Airport -->
+            <div class="airport-section">
+                <div class="airport-header">
+                    <img src="https://wis.jamtransfer.com/i/website/destinations/barcelona.webp" alt="Barcelona Airport" class="airport-image" style="display: block; width: 120px; height: 80px; object-fit: cover; border-radius: 8px; margin-right: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.15);">
+                    <div class="airport-info">
+                        <h3><a href="https://jamtransfer.com/taxi-transfers-from-barcelona+airport" target="_blank">Barcelona Airport (BCN)</a></h3>
+                        <div class="flight-info">
+                            <strong>Aviokompanija:</strong> Air Serbia + Wizz Air (direktni letovi)
+                        </div>
+                    </div>
+                </div>
+                <div class="destinations">
+                    <div class="destination-item">
+                        <h4><a href="https://jamtransfer.com/taxi-transfers-from-barcelona+airport-to-baqueira+beret" target="_blank">Baqueira-Beret</a> - 3-3.5h</h4>
+                        <div class="destination-details">
+                            Najprestižnije špansko skijalište, omiljen kod španske kraljevske porodice
+                        </div>
+                    </div>
+                    <div class="destination-item">
+                        <h4><a href="https://jamtransfer.com/taxi-transfers-from-barcelona+airport-to-la+molina" target="_blank">La Molina</a> - 2.5h</h4>
+                        <div class="destination-details">
+                            Najstarije špansko skijalište, porodično prijatno
+                        </div>
+                    </div>
+                    <div class="destination-item">
+                        <h4><a href="https://jamtransfer.com/taxi-transfers-from-barcelona+airport-to-masella" target="_blank">Masella</a> - 2.5h</h4>
+                        <div class="destination-details">
+                            Moderni resort pored La Moline, kombinovana ski karta dostupna
+                        </div>
+                    </div>
+                    <div class="destination-item">
+                        <h4><a href="https://jamtransfer.com/taxi-transfers-from-barcelona+airport-to-andorra" target="_blank">Andorra (Grandvalira)</a> - 2.5-3h</h4>
+                        <div class="destination-details">
+                            Duty-free zona, 210km staza, odličan odnos cene i kvaliteta
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Malaga Airport -->
+            <div class="airport-section">
+                <div class="airport-header">
+                    <img src="https://wis.jamtransfer.com/i/website/destinations/malaga.webp" alt="Malaga Airport" class="airport-image" style="display: block; width: 120px; height: 80px; object-fit: cover; border-radius: 8px; margin-right: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.15);">
+                    <div class="airport-info">
+                        <h3><a href="https://jamtransfer.com/taxi-transfers-from-malaga+airport" target="_blank">Malaga Airport (AGP)</a></h3>
+                        <div class="flight-info">
+                            <strong>Aviokompanija:</strong> Air Serbia (direktni let)
+                        </div>
+                    </div>
+                </div>
+                <div class="destinations">
+                    <div class="destination-item">
+                        <h4><a href="https://jamtransfer.com/taxi-transfers-from-malaga+airport-to-sierra+nevada" target="_blank">Sierra Nevada</a> - 1.5-2h</h4>
+                        <div class="destination-details">
+                            Najjužnije skijalište u Evropi, skijanje i plaža u jednom danu!
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Krakow Airport -->
+            <div class="airport-section">
+                <div class="airport-header">
+                    <img src="https://wis.jamtransfer.com/i/website/destinations/krakow.webp" alt="Krakow Airport" class="airport-image" style="display: block; width: 120px; height: 80px; object-fit: cover; border-radius: 8px; margin-right: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.15);">
+                    <div class="airport-info">
+                        <h3><a href="https://jamtransfer.com/taxi-transfers-from-krakow+airport" target="_blank">Krakow Airport (KRK)</a></h3>
+                        <div class="flight-info">
+                            <strong>Aviokompanija:</strong> Air Serbia (direktni let)
+                        </div>
+                    </div>
+                </div>
+                <div class="destinations">
+                    <div class="destination-item">
+                        <h4><a href="https://jamtransfer.com/taxi-transfers-from-krakow+airport-to-zakopane" target="_blank">Zakopane</a> - 2h</h4>
+                        <div class="destination-details">
+                            Poljska zimska prestonica u Tatra planinama
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Oslo Airport -->
+            <div class="airport-section">
+                <div class="airport-header">
+                    <img src="https://wis.jamtransfer.com/i/website/destinations/oslo.webp" alt="Oslo Airport" class="airport-image" style="display: block; width: 120px; height: 80px; object-fit: cover; border-radius: 8px; margin-right: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.15);">
+                    <div class="airport-info">
+                        <h3><a href="https://jamtransfer.com/taxi-transfers-from-oslo+airport" target="_blank">Oslo Airport (OSL)</a></h3>
+                        <div class="flight-info">
+                            <strong>Aviokompanija:</strong> Air Serbia + Norwegian (direktni letovi)
+                        </div>
+                    </div>
+                </div>
+                <div class="destinations">
+                    <div class="destination-item">
+                        <h4><a href="https://jamtransfer.com/taxi-transfers-from-oslo+airport-to-hemsedal" target="_blank">Hemsedal</a> - 3h</h4>
+                        <div class="destination-details">
+                            Skandinavski ski raj, najbolje skijanje u Norveškoj
+                        </div>
+                    </div>
+                    <div class="destination-item">
+                        <h4><a href="https://jamtransfer.com/taxi-transfers-from-oslo+airport-to-trysil" target="_blank">Trysil</a> - 2.5h</h4>
+                        <div class="destination-details">
+                            Najveće skijalište u Norveškoj, porodično prijatno
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Partner Benefits Section -->
+        <div class="partner-benefits">
+            <div class="content">
+                <h2>Prednosti Partnerstva za Vašu Agenciju</h2>
+                
+                <div class="benefits-grid">
+                    <div class="benefit">
+                        <h3>Dodatni Prihod od Provizije</h3>
+                        <p>Zaradite proviziju na svakom prodatom transferu. Transferi su prirodna dopuna vašoj ponudi avio karata i ski paketa, bez dodatnog operativnog posla za vas.</p>
+                    </div>
+
+                    <div class="benefit">
+                        <h3>Kompletna Usluga za Vaše Klijente</h3>
+                        <p>Ponudite vašim klijentima kompletno rešenje: avio kartu + smeštaj + airport transfer. Klijenti koji dobiju sve iz jedne ruke su zadovoljniji i loajalniji vašoj agenciji.</p>
+                    </div>
+
+                    <div class="benefit">
+                        <h3>Jednostavna Rezervacija</h3>
+                        <p>Online platforma za instant rezervacije sa trenutnom potvrdom. Kontaktirajte nas i dobićete pristupne podatke.</p>
+                    </div>                    
+					
+					<div class="benefit">
+                        <h3>Povezivanje platformi</h3>
+                        <p> Dostupna je API integracija i affiliate kod za Vaš sajt.</p>
+                    </div>
+
+                    <div class="benefit">
+                        <h3>Specijalizacija za Grupe</h3>
+                        <p>Naša vozila Standard 8 i Standard 15 su idealna za grupne ski aranžmane koje organizujete. Bolje cene po osobi za vaše grupne pakete.</p>
+                    </div>
+
+                    <div class="benefit">
+                        <h3>Premium Servis bez Brige</h3>
+                        <p>Profesionalni vozači, praćenje letova, pomoć sa prtljagom i ski opremom. Vaši klijenti će biti impresionirani kvalitetom usluge što povećava ugled vaše agencije.</p>
+                    </div>
+
+                    <div class="benefit">
+                        <h3>Transparentne Cene</h3>
+                        <p>Fiksne cene koje uključuju sve putarine i takse. Nema skrivenih troškova, nema iznenađenja. Znate tačno koliko možete naplatiti vašim klijentima.</p>
+                    </div>                    
+					
+					<div class="benefit">
+                        <h3>Dinarsko plaćanje</h3>
+                        <p>Uslugu plaćate u RSD. Nema troškova konverzije i bankarske provizije</p>
+                    </div>
+
+                    <div class="benefit">
+                        <h3>Fleksibilna Otkazivanja</h3>
+                        <p>Besplatno otkazivanje do 36 sati pre polaska. Ovo vam omogućava fleksibilnost u radu sa klijentima bez finansijskog rizika.</p>
+                    </div>
+
+                    <div class="benefit">
+                        <h3>Dedikovan Podrška Tim</h3>
+                        <p>Imaćete dedikovanog account menadžera za vašu agenciju. Brza komunikacija putem telefona, email-a ili WhatsApp-a. Rešavamo sve probleme brzo i efikasno.</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA Section -->
+        <div class="cta-section">
+            <h2>Postanite JAM Transfer Partner Danas!</h2>
+            <p style="font-size: 18px; margin: 20px 0;">Pridružite se mreži uspešnih turističkih agencija koje nude kompletnu uslugu svojim klijentima</p>
+            <a href="mailto:agent@jamtransfer.com" class="cta-button">agent@jamtransfer.com</a>
+            <a href="https://jamtransfer.com" class="cta-button" target="_blank">www.jamtransfer.com</a>
+            <p style="margin-top: 30px; font-size: 16px; line-height: 1.8;">
+                Radno vreme: 07:00 - 23:00 (pon-ned)
+            </p>            
+			<p style="margin-top: 30px; font-size: 16px; line-height: 1.8;">
+                Telefon: +381 11 624 2858<br>
+                Mobilni: +381 64 659 7200
+            </p>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <img src="https://jamtransfer.com/images/logo-white.png" alt="JAM Transfer" style="display: block; max-width: 150px; height: auto; margin: 0 auto 15px auto;">
+            <p><strong>JAM Transfer B2B Partnership Program</strong></p>
+            <p>Profesionalni airport taxi transferi za turističku industriju</p>
+            <p style="margin-top: 15px;"><a href="https://jamtransfer.com">www.jamtransfer.com</a></p>
+            <p style="margin-top: 10px;"><a href="mailto:agent@jamtransfer.com">info@jamtransfer.com</a></p>
+            <p style="margin-top: 25px; font-size: 12px; opacity: 0.8;">© 2006-2025 JAM Transfer. Sva prava zadržana.</p>
+        </div>
+    </div>
+</body>
+</html>

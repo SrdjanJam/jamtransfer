@@ -53,6 +53,8 @@ if (isset($_REQUEST['exclude']) && $_REQUEST['exclude']=="NT") {
 	$DB_Where .= " AND (Longitude=0 OR Latitude=0)";
 	$DB_Where .= " AND (`PlaceID` in (SELECT `FromID` FROM `v4_Routes`) OR `PlaceID` in (SELECT `ToID` FROM `v4_Routes` WHERE Approved=1))";
 }
+if (isset($_REQUEST['placeID']) && $_REQUEST['placeID']>0) $DB_Where .= " AND `PlaceID`=".$_REQUEST['placeID'] ;
+
 # dodavanje search parametra u qry
 # DB_Where sad ima sve potrebno za qry
 if ( $_REQUEST['Search'] != "" )

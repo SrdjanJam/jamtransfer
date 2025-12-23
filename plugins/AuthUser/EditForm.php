@@ -191,12 +191,12 @@
 								</div>
 							</div>							
 							
-							<div class="row sdadmindriver">
+							<!--<div class="row sdadmindriver">
 								<div class="col-md-3 "><label><?= DRIVER ?></label></div>
 								<div class="col-md-9">
 									{{userSelect DriverID "31" "DriverID"}}
 								</div>
-							</div>
+							</div>!--->
 							
 							<div class="row terminals">
 								<div class="col-md-3 "><label><?= TERMINAL ?> ids</label></div>
@@ -707,6 +707,29 @@
 								</div>
 							</div>
 							<? } ?>	
+							{{#compare AuthLevelID "==" '2'}}	
+							<div class="row">
+								<div class="col-md-3 "><label><?=TRANSFERS?></label></div>
+								<div class="col-md-9">
+									{{#each transfers}}
+										<a target="_blank" href="orders/detail/{{TransferID}}"
+											class="badge blue text-black mytooltip"
+											title="<b>{{TransferText}}</b>" 
+											data-content="
+												<br/><?=ORDER_DATE?>: {{OrderDate}}
+												<br/><?=PICKUP_DATE?>: {{PickupDate}}
+												<br/><?=FROM?>: {{PickupName}}
+												<br/><?=TO?>: {{DropName}}
+												<br/><?=PRICE?>: {{DetailPrice}}
+												<br/><?=TRANSFER_STATUS?>: {{StatusDescription}}
+											" 
+											>
+											{{TransferText}}
+										</a>
+									{{/each}}					
+								</div>
+							</div>	
+							{{/compare}}		
 						</div>
 					</div>
 					<? } ?>
@@ -750,7 +773,7 @@
 				$(".sdadmindriver").hide();
 			}	
 		})	
-		
+		$(".mytooltip").popover({trigger:'hover', html:true, placement:'bottom'});		
 		function ajaxFileUpload()
 		{
 			$("#loading")

@@ -7,12 +7,11 @@
     </div>!--->							
     <div class="row dagent booked_by">
         <div class="col-md-1 "><label><?= BOOKED_BY?></label></div>
-        <div class="col-md-2">{{userLevelSelect ""}}</div>		
+        <div class="col-md-2">{{inputLevelSelect ""}}</div>		
         <div class="col-md-9">
             <strong>{{userName details.UserID "AuthUserRealName"}}</strong>
             {{userSelect details.UserID "0" "UserIDeX"}}
             ({{details.UserID}})
-
         </div>
     </div>
     <div class="row dagent booked_for">	
@@ -21,17 +20,16 @@
         <div class="col-md-9">
 			<strong>{{userName details.AgentID "AuthUserCompany"}}</strong>
             {{userSelect details.AgentID "0" "AgentIDeX"}}
-            ({{details.AgentID}})
+            ({{details.AgentID}})		
         </div>					
 	</div>
-	<div class="row dagent">	
-		{{#compare details.CustomerID ">" "0"}}
+	<div class="row dagent customers">	
         <div class="col-md-1 "><label><?= CUSTOMER?></label></div>
         <div class="col-md-11">
+			{{customerSelect details.CustomerID "CustomerID"}}	
 			<strong>{{custName details.CustomerID "CustName"}}</strong>
             ({{details.CustomerID}})
         </div>					
-		{{/compare}}						
     </div>
     <input type="hidden" name="UserID" id="UserID" value="{{details.UserID}}">		
     <input type="hidden" name="AgentID" id="AgentID" value="{{details.AgentID}}">	

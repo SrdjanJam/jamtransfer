@@ -22,10 +22,11 @@ $om = new v4_OrdersMaster();
 $cs = new v4_Customers();
 
 //$today=date("Y-m-d");
-$today=date("Y-m-d", time()-600);
+$today=date("Y-m-d", time()-24*3600-600);
+$time=date("Y-m-d", time()-24*3600-600);
 $yearsago=date("Y-m-d", time()-365*24*3600);
 //$where=" WHERE (OrderDate='".$today."' or OrderDate='".$yearsago."') and UserLevelID in (3,12) and CustomerID>0";
-$where=" WHERE OrderDate='".$today."' and UserLevelID in (3,12)";
+$where=" WHERE OrderDate>'".$time."' and UserLevelID in (3,12)";
 $keys=$od->getKeysBy('OrderID', 'ASC', $where);
 $cids=array();
 foreach ($keys as $key) {
@@ -53,7 +54,7 @@ while ($k = $r->fetch_object()) {
 }	
 
 foreach ($cids as $cid) {
-	$sql  = "SELECT count(*) as cnt, sum(DetailPrice) as sum FROM `v4_OrderDetails` WHERE `OrderDate`>NOW() - INTERVAL 1 year and `TransferStatus` not in (3,9) and CustomerID=".$cid;
+	$sql  = "SELECT count(*) as cnt, sum(DetailPrice) as sum FROM `v4_OrderDetails` WHERE `OrderDate`>NOW() - INTERVAL 1 year and `TransferStatus` not in (3,6,9) and CustomerID=".$cid;
 	$r = $db->RunQuery($sql);
 	$k=$r->fetch_object();
 	$count=$k->cnt;
@@ -68,7 +69,9 @@ foreach ($cids as $cid) {
 	$discount=$arr_discount[$type-1];
 	if ($type<4) {
 		$nlc=$arr_count[$type]-$count;
+		if ($nlc<0) $nlc=0;
 		$nlv=$arr_value[$type]-$value;
+		if ($nlv<0) $nlv=0;
 	} else {
 		$nlc=0;
 		$nlv=0;
@@ -80,6 +83,7 @@ foreach ($cids as $cid) {
 	$cs->setNextLevelValue($nlv);
 	$cs->setDiscount($discount);
 	$cs->setLevelID($type);
+	$cs->setLastUpdate(date("Y-m-d"));
 	$cs->saveRow();
 }	
 

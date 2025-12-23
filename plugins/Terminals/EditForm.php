@@ -147,12 +147,22 @@
 				</div>
 				<div>
 					<a target='_blank' href='https://wis.jamtransfer.com/plugins/Terminals/RouteDescriptionSaver.php?PlaceID={{TerminalID}}&main=1'>
-						Main Routes Description Saver
+						Main <?= ROUTE_DESCRIPTION_SAVER;?>
 					</a>					
 					
 					<a target='_blank' href='https://wis.jamtransfer.com/plugins/Terminals/RouteDescriptionSaver.php?PlaceID={{TerminalID}}&main=0'>
-						Top Routes Description Saver
+						Top <?= ROUTE_DESCRIPTION_SAVER;?>
 					</a>
+				</div>				
+				<div>
+					<a target='_blank' href='https://wis.jamtransfer.com/plugins/Terminals/ServicesOnRoute.php?PlaceID={{TerminalID}}&main=1'>
+						<?= DRIVER_CHECKER;?>
+					</a>					
+				</div>				
+				<div>
+					<a target='_blank' href='https://wis.jamtransfer.com/plugins/Terminals/RouteChecker.php?PlaceID={{TerminalID}}'>
+						<?= ROUTE_CHECKER;?>
+					</a>					
 				</div>
 				<div class="row" id="faq{{TerminalID}}">
 				

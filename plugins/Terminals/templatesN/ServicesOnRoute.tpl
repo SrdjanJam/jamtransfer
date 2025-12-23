@@ -1,4 +1,4 @@
-<h2>Check Driver on Route</h2>
+<h2>{$DRIVER_CHECKER}</h2>
 <h1>{$terminalname}</h1>
 <table>
 	<tr>

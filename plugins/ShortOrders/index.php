@@ -367,6 +367,9 @@ foreach ($alk as $key) {
 }
 // uzimanje user-a
 $users_arr=array();
+$row2["UserID"]=0;
+$row2["CountryUserName"]="No Driver Selected";
+$drivers_arr[]=$row2;
 foreach ($users as $user) {
 	$row2=array();
 	if (!empty($user->AuthUserRealName)) {

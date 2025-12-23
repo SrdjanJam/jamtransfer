@@ -80,8 +80,11 @@ else if ($_REQUEST['Type']>0) {
 	else $DB_Where .= " AND RouteID not in (".$routes_arr.")";
 }	
 $date_start=date('Y-m-d',time()-482*24*3600);
+if (isset($_REQUEST['routeID'])) $DB_Where .= " AND RouteID=".$_REQUEST['routeID'];
 if (isset($_REQUEST['exclude']) && $_REQUEST['exclude']=="NT") {
-	$DB_Where .= " AND (RouteID not in (SELECT RouteID FROM v4_RoutesTerminals) OR LINE=']')";
+//$DB_Where .= " AND `ToID` in (SELECT PlaceID FROM `v4_Places` WHERE `PlaceType`=1) AND `FromID` not in (SELECT PlaceID FROM `v4_Places` WHERE `PlaceType`=1) ";
+$DB_Where .= " AND (RouteID not in (SELECT RouteID FROM v4_RoutesTerminals) OR LINE=']' OR LINE='[')";
+//$DB_Where .= " AND LINE='[' AND `RouteNameSE` like ('Request parameters exceed the server configuration limits. The approximated route distance must not be greater than 6000000.0 meters.')";
 }
 # dodavanje search parametra u qry
 # DB_Where sad ima sve potrebno za qry
@@ -107,6 +110,7 @@ if (count($dbk) != 0) {
     foreach ($dbk as $nn => $key)
     {
     	$db->getRow($key);
+		
 		// ako treba neki lookup, onda to ovdje
 		# get all fields and values
 		$detailFlds = $db->fieldValues();

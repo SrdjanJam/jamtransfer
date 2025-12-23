@@ -7,6 +7,7 @@
 	
 	$smarty->assign('options',$arr_all);
 	$smarty->assign('selecttype',true);	
+	$smarty->assign('visit_desc',true);
 ?>
 <script type="text/x-handlebars-template" id="ItemListTemplate">
 
@@ -24,7 +25,11 @@
 			<?=DESCRIPTION;?>
 		</div>
 
-		<div class="col-md-4">
+		<div class="col-md-2">
+			<?=VISITS;?>
+		</div>	
+		
+		<div class="col-md-2">
 			<?=MAIN;?>
 		</div>
 		
@@ -54,7 +59,11 @@
 					{{/if}}
 				</div>
 
-				<div class="col-sm-4">
+				<div class="col-sm-2">
+					<strong>{{Visits}}</strong>
+				</div>
+				
+				<div class="col-sm-2">
 					{{#compare Main ">" 0}}
 						<i class="fa fa-circle text-green"></i>
 					{{else}}

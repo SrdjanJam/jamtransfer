@@ -1,4 +1,5 @@
 <form id="headerform" action="" method="post">
+	<input type="hidden" name="orderid" value="{$smarty.request.orderid}">
 	<div class="row">	
 		<div class="col-md-2">
 			<span class="text-light-blue">

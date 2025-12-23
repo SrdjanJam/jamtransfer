@@ -31,6 +31,7 @@ value=" WHERE {$ItemID} > 0">
 <input type="hidden"  id="customerID" name="customerID" value="{$CustomerID}">
 <input type="hidden"  id="userID" name="userID" value="{$UserID}">
 <input type="hidden"  id="routeID" name="routeID" value="{$RouteID}">
+<input type="hidden"  id="placeID" name="placeID" value="{$PlaceID}">
 <input type="hidden"  id="vehicleTypeID" name="vehicleTypeID" value="{$VehicleTypeID}">
 <input type="hidden"  id="vehicleID" name="vehicleID" value="{$VehicleID}">
 <input type="hidden"  id="terminalID" name="terminalID" value="{$TerminalID}">
@@ -105,6 +106,8 @@ value=" WHERE {$ItemID} > 0">
 				<select name="sortOrder" id="sortOrder" onchange="allItems();" class="form-control control-edit">
 					<option value="ASC"> {$ASCENDING} </option>
 					<option value="DESC" {if $isDesc}SELECTED{/if}> {$DESCENDING} </option>
+					{if visit_desc}<option value="VISITS"> {$VISITS} DESC</option>{/if}
+					
 				</select>
 			</div>	
 		</div>	

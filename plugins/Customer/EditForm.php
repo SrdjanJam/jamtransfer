@@ -242,7 +242,17 @@
 					<div class="col-md-9">
 						{{#each transfers}}
 							<a target="_blank" href="orders/detail/{{TransferID}}"
-								class="badge blue text-black">
+								class="badge blue text-black mytooltip"
+								title="<b>{{TransferText}}</b>" 
+								data-content="
+									<br/><?=ORDER_DATE?>: {{OrderDate}}
+									<br/><?=PICKUP_DATE?>: {{PickupDate}}
+									<br/><?=FROM?>: {{PickupName}}
+									<br/><?=TO?>: {{DropName}}
+									<br/><?=PRICE?>: {{DetailPrice}}
+									<br/><?=TRANSFER_STATUS?>: {{StatusDescription}}
+								" 
+								>
 								{{TransferText}}
 							</a>
 						{{/each}}					
@@ -285,6 +295,8 @@
 			if ($(this).is(':checked')) $("#DefaultPassword").val("ON");
 			else  $("#DefaultPassword").val("OFF");
 		});
+		$(".mytooltip").popover({trigger:'hover', html:true, placement:'bottom'});
+</script>		
 	</script>
 </script>
 

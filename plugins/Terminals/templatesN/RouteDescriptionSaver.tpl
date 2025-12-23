@@ -1,4 +1,4 @@
-<h2>{if $smarty.request.main eq 1}Main{else}Top{/if} route Description Saver</h2>
+<h2>{if $smarty.request.main eq 1}Main{else}Top{/if} {$ROUTE_DESCRIPTION_SAVER}</h2>
 <h1>{$terminalname}</h1>
 <table>
 	<tr>

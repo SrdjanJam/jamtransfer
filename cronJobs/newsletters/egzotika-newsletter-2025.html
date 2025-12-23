@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JAM Transfer - Airport Taxi Transferi za Egzotične Destinacije</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .header {
+            text-align: center;
+            border-bottom: 3px solid #e74c3c;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            color: #e74c3c;
+            margin: 0;
+            font-size: 28px;
+        }
+        .header p {
+            color: #7f8c8d;
+            font-size: 16px;
+            margin: 10px 0 0 0;
+        }
+        .intro {
+            background-color: #ecf0f1;
+            padding: 20px;
+            border-left: 4px solid #3498db;
+            margin-bottom: 30px;
+        }
+        .section {
+            margin-bottom: 30px;
+        }
+        .section h2 {
+            color: #2c3e50;
+            border-bottom: 2px solid #e74c3c;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        .destination-group {
+            margin-bottom: 30px;
+        }
+        .destination-group h3 {
+            color: #e74c3c;
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+        .route-item {
+            background-color: #f8f9fa;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            border-left: 4px solid #3498db;
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+        .route-item img {
+            width: 150px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 5px;
+            flex-shrink: 0;
+        }
+        .route-content {
+            flex: 1;
+        }
+        .route-item h4 {
+            color: #2c3e50;
+            margin: 0 0 10px 0;
+            font-size: 18px;
+        }
+        .flight-info {
+            color: #7f8c8d;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+        .flight-info strong {
+            color: #e74c3c;
+        }
+        .route-link {
+            display: inline-block;
+            color: #3498db;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 8px;
+        }
+        .route-link:hover {
+            color: #e74c3c;
+        }
+        .benefits {
+            background-color: #e8f5e9;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 30px;
+        }
+        .benefits h3 {
+            color: #27ae60;
+            margin-top: 0;
+        }
+        .benefits ul {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+        .benefits li {
+            margin-bottom: 10px;
+        }
+        .highlight {
+            background-color: #fff3cd;
+            padding: 15px;
+            border-left: 4px solid #ffc107;
+            margin: 20px 0;
+        }
+        .cta {
+            background-color: #e74c3c;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 5px;
+            margin-top: 30px;
+        }
+        .cta h3 {
+            margin: 0 0 10px 0;
+        }
+        .cta a {
+            color: white;
+            text-decoration: underline;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px solid #ecf0f1;
+            color: #7f8c8d;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <!-- Header -->
+        <div class="header">
+            <img src="https://wis.jamtransfer.com/i/logo.png" alt="JAM Transfer Logo" class="logo" style="display: block; max-width: 200px; height: auto; margin: 0 auto 20px auto;">
+            <p>Profesionalne airport taxi i shuttle usluge</p>
+        </div>
+
+        <div class="intro">
+            <p><strong>Poštovani partneri,</strong></p>
+            <p>Sa zadovoljstvom Vam predstavljamo našu ponudu pouzdanih airport taxi transfera za najtraženije egzotične destinacije koje su dostupne iz Beograda sa jednim presedanjem u Istanbulu ili Dubaiju.</p>
+        </div>
+
+        <div class="section">
+            <h2>Zašto Airport Taxi Transfer?</h2>
+            <div class="benefits">
+                <h3>Prednosti za Vaše Klijente</h3>
+                <ul>
+                    <li><strong>Unapred Dogovorene Cene</strong> - Bez iznenađenja i pregovaranja sa lokalnim taksistima</li>
+                    <li><strong>Profesionalni Vozači</strong> - Licencirani vozači sa iskustvom u radu sa turistima</li>
+                    <li><strong>Direktan Transfer do Hotela</strong> - Od aerodroma direktno do ulaznih vrata smeštaja</li>
+                    <li><strong>Praćenje Leta</strong> - Transfer je prilagođen stvarnom vremenu sletanja</li>
+                    <li><strong>Meet & Greet Usluga</strong> - Vozač dočekuje goste sa tablom sa imenom</li>
+                    <li><strong>Fiksne Cene 24/7</strong> - Ista cena bez obzira na doba dana ili noći</li>
+                    <li><strong>Besplatna Otkazivanja</strong> - Fleksibilnost pri promenama planova</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="highlight">
+            <strong>Posebno važno za egzotične destinacije:</strong> Jezička barijera, nepoznato okruženje i potencijalni rizici pregovaranja sa lokalnim vozačima čine unapred rezervisan transfer najboljim rešenjem za bezbrižan početak i završetak odmora.
+        </div>
+
+        <div class="section">
+            <h2>Dostupne Destinacije iz Beograda</h2>
+
+            <div class="destination-group">
+                <h3>INDIJSKI OKEAN - Rajske Destinacije</h3>
+
+                <div class="route-item">
+                    <img src="https://wis.jamtransfer.com/i/website/destinations/mauritius.webp" alt="Mauritius">&nbsp;&nbsp;
+                    <div class="route-content">
+                        <h4>Mauricijus (Sir Seewoosagur Ramgoolam Airport)</h4>
+                        <div class="flight-info">
+                            <strong>Turkish Airlines</strong> via Istanbul (IST)<br>
+                            <strong>Emirates/Flydubai</strong> via Dubai (DXB)
+                        </div>
+                        <p>Najpopularnije rute: Port Louis, Grand Baie, Flic en Flac, Belle Mare</p>
+                        <a href="https://jamtransfer.com/taxi-transfers-from-mauritius+airport" class="route-link">Pogledajte sve transfere →</a>
+                    </div>
+                </div>
+
+                <div class="route-item">
+                    <img src="https://wis.jamtransfer.com/i/website/destinations/seychelles.webp" alt="Seychelles">&nbsp;&nbsp;
+                    <div class="route-content">
+                        <h4>Sejšeli Mahe (Seychelles International Airport)</h4>
+                        <div class="flight-info">
+                            <strong>Turkish Airlines</strong> via Istanbul (sezonski)<br>
+                            <strong>Emirates</strong> via Dubai
+                        </div>
+                        <p>Najpopularnije rute: Victoria, Beau Vallon, Anse Royale, Glacis</p>
+                        <a href="https://jamtransfer.com/taxi-transfers-from-seychelles+airport" class="route-link">Pogledajte sve transfere →</a>
+                    </div>
+                </div>
+
+                <div class="route-item">
+                    <img src="https://wis.jamtransfer.com/i/website/destinations/zanzibar.webp" alt="Zanzibar">&nbsp;&nbsp;
+                    <div class="route-content">
+                        <h4>Zanzibar (Abeid Amani Karume Airport)</h4>
+                        <div class="flight-info">
+                            <strong>Turkish Airlines</strong> via Istanbul<br>
+                            <strong>Flydubai</strong> via Dubai
+                        </div>
+                        <p>Najpopularnije rute: Stone Town, Nungwi, Paje, Kendwa, Jambiani</p>
+                        <a href="https://jamtransfer.com/taxi-transfers-from-zanzibar+airport" class="route-link">Pogledajte sve transfere →</a>
+                    </div>
+                </div>
+
+                <div class="route-item">
+                    <img src="https://wis.jamtransfer.com/i/website/destinations/mombasa.webp" alt="Mombasa">&nbsp;&nbsp;
+                    <div class="route-content">
+                        <h4>Mombasa (Moi International Airport)</h4>
+                        <div class="flight-info">
+                            <strong>Turkish Airlines</strong> via Istanbul<br>
+                            <strong>Flydubai</strong> via Dubai
+                        </div>
+                        <p>Najpopularnije rute: Diani Beach, Nyali, Bamburi, Watamu, Malindi</p>
+                        <a href="https://jamtransfer.com/taxi-transfers-from-mombasa+airport" class="route-link">Pogledajte sve transfere →</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="destination-group">
+                <h3>AZIJA - Tropski Raj</h3>
+
+                <div class="route-item">
+                    <img src="https://wis.jamtransfer.com/i/website/destinations/bali_denpasar.webp" alt="Bali">&nbsp;&nbsp;
+                    <div class="route-content">
+                        <h4>Bali - Denpasar (Ngurah Rai International Airport)</h4>
+                        <div class="flight-info">
+                            <strong>Turkish Airlines</strong> via Istanbul<br>
+                            <strong>Emirates</strong> via Dubai
+                        </div>
+                        <p>Najpopularnije rute: Seminyak, Kuta, Ubud, Sanur, Nusa Dua, Canggu</p>
+                        <a href="https://jamtransfer.com/taxi-transfers-from-bali+denpasar+ngurah+rai+airport" class="route-link">Pogledajte sve transfere →</a>
+                    </div>
+                </div>
+
+                <div class="route-item">
+                    <img src="https://wis.jamtransfer.com/i/website/destinations/bangkok.webp" alt="Bangkok">&nbsp;&nbsp;
+                    <div class="route-content">
+                        <h4>Tajland - Bangkok (Suvarnabhumi Airport)</h4>
+                        <div class="flight-info">
+                            <strong>Turkish Airlines</strong> via Istanbul<br>
+                            <strong>Emirates</strong> via Dubai
+                        </div>
+                        <p>Najpopularnije rute: Bangkok City Centre, Sukhumvit, Silom, Khao San Road</p>
+                        <a href="https://jamtransfer.com/taxi-transfers-from-bangkok+airport" class="route-link">Pogledajte sve transfere →</a>
+                    </div>
+                </div>
+
+                <div class="route-item">
+                    <img src="https://wis.jamtransfer.com/i/website/destinations/phuket.webp" alt="Phuket">&nbsp;&nbsp;
+                    <div class="route-content">
+                        <h4>Tajland - Phuket (Phuket International Airport)</h4>
+                        <div class="flight-info">
+                            <strong>Turkish Airlines</strong> via Istanbul<br>
+                            <strong>Emirates</strong> via Dubai
+                        </div>
+                        <p>Najpopularnije rute: Patong Beach, Kata Beach, Karon, Kamala, Bang Tao</p>
+                        <a href="https://jamtransfer.com/taxi-transfers-from-phuket+airport" class="route-link">Pogledajte sve transfere →</a>
+                    </div>
+                </div>
+
+                <div class="route-item">
+                    <img src="https://wis.jamtransfer.com/i/website/destinations/krabi.webp" alt="Krabi">&nbsp;&nbsp;
+                    <div class="route-content">
+                        <h4>Tajland - Krabi (Krabi Airport)</h4>
+                        <div class="flight-info">
+                            <strong>Flydubai</strong> via Dubai
+                        </div>
+                        <p>Najpopularnije rute: Ao Nang, Railay Beach, Krabi Town, Klong Muang</p>
+                        <a href="https://jamtransfer.com/taxi-transfers-from-krabi+airport" class="route-link">Pogledajte sve transfere →</a>
+                    </div>
+                </div>
+
+                <div class="route-item">
+                    <img src="https://wis.jamtransfer.com/i/website/destinations/colombo.webp" alt="Colombo">&nbsp;&nbsp;
+                    <div class="route-content">
+                        <h4>Šri Lanka - Kolombo (Bandaranaike Airport)</h4>
+                        <div class="flight-info">
+                            <strong>Turkish Airlines</strong> via Istanbul<br>
+                            <strong>Emirates/Flydubai</strong> via Dubai
+                        </div>
+                        <p>Najpopularnije rute: Colombo, Negombo, Mount Lavinia, Galle, Kandy</p>
+                        <a href="https://jamtransfer.com/taxi-transfers-from-colombo+airport" class="route-link">Pogledajte sve transfere →</a>
+                    </div>
+                </div>
+
+                <div class="route-item">
+                    <img src="https://wis.jamtransfer.com/i/website/destinations/ho_chi_minh.webp" alt="Ho Chi Minh">&nbsp;&nbsp;
+                    <div class="route-content">
+                        <h4>Vijetnam - Ho Ši Min (Tan Son Nhat Airport)</h4>
+                        <div class="flight-info">
+                            <strong>Turkish Airlines</strong> via Istanbul
+                        </div>
+                        <p>Najpopularnije rute: Ho Chi Minh City Centre, District 1, Phu My Hung</p>
+                        <a href="https://jamtransfer.com/taxi-transfers-from-ho+chi+minh+airport" class="route-link">Pogledajte sve transfere →</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="destination-group">
+                <h3>KARIPSKO MORE I SREDNJA AMERIKA</h3>
+
+                <div class="route-item">
+                    <img src="https://wis.jamtransfer.com/i/website/destinations/havana.webp" alt="Havana">&nbsp;&nbsp;
+                    <div class="route-content">
+                        <h4>Kuba - Havana (José Martí Airport)</h4>
+                        <div class="flight-info">
+                            <strong>Turkish Airlines</strong> via Istanbul
+                        </div>
+                        <p>Najpopularnije rute: Havana Old Town, Vedado, Miramar, Varadero</p>
+                        <a href="https://jamtransfer.com/taxi-transfers-from-havana+airport" class="route-link">Pogledajte sve transfere →</a>
+                    </div>
+                </div>
+
+                <div class="route-item">
+                    <img src="https://wis.jamtransfer.com/i/website/destinations/punta_cana.webp" alt="Punta Cana">&nbsp;&nbsp;
+                    <div class="route-content">
+                        <h4>Dominikanska Republika - Punta Cana (Punta Cana Airport)</h4>
+                        <div class="flight-info">
+                            <strong>Dostupno sa presedanjem</strong>
+                        </div>
+                        <p>Najpopularnije rute: Punta Cana, Bavaro, Cap Cana, Uvero Alto</p>
+                        <a href="https://jamtransfer.com/taxi-transfers-from-punta+cana+airport" class="route-link">Pogledajte sve transfere →</a>
+                    </div>
+                </div>
+
+                <div class="route-item">
+                    <img src="https://wis.jamtransfer.com/i/website/destinations/cancun.webp" alt="Cancun">&nbsp;&nbsp;
+                    <div class="route-content">
+                        <h4>Meksiko - Kankun (Cancun International Airport)</h4>
+                        <div class="flight-info">
+                            <strong>Turkish Airlines</strong> via Istanbul
+                        </div>
+                        <p>Najpopularnije rute: Cancun Hotel Zone, Playa del Carmen, Tulum, Riviera Maya</p>
+                        <a href="https://jamtransfer.com/taxi-transfers-from-cancun+airport" class="route-link">Pogledajte sve transfere →</a>
+                    </div>
+                </div>
+
+                <div class="route-item">
+                    <img src="https://wis.jamtransfer.com/i/website/destinations/panama.webp" alt="Panama">&nbsp;&nbsp;
+                    <div class="route-content">
+                        <h4>Panama - Panama City (Tocumen International Airport)</h4>
+                        <div class="flight-info">
+                            <strong>Turkish Airlines</strong> via Istanbul
+                        </div>
+                        <p>Najpopularnije rute: Panama City, Casco Viejo, Amador Causeway, Playa Bonita</p>
+                        <a href="https://jamtransfer.com/taxi-transfers-from-panama+airport" class="route-link">Pogledajte sve transfere →</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="destination-group">
+                <h3>BLISKI ISTOK I ARAPSKI POLUOSTRVO</h3>
+
+                <div class="route-item">
+                    <img src="https://wis.jamtransfer.com/i/website/destinations/hurghada.webp" alt="Hurghada">&nbsp;&nbsp;
+                    <div class="route-content">
+                        <h4>Egipat - Hurgada (Hurghada International Airport)</h4>
+                        <div class="flight-info">
+                            <strong>Turkish Airlines</strong> via Istanbul
+                        </div>
+                        <p>Najpopularnije rute: Hurghada, El Gouna, Makadi Bay, Soma Bay, Safaga</p>
+                        <a href="https://jamtransfer.com/taxi-transfers-from-hurgada+airport" class="route-link">Pogledajte sve transfere →</a>
+                    </div>
+                </div>
+
+                <div class="route-item">
+                    <img src="https://wis.jamtransfer.com/i/website/destinations/aqaba.webp" alt="Aqaba">&nbsp;&nbsp;
+                    <div class="route-content">
+                        <h4>Jordan - Akaba (King Hussein International Airport)</h4>
+                        <div class="flight-info">
+                            <strong>Turkish Airlines</strong> via Istanbul
+                        </div>
+                        <p>Najpopularnije rute: Aqaba, Petra, Wadi Rum, Dead Sea, Amman</p>
+                        <a href="https://jamtransfer.com/taxi-transfers-from-aqaba+airport" class="route-link">Pogledajte sve transfere →</a>
+                    </div>
+                </div>
+
+                <div class="route-item">
+                    <img src="https://wis.jamtransfer.com/i/website/destinations/dubai.webp" alt="Dubai">&nbsp;&nbsp;
+                    <div class="route-content">
+                        <h4>UAE - Dubai (Dubai International Airport)</h4>
+                        <div class="flight-info">
+                            <strong>Flydubai</strong> direktno iz Beograda
+                        </div>
+                        <p>Najpopularnije rute: Dubai Marina, Downtown Dubai, Jumeirah Beach, Deira</p>
+                        <a href="https://jamtransfer.com/taxi-transfers-from-dubai+airport" class="route-link">Pogledajte sve transfere →</a>
+                    </div>
+                </div>
+
+                <div class="route-item">
+                    <img src="https://wis.jamtransfer.com/i/website/destinations/abu_dhabi.webp" alt="Abu Dhabi">&nbsp;&nbsp;
+                    <div class="route-content">
+                        <h4>UAE - Abu Dabi (Abu Dhabi International Airport)</h4>
+                        <div class="flight-info">
+                            <strong>Flydubai/Emirates</strong> via Dubai
+                        </div>
+                        <p>Najpopularnije rute: Abu Dhabi City, Corniche, Yas Island, Saadiyat Island</p>
+                        <a href="https://jamtransfer.com/taxi-transfers-from-abu+dhabi+airport" class="route-link">Pogledajte sve transfere →</a>
+                    </div>
+                </div>
+
+                <div class="route-item">
+                    <img src="https://wis.jamtransfer.com/i/website/destinations/salalah.webp" alt="Salalah">&nbsp;&nbsp;
+                    <div class="route-content">
+                        <h4>Oman - Salala (Salalah Airport)</h4>
+                        <div class="flight-info">
+                            <strong>Flydubai</strong> via Dubai
+                        </div>
+                        <p>Najpopularnije rute: Salalah City, Al Mughsail Beach, Taqah, Mirbat</p>
+                        <a href="https://jamtransfer.com/taxi-transfers-from-salalah+airport" class="route-link">Pogledajte sve transfere →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Kako Funkcionišu Airport Taxi Transferi?</h2>
+            <div class="benefits">
+                <ol>
+                    <li><strong>Online Rezervacija</strong> - Jednostavno rezervišite transfer unapred putem našeg sistema</li>
+                    <li><strong>Potvrda Rezervacije</strong> - Odmah dobijate potvrdu sa svim detaljima transfera</li>
+                    <li><strong>Praćenje Leta</strong> - Naši lokalni partneri prate stvarno vreme dolaska</li>
+                    <li><strong>Meet & Greet</strong> - Vozač dočekuje goste u arrival hali sa tablom</li>
+                    <li><strong>Direktan Transfer</strong> - Udobna vožnja direktno do hotela bez čekanja</li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="highlight">
+            <strong>Za turisticke agencije:</strong> JAM Transfer nudi specijalne B2B uslove i mogućnost kreiranja paketa transfera za vaše klijente. Kontaktirajte nas za partnersku saradnju.
+        </div>
+
+        <div class="cta">
+            <h3>Rezervišite Transfere za Vaše Klijente</h3>
+            <p>Posetite <a href="https://jamtransfer.com">www.jamtransfer.com</a> za sve destinacije i instant potvrdu</p>
+            <p>Za B2B saradnju i specijalne uslove, kontaktirajte nas direktno</p>
+        </div>
+
+        <div class="footer">
+            <img src="https://jamtransfer.com/images/logo-white.png" alt="JAM Transfer" style="display: block; max-width: 150px; height: auto; margin: 0 auto 15px auto;">
+            <p><strong>JAM Transfer B2B Partnership Program</strong></p>
+            <p>Profesionalni airport taxi transferi za turističku industriju</p>
+            <p style="margin-top: 15px;"><a href="https://jamtransfer.com">www.jamtransfer.com</a></p>
+            <p style="margin-top: 10px;"><a href="mailto:agent@jamtransfer.com">agent@jamtransfer.com</a></p>
+            <p style="margin-top: 25px; font-size: 12px; opacity: 0.8;">© 2006-2025 JAM Transfer. Sva prava zadržana.</p>
+        </div>
+    </div>
+</body>
+</html>

@@ -49,6 +49,8 @@
 	$shlevel->AddOutput("Drivers");
 	$shlevel->AddValue(3);	
 	$shlevel->AddOutput("Agents");
+	$shlevel->AddValue(4);	
+	$shlevel->AddOutput("Customers");
 	
 	$shlevel->SmartyAssign();
 	

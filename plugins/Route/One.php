@@ -26,13 +26,16 @@ $detailFlds["Duration2"]=$detailFlds["Duration"];
 $detailFlds["Km2"]=$detailFlds["Km"];
 $detailFlds["LastChange2"]=$detailFlds["LastChange"];
 //$detailFlds["Line"]=json_decode($db->getLine());
-if ($detailFlds["LastChange"]<date('Y-m-d', time()-183*24*3600) )	{
+//if ($detailFlds["LastChange"]<date('Y-m-d', time()-183*24*3600) )	{
 	$pl->getRow($db->getFromID());
 	$lng1=$pl->getLongitude();
 	$lat1=$pl->getLatitude();
+	$PickUP=$pl->getPlaceNameEN();
 	$pl->getRow($db->getToID());
 	$lng2=$pl->getLongitude();
 	$lat2=$pl->getLatitude();
+	$Drop=$pl->getPlaceNameEN();
+
 	// preuzimanje podataka iz API-ja
 	$transfersR=getRouteParam($lng1,$lat1,$lng2,$lat2);
 	$detailFlds["Duration"]=$transfersR['duration'];
@@ -43,15 +46,17 @@ if ($detailFlds["LastChange"]<date('Y-m-d', time()-183*24*3600) )	{
 	$detailFlds["Error"]=$transfersR['error'];
 
 	
-	/*$detailFlds["Lng1"]=$lng1;
+	$detailFlds["Lng1"]=$lng1;
 	$detailFlds["Lat1"]=$lat1;
+	$detailFlds["PickUP"]=$PickUP;
 	$detailFlds["Lng2"]=$lng2;
-	$detailFlds["Lat2"]=$lat2;*/
+	$detailFlds["Lat2"]=$lat2;
+	$detailFlds["Drop"]=$Drop;
 	$detailFlds["TopRouteID"]=getTopRouteID($db,$dbT,$_REQUEST['ItemID'],json_decode($detailFlds["Line"]));
 	if ($detailFlds["TopRouteID"]>0) $detailFlds["ConFaktor"]=getConFaktor($db,$detailFlds["TopRouteID"],$detailFlds["Duration"],$detailFlds["Km"]);
 	$detailFlds["LastChange"]=date("Y-m-d");
-}
-$midleline=number_format(count(json_decode($detailFlds["Line"]))/2,0);
+//}
+$midleline=number_format(count(json_decode($detailFlds["Line"]))/2,0,".","");
 $detailFlds["Lat"]=json_decode($detailFlds["Line"])[$midleline][0];
 $detailFlds["Lng"]=json_decode($detailFlds["Line"])[$midleline][1];
 if ($detailFlds["TopRouteID"]>0) {
@@ -110,8 +115,8 @@ function getRouteParam($lng1,$lat1,$lng2,$lat2) {
 	//$json = file_get_contents($url);  
 	$obj="";
 	$obj = json_decode($json,true);	
-	$line="[";
 	if ($json) {
+		$line="[";
 		$distance=number_format($obj['features'][0]['properties']['segments'][0]['distance']/1000,2);
 		$duration=number_format($obj['features'][0]['properties']['segments'][0]['duration']/60,0);
 		$transfersR['distance']=$distance;

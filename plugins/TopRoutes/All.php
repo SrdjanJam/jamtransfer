@@ -16,6 +16,10 @@ else $filter =" 1=1 ";
 $page 		= (int) $_REQUEST['page'];
 $length 	= $_REQUEST['length'];
 $sortOrder 	= $_REQUEST['sortOrder'];
+if($sortOrder=="VISITS") {
+	$ItemName="Visits";
+	$sortOrder=" DESC";
+}
 
 $start = ($page * $length) - $length;
 

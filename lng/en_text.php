@@ -1193,3 +1193,9 @@ define("TA_NUMBER", "TA.Number");
 //10.11.25
 define("NEARBY_LOCATIONS", "Nearby locations");
 define("BOOKED_FOR", "Booked for");
+//18.11.25
+define("VISITS","Visits");
+//21.11.25
+define("ROUTE_CHECKER","Route Checker");
+define("DRIVER_CHECKER","Check Driver on Route");
+define("ROUTE_DESCRIPTION_SAVER","Route Description Saver");

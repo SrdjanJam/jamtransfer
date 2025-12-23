@@ -64,7 +64,10 @@
 									{{#if Image}}
 										<img src='i/agents/{{Image}}'>	 
 									{{/if}}	
-									<strong>{{UserName}}</strong>
+									<strong>{{AgentName}}</strong> 
+									{{#compare AgentName "!=" UserName}}
+										/<small>{{UserName}}</small>
+									{{/compare}}	
 								</div>	
 								<div class="icon">
 									<h4><?=PURCHASER;?></h4>
@@ -85,9 +88,6 @@
 									</a>
 									<br>						
 									<small><i class="fa fa-car"></i> {{VehicleTypeName}}*{{VehiclesNo}}</small>
-									{{#compare ExtraCharge ">" 0}}
-										<i class="fa fa-cubes" style="color:#900"></i>
-									{{/compare}}
 								</div>
 								<div class="icon">
 									<i class="fa fa-road" style="font-size:60px;"></i>
@@ -128,13 +128,16 @@
 								{{#if ConflictColor}}<div><strong>{{TimeDiff}} <?=MINUTES_FLIGHT_CONFLICT;?></strong></div>{{/if}}
 								<div class="icon">
 									<i class="fa fa-person" style="font-size:60px;"></i>
-								</div>								
+								</div>	
+								{{#compare ExtraCharge ">" 0}}
+									<i class="fa fa-cubes" style="color:#900"></i>
+								{{/compare}}								
 							</div>
 
 							<!-- Payment: -->
 							<div class="col-md-2 small-box payment {{PayConflictColor}}" onclick="oneItem({{DetailsID}},'payment');">
 								<div class="inner inner-edit">
-									<strong>{{addNumbers DetailPrice ExtraCharge}} €</strong><br>
+									<strong>{{DetailPricePlus}} €</strong><br>
 									{{paymentMethodText PaymentMethod}} <br>
 									<small>
 									{{#compare PaymentMethod "==" "1"}} {{MCardNumber}}	{{/compare}}

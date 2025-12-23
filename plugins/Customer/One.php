@@ -24,7 +24,13 @@ require_once 'Initial.php';
 			$od->getRow($key);
 			$transfersrow = array(
 					"TransferID" => $od->getDetailsID(),
-					"TransferText" => $od->getOrderID().'-'.$od->getTNo()
+					"TransferText" => $od->getOrderID().'-'.$od->getTNo(),
+					"OrderDate" => $od->getOrderDate(),
+					"PickupDate" => $od->getPickupDate(),
+					"PickupName" => $od->getPickupName(),
+					"DropName" => $od->getDropName(),
+					"DetailPrice" => $od->getDetailPrice(),
+					"StatusDescription" => $StatusDescription[$od->getTransferStatus()] 
 			);
 			$transfers[]=$transfersrow;
 		}	

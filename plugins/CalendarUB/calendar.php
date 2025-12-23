@@ -44,8 +44,25 @@ for ($i=0; $i<($maxday+$startday); $i++) {
 $dayin = substr($dayin,0,strlen($dayin)-1);
 if ($_REQUEST["all"]==1) $filter_users="";
 else $filter_users="((AgentID=53 and CustomerID>0) or (AgentID<>53)) and ";
-//$active = "SELECT MOrderDate,MOrderTime,PickupDate,PickupTime,PickupName,DropName,PaxNo FROM `v4_OrderDetailsTemp`,`v4_OrdersMasterTemp` WHERE `TransferStatus`=6 and TNo=1 and `OrderDate` in (".$dayin.") and OrderID=MOrderID	";		
-$active = "SELECT `OrderDate`,`AgentID`,`CustomerID`,`PickupName`,`DropName`,`PickupDate`,`PickupTime` FROM `v4_OrderDetailsTemp` WHERE ".$filter_users." `UserID`>0 and `OrderID` in (SELECT MOrderID FROM `v4_OrdersMasterTemp` WHERE  `MUserLevelID` in (2,3) and `MUserID`>0 and `MOrderKey` not in (SELECT `MCardNumber` FROM `v4_OrdersMaster` WHERE `MCardNumber`>0))";
+$active = "SELECT 
+	`OrderID`,
+	`OrderDate`,
+	`AgentID`,
+	`CustomerID`,
+	`TransferStatus`,
+	`DriverID`,
+	`PickupName`,
+	`DropName`,
+	`PickupDate`,
+	`PickupTime` 
+	FROM `v4_OrderDetailsTemp` WHERE 
+	".$filter_users." `UserID`>0 and 
+	`OrderID` in (SELECT MOrderID FROM `v4_OrdersMasterTemp` WHERE  
+		`MUserLevelID` in (2,3) and 
+		`MUserID`>0 and 
+		TIMESTAMP(MOrderDate, MOrderTime) < DATE_SUB(UTC_TIMESTAMP(), INTERVAL 15 MINUTE) and
+		`MOrderKey` not in (SELECT `MCardNumber` FROM `v4_OrdersMaster` WHERE `MCardNumber`>0)
+	)";
 $rec = $db->RunQuery($active) ;
 $timestamp = mktime(0,0,0,$cMonth,1,$cYear);
 $maxday = date("t",$timestamp);
@@ -55,13 +72,13 @@ require_once ROOT . '/db/v4_Customers.class.php';
 $cu = new v4_Customers();
 for ($i=0; $i<($maxday+$startday); $i++) {
 		$fullDate = date("Y-m-d",mktime(0,0,0,$cMonth,($i - $startday + 1),$cYear));
-		$month_transfers[]=monthTransfers($fullDate,$rec,$i,$startday,$users,$cu);
+		$month_transfers[]=monthTransfers($db,$fullDate,$rec,$i,$startday,$users,$cu);
 }	
 $smarty->assign('month_transfers',$month_transfers);
 $smarty->assign('startday',$startday);
 $smarty->display('monthtransfers.tpl');		
 
-function monthTransfers($date,$rec,$count,$startday,$users,$cu)
+function monthTransfers($db,$date,$rec,$count,$startday,$users,$cu)
 {
 	global $StatusDescription;
 	global $DriverConfStatus;
@@ -71,15 +88,27 @@ function monthTransfers($date,$rec,$count,$startday,$users,$cu)
 	$arr = array();
 	foreach ($rec as $row) { 
 		if ($row['OrderDate']==$date) {
+			$key_show=false;
+			if ($row['TransferStatus']==6) $row['Step']="No service";
+			elseif ($row['DriverID']==0) $row['Step']="Select service";
+			else $row['Step']="Input data";
 			if ($row['AgentID']<>53) {
 				$row['AgentName']=$users[$row['AgentID']]->AuthUserRealName;
 				$row['AgentID']=$row['AgentID'];
+				$key_show=true;
 			}	
 			if ($row['CustomerID']>0) {
 				$cu->getRow($row['CustomerID']);
 				$row['CustomerName']=$cu->getCustFirstName()." ".$cu->getCustLastName();
 				$row['CustomerID']=$cu->getCustID();
+				$key_show=true;
 			}	
+			if ($key_show) {
+				$sql="SELECT `MOrderKey` FROM `v4_OrdersMasterTemp` WHERE `MOrderID`=".$row['OrderID'];
+				$orderkey=$db->RunQuery($sql);
+				$key = $orderkey->fetch_object();
+				$row['OrderKey']=$key->MOrderKey;
+			}
 			$noOfTransfers += 1;
 			$arr[]= $row;
 		}

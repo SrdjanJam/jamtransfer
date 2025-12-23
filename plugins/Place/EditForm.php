@@ -5,7 +5,7 @@
 			<? if ($isNew) { ?>
 				<h3><?= NEWW ?></h3>
 			<? } else { ?>
-				<h3><?= EDIT ?> - {{PlaceNameEN}}</h3>
+				<h3><?= EDIT ?> - <a target="_blank" href="https://www.google.rs/maps/place/{{PlaceNameEN}}">{{PlaceNameEN}}</a></h3>
 			<? } ?>
 		</div>
 		<div class="box-tools pull-right">

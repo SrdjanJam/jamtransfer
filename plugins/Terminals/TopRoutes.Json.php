@@ -294,21 +294,18 @@ function getProvision($price, $ownerid, $VehicleClass = 1) {
                 if      ($priceR >= $d->R1Low and $priceR <= $d->R1Hi) $provision=$d->R1Percent ;
                 else if ($priceR >= $d->R2Low and $priceR <= $d->R2Hi) $provision=$d->R2Percent ;
                 else if ($priceR >= $d->R3Low and $priceR <= $d->R3Hi) $provision=$d->R3Percent ;
-                else $provision=$price;
             }
             // PREMIUM CLASS
             if($VehicleClass >= 11 and $VehicleClass < 21) {
                 if      ($priceR >= $d->PR1Low and $priceR <= $d->PR1Hi) $provision=$d->PR1Percent ;
                 else if ($priceR >= $d->PR2Low and $priceR <= $d->PR2Hi) $provision=$d->PR2Percent ;
                 else if ($priceR >= $d->PR3Low and $priceR <= $d->PR3Hi) $provision=$d->PR3Percent ;
-                else $provision=$price;
             }
             // FIRST CLASS
             if($VehicleClass >= 21) {
                 if      ($priceR >= $d->FR1Low and $priceR <= $d->FR1Hi) $provision=$d->FR1Percent ;
                 else if ($priceR >= $d->FR2Low and $priceR <= $d->FR2Hi) $provision=$d->FR2Percent ;
                 else if ($priceR >= $d->FR3Low and $priceR <= $d->FR3Hi) $provision=$d->FR3Percent ;
-                else $provision=$price;
             }
         }
         if ($provision==0) {

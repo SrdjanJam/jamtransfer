@@ -94,10 +94,17 @@ $(document).ready(function(){
 														<a target='_blank' href='users/{$month_transfers[pom].transfers[pom2].AgentID}'>{$month_transfers[pom].transfers[pom2].AgentName}</a>
 														<a target='_blank' href='customers/{$month_transfers[pom].transfers[pom2].CustomerID}'>{$month_transfers[pom].transfers[pom2].CustomerName}</a>
 													</strong><br>
+													<strong>{$month_transfers[pom].transfers[pom2].Step}</strong><br>
 													{$month_transfers[pom].transfers[pom2].PickupDate}
 													{$month_transfers[pom].transfers[pom2].PickupTime}<br>
 													{$month_transfers[pom].transfers[pom2].PickupName}-
-													{$month_transfers[pom].transfers[pom2].DropName}</small>
+													{$month_transfers[pom].transfers[pom2].DropName}<br> 
+													{if $month_transfers[pom].transfers[pom2].OrderKey}
+														<a href='https://prod.jamtransfer.com/send/emailQuote/tempToLive?tok={$month_transfers[pom].transfers[pom2].OrderKey}'>
+															Make PreOrder
+														</a>
+													{/if}
+													</small>
 												</div><br>
 											{/section} {* / Second Section *}
 										</small>
